@@ -1,6 +1,6 @@
 const MODEL_ID = "roman001";
 const ws = new WebSocket(
-  `wss://of-widgets-backend-production.up.railway.app/?modelId=${MODEL_ID}`
+  `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
 );
 
 let scores = {};
