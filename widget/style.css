@@ -1,61 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
 body {
   background: transparent;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
+  font-family: 'Orbitron', system-ui, sans-serif;
+  color: #fff;
 }
 
 #container {
+  position: relative;
   width: 420px;
-  padding: 18px;
+  padding: 18px 20px 16px;
   border-radius: 18px;
-  background: rgba(0,0,0,0.6);
-  border: 5px solid #ffffff;
+
+  background: radial-gradient(circle at top, rgba(255,215,0,0.2), rgba(0,0,0,0.8));
+  border: 2px solid rgba(255,215,0,0.75);
   box-shadow:
-    0 0 30px rgba(255,215,0,0.7),
-    inset 0 0 12px rgba(255,215,0,0.4);
+    0 0 28px rgba(255,215,0,0.85),
+    0 0 55px rgba(0,0,0,0.95);
+  overflow: hidden;
 }
 
-h2 {
+/* por si tu efecto de nieve usa este div */
+.snow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  font-size: 26px;
-  margin-bottom: 14px;
-  color: #FFD700;
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #ffeec0;
   text-shadow:
-    0 0 12px #FFD700,
-    0 0 30px #ffec8b;
+    0 0 12px rgba(255,215,0,0.9),
+    0 0 28px rgba(255,215,0,1);
+}
+
+/* lista */
+#top-list {
+  position: relative;
+  z-index: 2;
 }
 
 /* ITEMS */
 .tip-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 14px;
   margin-bottom: 10px;
   border-radius: 12px;
-  background: linear-gradient(
-    120deg,
-    #2b2b2b,
-    #111
-  );
-  border: 1px solid #FFD700;
-  box-shadow: 0 0 12px rgba(255,215,0,0.4);
-  font-size: 18px;
-  font-weight: bold;
-}
 
-/* MVP */
-.tip-item:first-child {
-  background: linear-gradient(
-    120deg,
-    #FFD700,
-    #b8860b
-  );
-  color: #000;
+  background: linear-gradient(135deg, #18140a, #050404);
+  border: 1px solid rgba(255,215,0,0.7);
   box-shadow:
-    0 0 30px rgba(255,215,0,0.9);
+    0 0 14px rgba(255,215,0,0.55),
+    inset 0 0 8px rgba(255,255,255,0.08);
+
+  font-size: 16px;
+  font-weight: 600;
 }
 
+/* MVP (primer lugar) */
+.tip-item:first-child {
+  background: linear-gradient(120deg, #ffd700, #fff2b6);
+  color: #2b2100;
+  font-weight: 800;
+  box-shadow:
+    0 0 30px rgba(255,215,0,1),
+    0 0 45px rgba(255,215,0,0.9);
+}
+
+/* corona / icono MVP */
 .crown {
   margin-left: 6px;
   animation: glow 1.6s infinite alternate;
@@ -63,12 +84,12 @@ h2 {
 
 /* ANIMACIONES */
 @keyframes glow {
-  from { text-shadow: 0 0 6px #fff; }
-  to { text-shadow: 0 0 18px #FFD700; }
+  from { text-shadow: 0 0 6px #ffffff; }
+  to   { text-shadow: 0 0 18px #ffd700; }
 }
 
 @keyframes boom {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.12); }
   100% { transform: scale(1); }
 }

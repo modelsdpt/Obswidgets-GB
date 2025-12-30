@@ -1,35 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
 body {
   background: transparent;
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Orbitron', system-ui, sans-serif;
   text-align: center;
   color: #fff;
 }
 
 /* TÍTULO */
-#goal-title {
-  font-size: 34px;
-  margin-bottom: 12px;
-  font-weight: 900;
-  color: #FFD700;
+.goal-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  color: #ffeec0;
   text-shadow:
-    0 0 10px #FFD700,
-    0 0 25px #ffec8b;
+    0 0 12px rgba(255,215,0,0.9),
+    0 0 28px rgba(255,215,0,1);
 }
 
-/* CONTENEDOR */
+/* CONTENEDOR BARRA */
 #goal-wrapper {
   position: relative;
-  width: 92%;
+  width: 420px;
   height: 52px;
-  margin: auto;
-  border-radius: 15px;
+  margin: 0 auto;
+  border-radius: 16px;
   overflow: hidden;
-  border: 5px solid #ffffff;
-  background: rgba(0,0,0,0.65);
+
+  border: 2px solid rgba(255,215,0,0.8);
+  background: radial-gradient(circle at top, rgba(255,215,0,0.25), rgba(0,0,0,0.8));
   box-shadow:
-    0 0 25px rgba(255,215,0,0.6),
-    inset 0 0 12px rgba(255,215,0,0.4);
+    0 0 28px rgba(255,215,0,0.85),
+    0 0 55px rgba(0,0,0,0.95);
 }
 
 /* BARRA DORADA */
@@ -39,20 +42,20 @@ body {
   background: linear-gradient(
     120deg,
     #b8860b,
-    #FFD700,
-    #fff3a0,
-    #FFD700,
+    #ffd700,
+    #fff6bf,
+    #ffd700,
     #b8860b
   );
-  background-size: 200% 100%;
+  background-size: 220% 100%;
   animation: goldFlow 2s linear infinite;
   box-shadow:
-    inset 0 0 12px rgba(255,255,255,0.8),
-    0 0 18px rgba(255,215,0,0.9);
+    inset 0 0 12px rgba(255,255,255,0.9),
+    0 0 18px rgba(255,215,0,1);
   transition: width 0.6s ease;
 }
 
-/* PARTÍCULAS */
+/* PARTICULAS / FUEGOS */
 .particles {
   position: absolute;
   inset: 0;
@@ -65,13 +68,24 @@ body {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: radial-gradient(#fff, #FFD700);
+  background: radial-gradient(#ffffff, #ffd700);
   animation: firework 1.4s ease-out forwards;
+}
+
+/* TEXTO META */
+.goal-amount {
+  font-size: 18px;
+  margin-top: 8px;
+  font-weight: 700;
+  color: #ffeec0;
+  text-shadow:
+    0 0 10px rgba(255,215,0,0.9),
+    0 0 24px rgba(255,215,0,1);
 }
 
 /* ANIMACIONES */
 @keyframes goldFlow {
-  0% { background-position: 0% 50%; }
+  0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
@@ -84,17 +98,4 @@ body {
     transform: translateY(-60px) scale(0);
     opacity: 0;
   }
-}
-
-
-goal-amount {
-  font-size: 22px;
-  margin-top: 10px;
-  font-weight: 700;
-  color: #FFD700;
-  text-shadow:
-    0 0 10px #FFD700,
-    0 0 25px #ffec8b;
-  box-shadow:
-    0 0 30px rgba(255,215,0,0.7),
 }
