@@ -21,14 +21,6 @@ body {
   overflow: hidden;
 }
 
-/* nieve si la usas */
-.snow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
 .title {
   position: relative;
   z-index: 2;
@@ -41,18 +33,18 @@ body {
     0 0 28px rgba(255,215,0,1);
 }
 
-/* CONTENEDOR LISTA */
+/* contenedor lista */
 #top-list {
   position: relative;
   z-index: 2;
 }
 
-/* ITEMS GENERALES */
-.tip-item {
+/* ====== ITEM GENERAL (CLASE .tip QUE GENERA EL JS) ====== */
+.tip {
   position: relative;
   display: flex;
-  flex-direction: column;       /* nombre y cantidad uno debajo de otro */
-  align-items: center;          /* centrados horizontalmente */
+  flex-direction: column;      /* nombre arriba, monto abajo */
+  align-items: center;
   justify-content: center;
   text-align: center;
 
@@ -71,12 +63,19 @@ body {
 }
 
 /* primer span = NOMBRE */
-.tip-item span:first-child {
-  font-size: 18px;    /* nombres más grandes que antes */
+.tip span:first-child {
+  font-size: 18px;     /* todos los nombres un poco más grandes */
+  margin-bottom: 3px;
 }
 
-/* MVP (primer lugar) */
-.tip-item:first-child {
+/* segundo span = MONTO */
+.tip span:last-child {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ====== MVP (CLASE .mvp QUE AGREGA EL JS AL PRIMERO) ====== */
+.tip.mvp {
   background: linear-gradient(135deg, #ffd700, #fff7cc);
   color: #2b2100;
   font-weight: 800;
@@ -86,25 +85,25 @@ body {
   overflow: hidden;
 }
 
-/* nombre del MVP aún más grande */
-.tip-item:first-child span:first-child {
+/* nombre del MVP aún más grande y destacado */
+.tip.mvp span:first-child {
   font-size: 22px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-/* overlay brillante para el MVP */
-.tip-item:first-child::before {
+/* overlay / brillo sobre el MVP */
+.tip.mvp::before {
   content: "";
   position: absolute;
-  inset: -20%;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.55), transparent 60%);
+  inset: -25%;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.6), transparent 60%);
   opacity: 0.6;
   mix-blend-mode: screen;
   animation: mvpShine 2.4s infinite alternate;
 }
 
-/* corona / icono MVP */
+/* por si usas <span class="crown"> en el nombre */
 .crown {
   margin-left: 6px;
   animation: glow 1.6s infinite alternate;
