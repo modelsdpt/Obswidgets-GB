@@ -48,8 +48,8 @@ body {
   justify-content: center;
   text-align: center;
 
-  padding: 10px 14px;
-  margin-bottom: 10px;
+  padding: 5px 7px;
+  margin-bottom: 5px;
   border-radius: 12px;
 
   background: linear-gradient(135deg, #18140a, #050404);
@@ -64,19 +64,19 @@ body {
 
 /* primer span = NOMBRE */
 .tip span:first-child {
-  font-size: 18px;     /* todos los nombres un poco más grandes */
+  font-size: 16px;     /* todos los nombres un poco más grandes */
   margin-bottom: 3px;
 }
 
 /* segundo span = MONTO */
 .tip span:last-child {
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.9;
 }
 
 /* ====== MVP (CLASE .mvp QUE AGREGA EL JS AL PRIMERO) ====== */
 .tip.mvp {
-  background: linear-gradient(135deg, #ffd700, #fff7cc);
+  background: linear-gradient(135deg, #ffd700, #05040179);
   color: #2b2100;
   font-weight: 800;
   box-shadow:
@@ -87,8 +87,8 @@ body {
 
 /* nombre del MVP aún más grande y destacado */
 .tip.mvp span:first-child {
-  font-size: 22px;
-  letter-spacing: 2px;
+  font-size: 16px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
