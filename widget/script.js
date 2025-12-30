@@ -42,3 +42,10 @@ function render() {
 
   lastLeader = leader;
 }
+
+function boomEffect(element) {
+  document.getElementById("mvpSound")?.play().catch(()=>{});
+  element.style.animation = "boom .4s ease-out";
+  setTimeout(() => element.style.animation = "", 400);
+}
+

@@ -1,148 +1,87 @@
 body {
   background: transparent;
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: #fff;
+}
+
+/* TÍTULO */
+#goal-title {
+  font-size: 34px;
+  margin-bottom: 12px;
+  font-weight: 900;
+  color: #FFD700;
+  text-shadow:
+    0 0 10px #FFD700,
+    0 0 25px #ffec8b;
 }
 
 /* CONTENEDOR */
 #goal-wrapper {
   position: relative;
-  width: 80%;
-  height: 90px;
+  width: 92%;
+  height: 52px;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 40px;
   overflow: hidden;
-
-  background: rgba(23, 92, 20, 0.35);
-  backdrop-filter: blur(8px);
-
-  border: 1px solid rgba(255, 215, 0, 0.4);
+  border: 3px solid #FFD700;
+  background: rgba(0,0,0,0.65);
   box-shadow:
-    0 0 18px rgba(4, 202, 21, 0.63),
-    inset 0 0 20px rgba(255, 255, 255, 0.15);
+    0 0 25px rgba(255,215,0,0.6),
+    inset 0 0 12px rgba(255,215,0,0.4);
 }
 
-
-/* FILL VERDE */
+/* BARRA DORADA */
 #bar-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
   height: 100%;
   width: 0%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #696b0b 0%,
-      #909e0e 25%,
-      #fbff1c 50%,
-      #97950f 75%,
-      #fdef21 100%
-    );
-
+  background: linear-gradient(
+    120deg,
+    #b8860b,
+    #FFD700,
+    #fff3a0,
+    #FFD700,
+    #b8860b
+  );
   background-size: 200% 100%;
-  animation: metalMove 4s linear infinite;
-
+  animation: goldFlow 2s linear infinite;
   box-shadow:
-    inset 0 0 12px rgba(255,255,255,0.35),
-    0 0 14px rgba(255, 251, 0, 0.8);
-
+    inset 0 0 12px rgba(255,255,255,0.8),
+    0 0 18px rgba(255,215,0,0.9);
   transition: width 0.6s ease;
-  z-index: 2;
 }
 
-@keyframes metalMove {
-  from { background-position: 200% 0; }
-  to   { background-position: 0% 0; }
-}
-
-
-/* TEXTO */
-.goal-text {
+/* PARTÍCULAS */
+.particles {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 2px;
-
-  color: #ffffff;
-  text-shadow:
-    0 0 6px rgba(0,0,0,0.9);
-
-  z-index: 3;
   pointer-events: none;
+  overflow: hidden;
 }
 
-
-/* NEON CUANDO COMPLETA */
-.neon {
-  color: #ffffff;
-  text-shadow:
-    0 0 6px #1a7902,
-    0 0 12px #3faa01,
-    0 0 24px #5dce00,
-    0 0 40px #44b900;
-}
-
-/* NIEVE */
-.snow {
+.particle {
   position: absolute;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(#fff, #FFD700);
+  animation: firework 1.4s ease-out forwards;
 }
 
-.snow::before,
-.snow::after {
-  content: "";
-  position: absolute;
-  inset: -50px 0 0 0;
-  background-image:
-    radial-gradient(2px 2px at 5% 10%, white, transparent),
-    radial-gradient(2px 2px at 15% 30%, white, transparent),
-    radial-gradient(1.5px 1.5px at 30% 15%, white, transparent),
-    radial-gradient(2px 2px at 45% 35%, white, transparent),
-    radial-gradient(1.5px 1.5px at 60% 10%, white, transparent),
-    radial-gradient(2px 2px at 75% 30%, white, transparent),
-    radial-gradient(1.5px 1.5px at 90% 20%, white, transparent);
-  opacity: 0.85;
-  animation: snowFall 4s linear infinite;
+/* ANIMACIONES */
+@keyframes goldFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
-.snow::after {
-  opacity: 0.5;
-  animation-duration: 7s;
-}
-
-@keyframes snowFall {
-  from { transform: translateY(-50px); }
-  to   { transform: translateY(140px); }
-}
-
-
-.goal-amount {
-  margin-top: 8px;
-  text-align: center;
-
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 1px;
-
-  color: #f5d76e;
-  text-shadow:
-    0 0 8px rgba(255,215,0,0.5);
-}
-
-.neon {
-  color: #ffffff;
-  text-shadow:
-    0 0 6px #000302,
-    0 0 14px #e5ff00,
-    0 0 28px #e5ff00,
-    0 0 45px #d1c303;
+@keyframes firework {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-60px) scale(0);
+    opacity: 0;
+  }
 }

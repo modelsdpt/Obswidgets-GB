@@ -1,102 +1,74 @@
 body {
   background: transparent;
   margin: 0;
-  font-family: Georgia, serif;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
 }
 
-/* CONTENEDOR */
 #container {
-  position: relative;
-  width: 340px;
-  padding: 14px;
+  width: 420px;
+  padding: 18px;
   border-radius: 18px;
+  background: rgba(0,0,0,0.6);
+  border: 2px solid #FFD700;
+  box-shadow:
+    0 0 30px rgba(255,215,0,0.7),
+    inset 0 0 12px rgba(255,215,0,0.4);
+}
 
-  background: linear-gradient(
-    180deg,
-    rgba(180, 139, 2, 0.795),
-    rgba(157, 168, 1, 0.767)
-  );
-
-  border: 1px solid rgba(255, 215, 0, 0.25);
-  box-shadow: 0 0 14px rgba(255, 0, 0, 0.25);
-
-  color: #f5d76e;
+h2 {
   text-align: center;
-  overflow: hidden;
-}
-
-/* TITULO */
-.title {
-  margin: 4px 0 12px;
   font-size: 26px;
-  letter-spacing: 3px;
-  text-shadow: 0 0 10px rgba(255,215,0,0.3);
+  margin-bottom: 14px;
+  color: #FFD700;
+  text-shadow:
+    0 0 12px #FFD700,
+    0 0 30px #ffec8b;
 }
 
-/* LISTA */
-#top-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.tip {
-  padding: 10px 12px;
-  border-radius: 12px;
-
+/* ITEMS */
+.tip-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: linear-gradient(
+    120deg,
+    #2b2b2b,
+    #111
+  );
+  border: 1px solid #FFD700;
+  box-shadow: 0 0 12px rgba(255,215,0,0.4);
   font-size: 18px;
-  color: white;
-
-  background: rgba(213, 250, 47, 0.541);
-  border: 1px solid rgba(255,255,255,0.15);
+  font-weight: bold;
 }
 
 /* MVP */
-.mvp {
+.tip-item:first-child {
   background: linear-gradient(
-    90deg,
-    rgba(16, 121, 7, 0.993),
-    rgba(218, 203, 70, 0.795)
+    120deg,
+    #FFD700,
+    #b8860b
   );
-
-  box-shadow: 0 0 15px rgba(255,215,0,0.4);
-  border: 1px solid rgba(255,215,0,0.6);
+  color: #000;
+  box-shadow:
+    0 0 30px rgba(255,215,0,0.9);
 }
 
-/* NIEVE */
-.snow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
+.crown {
+  margin-left: 6px;
+  animation: glow 1.6s infinite alternate;
 }
 
-.snow::before,
-.snow::after {
-  content: "";
-  position: absolute;
-  inset: -40px 0 0 0;
-  background-image:
-    radial-gradient(2px 2px at 10% 10%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(2px 2px at 25% 30%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(2px 2px at 60% 25%, rgba(255,255,255,0.85), transparent),
-    radial-gradient(1.5px 1.5px at 75% 10%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(2px 2px at 90% 30%, rgba(255,255,255,0.8), transparent);
-  opacity: 0.6;
-  animation: snowFall 5s linear infinite;
+/* ANIMACIONES */
+@keyframes glow {
+  from { text-shadow: 0 0 6px #fff; }
+  to { text-shadow: 0 0 18px #FFD700; }
 }
 
-.snow::after {
-  opacity: 0.35;
-  animation-duration: 8s;
-}
-
-@keyframes snowFall {
-  from { transform: translateY(-40px); }
-  to   { transform: translateY(240px); }
+@keyframes boom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
