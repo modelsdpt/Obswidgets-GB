@@ -13,7 +13,7 @@ body {
   padding: 18px 20px 16px;
   border-radius: 18px;
 
-  background: radial-gradient(circle at top, rgba(255,215,0,0.2), rgba(0,0,0,0.8));
+  background: radial-gradient(circle at top, rgba(255,215,0,0.2), rgba(0,0,0,0.85));
   border: 2px solid rgba(255,215,0,0.75);
   box-shadow:
     0 0 28px rgba(255,215,0,0.85),
@@ -21,7 +21,7 @@ body {
   overflow: hidden;
 }
 
-/* por si tu efecto de nieve usa este div */
+/* nieve si la usas */
 .snow {
   position: absolute;
   inset: 0;
@@ -33,25 +33,29 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  font-size: 22px;
-  margin-bottom: 12px;
+  font-size: 24px;
+  margin-bottom: 14px;
   color: #ffeec0;
   text-shadow:
     0 0 12px rgba(255,215,0,0.9),
     0 0 28px rgba(255,215,0,1);
 }
 
-/* lista */
+/* CONTENEDOR LISTA */
 #top-list {
   position: relative;
   z-index: 2;
 }
 
-/* ITEMS */
+/* ITEMS GENERALES */
 .tip-item {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;       /* nombre y cantidad uno debajo de otro */
+  align-items: center;          /* centrados horizontalmente */
+  justify-content: center;
+  text-align: center;
+
   padding: 10px 14px;
   margin-bottom: 10px;
   border-radius: 12px;
@@ -62,18 +66,42 @@ body {
     0 0 14px rgba(255,215,0,0.55),
     inset 0 0 8px rgba(255,255,255,0.08);
 
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
+}
+
+/* primer span = NOMBRE */
+.tip-item span:first-child {
+  font-size: 18px;    /* nombres más grandes que antes */
 }
 
 /* MVP (primer lugar) */
 .tip-item:first-child {
-  background: linear-gradient(120deg, #ffd700, #fff2b6);
+  background: linear-gradient(135deg, #ffd700, #fff7cc);
   color: #2b2100;
   font-weight: 800;
   box-shadow:
-    0 0 30px rgba(255,215,0,1),
-    0 0 45px rgba(255,215,0,0.9);
+    0 0 35px rgba(255,215,0,1),
+    0 0 70px rgba(255,215,0,1);
+  overflow: hidden;
+}
+
+/* nombre del MVP aún más grande */
+.tip-item:first-child span:first-child {
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* overlay brillante para el MVP */
+.tip-item:first-child::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at top, rgba(255,255,255,0.55), transparent 60%);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  animation: mvpShine 2.4s infinite alternate;
 }
 
 /* corona / icono MVP */
@@ -86,6 +114,11 @@ body {
 @keyframes glow {
   from { text-shadow: 0 0 6px #ffffff; }
   to   { text-shadow: 0 0 18px #ffd700; }
+}
+
+@keyframes mvpShine {
+  from { transform: translateX(-10%); opacity: 0.45; }
+  to   { transform: translateX(10%);  opacity: 0.75; }
 }
 
 @keyframes boom {
