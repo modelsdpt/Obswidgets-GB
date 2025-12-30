@@ -66,12 +66,14 @@ body {
 .tip span:first-child {
   font-size: 16px;     /* todos los nombres un poco más grandes */
   margin-bottom: 3px;
+  color: white !important;
 }
 
 /* segundo span = MONTO */
 .tip span:last-child {
   font-size: 16px;
   opacity: 0.9;
+  color: white !important;
 }
 
 /* ====== MVP (CLASE .mvp QUE AGREGA EL JS AL PRIMERO) ====== */
