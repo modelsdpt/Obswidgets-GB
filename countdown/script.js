@@ -49,37 +49,3 @@ function spawnConfetti() {
 }
 
 setInterval(spawnConfetti, 5000);
-
-// ================= LEADERBOARD =================
-ws.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-
-  if (data.type === "tip") {
-    const { name, amount } = data.payload;
-    scores[name] = (scores[name] || 0) + Number(amount);
-    renderLeaderboard();
-  }
-
-  if (data.type === "clear") {
-    Object.keys(scores).forEach(k => delete scores[k]);
-    renderLeaderboard();
-  }
-};
-
-function renderLeaderboard() {
-  const list = document.getElementById("top-list");
-  list.innerHTML = "";
-
-  Object.entries(scores)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .forEach(([name, total], index) => {
-      const row = document.createElement("div");
-      row.className = "tip" + (index === 0 ? " mvp" : "");
-      row.innerHTML = `
-        <span>${name} ${index === 0 ? "👑" : "❄️"}</span>
-        <span>$${total}</span>
-      `;
-      list.appendChild(row);
-    });
-}
