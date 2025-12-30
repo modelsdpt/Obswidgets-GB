@@ -7,7 +7,7 @@ let goal = 0;
 let current = 0;
 
 const bar = document.getElementById("bar-fill");
-const goalText = document.querySelector(".goal-text");
+const goalTitle = document.querySelector(".goal-title"); // <- antes era .goal-text
 const amountText = document.querySelector(".goal-amount");
 const bell = document.getElementById("bellSound");
 
@@ -46,14 +46,16 @@ function updateBar(playFx) {
     amountText.textContent = "";
   }
 
-  // NEÓN SOLO AL COMPLETAR
-  if (percent >= 100) {
-    goalText.classList.add("neon");
-  } else {
-    goalText.classList.remove("neon");
+  // NEÓN SOLO AL COMPLETAR (con chequeo de null por si acaso)
+  if (goalTitle) {
+    if (percent >= 100) {
+      goalTitle.classList.add("neon");
+    } else {
+      goalTitle.classList.remove("neon");
+    }
   }
 
-  if (playFx) {
+  if (playFx && bell) {
     bell.currentTime = 0;
     bell.play().catch(() => {});
   }
