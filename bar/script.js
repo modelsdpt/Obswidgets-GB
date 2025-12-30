@@ -7,9 +7,28 @@ let goal = 0;
 let current = 0;
 
 const bar = document.getElementById("bar-fill");
-const goalTitle = document.querySelector(".goal-title"); // <- antes era .goal-text
+const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
-const bell = document.getElementById("bellSound");
+let bell = document.getElementById("bellSound");
+
+// helper para reproducir sonido de forma segura
+function playBell() {
+  try {
+    if (!bell) {
+      // fallback por si el elemento no se encontró por alguna razón
+      bell = new Audio("https://www.myinstants.com/media/sounds/small-fireworks.mp3");
+      bell.preload = "auto";
+    }
+    bell.currentTime = 0;
+    bell.volume = 1;
+    bell.play().catch((err) => {
+      // En OBS no verás esto, pero en navegador te sirve para debug
+      console.log("Error reproduciendo audio:", err);
+    });
+  } catch (err) {
+    console.log("Error inesperado de audio:", err);
+  }
+}
 
 ws.onmessage = (msg) => {
   const data = JSON.parse(msg.data);
@@ -37,16 +56,20 @@ function updateBar(playFx) {
     ? Math.min((current / goal) * 100, 100)
     : 0;
 
-  bar.style.width = percent + "%";
-
-  // TEXTO DE ABAJO (DORADO)
-  if (goal > 0) {
-    amountText.textContent = `${current} / ${goal}`;
-  } else {
-    amountText.textContent = "";
+  if (bar) {
+    bar.style.width = percent + "%";
   }
 
-  // NEÓN SOLO AL COMPLETAR (con chequeo de null por si acaso)
+  // TEXTO DE ABAJO (DORADO)
+  if (amountText) {
+    if (goal > 0) {
+      amountText.textContent = `${current} / ${goal}`;
+    } else {
+      amountText.textContent = "";
+    }
+  }
+
+  // NEÓN SOLO AL COMPLETAR (sin romper si no existe)
   if (goalTitle) {
     if (percent >= 100) {
       goalTitle.classList.add("neon");
@@ -55,8 +78,7 @@ function updateBar(playFx) {
     }
   }
 
-  if (playFx && bell) {
-    bell.currentTime = 0;
-    bell.play().catch(() => {});
+  if (playFx) {
+    playBell();
   }
 }
