@@ -44,6 +44,24 @@
       margin: 30px 0;
       border: 1px solid #444;
     }
+
+    /* ===== ACTION TIMER ===== */
+    .timer-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+    .timer-buttons button {
+      flex: 1 1 80px;
+      min-width: 80px;
+    }
+    .timer-stop-btn {
+      background: #ff8800;
+      color: #000;
+      box-shadow: 0 0 10px #ff8800;
+    }
   </style>
 </head>
 <body>
@@ -83,6 +101,17 @@
 
 <hr>
 
+<h2>Action Timer</h2>
+<div class="timer-buttons">
+  <button onclick="startActionTimer(10)">10s</button>
+  <button onclick="startActionTimer(15)">15s</button>
+  <button onclick="startActionTimer(30)">30s</button>
+  <button onclick="startActionTimer(45)">45s</button>
+</div>
+<button class="timer-stop-btn" onclick="stopActionTimer()">Detener Cronómetro</button>
+
+<hr>
+
 <button onclick="fetch('/api/send', {
   method:'POST',
   headers:{'Content-Type':'application/json'},
@@ -94,11 +123,9 @@
 🎰 Girar Ruleta
 </button>
 
-
-
 <script>
 const MODEL_ID = "roman001";
-const API_URL = "/api/send";   // 🔥🔥🔥 RUTA RELATIVA — FUNCIONA LOCAL Y PRODUCCIÓN
+const API_URL = "/api/send";   // ruta relativa
 
 function sendTip() {
   const name = document.getElementById("name").value.trim();
@@ -128,6 +155,19 @@ function setGoal() {
 function clearGoal() {
   sendToServer("clearGoal");
 }
+
+/* ===== ACTION TIMER ===== */
+
+function startActionTimer(seconds) {
+  // seconds: 10, 15, 30, 45...
+  sendToServer("actionTimer", { seconds });
+}
+
+function stopActionTimer() {
+  sendToServer("actionTimerStop");
+}
+
+/* ===== GENÉRICO ===== */
 
 function sendToServer(type, payload = {}) {
   fetch(API_URL, {

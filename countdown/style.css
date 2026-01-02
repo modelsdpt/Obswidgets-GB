@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
+body {
+  margin: 0;
+  background: transparent;
+  font-family: 'Orbitron', system-ui, sans-serif;
+  color: #fff;
+}
+
+.timer-widget {
+  padding: 16px 22px;
+  border-radius: 18px;
+  background: radial-gradient(circle at top, rgba(255,215,0,0.2), rgba(0,0,0,0.8));
+  border: 2px solid rgba(255,215,0,0.75);
+  box-shadow:
+    0 0 28px rgba(255,215,0,0.85),
+    0 0 55px rgba(0,0,0,0.95);
+  display: inline-block;
+}
+
+.timer-title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #ffeec0;
+  text-shadow:
+    0 0 12px rgba(255,215,0,0.9),
+    0 0 28px rgba(255,215,0,1);
+}
+
+/* caja tipo digital */
+.timer-display {
+  display: flex;
+  justify-content: center;
+}
+
+.timer-box {
+  padding: 14px 24px;
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(0, 0, 0, 0.7),
+    rgba(70, 55, 0, 0.95)
+  );
+  box-shadow:
+    0 0 30px rgba(255,215,0,0.5),
+    inset 0 0 12px rgba(255,255,255,0.15);
+  min-width: 220px;
+  text-align: center;
+}
+
+#timer-value {
+  display: block;
+  font-size: 60px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  background: linear-gradient(to bottom, #fffbe6, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.9),
+    0 0 22px rgba(255,215,0,1);
+}
+
+.timer-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #ffe7a8;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* efecto cuando está corriendo */
+.timer-running #timer-value {
+  animation: timerGlow 1s infinite alternate;
+}
+
+@keyframes timerGlow {
+  from {
+    text-shadow:
+      0 0 8px rgba(255,255,255,0.8),
+      0 0 18px rgba(255,215,0,0.8);
+  }
+  to {
+    text-shadow:
+      0 0 14px rgba(255,255,255,1),
+      0 0 28px rgba(255,215,0,1);
+  }
+}
+
+/* efecto cuando termina */
+.timer-finished #timer-value {
+  animation: finishedFlash 0.25s 8 alternate;
+}
+
+@keyframes finishedFlash {
+  from {
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.8),
+      0 0 18px rgba(255,0,0,0.9);
+    -webkit-text-fill-color: #ffffff;
+  }
+  to {
+    text-shadow:
+      0 0 16px rgba(255,255,255,1),
+      0 0 30px rgba(255,0,0,1);
+    -webkit-text-fill-color: #ffb3b3;
+  }
+}

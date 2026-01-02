@@ -4,7 +4,7 @@ body {
   background: transparent;
   margin: 0;
   font-family: 'Orbitron', system-ui, sans-serif;
-  color: #fff;
+  color: #f5f5f5;
 }
 
 #container {
@@ -13,11 +13,12 @@ body {
   padding: 18px 20px 16px;
   border-radius: 18px;
 
-  background: radial-gradient(circle at top, rgba(255,215,0,0.2), rgba(0,0,0,0.85));
-  border: 2px solid rgba(255,215,0,0.75);
+  /* Fondo metalizado oscuro con toques dorados suaves */
+  background: radial-gradient(circle at top, rgba(204, 178, 76, 0.22), #101010);
+  border: 1px solid rgba(190, 160, 70, 0.9);
   box-shadow:
-    0 0 28px rgba(255,215,0,0.85),
-    0 0 55px rgba(0,0,0,0.95);
+    0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 26px rgba(0, 0, 0, 0.85);
   overflow: hidden;
 }
 
@@ -25,12 +26,16 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 14px;
-  color: #ffeec0;
+
+  /* Dorado más elegante, menos neón */
+  background: linear-gradient(to right, #f5e6b1, #d6b85a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-shadow:
-    0 0 12px rgba(255,215,0,0.9),
-    0 0 28px rgba(255,215,0,1);
+    0 0 3px rgba(0, 0, 0, 0.7),
+    0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 /* contenedor lista */
@@ -39,91 +44,81 @@ body {
   z-index: 2;
 }
 
-/* ====== ITEM GENERAL (CLASE .tip QUE GENERA EL JS) ====== */
+/* ===== ÍTEM GENERAL (.tip) ===== */
 .tip {
   position: relative;
   display: flex;
-  flex-direction: column;      /* nombre arriba, monto abajo */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
 
-  padding: 5px 7px;
-  margin-bottom: 5px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
   border-radius: 12px;
 
-  background: linear-gradient(135deg, #18140a, #050404);
-  border: 1px solid rgba(255,215,0,0.7);
+  /* Metal oscuro cepillado */
+  background: linear-gradient(145deg, #353535, #191919);
+  border: 1px solid rgba(180, 180, 180, 0.6);
   box-shadow:
-    0 0 14px rgba(255,215,0,0.55),
-    inset 0 0 8px rgba(255,255,255,0.08);
+    inset 0 0 6px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.6);
 
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
+  color: #f5f5f5;
 }
 
-/* primer span = NOMBRE */
+/* Nombre */
 .tip span:first-child {
-  font-size: 16px;     /* todos los nombres un poco más grandes */
+  font-size: 18px;
   margin-bottom: 3px;
-  color: white !important;
 }
 
-/* segundo span = MONTO */
+/* Monto */
 .tip span:last-child {
-  font-size: 16px;
-  opacity: 0.9;
-  color: white !important;
+  font-size: 14px;
+  opacity: 0.85;
 }
 
-/* ====== MVP (CLASE .mvp QUE AGREGA EL JS AL PRIMERO) ====== */
+/* ===== MVP (.tip.mvp) ===== */
 .tip.mvp {
-  background: linear-gradient(135deg, #ffd700, #05040179);
-  color: #2b2100;
+  background: linear-gradient(145deg, #f0d46a, #b89b3c);
+  border: 1px solid #c9a84a;
+  color: #2a250f;
   font-weight: 800;
+
   box-shadow:
-    0 0 35px rgba(255,215,0,1),
-    0 0 70px rgba(255,215,0,1);
-  overflow: hidden;
+    0 0 16px rgba(0, 0, 0, 0.9),
+    0 0 18px rgba(201, 168, 74, 0.9);
 }
 
-/* nombre del MVP aún más grande y destacado */
+/* Nombre del MVP más grande y protagonista */
 .tip.mvp span:first-child {
-  font-size: 16px;
+  font-size: 22px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-/* overlay / brillo sobre el MVP */
+/* Overlay suave metalizado, no tan brillante */
 .tip.mvp::before {
   content: "";
   position: absolute;
   inset: -25%;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.6), transparent 60%);
-  opacity: 0.6;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 60%);
+  opacity: 0.5;
   mix-blend-mode: screen;
-  animation: mvpShine 2.4s infinite alternate;
 }
 
-/* por si usas <span class="crown"> en el nombre */
+/* Corona / emoji MVP */
 .crown {
   margin-left: 6px;
-  animation: glow 1.6s infinite alternate;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
 }
 
-/* ANIMACIONES */
-@keyframes glow {
-  from { text-shadow: 0 0 6px #ffffff; }
-  to   { text-shadow: 0 0 18px #ffd700; }
-}
-
-@keyframes mvpShine {
-  from { transform: translateX(-10%); opacity: 0.45; }
-  to   { transform: translateX(10%);  opacity: 0.75; }
-}
-
+/* Animación boom por si la usas desde JS */
 @keyframes boom {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.12); }
+  50%  { transform: scale(1.06); }
   100% { transform: scale(1); }
 }

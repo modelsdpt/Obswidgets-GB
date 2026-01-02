@@ -2,254 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>New Year 2026 Countdown</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: transparent;
-      font-family: 'Orbitron', system-ui, sans-serif;
-      color: white;
-    }
-
-    .widget {
-      padding: 16px 24px;
-      border-radius: 18px;
-      background: radial-gradient(circle at top, rgba(255,215,0,0.18), rgba(0,0,0,0.7));
-      border: 2px solid rgba(255,215,0,0.65);
-      box-shadow:
-        0 0 25px rgba(255,215,0,0.8),
-        0 0 60px rgba(0,0,0,0.9);
-      display: inline-block;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 22px;
-      margin-bottom: 12px;
-      color: #ffeec0;
-      text-shadow: 0 0 12px rgba(255,215,0,0.9);
-    }
-
-    /* ====== DIGITAL CLOCK ====== */
-
-    .digital-clock {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 22px;
-      border-radius: 14px;
-      background: linear-gradient(
-        145deg,
-        rgba(0, 0, 0, 0.6),
-        rgba(70, 55, 0, 0.9)
-      );
-      box-shadow:
-        0 0 30px rgba(255,215,0,0.45),
-        inset 0 0 12px rgba(255,255,255,0.15);
-      margin-bottom: 14px;
-    }
-
-    .segment-box {
-      background: radial-gradient(circle at top, #2c2200, #060503);
-      border-radius: 10px;
-      padding: 10px 14px 8px;
-      border: 1px solid rgba(255,215,0,0.65);
-      box-shadow:
-        0 0 15px rgba(255,215,0,0.7),
-        inset 0 0 8px rgba(255,255,255,0.06);
-      min-width: 120px;
-      text-align: center;
-    }
-
-    .segment {
-      display: block;
-      font-size: 64px;
-      font-weight: 900;
-      letter-spacing: 4px;
-      background: linear-gradient(to bottom, #fffbe6, #ffd700);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow:
-        0 0 10px rgba(255,255,255,0.9),
-        0 0 22px rgba(255,215,0,1);
-    }
-
-    .segment-label {
-      display: block;
-      margin-top: 4px;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #ffe7a8;
-      text-transform: uppercase;
-      opacity: 0.9;
-    }
-
-    .colon {
-      font-size: 58px;
-      margin-bottom: 8px;
-      color: gold;
-      text-shadow:
-        0 0 12px gold,
-        0 0 28px gold;
-      animation: colonBlink 1s infinite;
-    }
-
-    @keyframes colonBlink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0.25; }
-    }
-
-    /* ====== LEADERBOARD ====== */
-
-    .leaderboard {
-      margin-top: 4px;
-    }
-
-    .lb-title {
-      font-size: 14px;
-      text-align: center;
-      margin-bottom: 6px;
-      color: #ffeec0;
-      text-shadow: 0 0 8px rgba(255,215,0,0.7);
-    }
-
-    .tip {
-      display: flex;
-      justify-content: space-between;
-      padding: 4px 8px;
-      border-radius: 8px;
-      margin-bottom: 4px;
-      background: rgba(255,255,255,0.06);
-      font-size: 13px;
-    }
-
-    .tip.mvp {
-      background: linear-gradient(90deg, #ffd700, #fff4c2);
-      color: #2b2100;
-      font-weight: 700;
-      box-shadow: 0 0 20px rgba(255,215,0,0.9);
-      animation: glowMvp 1.6s infinite alternate;
-    }
-
-    @keyframes glowMvp {
-      from { box-shadow: 0 0 10px rgba(255,215,0,0.7); }
-      to   { box-shadow: 0 0 26px rgba(255,215,0,1); }
-    }
-
-    /* ====== CONFETI ====== */
-
-    .confetti {
-      position: fixed;
-      top: -10px;
-      width: 8px;
-      height: 14px;
-      opacity: 0.9;
-      animation: fall linear forwards;
-      z-index: 999;
-    }
-
-    .confetti.gold { background: gold; }
-    .confetti.white { background: #fdfdfd; }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    body {
-      overflow: hidden;
-    }
-  </style>
+  <title>Action Timer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="widget">
-    <div class="title">✨ Countdown 2026 ✨</div>
+  <div class="timer-widget">
+    <div class="timer-title">✨ Action Timer ✨</div>
 
-    <div class="digital-clock">
-      <div class="segment-box">
-        <span id="hours" class="segment">00</span>
-        <span class="segment-label">HRS</span>
-      </div>
-
-      <div class="colon">:</div>
-
-      <div class="segment-box">
-        <span id="minutes" class="segment">00</span>
-        <span class="segment-label">MIN</span>
-      </div>
-
-      <div class="colon">:</div>
-
-      <div class="segment-box">
-        <span id="seconds" class="segment">00</span>
-        <span class="segment-label">SEC</span>
+    <div class="timer-display">
+      <div class="timer-box">
+        <span id="timer-value">00:00</span>
+        <span class="timer-label">SECONDS</span>
       </div>
     </div>
+  </div>
 
-  
+  <audio
+    id="timerEndSound"
+    src="https://www.myinstants.com/media/sounds/small-fireworks.mp3"
+    preload="auto">
+  </audio>
 
-  <audio id="mvpSound" src="mvp.mp3"></audio>
-
-  <script>
-    // ================= CONFIG =================
-    const MODEL_ID = "roman001";
-    const TARGET_DATE_EST = "2026-01-01T00:00:00-05:00";
-
-    // ================= WEBSOCKET =================
-    const ws = new WebSocket(
-      `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
-    );
-
-    const scores = {};
-
-    // ================= COUNTDOWN =================
-    const el = {
-      hours: document.getElementById("hours"),
-      minutes: document.getElementById("minutes"),
-      seconds: document.getElementById("seconds"),
-    };
-
-    function updateCountdown() {
-      const target = new Date(TARGET_DATE_EST).getTime();
-      const now = Date.now();
-      let diff = Math.max(0, target - now);
-
-      const totalHours = Math.floor(diff / 3600000);
-      const mins = Math.floor((diff / 60000) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      el.hours.textContent = String(totalHours).padStart(2, "0");
-      el.minutes.textContent = String(mins).padStart(2, "0");
-      el.seconds.textContent = String(secs).padStart(2, "0");
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // ================= CONFETI =================
-    function spawnConfetti() {
-      for (let i = 0; i < 12; i++) {
-        const c = document.createElement("div");
-        c.className = "confetti " + (Math.random() > 0.5 ? "gold" : "white");
-        c.style.left = Math.random() * 100 + "vw";
-        c.style.animationDuration = 3 + Math.random() * 3 + "s";
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 6500);
-      }
-    }
-    setInterval(spawnConfetti, 5000);
-
-    // ================= LEADERBOARD =================
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
