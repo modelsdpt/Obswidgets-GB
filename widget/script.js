@@ -35,8 +35,11 @@ function render() {
     const div = document.createElement("div");
     div.className = "tip" + (i===0 ? " mvp" : "");
 
-    const deco = i===0 ? " 🤴🏻👑" : "👑 ";
-    div.innerHTML = `<span>${name}${deco}</span><span>$${total}</span>`;
+   const deco = i === 0
+  ? ` <span class="crown">👑</span>`
+  : " ✨";
+
+div.innerHTML = `<span>${name}${deco}</span><span>$${total}</span>`;
     list.appendChild(div);
   });
 
