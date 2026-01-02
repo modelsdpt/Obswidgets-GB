@@ -1,111 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
 
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Orbitron', system-ui, sans-serif;
-  color: #fff;
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #f5f5f5;
 }
 
 .timer-widget {
-  padding: 16px 22px;
+  padding: 14px 20px;
   border-radius: 18px;
-  background: radial-gradient(circle at top, rgba(255,215,0,0.2), rgba(0,0,0,0.8));
-  border: 2px solid rgba(255,215,0,0.75);
+  background: radial-gradient(circle at top, rgba(210, 190, 120, 0.25), #050814);
+  border: 1px solid rgba(180, 160, 90, 0.9);
   box-shadow:
-    0 0 28px rgba(255,215,0,0.85),
-    0 0 55px rgba(0,0,0,0.95);
+    0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 26px rgba(0, 0, 0, 0.85);
   display: inline-block;
 }
 
 .timer-title {
   text-align: center;
+  font-family: 'DM Serif Display', serif;
   font-size: 18px;
   margin-bottom: 10px;
-  color: #ffeec0;
+
+  background: linear-gradient(to right, #f9f3dd, #d4b96a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
   text-shadow:
-    0 0 12px rgba(255,215,0,0.9),
-    0 0 28px rgba(255,215,0,1);
+    0 0 3px rgba(0,0,0,0.8),
+    0 0 8px rgba(0,0,0,0.7);
 }
 
-/* caja tipo digital */
+/* Caja tipo "pastilla" para el tiempo */
 .timer-display {
   display: flex;
   justify-content: center;
 }
 
 .timer-box {
-  padding: 14px 24px;
-  border-radius: 16px;
-  background: linear-gradient(
-    145deg,
-    rgba(0, 0, 0, 0.7),
-    rgba(70, 55, 0, 0.95)
-  );
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: radial-gradient(circle at top, #1b2133, #090c16);
+  border: 1px solid rgba(140, 140, 160, 0.8);
   box-shadow:
-    0 0 30px rgba(255,215,0,0.5),
-    inset 0 0 12px rgba(255,255,255,0.15);
-  min-width: 220px;
+    inset 0 0 8px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(0, 0, 0, 0.8);
+  min-width: 200px;
   text-align: center;
 }
 
 #timer-value {
   display: block;
-  font-size: 60px;
-  font-weight: 900;
+  font-size: 40px;
+  font-weight: 700;
   letter-spacing: 4px;
-  background: linear-gradient(to bottom, #fffbe6, #ffd700);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #f9f3dd;
   text-shadow:
-    0 0 10px rgba(255,255,255,0.9),
-    0 0 22px rgba(255,215,0,1);
+    0 0 4px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.7);
 }
 
 .timer-label {
   display: block;
-  margin-top: 4px;
+  margin-top: 2px;
   font-size: 11px;
-  letter-spacing: 3px;
-  color: #ffe7a8;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: #c5cbe3;
   opacity: 0.9;
 }
 
-/* efecto cuando está corriendo */
-.timer-running #timer-value {
-  animation: timerGlow 1s infinite alternate;
+/* Cuando está corriendo: glow suave */
+.timer-box.timer-running {
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.9),
+    0 0 16px rgba(210, 190, 120, 0.9);
 }
 
-@keyframes timerGlow {
-  from {
-    text-shadow:
-      0 0 8px rgba(255,255,255,0.8),
-      0 0 18px rgba(255,215,0,0.8);
-  }
-  to {
-    text-shadow:
-      0 0 14px rgba(255,255,255,1),
-      0 0 28px rgba(255,215,0,1);
-  }
-}
-
-/* efecto cuando termina */
-.timer-finished #timer-value {
-  animation: finishedFlash 0.25s 8 alternate;
+/* Cuando termina: pequeño flash */
+.timer-box.timer-finished {
+  animation: finishedFlash 0.3s 6 alternate;
 }
 
 @keyframes finishedFlash {
   from {
-    text-shadow:
-      0 0 6px rgba(255,255,255,0.8),
-      0 0 18px rgba(255,0,0,0.9);
-    -webkit-text-fill-color: #ffffff;
+    box-shadow:
+      inset 0 0 8px rgba(0,0,0,0.9),
+      0 0 12px rgba(210, 190, 120, 0.9);
   }
   to {
-    text-shadow:
-      0 0 16px rgba(255,255,255,1),
-      0 0 30px rgba(255,0,0,1);
-    -webkit-text-fill-color: #ffb3b3;
+    box-shadow:
+      inset 0 0 8px rgba(0,0,0,1),
+      0 0 22px rgba(255, 120, 120, 1);
   }
 }

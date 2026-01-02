@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
 
 body {
   background: transparent;
   margin: 0;
-  font-family: 'Orbitron', system-ui, sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
   color: #f5f5f5;
 }
 
@@ -13,12 +13,12 @@ body {
   padding: 18px 20px 16px;
   border-radius: 18px;
 
-  /* Fondo metalizado oscuro con toques dorados suaves */
-  background: radial-gradient(circle at top, rgba(204, 178, 76, 0.22), #101010);
-  border: 1px solid rgba(190, 160, 70, 0.9);
+  /* Fondo metalizado elegante */
+  background: radial-gradient(circle at top, rgba(210, 190, 120, 0.22), #050814);
+  border: 1px solid rgba(180, 160, 90, 0.9);
   box-shadow:
     0 0 20px rgba(0, 0, 0, 0.9),
-    0 0 26px rgba(0, 0, 0, 0.85);
+    0 0 28px rgba(0, 0, 0, 0.85);
   overflow: hidden;
 }
 
@@ -26,16 +26,17 @@ body {
   position: relative;
   z-index: 2;
   text-align: center;
-  font-size: 22px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
   margin-bottom: 14px;
 
-  /* Dorado más elegante, menos neón */
-  background: linear-gradient(to right, #f5e6b1, #d6b85a);
+  /* Dorado champagne, no neón */
+  background: linear-gradient(to right, #f9f3dd, #d4b96a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.7),
-    0 0 8px rgba(0, 0, 0, 0.6);
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.7);
 }
 
 /* contenedor lista */
@@ -44,7 +45,7 @@ body {
   z-index: 2;
 }
 
-/* ===== ÍTEM GENERAL (.tip) ===== */
+/* ÍTEM GENERAL (.tip) */
 .tip {
   position: relative;
   display: flex;
@@ -57,12 +58,11 @@ body {
   margin-bottom: 10px;
   border-radius: 12px;
 
-  /* Metal oscuro cepillado */
-  background: linear-gradient(145deg, #353535, #191919);
-  border: 1px solid rgba(180, 180, 180, 0.6);
+  background: linear-gradient(145deg, #222637, #10131f);
+  border: 1px solid rgba(140, 140, 160, 0.8);
   box-shadow:
     inset 0 0 6px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.6);
+    0 0 10px rgba(0, 0, 0, 0.7);
 
   font-size: 14px;
   font-weight: 500;
@@ -81,42 +81,48 @@ body {
   opacity: 0.85;
 }
 
-/* ===== MVP (.tip.mvp) ===== */
+/* MVP (.tip.mvp) – más volumen y metal */
 .tip.mvp {
-  background: linear-gradient(145deg, #f0d46a, #b89b3c);
-  border: 1px solid #c9a84a;
-  color: #2a250f;
-  font-weight: 800;
+  background: linear-gradient(135deg, #f1dd8a, #c59d42);
+  border: 1px solid #c7a652;
+  color: #2b220e;
+  font-weight: 700;
 
   box-shadow:
     0 0 16px rgba(0, 0, 0, 0.9),
-    0 0 18px rgba(201, 168, 74, 0.9);
+    0 0 24px rgba(210, 180, 90, 0.9);
 }
 
-/* Nombre del MVP más grande y protagonista */
+/* Nombre del MVP más grande */
 .tip.mvp span:first-child {
   font-size: 22px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-/* Overlay suave metalizado, no tan brillante */
+/* Overlay metalizado suave */
 .tip.mvp::before {
   content: "";
   position: absolute;
   inset: -25%;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 60%);
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 60%);
   opacity: 0.5;
   mix-blend-mode: screen;
 }
 
-/* Corona / emoji MVP */
+/* Corona con más presencia (si usamos .crown) */
 .crown {
+  display: inline-block;
   margin-left: 6px;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: radial-gradient(circle at top, #fff8dc, #d4b96a);
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(210, 180, 90, 0.9);
 }
 
-/* Animación boom por si la usas desde JS */
+/* Animación boom suave */
 @keyframes boom {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.06); }
