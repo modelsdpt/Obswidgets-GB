@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Agenda tu horario – Livestream GB</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       background: #050814;
@@ -16,7 +17,7 @@
       padding: 40px 20px;
     }
     .card {
-      width: 420px;
+      width: 460px;
       border-radius: 18px;
       padding: 24px 24px 20px;
       background: radial-gradient(circle at top, rgba(210, 190, 120, 0.22), #050814);
@@ -32,13 +33,25 @@
     .subtitle {
       font-size: 13px;
       opacity: 0.8;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+    }
+    .markdown {
+      font-size: 12px;
+      background: rgba(5, 8, 20, 0.75);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(120,120,150,0.7);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .markdown strong {
+      color: #f1dd8a;
     }
     label {
       display: block;
       font-size: 13px;
       margin-bottom: 4px;
-      opacity: 0.9;
+      opacity: 0.95;
     }
     select, input {
       width: 100%;
@@ -54,18 +67,6 @@
     }
     select:focus, input:focus {
       border-color: #e3c96f;
-    }
-    .timezone-info {
-      font-size: 12px;
-      margin-bottom: 12px;
-      opacity: 0.85;
-    }
-    .row {
-      display: flex;
-      gap: 12px;
-    }
-    .row > div {
-      flex: 1;
     }
     button {
       width: 100%;
@@ -91,7 +92,7 @@
       margin-top: 12px;
       font-size: 13px;
     }
-    .status.ok { color: #9be29b; }
+    .status.ok  { color: #9be29b; }
     .status.error { color: #ff9b9b; }
   </style>
 </head>
@@ -99,33 +100,47 @@
 
 <div class="card">
   <h1>Hola, bienvenida a Livestream GB</h1>
-  <div class="subtitle">Por favor agenda tu horario para el evento.</div>
+  <div class="subtitle">
+    Agenda el horario de inicio de tu livestream. El equipo completa la hora de fin.
+  </div>
+
+  <!-- "Markdown" de horarios por país -->
+  <div class="markdown">
+    <strong>Horarios base (Venezuela)</strong><br>
+    • Mañana: 11:00 – 13:00 VE<br>
+    • Noche: 21:00 – 23:00 VE<br><br>
+
+    <strong>Sunny, Nikki, Molly – Colombia</strong><br>
+    • Mañana: 10:00 – 12:00 CO<br>
+    • Noche: 20:00 – 22:00 CO<br><br>
+
+    <strong>Sasha – Argentina</strong><br>
+    • Mañana: 12:00 – 14:00 AR<br>
+    • Noche: 22:00 – 00:00 AR<br><br>
+
+    <strong>Sara / Sophi – Eslovaquia</strong><br>
+    • Mañana: 16:00 – 18:00 SK<br>
+    • Noche: 02:00 – 04:00 (del día siguiente) SK
+  </div>
 
   <label for="model">¿Qué modelo eres?</label>
   <select id="model">
     <option value="">Selecciona tu nombre</option>
+    <option value="Sunny">Sunny</option>
+    <option value="Nikki">Nikki</option>
+    <option value="Moly">Molly</option>
     <option value="Sasha">Sasha</option>
     <option value="Sara">Sara</option>
     <option value="Sophi">Sophi</option>
-    <option value="Sunny">Sunny</option>
-    <option value="Moly">Moly</option>
   </select>
-
-  <div id="tzInfo" class="timezone-info"></div>
 
   <label for="date">Día del evento</label>
   <input id="date" type="date" />
 
-  <div class="row">
-    <div>
-      <label for="start">Inicio</label>
-      <input id="start" type="time" />
-    </div>
-    <div>
-      <label for="end">Fin</label>
-      <input id="end" type="time" />
-    </div>
-  </div>
+  <label for="slot">Horario de inicio (tu hora local)</label>
+  <select id="slot">
+    <option value="">Selecciona un horario</option>
+  </select>
 
   <button id="saveBtn" onclick="saveSchedule()">Guardar horario</button>
 
@@ -135,30 +150,58 @@
 <script>
 const API_URL = "/api/model-schedule";
 
-const MODEL_TIMEZONES = {
-  "Sasha": "America/Bogota (Colombia)",
-  "Sara":  "America/Caracas (Venezuela)",
-  "Sophi": "America/Bogota (Colombia)",
-  "Sunny": "Europe/Bratislava (Eslovaquia)",
-  "Moly":  "America/Caracas (Venezuela)"
+// slots de inicio por modelo (en su hora local)
+const MODEL_SLOTS = {
+  // Colombia
+  "Sunny": [
+    { start: "10:00", label: "10:00 – 12:00 (mañana, Colombia)" },
+    { start: "20:00", label: "20:00 – 22:00 (noche, Colombia)" },
+  ],
+  "Nikki": [
+    { start: "10:00", label: "10:00 – 12:00 (mañana, Colombia)" },
+    { start: "20:00", label: "20:00 – 22:00 (noche, Colombia)" },
+  ],
+  "Moly": [
+    { start: "10:00", label: "10:00 – 12:00 (mañana, Colombia)" },
+    { start: "20:00", label: "20:00 – 22:00 (noche, Colombia)" },
+  ],
+
+  // Argentina
+  "Sasha": [
+    { start: "12:00", label: "12:00 – 14:00 (mañana, Argentina)" },
+    { start: "22:00", label: "22:00 – 00:00 (noche, Argentina)" },
+  ],
+
+  // Eslovaquia
+  "Sara": [
+    { start: "16:00", label: "16:00 – 18:00 (tarde, Eslovaquia)" },
+    { start: "02:00", label: "02:00 – 04:00 (del día siguiente, Eslovaquia)" },
+  ],
+  "Sophi": [
+    { start: "16:00", label: "16:00 – 18:00 (tarde, Eslovaquia)" },
+    { start: "02:00", label: "02:00 – 04:00 (del día siguiente, Eslovaquia)" },
+  ]
 };
 
-const tzInfoEl = document.getElementById("tzInfo");
-const modelSelect = document.getElementById("model");
 const statusEl = document.getElementById("status");
 const saveBtn = document.getElementById("saveBtn");
+const modelSelect = document.getElementById("model");
+const slotSelect = document.getElementById("slot");
 
-// bloqueo suave en el navegador
 const LOCAL_LOCK_KEY = "modelScheduleLocked";
 
 modelSelect.addEventListener("change", () => {
   const model = modelSelect.value;
-  if (!model) {
-    tzInfoEl.textContent = "";
-    return;
-  }
-  const tzText = MODEL_TIMEZONES[model] || "Zona horaria a confirmar con el staff.";
-  tzInfoEl.textContent = "Tu horario se registrará en tu zona horaria: " + tzText;
+  slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
+
+  if (!model || !MODEL_SLOTS[model]) return;
+
+  MODEL_SLOTS[model].forEach(slot => {
+    const opt = document.createElement("option");
+    opt.value = slot.start;
+    opt.textContent = slot.label;
+    slotSelect.appendChild(opt);
+  });
 });
 
 function checkLocalLock() {
@@ -172,16 +215,15 @@ function checkLocalLock() {
 checkLocalLock();
 
 function saveSchedule() {
-  const model = modelSelect.value;
+  const modelName = modelSelect.value;
   const date = document.getElementById("date").value;
-  const start = document.getElementById("start").value;
-  const end = document.getElementById("end").value;
+  const start = slotSelect.value;
 
   statusEl.textContent = "";
   statusEl.className = "status";
 
-  if (!model || !date || !start || !end) {
-    statusEl.textContent = "Completa todos los campos.";
+  if (!modelName || !date || !start) {
+    statusEl.textContent = "Completa modelo, fecha y horario.";
     statusEl.classList.add("error");
     return;
   }
@@ -191,12 +233,7 @@ function saveSchedule() {
   fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      modelName: model,
-      date,
-      start,
-      end
-    })
+    body: JSON.stringify({ modelName, date, start })
   })
     .then(res => res.json())
     .then(data => {

@@ -67,9 +67,10 @@ app.post("/api/send", (req, res) => {
 // POST: registrar horario de una modelo (solo una vez)
 app.post("/api/model-schedule", async (req, res) => {
   try {
-    const { modelName, date, start, end } = req.body;
+    const { modelName, date, start } = req.body;
 
-    if (!modelName || !date || !start || !end) {
+    // ahora solo validamos modelName, date y start
+    if (!modelName || !date || !start) {
       return res
         .status(400)
         .json({ success: false, message: "Datos incompletos" });
@@ -77,7 +78,6 @@ app.post("/api/model-schedule", async (req, res) => {
 
     const existing = await findScheduleForModel(modelName);
 
-    // hard-lock: si ya tiene locked = true, no puede cambiarlo
     if (existing && existing.locked) {
       return res.status(403).json({
         success: false,
@@ -85,13 +85,18 @@ app.post("/api/model-schedule", async (req, res) => {
       });
     }
 
+    const now = new Date().toISOString();
+
     const entry = {
       modelName,
-      date,   // YYYY-MM-DD (tal como viene del input)
-      start,  // HH:MM
-      end,    // HH:MM
+      date,
+      start,                                 // solo inicio
+      end: existing?.end || "",              // tú lo rellenarás luego en el admin
       locked: true,
-      createdAt: new Date().toISOString(),
+      feedback: existing?.feedback || "",
+      collectedAmount: existing?.collectedAmount || 0,
+      createdAt: existing?.createdAt || now,
+      updatedAt: now,
     };
 
     await saveSchedule(entry);
