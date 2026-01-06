@@ -15,6 +15,12 @@ const {
   saveSchedule,
 } = require("./scheduleStore");
 
+const {
+  getAllReports,
+  findReportForModel,
+  saveReport,
+} = require("./reportStore");
+
 
 // Mostrar carpetas
 console.log("Archivos en backend:", fs.readdirSync(__dirname));
@@ -69,32 +75,24 @@ app.post("/api/model-schedule", async (req, res) => {
   try {
     const { modelName, date, start } = req.body;
 
-    // ahora solo validamos modelName, date y start
+    // ahora solo validamos que haya datos
     if (!modelName || !date || !start) {
       return res
         .status(400)
         .json({ success: false, message: "Datos incompletos" });
     }
 
+    const now = new Date().toISOString();
     const existing = await findScheduleForModel(modelName);
 
-    if (existing && existing.locked) {
-      return res.status(403).json({
-        success: false,
-        message: "Este modelo ya tiene un horario registrado",
-      });
-    }
-
-    const now = new Date().toISOString();
-
+    // si ya existe, lo ACTUALIZAMOS; si no, lo creamos
     const entry = {
       modelName,
       date,
-      start,                                 // solo inicio
-      end: existing?.end || "",              // tú lo rellenarás luego en el admin
-      locked: true,
-      feedback: existing?.feedback || "",
-      collectedAmount: existing?.collectedAmount || 0,
+      start,
+      // fin lo rellenas tú luego desde el dashboard si quieres
+      end: existing?.end || "",
+      locked: false, // ya no usamos bloqueo
       createdAt: existing?.createdAt || now,
       updatedAt: now,
     };
@@ -110,6 +108,19 @@ app.post("/api/model-schedule", async (req, res) => {
   }
 });
 
+
+// GET /api/reports  -> listado de reportes de livestreams
+app.get("/api/reports", async (req, res) => {
+  try {
+    const all = await getAllReports();
+    return res.json(all);
+  } catch (err) {
+    console.error("Error en GET /api/reports:", err);
+    return res.status(500).json({ message: "Error interno" });
+  }
+});
+
+
 // GET: devolver horarios para el panel admin
 app.get("/api/model-schedule", async (req, res) => {
   try {
@@ -120,6 +131,55 @@ app.get("/api/model-schedule", async (req, res) => {
     return res.status(500).json({ message: "Error interno" });
   }
 });
+
+// POST /api/reports/admin-update
+// Guarda feedback, monto, views, hora de fin, etc.
+app.post("/api/reports/admin-update", async (req, res) => {
+  try {
+    const {
+      modelName,
+      date,
+      start,
+      end,
+      feedback,
+      collectedAmount,
+      views,
+    } = req.body;
+
+    if (!modelName) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Falta modelName" });
+    }
+
+    const now = new Date().toISOString();
+    const existing = await findReportForModel(modelName);
+
+    const entry = {
+      modelName,
+      date: date || existing?.date || "",
+      start: start || existing?.start || "",
+      end: typeof end === "string" ? end : (existing?.end || ""),
+      feedback: typeof feedback === "string" ? feedback : (existing?.feedback || ""),
+      collectedAmount: Number(
+        collectedAmount ?? existing?.collectedAmount ?? 0
+      ),
+      views: Number(views ?? existing?.views ?? 0),
+      createdAt: existing?.createdAt || now,
+      updatedAt: now,
+    };
+
+    await saveReport(entry);
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("Error en POST /api/reports/admin-update:", err);
+    return res
+      .status(500)
+      .json({ success: false, message: "Error interno del servidor" });
+  }
+});
+
 
 
 const server = http.createServer(app);

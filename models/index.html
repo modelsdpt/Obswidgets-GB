@@ -170,8 +170,7 @@ const saveBtn = document.getElementById("saveBtn");
 const modelSelect = document.getElementById("model");
 const slotSelect = document.getElementById("slot");
 
-const LOCAL_LOCK_KEY = "modelScheduleLocked";
-
+// cuando cambia el modelo, cargamos los slots correctos
 modelSelect.addEventListener("change", () => {
   const model = modelSelect.value;
   slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
@@ -185,16 +184,6 @@ modelSelect.addEventListener("change", () => {
     slotSelect.appendChild(opt);
   });
 });
-
-function checkLocalLock() {
-  const locked = localStorage.getItem(LOCAL_LOCK_KEY);
-  if (locked === "1") {
-    saveBtn.disabled = true;
-    statusEl.textContent = "Ya registraste tu horario. Si necesitas cambiarlo, contacta al staff.";
-    statusEl.className = "status ok";
-  }
-}
-checkLocalLock();
 
 function saveSchedule() {
   const modelName = modelSelect.value;
@@ -220,9 +209,8 @@ function saveSchedule() {
     .then(res => res.json())
     .then(data => {
       if (data && data.success) {
-        statusEl.textContent = "Horario guardado. Gracias ♥";
+        statusEl.textContent = "Horario guardado / actualizado. Gracias ♥";
         statusEl.classList.add("ok");
-        localStorage.setItem(LOCAL_LOCK_KEY, "1");
       } else {
         throw new Error(data?.message || "Error desconocido");
       }
@@ -231,10 +219,13 @@ function saveSchedule() {
       console.error(err);
       statusEl.textContent = "Hubo un problema guardando tu horario. Intenta más tarde.";
       statusEl.classList.add("error");
+    })
+    .finally(() => {
       saveBtn.disabled = false;
     });
 }
 </script>
+
 
 </body>
 </html>
