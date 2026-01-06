@@ -17,7 +17,7 @@
       padding: 40px 20px;
     }
     .card {
-      width: 460px;
+      width: 480px;
       border-radius: 18px;
       padding: 24px 24px 20px;
       background: radial-gradient(circle at top, rgba(210, 190, 120, 0.22), #050814);
@@ -42,11 +42,19 @@
       padding: 10px 12px;
       border: 1px solid rgba(120,120,150,0.7);
       margin-bottom: 16px;
-      line-height: 1.4;
+      line-height: 1.5;
     }
     .markdown strong {
       color: #f1dd8a;
     }
+    .markdown ul {
+      margin: 6px 0 10px;
+      padding-left: 18px;
+    }
+    .markdown li {
+      margin-bottom: 2px;
+    }
+
     label {
       display: block;
       font-size: 13px;
@@ -104,7 +112,51 @@
     Agenda el horario de inicio de tu livestream. El equipo completa la hora de fin.
   </div>
 
-  <!-- "Markdown" de horarios por país -->
+  <!-- “Markdown” de horarios con banderas -->
+  <div class="markdown">
+    <strong>Horarios base (Venezuela 🇻🇪)</strong>
+    <ul>
+      <li>11:00 AM – 01:00 PM 🇻🇪</li>
+      <li>09:00 PM – 11:00 PM 🇻🇪</li>
+    </ul>
+
+    <strong>Sunny, Nikki, Molly – Colombia 🇨🇴</strong>
+    <ul>
+      <li>09:00 AM 🇨🇴</li>
+      <li>10:00 AM 🇨🇴</li>
+      <li>11:00 AM 🇨🇴</li>
+      <li>12:00 PM 🇨🇴</li>
+      <li>07:00 PM 🇨🇴</li>
+      <li>08:00 PM 🇨🇴</li>
+      <li>09:00 PM 🇨🇴</li>
+      <li>10:00 PM 🇨🇴</li>
+    </ul>
+
+    <strong>Sasha – Argentina 🇦🇷</strong>
+    <ul>
+      <li>12:00 PM 🇦🇷</li>
+      <li>01:00 PM 🇦🇷</li>
+      <li>02:00 PM 🇦🇷</li>
+      <li>03:00 PM 🇦🇷</li>
+      <li>09:00 PM 🇦🇷</li>
+      <li>10:00 PM 🇦🇷</li>
+      <li>11:00 PM 🇦🇷</li>
+      <li>12:00 AM 🇦🇷</li>
+    </ul>
+
+    <strong>Sara / Sophi – Eslovaquia 🇸🇰</strong>
+    <ul>
+      <li>16:00 (04:00 PM) 🇸🇰</li>
+      <li>17:00 (05:00 PM) 🇸🇌</li>
+      <li>18:00 (06:00 PM) 🇸🇰</li>
+      <li>19:00 (07:00 PM) 🇸🇰</li>
+      <li>02:00 (día siguiente) 🇸🇰</li>
+      <li>03:00 (día siguiente) 🇸🇰</li>
+      <li>04:00 (día siguiente) 🇸🇌</li>
+      <li>05:00 (día siguiente) 🇸🇌</li>
+    </ul>
+  </div>
+
   <label for="model">¿Qué modelo eres?</label>
   <select id="model">
     <option value="">Selecciona tu nombre</option>
@@ -133,35 +185,72 @@
 const API_URL = "/api/model-schedule";
 
 // slots de inicio por modelo (en su hora local)
+// Puedes ajustar estos a tu lógica interna de 1h/2h, pero visualmente ya tienes la lista arriba.
 const MODEL_SLOTS = {
   // Colombia
   "Sunny": [
-    { start: "10:00", label: "10:00 – 12:00 (mañana, Colombia)" },
-    { start: "20:00", label: "20:00 – 22:00 (noche, Colombia)" },
+    { start: "09:00", label: "09:00 AM (Colombia 🇨🇴)" },
+    { start: "10:00", label: "10:00 AM (Colombia 🇨🇴)" },
+    { start: "11:00", label: "11:00 AM (Colombia 🇨🇴)" },
+    { start: "12:00", label: "12:00 PM (Colombia 🇨🇴)" },
+    { start: "19:00", label: "07:00 PM (Colombia 🇨🇴)" },
+    { start: "20:00", label: "08:00 PM (Colombia 🇨🇴)" },
+    { start: "21:00", label: "09:00 PM (Colombia 🇨🇴)" },
+    { start: "22:00", label: "10:00 PM (Colombia 🇨🇴)" },
   ],
   "Nikki": [
-    { start: "10:00", label: "10:00 – 12:00 (mañana, Colombia)" },
-    { start: "20:00", label: "20:00 – 22:00 (noche, Colombia)" },
+    { start: "09:00", label: "09:00 AM (Colombia 🇨🇴)" },
+    { start: "10:00", label: "10:00 AM (Colombia 🇨🇴)" },
+    { start: "11:00", label: "11:00 AM (Colombia 🇨🇴)" },
+    { start: "12:00", label: "12:00 PM (Colombia 🇨🇴)" },
+    { start: "19:00", label: "07:00 PM (Colombia 🇨🇴)" },
+    { start: "20:00", label: "08:00 PM (Colombia 🇨🇴)" },
+    { start: "21:00", label: "09:00 PM (Colombia 🇨🇴)" },
+    { start: "22:00", label: "10:00 PM (Colombia 🇨🇴)" },
   ],
   "Moly": [
-    { start: "10:00", label: "10:00 – 12:00 (mañana, Colombia)" },
-    { start: "20:00", label: "20:00 – 22:00 (noche, Colombia)" },
+    { start: "09:00", label: "09:00 AM (Colombia 🇨🇴)" },
+    { start: "10:00", label: "10:00 AM (Colombia 🇨🇴)" },
+    { start: "11:00", label: "11:00 AM (Colombia 🇨🇴)" },
+    { start: "12:00", label: "12:00 PM (Colombia 🇨🇴)" },
+    { start: "19:00", label: "07:00 PM (Colombia 🇨🇴)" },
+    { start: "20:00", label: "08:00 PM (Colombia 🇨🇴)" },
+    { start: "21:00", label: "09:00 PM (Colombia 🇨🇴)" },
+    { start: "22:00", label: "10:00 PM (Colombia 🇨🇴)" },
   ],
 
   // Argentina
   "Sasha": [
-    { start: "12:00", label: "12:00 – 14:00 (mañana, Argentina)" },
-    { start: "22:00", label: "22:00 – 00:00 (noche, Argentina)" },
+    { start: "12:00", label: "12:00 PM (Argentina 🇦🇷)" },
+    { start: "13:00", label: "01:00 PM (Argentina 🇦🇷)" },
+    { start: "14:00", label: "02:00 PM (Argentina 🇦🇷)" },
+    { start: "15:00", label: "03:00 PM (Argentina 🇦🇷)" },
+    { start: "21:00", label: "09:00 PM (Argentina 🇦🇷)" },
+    { start: "22:00", label: "10:00 PM (Argentina 🇦🇷)" },
+    { start: "23:00", label: "11:00 PM (Argentina 🇦🇷)" },
+    { start: "00:00", label: "12:00 AM (Argentina 🇦🇷)" },
   ],
 
   // Eslovaquia
   "Sara": [
-    { start: "16:00", label: "16:00 – 18:00 (tarde, Eslovaquia)" },
-    { start: "02:00", label: "02:00 – 04:00 (del día siguiente, Eslovaquia)" },
+    { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
+    { start: "17:00", label: "17:00 (05:00 PM) 🇸🇌" },
+    { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
+    { start: "19:00", label: "19:00 (07:00 PM) 🇸🇌" },
+    { start: "02:00", label: "02:00 (día siguiente) 🇸🇌" },
+    { start: "03:00", label: "03:00 (día siguiente) 🇸🇌" },
+    { start: "04:00", label: "04:00 (día siguiente) 🇸🇌" },
+    { start: "05:00", label: "05:00 (día siguiente) 🇸🇌" },
   ],
   "Sophi": [
-    { start: "16:00", label: "16:00 – 18:00 (tarde, Eslovaquia)" },
-    { start: "02:00", label: "02:00 – 04:00 (del día siguiente, Eslovaquia)" },
+    { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
+    { start: "17:00", label: "17:00 (05:00 PM) 🇸🇌" },
+    { start: "18:00", label: "18:00 (06:00 PM) 🇸🇌" },
+    { start: "19:00", label: "19:00 (07:00 PM) 🇸🇌" },
+    { start: "02:00", label: "02:00 (día siguiente) 🇸🇌" },
+    { start: "03:00", label: "03:00 (día siguiente) 🇸🇌" },
+    { start: "04:00", label: "04:00 (día siguiente) 🇸🇌" },
+    { start: "05:00", label: "05:00 (día siguiente) 🇸🇌" },
   ]
 };
 
@@ -170,7 +259,6 @@ const saveBtn = document.getElementById("saveBtn");
 const modelSelect = document.getElementById("model");
 const slotSelect = document.getElementById("slot");
 
-// cuando cambia el modelo, cargamos los slots correctos
 modelSelect.addEventListener("change", () => {
   const model = modelSelect.value;
   slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
@@ -225,7 +313,6 @@ function saveSchedule() {
     });
 }
 </script>
-
 
 </body>
 </html>

@@ -50,3 +50,16 @@ module.exports = {
   findReportForModel,
   saveReport,
 };
+
+async function deleteReportForModel(modelName) {
+  const all = await loadAll();
+  const filtered = all.filter((r) => r.modelName !== modelName);
+  await saveAll(filtered);
+}
+module.exports = {
+  getAllReports,
+  findReportForModel,
+  saveReport,
+  deleteReportForModel,
+};
+

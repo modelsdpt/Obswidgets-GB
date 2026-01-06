@@ -154,6 +154,20 @@
       opacity: 0.7;
       font-size: 13px;
     }
+
+    .section-title {
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 4px;
+  color: #f1dd8a;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.section-divider-row td {
+  padding-top: 14px;
+}
   </style>
 </head>
 <body>
@@ -193,7 +207,7 @@
           <th>Feedback</th>
           <th>Monto ($)</th>
           <th>Views</th>
-          <th>Guardar</th>
+          <th>Accion</th>
         </tr>
       </thead>
       <tbody id="scheduleBody">
@@ -260,7 +274,157 @@
     });
   }
 
-  function renderTable() {
+ function renderTable() {
+  const body = document.getElementById("scheduleBody");
+  const summaryEl = document.getElementById("summary-text");
+  const monthInput = document.getElementById("monthFilter");
+
+  const filterMonth = monthInput?.value || ""; // YYYY-MM
+
+  body.innerHTML = "";
+
+  if (!SCHEDULES.length) {
+    body.innerHTML =
+      '<tr><td colspan="8" class="empty">No hay horarios registrados todavía.</td></tr>';
+    summaryEl.textContent = "Sin datos por ahora.";
+    return;
+  }
+
+  // filtramos por mes usando la fecha del schedule
+  const filtered = SCHEDULES.filter((item) => {
+    if (!item.date) return false;
+    const month = item.date.slice(0, 7); // YYYY-MM
+    if (!filterMonth) return true;
+    return month === filterMonth;
+  });
+
+  if (!filtered.length) {
+    body.innerHTML =
+      '<tr><td colspan="8" class="empty">No hay registros para ese mes.</td></tr>';
+    summaryEl.textContent = "Sin datos para el mes seleccionado.";
+    return;
+  }
+
+  // orden por fecha y hora de inicio
+  filtered.sort((a, b) => {
+    if (a.date === b.date) {
+      return (a.start || "").localeCompare(b.start || "");
+    }
+    return a.date.localeCompare(b.date);
+  });
+
+  // separamos pendientes vs realizados
+  const pending = [];
+  const done = [];
+
+  filtered.forEach((item) => {
+    const model = item.modelName;
+    const report = getReportForModel(model);
+
+    const hasReport =
+      report &&
+      (
+        (report.collectedAmount && Number(report.collectedAmount) > 0) ||
+        (report.views && Number(report.views) > 0) ||
+        (report.feedback && report.feedback.trim() !== "") ||
+        (report.end && report.end.trim() !== "")
+      );
+
+    if (hasReport) {
+      done.push({ schedule: item, report });
+    } else {
+      done; // no-op
+      pending.push({ schedule: item, report: report || {} });
+    }
+  });
+
+  let totalAmount = 0;
+  done.forEach(({ report }) => {
+    totalAmount += Number(report.collectedAmount || 0);
+  });
+
+  // PENDIENTES
+  if (pending.length) {
+    const sepRow = document.createElement("tr");
+    sepRow.className = "section-divider-row";
+    sepRow.innerHTML = `<td colspan="8" class="section-title">Pendientes</td>`;
+    body.appendChild(sepRow);
+
+    pending.forEach(({ schedule, report }) => {
+      const model = schedule.modelName;
+      const dateVal = schedule.date || "";
+      const startVal = schedule.start || "";
+      const endVal = report.end || "";
+      const feedbackVal = report.feedback || "";
+      const amountVal = Number(report.collectedAmount || 0);
+      const viewsVal = Number(report.views || 0);
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${model}</td>
+        <td><input type="date" value="${dateVal}" id="date-${model}"></td>
+        <td><input type="time" value="${startVal}" id="start-${model}"></td>
+        <td><input type="time" value="${endVal}" id="end-${model}"></td>
+        <td>
+          <input type="number" step="1" id="views-${model}" value="${viewsVal}">
+        </td>
+        <td>
+          <textarea id="feedback-${model}">${feedbackVal}</textarea>
+        </td>
+        <td>
+          <input type="number" step="0.01" id="amount-${model}" value="${amountVal}">
+        </td>
+        <td>
+          <button class="save-btn" onclick="saveAdminInfo('${model}')">Guardar</button>
+        </td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+
+  // REALIZADOS
+  if (done.length) {
+    const sepRow = document.createElement("tr");
+    sepRow.className = "section-divider-row";
+    sepRow.innerHTML = `<td colspan="8" class="section-title">Realizados</td>`;
+    body.appendChild(sepRow);
+
+    done.forEach(({ schedule, report }) => {
+      const model = schedule.modelName;
+      const dateVal = schedule.date || "";
+      const startVal = schedule.start || "";
+      const endVal = report.end || "";
+      const feedbackVal = report.feedback || "";
+      const amountVal = Number(report.collectedAmount || 0);
+      const viewsVal = Number(report.views || 0);
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${model}</td>
+        <td><input type="date" value="${dateVal}" id="date-${model}"></td>
+        <td><input type="time" value="${startVal}" id="start-${model}"></td>
+        <td><input type="time" value="${endVal}" id="end-${model}"></td>
+        <td>
+          <input type="number" step="1" id="views-${model}" value="${viewsVal}">
+        </td>
+        <td>
+          <textarea id="feedback-${model}">${feedbackVal}</textarea>
+        </td>
+        <td>
+          <input type="number" step="0.01" id="amount-${model}" value="${amountVal}">
+        </td>
+        <td>
+          <button class="save-btn" onclick="deleteReport('${model}')">Eliminar</button>
+        </td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+
+  summaryEl.textContent =
+    `Realizados en el mes: ${done.length} • Total reportado: $${totalAmount.toFixed(2)}`;
+}
+
     const body = document.getElementById("scheduleBody");
     const summaryEl = document.getElementById("summary-text");
     const monthInput = document.getElementById("monthFilter");
@@ -338,7 +502,7 @@
 
     summaryEl.textContent =
       `Registros en el mes: ${filtered.length} • Total reportado: $${totalAmount.toFixed(2)}`;
-  }
+    
 
   function saveAdminInfo(modelName) {
     const date = document.getElementById(`date-${modelName}`).value;
@@ -378,6 +542,31 @@
         alert("Error de red al guardar");
       });
   }
+
+  function deleteReport(modelName) {
+  if (!confirm(`¿Eliminar el reporte de ${modelName}? Esto no borra el horario.`)) {
+    return;
+  }
+
+  fetch("/api/reports/delete", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ modelName }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data && data.success) {
+        loadData();
+      } else {
+        alert("Error al eliminar: " + (data?.message || "desconocido"));
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Error de red al eliminar");
+    });
+}
+
 
   // cargar al entrar
   loadData();

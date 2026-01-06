@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ───────── STORES ─────────
 const {
   getAllSchedules,
   findScheduleForModel,
@@ -19,12 +20,13 @@ const {
   getAllReports,
   findReportForModel,
   saveReport,
+  deleteReportForModel,
 } = require("./reportStore");
 
-
-// Mostrar carpetas
+// Mostrar carpetas (debug)
 console.log("Archivos en backend:", fs.readdirSync(__dirname));
 
+// ───────── RUTAS ESTÁTICAS ─────────
 app.use("/widget", express.static(path.join(__dirname, "widget")));
 app.use("/panel", express.static(path.join(__dirname, "panel")));
 app.use("/bar", express.static(path.join(__dirname, "bar")));
@@ -34,33 +36,36 @@ app.use("/countdown", express.static(path.join(__dirname, "countdown")));
 app.use("/models", express.static(path.join(__dirname, "models")));
 app.use("/admin", express.static(path.join(__dirname, "admin")));
 
-
-
 console.log("Rutas estáticas:");
-console.log(" -> /widget  =>", path.join(__dirname, "widget"));
-console.log(" -> /countdown  =>", path.join(__dirname, "countdown"));
-console.log(" -> /panel   =>", path.join(__dirname, "panel"));
-console.log(" -> /bar     =>", path.join(__dirname, "bar"));
-console.log(" -> /overlay     =>", path.join(__dirname, "overlay"));
-console.log(" -> /roulette     =>", path.join(__dirname, "roulette"));
+console.log(" -> /widget    =>", path.join(__dirname, "widget"));
+console.log(" -> /countdown =>", path.join(__dirname, "countdown"));
+console.log(" -> /panel     =>", path.join(__dirname, "panel"));
+console.log(" -> /bar       =>", path.join(__dirname, "bar"));
+console.log(" -> /overlay   =>", path.join(__dirname, "overlay"));
+console.log(" -> /roulette  =>", path.join(__dirname, "roulette"));
+console.log(" -> /models    =>", path.join(__dirname, "models"));
+console.log(" -> /admin     =>", path.join(__dirname, "admin"));
 
-// MULTICONEXIONES POR modelId
+// ───────── WEBSOCKET: MULTICONEXIONES POR modelId ─────────
 const connections = new Map();
 
-// ===== API PARA ENVIAR MENSAJES =====
+// API para enviar eventos a los widgets conectados
 app.post("/api/send", (req, res) => {
   const { modelId, type, payload } = req.body;
 
   console.log("POST /api/send modelId:", modelId);
-  console.log("Conexiones:", Array.from(connections.keys()));
+  console.log("Conexiones activas:", Array.from(connections.keys()));
 
   const clientList = connections.get(modelId) || [];
 
   if (clientList.length === 0) {
-    return res.json({ ok: false, error: "El modelo no tiene conexiones activas" });
+    return res.json({
+      ok: false,
+      error: "El modelo no tiene conexiones activas",
+    });
   }
 
-  clientList.forEach(client => {
+  clientList.forEach((client) => {
     if (client.readyState === 1) {
       client.send(JSON.stringify({ type, payload }));
     }
@@ -69,13 +74,13 @@ app.post("/api/send", (req, res) => {
   return res.json({ ok: true });
 });
 
+// ───────── API: SCHEDULE DE MODELOS ─────────
 
-// POST: registrar horario de una modelo (solo una vez)
+// POST: registrar / actualizar horario de una modelo
 app.post("/api/model-schedule", async (req, res) => {
   try {
     const { modelName, date, start } = req.body;
 
-    // ahora solo validamos que haya datos
     if (!modelName || !date || !start) {
       return res
         .status(400)
@@ -85,14 +90,13 @@ app.post("/api/model-schedule", async (req, res) => {
     const now = new Date().toISOString();
     const existing = await findScheduleForModel(modelName);
 
-    // si ya existe, lo ACTUALIZAMOS; si no, lo creamos
+    // si ya existe, lo actualizamos; si no, lo creamos
     const entry = {
       modelName,
       date,
       start,
-      // fin lo rellenas tú luego desde el dashboard si quieres
-      end: existing?.end || "",
-      locked: false, // ya no usamos bloqueo
+      end: existing?.end || "", // lo completas luego en el dashboard
+      locked: false,            // ya no usamos bloqueo
       createdAt: existing?.createdAt || now,
       updatedAt: now,
     };
@@ -108,19 +112,6 @@ app.post("/api/model-schedule", async (req, res) => {
   }
 });
 
-
-// GET /api/reports  -> listado de reportes de livestreams
-app.get("/api/reports", async (req, res) => {
-  try {
-    const all = await getAllReports();
-    return res.json(all);
-  } catch (err) {
-    console.error("Error en GET /api/reports:", err);
-    return res.status(500).json({ message: "Error interno" });
-  }
-});
-
-
 // GET: devolver horarios para el panel admin
 app.get("/api/model-schedule", async (req, res) => {
   try {
@@ -132,8 +123,20 @@ app.get("/api/model-schedule", async (req, res) => {
   }
 });
 
-// POST /api/reports/admin-update
-// Guarda feedback, monto, views, hora de fin, etc.
+// ───────── API: REPORTES DE LIVESTREAM ─────────
+
+// GET /api/reports -> listado de reportes de livestreams
+app.get("/api/reports", async (req, res) => {
+  try {
+    const all = await getAllReports();
+    return res.json(all);
+  } catch (err) {
+    console.error("Error en GET /api/reports:", err);
+    return res.status(500).json({ message: "Error interno" });
+  }
+});
+
+// POST /api/reports/admin-update -> guarda feedback, monto, views, hora de fin
 app.post("/api/reports/admin-update", async (req, res) => {
   try {
     const {
@@ -159,8 +162,9 @@ app.post("/api/reports/admin-update", async (req, res) => {
       modelName,
       date: date || existing?.date || "",
       start: start || existing?.start || "",
-      end: typeof end === "string" ? end : (existing?.end || ""),
-      feedback: typeof feedback === "string" ? feedback : (existing?.feedback || ""),
+      end: typeof end === "string" ? end : existing?.end || "",
+      feedback:
+        typeof feedback === "string" ? feedback : existing?.feedback || "",
       collectedAmount: Number(
         collectedAmount ?? existing?.collectedAmount ?? 0
       ),
@@ -180,10 +184,28 @@ app.post("/api/reports/admin-update", async (req, res) => {
   }
 });
 
+// POST /api/reports/delete -> eliminar reporte de un modelo (no borra el horario)
+app.post("/api/reports/delete", async (req, res) => {
+  try {
+    const { modelName } = req.body;
+    if (!modelName) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Falta modelName" });
+    }
 
+    await deleteReportForModel(modelName);
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("Error en POST /api/reports/delete:", err);
+    return res
+      .status(500)
+      .json({ success: false, message: "Error interno del servidor" });
+  }
+});
 
+// ───────── WEBSOCKET SERVER ─────────
 const server = http.createServer(app);
-
 const wss = new WebSocketServer({ noServer: true });
 
 server.on("upgrade", (req, socket, head) => {
@@ -210,11 +232,12 @@ wss.on("connection", (ws, modelId) => {
     console.log("🔌 Widget desconectado:", modelId);
 
     const list = connections.get(modelId) || [];
-    const updated = list.filter(c => c !== ws);
+    const updated = list.filter((c) => c !== ws);
     connections.set(modelId, updated);
   });
 });
 
+// ───────── START ─────────
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log(`Backend corriendo en http://localhost:${PORT}`);
