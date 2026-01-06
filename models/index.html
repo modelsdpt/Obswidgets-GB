@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Agenda tu horario – Livestream GB</title>
+  <style>
+    body {
+      margin: 0;
+      background: #050814;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .card {
+      width: 420px;
+      border-radius: 18px;
+      padding: 24px 24px 20px;
+      background: radial-gradient(circle at top, rgba(210, 190, 120, 0.22), #050814);
+      border: 1px solid rgba(180, 160, 90, 0.9);
+      box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.9),
+        0 0 26px rgba(0, 0, 0, 0.85);
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0 0 6px;
+    }
+    .subtitle {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+      opacity: 0.9;
+    }
+    select, input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #33384d;
+      background: #090c16;
+      color: #f5f5f5;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    select:focus, input:focus {
+      border-color: #e3c96f;
+    }
+    .timezone-info {
+      font-size: 12px;
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+    .row {
+      display: flex;
+      gap: 12px;
+    }
+    .row > div {
+      flex: 1;
+    }
+    button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #f1dd8a, #c59d42);
+      color: #2b220e;
+      box-shadow:
+        0 0 16px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(210, 180, 90, 0.9);
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+    }
+    .status {
+      margin-top: 12px;
+      font-size: 13px;
+    }
+    .status.ok { color: #9be29b; }
+    .status.error { color: #ff9b9b; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Hola, bienvenida a Livestream GB</h1>
+  <div class="subtitle">Por favor agenda tu horario para el evento.</div>
+
+  <label for="model">¿Qué modelo eres?</label>
+  <select id="model">
+    <option value="">Selecciona tu nombre</option>
+    <option value="Sasha">Sasha</option>
+    <option value="Sara">Sara</option>
+    <option value="Sophi">Sophi</option>
+    <option value="Sunny">Sunny</option>
+    <option value="Moly">Moly</option>
+  </select>
+
+  <div id="tzInfo" class="timezone-info"></div>
+
+  <label for="date">Día del evento</label>
+  <input id="date" type="date" />
+
+  <div class="row">
+    <div>
+      <label for="start">Inicio</label>
+      <input id="start" type="time" />
+    </div>
+    <div>
+      <label for="end">Fin</label>
+      <input id="end" type="time" />
+    </div>
+  </div>
+
+  <button id="saveBtn" onclick="saveSchedule()">Guardar horario</button>
+
+  <div id="status" class="status"></div>
+</div>
+
+<script>
+const API_URL = "/api/model-schedule";
+
+const MODEL_TIMEZONES = {
+  "Sasha": "America/Bogota (Colombia)",
+  "Sara":  "America/Caracas (Venezuela)",
+  "Sophi": "America/Bogota (Colombia)",
+  "Sunny": "Europe/Bratislava (Eslovaquia)",
+  "Moly":  "America/Caracas (Venezuela)"
+};
+
+const tzInfoEl = document.getElementById("tzInfo");
+const modelSelect = document.getElementById("model");
+const statusEl = document.getElementById("status");
+const saveBtn = document.getElementById("saveBtn");
+
+// bloqueo suave en el navegador
+const LOCAL_LOCK_KEY = "modelScheduleLocked";
+
+modelSelect.addEventListener("change", () => {
+  const model = modelSelect.value;
+  if (!model) {
+    tzInfoEl.textContent = "";
+    return;
+  }
+  const tzText = MODEL_TIMEZONES[model] || "Zona horaria a confirmar con el staff.";
+  tzInfoEl.textContent = "Tu horario se registrará en tu zona horaria: " + tzText;
+});
+
+function checkLocalLock() {
+  const locked = localStorage.getItem(LOCAL_LOCK_KEY);
+  if (locked === "1") {
+    saveBtn.disabled = true;
+    statusEl.textContent = "Ya registraste tu horario. Si necesitas cambiarlo, contacta al staff.";
+    statusEl.className = "status ok";
+  }
+}
+checkLocalLock();
+
+function saveSchedule() {
+  const model = modelSelect.value;
+  const date = document.getElementById("date").value;
+  const start = document.getElementById("start").value;
+  const end = document.getElementById("end").value;
+
+  statusEl.textContent = "";
+  statusEl.className = "status";
+
+  if (!model || !date || !start || !end) {
+    statusEl.textContent = "Completa todos los campos.";
+    statusEl.classList.add("error");
+    return;
+  }
+
+  saveBtn.disabled = true;
+
+  fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      modelName: model,
+      date,
+      start,
+      end
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.success) {
+        statusEl.textContent = "Horario guardado. Gracias ♥";
+        statusEl.classList.add("ok");
+        localStorage.setItem(LOCAL_LOCK_KEY, "1");
+      } else {
+        throw new Error(data?.message || "Error desconocido");
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      statusEl.textContent = "Hubo un problema guardando tu horario. Intenta más tarde.";
+      statusEl.classList.add("error");
+      saveBtn.disabled = false;
+    });
+}
+</script>
+
+</body>
+</html>

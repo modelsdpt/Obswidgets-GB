@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard – Panel de Modelos</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #27253a, #050814);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: radial-gradient(circle at top, rgba(210,190,120,0.22), #050814);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+    }
+    .title-block h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+    }
+    .title-block .subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+    .logout-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: transparent;
+      color: #f5f5f5;
+      padding: 6px 14px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .logout-btn:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    main {
+      padding: 18px 26px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .card {
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: radial-gradient(circle at top, #151828, #050814);
+      border: 1px solid rgba(140, 140, 160, 0.8);
+      box-shadow:
+        0 0 16px rgba(0, 0, 0, 0.7),
+        inset 0 0 8px rgba(0,0,0,0.9);
+      font-size: 13px;
+      min-width: 200px;
+    }
+    .card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .table-wrapper {
+      border-radius: 16px;
+      background: radial-gradient(circle at top, #151828, #050814);
+      border: 1px solid rgba(180,160,90,0.8);
+      box-shadow:
+        0 0 20px rgba(0,0,0,0.9),
+        inset 0 0 8px rgba(0,0,0,0.9);
+      padding: 14px 14px 10px;
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead {
+      background: linear-gradient(90deg, rgba(241,221,138,0.15), rgba(197,157,66,0.08));
+    }
+    th, td {
+      padding: 8px 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px solid #33384d;
+      background: #090c16;
+      color: #f5f5f5;
+      font-size: 12px;
+      padding: 6px 7px;
+      outline: none;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: #e3c96f;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 52px;
+    }
+
+    .save-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f1dd8a, #c59d42);
+      color: #2b220e;
+      box-shadow:
+        0 0 10px rgba(0,0,0,0.8),
+        0 0 14px rgba(210,180,90,0.8);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 16px 0;
+      opacity: 0.7;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="title-block">
+    <h1>Panel de Modelos – Livestream GB</h1>
+    <div class="subtitle">Horarios agendados, feedback y montos recolectados.</div>
+  </div>
+  <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+</header>
+
+<main>
+  <section class="cards">
+    <div class="card">
+      <strong>Resumen</strong>
+      <div id="summary-text">Cargando datos...</div>
+    </div>
+  </section>
+
+  <section class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Fecha</th>
+          <th>Inicio</th>
+          <th>Fin</th>
+          <th>Feedback</th>
+          <th>Monto ($)</th>
+          <th>Guardar</th>
+        </tr>
+      </thead>
+      <tbody id="scheduleBody">
+        <tr><td colspan="7" class="empty">Cargando...</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+if (sessionStorage.getItem("modelsAdmin") !== "1") {
+  window.location.href = "/admin/login.html";
+}
+
+function logout() {
+  sessionStorage.removeItem("modelsAdmin");
+  window.location.href = "/admin/login.html";
+}
+
+function loadSchedules() {
+  fetch("/api/model-schedule")
+    .then(res => res.json())
+    .then(data => {
+      const body = document.getElementById("scheduleBody");
+      const summaryEl = document.getElementById("summary-text");
+      body.innerHTML = "";
+
+      if (!data || !data.length) {
+        body.innerHTML = '<tr><td colspan="7" class="empty">No hay horarios registrados todavía.</td></tr>';
+        summaryEl.textContent = "Sin datos por ahora.";
+        return;
+      }
+
+      let totalAmount = 0;
+
+      data.forEach(item => {
+        const model = item.modelName;
+        const tr = document.createElement("tr");
+
+        const amountVal = Number(item.collectedAmount || 0);
+        totalAmount += amountVal;
+
+        tr.innerHTML = `
+          <td>${model}</td>
+          <td><input type="date" value="${item.date || ""}" id="date-${model}"></td>
+          <td><input type="time" value="${item.start || ""}" id="start-${model}"></td>
+          <td><input type="time" value="${item.end || ""}" id="end-${model}"></td>
+          <td>
+            <textarea id="feedback-${model}">${item.feedback || ""}</textarea>
+          </td>
+          <td>
+            <input type="number" step="0.01" id="amount-${model}" value="${amountVal}">
+          </td>
+          <td>
+            <button class="save-btn" onclick="saveAdminInfo('${model}')">Guardar</button>
+          </td>
+        `;
+        body.appendChild(tr);
+      });
+
+      summaryEl.textContent = `Modelos con horario: ${data.length} • Total reportado: $${totalAmount.toFixed(2)}`;
+    })
+    .catch(err => {
+      console.error("Error cargando horarios:", err);
+      const body = document.getElementById("scheduleBody");
+      body.innerHTML = '<tr><td colspan="7" class="empty">Error cargando datos.</td></tr>';
+      document.getElementById("summary-text").textContent = "Error al cargar datos.";
+    });
+}
+
+function saveAdminInfo(modelName) {
+  const date = document.getElementById(`date-${modelName}`).value;
+  const start = document.getElementById(`start-${modelName}`).value;
+  const end = document.getElementById(`end-${modelName}`).value;
+  const feedback = document.getElementById(`feedback-${modelName}`).value;
+  const amountVal = document.getElementById(`amount-${modelName}`).value;
+
+  const collectedAmount = Number(amountVal || 0);
+
+  fetch("/api/model-schedule/admin-update", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      modelName,
+      date,
+      start,
+      end,
+      feedback,
+      collectedAmount,
+    }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.success) {
+        alert(`Datos actualizados para ${modelName}`);
+        loadSchedules();
+      } else {
+        alert("Error al guardar: " + (data?.message || "desconocido"));
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Error de red al guardar");
+    });
+}
+
+// cargar al entrar
+loadSchedules();
+</script>
+
+</body>
+</html>
