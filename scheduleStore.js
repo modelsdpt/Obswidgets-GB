@@ -1,45 +1,48 @@
-// Backend/scheduleStore.js
-const fs = require("fs/promises");
+const fs = require("fs").promises;
 const path = require("path");
 
-const DB_PATH = path.join(__dirname, "data", "schedules.json");
+const DATA_DIR = path.join(__dirname, "data");
+const FILE_PATH = path.join(DATA_DIR, "schedules.json");
 
-async function loadAll() {
+async function ensureFile() {
   try {
-    const content = await fs.readFile(DB_PATH, "utf8");
-    return JSON.parse(content || "[]");
-  } catch (err) {
-    if (err.code === "ENOENT") return [];
-    console.error("Error leyendo schedules.json:", err);
+    await fs.mkdir(DATA_DIR, { recursive: true });
+    await fs.access(FILE_PATH);
+  } catch {
+    // Si no existe, lo creamos vacío
+    await fs.writeFile(FILE_PATH, "[]", "utf-8");
+  }
+}
+
+async function getAllSchedules() {
+  await ensureFile();
+  const raw = await fs.readFile(FILE_PATH, "utf-8");
+  try {
+    const data = JSON.parse(raw);
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    console.error("Error parseando schedules.json, reseteando:", e);
+    await fs.writeFile(FILE_PATH, "[]", "utf-8");
     return [];
   }
 }
 
-async function saveAll(list) {
-  const json = JSON.stringify(list, null, 2);
-  await fs.writeFile(DB_PATH, json, "utf8");
-}
-
-async function getAllSchedules() {
-  return loadAll();
-}
-
 async function findScheduleForModel(modelName) {
-  const all = await loadAll();
+  const all = await getAllSchedules();
   return all.find((s) => s.modelName === modelName) || null;
 }
 
 async function saveSchedule(entry) {
-  const all = await loadAll();
-
+  const all = await getAllSchedules();
   const idx = all.findIndex((s) => s.modelName === entry.modelName);
+
   if (idx >= 0) {
-    all[idx] = entry;
+    all[idx] = { ...all[idx], ...entry };
   } else {
     all.push(entry);
   }
 
-  await saveAll(all);
+  await fs.writeFile(FILE_PATH, JSON.stringify(all, null, 2), "utf-8");
 }
 
 module.exports = {
