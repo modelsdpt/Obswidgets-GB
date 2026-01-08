@@ -1,0 +1,29 @@
+[
+  {
+    "modelName": "Moly",
+    "date": "2026-01-13",
+    "start": "10:00",
+    "end": "",
+    "locked": false,
+    "createdAt": "2026-01-08T20:46:26.684Z",
+    "updatedAt": "2026-01-08T20:46:26.684Z"
+  },
+  {
+    "modelName": "Sasha",
+    "date": "2026-01-13",
+    "start": "21:00",
+    "end": "",
+    "locked": false,
+    "createdAt": "2026-01-08T20:47:50.016Z",
+    "updatedAt": "2026-01-08T20:47:50.016Z"
+  },
+  {
+    "modelName": "Nikki",
+    "date": "2026-02-17",
+    "start": "20:00",
+    "end": "",
+    "locked": false,
+    "createdAt": "2026-01-08T20:51:39.777Z",
+    "updatedAt": "2026-01-08T20:51:39.777Z"
+  }
+]

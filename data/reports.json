@@ -1,0 +1,30 @@
+[
+  {
+    "modelName": "Moly",
+    "date": "2026-01-13",
+    "start": "10:00",
+    "end": "10:30",
+    "collectedAmount": 100,
+    "views": 50,
+    "shadowerFeedback": "adsadas",
+    "caFeedback": "asdasdsa",
+    "livestreamFeedback": "sadasda",
+    "note": "adsadsa",
+    "createdAt": "2026-01-08T20:47:40.080Z",
+    "updatedAt": "2026-01-08T20:47:40.080Z"
+  },
+  {
+    "modelName": "Sasha",
+    "date": "2026-01-13",
+    "start": "21:00",
+    "end": "22:00",
+    "collectedAmount": 500,
+    "views": 50,
+    "shadowerFeedback": "asdsadas",
+    "caFeedback": "20adsad",
+    "livestreamFeedback": "asdsadsad",
+    "note": "asdsadsa",
+    "createdAt": "2026-01-08T20:48:35.724Z",
+    "updatedAt": "2026-01-08T20:48:35.724Z"
+  }
+]

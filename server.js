@@ -14,6 +14,7 @@ const {
   getAllSchedules,
   findScheduleForModel,
   saveSchedule,
+  deleteScheduleForModel,
 } = require("./scheduleStore");
 
 const {
@@ -90,13 +91,12 @@ app.post("/api/model-schedule", async (req, res) => {
     const now = new Date().toISOString();
     const existing = await findScheduleForModel(modelName);
 
-    // si ya existe, lo actualizamos; si no, lo creamos
     const entry = {
       modelName,
       date,
       start,
-      end: existing?.end || "", // lo completas luego en el dashboard
-      locked: false,            // ya no usamos bloqueo
+      end: existing?.end || "",
+      locked: false,
       createdAt: existing?.createdAt || now,
       updatedAt: now,
     };
@@ -123,6 +123,28 @@ app.get("/api/model-schedule", async (req, res) => {
   }
 });
 
+// POST: eliminar completamente un registro (horario + reporte)
+app.post("/api/model-schedule/delete", async (req, res) => {
+  try {
+    const { modelName } = req.body;
+    if (!modelName) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Falta modelName" });
+    }
+
+    await deleteScheduleForModel(modelName);
+    await deleteReportForModel(modelName);
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("Error en POST /api/model-schedule/delete:", err);
+    return res
+      .status(500)
+      .json({ success: false, message: "Error interno del servidor" });
+  }
+});
+
 // ───────── API: REPORTES DE LIVESTREAM ─────────
 
 // GET /api/reports -> listado de reportes de livestreams
@@ -136,7 +158,7 @@ app.get("/api/reports", async (req, res) => {
   }
 });
 
-// POST /api/reports/admin-update -> guarda feedback, monto, views, hora de fin
+// POST /api/reports/admin-update -> guarda feedbacks, nota, views, monto, fin
 app.post("/api/reports/admin-update", async (req, res) => {
   try {
     const {
@@ -144,9 +166,12 @@ app.post("/api/reports/admin-update", async (req, res) => {
       date,
       start,
       end,
-      feedback,
       collectedAmount,
       views,
+      shadowerFeedback,
+      caFeedback,
+      livestreamFeedback,
+      note,
     } = req.body;
 
     if (!modelName) {
@@ -163,12 +188,28 @@ app.post("/api/reports/admin-update", async (req, res) => {
       date: date || existing?.date || "",
       start: start || existing?.start || "",
       end: typeof end === "string" ? end : existing?.end || "",
-      feedback:
-        typeof feedback === "string" ? feedback : existing?.feedback || "",
       collectedAmount: Number(
         collectedAmount ?? existing?.collectedAmount ?? 0
       ),
       views: Number(views ?? existing?.views ?? 0),
+
+      shadowerFeedback:
+        typeof shadowerFeedback === "string"
+          ? shadowerFeedback
+          : existing?.shadowerFeedback || "",
+      caFeedback:
+        typeof caFeedback === "string"
+          ? caFeedback
+          : existing?.caFeedback || "",
+      livestreamFeedback:
+        typeof livestreamFeedback === "string"
+          ? livestreamFeedback
+          : existing?.livestreamFeedback || "",
+      note:
+        typeof note === "string"
+          ? note
+          : existing?.note || "",
+
       createdAt: existing?.createdAt || now,
       updatedAt: now,
     };
@@ -184,7 +225,7 @@ app.post("/api/reports/admin-update", async (req, res) => {
   }
 });
 
-// POST /api/reports/delete -> eliminar reporte de un modelo (no borra el horario)
+// mantenemos este endpoint por si lo necesitas en otro lado
 app.post("/api/reports/delete", async (req, res) => {
   try {
     const { modelName } = req.body;

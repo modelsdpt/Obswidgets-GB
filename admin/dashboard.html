@@ -60,6 +60,7 @@
       flex-wrap: wrap;
       gap: 14px;
       margin-bottom: 12px;
+      align-items: stretch;
     }
     .card {
       border-radius: 14px;
@@ -76,6 +77,26 @@
       display: block;
       margin-bottom: 4px;
       font-size: 13px;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      justify-content: space-between;
+    }
+    .download-btn {
+      border-radius: 999px;
+      border: none;
+      padding: 8px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #9fd6ff, #52a3ff);
+      color: #02101e;
+      box-shadow:
+        0 0 10px rgba(0,0,0,0.8),
+        0 0 14px rgba(100,140,255,0.7);
+      width: 100%;
     }
 
     .table-wrapper {
@@ -132,20 +153,43 @@
 
     textarea {
       resize: vertical;
-      min-height: 52px;
+      min-height: 40px;
     }
 
-    .save-btn {
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .btn-mini {
       border-radius: 999px;
       border: none;
-      padding: 6px 10px;
-      font-size: 12px;
+      padding: 4px 8px;
+      font-size: 11px;
       cursor: pointer;
+      width: 100%;
+    }
+    .btn-save {
       background: linear-gradient(135deg, #f1dd8a, #c59d42);
       color: #2b220e;
       box-shadow:
         0 0 10px rgba(0,0,0,0.8),
         0 0 14px rgba(210,180,90,0.8);
+    }
+    .btn-edit {
+      background: linear-gradient(135deg, #9fd6ff, #52a3ff);
+      color: #02101e;
+      box-shadow:
+        0 0 10px rgba(0,0,0,0.8),
+        0 0 14px rgba(100,140,255,0.7);
+    }
+    .btn-delete {
+      background: linear-gradient(135deg, #ff7b7b, #ff4444);
+      color: #2b0202;
+      box-shadow:
+        0 0 10px rgba(0,0,0,0.8),
+        0 0 14px rgba(255,80,80,0.7);
     }
 
     .empty {
@@ -175,7 +219,7 @@
 <header>
   <div class="title-block">
     <h1>Panel de Modelos – Livestream GB</h1>
-    <div class="subtitle">Horarios agendados, feedback, views y montos recolectados.</div>
+    <div class="subtitle">Horarios agendados, feedbacks, views, notas y montos recolectados.</div>
   </div>
   <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
 </header>
@@ -194,6 +238,16 @@
       </div>
       <div id="summary-text" style="margin-top:8px;">Cargando datos...</div>
     </div>
+
+    <div class="card card-actions">
+      <strong>Exportar</strong>
+      <p style="font-size:12px; opacity:.85; margin:4px 0 8px;">
+        Descarga en Excel los registros del mes seleccionado (pendientes + realizados).
+      </p>
+      <button class="download-btn" onclick="downloadXls()">
+        Descargar XLS
+      </button>
+    </div>
   </section>
 
   <section class="table-wrapper">
@@ -205,13 +259,16 @@
           <th>Inicio</th>
           <th>Fin</th>
           <th>Views</th>
-          <th>Feedback</th>
+          <th>Shadower FB</th>
+          <th>CA FB</th>
+          <th>Livestream FB</th>
+          <th>Nota</th>
           <th>Monto ($)</th>
-          <th>Acción</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody id="scheduleBody">
-        <tr><td colspan="8" class="empty">Cargando...</td></tr>
+        <tr><td colspan="11" class="empty">Cargando...</td></tr>
       </tbody>
     </table>
   </section>
@@ -246,7 +303,7 @@
         console.error("Error cargando datos:", err);
         const body = document.getElementById("scheduleBody");
         body.innerHTML =
-          '<tr><td colspan="8" class="empty">Error cargando datos.</td></tr>';
+          '<tr><td colspan="11" class="empty">Error cargando datos.</td></tr>';
         document.getElementById("summary-text").textContent =
           "Error al cargar datos.";
       });
@@ -273,31 +330,36 @@
     });
   }
 
+  function filterByMonth() {
+    const monthInput = document.getElementById("monthFilter");
+    const filterMonth = monthInput?.value || "";
+    if (!filterMonth) return SCHEDULES.slice();
+
+    return SCHEDULES.filter((item) => {
+      if (!item.date) return false;
+      const month = item.date.slice(0, 7); // YYYY-MM
+      return month === filterMonth;
+    });
+  }
+
   function renderTable() {
     const body = document.getElementById("scheduleBody");
     const summaryEl = document.getElementById("summary-text");
-    const monthInput = document.getElementById("monthFilter");
 
-    const filterMonth = monthInput?.value || ""; // YYYY-MM
     body.innerHTML = "";
 
     if (!SCHEDULES.length) {
       body.innerHTML =
-        '<tr><td colspan="8" class="empty">No hay horarios registrados todavía.</td></tr>';
+        '<tr><td colspan="11" class="empty">No hay horarios registrados todavía.</td></tr>';
       summaryEl.textContent = "Sin datos por ahora.";
       return;
     }
 
-    const filtered = SCHEDULES.filter((item) => {
-      if (!item.date) return false;
-      const month = item.date.slice(0, 7); // YYYY-MM
-      if (!filterMonth) return true;
-      return month === filterMonth;
-    });
+    const filtered = filterByMonth();
 
     if (!filtered.length) {
       body.innerHTML =
-        '<tr><td colspan="8" class="empty">No hay registros para ese mes.</td></tr>';
+        '<tr><td colspan="11" class="empty">No hay registros para ese mes.</td></tr>';
       summaryEl.textContent = "Sin datos para el mes seleccionado.";
       return;
     }
@@ -321,7 +383,10 @@
         (
           (report.collectedAmount && Number(report.collectedAmount) > 0) ||
           (report.views && Number(report.views) > 0) ||
-          (report.feedback && report.feedback.trim() !== "") ||
+          (report.shadowerFeedback && report.shadowerFeedback.trim() !== "") ||
+          (report.caFeedback && report.caFeedback.trim() !== "") ||
+          (report.livestreamFeedback && report.livestreamFeedback.trim() !== "") ||
+          (report.note && report.note.trim() !== "") ||
           (report.end && report.end.trim() !== "")
         );
 
@@ -341,7 +406,7 @@
     if (pending.length) {
       const sepRow = document.createElement("tr");
       sepRow.className = "section-divider-row";
-      sepRow.innerHTML = `<td colspan="8" class="section-title">Pendientes</td>`;
+      sepRow.innerHTML = `<td colspan="11" class="section-title">Pendientes</td>`;
       body.appendChild(sepRow);
 
       pending.forEach(({ schedule, report }) => {
@@ -349,9 +414,12 @@
         const dateVal = schedule.date || "";
         const startVal = schedule.start || "";
         const endVal = report.end || "";
-        const feedbackVal = report.feedback || "";
-        const amountVal = Number(report.collectedAmount || 0);
         const viewsVal = Number(report.views || 0);
+        const shadowerFb = report.shadowerFeedback || "";
+        const caFb = report.caFeedback || "";
+        const liveFb = report.livestreamFeedback || "";
+        const noteVal = report.note || "";
+        const amountVal = Number(report.collectedAmount || 0);
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -359,17 +427,17 @@
           <td><input type="date" value="${dateVal}" id="date-${model}"></td>
           <td><input type="time" value="${startVal}" id="start-${model}"></td>
           <td><input type="time" value="${endVal}" id="end-${model}"></td>
+          <td><input type="number" step="1" id="views-${model}" value="${viewsVal}"></td>
+          <td><textarea id="shadower-${model}">${shadowerFb}</textarea></td>
+          <td><textarea id="ca-${model}">${caFb}</textarea></td>
+          <td><textarea id="live-${model}">${liveFb}</textarea></td>
+          <td><textarea id="note-${model}">${noteVal}</textarea></td>
+          <td><input type="number" step="0.01" id="amount-${model}" value="${amountVal}"></td>
           <td>
-            <input type="number" step="1" id="views-${model}" value="${viewsVal}">
-          </td>
-          <td>
-            <textarea id="feedback-${model}">${feedbackVal}</textarea>
-          </td>
-          <td>
-            <input type="number" step="0.01" id="amount-${model}" value="${amountVal}">
-          </td>
-          <td>
-            <button class="save-btn" onclick="saveAdminInfo('${model}')">Guardar</button>
+            <div class="btn-group">
+              <button class="btn-mini btn-save" onclick="saveAdminInfo('${model}')">Guardar</button>
+              <button class="btn-mini btn-delete" onclick="deleteFullRecord('${model}')">Eliminar</button>
+            </div>
           </td>
         `;
         body.appendChild(tr);
@@ -380,7 +448,7 @@
     if (done.length) {
       const sepRow = document.createElement("tr");
       sepRow.className = "section-divider-row";
-      sepRow.innerHTML = `<td colspan="8" class="section-title">Realizados</td>`;
+      sepRow.innerHTML = `<td colspan="11" class="section-title">Realizados</td>`;
       body.appendChild(sepRow);
 
       done.forEach(({ schedule, report }) => {
@@ -388,9 +456,12 @@
         const dateVal = schedule.date || "";
         const startVal = schedule.start || "";
         const endVal = report.end || "";
-        const feedbackVal = report.feedback || "";
-        const amountVal = Number(report.collectedAmount || 0);
         const viewsVal = Number(report.views || 0);
+        const shadowerFb = report.shadowerFeedback || "";
+        const caFb = report.caFeedback || "";
+        const liveFb = report.livestreamFeedback || "";
+        const noteVal = report.note || "";
+        const amountVal = Number(report.collectedAmount || 0);
 
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -398,17 +469,17 @@
           <td><input type="date" value="${dateVal}" id="date-${model}"></td>
           <td><input type="time" value="${startVal}" id="start-${model}"></td>
           <td><input type="time" value="${endVal}" id="end-${model}"></td>
+          <td><input type="number" step="1" id="views-${model}" value="${viewsVal}"></td>
+          <td><textarea id="shadower-${model}">${shadowerFb}</textarea></td>
+          <td><textarea id="ca-${model}">${caFb}</textarea></td>
+          <td><textarea id="live-${model}">${liveFb}</textarea></td>
+          <td><textarea id="note-${model}">${noteVal}</textarea></td>
+          <td><input type="number" step="0.01" id="amount-${model}" value="${amountVal}"></td>
           <td>
-            <input type="number" step="1" id="views-${model}" value="${viewsVal}">
-          </td>
-          <td>
-            <textarea id="feedback-${model}">${feedbackVal}</textarea>
-          </td>
-          <td>
-            <input type="number" step="0.01" id="amount-${model}" value="${amountVal}">
-          </td>
-          <td>
-            <button class="save-btn" onclick="deleteReport('${model}')">Eliminar</button>
+            <div class="btn-group">
+              <button class="btn-mini btn-edit" onclick="saveAdminInfo('${model}')">Modificar</button>
+              <button class="btn-mini btn-delete" onclick="deleteFullRecord('${model}')">Eliminar</button>
+            </div>
           </td>
         `;
         body.appendChild(tr);
@@ -419,34 +490,45 @@
       `Realizados en el mes: ${done.length} • Total reportado: $${totalAmount.toFixed(2)}`;
   }
 
-  function saveAdminInfo(modelName) {
+  function readRowValues(modelName) {
     const date = document.getElementById(`date-${modelName}`).value;
     const start = document.getElementById(`start-${modelName}`).value;
     const end = document.getElementById(`end-${modelName}`).value;
-    const feedback = document.getElementById(`feedback-${modelName}`).value;
-    const amountVal = document.getElementById(`amount-${modelName}`).value;
     const viewsVal = document.getElementById(`views-${modelName}`).value;
+    const shadower = document.getElementById(`shadower-${modelName}`).value;
+    const ca = document.getElementById(`ca-${modelName}`).value;
+    const live = document.getElementById(`live-${modelName}`).value;
+    const note = document.getElementById(`note-${modelName}`).value;
+    const amountVal = document.getElementById(`amount-${modelName}`).value;
 
-    const collectedAmount = Number(amountVal || 0);
-    const views = Number(viewsVal || 0);
+    return {
+      date,
+      start,
+      end,
+      views: Number(viewsVal || 0),
+      shadowerFeedback: shadower,
+      caFeedback: ca,
+      livestreamFeedback: live,
+      note,
+      collectedAmount: Number(amountVal || 0),
+    };
+  }
+
+  function saveAdminInfo(modelName) {
+    const row = readRowValues(modelName);
 
     fetch("/api/reports/admin-update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         modelName,
-        date,
-        start,
-        end,
-        feedback,
-        collectedAmount,
-        views,
+        ...row,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data && data.success) {
-          alert(`Datos actualizados para ${modelName}`);
+          alert(`Datos guardados para ${modelName}`);
           loadData();
         } else {
           alert("Error al guardar: " + (data?.message || "desconocido"));
@@ -458,12 +540,12 @@
       });
   }
 
-  function deleteReport(modelName) {
-    if (!confirm(`¿Eliminar el reporte de ${modelName}? Esto no borra el horario.`)) {
+  function deleteFullRecord(modelName) {
+    if (!confirm(`¿Eliminar COMPLETAMENTE el registro de ${modelName}?`)) {
       return;
     }
 
-    fetch("/api/reports/delete", {
+    fetch("/api/model-schedule/delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ modelName }),
@@ -480,6 +562,72 @@
         console.error(err);
         alert("Error de red al eliminar");
       });
+  }
+
+  // ───────── EXPORT A "XLS" (CSV PARA EXCEL) ─────────
+  function downloadXls() {
+    const filtered = filterByMonth();
+    if (!filtered.length) {
+      alert("No hay registros para exportar en el mes seleccionado.");
+      return;
+    }
+
+    const rows = [];
+    rows.push([
+      "Modelo",
+      "Fecha",
+      "Inicio",
+      "Fin",
+      "Views",
+      "Shadower Feedback",
+      "CA Feedback",
+      "Livestream Feedback",
+      "Nota",
+      "Monto",
+    ]);
+
+    filtered.forEach((schedule) => {
+      const r = getReportForModel(schedule.modelName) || {};
+      rows.push([
+        schedule.modelName || "",
+        schedule.date || "",
+        schedule.start || "",
+        r.end || "",
+        Number(r.views || 0),
+        r.shadowerFeedback || "",
+        r.caFeedback || "",
+        r.livestreamFeedback || "",
+        r.note || "",
+        Number(r.collectedAmount || 0),
+      ]);
+    });
+
+    const csv = rows
+      .map((row) =>
+        row
+          .map((v) =>
+            `"${String(v ?? "")
+              .replace(/"/g, '""')
+              .replace(/\r?\n/g, " ")}"`
+          )
+          .join(";")
+      )
+      .join("\r\n");
+
+    const blob = new Blob([csv], {
+      type: "application/vnd.ms-excel;charset=utf-8;",
+    });
+
+    const monthInput = document.getElementById("monthFilter");
+    const suffix = monthInput?.value || "all";
+    const fileName = `livestream_report_${suffix}.xls`;
+
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   // Cargar al entrar

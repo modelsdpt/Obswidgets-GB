@@ -9,7 +9,6 @@ async function ensureFile() {
     await fs.mkdir(DATA_DIR, { recursive: true });
     await fs.access(FILE_PATH);
   } catch {
-    // Si no existe, lo creamos vacío
     await fs.writeFile(FILE_PATH, "[]", "utf-8");
   }
 }
@@ -45,8 +44,15 @@ async function saveSchedule(entry) {
   await fs.writeFile(FILE_PATH, JSON.stringify(all, null, 2), "utf-8");
 }
 
+async function deleteScheduleForModel(modelName) {
+  const all = await getAllSchedules();
+  const filtered = all.filter((s) => s.modelName !== modelName);
+  await fs.writeFile(FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+}
+
 module.exports = {
   getAllSchedules,
   findScheduleForModel,
   saveSchedule,
+  deleteScheduleForModel,
 };
