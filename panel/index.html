@@ -45,6 +45,58 @@
       border: 1px solid #444;
     }
 
+    /* ===== LAYOUT Enviar Tip + lista de nombres ===== */
+    .tip-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    .tip-form {
+      flex: 1 1 auto;
+    }
+    .names-panel {
+      flex: 0 0 240px;
+      max-width: 260px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #181818;
+      border: 1px solid #333;
+      box-shadow: 0 0 12px rgba(0,0,0,0.7);
+    }
+    .names-panel h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: #ffd966;
+    }
+    #names-list {
+      max-height: 220px;
+      overflow-y: auto;
+      margin-top: 4px;
+    }
+    .name-pill {
+      display: inline-block;
+      margin: 4px 4px 0 0;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #222;
+      border: 1px solid #555;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .name-pill:hover {
+      background: #00f7ff;
+      color: #000;
+      border-color: #00f7ff;
+      box-shadow: 0 0 8px #00f7ff;
+    }
+    .names-empty {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
     /* ===== ACTION TIMER ===== */
     .timer-buttons {
       display: flex;
@@ -68,19 +120,32 @@
 
 <h2>Enviar Tip</h2>
 
-<label>Nombre</label>
-<br>
-<input id="name" placeholder="Nombre del usuario">
+<div class="tip-row">
+  <!-- FORMULARIO IZQUIERDA -->
+  <div class="tip-form">
+    <label>Nombre</label>
+    <br>
+    <input id="name" placeholder="Nombre del usuario">
 
-<br><br>
+    <br><br>
 
-<label>Monto</label>
-<br>
-<input id="amount" type="number" placeholder="Ej: 20">
+    <label>Monto</label>
+    <br>
+    <input id="amount" type="number" placeholder="Ej: 20">
 
-<br>
+    <br>
 
-<button onclick="sendTip()">Enviar Tip</button>
+    <button onclick="sendTip()">Enviar Tip</button>
+  </div>
+
+  <!-- LISTA DERECHA -->
+  <div class="names-panel">
+    <h3>Últimos nombres</h3>
+    <div id="names-list">
+      <div class="names-empty">Aún no hay nombres. Envía un tip y aparecerán aquí.</div>
+    </div>
+  </div>
+</div>
 
 <hr>
 
@@ -127,6 +192,38 @@
 const MODEL_ID = "roman001";
 const API_URL = "/api/send";   // ruta relativa
 
+// memoria local de nombres
+const knownNames = new Set();
+
+function renderNamesList() {
+  const container = document.getElementById("names-list");
+  container.innerHTML = "";
+
+  if (knownNames.size === 0) {
+    const empty = document.createElement("div");
+    empty.className = "names-empty";
+    empty.textContent = "Aún no hay nombres. Envía un tip y aparecerán aquí.";
+    container.appendChild(empty);
+    return;
+  }
+
+  knownNames.forEach(name => {
+    const pill = document.createElement("div");
+    pill.className = "name-pill";
+    pill.textContent = name;
+    pill.onclick = () => {
+      document.getElementById("name").value = name;
+    };
+    container.appendChild(pill);
+  });
+}
+
+function registerName(name) {
+  if (!name) return;
+  knownNames.add(name);
+  renderNamesList();
+}
+
 function sendTip() {
   const name = document.getElementById("name").value.trim();
   const amount = Number(document.getElementById("amount").value);
@@ -136,11 +233,18 @@ function sendTip() {
     return;
   }
 
+  // guarda el nombre en la lista rápida
+  registerName(name);
+
   sendToServer("tip", { name, amount });
 }
 
 function clearAll() {
+  // limpia top 3 en los widgets
   sendToServer("clear");
+  // limpia listado de nombres
+  knownNames.clear();
+  renderNamesList();
 }
 
 function setGoal() {
@@ -159,7 +263,6 @@ function clearGoal() {
 /* ===== ACTION TIMER ===== */
 
 function startActionTimer(seconds) {
-  // seconds: 10, 15, 30, 45...
   sendToServer("actionTimer", { seconds });
 }
 
@@ -183,6 +286,9 @@ function sendToServer(type, payload = {}) {
     .then(data => console.log("Respuesta backend:", data))
     .catch(err => console.error("❌ Error en fetch:", err));
 }
+
+// render inicial de la lista vacía
+renderNamesList();
 </script>
 
 </body>
