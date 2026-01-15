@@ -7,64 +7,77 @@ body {
   color: #f5f5f5;
 }
 
+/* CARD principal, mismo vibe KING */
 .timer-widget {
-  padding: 14px 20px;
+  padding: 14px 22px;
   border-radius: 18px;
-  background: radial-gradient(circle at top, rgba(210, 190, 120, 0.25), #050814);
-  border: 1px solid rgba(180, 160, 90, 0.9);
-  box-shadow:
-    0 0 20px rgba(0, 0, 0, 0.9),
-    0 0 26px rgba(0, 0, 0, 0.85);
   display: inline-block;
+
+  background:
+    radial-gradient(circle at top, rgba(178, 102, 255, 0.35), transparent 60%),
+    radial-gradient(circle at bottom, rgba(10, 4, 30, 0.98), #050814);
+  border: 1px solid rgba(190, 160, 255, 0.9);
+  box-shadow:
+    0 0 22px rgba(0, 0, 0, 0.9),
+    0 0 26px rgba(120, 60, 200, 0.8);
 }
 
+/* Título – mismo estilo serif dorado */
 .timer-title {
   text-align: center;
   font-family: 'DM Serif Display', serif;
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
 
-  background: linear-gradient(to right, #f9f3dd, #d4b96a);
+  background: linear-gradient(to right, #f9f3dd, #f2cf7e, #e9d6ac);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   text-shadow:
-    0 0 3px rgba(0,0,0,0.8),
-    0 0 8px rgba(0,0,0,0.7);
+    0 0 4px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.8);
 }
 
-/* Caja tipo "pastilla" para el tiempo */
+/* Contenedor del tiempo */
 .timer-display {
   display: flex;
   justify-content: center;
 }
 
+/* Pastilla del tiempo – morado + metal */
 .timer-box {
-  padding: 10px 24px;
+  padding: 12px 26px;
   border-radius: 999px;
-  background: radial-gradient(circle at top, #1b2133, #090c16);
-  border: 1px solid rgba(140, 140, 160, 0.8);
-  box-shadow:
-    inset 0 0 8px rgba(0, 0, 0, 0.9),
-    0 0 14px rgba(0, 0, 0, 0.8);
-  min-width: 200px;
+  min-width: 220px;
   text-align: center;
+
+  background:
+    radial-gradient(circle at top, rgba(243, 232, 255, 0.18), transparent 60%),
+    linear-gradient(145deg, #1a1730, #070814);
+  border: 1px solid rgba(160, 140, 230, 0.9);
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.95),
+    0 0 18px rgba(0, 0, 0, 0.9);
 }
 
+/* Tiempo (MM:SS) – digital, fuerte */
 #timer-value {
   display: block;
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 700;
   letter-spacing: 4px;
+
   color: #f9f3dd;
   text-shadow:
-    0 0 4px rgba(0, 0, 0, 0.8),
-    0 0 8px rgba(0, 0, 0, 0.7);
+    0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.85);
 }
 
+/* Label SECONDS */
 .timer-label {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -72,27 +85,33 @@ body {
   opacity: 0.9;
 }
 
-/* Cuando está corriendo: glow suave */
+/* Cuando está corriendo – glow dorado/morado */
 .timer-box.timer-running {
   box-shadow:
-    inset 0 0 8px rgba(0, 0, 0, 0.9),
-    0 0 16px rgba(210, 190, 120, 0.9);
+    inset 0 0 10px rgba(0, 0, 0, 1),
+    0 0 18px rgba(210, 190, 120, 0.9),
+    0 0 26px rgba(124, 70, 220, 0.9);
+  border-color: rgba(230, 210, 140, 0.95);
 }
 
-/* Cuando termina: pequeño flash */
+/* Cuando termina – flash tipo alerta */
 .timer-box.timer-finished {
-  animation: finishedFlash 0.3s 6 alternate;
+  animation: finishedFlash 0.25s 8 alternate;
 }
 
 @keyframes finishedFlash {
   from {
     box-shadow:
-      inset 0 0 8px rgba(0,0,0,0.9),
-      0 0 12px rgba(210, 190, 120, 0.9);
+      inset 0 0 10px rgba(0,0,0,1),
+      0 0 18px rgba(210, 190, 120, 0.9),
+      0 0 24px rgba(124, 70, 220, 0.9);
+    border-color: rgba(230, 210, 140, 0.95);
   }
   to {
     box-shadow:
-      inset 0 0 8px rgba(0,0,0,1),
-      0 0 22px rgba(255, 120, 120, 1);
+      inset 0 0 10px rgba(0,0,0,1),
+      0 0 24px rgba(255, 120, 120, 1),
+      0 0 30px rgba(255, 120, 120, 1);
+    border-color: rgba(255, 150, 150, 0.95);
   }
 }

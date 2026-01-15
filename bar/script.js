@@ -15,14 +15,13 @@ let bell = document.getElementById("bellSound");
 function playBell() {
   try {
     if (!bell) {
-      // fallback por si el elemento no se encontró por alguna razón
-      bell = new Audio("https://www.myinstants.com/media/sounds/small-fireworks.mp3");
+      // fallback por si el elemento no se encontró
+      bell = new Audio("https://www.myinstants.com/media/sounds/trompetas-dj-yu.mp3");
       bell.preload = "auto";
     }
     bell.currentTime = 0;
     bell.volume = 1;
     bell.play().catch((err) => {
-      // En OBS no verás esto, pero en navegador te sirve para debug
       console.log("Error reproduciendo audio:", err);
     });
   } catch (err) {
@@ -60,7 +59,7 @@ function updateBar(playFx) {
     bar.style.width = percent + "%";
   }
 
-  // TEXTO DE ABAJO (DORADO)
+  // TEXTO DE ABAJO (progreso)
   if (amountText) {
     if (goal > 0) {
       amountText.textContent = `${current} / ${goal}`;
@@ -69,7 +68,7 @@ function updateBar(playFx) {
     }
   }
 
-  // NEÓN SOLO AL COMPLETAR (sin romper si no existe)
+  // efecto “completado” en el título
   if (goalTitle) {
     if (percent >= 100) {
       goalTitle.classList.add("neon");
@@ -80,5 +79,23 @@ function updateBar(playFx) {
 
   if (playFx) {
     playBell();
+    spawnParticles();
+  }
+}
+
+// Pequeñas partículas doradas al recibir tip
+function spawnParticles() {
+  const container = document.querySelector(".particles");
+  if (!container) return;
+
+  for (let i = 0; i < 8; i++) {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.style.left = `${10 + Math.random() * 80}%`;
+    p.style.top = `${20 + Math.random() * 60}%`;
+    p.style.animationDuration = `${1 + Math.random() * 0.5}s`;
+    container.appendChild(p);
+
+    setTimeout(() => p.remove(), 1600);
   }
 }
