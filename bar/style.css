@@ -57,7 +57,7 @@ body {
 
   background: linear-gradient(to right, #fff8e0, #f3d07e);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: white;
 
   /* menos blur para que no se vea borroso */
   text-shadow:
