@@ -17,6 +17,11 @@ body {
   border-radius: 16px;
   overflow: hidden;
 
+  /* 🔥 centramos contenido (el título) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background:
     radial-gradient(circle at top, rgba(255, 180, 255, 0.35), transparent 55%),
     linear-gradient(145deg, #1b1730, #070814);
@@ -26,9 +31,10 @@ body {
     0 0 34px rgba(255, 190, 255, 0.9);
 }
 
-
-/* Barra de progreso dorada metalizada */
+/* Barra de progreso fucsia */
 #bar-fill {
+  position: absolute;     /* 👈 va al fondo */
+  inset: 0;
   height: 100%;
   width: 0%;
   background: linear-gradient(
@@ -45,21 +51,25 @@ body {
     inset 0 0 6px rgba(255,255,255,0.5),
     0 0 14px rgba(255, 120, 220, 0.9);
   transition: width 0.6s ease;
+  z-index: 1;
 }
-
 
 /* TÍTULO DENTRO DE LA BARRA */
 .goal-title {
+  position: relative;
+  z-index: 2;              /* 👈 por encima de la barra */
+  width: 100%;
+  text-align: center;
+
   font-family: 'DM Serif Display', serif;
   font-size: 20px;
-  margin-bottom: 10px;
+  margin: 0;               /* nada de margin-bottom dentro de 52px */
   font-weight: 600;
 
   background: linear-gradient(to right, #fff8e0, #f3d07e);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: #fff;
 
-  /* menos blur para que no se vea borroso */
   text-shadow:
     0 0 2px rgba(0,0,0,0.7),
     0 0 4px rgba(0,0,0,0.7);
@@ -72,15 +82,6 @@ body {
   pointer-events: none;
   overflow: hidden;
   z-index: 3;
-}
-
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: radial-gradient(#ffffff, #f1dd8a);
-  animation: firework 1.4s ease-out forwards;
 }
 
 /* Progreso numérico abajo */
