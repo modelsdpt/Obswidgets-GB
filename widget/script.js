@@ -45,7 +45,7 @@ function render() {
   const leader = sorted[0]?.[0];
 
   if (!sorted.length) {
-    list.innerHTML = `<div class="empty">Aún no hay tips</div>`;
+    list.innerHTML = `<div class="empty"></div>`;
     lastLeader = null;
     return;
   }
