@@ -11,39 +11,16 @@ const bar = document.getElementById("bar-fill");
 const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
 
-// 🔊 buscamos los audios SIEMPRE en el momento de reproducir
-function playTipSound() {
-  const tipSound = document.getElementById("tipSound");
-  if (!tipSound) {
-    console.log("tipSound no encontrado en el DOM");
-    return;
-  }
-  try {
-    tipSound.currentTime = 0;
-    tipSound.volume = 1;
-    tipSound.play().catch((err) => {
-      console.log("Error reproduciendo tipSound:", err);
-    });
-  } catch (err) {
-    console.log("Error inesperado tipSound:", err);
-  }
-}
+const goalSound = document.getElementById("goalSound");
 
-function playGoalSound() {
-  const goalSound = document.getElementById("goalSound");
-  if (!goalSound) {
-    console.log("goalSound no encontrado en el DOM");
-    return;
-  }
+// un único sonido que usamos en cada tip
+function playThunder() {
+  if (!goalSound) return;
   try {
     goalSound.currentTime = 0;
     goalSound.volume = 1;
-    goalSound.play().catch((err) => {
-      console.log("Error reproduciendo goalSound:", err);
-    });
-  } catch (err) {
-    console.log("Error inesperado goalSound:", err);
-  }
+    goalSound.play().catch(() => {});
+  } catch {}
 }
 
 ws.onmessage = (event) => {
@@ -58,14 +35,14 @@ ws.onmessage = (event) => {
     goal = Number(data.payload && data.payload.goal) || 0;
     current = 0;
     goalCompleted = false;
-    updateBar(false);
+    updateBar(false); // no sonido
   }
 
   if (data.type === "tip") {
     const amt = Number(data.payload && data.payload.amount);
     if (!isNaN(amt) && amt > 0) {
       current += amt;
-      updateBar(true); // viene de tip => pika
+      updateBar(true); // viene de tip => suena
     }
   }
 
@@ -73,7 +50,7 @@ ws.onmessage = (event) => {
     goal = 0;
     current = 0;
     goalCompleted = false;
-    updateBar(false);
+    updateBar(false); // no sonido
   }
 };
 
@@ -88,14 +65,11 @@ function updateBar(fromTip) {
     amountText.textContent = goal > 0 ? `${current} / ${goal}` : "";
   }
 
-  // GOAL completada
+  // solo efecto visual cuando se llena, SIN sonido especial
   if (goalTitle) {
     if (percent >= 100 && goal > 0) {
       goalTitle.classList.add("neon");
-      if (!goalCompleted) {
-        goalCompleted = true;
-        playGoalSound(); // ⚡ thunderbolt
-      }
+      goalCompleted = true;
     } else {
       goalTitle.classList.remove("neon");
       if (percent < 100) {
@@ -104,8 +78,8 @@ function updateBar(fromTip) {
     }
   }
 
-  // sonido por tip
+  // sonido únicamente cuando viene de tip
   if (fromTip) {
-    playTipSound();
+    playThunder();
   }
 }
