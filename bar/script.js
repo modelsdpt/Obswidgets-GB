@@ -11,12 +11,11 @@ const bar = document.getElementById("bar-fill");
 const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
 
-const tipSound = document.getElementById("tipSound");
-const goalSound = document.getElementById("goalSound");
-
+// 🔊 buscamos los audios SIEMPRE en el momento de reproducir
 function playTipSound() {
+  const tipSound = document.getElementById("tipSound");
   if (!tipSound) {
-    console.log("tipSound no encontrado");
+    console.log("tipSound no encontrado en el DOM");
     return;
   }
   try {
@@ -31,8 +30,9 @@ function playTipSound() {
 }
 
 function playGoalSound() {
+  const goalSound = document.getElementById("goalSound");
   if (!goalSound) {
-    console.log("goalSound no encontrado");
+    console.log("goalSound no encontrado en el DOM");
     return;
   }
   try {
@@ -65,7 +65,7 @@ ws.onmessage = (event) => {
     const amt = Number(data.payload && data.payload.amount);
     if (!isNaN(amt) && amt > 0) {
       current += amt;
-      updateBar(true); // viene de tip => debe sonar PIKA
+      updateBar(true); // viene de tip => pika
     }
   }
 
@@ -88,7 +88,7 @@ function updateBar(fromTip) {
     amountText.textContent = goal > 0 ? `${current} / ${goal}` : "";
   }
 
-  // efecto cuando la goal se completa
+  // GOAL completada
   if (goalTitle) {
     if (percent >= 100 && goal > 0) {
       goalTitle.classList.add("neon");
@@ -104,7 +104,7 @@ function updateBar(fromTip) {
     }
   }
 
-  // si vino de TIP, disparamos PIKA
+  // sonido por tip
   if (fromTip) {
     playTipSound();
   }
