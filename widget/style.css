@@ -4,47 +4,45 @@ body {
   background: transparent;
   margin: 0;
   font-family: 'Poppins', system-ui, sans-serif;
-  color: #f5f5f5;
+  color: #fff7f2;
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR PRINCIPAL – mismo vibe que overlay/bar */
 #container {
   position: relative;
   width: 420px;
   padding: 18px 20px 16px;
-  border-radius: 18px;
+  border-radius: 20px;
 
-  /* Fondo metalizado morado/dorado */
   background:
-    radial-gradient(circle at top, rgba(255, 180, 255, 0.28), transparent 55%),
-    radial-gradient(circle at bottom, rgba(210, 190, 120, 0.2), #050814);
-  border: 1px solid rgba(220, 190, 255, 0.95);
+    radial-gradient(circle at top, rgba(255, 191, 154, 0.45), transparent 55%),
+    linear-gradient(145deg, #2a1620, #120b12);
+  border: 1px solid rgba(255, 167, 134, 0.95);
   box-shadow:
-    0 0 24px rgba(140, 70, 220, 0.9),
-    0 0 32px rgba(255, 190, 255, 0.85);
+    0 0 24px rgba(0, 0, 0, 0.95),
+    0 0 36px rgba(255, 167, 134, 0.95);
   overflow: hidden;
 }
 
-/* TÍTULO "MY KINGS" */
+/* TÍTULO */
 .title {
   position: relative;
   z-index: 2;
   text-align: center;
   font-family: 'DM Serif Display', serif;
   font-size: 24px;
-  margin-bottom: 14px;
-  letter-spacing: 1px;
+  margin: 0 0 14px;
 
-  background: linear-gradient(to right, #fff8e0, #f3d07e);
+  background: linear-gradient(to right, #fff5d1, #ffd971);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   text-shadow:
-    0 0 4px rgba(0, 0, 0, 0.85),
-    0 0 10px rgba(0, 0, 0, 0.8);
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(0, 0, 0, 0.8);
 }
 
-/* LISTA */
+/* CONTENEDOR DE LA LISTA */
 #top-list {
   position: relative;
   z-index: 2;
@@ -53,76 +51,88 @@ body {
   gap: 8px;
 }
 
-/* ÍTEM GENERAL */
+/* ÍTEM BASE (2do y 3er lugar) */
 .tip {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: space-between;
+  gap: 10px;
 
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 14px;
 
-  background: linear-gradient(145deg, #2d2046, #14091f);
-  border: 1px solid rgba(150, 130, 210, 0.9);
+  background: linear-gradient(135deg, #7a3a36, #502028);
+  border: 1px solid rgba(255, 191, 154, 0.45);
   box-shadow:
-    inset 0 0 6px rgba(0, 0, 0, 0.85),
-    0 0 12px rgba(0, 0, 0, 0.8);
+    inset 0 0 6px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.8);
 
-  color: #f5f5f5;
+  color: #ffe7db;
+  font-size: 15px;
 }
 
-/* Línea única: "Derek 60$ ⚡" */
-.tip-line {
-  font-size: 18px;
+/* LADO IZQUIERDO: nombre + deco */
+.tip-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Nombre */
+.tip-name {
   font-weight: 700;
-  letter-spacing: 0.4px;
-  white-space: nowrap;
+  font-size: 18px;
 }
 
-/* MVP MÁS GRANDE */
+/* Monto */
+.tip-amount {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/* MVP (1er lugar) – card salmón brillante */
 .tip.mvp {
-  background: linear-gradient(135deg, #f1dd8a, #c59d42);
-  border: 1px solid #c7a652;
-  color: #2b220e;
+  background: linear-gradient(135deg, #ffb89a, #ff8f6e);
+  border: 1px solid #ffd3b8;
+  color: #2b1310;
+
   box-shadow:
     0 0 18px rgba(0, 0, 0, 0.95),
-    0 0 26px rgba(210, 180, 90, 0.95);
+    0 0 28px rgba(255, 184, 154, 1),
+    0 0 42px rgba(255, 213, 134, 0.9);
 }
 
-.tip.mvp .tip-line {
-  font-size: 22px;
-  letter-spacing: 0.6px;
-}
-
-/* BRILLO SUPERIOR EN EL MVP */
+/* Overlay suave de luz */
 .tip.mvp::before {
   content: "";
   position: absolute;
   inset: -25%;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 60%);
-  opacity: 0.45;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.7), transparent 60%);
+  opacity: 0.4;
   mix-blend-mode: screen;
+  pointer-events: none;
 }
 
-/* CHIP DE CORONA */
-.crown {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 6px;
-  padding: 2px 6px;
-  border-radius: 999px;
-  background: radial-gradient(circle at top, #fff8dc, #d4b96a);
-  box-shadow:
-    0 0 8px rgba(0, 0, 0, 0.7),
-    0 0 12px rgba(210, 180, 90, 0.9);
+/* Decoración del MVP (rayo + corona) */
+.mvp-icon {
+  font-size: 20px;
 }
 
-/* ANIMACIÓN DE ENTRADA / CAMBIO DE MVP */
+/* Deja el rayo fuerte para el MVP */
+.mvp-icon span {
+  display: inline-block;
+  transform: translateY(1px);
+}
+
+/* 2do y 3er lugar: iconos un poco más discretos */
+.tip:not(.mvp) .mvp-icon {
+  opacity: 0.85;
+}
+
+/* ANIMACIÓN DE ENTRADA/BOOM */
 @keyframes boom {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.08); }
+  50%  { transform: scale(1.06); }
   100% { transform: scale(1); }
 }

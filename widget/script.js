@@ -6,7 +6,6 @@ const ws = new WebSocket(
 let scores = {};
 let lastLeader = null;
 
-// Manejo de mensajes desde el backend
 ws.onmessage = (msg) => {
   const data = JSON.parse(msg.data || "{}");
 
@@ -20,7 +19,6 @@ ws.onmessage = (msg) => {
 
   if (data.type === "clear") {
     scores = {};
-    lastLeader = null;
     render();
   }
 };
@@ -35,51 +33,38 @@ function render() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3);
 
-  if (sorted.length === 0) {
-    return;
-  }
+  const leader = sorted[0]?.[0];
 
-  const newLeader = sorted[0][0];
-  let mvpElement = null;
-
-  sorted.forEach(([name, total], index) => {
+  sorted.forEach(([name, total], i) => {
     const div = document.createElement("div");
-    div.className = "tip" + (index === 0 ? " mvp" : "");
+    div.className = "tip" + (i === 0 ? " mvp" : "");
 
-    const deco =
-      index === 0
-        ? ' <span class="crown">👑</span>'
-        : " ✨";
-
-    // nombre + monto + rayo ⚡ en una sola línea
-    const amountText = `$${total} ⚡`;
+    // Icono distinto por posición
+    let iconHtml;
+    if (i === 0) {
+      iconHtml = `<span class="mvp-icon"><span>⚡👑</span></span>`;
+    } else if (i === 1) {
+      iconHtml = `<span class="mvp-icon">⭐</span>`;
+    } else {
+      iconHtml = `<span class="mvp-icon">✨</span>`;
+    }
 
     div.innerHTML = `
-      <span class="tip-line">
-        ${name}${deco} ${amountText}
-      </span>
+      <div class="tip-main">
+        ${iconHtml}
+        <span class="tip-name">${name}</span>
+      </div>
+      <span class="tip-amount">$${total}</span>
     `;
-
-    if (index === 0) {
-      mvpElement = div;
-    }
 
     list.appendChild(div);
   });
 
-  // si cambió el líder, pequeño efecto boom al nuevo MVP
-  if (mvpElement && newLeader !== lastLeader) {
-    boomEffect(mvpElement);
-  }
-
-  lastLeader = newLeader;
+  lastLeader = leader;
 }
 
 function boomEffect(element) {
-  if (!element) return;
-
-  element.style.animation = "boom 0.4s ease-out";
-  setTimeout(() => {
-    element.style.animation = "";
-  }, 400);
+  document.getElementById("mvpSound")?.play().catch(() => {});
+  element.style.animation = "boom .4s ease-out";
+  setTimeout(() => (element.style.animation = ""), 400);
 }
