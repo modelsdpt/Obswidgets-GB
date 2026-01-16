@@ -1,101 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
 
 body {
-  margin: 0;
   background: transparent;
-  font-family: 'Baloo 2', system-ui, sans-serif;
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #f5f5f5;
 }
 
-/* Tarjeta general */
-#pikachu-widget {
+/* CONTENEDOR PRINCIPAL */
+#container {
   position: relative;
-  width: 360px;
-  padding: 16px 18px 14px;
-  border-radius: 24px;
+  width: 420px;
+  padding: 18px 20px 16px;
+  border-radius: 18px;
 
+  /* Fondo metalizado morado/dorado */
   background:
-    radial-gradient(circle at top, rgba(255, 224, 200, 0.9), rgba(255, 224, 200, 0.2)),
-    rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(178, 120, 94, 0.7);
+    radial-gradient(circle at top, rgba(255, 180, 255, 0.28), transparent 55%),
+    radial-gradient(circle at bottom, rgba(210, 190, 120, 0.2), #050814);
+  border: 1px solid rgba(220, 190, 255, 0.95);
   box-shadow:
-    0 0 16px rgba(0, 0, 0, 0.35),
-    0 0 24px rgba(255, 204, 180, 0.8);
+    0 0 24px rgba(140, 70, 220, 0.9),
+    0 0 32px rgba(255, 190, 255, 0.85);
+  overflow: hidden;
 }
 
-/* Encabezado */
-.pk-header {
+/* TÍTULO "MY KINGS" */
+.title {
+  position: relative;
+  z-index: 2;
   text-align: center;
-  margin-bottom: 10px;
-  color: #6a3a2a;
-}
-
-.pk-title {
-  font-size: 20px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  margin-bottom: 14px;
   letter-spacing: 1px;
+
+  background: linear-gradient(to right, #fff8e0, #f3d07e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 4px rgba(0, 0, 0, 0.85),
+    0 0 10px rgba(0, 0, 0, 0.8);
 }
 
-.pk-stars {
-  font-size: 10px;
-  opacity: 0.8;
-  margin: 0 4px;
-}
-
-/* Lista de tips */
+/* LISTA */
 #top-list {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* Ítem base */
+/* ÍTEM GENERAL */
 .tip {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
+  text-align: center;
 
-  padding: 8px 14px;
-  border-radius: 999px;
+  padding: 10px 16px;
+  border-radius: 14px;
 
-  background: #f2b8a0;
+  background: linear-gradient(145deg, #2d2046, #14091f);
+  border: 1px solid rgba(150, 130, 210, 0.9);
   box-shadow:
-    0 4px 0 #d28c6d,
-    0 0 10px rgba(0, 0, 0, 0.25);
+    inset 0 0 6px rgba(0, 0, 0, 0.85),
+    0 0 12px rgba(0, 0, 0, 0.8);
 
-  color: #fff;
+  color: #f5f5f5;
 }
 
-/* Nombre */
-.tip span:first-child {
-  font-size: 16px;
-  text-shadow:
-    -1px -1px 0 #6a3a2a,
-    1px -1px 0 #6a3a2a,
-    -1px 1px 0 #6a3a2a,
-    1px 1px 0 #6a3a2a;
-}
-
-/* Monto */
-.tip span:last-child {
-  font-size: 13px;
-  opacity: 0.95;
-}
-
-/* MVP (primer lugar) */
-.tip.mvp {
-  background: #ffd76a;
-  box-shadow:
-    0 4px 0 #f0b741,
-    0 0 14px rgba(255, 222, 130, 0.9);
-  color: #5a3610;
-}
-
-.tip.mvp span:first-child {
+/* Línea única: "Derek 60$ ⚡" */
+.tip-line {
   font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
 }
 
-/* Badge coronita / rayo */
-.tip-badge {
+/* MVP MÁS GRANDE */
+.tip.mvp {
+  background: linear-gradient(135deg, #f1dd8a, #c59d42);
+  border: 1px solid #c7a652;
+  color: #2b220e;
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.95),
+    0 0 26px rgba(210, 180, 90, 0.95);
+}
+
+.tip.mvp .tip-line {
+  font-size: 22px;
+  letter-spacing: 0.6px;
+}
+
+/* BRILLO SUPERIOR EN EL MVP */
+.tip.mvp::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.5), transparent 60%);
+  opacity: 0.45;
+  mix-blend-mode: screen;
+}
+
+/* CHIP DE CORONA */
+.crown {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-left: 6px;
-  font-size: 16px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: radial-gradient(circle at top, #fff8dc, #d4b96a);
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.7),
+    0 0 12px rgba(210, 180, 90, 0.9);
+}
+
+/* ANIMACIÓN DE ENTRADA / CAMBIO DE MVP */
+@keyframes boom {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
 }

@@ -6,53 +6,80 @@ const ws = new WebSocket(
 let scores = {};
 let lastLeader = null;
 
+// Manejo de mensajes desde el backend
 ws.onmessage = (msg) => {
-  const data = JSON.parse(msg.data);
+  const data = JSON.parse(msg.data || "{}");
 
   if (data.type === "tip") {
-    const { name, amount } = data.payload;
+    const { name, amount } = data.payload || {};
+    if (!name || !amount) return;
+
     scores[name] = (scores[name] || 0) + Number(amount);
     render();
   }
 
   if (data.type === "clear") {
     scores = {};
+    lastLeader = null;
     render();
   }
 };
 
 function render() {
   const list = document.getElementById("top-list");
+  if (!list) return;
+
   list.innerHTML = "";
 
   const sorted = Object.entries(scores)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3);
 
-  const leader = sorted[0]?.[0];
+  if (sorted.length === 0) {
+    return;
+  }
+
+  const newLeader = sorted[0][0];
+  let mvpElement = null;
 
   sorted.forEach(([name, total], index) => {
     const div = document.createElement("div");
-    const isMvp = index === 0;
+    div.className = "tip" + (index === 0 ? " mvp" : "");
 
-    div.className = "tip" + (isMvp ? " mvp" : "");
+    const deco =
+      index === 0
+        ? ' <span class="crown">👑</span>'
+        : " ✨";
 
-    const badge = isMvp ? `<span class="tip-badge">⚡</span>` : "";
+    // nombre + monto + rayo ⚡ en una sola línea
+    const amountText = `$${total} ⚡`;
+
     div.innerHTML = `
-      <span>${name}${badge}</span>
-      <span>$${total}</span>
+      <span class="tip-line">
+        ${name}${deco} ${amountText}
+      </span>
     `;
 
-    list.appendChild(div);
-
-    if (isMvp && leader !== lastLeader) {
-      // pequeño bump cuando cambia el MVP
-      div.style.transform = "scale(1.05)";
-      setTimeout(() => {
-        div.style.transform = "scale(1)";
-      }, 250);
+    if (index === 0) {
+      mvpElement = div;
     }
+
+    list.appendChild(div);
   });
 
-  lastLeader = leader;
+  // si cambió el líder, pequeño efecto boom al nuevo MVP
+  if (mvpElement && newLeader !== lastLeader) {
+    boomEffect(mvpElement);
+  }
+
+  lastLeader = newLeader;
+}
+
+function boomEffect(element) {
+  if (!element) return;
+
+  element.style.animation = "boom 0.4s ease-out";
+  setTimeout(() => {
+    element.style.animation = "";
+  }, 400);
 }
