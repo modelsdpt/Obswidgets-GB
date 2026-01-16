@@ -1,3 +1,4 @@
+// script.js – Goal bar
 const MODEL_ID = "roman001";
 const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
@@ -9,79 +10,60 @@ let current = 0;
 const bar = document.getElementById("bar-fill");
 const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
+let bell = document.getElementById("bellSound");
 
-const THUNDER_URL = "https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3";
-
-// --- PRIMAR AUDIO PARA BYPASS DE AUTOPLAY ---
-let audioPrimed = false;
-function primeAudioOnce() {
-  if (audioPrimed) return;
-  audioPrimed = true;
+// un solo sonido para cada tip (y también cuando se llena)
+function playBell() {
   try {
-    const a = new Audio(THUNDER_URL);
-    a.volume = 0;              // mudo
-    a.play().then(() => {
-      a.pause();
-      a.currentTime = 0;
-      console.log("[PikaGoal] Audio primed OK");
-    }).catch((err) => {
-      console.log("[PikaGoal] No se pudo primar audio:", err);
-    });
-  } catch (err) {
-    console.log("[PikaGoal] Error primando audio:", err);
-  }
-}
-document.addEventListener("click", primeAudioOnce, { once: true });
-
-// --- SONIDO EN CADA TIP ---
-function playThunder() {
-  try {
-    console.log("[PikaGoal] playThunder()");
-    const audio = new Audio(THUNDER_URL);
-    audio.volume = 1;
-    audio.play().catch(err => {
-      console.log("[PikaGoal] Error reproduciendo audio:", err);
-    });
-  } catch (err) {
-    console.log("[PikaGoal] Error inesperado de audio:", err);
+    if (!bell) {
+      bell =
+        document.getElementById("bellSound") ||
+        new Audio(
+          "https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3"
+        );
+      bell.preload = "auto";
+    }
+    bell.currentTime = 0;
+    bell.volume = 1;
+    bell.play().catch(() => {});
+  } catch {
+    // silent fail para OBS
   }
 }
 
-ws.onmessage = (event) => {
+ws.onmessage = (msg) => {
   let data;
   try {
-    data = JSON.parse(event.data || "{}");
-  } catch (err) {
-    console.log("[PikaGoal] Error parseando mensaje WS:", err);
+    data = JSON.parse(msg.data || "{}");
+  } catch {
     return;
   }
 
-  console.log("[PikaGoal] WS message:", data);
-
   if (data.type === "setGoal") {
-    goal = Number(data.payload && data.payload.goal) || 0;
+    goal = Number(data.payload?.goal || 0);
     current = 0;
-    updateBar(false); // sin sonido
+    updateBar(false);
+    return;
   }
 
   if (data.type === "tip") {
-    const amt = Number(data.payload && data.payload.amount);
-    console.log("[PikaGoal] tip recibido:", amt);
-
+    const amt = Number(data.payload?.amount || 0);
     if (!isNaN(amt) && amt > 0) {
       current += amt;
-      updateBar(true); // viene de tip -> sonido
+      updateBar(true); // viene de tip → sonar
     }
+    return;
   }
 
   if (data.type === "clearGoal") {
     goal = 0;
     current = 0;
-    updateBar(false); // sin sonido
+    updateBar(false);
+    return;
   }
 };
 
-function updateBar(fromTip) {
+function updateBar(playFx) {
   const percent = goal ? Math.min((current / goal) * 100, 100) : 0;
 
   if (bar) {
@@ -100,7 +82,7 @@ function updateBar(fromTip) {
     }
   }
 
-  if (fromTip) {
-    playThunder();
+  if (playFx) {
+    playBell();
   }
 }

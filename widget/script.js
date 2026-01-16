@@ -1,3 +1,4 @@
+// script.js – MVP (top tippers)
 const MODEL_ID = "roman001";
 const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
@@ -7,13 +8,21 @@ let scores = {};
 let lastLeader = null;
 
 ws.onmessage = (msg) => {
-  const data = JSON.parse(msg.data || "{}");
+  let data;
+  try {
+    data = JSON.parse(msg.data || "{}");
+  } catch {
+    return;
+  }
 
   if (data.type === "tip") {
-    const { name, amount } = data.payload || {};
+    const payload = data.payload || {};
+    const name = String(payload.name || "").trim();
+    const amount = Number(payload.amount || 0);
+
     if (!name || !amount) return;
 
-    scores[name] = (scores[name] || 0) + Number(amount);
+    scores[name] = (scores[name] || 0) + amount;
     render();
   }
 
@@ -33,38 +42,44 @@ function render() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3);
 
-  const leader = sorted[0]?.[0];
+  const leader = sorted[0]?.[0] || null;
 
-  sorted.forEach(([name, total], i) => {
+  if (!sorted.length) {
+    list.innerHTML = `<div class="empty">Aún no hay tips</div>`;
+    lastLeader = null;
+    return;
+  }
+
+  sorted.forEach(([name, total], index) => {
     const div = document.createElement("div");
-    div.className = "tip" + (i === 0 ? " mvp" : "");
+    div.className = "tip" + (index === 0 ? " mvp" : "");
 
-    // Icono distinto por posición
-    let iconHtml;
-    if (i === 0) {
-      iconHtml = `<span class="mvp-icon"><span>⚡👑</span></span>`;
-    } else if (i === 1) {
-      iconHtml = `<span class="mvp-icon">⭐</span>`;
-    } else {
-      iconHtml = `<span class="mvp-icon">✨</span>`;
-    }
+    const deco = index === 0 ? " ⚡" : " ✨";
 
+    // misma línea: "Nombre 60$"
     div.innerHTML = `
-      <div class="tip-main">
-        ${iconHtml}
-        <span class="tip-name">${name}</span>
-      </div>
+      <span class="tip-name">${name}${deco}</span>
       <span class="tip-amount">$${total}</span>
     `;
 
     list.appendChild(div);
+
+    // animación suave cuando cambia el líder
+    if (index === 0 && leader && leader !== lastLeader) {
+      boomEffect(div);
+    }
   });
 
   lastLeader = leader;
 }
 
-function boomEffect(element) {
-  document.getElementById("mvpSound")?.play().catch(() => {});
-  element.style.animation = "boom .4s ease-out";
-  setTimeout(() => (element.style.animation = ""), 400);
+function boomEffect(el) {
+  if (!el) return;
+  el.style.animation = "boom .4s ease-out";
+  setTimeout(() => {
+    el.style.animation = "";
+  }, 400);
 }
+
+// render inicial vacío
+render();
