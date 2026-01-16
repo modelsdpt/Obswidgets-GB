@@ -11,19 +11,21 @@ body {
 #container {
   position: relative;
   width: 420px;
-  padding: 18px 20px 16px;
-  border-radius: 20px;
+  padding: 26px 20px 18px; /* antes era 18px arriba */
+  border-radius: 22px;
 
   background:
-    radial-gradient(circle at top, rgba(255, 191, 154, 0.45), transparent 55%),
-    linear-gradient(145deg, #2a1620, #120b12);
-  border: 1px solid rgba(255, 167, 134, 0.95);
+    radial-gradient(circle at top, rgba(255, 192, 176, 0.35), transparent 55%),
+    linear-gradient(145deg, #261624, #0c0307);
+  border: 1px solid rgba(255, 210, 190, 0.9);
   box-shadow:
     0 0 24px rgba(0, 0, 0, 0.95),
-    0 0 36px rgba(255, 167, 134, 0.95);
+    0 0 38px rgba(255, 190, 170, 0.6);
   overflow: hidden;
 }
 
+
+/* TÍTULO */
 /* TÍTULO */
 .title {
   position: relative;
@@ -31,17 +33,21 @@ body {
   text-align: center;
   font-family: 'DM Serif Display', serif;
   font-size: 26px;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
 
-  /* color sólido bien claro */
-  color: #ffeec5;
+  /* Color más sólido y limpio, sin quedar apagado */
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #ffe9c4;
 
-  /* glow cálido en vez de sombras negras fuertes */
   text-shadow:
-    0 0 6px rgba(255, 238, 197, 1),
-    0 0 14px rgba(255, 190, 140, 0.95),
-    0 0 22px rgba(255, 170, 120, 0.9);
+    0 0 4px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.85);
+
+  /* un pelín hacia abajo para que no “choque” con el borde */
+  transform: translateY(2px);
 }
+
 
 /* CONTENEDOR DE LA LISTA */
 #top-list {
