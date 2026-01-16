@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
   <meta charset="UTF-8" />
   <title>Pikachu Goal Bar</title>
@@ -7,30 +7,29 @@
 </head>
 <body>
 
-<div class="goal-widget">
-  <div class="goal-label">GOAL!</div>
-
   <div id="goal-wrapper">
     <div id="bar-fill"></div>
+    <div class="particles"></div>
     <div class="goal-title">Double Penetration</div>
   </div>
 
-  <div class="goal-amount" id="goal-amount"></div>
-</div>
+  <div class="goal-amount"></div>
 
-<audio
-  id="tipSound"
-  src="https://www.myinstants.com/media/sounds/pika-pika.mp3"
-  preload="auto">
-</audio>
+  <!-- 🔊 Sonido por TIP (pika pika) -->
+  <audio
+    id="tipSound"
+    src="https://www.myinstants.com/media/sounds/pika-pika.mp3"
+    preload="auto">
+  </audio>
 
-<audio
-  id="goalFullSound"
-  src="https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3"
-  preload="auto">
-</audio>
+  <!-- 🔊 Sonido cuando la GOAL se llena (thunderbolt) -->
+  <audio
+    id="goalSound"
+    src="https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3"
+    preload="auto">
+  </audio>
 
-
-<script src="script.js"></script>
+  <!-- IMPORTANTE: script al final para que los getElementById NO sean null -->
+  <script src="script.js"></script>
 </body>
 </html>

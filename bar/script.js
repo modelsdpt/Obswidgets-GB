@@ -15,21 +15,35 @@ const tipSound = document.getElementById("tipSound");
 const goalSound = document.getElementById("goalSound");
 
 function playTipSound() {
-  if (!tipSound) return;
+  if (!tipSound) {
+    console.log("tipSound no encontrado");
+    return;
+  }
   try {
     tipSound.currentTime = 0;
     tipSound.volume = 1;
-    tipSound.play().catch(() => {});
-  } catch {}
+    tipSound.play().catch((err) => {
+      console.log("Error reproduciendo tipSound:", err);
+    });
+  } catch (err) {
+    console.log("Error inesperado tipSound:", err);
+  }
 }
 
 function playGoalSound() {
-  if (!goalSound) return;
+  if (!goalSound) {
+    console.log("goalSound no encontrado");
+    return;
+  }
   try {
     goalSound.currentTime = 0;
     goalSound.volume = 1;
-    goalSound.play().catch(() => {});
-  } catch {}
+    goalSound.play().catch((err) => {
+      console.log("Error reproduciendo goalSound:", err);
+    });
+  } catch (err) {
+    console.log("Error inesperado goalSound:", err);
+  }
 }
 
 ws.onmessage = (event) => {
@@ -51,7 +65,7 @@ ws.onmessage = (event) => {
     const amt = Number(data.payload && data.payload.amount);
     if (!isNaN(amt) && amt > 0) {
       current += amt;
-      updateBar(true); // viene de tip => sonar
+      updateBar(true); // viene de tip => debe sonar PIKA
     }
   }
 
@@ -74,13 +88,13 @@ function updateBar(fromTip) {
     amountText.textContent = goal > 0 ? `${current} / ${goal}` : "";
   }
 
-  // efecto de "goal completada"
+  // efecto cuando la goal se completa
   if (goalTitle) {
     if (percent >= 100 && goal > 0) {
       goalTitle.classList.add("neon");
       if (!goalCompleted) {
         goalCompleted = true;
-        playGoalSound();
+        playGoalSound(); // ⚡ thunderbolt
       }
     } else {
       goalTitle.classList.remove("neon");
@@ -90,6 +104,7 @@ function updateBar(fromTip) {
     }
   }
 
+  // si vino de TIP, disparamos PIKA
   if (fromTip) {
     playTipSound();
   }
