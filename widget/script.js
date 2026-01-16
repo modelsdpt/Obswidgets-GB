@@ -1,4 +1,3 @@
-// script.js – MVP (top tippers)
 const MODEL_ID = "roman001";
 const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
@@ -19,16 +18,17 @@ ws.onmessage = (msg) => {
     const payload = data.payload || {};
     const name = String(payload.name || "").trim();
     const amount = Number(payload.amount || 0);
-
     if (!name || !amount) return;
 
     scores[name] = (scores[name] || 0) + amount;
     render();
+    return;
   }
 
   if (data.type === "clear") {
     scores = {};
     render();
+    return;
   }
 };
 
@@ -42,7 +42,7 @@ function render() {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3);
 
-  const leader = sorted[0]?.[0] || null;
+  const leader = sorted[0]?.[0];
 
   if (!sorted.length) {
     list.innerHTML = `<div class="empty">Aún no hay tips</div>`;
@@ -50,36 +50,23 @@ function render() {
     return;
   }
 
-  sorted.forEach(([name, total], index) => {
+  sorted.forEach(([name, total], i) => {
     const div = document.createElement("div");
-    div.className = "tip" + (index === 0 ? " mvp" : "");
+    div.className = "tip" + (i === 0 ? " mvp" : "");
 
-    const deco = index === 0 ? " ⚡" : " ✨";
+    const deco = i === 0 ? ` <span class="crown">⚡</span>` : " ✨";
 
-    // misma línea: "Nombre 60$"
+    // línea simple: "Nombre $60"
     div.innerHTML = `
-      <span class="tip-name">${name}${deco}</span>
-      <span class="tip-amount">$${total}</span>
+      <span>${name}${deco}</span>
+      <span>$${total}</span>
     `;
 
     list.appendChild(div);
-
-    // animación suave cuando cambia el líder
-    if (index === 0 && leader && leader !== lastLeader) {
-      boomEffect(div);
-    }
   });
 
   lastLeader = leader;
 }
 
-function boomEffect(el) {
-  if (!el) return;
-  el.style.animation = "boom .4s ease-out";
-  setTimeout(() => {
-    el.style.animation = "";
-  }, 400);
-}
-
-// render inicial vacío
+// estado inicial vacío
 render();

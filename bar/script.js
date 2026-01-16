@@ -1,4 +1,3 @@
-// script.js – Goal bar
 const MODEL_ID = "roman001";
 const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
@@ -12,22 +11,19 @@ const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
 let bell = document.getElementById("bellSound");
 
-// un solo sonido para cada tip (y también cuando se llena)
+// helper simple: un solo sonido para cada tip
 function playBell() {
   try {
     if (!bell) {
-      bell =
-        document.getElementById("bellSound") ||
-        new Audio(
-          "https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3"
-        );
+      bell = document.getElementById("bellSound") ||
+        new Audio("https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3");
       bell.preload = "auto";
     }
     bell.currentTime = 0;
     bell.volume = 1;
     bell.play().catch(() => {});
-  } catch {
-    // silent fail para OBS
+  } catch (err) {
+    console.log("Error audio:", err);
   }
 }
 
@@ -50,7 +46,7 @@ ws.onmessage = (msg) => {
     const amt = Number(data.payload?.amount || 0);
     if (!isNaN(amt) && amt > 0) {
       current += amt;
-      updateBar(true); // viene de tip → sonar
+      updateBar(true);   // viene de tip → sonar
     }
     return;
   }
