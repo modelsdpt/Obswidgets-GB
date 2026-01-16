@@ -1,113 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap');
 
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Poppins', system-ui, sans-serif;
-  color: #f5f5f5;
+  font-family: 'Baloo 2', system-ui, sans-serif;
+  color: #5b3226;
 }
 
-/* CARD principal, mismo vibe KING */
 .timer-widget {
-  padding: 14px 22px;
-  border-radius: 18px;
-  display: inline-block;
-
+  padding: 12px 18px;
+  border-radius: 24px;
   background:
-    radial-gradient(circle at top, rgba(178, 102, 255, 0.35), transparent 60%),
-    radial-gradient(circle at bottom, rgba(10, 4, 30, 0.98), #050814);
-  border: 1px solid rgba(190, 160, 255, 0.9);
+    radial-gradient(circle at top, rgba(255, 224, 200, 0.9), rgba(255, 224, 200, 0.2)),
+    rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(178, 120, 94, 0.7);
   box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.9),
-    0 0 26px rgba(120, 60, 200, 0.8);
+    0 0 16px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(255, 204, 180, 0.8);
+  display: inline-block;
 }
 
-/* Título – mismo estilo serif dorado */
+/* Título */
 .timer-title {
   text-align: center;
-  font-family: 'DM Serif Display', serif;
   font-size: 18px;
-  margin-bottom: 10px;
-
-  color: #f9f3dd; /* texto + coronas claros */
+  margin-bottom: 6px;
+  color: #fff;
   text-shadow:
-    0 0 3px rgba(0,0,0,0.9),
-    0 0 10px rgba(255, 220, 140, 0.95);
+    -2px -2px 0 #5b3226,
+    2px -2px 0 #5b3226,
+    -2px 2px 0 #5b3226,
+    2px 2px 0 #5b3226;
 }
 
-/* Contenedor del tiempo */
+/* Caja del tiempo */
 .timer-display {
   display: flex;
   justify-content: center;
 }
 
-/* Pastilla del tiempo – morado + metal */
 .timer-box {
-  padding: 12px 26px;
+  padding: 8px 22px;
   border-radius: 999px;
-  min-width: 220px;
-  text-align: center;
+  min-width: 180px;
 
-  background:
-    radial-gradient(circle at top, rgba(243, 232, 255, 0.18), transparent 60%),
-    linear-gradient(145deg, #1a1730, #070814);
-  border: 1px solid rgba(160, 140, 230, 0.9);
+  background: #f2b8a0;
   box-shadow:
-    inset 0 0 10px rgba(0, 0, 0, 0.95),
-    0 0 18px rgba(0, 0, 0, 0.9);
+    0 4px 0 #d28c6d,
+    0 0 12px rgba(0, 0, 0, 0.35);
+  text-align: center;
 }
 
-/* Tiempo (MM:SS) – digital, fuerte */
 #timer-value {
   display: block;
-  font-size: 42px;
-  font-weight: 700;
-  letter-spacing: 4px;
-
-  color: #f9f3dd;
+  font-size: 36px;
+  letter-spacing: 3px;
+  color: #fff;
   text-shadow:
-    0 0 4px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.85);
+    -2px -2px 0 #5b3226,
+    2px -2px 0 #5b3226,
+    -2px 2px 0 #5b3226,
+    2px 2px 0 #5b3226;
 }
 
-/* Label SECONDS */
 .timer-label {
   display: block;
-  margin-top: 4px;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #c5cbe3;
-  opacity: 0.9;
+  color: #fff;
 }
 
-/* Cuando está corriendo – glow dorado/morado */
+/* Estados */
 .timer-box.timer-running {
   box-shadow:
-    inset 0 0 10px rgba(0, 0, 0, 1),
-    0 0 18px rgba(210, 190, 120, 0.9),
-    0 0 26px rgba(124, 70, 220, 0.9);
-  border-color: rgba(230, 210, 140, 0.95);
+    0 4px 0 #d28c6d,
+    0 0 16px rgba(255, 230, 190, 0.9);
 }
 
-/* Cuando termina – flash tipo alerta */
 .timer-box.timer-finished {
-  animation: finishedFlash 0.25s 8 alternate;
+  animation: finishedFlash 0.35s 6 alternate;
 }
 
 @keyframes finishedFlash {
   from {
     box-shadow:
-      inset 0 0 10px rgba(0,0,0,1),
-      0 0 18px rgba(210, 190, 120, 0.9),
-      0 0 24px rgba(124, 70, 220, 0.9);
-    border-color: rgba(230, 210, 140, 0.95);
+      0 4px 0 #d28c6d,
+      0 0 16px rgba(255, 230, 190, 0.9);
   }
   to {
     box-shadow:
-      inset 0 0 10px rgba(0,0,0,1),
-      0 0 24px rgba(255, 120, 120, 1),
-      0 0 30px rgba(255, 120, 120, 1);
-    border-color: rgba(255, 150, 150, 0.95);
+      0 4px 0 #9a3c3c,
+      0 0 22px rgba(255, 120, 120, 1);
   }
 }

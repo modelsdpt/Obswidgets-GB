@@ -23,8 +23,6 @@ ws.onmessage = (msg) => {
 
 function render() {
   const list = document.getElementById("top-list");
-  if (!list) return;
-
   list.innerHTML = "";
 
   const sorted = Object.entries(scores)
@@ -33,33 +31,28 @@ function render() {
 
   const leader = sorted[0]?.[0];
 
-  sorted.forEach(([name, total], i) => {
+  sorted.forEach(([name, total], index) => {
     const div = document.createElement("div");
-    div.className = "tip" + (i === 0 ? " mvp" : "");
+    const isMvp = index === 0;
 
-    // 👑🐙 king del top
-    const deco =
-      i === 0
-        ? ` <span class="crown">👑🐙</span>`
-        : " ✨";
+    div.className = "tip" + (isMvp ? " mvp" : "");
 
-    div.innerHTML = `<span>${name}${deco}</span><span>$${total}</span>`;
+    const badge = isMvp ? `<span class="tip-badge">⚡</span>` : "";
+    div.innerHTML = `
+      <span>${name}${badge}</span>
+      <span>$${total}</span>
+    `;
+
     list.appendChild(div);
 
-    // Si hay nuevo líder, aplicamos boom al MVP
-    if (i === 0 && leader && leader !== lastLeader) {
-      boomEffect(div);
+    if (isMvp && leader !== lastLeader) {
+      // pequeño bump cuando cambia el MVP
+      div.style.transform = "scale(1.05)";
+      setTimeout(() => {
+        div.style.transform = "scale(1)";
+      }, 250);
     }
   });
 
   lastLeader = leader;
-}
-
-function boomEffect(element) {
-  // Si quieres sonido, aquí puedes poner tu audio en el HTML con id="mvpSound"
-  document.getElementById("mvpSound")?.play().catch(() => {});
-  element.style.animation = "boom 0.5s ease-out";
-  setTimeout(() => {
-    element.style.animation = "";
-  }, 500);
 }

@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Goal Bar – King Overlay</title>
+  <title>Pikachu Goal Bar</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="goal-wrapper">
-  <div id="bar-fill"></div>
-  <div class="particles"></div>
-  <!-- TÍTULO DENTRO DE LA BARRA -->
-  <div class="goal-title">Double Penetration </div>
+<div class="goal-widget">
+  <div class="goal-label">GOAL!</div>
+
+  <div id="goal-wrapper">
+    <div id="bar-fill"></div>
+    <div class="goal-title">Double Penetration</div>
+  </div>
+
+  <div class="goal-amount" id="goal-amount"></div>
 </div>
 
-<div class="goal-amount"></div>
-
-<!-- Sonido de trompetas para cada TIP -->
 <audio
-  id="bellSound"
+  id="goalSound"
   src="https://www.myinstants.com/media/sounds/trompetas-dj-yu.mp3"
   preload="auto">
 </audio>

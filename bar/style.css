@@ -1,122 +1,112 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap');
 
 body {
-  background: transparent;
   margin: 0;
-  font-family: 'Poppins', system-ui, sans-serif;
+  background: transparent;
+  font-family: 'Baloo 2', system-ui, sans-serif;
   text-align: center;
-  color: #f5f5f5;
+  color: #5b3226;
 }
 
-/* CONTENEDOR DE LA BARRA – mismo vibe King */
+/* Bloque completo */
+.goal-widget {
+  display: inline-block;
+}
+
+/* Texto "GOAL!" arriba */
+.goal-label {
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  color: #fff;
+  text-shadow:
+    -2px -2px 0 #5b3226,
+    2px -2px 0 #5b3226,
+    -2px 2px 0 #5b3226,
+    2px 2px 0 #5b3226,
+    0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor de la barra */
 #goal-wrapper {
   position: relative;
-  width: 420px;
-  height: 52px;
+  width: 520px;
+  height: 40px;
   margin: 0 auto;
-  border-radius: 16px;
+  border-radius: 999px;
   overflow: hidden;
 
-  /* 🔥 centramos contenido (el título) */
+  background: #f2b8a0;
+  box-shadow:
+    0 4px 0 #d28c6d,
+    0 0 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Progreso interior (fucsia suave) */
+#bar-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #ff88c6,
+    #ffb3dd,
+    #ffe6f4,
+    #ffb3dd,
+    #ff88c6
+  );
+  background-size: 200% 100%;
+  animation: barFlow 3s linear infinite;
+  box-shadow:
+    inset 0 0 6px rgba(255, 255, 255, 0.6);
+  transition: width 0.6s ease-out;
+}
+
+/* Título fijo en el centro de la barra */
+.goal-title {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background:
-    radial-gradient(circle at top, rgba(255, 180, 255, 0.35), transparent 55%),
-    linear-gradient(145deg, #1b1730, #070814);
-  border: 1px solid rgba(220, 190, 255, 0.95);
-  box-shadow:
-    0 0 22px rgba(140, 70, 220, 0.9),
-    0 0 34px rgba(255, 190, 255, 0.9);
-}
-
-/* Barra de progreso fucsia */
-#bar-fill {
-  position: absolute;     /* 👈 va al fondo */
-  inset: 0;
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(
-    120deg,
-    #ff4ecb,
-    #ff8df1,
-    #ffe6ff,
-    #ff8df1,
-    #ff4ecb
-  );
-  background-size: 220% 100%;
-  animation: goldFlow 3s linear infinite;
-  box-shadow:
-    inset 0 0 6px rgba(255,255,255,0.5),
-    0 0 14px rgba(255, 120, 220, 0.9);
-  transition: width 0.6s ease;
-  z-index: 1;
-}
-
-/* TÍTULO DENTRO DE LA BARRA */
-.goal-title {
-  position: relative;
-  z-index: 2;              /* 👈 por encima de la barra */
-  width: 100%;
-  text-align: center;
-
-  font-family: 'DM Serif Display', serif;
-  font-size: 20px;
-  margin: 0;               /* nada de margin-bottom dentro de 52px */
-  font-weight: 600;
-
-  background: linear-gradient(to right, #fff8e0, #f3d07e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: #fff;
-
-  text-shadow:
-    0 0 2px rgba(0,0,0,0.7),
-    0 0 4px rgba(0,0,0,0.7);
-}
-
-/* Partículas doradas */
-.particles {
-  position: absolute;
-  inset: 0;
   pointer-events: none;
-  overflow: hidden;
-  z-index: 3;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow:
+    -2px -2px 0 #5b3226,
+    2px -2px 0 #5b3226,
+    -2px 2px 0 #5b3226,
+    2px 2px 0 #5b3226;
 }
 
-/* Progreso numérico abajo */
+/* Texto de progreso abajo */
 .goal-amount {
+  margin-top: 6px;
   font-size: 16px;
-  margin-top: 10px;
-  font-weight: 600;
-
-  color: #f5f5f5;
+  color: #fff;
   text-shadow:
-    0 0 3px rgba(0,0,0,0.8),
-    0 0 8px rgba(0,0,0,0.7);
-}
-
-/* Modo “completado” */
-.goal-title.neon {
-  text-shadow:
-    0 0 4px rgba(245, 230, 177, 1),
-    0 0 10px rgba(212, 185, 106, 0.9),
-    0 0 16px rgba(162, 79, 255, 0.85);
+    -1px -1px 0 #5b3226,
+    1px -1px 0 #5b3226,
+    -1px 1px 0 #5b3226,
+    1px 1px 0 #5b3226;
 }
 
 /* Animaciones */
-@keyframes goldFlow {
+@keyframes barFlow {
   0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
-@keyframes firework {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-60px) scale(0.4);
-    opacity: 0;
-  }
+/* Estado "meta completada" */
+.goal-label.completed {
+  color: #ffe772;
+  text-shadow:
+    -2px -2px 0 #b06915,
+    2px -2px 0 #b06915,
+    -2px 2px 0 #b06915,
+    2px 2px 0 #b06915,
+    0 0 14px rgba(255, 245, 140, 0.9);
 }

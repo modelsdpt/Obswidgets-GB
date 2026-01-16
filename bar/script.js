@@ -7,26 +7,15 @@ let goal = 0;
 let current = 0;
 
 const bar = document.getElementById("bar-fill");
-const goalTitle = document.querySelector(".goal-title");
-const amountText = document.querySelector(".goal-amount");
-let bell = document.getElementById("bellSound");
+const amountText = document.getElementById("goal-amount");
+const goalLabel = document.querySelector(".goal-label");
+const bell = document.getElementById("goalSound");
 
-// helper para reproducir sonido de forma segura
-function playBell() {
-  try {
-    if (!bell) {
-      // fallback por si el elemento no se encontró
-      bell = new Audio("https://www.myinstants.com/media/sounds/trompetas-dj-yu.mp3");
-      bell.preload = "auto";
-    }
-    bell.currentTime = 0;
-    bell.volume = 1;
-    bell.play().catch((err) => {
-      console.log("Error reproduciendo audio:", err);
-    });
-  } catch (err) {
-    console.log("Error inesperado de audio:", err);
-  }
+function playSound() {
+  if (!bell) return;
+  bell.currentTime = 0;
+  bell.volume = 1;
+  bell.play().catch(() => {});
 }
 
 ws.onmessage = (msg) => {
@@ -59,43 +48,19 @@ function updateBar(playFx) {
     bar.style.width = percent + "%";
   }
 
-  // TEXTO DE ABAJO (progreso)
   if (amountText) {
-    if (goal > 0) {
-      amountText.textContent = `${current} / ${goal}`;
-    } else {
-      amountText.textContent = "";
-    }
+    amountText.textContent = goal > 0 ? `$${current} / $${goal}` : "";
   }
 
-  // efecto “completado” en el título
-  if (goalTitle) {
-    if (percent >= 100) {
-      goalTitle.classList.add("neon");
+  if (goalLabel) {
+    if (percent >= 100 && goal > 0) {
+      goalLabel.classList.add("completed");
     } else {
-      goalTitle.classList.remove("neon");
+      goalLabel.classList.remove("completed");
     }
   }
 
   if (playFx) {
-    playBell();
-    spawnParticles();
-  }
-}
-
-// Pequeñas partículas doradas al recibir tip
-function spawnParticles() {
-  const container = document.querySelector(".particles");
-  if (!container) return;
-
-  for (let i = 0; i < 8; i++) {
-    const p = document.createElement("div");
-    p.className = "particle";
-    p.style.left = `${10 + Math.random() * 80}%`;
-    p.style.top = `${20 + Math.random() * 60}%`;
-    p.style.animationDuration = `${1 + Math.random() * 0.5}s`;
-    container.appendChild(p);
-
-    setTimeout(() => p.remove(), 1600);
+    playSound();
   }
 }

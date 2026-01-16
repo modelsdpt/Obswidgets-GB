@@ -1,4 +1,4 @@
-const MODEL_ID = "roman001"; // mismo modelo que tus otros widgets
+const MODEL_ID = "pikachu001";
 const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
 );
@@ -60,7 +60,6 @@ function onTimerEnd() {
   }
 }
 
-// WebSocket: recibe órdenes del panel
 ws.onmessage = (msg) => {
   const data = JSON.parse(msg.data);
 
