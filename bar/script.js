@@ -5,17 +5,22 @@ const ws = new WebSocket(
 
 let goal = 0;
 let current = 0;
+let lastPercent = 0;
 
 const bar = document.getElementById("bar-fill");
 const amountText = document.getElementById("goal-amount");
 const goalLabel = document.querySelector(".goal-label");
-const bell = document.getElementById("goalSound");
 
-function playSound() {
-  if (!bell) return;
-  bell.currentTime = 0;
-  bell.volume = 1;
-  bell.play().catch(() => {});
+const tipSound = document.getElementById("tipSound");
+const goalFullSound = document.getElementById("goalFullSound");
+
+function playAudio(el) {
+  if (!el) return;
+  try {
+    el.currentTime = 0;
+    el.volume = 1;
+    el.play().catch(() => {});
+  } catch (_) {}
 }
 
 ws.onmessage = (msg) => {
@@ -24,6 +29,7 @@ ws.onmessage = (msg) => {
   if (data.type === "setGoal") {
     goal = Number(data.payload.goal);
     current = 0;
+    lastPercent = 0;
     updateBar(false);
   }
 
@@ -35,6 +41,7 @@ ws.onmessage = (msg) => {
   if (data.type === "clearGoal") {
     goal = 0;
     current = 0;
+    lastPercent = 0;
     updateBar(false);
   }
 };
@@ -60,7 +67,16 @@ function updateBar(playFx) {
     }
   }
 
+  // sonidos
   if (playFx) {
-    playSound();
+    if (percent >= 100 && lastPercent < 100 && goal > 0) {
+      // recién se llenó la barra
+      playAudio(goalFullSound);
+    } else {
+      // tip normal
+      playAudio(tipSound);
+    }
   }
+
+  lastPercent = percent;
 }
