@@ -5,78 +5,92 @@ const ws = new WebSocket(
 
 let goal = 0;
 let current = 0;
-let lastPercent = 0;
+let goalCompleted = false;
 
 const bar = document.getElementById("bar-fill");
-const amountText = document.getElementById("goal-amount");
-const goalLabel = document.querySelector(".goal-label");
+const goalTitle = document.querySelector(".goal-title");
+const amountText = document.querySelector(".goal-amount");
 
 const tipSound = document.getElementById("tipSound");
-const goalFullSound = document.getElementById("goalFullSound");
+const goalSound = document.getElementById("goalSound");
 
-function playAudio(el) {
-  if (!el) return;
+function playTipSound() {
+  if (!tipSound) return;
   try {
-    el.currentTime = 0;
-    el.volume = 1;
-    el.play().catch(() => {});
-  } catch (_) {}
+    tipSound.currentTime = 0;
+    tipSound.volume = 1;
+    tipSound.play().catch(() => {});
+  } catch {}
 }
 
-ws.onmessage = (msg) => {
-  const data = JSON.parse(msg.data);
+function playGoalSound() {
+  if (!goalSound) return;
+  try {
+    goalSound.currentTime = 0;
+    goalSound.volume = 1;
+    goalSound.play().catch(() => {});
+  } catch {}
+}
+
+ws.onmessage = (event) => {
+  let data;
+  try {
+    data = JSON.parse(event.data || "{}");
+  } catch {
+    return;
+  }
 
   if (data.type === "setGoal") {
-    goal = Number(data.payload.goal);
+    goal = Number(data.payload && data.payload.goal) || 0;
     current = 0;
-    lastPercent = 0;
+    goalCompleted = false;
     updateBar(false);
   }
 
   if (data.type === "tip") {
-    current += Number(data.payload.amount);
-    updateBar(true);
+    const amt = Number(data.payload && data.payload.amount);
+    if (!isNaN(amt) && amt > 0) {
+      current += amt;
+      updateBar(true); // viene de tip => sonar
+    }
   }
 
   if (data.type === "clearGoal") {
     goal = 0;
     current = 0;
-    lastPercent = 0;
+    goalCompleted = false;
     updateBar(false);
   }
 };
 
-function updateBar(playFx) {
-  const percent = goal
-    ? Math.min((current / goal) * 100, 100)
-    : 0;
+function updateBar(fromTip) {
+  const percent = goal ? Math.min((current / goal) * 100, 100) : 0;
 
   if (bar) {
     bar.style.width = percent + "%";
   }
 
   if (amountText) {
-    amountText.textContent = goal > 0 ? `$${current} / $${goal}` : "";
+    amountText.textContent = goal > 0 ? `${current} / ${goal}` : "";
   }
 
-  if (goalLabel) {
+  // efecto de "goal completada"
+  if (goalTitle) {
     if (percent >= 100 && goal > 0) {
-      goalLabel.classList.add("completed");
+      goalTitle.classList.add("neon");
+      if (!goalCompleted) {
+        goalCompleted = true;
+        playGoalSound();
+      }
     } else {
-      goalLabel.classList.remove("completed");
+      goalTitle.classList.remove("neon");
+      if (percent < 100) {
+        goalCompleted = false;
+      }
     }
   }
 
-  // sonidos
-  if (playFx) {
-    if (percent >= 100 && lastPercent < 100 && goal > 0) {
-      // recién se llenó la barra
-      playAudio(goalFullSound);
-    } else {
-      // tip normal
-      playAudio(tipSound);
-    }
+  if (fromTip) {
+    playTipSound();
   }
-
-  lastPercent = percent;
 }

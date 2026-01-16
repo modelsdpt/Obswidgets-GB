@@ -1,4 +1,4 @@
-const MODEL_ID = "rman001";
+const MODEL_ID = "roman001";
 const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
 );
