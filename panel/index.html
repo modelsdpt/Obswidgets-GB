@@ -286,10 +286,12 @@
   const MODEL_ID = "roman001";
   const API_URL = "/api/send";
 
-  // ====== NOMBRES RECIENTES PARA LA DERECHA ======
-  let recentNames = []; // lista única de nombres
+  /* ========= NOMBRES RECIENTES (panel derecha) ========= */
 
-  function renderNamesList() {
+  let recentNames = [];
+  const MAX_NAMES = 30;
+
+  function renderRecentNames() {
     const container = document.getElementById("names-list");
     if (!container) return;
 
@@ -298,7 +300,8 @@
     if (!recentNames.length) {
       const empty = document.createElement("div");
       empty.className = "names-empty";
-      empty.textContent = "Aún no hay nombres. Envía un tip y aparecerán aquí.";
+      empty.textContent =
+        "Aún no hay nombres. Envía un tip y aparecerán aquí.";
       container.appendChild(empty);
       return;
     }
@@ -307,25 +310,41 @@
       const pill = document.createElement("span");
       pill.className = "name-pill";
       pill.textContent = name;
-      pill.title = "Click para usar este nombre";
       pill.onclick = () => {
-        const input = document.getElementById("name");
-        if (input) input.value = name;
+        const nameInput = document.getElementById("name");
+        if (nameInput) nameInput.value = name;
       };
       container.appendChild(pill);
     });
   }
 
-  function registerName(name) {
+  function addRecentName(name) {
     if (!name) return;
-    // Evitar duplicados y mantener los más recientes arriba
-    recentNames = [name, ...recentNames.filter(n => n !== name)];
-    // límite opcional (por ejemplo 20)
-    if (recentNames.length > 20) {
-      recentNames = recentNames.slice(0, 20);
+    const trimmed = name.trim();
+    if (!trimmed) return;
+
+    const lower = trimmed.toLowerCase();
+
+    // Evitar duplicados: movemos al frente si ya existe
+    recentNames = [
+      trimmed,
+      ...recentNames.filter((n) => n.toLowerCase() !== lower),
+    ];
+
+    if (recentNames.length > MAX_NAMES) {
+      recentNames.length = MAX_NAMES;
     }
-    renderNamesList();
+
+    renderRecentNames();
   }
+
+  function clearRecentNames() {
+    recentNames = [];
+    renderRecentNames();
+  }
+
+  // Inicializamos el panel de nombres vacío al cargar
+  document.addEventListener("DOMContentLoaded", renderRecentNames);
 
   // ====== TIP / GOAL / TIMER ======
   function sendTip() {

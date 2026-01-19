@@ -26,7 +26,7 @@ body {
 .title {
   text-align: center;
   font-family: 'DM Serif Display', serif;
-  font-size: 22px;
+  font-size: 14px;
   margin: 0 0 12px;
   letter-spacing: 2px;
 
@@ -35,6 +35,8 @@ body {
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.9),
     0 0 10px rgba(0, 0, 0, 0.9);
+    -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
 }
 
 /* Columnas */
@@ -50,7 +52,7 @@ body {
 /* Titulito de columna */
 .col-title {
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 200;
   margin-bottom: 6px;
   text-transform: uppercase;
   letter-spacing: 1px;
