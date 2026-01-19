@@ -10,7 +10,7 @@ body {
 /* Card principal */
 #container {
   position: relative;
-  width: 480px;
+  width: 240px;
   padding: 18px 20px 16px;
   border-radius: 18px;
 
@@ -26,34 +26,33 @@ body {
 .title {
   text-align: center;
   font-family: 'DM Serif Display', serif;
-  font-size: 14px;
+  font-size: 18px;
   margin: 0 0 12px;
   letter-spacing: 2px;
 
-  background: linear-gradient(to right, #fff8e0, #ffdf92);
+  /* SOLO COLOR, SIN BACKGROUND RARO */
+  color: #fff8e0;
 
   text-shadow:
     0 0 3px rgba(0, 0, 0, 0.9),
     0 0 10px rgba(0, 0, 0, 0.9);
-    -webkit-background-clip: initial;
-  -webkit-text-fill-color: initial;
 }
 
-/* Columnas */
+/* Contenedor de columnas: ahora es una sola columna vertical */
 .columns {
-  display: flex;
-  gap: 18px;
+  display: block;
 }
 
+/* Columna única */
 .col {
-  flex: 1;
+  width: 100%;
 }
 
-/* Titulito de columna */
+/* Subtítulos de sección */
 .col-title {
   font-size: 14px;
-  font-weight: 200;
-  margin-bottom: 6px;
+  font-weight: 600;
+  margin: 6px 0 4px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #ffdf92;
@@ -63,14 +62,15 @@ body {
 #playing-list,
 #waiting-list {
   list-style: none;
-  margin: 0;
+  margin: 0 0 6px 0;
   padding: 0;
 }
 
+/* Fila de jugador: todo en UNA LÍNEA (1. Nombre [tag]) */
 .player-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 4px;
 
   padding: 6px 10px;
   margin-bottom: 4px;
@@ -97,14 +97,16 @@ body {
 /* numeración */
 .player-seat {
   font-weight: 700;
-  margin-right: 6px;
+  margin-right: 4px;
   color: #ffd36a;
 }
 
+/* nombre ocupa el espacio central */
 .player-name {
   flex: 1;
 }
 
+/* tag opcional al final (ej. "VIP", "NEW") */
 .player-tag {
   font-size: 11px;
   text-transform: uppercase;

@@ -346,27 +346,33 @@
   // Inicializamos el panel de nombres vacío al cargar
   document.addEventListener("DOMContentLoaded", renderRecentNames);
 
-  // ====== TIP / GOAL / TIMER ======
+  /* ========= ENVIAR TIP / GOAL / TIMER ========= */
+
   function sendTip() {
-    const name = document.getElementById("name").value.trim();
-    const amount = Number(document.getElementById("amount").value);
+    const nameInput = document.getElementById("name");
+    const amountInput = document.getElementById("amount");
+
+    const name = nameInput.value.trim();
+    const amount = Number(amountInput.value);
 
     if (!name || !amount) {
       alert("Debes escribir un nombre y un monto válido.");
       return;
     }
 
-    // Registrar nombre en la lista de la derecha
-    registerName(name);
-
+    // mando al backend
     sendToServer("tip", { name, amount });
+
+    // guardo en la lista de nombres recientes
+    addRecentName(name);
+
+    // opcional: limpiar solo el monto
+    amountInput.value = "";
   }
 
   function clearAll() {
     sendToServer("clear");
-    // limpiar también los nombres
-    recentNames = [];
-    renderNamesList();
+    clearRecentNames(); // también limpiamos la lista de nombres
   }
 
   function setGoal() {
@@ -390,7 +396,6 @@
     sendToServer("actionTimerStop");
   }
 
-  // ====== ENVÍO GENÉRICO AL BACKEND ======
   function sendToServer(type, payload = {}) {
     fetch(API_URL, {
       method: "POST",
@@ -398,12 +403,12 @@
       body: JSON.stringify({
         modelId: MODEL_ID,
         type,
-        payload
-      })
+        payload,
+      }),
     })
-      .then(res => res.json())
-      .then(data => console.log("Respuesta backend:", data))
-      .catch(err => console.error("❌ Error en fetch:", err));
+      .then((res) => res.json())
+      .then((data) => console.log("Respuesta backend:", data))
+      .catch((err) => console.error("❌ Error en fetch:", err));
   }
 
   /* ========= BLACKJACK PLAYERS ========= */
@@ -426,18 +431,18 @@
     if (!playingSelect || !waitingSelect) return;
 
     playingSelect.innerHTML = "";
-    bjPlaying.forEach((name, idx) => {
+    bjPlaying.forEach((name) => {
       const opt = document.createElement("option");
       opt.value = name;
-      opt.textContent = `${idx + 1}. ${name}`;
+      opt.textContent = name;
       playingSelect.appendChild(opt);
     });
 
     waitingSelect.innerHTML = "";
-    bjWaiting.forEach((name, idx) => {
+    bjWaiting.forEach((name) => {
       const opt = document.createElement("option");
       opt.value = name;
-      opt.textContent = `${idx + 1}. ${name}`;
+      opt.textContent = name;
       waitingSelect.appendChild(opt);
     });
   }
@@ -460,7 +465,7 @@
       bjPlaying.push(name);
     }
     // si estaba en waiting, lo quitamos de allí
-    bjWaiting = bjWaiting.filter(n => n !== name);
+    bjWaiting = bjWaiting.filter((n) => n !== name);
 
     bjSync();
   }
@@ -477,11 +482,11 @@
 
   function bjMoveToWaiting() {
     const select = document.getElementById("bjPlayingList");
-    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    const selected = Array.from(select.selectedOptions).map((o) => o.value);
     if (!selected.length) return;
 
-    bjPlaying = bjPlaying.filter(n => !selected.includes(n));
-    selected.forEach(name => {
+    bjPlaying = bjPlaying.filter((n) => !selected.includes(n));
+    selected.forEach((name) => {
       if (!bjWaiting.includes(name)) bjWaiting.push(name);
     });
 
@@ -490,11 +495,11 @@
 
   function bjMoveToPlaying() {
     const select = document.getElementById("bjWaitingList");
-    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    const selected = Array.from(select.selectedOptions).map((o) => o.value);
     if (!selected.length) return;
 
-    bjWaiting = bjWaiting.filter(n => !selected.includes(n));
-    selected.forEach(name => {
+    bjWaiting = bjWaiting.filter((n) => !selected.includes(n));
+    selected.forEach((name) => {
       if (!bjPlaying.includes(name)) bjPlaying.push(name);
     });
 
@@ -503,25 +508,23 @@
 
   function bjRemoveFromPlaying() {
     const select = document.getElementById("bjPlayingList");
-    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    const selected = Array.from(select.selectedOptions).map((o) => o.value);
     if (!selected.length) return;
 
-    bjPlaying = bjPlaying.filter(n => !selected.includes(n));
+    bjPlaying = bjPlaying.filter((n) => !selected.includes(n));
     bjSync();
   }
 
   function bjRemoveFromWaiting() {
     const select = document.getElementById("bjWaitingList");
-    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    const selected = Array.from(select.selectedOptions).map((o) => o.value);
     if (!selected.length) return;
 
-    bjWaiting = bjWaiting.filter(n => !selected.includes(n));
+    bjWaiting = bjWaiting.filter((n) => !selected.includes(n));
     bjSync();
   }
-
-  // Pintar lista vacía al cargar
-  renderNamesList();
 </script>
+
 
 
 </body>
