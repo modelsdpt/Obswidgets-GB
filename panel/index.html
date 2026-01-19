@@ -286,6 +286,48 @@
   const MODEL_ID = "roman001";
   const API_URL = "/api/send";
 
+  // ====== NOMBRES RECIENTES PARA LA DERECHA ======
+  let recentNames = []; // lista única de nombres
+
+  function renderNamesList() {
+    const container = document.getElementById("names-list");
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (!recentNames.length) {
+      const empty = document.createElement("div");
+      empty.className = "names-empty";
+      empty.textContent = "Aún no hay nombres. Envía un tip y aparecerán aquí.";
+      container.appendChild(empty);
+      return;
+    }
+
+    recentNames.forEach((name) => {
+      const pill = document.createElement("span");
+      pill.className = "name-pill";
+      pill.textContent = name;
+      pill.title = "Click para usar este nombre";
+      pill.onclick = () => {
+        const input = document.getElementById("name");
+        if (input) input.value = name;
+      };
+      container.appendChild(pill);
+    });
+  }
+
+  function registerName(name) {
+    if (!name) return;
+    // Evitar duplicados y mantener los más recientes arriba
+    recentNames = [name, ...recentNames.filter(n => n !== name)];
+    // límite opcional (por ejemplo 20)
+    if (recentNames.length > 20) {
+      recentNames = recentNames.slice(0, 20);
+    }
+    renderNamesList();
+  }
+
+  // ====== TIP / GOAL / TIMER ======
   function sendTip() {
     const name = document.getElementById("name").value.trim();
     const amount = Number(document.getElementById("amount").value);
@@ -295,11 +337,17 @@
       return;
     }
 
+    // Registrar nombre en la lista de la derecha
+    registerName(name);
+
     sendToServer("tip", { name, amount });
   }
 
   function clearAll() {
     sendToServer("clear");
+    // limpiar también los nombres
+    recentNames = [];
+    renderNamesList();
   }
 
   function setGoal() {
@@ -323,6 +371,7 @@
     sendToServer("actionTimerStop");
   }
 
+  // ====== ENVÍO GENÉRICO AL BACKEND ======
   function sendToServer(type, payload = {}) {
     fetch(API_URL, {
       method: "POST",
@@ -358,18 +407,18 @@
     if (!playingSelect || !waitingSelect) return;
 
     playingSelect.innerHTML = "";
-    bjPlaying.forEach(name => {
+    bjPlaying.forEach((name, idx) => {
       const opt = document.createElement("option");
       opt.value = name;
-      opt.textContent = name;
+      opt.textContent = `${idx + 1}. ${name}`;
       playingSelect.appendChild(opt);
     });
 
     waitingSelect.innerHTML = "";
-    bjWaiting.forEach(name => {
+    bjWaiting.forEach((name, idx) => {
       const opt = document.createElement("option");
       opt.value = name;
-      opt.textContent = name;
+      opt.textContent = `${idx + 1}. ${name}`;
       waitingSelect.appendChild(opt);
     });
   }
@@ -450,6 +499,9 @@
     bjWaiting = bjWaiting.filter(n => !selected.includes(n));
     bjSync();
   }
+
+  // Pintar lista vacía al cargar
+  renderNamesList();
 </script>
 
 
