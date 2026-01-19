@@ -36,8 +36,10 @@ app.use("/roulette", express.static(path.join(__dirname, "roulette")));
 app.use("/countdown", express.static(path.join(__dirname, "countdown")));
 app.use("/models", express.static(path.join(__dirname, "models")));
 app.use("/admin", express.static(path.join(__dirname, "admin")));
+app.use("/players", express.static(path.join(__dirname, "players")));
 
 console.log("Rutas estáticas:");
+console.log(" -> /players    =>", path.join(__dirname, "players"));
 console.log(" -> /widget    =>", path.join(__dirname, "widget"));
 console.log(" -> /countdown =>", path.join(__dirname, "countdown"));
 console.log(" -> /panel     =>", path.join(__dirname, "panel"));

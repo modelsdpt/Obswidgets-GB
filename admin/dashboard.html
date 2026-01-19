@@ -565,70 +565,76 @@
   }
 
   // ───────── EXPORT A "XLS" (CSV PARA EXCEL) ─────────
-  function downloadXls() {
-    const filtered = filterByMonth();
-    if (!filtered.length) {
-      alert("No hay registros para exportar en el mes seleccionado.");
-      return;
-    }
+ function downloadXls() {
+  const filtered = filterByMonth();
+  if (!filtered.length) {
+    alert("No hay registros para exportar en el mes seleccionado.");
+    return;
+  }
 
-    const rows = [];
+  const rows = [];
+  // Encabezados
+  rows.push([
+    "Modelo",
+    "Fecha",
+    "Inicio",
+    "Fin",
+    "Views",
+    "Shadower Feedback",
+    "CA Feedback",
+    "Livestream Feedback",
+    "Nota",
+    "Monto",
+  ]);
+
+  // Filas
+  filtered.forEach((schedule) => {
+    const r = getReportForModel(schedule.modelName) || {};
     rows.push([
-      "Modelo",
-      "Fecha",
-      "Inicio",
-      "Fin",
-      "Views",
-      "Shadower Feedback",
-      "CA Feedback",
-      "Livestream Feedback",
-      "Nota",
-      "Monto",
+      schedule.modelName || "",
+      schedule.date || "",
+      schedule.start || "",
+      r.end || "",
+      Number(r.views || 0),
+      r.shadowerFeedback || "",
+      r.caFeedback || "",
+      r.livestreamFeedback || "",
+      r.note || "",
+      Number(r.collectedAmount || 0),
     ]);
+  });
 
-    filtered.forEach((schedule) => {
-      const r = getReportForModel(schedule.modelName) || {};
-      rows.push([
-        schedule.modelName || "",
-        schedule.date || "",
-        schedule.start || "",
-        r.end || "",
-        Number(r.views || 0),
-        r.shadowerFeedback || "",
-        r.caFeedback || "",
-        r.livestreamFeedback || "",
-        r.note || "",
-        Number(r.collectedAmount || 0),
-      ]);
-    });
-
-    const csv = rows
+  // Generamos TSV (tab-separated values)
+  const tsv =
+    "\uFEFF" + // BOM para que Excel respete UTF-8
+    rows
       .map((row) =>
         row
           .map((v) =>
-            `"${String(v ?? "")
-              .replace(/"/g, '""')
-              .replace(/\r?\n/g, " ")}"`
+            String(v ?? "")
+              .replace(/\t/g, " ") // evitar tabs dentro del texto
+              .replace(/\r?\n/g, " ") // sin saltos de línea
           )
-          .join(";")
+          .join("\t") // <-- separador: TAB
       )
       .join("\r\n");
 
-    const blob = new Blob([csv], {
-      type: "application/vnd.ms-excel;charset=utf-8;",
-    });
+  const blob = new Blob([tsv], {
+    type: "text/tab-separated-values;charset=utf-8;",
+  });
 
-    const monthInput = document.getElementById("monthFilter");
-    const suffix = monthInput?.value || "all";
-    const fileName = `livestream_report_${suffix}.xls`;
+  const monthInput = document.getElementById("monthFilter");
+  const suffix = monthInput?.value || "all";
+  const fileName = `livestream_report_${suffix}.xls`; // o .tsv / .csv si prefieres
 
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 
   // Cargar al entrar
   loadData();

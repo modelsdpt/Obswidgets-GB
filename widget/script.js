@@ -4,7 +4,6 @@ const ws = new WebSocket(
 );
 
 let scores = {};
-let lastLeader = null;
 
 ws.onmessage = (msg) => {
   let data;
@@ -15,58 +14,42 @@ ws.onmessage = (msg) => {
   }
 
   if (data.type === "tip") {
-    const payload = data.payload || {};
-    const name = String(payload.name || "").trim();
-    const amount = Number(payload.amount || 0);
-    if (!name || !amount) return;
+    const name = (data.payload?.name || "").trim();
+    const amount = Number(data.payload?.amount || 0);
+    if (!name || isNaN(amount) || amount <= 0) return;
 
     scores[name] = (scores[name] || 0) + amount;
     render();
-    return;
   }
 
   if (data.type === "clear") {
     scores = {};
     render();
-    return;
   }
 };
 
 function render() {
   const list = document.getElementById("top-list");
   if (!list) return;
-
   list.innerHTML = "";
 
   const sorted = Object.entries(scores)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3);
 
-  const leader = sorted[0]?.[0];
+  sorted.forEach(([name, total], idx) => {
+    const row = document.createElement("div");
+    row.className = "tip";
 
-  if (!sorted.length) {
-    list.innerHTML = `<div class="empty"></div>`;
-    lastLeader = null;
-    return;
-  }
+    if (idx === 0) row.classList.add("mvp");
+    if (idx === 1) row.classList.add("second");
+    if (idx === 2) row.classList.add("third");
 
-  sorted.forEach(([name, total], i) => {
-    const div = document.createElement("div");
-    div.className = "tip" + (i === 0 ? " mvp" : "");
-
-    const deco = i === 0 ? ` <span class="crown">⚡</span>` : " ✨";
-
-    // línea simple: "Nombre $60"
-    div.innerHTML = `
-      <span>${name}${deco}</span>
-      <span>$${total}</span>
+    row.innerHTML = `
+      <span class="name">${name}</span>
+      <span class="amount">$${total}</span>
     `;
 
-    list.appendChild(div);
+    list.appendChild(row);
   });
-
-  lastLeader = leader;
 }
-
-// estado inicial vacío
-render();

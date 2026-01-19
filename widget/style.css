@@ -4,142 +4,94 @@ body {
   background: transparent;
   margin: 0;
   font-family: 'Poppins', system-ui, sans-serif;
-  color: #fff7f2;
+  color: #f5f5f5;
 }
 
-/* CONTENEDOR PRINCIPAL – mismo vibe que overlay/bar */
+/* Card principal */
 #container {
   position: relative;
   width: 420px;
-  padding: 26px 20px 18px; /* antes era 18px arriba */
-  border-radius: 22px;
+  padding: 18px 20px 16px;
+  border-radius: 18px;
 
   background:
-    radial-gradient(circle at top, rgba(255, 192, 176, 0.35), transparent 55%),
-    linear-gradient(145deg, #261624, #0c0307);
-  border: 1px solid rgba(255, 210, 190, 0.9);
+    radial-gradient(circle at top, rgba(255, 210, 160, 0.22), #050000);
+  border: 1px solid rgba(255, 230, 180, 0.9);
   box-shadow:
-    0 0 24px rgba(0, 0, 0, 0.95),
-    0 0 38px rgba(255, 190, 170, 0.6);
-  overflow: hidden;
+    0 0 22px rgba(0, 0, 0, 0.95),
+    0 0 30px rgba(0, 0, 0, 0.9);
 }
 
-
-/* TÍTULO */
-/* TÍTULO */
+/* Título */
 .title {
-  position: relative;
-  z-index: 2;
   text-align: center;
   font-family: 'DM Serif Display', serif;
-  font-size: 26px;
-  margin: 0 0 16px;
+  font-size: 24px;
+  margin: 0 0 14px;
+  letter-spacing: 2px;
 
-  /* Color más sólido y limpio, sin quedar apagado */
-  background: none;
-  -webkit-background-clip: initial;
-  -webkit-text-fill-color: #ffe9c4;
+  background: linear-gradient(to right, #fff8e0, #ffdf92);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
   text-shadow:
-    0 0 4px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.85);
-
-  /* un pelín hacia abajo para que no “choque” con el borde */
-  transform: translateY(2px);
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.9);
 }
 
-
-/* CONTENEDOR DE LA LISTA */
+/* Lista */
 #top-list {
   position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
-/* ÍTEM BASE (2do y 3er lugar) */
+/* Item general */
 .tip {
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  align-items: center;
 
   padding: 10px 14px;
-  border-radius: 14px;
+  margin-bottom: 8px;
+  border-radius: 12px;
 
-  background: linear-gradient(135deg, #7a3a36, #502028);
-  border: 1px solid rgba(255, 191, 154, 0.45);
+  background: linear-gradient(135deg, #4a1010, #2a0505);
+  border: 1px solid rgba(255, 230, 180, 0.65);
   box-shadow:
     inset 0 0 6px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.8);
+    0 0 10px rgba(0, 0, 0, 0.7);
 
-  color: #ffe7db;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffe8cc;
 }
 
-/* LADO IZQUIERDO: nombre + deco */
-.tip-main {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+/* nombre + monto en una línea */
+.tip .name {
+  flex: 1;
 }
 
-/* Nombre */
-.tip-name {
-  font-weight: 700;
-  font-size: 18px;
+/* monto */
+.tip .amount {
+  margin-left: 12px;
+  white-space: nowrap;
 }
 
-/* Monto */
-.tip-amount {
-  font-weight: 700;
-  font-size: 18px;
-}
-
-/* MVP (1er lugar) – card salmón brillante */
+/* MVP (primer lugar) */
 .tip.mvp {
-  background: linear-gradient(135deg, #ffb89a, #ff8f6e);
-  border: 1px solid #ffd3b8;
-  color: #2b1310;
-
+  background: linear-gradient(135deg, #ffdf92, #ffb34a);
+  color: #2a0900;
+  border: 1px solid #ffe6b5;
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.95),
-    0 0 28px rgba(255, 184, 154, 1),
-    0 0 42px rgba(255, 213, 134, 0.9);
+    0 0 16px rgba(0, 0, 0, 0.9),
+    0 0 24px rgba(255, 215, 120, 0.95);
 }
 
-/* Overlay suave de luz */
-.tip.mvp::before {
-  content: "";
-  position: absolute;
-  inset: -25%;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.7), transparent 60%);
-  opacity: 0.4;
-  mix-blend-mode: screen;
-  pointer-events: none;
+/* segundo y tercero un poco más oscuros */
+.tip.second {
+  background: linear-gradient(135deg, #7e2020, #3b0606);
 }
 
-/* Decoración del MVP (rayo + corona) */
-.mvp-icon {
-  font-size: 20px;
-}
-
-/* Deja el rayo fuerte para el MVP */
-.mvp-icon span {
-  display: inline-block;
-  transform: translateY(1px);
-}
-
-/* 2do y 3er lugar: iconos un poco más discretos */
-.tip:not(.mvp) .mvp-icon {
-  opacity: 0.85;
-}
-
-/* ANIMACIÓN DE ENTRADA/BOOM */
-@keyframes boom {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.06); }
-  100% { transform: scale(1); }
+.tip.third {
+  background: linear-gradient(135deg, #5e1515, #260404);
 }

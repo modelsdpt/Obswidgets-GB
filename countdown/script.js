@@ -17,10 +17,13 @@ function formatTime(sec) {
 }
 
 function clearTimerClasses() {
+  if (!timerBox) return;
   timerBox.classList.remove("timer-running", "timer-finished");
 }
 
 function startTimer(seconds) {
+  if (!timerBox || !timerValue) return;
+
   clearInterval(timerId);
   remaining = seconds;
 
@@ -47,21 +50,31 @@ function stopTimer() {
   timerId = null;
   remaining = 0;
   clearTimerClasses();
-  timerValue.textContent = "00:00";
+  if (timerValue) timerValue.textContent = "00:00";
 }
 
 function onTimerEnd() {
+  if (!timerBox) return;
   clearTimerClasses();
   timerBox.classList.add("timer-finished");
 
   if (audioEl) {
-    audioEl.currentTime = 0;
-    audioEl.play().catch(() => {});
+    try {
+      audioEl.currentTime = 0;
+      audioEl.volume = 1;
+      audioEl.play().catch(() => {});
+    } catch {}
   }
 }
 
+// WebSocket: órdenes desde el panel
 ws.onmessage = (msg) => {
-  const data = JSON.parse(msg.data);
+  let data;
+  try {
+    data = JSON.parse(msg.data || "{}");
+  } catch {
+    return;
+  }
 
   if (data.type === "actionTimer") {
     const seconds = Number(data.payload?.seconds || 0);

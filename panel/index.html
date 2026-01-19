@@ -114,6 +114,71 @@
       color: #000;
       box-shadow: 0 0 10px #ff8800;
     }
+
+    /* ===== BLACKJACK PLAYERS ===== */
+    .bj-admin {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .bj-inputs {
+      min-width: 260px;
+    }
+
+    .bj-inputs label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+
+    .bj-inputs input {
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    .bj-inputs button {
+      display: inline-block;
+      margin-right: 8px;
+      margin-top: 6px;
+    }
+
+    .bj-lists {
+      display: flex;
+      gap: 16px;
+    }
+
+    .bj-column {
+      min-width: 160px;
+    }
+
+    .bj-column-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #ffd36a;
+      text-shadow: 0 0 8px #000;
+    }
+
+    .bj-select {
+      width: 180px;
+      height: 110px;
+      background: #222;
+      color: #fff;
+      border-radius: 6px;
+      border: 1px solid #555;
+    }
+
+    .bj-column button {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+
+
   </style>
 </head>
 <body>
@@ -187,109 +252,206 @@
 })">
 🎰 Girar Ruleta
 </button>
+<hr>
+
+<h2>Blackjack Players</h2>
+
+<div class="bj-admin">
+  <div class="bj-inputs">
+    <label for="bjName">Nombre jugador</label>
+    <input id="bjName" placeholder="Usuario OF">
+
+    <button onclick="bjAddPlaying()">➕ Add to Playing</button>
+    <button onclick="bjAddWaiting()">➕ Add to Waiting</button>
+  </div>
+
+  <div class="bj-lists">
+    <div class="bj-column">
+      <div class="bj-column-title">Playing</div>
+      <select id="bjPlayingList" class="bj-select" multiple></select>
+      <button onclick="bjMoveToWaiting()">➜ To Waiting</button>
+      <button onclick="bjRemoveFromPlaying()">🗑 Remove</button>
+    </div>
+
+    <div class="bj-column">
+      <div class="bj-column-title">Waiting for Playing</div>
+      <select id="bjWaitingList" class="bj-select" multiple></select>
+      <button onclick="bjMoveToPlaying()">➜ To Playing</button>
+      <button onclick="bjRemoveFromWaiting()">🗑 Remove</button>
+    </div>
+  </div>
+</div>
 
 <script>
-const MODEL_ID = "roman001";
-const API_URL = "/api/send";   // ruta relativa
+  const MODEL_ID = "roman001";
+  const API_URL = "/api/send";
 
-// memoria local de nombres
-const knownNames = new Set();
+  function sendTip() {
+    const name = document.getElementById("name").value.trim();
+    const amount = Number(document.getElementById("amount").value);
 
-function renderNamesList() {
-  const container = document.getElementById("names-list");
-  container.innerHTML = "";
+    if (!name || !amount) {
+      alert("Debes escribir un nombre y un monto válido.");
+      return;
+    }
 
-  if (knownNames.size === 0) {
-    const empty = document.createElement("div");
-    empty.className = "names-empty";
-    empty.textContent = "Aún no hay nombres. Envía un tip y aparecerán aquí.";
-    container.appendChild(empty);
-    return;
+    sendToServer("tip", { name, amount });
   }
 
-  knownNames.forEach(name => {
-    const pill = document.createElement("div");
-    pill.className = "name-pill";
-    pill.textContent = name;
-    pill.onclick = () => {
-      document.getElementById("name").value = name;
-    };
-    container.appendChild(pill);
-  });
-}
-
-function registerName(name) {
-  if (!name) return;
-  knownNames.add(name);
-  renderNamesList();
-}
-
-function sendTip() {
-  const name = document.getElementById("name").value.trim();
-  const amount = Number(document.getElementById("amount").value);
-
-  if (!name || !amount) {
-    alert("Debes escribir un nombre y un monto válido.");
-    return;
+  function clearAll() {
+    sendToServer("clear");
   }
 
-  // guarda el nombre en la lista rápida
-  registerName(name);
-
-  sendToServer("tip", { name, amount });
-}
-
-function clearAll() {
-  // limpia top 3 en los widgets
-  sendToServer("clear");
-  // limpia listado de nombres
-  knownNames.clear();
-  renderNamesList();
-}
-
-function setGoal() {
-  const goal = Number(document.getElementById("goal").value);
-  if (!goal || goal <= 0) {
-    alert("La goal debe ser mayor a 0.");
-    return;
+  function setGoal() {
+    const goal = Number(document.getElementById("goal").value);
+    if (!goal || goal <= 0) {
+      alert("La goal debe ser mayor a 0.");
+      return;
+    }
+    sendToServer("setGoal", { goal });
   }
-  sendToServer("setGoal", { goal });
-}
 
-function clearGoal() {
-  sendToServer("clearGoal");
-}
+  function clearGoal() {
+    sendToServer("clearGoal");
+  }
 
-/* ===== ACTION TIMER ===== */
+  function startActionTimer(seconds) {
+    sendToServer("actionTimer", { seconds });
+  }
 
-function startActionTimer(seconds) {
-  sendToServer("actionTimer", { seconds });
-}
+  function stopActionTimer() {
+    sendToServer("actionTimerStop");
+  }
 
-function stopActionTimer() {
-  sendToServer("actionTimerStop");
-}
-
-/* ===== GENÉRICO ===== */
-
-function sendToServer(type, payload = {}) {
-  fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      modelId: MODEL_ID,
-      type,
-      payload
+  function sendToServer(type, payload = {}) {
+    fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        modelId: MODEL_ID,
+        type,
+        payload
+      })
     })
-  })
-    .then(res => res.json())
-    .then(data => console.log("Respuesta backend:", data))
-    .catch(err => console.error("❌ Error en fetch:", err));
-}
+      .then(res => res.json())
+      .then(data => console.log("Respuesta backend:", data))
+      .catch(err => console.error("❌ Error en fetch:", err));
+  }
 
-// render inicial de la lista vacía
-renderNamesList();
+  /* ========= BLACKJACK PLAYERS ========= */
+
+  let bjPlaying = [];
+  let bjWaiting = [];
+
+  function bjSync() {
+    // Enviar el estado completo al backend
+    sendToServer("blackjackPlayers", {
+      playing: bjPlaying,
+      waiting: bjWaiting,
+    });
+    bjRenderLists();
+  }
+
+  function bjRenderLists() {
+    const playingSelect = document.getElementById("bjPlayingList");
+    const waitingSelect = document.getElementById("bjWaitingList");
+    if (!playingSelect || !waitingSelect) return;
+
+    playingSelect.innerHTML = "";
+    bjPlaying.forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      playingSelect.appendChild(opt);
+    });
+
+    waitingSelect.innerHTML = "";
+    bjWaiting.forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      waitingSelect.appendChild(opt);
+    });
+  }
+
+  function bjGetNameInput() {
+    const input = document.getElementById("bjName");
+    const name = input.value.trim();
+    if (!name) {
+      alert("Escribe un nombre primero.");
+      return null;
+    }
+    return name;
+  }
+
+  function bjAddPlaying() {
+    const name = bjGetNameInput();
+    if (!name) return;
+
+    if (!bjPlaying.includes(name)) {
+      bjPlaying.push(name);
+    }
+    // si estaba en waiting, lo quitamos de allí
+    bjWaiting = bjWaiting.filter(n => n !== name);
+
+    bjSync();
+  }
+
+  function bjAddWaiting() {
+    const name = bjGetNameInput();
+    if (!name) return;
+
+    if (!bjWaiting.includes(name) && !bjPlaying.includes(name)) {
+      bjWaiting.push(name);
+    }
+    bjSync();
+  }
+
+  function bjMoveToWaiting() {
+    const select = document.getElementById("bjPlayingList");
+    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    if (!selected.length) return;
+
+    bjPlaying = bjPlaying.filter(n => !selected.includes(n));
+    selected.forEach(name => {
+      if (!bjWaiting.includes(name)) bjWaiting.push(name);
+    });
+
+    bjSync();
+  }
+
+  function bjMoveToPlaying() {
+    const select = document.getElementById("bjWaitingList");
+    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    if (!selected.length) return;
+
+    bjWaiting = bjWaiting.filter(n => !selected.includes(n));
+    selected.forEach(name => {
+      if (!bjPlaying.includes(name)) bjPlaying.push(name);
+    });
+
+    bjSync();
+  }
+
+  function bjRemoveFromPlaying() {
+    const select = document.getElementById("bjPlayingList");
+    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    if (!selected.length) return;
+
+    bjPlaying = bjPlaying.filter(n => !selected.includes(n));
+    bjSync();
+  }
+
+  function bjRemoveFromWaiting() {
+    const select = document.getElementById("bjWaitingList");
+    const selected = Array.from(select.selectedOptions).map(o => o.value);
+    if (!selected.length) return;
+
+    bjWaiting = bjWaiting.filter(n => !selected.includes(n));
+    bjSync();
+  }
 </script>
+
 
 </body>
 </html>

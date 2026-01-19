@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
+
+body {
+  background: transparent;
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  color: #f5f5f5;
+}
+
+/* Card principal */
+#container {
+  position: relative;
+  width: 480px;
+  padding: 18px 20px 16px;
+  border-radius: 18px;
+
+  background:
+    radial-gradient(circle at top, rgba(255, 210, 160, 0.22), #050000);
+  border: 1px solid rgba(255, 230, 180, 0.9);
+  box-shadow:
+    0 0 22px rgba(0, 0, 0, 0.95),
+    0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Título */
+.title {
+  text-align: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  margin: 0 0 12px;
+  letter-spacing: 2px;
+
+  background: linear-gradient(to right, #fff8e0, #ffdf92);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Columnas */
+.columns {
+  display: flex;
+  gap: 18px;
+}
+
+.col {
+  flex: 1;
+}
+
+/* Titulito de columna */
+.col-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffdf92;
+}
+
+/* Listas */
+#playing-list,
+#waiting-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.player-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  border-radius: 10px;
+
+  font-size: 14px;
+  color: #ffe8cc;
+}
+
+/* estilos distintos para playing / waiting */
+.player-row.playing {
+  background: linear-gradient(135deg, #b62424, #5a0b0b);
+  border: 1px solid rgba(255, 230, 180, 0.8);
+  box-shadow:
+    inset 0 0 6px rgba(0, 0, 0, 0.85),
+    0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+.player-row.waiting {
+  background: linear-gradient(135deg, #262626, #141414);
+  border: 1px solid rgba(160, 160, 160, 0.8);
+}
+
+/* numeración */
+.player-seat {
+  font-weight: 700;
+  margin-right: 6px;
+  color: #ffd36a;
+}
+
+.player-name {
+  flex: 1;
+}
+
+.player-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}

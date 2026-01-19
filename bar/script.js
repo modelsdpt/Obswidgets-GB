@@ -5,32 +5,28 @@ const ws = new WebSocket(
 
 let goal = 0;
 let current = 0;
+let goalCompleted = false;
 
 const bar = document.getElementById("bar-fill");
 const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
-let bell = document.getElementById("bellSound");
+const tipSound = document.getElementById("tipSound");
 
-// helper simple: un solo sonido para cada tip
-function playBell() {
+function playTip() {
+  if (!tipSound) return;
   try {
-    if (!bell) {
-      bell = document.getElementById("bellSound") ||
-        new Audio("https://www.myinstants.com/media/sounds/pikachu-thunderbolt.mp3");
-      bell.preload = "auto";
-    }
-    bell.currentTime = 0;
-    bell.volume = 1;
-    bell.play().catch(() => {});
-  } catch (err) {
-    console.log("Error audio:", err);
+    tipSound.currentTime = 0;
+    tipSound.volume = 1;
+    tipSound.play().catch(() => {});
+  } catch (e) {
+    console.log("Audio error:", e);
   }
 }
 
-ws.onmessage = (msg) => {
+ws.onmessage = (event) => {
   let data;
   try {
-    data = JSON.parse(msg.data || "{}");
+    data = JSON.parse(event.data || "{}");
   } catch {
     return;
   }
@@ -38,28 +34,27 @@ ws.onmessage = (msg) => {
   if (data.type === "setGoal") {
     goal = Number(data.payload?.goal || 0);
     current = 0;
+    goalCompleted = false;
     updateBar(false);
-    return;
   }
 
   if (data.type === "tip") {
-    const amt = Number(data.payload?.amount || 0);
-    if (!isNaN(amt) && amt > 0) {
-      current += amt;
-      updateBar(true);   // viene de tip → sonar
+    const amount = Number(data.payload?.amount || 0);
+    if (!isNaN(amount) && amount > 0) {
+      current += amount;
+      updateBar(true);
     }
-    return;
   }
 
   if (data.type === "clearGoal") {
     goal = 0;
     current = 0;
+    goalCompleted = false;
     updateBar(false);
-    return;
   }
 };
 
-function updateBar(playFx) {
+function updateBar(fromTip) {
   const percent = goal ? Math.min((current / goal) * 100, 100) : 0;
 
   if (bar) {
@@ -67,18 +62,24 @@ function updateBar(playFx) {
   }
 
   if (amountText) {
-    amountText.textContent = goal > 0 ? `${current} / ${goal}` : "";
+    amountText.textContent = goal > 0 ? `$${current} / $${goal}` : "";
   }
 
   if (goalTitle) {
     if (percent >= 100 && goal > 0) {
       goalTitle.classList.add("neon");
+      if (!goalCompleted) {
+        goalCompleted = true;
+        // sonidito extra cuando se llena: un shuffle más
+        playTip();
+      }
     } else {
       goalTitle.classList.remove("neon");
+      if (percent < 100) goalCompleted = false;
     }
   }
 
-  if (playFx) {
-    playBell();
+  if (fromTip) {
+    playTip();
   }
 }

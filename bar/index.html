@@ -2,23 +2,24 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Goal Bar</title>
+  <title>Blackjack Goal Bar</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div id="goal-wrapper">
     <div id="bar-fill"></div>
-    <div class="particles"></div>
-    <div class="goal-title">Double Penetration</div>
+    <div class="goal-label">
+      <span class="goal-title">GOAL</span>
+    </div>
   </div>
 
   <div class="goal-amount"></div>
 
-  <!-- SONIDO ÚNICO (thunderbolt) -->
+  <!-- Sonido de cartas shuffle en cada tip -->
   <audio
-    id="bellSound"
-    src="https://www.myinstants.com/media/sounds/pika-pika-pikaaaaa.mp3"
+    id="tipSound"
+    src="https://www.myinstants.com/media/sounds/shuffle-cards.mp3"
     preload="auto">
   </audio>
 
