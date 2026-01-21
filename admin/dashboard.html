@@ -564,81 +564,96 @@
       });
   }
 
-  // ───────── EXPORT A "XLS" (CSV PARA EXCEL) ─────────
- function downloadXls() {
-  const filtered = filterByMonth();
-  if (!filtered.length) {
-    alert("No hay registros para exportar en el mes seleccionado.");
-    return;
+  // ========= Helper: convertir a hora EST en formato HH:MM =========
+  function toEstTimeLabel(dateStr, timeStr) {
+    if (!dateStr || !timeStr) return "";
+    // Asumimos que lo que viene de backend es UTC: YYYY-MM-DD + HH:mm
+    const iso = `${dateStr}T${timeStr}:00Z`;
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return timeStr;
+
+    return new Intl.DateTimeFormat("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "America/New_York",
+    }).format(d);
   }
 
-  const rows = [];
-  // Encabezados
-  rows.push([
-    "Modelo",
-    "Fecha",
-    "Inicio",
-    "Fin",
-    "Views",
-    "Shadower Feedback",
-    "CA Feedback",
-    "Livestream Feedback",
-    "Nota",
-    "Monto",
-  ]);
+  // ───────── EXPORT A "XLS" (TSV PARA EXCEL, SOLO CAMPOS CLAVE, HORAS EN EST) ─────────
+  function downloadXls() {
+    const filtered = filterByMonth();
+    if (!filtered.length) {
+      alert("No hay registros para exportar en el mes seleccionado.");
+      return;
+    }
 
-  // Filas
-  filtered.forEach((schedule) => {
-    const r = getReportForModel(schedule.modelName) || {};
+    const rows = [];
+    // Encabezados
     rows.push([
-      schedule.modelName || "",
-      schedule.date || "",
-      schedule.start || "",
-      r.end || "",
-      Number(r.views || 0),
-      r.shadowerFeedback || "",
-      r.caFeedback || "",
-      r.livestreamFeedback || "",
-      r.note || "",
-      Number(r.collectedAmount || 0),
+      "Modelo",
+      "Fecha",
+      "Inicio (EST)",
+      "Fin (EST)",
+      "Views",
+      "Monto",
     ]);
-  });
 
-  // Generamos TSV (tab-separated values)
-  const tsv =
-    "\uFEFF" + // BOM para que Excel respete UTF-8
-    rows
-      .map((row) =>
-        row
-          .map((v) =>
-            String(v ?? "")
-              .replace(/\t/g, " ") // evitar tabs dentro del texto
-              .replace(/\r?\n/g, " ") // sin saltos de línea
-          )
-          .join("\t") // <-- separador: TAB
-      )
-      .join("\r\n");
+    // Filas
+    filtered.forEach((schedule) => {
+      const r = getReportForModel(schedule.modelName) || {};
+      const date = schedule.date || "";
+      const start = schedule.start || "";
+      const end = r.end || "";
 
-  const blob = new Blob([tsv], {
-    type: "text/tab-separated-values;charset=utf-8;",
-  });
+      const startEst = start ? toEstTimeLabel(date, start) : "";
+      const endEst = end ? toEstTimeLabel(date, end) : "";
 
-  const monthInput = document.getElementById("monthFilter");
-  const suffix = monthInput?.value || "all";
-  const fileName = `livestream_report_${suffix}.xls`; // o .tsv / .csv si prefieres
+      rows.push([
+        schedule.modelName || "",
+        date,
+        startEst,
+        endEst,
+        Number(r.views || 0),
+        Number(r.collectedAmount || 0),
+      ]);
+    });
 
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+    // Generamos TSV (tab-separated values)
+    const tsv =
+      "\uFEFF" + // BOM para que Excel respete UTF-8
+      rows
+        .map((row) =>
+          row
+            .map((v) =>
+              String(v ?? "")
+                .replace(/\t/g, " ") // evitar tabs dentro del texto
+                .replace(/\r?\n/g, " ") // sin saltos de línea
+            )
+            .join("\t") // <-- separador: TAB
+        )
+        .join("\r\n");
 
+    const blob = new Blob([tsv], {
+      type: "text/tab-separated-values;charset=utf-8;",
+    });
+
+    const monthInput = document.getElementById("monthFilter");
+    const suffix = monthInput?.value || "all";
+    const fileName = `livestream_report_${suffix}.xls`;
+
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 
   // Cargar al entrar
   loadData();
 </script>
+
 
 </body>
 </html>
