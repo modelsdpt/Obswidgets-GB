@@ -6,16 +6,16 @@
   <style>
     * { box-sizing: border-box; }
     body {
-  margin: 0;
-  background: #050814;
-  font-family: "Segoe UI Emoji", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  padding: 40px 20px;
-}
+      margin: 0;
+      background: #050814;
+      font-family: "Segoe UI Emoji", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
 
     .card {
       width: 480px;
@@ -112,20 +112,20 @@
   <div class="subtitle">
     Agenda el horario de inicio de tu livestream. El equipo completa la hora de fin.
   </div>
-  <label for="model">¿Qué modelo eres?</label>
-<select id="model">
-  <option value="">Selecciona tu nombre</option>
-  <option value="Zoe">Zoe</option>
-  <option value="Megan">Megan</option>
-  <option value="Misty">Misty</option>
-  <option value="Sunny">Sunny</option>
-  <option value="Nikki">Nikki</option>
-  <option value="Molly">Molly</option>
-  <option value="Sasha">Sasha</option>
-  <option value="Sara">Sara</option>
-  <option value="Sophi">Sophi</option>
-</select>
 
+  <label for="model">¿Qué modelo eres?</label>
+  <select id="model">
+    <option value="">Selecciona tu nombre</option>
+    <option value="Zoe">Zoe</option>
+    <option value="Megan">Megan</option>
+    <option value="Misty">Misty</option>
+    <option value="Sunny">Sunny</option>
+    <option value="Nikki">Nikki</option>
+    <option value="Molly">Molly</option>
+    <option value="Sasha">Sasha</option>
+    <option value="Sara">Sara</option>
+    <option value="Sophi">Sophi</option>
+  </select>
 
   <label for="date">Día del evento</label>
   <input id="date" type="date" />
@@ -141,166 +141,181 @@
 </div>
 
 <script>
-const API_URL = "/api/model-schedule";
+  const API_URL = "/api/model-schedule";
 
-// slots de inicio por modelo (en su hora local)
-// Puedes ajustar estos a tu lógica interna de 1h/2h, pero visualmente ya tienes la lista arriba.
-const MODEL_SLOTS = {
-  // Colombia
-   "Zoe": [
-    { start: "09:00", label: "09:00 AM (Colombia)" },
-    { start: "10:00", label: "10:00 AM (Colombia )" },
-    { start: "11:00", label: "11:00 AM (Colombia )" },
-    { start: "12:00", label: "12:00 PM (Colombia )" },
-    { start: "19:00", label: "07:00 PM (Colombia )" },
-    { start: "20:00", label: "08:00 PM (Colombia )" },
-    { start: "21:00", label: "09:00 PM (Colombia )" },
-    { start: "22:00", label: "10:00 PM (Colombia )" },
-  ],
+  // slots de inicio por modelo (en su hora local)
+  const MODEL_SLOTS = {
+    // Colombia
+    "Zoe": [
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
     "Megan": [
-    { start: "09:00", label: "09:00 AM (Colombia)" },
-    { start: "10:00", label: "10:00 AM (Colombia )" },
-    { start: "11:00", label: "11:00 AM (Colombia )" },
-    { start: "12:00", label: "12:00 PM (Colombia )" },
-    { start: "19:00", label: "07:00 PM (Colombia )" },
-    { start: "20:00", label: "08:00 PM (Colombia )" },
-    { start: "21:00", label: "09:00 PM (Colombia )" },
-    { start: "22:00", label: "10:00 PM (Colombia )" },
-  ],
-  "Misty": [
-    { start: "09:00", label: "09:00 AM (Colombia)" },
-    { start: "10:00", label: "10:00 AM (Colombia )" },
-    { start: "11:00", label: "11:00 AM (Colombia )" },
-    { start: "12:00", label: "12:00 PM (Colombia )" },
-    { start: "19:00", label: "07:00 PM (Colombia )" },
-    { start: "20:00", label: "08:00 PM (Colombia )" },
-    { start: "21:00", label: "09:00 PM (Colombia )" },
-    { start: "22:00", label: "10:00 PM (Colombia )" },
-  ],
-  "Sunny": [
-    { start: "09:00", label: "09:00 AM (Colombia)" },
-    { start: "10:00", label: "10:00 AM (Colombia )" },
-    { start: "11:00", label: "11:00 AM (Colombia )" },
-    { start: "12:00", label: "12:00 PM (Colombia )" },
-    { start: "19:00", label: "07:00 PM (Colombia )" },
-    { start: "20:00", label: "08:00 PM (Colombia )" },
-    { start: "21:00", label: "09:00 PM (Colombia )" },
-    { start: "22:00", label: "10:00 PM (Colombia )" },
-  ],
-  "Nikki": [
-    { start: "09:00", label: "09:00 AM (Colombia )" },
-    { start: "10:00", label: "10:00 AM (Colombia )" },
-    { start: "11:00", label: "11:00 AM (Colombia )" },
-    { start: "12:00", label: "12:00 PM (Colombia )" },
-    { start: "19:00", label: "07:00 PM (Colombia )" },
-    { start: "20:00", label: "08:00 PM (Colombia )" },
-    { start: "21:00", label: "09:00 PM (Colombia )" },
-    { start: "22:00", label: "10:00 PM (Colombia )" },
-  ],
-  "Molly": [
-    { start: "09:00", label: "09:00 AM (Colombia )" },
-    { start: "10:00", label: "10:00 AM (Colombia )" },
-    { start: "11:00", label: "11:00 AM (Colombia )" },
-    { start: "12:00", label: "12:00 PM (Colombia )" },
-    { start: "19:00", label: "07:00 PM (Colombia )" },
-    { start: "20:00", label: "08:00 PM (Colombia)" },
-    { start: "21:00", label: "09:00 PM (Colombia)" },
-    { start: "22:00", label: "10:00 PM (Colombia)" },
-  ],
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
+    "Misty": [
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
+    "Sunny": [
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
+    "Nikki": [
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
+    "Molly": [
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
 
-  // Argentina
-  "Sasha": [
-    { start: "12:00", label: "12:00 PM (Argentina )" },
-    { start: "13:00", label: "01:00 PM (Argentina )" },
-    { start: "14:00", label: "02:00 PM (Argentina )" },
-    { start: "15:00", label: "03:00 PM (Argentina )" },
-    { start: "21:00", label: "09:00 PM (Argentina )" },
-    { start: "22:00", label: "10:00 PM (Argentina )" },
-    { start: "23:00", label: "11:00 PM (Argentina )" },
-    { start: "00:00", label: "12:00 AM (Argentina )" },
-  ],
+    // Argentina
+    "Sasha": [
+      { start: "12:00", label: "12:00 PM (Argentina)" },
+      { start: "13:00", label: "01:00 PM (Argentina)" },
+      { start: "14:00", label: "02:00 PM (Argentina)" },
+      { start: "15:00", label: "03:00 PM (Argentina)" },
+      { start: "21:00", label: "09:00 PM (Argentina)" },
+      { start: "22:00", label: "10:00 PM (Argentina)" },
+      { start: "23:00", label: "11:00 PM (Argentina)" },
+      { start: "00:00", label: "12:00 AM (Argentina)" },
+    ],
 
-  // Eslovaquia
-"Sara": [
-  { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
-  { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
-  { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
-  { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
-  { start: "02:00", label: "02:00 (día siguiente) 🇸🇰" },
-  { start: "03:00", label: "03:00 (día siguiente) 🇸🇰" },
-  { start: "04:00", label: "04:00 (día siguiente) 🇸🇰" },
-  { start: "05:00", label: "05:00 (día siguiente) 🇸🇰" },
-],
-"Sophi": [
-  { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
-  { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
-  { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
-  { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
-  { start: "02:00", label: "02:00 (día siguiente) 🇸🇰" },
-  { start: "03:00", label: "03:00 (día siguiente) 🇸🇰" },
-  { start: "04:00", label: "04:00 (día siguiente) 🇸🇰" },
-  { start: "05:00", label: "05:00 (día siguiente) 🇸🇰" },
-]
-};
+    // Eslovaquia
+    "Sara": [
+      { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
+      { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
+      { start: "18:00", label: "18:00 (06:00 PM) 🇸🇌" },
+      { start: "19:00", label: "19:00 (07:00 PM) 🇸🇌" },
+      { start: "02:00", label: "02:00 (día siguiente) 🇸🇌" },
+      { start: "03:00", label: "03:00 (día siguiente) 🇸🇌" },
+      { start: "04:00", label: "04:00 (día siguiente) 🇸🇌" },
+      { start: "05:00", label: "05:00 (día siguiente) 🇸🇌" },
+    ],
+    "Sophi": [
+      { start: "16:00", label: "16:00 (04:00 PM) 🇸🇌" },
+      { start: "17:00", label: "17:00 (05:00 PM) 🇸🇌" },
+      { start: "18:00", label: "18:00 (06:00 PM) 🇸🇌" },
+      { start: "19:00", label: "19:00 (07:00 PM) 🇸🇌" },
+      { start: "02:00", label: "02:00 (día siguiente) 🇸🇌" },
+      { start: "03:00", label: "03:00 (día siguiente) 🇸🇌" },
+      { start: "04:00", label: "04:00 (día siguiente) 🇸🇌" },
+      { start: "05:00", label: "05:00 (día siguiente) 🇸🇌" },
+    ],
+  };
 
-const statusEl = document.getElementById("status");
-const saveBtn = document.getElementById("saveBtn");
-const modelSelect = document.getElementById("model");
-const slotSelect = document.getElementById("slot");
+  const statusEl = document.getElementById("status");
+  const saveBtn = document.getElementById("saveBtn");
+  const modelSelect = document.getElementById("model");
+  const slotSelect = document.getElementById("slot");
 
-modelSelect.addEventListener("change", () => {
-  const model = modelSelect.value;
-  slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
+  // Rellena el combo de horarios según la modelo
+  modelSelect.addEventListener("change", () => {
+    const model = modelSelect.value;
+    slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
 
-  if (!model || !MODEL_SLOTS[model]) return;
+    if (!model || !MODEL_SLOTS[model]) return;
 
-  MODEL_SLOTS[model].forEach(slot => {
-    const opt = document.createElement("option");
-    opt.value = slot.start;
-    opt.textContent = slot.label;
-    slotSelect.appendChild(opt);
+    MODEL_SLOTS[model].forEach((slot) => {
+      const opt = document.createElement("option");
+      opt.value = slot.start;
+      opt.textContent = slot.label;
+      slotSelect.appendChild(opt);
+    });
   });
-});
 
-function saveSchedule() {
-  const modelName = modelSelect.value;
-  const date = document.getElementById("date").value;
-  const start = slotSelect.value;
-
-  statusEl.textContent = "";
-  statusEl.className = "status";
-
-  if (!modelName || !date || !start) {
-    statusEl.textContent = "Completa modelo, fecha y horario.";
-    statusEl.classList.add("error");
-    return;
+  // Helper para obtener la zona horaria del navegador
+  function getBrowserTimeZone() {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      return tz || "";
+    } catch (e) {
+      console.warn("No se pudo resolver la timeZone del navegador:", e);
+      return "";
+    }
   }
 
-  saveBtn.disabled = true;
+  function saveSchedule() {
+    const modelName = modelSelect.value;
+    const date = document.getElementById("date").value;
+    const start = slotSelect.value;
 
-  fetch(API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ modelName, date, start })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data && data.success) {
-        statusEl.textContent = "Horario guardado / actualizado. Gracias ♥";
-        statusEl.classList.add("ok");
-      } else {
-        throw new Error(data?.message || "Error desconocido");
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      statusEl.textContent = "Hubo un problema guardando tu horario. Intenta más tarde.";
+    statusEl.textContent = "";
+    statusEl.className = "status";
+
+    if (!modelName || !date || !start) {
+      statusEl.textContent = "Completa modelo, fecha y horario.";
       statusEl.classList.add("error");
+      return;
+    }
+
+    const timeZone = getBrowserTimeZone(); // <-- zona horaria real de la modelo
+    console.log("Enviando horario:", { modelName, date, start, timeZone });
+
+    saveBtn.disabled = true;
+
+    fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ modelName, date, start, timeZone }),
     })
-    .finally(() => {
-      saveBtn.disabled = false;
-    });
-}
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.success) {
+          statusEl.textContent = "Horario guardado / actualizado. Gracias ♥";
+          statusEl.classList.add("ok");
+        } else {
+          throw new Error(data?.message || "Error desconocido");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        statusEl.textContent =
+          "Hubo un problema guardando tu horario. Intenta más tarde.";
+        statusEl.classList.add("error");
+      })
+      .finally(() => {
+        saveBtn.disabled = false;
+      });
+  }
 </script>
 
 </body>
