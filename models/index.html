@@ -143,9 +143,9 @@
 <script>
   const API_URL = "/api/model-schedule";
 
-  // slots de inicio por modelo (en su hora local)
+  // Horarios que ve la modelo (en SU hora local)
   const MODEL_SLOTS = {
-    // Colombia
+    // Colombia (mismo offset que EST)
     "Zoe": [
       { start: "09:00", label: "09:00 AM (Colombia)" },
       { start: "10:00", label: "10:00 AM (Colombia)" },
@@ -223,31 +223,45 @@
     "Sara": [
       { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
       { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
-      { start: "18:00", label: "18:00 (06:00 PM) 🇸🇌" },
-      { start: "19:00", label: "19:00 (07:00 PM) 🇸🇌" },
-      { start: "02:00", label: "02:00 (día siguiente) 🇸🇌" },
-      { start: "03:00", label: "03:00 (día siguiente) 🇸🇌" },
-      { start: "04:00", label: "04:00 (día siguiente) 🇸🇌" },
-      { start: "05:00", label: "05:00 (día siguiente) 🇸🇌" },
+      { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
+      { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
+      { start: "02:00", label: "02:00 (día siguiente) 🇸🇰" },
+      { start: "03:00", label: "03:00 (día siguiente) 🇸🇰" },
+      { start: "04:00", label: "04:00 (día siguiente) 🇸🇰" },
+      { start: "05:00", label: "05:00 (día siguiente) 🇸🇰" },
     ],
     "Sophi": [
-      { start: "16:00", label: "16:00 (04:00 PM) 🇸🇌" },
-      { start: "17:00", label: "17:00 (05:00 PM) 🇸🇌" },
-      { start: "18:00", label: "18:00 (06:00 PM) 🇸🇌" },
-      { start: "19:00", label: "19:00 (07:00 PM) 🇸🇌" },
-      { start: "02:00", label: "02:00 (día siguiente) 🇸🇌" },
-      { start: "03:00", label: "03:00 (día siguiente) 🇸🇌" },
-      { start: "04:00", label: "04:00 (día siguiente) 🇸🇌" },
-      { start: "05:00", label: "05:00 (día siguiente) 🇸🇌" },
+      { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
+      { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
+      { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
+      { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
+      { start: "02:00", label: "02:00 (día siguiente) 🇸🇰" },
+      { start: "03:00", label: "03:00 (día siguiente) 🇸🇰" },
+      { start: "04:00", label: "04:00 (día siguiente) 🇸🇰" },
+      { start: "05:00", label: "05:00 (día siguiente) 🇸🇰" },
     ],
   };
 
-  const statusEl = document.getElementById("status");
-  const saveBtn = document.getElementById("saveBtn");
-  const modelSelect = document.getElementById("model");
-  const slotSelect = document.getElementById("slot");
+  // Diferencia fija (en horas) entre la hora LOCAL de la modelo y EST.
+  // EST = hora_local - offsetHoras
+  const MODEL_OFFSET_TO_EST = {
+    Zoe:   0,
+    Megan: 0,
+    Misty: 0,
+    Sunny: 0,
+    Nikki: 0,
+    Molly: 0,
+    Sasha: 2, // Argentina está +2 sobre EST
+    Sara:  6, // Eslovaquia está +6 sobre EST
+    Sophi: 6,
+  };
 
-  // Rellena el combo de horarios según la modelo
+  const statusEl = document.getElementById("status");
+  const saveBtn   = document.getElementById("saveBtn");
+  const modelSelect = document.getElementById("model");
+  const slotSelect  = document.getElementById("slot");
+
+  // Rellenar horarios según modelo
   modelSelect.addEventListener("change", () => {
     const model = modelSelect.value;
     slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
@@ -262,40 +276,84 @@
     });
   });
 
-  // Helper para obtener la zona horaria del navegador
-  function getBrowserTimeZone() {
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      return tz || "";
-    } catch (e) {
-      console.warn("No se pudo resolver la timeZone del navegador:", e);
-      return "";
+  // Convierte fecha/hora local de la modelo a EST (solo aritmética de horas)
+  function convertLocalToEst(dateStr, timeStr, modelName) {
+    const offset = MODEL_OFFSET_TO_EST[modelName] ?? 0; // horas por delante de EST
+
+    // Parseamos fecha YYYY-MM-DD
+    const [y, m, d] = dateStr.split("-").map(Number);
+    // HH:MM
+    const [hh, mm] = timeStr.split(":").map(Number);
+
+    let totalMinutes = hh * 60 + mm;
+    totalMinutes -= offset * 60;
+
+    let dayShift = 0;
+    if (totalMinutes < 0) {
+      totalMinutes += 24 * 60;
+      dayShift = -1;
+    } else if (totalMinutes >= 24 * 60) {
+      totalMinutes -= 24 * 60;
+      dayShift = 1;
     }
+
+    const estHour = String(Math.floor(totalMinutes / 60)).padStart(2, "0");
+    const estMin  = String(totalMinutes % 60).padStart(2, "0");
+
+    // Ajustar día (usamos Date UTC para que no meta timezone del navegador)
+    const dt = new Date(Date.UTC(y, m - 1, d));
+    dt.setUTCDate(dt.getUTCDate() + dayShift);
+
+    const estYear  = dt.getUTCFullYear();
+    const estMonth = String(dt.getUTCMonth() + 1).padStart(2, "0");
+    const estDay   = String(dt.getUTCDate()).padStart(2, "0");
+
+    return {
+      date:  `${estYear}-${estMonth}-${estDay}`,
+      start: `${estHour}:${estMin}`,
+    };
   }
 
   function saveSchedule() {
     const modelName = modelSelect.value;
-    const date = document.getElementById("date").value;
-    const start = slotSelect.value;
+    const dateLocal = document.getElementById("date").value;
+    const startLocal = slotSelect.value;
 
     statusEl.textContent = "";
     statusEl.className = "status";
 
-    if (!modelName || !date || !start) {
+    if (!modelName || !dateLocal || !startLocal) {
       statusEl.textContent = "Completa modelo, fecha y horario.";
       statusEl.classList.add("error");
       return;
     }
 
-    const timeZone = getBrowserTimeZone(); // <-- zona horaria real de la modelo
-    console.log("Enviando horario:", { modelName, date, start, timeZone });
+    // Convertimos a EST antes de enviar al backend
+    const { date: dateEST, start: startEST } =
+      convertLocalToEst(dateLocal, startLocal, modelName);
+
+    console.log("Guardando horario:", {
+      modelName,
+      dateLocal,
+      startLocal,
+      dateEST,
+      startEST,
+    });
 
     saveBtn.disabled = true;
 
     fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ modelName, date, start, timeZone }),
+      body: JSON.stringify({
+        modelName,
+        // Lo que se guarda y ve el dashboard: EST
+        date: dateEST,
+        start: startEST,
+        // Opcional: mandamos también lo original por si luego quieres usarlo
+        originalDate: dateLocal,
+        originalStart: startLocal,
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -317,6 +375,7 @@
       });
   }
 </script>
+
 
 </body>
 </html>
