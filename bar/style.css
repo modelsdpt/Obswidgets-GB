@@ -7,69 +7,25 @@ body {
   color: #ffe8ff;
 }
 
-/* CARD */
-#container {
+/* CONTENEDOR DE LA BARRA */
+#goal-wrapper {
   position: relative;
   width: 520px;
-  padding: 16px 20px 18px;
-  border-radius: 22px;
-
-  background:
-    radial-gradient(circle at top, rgba(255, 123, 222, 0.30), rgba(0, 0, 0, 0.98));
-  border: 1px solid rgba(255, 190, 255, 0.95);
-  box-shadow:
-    0 0 26px rgba(0, 0, 0, 1),
-    0 0 40px rgba(255, 40, 180, 0.95);
-}
-
-/* TÍTULO */
-.goal-title {
-  text-align: center;
-  font-family: "DM Serif Display", serif;
-  font-size: 22px;
-  letter-spacing: 4px;
-  margin: 0 0 6px;
-
-  color: #fff5ff;
-  text-shadow:
-    0 0 4px #ff4fd1,
-    0 0 10px #ff4fd1,
-    0 0 22px #f72585;
-  animation: neonGoal 2.2s ease-in-out infinite;
-}
-
-/* TEXTO  current / goal */
-.goal-amount {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-
-  color: #ffe8ff;
-  text-shadow:
-    0 0 3px #ff9ae6,
-    0 0 8px #ff4fd1;
-}
-
-/* CONTENEDOR BARRA */
-.goal-bar,
-.goal-bar-outer {
-  position: relative;
-  width: 100%;
-  height: 34px;
+  height: 40px;
   border-radius: 999px;
   overflow: hidden;
 
-  background: linear-gradient(90deg, #080808, #151515);
-  border: 1px solid rgba(255, 168, 255, 0.8);
+  background: linear-gradient(135deg, #050505, #181018);
+  border: 1px solid rgba(255, 190, 255, 0.9);
   box-shadow:
-    0 0 12px rgba(255, 65, 190, 0.8),
-    inset 0 0 10px rgba(0, 0, 0, 1);
+    0 0 20px rgba(0, 0, 0, 1),
+    0 0 26px rgba(255, 40, 180, 0.9);
 }
 
-/* RELLENO CONTROLADO POR JS: #bar-fill */
+/* RELLENO – tu JS solo cambia width en % */
 #bar-fill {
-  height: 100%;
+  position: absolute;
+  inset: 0;
   width: 0%;
   border-radius: 999px;
 
@@ -88,38 +44,55 @@ body {
 
   box-shadow:
     0 0 15px rgba(255, 79, 209, 0.9),
-    0 0 28px rgba(255, 79, 209, 0.9);
+    0 0 30px rgba(255, 79, 209, 0.9);
 
-  transition: width 0.30s ease-out;
-  animation: barStripes 3s linear infinite;
+  transition: width 0.35s ease-out;
+  animation: goalStripes 3s linear infinite;
 }
 
-/* cuando la goal se llene (tu JS añade .neon) */
-.goal-title.neon {
+/* LABEL ENCIMA DE LA BARRA */
+.goal-label {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.goal-title {
+  font-family: "DM Serif Display", serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #fff5ff;
   text-shadow:
-    0 0 8px #ffffff,
-    0 0 18px #ff4fd1,
-    0 0 32px #ff4fd1,
-    0 0 46px #f72585;
+    0 0 4px #ff4fd1,
+    0 0 10px #ff4fd1,
+    0 0 22px #f72585;
 }
 
-/* animaciones */
-@keyframes neonGoal {
-  0%, 100% {
-    text-shadow:
-      0 0 4px #ff4fd1,
-      0 0 10px #ff4fd1,
-      0 0 22px #f72585;
-  }
-  50% {
-    text-shadow:
-      0 0 6px #ffffff,
-      0 0 16px #ff4fd1,
-      0 0 32px #f72585;
-  }
+/* current / goal debajo (si tu JS lo usa) */
+.goal-amount {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #ffe8ff;
+  text-shadow:
+    0 0 3px #ff9ae6,
+    0 0 8px #ff4fd1;
 }
 
-@keyframes barStripes {
+/* cuando tu JS le agregue alguna clase a la meta cumplida puedes usar esto:
+.goal-wrapper.goal-completed #bar-fill { … } */
+
+/* ANIMACIÓN RAYAS */
+@keyframes goalStripes {
   0%   { background-position: 0 0, 0 0; }
   100% { background-position: 0 0, 80px 0; }
 }
