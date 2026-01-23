@@ -1,61 +1,70 @@
-/* ======= ACTION TIMER ======= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
 
-#timer-container {
-  position: relative;
-  width: 360px;
-  padding: 16px 18px 14px;
-  border-radius: 18px;
-
-  background: radial-gradient(circle at top, rgba(255, 114, 219, 0.25), #050505);
-  border: 1px solid rgba(255, 167, 255, 0.8);
-  box-shadow:
-    0 0 24px rgba(0, 0, 0, 0.95),
-    0 0 34px rgba(255, 65, 190, 0.9);
+body {
+  margin: 0;
+  background: transparent;
+  font-family: "Poppins", system-ui, sans-serif;
   color: #ffe8ff;
 }
 
-/* Título “ACTION TIMER” */
-#timer-container .title {
+/* CARD */
+#container {
+  position: relative;
+  width: 360px;
+  padding: 16px 18px 14px;
+  border-radius: 22px;
+
+  background:
+    radial-gradient(circle at top, rgba(255, 123, 222, 0.30), rgba(0, 0, 0, 0.98));
+  border: 1px solid rgba(255, 190, 255, 0.95);
+  box-shadow:
+    0 0 26px rgba(0, 0, 0, 1),
+    0 0 40px rgba(255, 40, 180, 0.95);
+}
+
+/* TÍTULO */
+.title {
   text-align: center;
   font-family: "DM Serif Display", serif;
   font-size: 18px;
   letter-spacing: 3px;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 
-  color: #ffe8ff;
+  color: #fff5ff;
   text-shadow:
     0 0 4px #ff4fd1,
     0 0 10px #ff4fd1,
-    0 0 20px #f72585;
+    0 0 22px #f72585;
+  animation: neonPulse 2.2s ease-in-out infinite;
 }
 
-/* Display de tiempo 00:30 */
+/* DISPLAY 00:30 */
 .timer-display {
   text-align: center;
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 700;
   letter-spacing: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 
-  color: #fffbff;
+  color: #ffffff;
   text-shadow:
-    0 0 5px #ff9ae6,
-    0 0 14px #ff4fd1,
-    0 0 26px #f72585;
+    0 0 6px #ffb3ff,
+    0 0 16px #ff4fd1,
+    0 0 28px #f72585;
 }
 
-/* Texto pequeñito debajo “Last action: …” */
+/* TEXTO BAJO “Current action: …” */
 .timer-label,
 .last-action {
   text-align: center;
   font-size: 12px;
-  opacity: 0.85;
+  opacity: 0.9;
   color: #ffd9ff;
 }
 
-/* Si tienes un cuadrito/badge de estado */
+/* Estado opcional */
 .timer-status {
-  margin-top: 6px;
+  margin-top: 5px;
   text-align: center;
   font-size: 11px;
   text-transform: uppercase;
@@ -65,4 +74,20 @@
   text-shadow:
     0 0 4px #ff4fd1,
     0 0 10px #ff4fd1;
+}
+
+/* ANIMACIÓN COMPARTIDA */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px #ff4fd1,
+      0 0 10px #ff4fd1,
+      0 0 22px #f72585;
+  }
+  50% {
+    text-shadow:
+      0 0 6px #ffffff,
+      0 0 16px #ff4fd1,
+      0 0 32px #f72585;
+  }
 }

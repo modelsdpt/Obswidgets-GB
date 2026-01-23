@@ -1,80 +1,124 @@
-/* ======= GOAL BAR ======= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
 
-#goal-container {
-  position: relative;
-  width: 520px;
-  padding: 16px 18px 14px;
-  border-radius: 18px;
-
-  background: radial-gradient(circle at top, rgba(255, 114, 219, 0.22), #020202);
-  border: 1px solid rgba(255, 167, 255, 0.8);
-  box-shadow:
-    0 0 28px rgba(0, 0, 0, 0.95),
-    0 0 38px rgba(255, 65, 190, 0.9);
+body {
+  margin: 0;
+  background: transparent;
+  font-family: "Poppins", system-ui, sans-serif;
   color: #ffe8ff;
 }
 
-/* Título “GOAL” */
-#goal-container .goal-title {
+/* CARD principal */
+#container {
+  position: relative;
+  width: 520px;
+  padding: 16px 20px 18px;
+  border-radius: 22px;
+
+  background:
+    radial-gradient(circle at top, rgba(255, 123, 222, 0.30), rgba(0, 0, 0, 0.98));
+  border: 1px solid rgba(255, 190, 255, 0.95);
+  box-shadow:
+    0 0 26px rgba(0, 0, 0, 1),
+    0 0 40px rgba(255, 40, 180, 0.95);
+}
+
+/* TÍTULO GOAL */
+.goal-title {
   text-align: center;
   font-family: "DM Serif Display", serif;
-  font-size: 20px;
-  letter-spacing: 3px;
+  font-size: 22px;
+  letter-spacing: 4px;
   margin: 0 0 6px;
 
-  color: #ffe8ff;
+  color: #fff5ff;
   text-shadow:
     0 0 4px #ff4fd1,
     0 0 10px #ff4fd1,
-    0 0 20px #f72585;
+    0 0 22px #f72585;
+  animation: neonPulse 2.2s ease-in-out infinite;
 }
 
-/* Texto  “$X / $Y” */
-#goal-container .goal-amount {
+/* TEXTO  X / Y */
+.goal-amount {
   text-align: center;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
 
-  color: #fffbff;
+  color: #ffe8ff;
   text-shadow:
     0 0 3px #ff9ae6,
     0 0 8px #ff4fd1;
 }
 
-/* Contenedor barra */
+/* CONTENEDOR DE BARRA */
 .goal-bar {
   position: relative;
   width: 100%;
-  height: 26px;
+  height: 34px;
   border-radius: 999px;
   overflow: hidden;
 
-  background: linear-gradient(90deg, #1a1a1a, #050505);
-  border: 1px solid rgba(255, 168, 255, 0.5);
+  background: linear-gradient(90deg, #080808, #151515);
+  border: 1px solid rgba(255, 168, 255, 0.8);
   box-shadow:
-    0 0 10px rgba(255, 65, 190, 0.7),
-    inset 0 0 8px rgba(0, 0, 0, 0.95);
+    0 0 12px rgba(255, 65, 190, 0.8),
+    inset 0 0 10px rgba(0, 0, 0, 1);
 }
 
-/* Relleno (usa tu #bar-fill actual) */
-.goal-bar #bar-fill,
+/* RELLENO – #bar-fill viene del JS */
 #bar-fill {
   height: 100%;
   width: 0%;
   border-radius: 999px;
 
-  background: linear-gradient(90deg, #ff4fd1, #ffb3ff);
+  background-image:
+    linear-gradient(90deg, #ff4fd1, #ffc2ff),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.6) 0,
+      rgba(255, 255, 255, 0.6) 6px,
+      rgba(255, 255, 255, 0) 6px,
+      rgba(255, 255, 255, 0) 14px
+    );
+  background-blend-mode: screen;
+  background-size: 180% 100%, 40px 40px;
+  background-position: 0 0, 0 0;
+
   box-shadow:
-    0 0 12px rgba(255, 79, 209, 0.9),
-    0 0 22px rgba(255, 79, 209, 0.8);
-  transition: width 0.35s ease-out;
+    0 0 15px rgba(255, 79, 209, 0.9),
+    0 0 28px rgba(255, 79, 209, 0.9);
+
+  transition: width 0.3s ease-out;
+  animation: barStripes 3s linear infinite;
 }
 
-/* Cuando la goal esté completada y pongas .neon en el título */
+/* Cuando el título tenga .neon (goal completada) */
 .goal-title.neon {
   text-shadow:
-    0 0 6px #ffffff,
-    0 0 14px #ff4fd1,
-    0 0 28px #ff4fd1;
+    0 0 8px #ffffff,
+    0 0 18px #ff4fd1,
+    0 0 32px #ff4fd1,
+    0 0 46px #f72585;
+}
+
+/* ANIMACIONES */
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px #ff4fd1,
+      0 0 10px #ff4fd1,
+      0 0 22px #f72585;
+  }
+  50% {
+    text-shadow:
+      0 0 6px #ffffff,
+      0 0 16px #ff4fd1,
+      0 0 32px #f72585;
+  }
+}
+
+@keyframes barStripes {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 0 0, 80px 0; }
 }
