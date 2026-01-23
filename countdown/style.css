@@ -7,7 +7,7 @@ body {
   color: #ffe8ff;
 }
 
-/* CARD */
+/* CARD – usa el mismo id #container que el HTML del timer */
 #container {
   position: relative;
   width: 360px;
@@ -35,10 +35,10 @@ body {
     0 0 4px #ff4fd1,
     0 0 10px #ff4fd1,
     0 0 22px #f72585;
-  animation: neonPulse 2.2s ease-in-out infinite;
+  animation: neonTimer 2.2s ease-in-out infinite;
 }
 
-/* DISPLAY 00:30 */
+/* 00:30 */
 .timer-display {
   text-align: center;
   font-size: 30px;
@@ -53,31 +53,25 @@ body {
     0 0 28px #f72585;
 }
 
-/* TEXTO BAJO “Current action: …” */
+/* textos extra del timer si los usas */
 .timer-label,
-.last-action {
+.last-action,
+.timer-status {
   text-align: center;
   font-size: 12px;
-  opacity: 0.9;
   color: #ffd9ff;
 }
 
-/* Estado opcional */
+/* estado opcional */
 .timer-status {
-  margin-top: 5px;
-  text-align: center;
-  font-size: 11px;
+  margin-top: 4px;
   text-transform: uppercase;
   letter-spacing: 2px;
-
-  color: #ffb3ff;
-  text-shadow:
-    0 0 4px #ff4fd1,
-    0 0 10px #ff4fd1;
+  font-weight: 600;
 }
 
-/* ANIMACIÓN COMPARTIDA */
-@keyframes neonPulse {
+/* animación */
+@keyframes neonTimer {
   0%, 100% {
     text-shadow:
       0 0 4px #ff4fd1,

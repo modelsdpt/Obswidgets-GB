@@ -7,7 +7,7 @@ body {
   color: #ffe8ff;
 }
 
-/* CARD */
+/* CARD PRINCIPAL */
 #container {
   position: relative;
   width: 420px;
@@ -35,17 +35,21 @@ body {
     0 0 4px #ff4fd1,
     0 0 10px #ff4fd1,
     0 0 22px #f72585;
-  animation: neonPulse 2.2s ease-in-out infinite;
+  animation: neonMvp 2.2s ease-in-out infinite;
 }
 
-/* LISTA MVP */
+/* LISTA */
 #mvp-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.mvp-row {
+/* SUB-CARD POR CADA MVP
+   Aplica tanto si tu JS crea <li> como <div> */
+.mvp-row,
+#mvp-list > li,
+#mvp-list > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,7 +59,7 @@ body {
   border-radius: 999px;
 
   background: linear-gradient(135deg, #0b0b0b, #1a0019);
-  border: 1px solid rgba(255, 153, 255, 0.8);
+  border: 1px solid rgba(255, 153, 255, 0.85);
   box-shadow:
     0 0 8px rgba(0, 0, 0, 0.9),
     0 0 16px rgba(255, 88, 200, 0.95);
@@ -64,7 +68,7 @@ body {
   color: #ffe8ff;
 }
 
-/* medallitas 1°, 2°, 3° si las tienes */
+/* rank opcional */
 .mvp-rank {
   font-weight: 700;
   margin-right: 8px;
@@ -72,7 +76,9 @@ body {
   text-shadow: 0 0 5px #ff4fd1;
 }
 
-.mvp-name {
+/* nombre */
+.mvp-name,
+#mvp-list .name {
   flex: 1;
   font-weight: 600;
   text-shadow:
@@ -80,7 +86,9 @@ body {
     0 0 10px #ff4fd1;
 }
 
-.mvp-amount {
+/* monto */
+.mvp-amount,
+#mvp-list .amount {
   font-weight: 700;
   letter-spacing: 1px;
   color: #ffffff;
@@ -89,8 +97,8 @@ body {
     0 0 11px #ff4fd1;
 }
 
-/* ANIMACIÓN COMPARTIDA */
-@keyframes neonPulse {
+/* ANIMACIÓN */
+@keyframes neonMvp {
   0%, 100% {
     text-shadow:
       0 0 4px #ff4fd1,
@@ -102,5 +110,17 @@ body {
       0 0 6px #ffffff,
       0 0 16px #ff4fd1,
       0 0 32px #f72585;
+  }
+}
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 15px rgba(255, 79, 209, 0.9),
+      0 0 30px rgba(255, 79, 209, 0.7);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(255, 255, 255, 1),
+      0 0 45px rgba(255, 79, 209, 1);
   }
 }
