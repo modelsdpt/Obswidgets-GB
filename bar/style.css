@@ -1,96 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
+/* ======= GOAL BAR ======= */
 
-body {
-  background: transparent;
-  margin: 0;
-  font-family: 'Poppins', system-ui, sans-serif;
-  text-align: center;
-  color: #f5f5f5;
+#goal-container {
+  position: relative;
+  width: 520px;
+  padding: 16px 18px 14px;
+  border-radius: 18px;
+
+  background: radial-gradient(circle at top, rgba(255, 114, 219, 0.22), #020202);
+  border: 1px solid rgba(255, 167, 255, 0.8);
+  box-shadow:
+    0 0 28px rgba(0, 0, 0, 0.95),
+    0 0 38px rgba(255, 65, 190, 0.9);
+  color: #ffe8ff;
 }
 
-/* CONTENEDOR DE LA BARRA – estilo tapete de blackjack */
-#goal-wrapper {
+/* Título “GOAL” */
+#goal-container .goal-title {
+  text-align: center;
+  font-family: "DM Serif Display", serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin: 0 0 6px;
+
+  color: #ffe8ff;
+  text-shadow:
+    0 0 4px #ff4fd1,
+    0 0 10px #ff4fd1,
+    0 0 20px #f72585;
+}
+
+/* Texto  “$X / $Y” */
+#goal-container .goal-amount {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+
+  color: #fffbff;
+  text-shadow:
+    0 0 3px #ff9ae6,
+    0 0 8px #ff4fd1;
+}
+
+/* Contenedor barra */
+.goal-bar {
   position: relative;
-  width: 500px;
-  height: 60px;
-  margin: 0 auto;
-  border-radius: 18px;
+  width: 100%;
+  height: 26px;
+  border-radius: 999px;
   overflow: hidden;
 
-  background:
-    radial-gradient(circle at top, rgba(255, 210, 160, 0.2), transparent 60%),
-    linear-gradient(135deg, #2a0000, #120000);
-  border: 1px solid rgba(255, 230, 180, 0.9);
+  background: linear-gradient(90deg, #1a1a1a, #050505);
+  border: 1px solid rgba(255, 168, 255, 0.5);
   box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.95),
-    0 0 28px rgba(0, 0, 0, 0.9);
+    0 0 10px rgba(255, 65, 190, 0.7),
+    inset 0 0 8px rgba(0, 0, 0, 0.95);
 }
 
-/* Barra de progreso tipo mesa roja */
+/* Relleno (usa tu #bar-fill actual) */
+.goal-bar #bar-fill,
 #bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(
-    120deg,
-    #b62424,
-    #e04a25,
-    #ffb977,
-    #e04a25,
-    #b62424
-  );
-  background-size: 220% 100%;
-  animation: feltFlow 3s linear infinite;
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #ff4fd1, #ffb3ff);
   box-shadow:
-    inset 0 0 10px rgba(0, 0, 0, 0.9),
-    0 0 14px rgba(255, 120, 50, 0.7);
-  transition: width 0.5s ease-out;
+    0 0 12px rgba(255, 79, 209, 0.9),
+    0 0 22px rgba(255, 79, 209, 0.8);
+  transition: width 0.35s ease-out;
 }
 
-/* Etiqueta de la meta centrada */
-.goal-label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.goal-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 26px;
-  letter-spacing: 2px;
-
-  color: linear-gradient(to right, #fff8e0, #ffdf92);
-  background: transparent;
-
-  text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.9);
-}
-
-/* Progreso numérico abajo */
-.goal-amount {
-  font-size: 18px;
-  margin-top: 10px;
-  font-weight: 600;
-
-  color: #ffeccc;
-  text-shadow:
-    0 0 3px rgba(0,0,0,0.9),
-    0 0 8px rgba(0,0,0,0.8);
-}
-
-/* Cuando se llena: brillo */
+/* Cuando la goal esté completada y pongas .neon en el título */
 .goal-title.neon {
   text-shadow:
-    0 0 4px rgba(255, 255, 200, 1),
-    0 0 10px rgba(255, 215, 120, 0.95),
-    0 0 18px rgba(255, 120, 70, 0.9);
-}
-
-/* Animación del gradiente */
-@keyframes feltFlow {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+    0 0 6px #ffffff,
+    0 0 14px #ff4fd1,
+    0 0 28px #ff4fd1;
 }

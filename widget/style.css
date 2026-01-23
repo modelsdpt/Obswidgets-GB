@@ -1,97 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
+/* ======= MVP WIDGET ======= */
 
 body {
-  background: transparent;
   margin: 0;
-  font-family: 'Poppins', system-ui, sans-serif;
-  color: #f5f5f5;
+  background: transparent;
+  font-family: "Poppins", system-ui, sans-serif;
+  color: #fcecff;
 }
 
-/* Card principal */
-#container {
+/* Tarjeta principal */
+#mvp-container {
   position: relative;
   width: 420px;
   padding: 18px 20px 16px;
   border-radius: 18px;
 
-  background:
-    radial-gradient(circle at top, rgba(255, 210, 160, 0.22), #050000);
-  border: 1px solid rgba(255, 230, 180, 0.9);
+  background: radial-gradient(circle at top, rgba(255, 114, 219, 0.25), #050505);
+  border: 1px solid rgba(255, 167, 255, 0.8);
   box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.95),
-    0 0 30px rgba(0, 0, 0, 0.9);
+    0 0 30px rgba(0, 0, 0, 0.95),
+    0 0 42px rgba(255, 65, 190, 0.85);
 }
 
-/* Título */
-.title {
+/* Título “TIP MENU / MVP / etc” */
+#mvp-container .title {
   text-align: center;
-  font-family: 'DM Serif Display', serif;
-  font-size: 24px;
-  margin: 0 0 14px;
-  letter-spacing: 2px;
+  font-family: "DM Serif Display", serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  margin: 0 0 12px;
 
-  color: linear-gradient(to right, #fff8e0, #ffdf92);
-  background: transparent;
-
+  color: #ffe8ff;
   text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.9);
-
+    0 0 4px #ff4fd1,
+    0 0 10px #ff4fd1,
+    0 0 20px #f72585;
 }
 
-/* Lista */
-#top-list {
-  position: relative;
+/* Lista MVP (1. Nombre – $Monto) */
+.mvp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* Item general */
-.tip {
-  position: relative;
+.mvp-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 10px 14px;
-  margin-bottom: 8px;
-  border-radius: 12px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 10px;
 
-  background: linear-gradient(135deg, #4a1010, #2a0505);
-  border: 1px solid rgba(255, 230, 180, 0.65);
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), #170017);
+  border: 1px solid rgba(255, 153, 255, 0.6);
   box-shadow:
-    inset 0 0 6px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.7);
+    0 0 8px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(255, 88, 200, 0.9);
 
-  font-size: 16px;
+  font-size: 15px;
+  color: #ffe8ff;
+}
+
+.mvp-name {
   font-weight: 600;
-  color: #ffe8cc;
+  text-shadow:
+    0 0 4px #ff4fd1,
+    0 0 10px #ff4fd1;
 }
 
-/* nombre + monto en una línea */
-.tip .name {
-  flex: 1;
-}
-
-/* monto */
-.tip .amount {
-  margin-left: 12px;
-  white-space: nowrap;
-}
-
-/* MVP (primer lugar) */
-.tip.mvp {
-  background: linear-gradient(135deg, #ffdf92, #ffb34a);
-  color: #2a0900;
-  border: 1px solid #ffe6b5;
-  box-shadow:
-    0 0 16px rgba(0, 0, 0, 0.9),
-    0 0 24px rgba(255, 215, 120, 0.95);
-}
-
-/* segundo y tercero un poco más oscuros */
-.tip.second {
-  background: linear-gradient(135deg, #7e2020, #3b0606);
-}
-
-.tip.third {
-  background: linear-gradient(135deg, #5e1515, #260404);
+.mvp-amount {
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fffbff;
+  text-shadow:
+    0 0 4px #ff9ae6,
+    0 0 11px #ff4fd1;
 }
