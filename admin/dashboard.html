@@ -564,7 +564,7 @@
       });
   }
 
-  // ───────── EXPORT A "XLS" (SOLO REALIZADOS DEL MES) ─────────
+ // ───────── EXPORT A "XLS" (SOLO REALIZADOS DEL MES) ─────────
 function downloadXls() {
   const filtered = filterByMonth();
   if (!filtered.length) {
@@ -647,7 +647,11 @@ function downloadXls() {
   link.click();
   document.body.removeChild(link);
 }
-</Script>
+
+
+  // Cargar al entrar
+  loadData();
+</script>
 
 </body>
 </html>
