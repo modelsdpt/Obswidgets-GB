@@ -242,7 +242,7 @@
     <div class="card card-actions">
       <strong>Exportar</strong>
       <p style="font-size:12px; opacity:.85; margin:4px 0 8px;">
-        Descarga en Excel los registros del mes seleccionado (pendientes + realizados).
+        Descarga en Excel los registros del mes seleccionado (realizados).
       </p>
       <button class="download-btn" onclick="downloadXls()">
         Descargar XLS
@@ -564,48 +564,71 @@
       });
   }
 
-  // ───────── EXPORT A "XLS" (CSV PARA EXCEL) ─────────
- function downloadXls() {
+  // ───────── EXPORT A "XLS" (SOLO REALIZADOS DEL MES) ─────────
+function downloadXls() {
   const filtered = filterByMonth();
   if (!filtered.length) {
     alert("No hay registros para exportar en el mes seleccionado.");
     return;
   }
 
+  const rows = [];
+  // Encabezados
   rows.push([
-  "Modelo",
-  "Fecha",
-  "Inicio EST",
-  "Fin EST",
-  "Views",
-  "Monto",
-]);
-
-// Filas
-filtered.forEach((schedule) => {
-  const r = getReportForModel(schedule.modelName) || {};
-  rows.push([
-    schedule.modelName || "",
-    schedule.date || "",
-    schedule.start || "",
-    r.end || "",
-    Number(r.views || 0),
-    Number(r.collectedAmount || 0),
+    "Modelo",
+    "Fecha",
+    "Inicio EST",
+    "Fin EST",
+    "Views",
+    "Monto",
   ]);
-});
+
+  // Solo REALIZADOS (mismo criterio que en renderTable)
+  filtered.forEach((item) => {
+    const model = item.modelName;
+    const report = getReportForModel(model);
+
+    const hasReport =
+      report &&
+      (
+        (report.collectedAmount && Number(report.collectedAmount) > 0) ||
+        (report.views && Number(report.views) > 0) ||
+        (report.shadowerFeedback && report.shadowerFeedback.trim() !== "") ||
+        (report.caFeedback && report.caFeedback.trim() !== "") ||
+        (report.livestreamFeedback && report.livestreamFeedback.trim() !== "") ||
+        (report.note && report.note.trim() !== "") ||
+        (report.end && report.end.trim() !== "")
+      );
+
+    if (!hasReport) return; // saltamos pendientes
+
+    rows.push([
+      model || "",
+      item.date || "",
+      item.start || "",
+      report.end || "",
+      Number(report.views || 0),
+      Number(report.collectedAmount || 0),
+    ]);
+  });
+
+  if (rows.length === 1) {
+    alert("No hay livestreams realizados para el mes seleccionado.");
+    return;
+  }
 
   // Generamos TSV (tab-separated values)
   const tsv =
-    "\uFEFF" + // BOM para que Excel respete UTF-8
+    "\uFEFF" +
     rows
       .map((row) =>
         row
           .map((v) =>
             String(v ?? "")
-              .replace(/\t/g, " ") // evitar tabs dentro del texto
-              .replace(/\r?\n/g, " ") // sin saltos de línea
+              .replace(/\t/g, " ")
+              .replace(/\r?\n/g, " ")
           )
-          .join("\t") // <-- separador: TAB
+          .join("\t")
       )
       .join("\r\n");
 
@@ -615,7 +638,7 @@ filtered.forEach((schedule) => {
 
   const monthInput = document.getElementById("monthFilter");
   const suffix = monthInput?.value || "all";
-  const fileName = `livestream_report_${suffix}.xls`; // o .tsv / .csv si prefieres
+  const fileName = `livestream_report_${suffix}.xls`;
 
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
@@ -624,11 +647,7 @@ filtered.forEach((schedule) => {
   link.click();
   document.body.removeChild(link);
 }
-
-
-  // Cargar al entrar
-  loadData();
-</script>
+</Script>
 
 </body>
 </html>
