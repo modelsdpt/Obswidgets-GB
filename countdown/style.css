@@ -9,7 +9,7 @@ body {
 
 /* Card del timer */
 .timer-widget {
-  min-width: 200px;
+  width: 400px;
   padding: 10px 16px 14px;
   border-radius: 20px;
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.95));
@@ -34,14 +34,14 @@ body {
 
 /* Centro digital */
 .timer-display {
-  display: flex;
+
   justify-content: center;
   align-items: center;
 }
 
 .timer-box {
   padding: 6px 8px 8px;
-  border-radius: 999px;
+  border-radius: 500px;
   background: linear-gradient(90deg, #ffe9ff, #ffc9ff);
   box-shadow:
     0 0 10px rgba(0, 0, 0, 0.7),
@@ -65,7 +65,7 @@ body {
 /* Texto "SECONDS" */
 .timer-label {
   margin-top: 2px;
-  font-size: 24px;
+  font-size: 12px;
   letter-spacing: 3px;
   color: #ffbdf7;
   text-transform: uppercase;
