@@ -1,106 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;600;700&display=swap');
 
 body {
   margin: 0;
   background: transparent;
-  font-family: "Poppins", system-ui, sans-serif;
-  color: #ffe8ff;
+  font-family: 'Baloo 2', system-ui, sans-serif;
+  color: #ffe6ff;
 }
 
-/* CARD PRINCIPAL */
+/* Tarjeta general */
 #container {
   position: relative;
-  width: 420px;
-  padding: 18px 20px 16px;
-  border-radius: 22px;
-
-  background:
-    radial-gradient(circle at top, rgba(255, 123, 222, 0.30), rgba(0, 0, 0, 0.98));
-  border: 1px solid rgba(255, 190, 255, 0.95);
+  min-width: 280px;
+  max-width: 420px;
+  padding: 18px 18px 14px;
+  border-radius: 20px;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.95));
+  border: 2px solid rgba(255, 182, 240, 0.8);
   box-shadow:
-    0 0 26px rgba(0, 0, 0, 1),
-    0 0 40px rgba(255, 40, 180, 0.95);
+    0 0 18px rgba(0, 0, 0, 0.9),
+    0 0 28px rgba(255, 140, 230, 0.9);
 }
 
-/* TÍTULO */
+/* Título "Tip Menu" style */
 .title {
+  margin: 0 0 10px;
   text-align: center;
-  font-family: "DM Serif Display", serif;
-  font-size: 22px;
-  letter-spacing: 4px;
-  margin: 0 0 12px;
-
-  color: #fff5ff;
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: #ffbdf7;
   text-shadow:
-    0 0 4px #ff4fd1,
-    0 0 10px #ff4fd1,
-    0 0 22px #f72585;
+    0 0 3px #ff58d0,
+    0 0 8px #ff58d0,
+    0 0 14px rgba(0, 0, 0, 0.9);
 }
 
-/* LISTA TOP */
+/* Contenedor de los TOP */
 #top-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* Cada entrada (no importa si tu JS crea div, li, p, etc.) */
-#top-list > * {
+/* Cualquier DIV directo dentro de #top-list será una card */
+#top-list > div {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 8px 12px;
   border-radius: 999px;
-  font-size: 14px;
-  color: #ffe8ff;
-
-  background: linear-gradient(135deg, #181018, #070007);
-  border: 1px solid rgba(255, 160, 255, 0.6);
+  background: linear-gradient(90deg, #ffe9ff, #ffc9ff);
   box-shadow:
-    0 0 10px rgba(0, 0, 0, 0.9),
-    0 0 18px rgba(255, 60, 200, 0.6);
+    0 0 10px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(255, 140, 230, 0.85);
+  color: #ff4ccf;
+  font-size: 15px;
 }
 
-/* TOP 1 – más grande y más glow */
-#top-list > *:first-child {
-  font-size: 18px;
-  padding: 10px 14px;
-
-  background: linear-gradient(135deg, #ff4fd1, #ffc2ff);
-  border: 1px solid #ffffff;
-  box-shadow:
-    0 0 16px rgba(255, 180, 255, 0.95),
-    0 0 30px rgba(255, 90, 210, 1);
-  color: #220013;
+/* Número (si tu script lo pone en span.left o similar) */
+#top-list > div .pos,
+#top-list > div .rank {
+  font-weight: 700;
+  margin-right: 8px;
 }
 
-/* para que el texto se vea centrado visualmente */
-#top-list > *:first-child {
-  text-align: center;
-}
-
-/* Resto (2 y 3) menos llamativos */
-#top-list > *:nth-child(2),
-#top-list > *:nth-child(3) {
-  opacity: 0.9;
-}
-
-/* Si tu JS usa spans .name y .amount, los dejamos lindos */
-#top-list .name {
+/* Nombre del tipper */
+#top-list > div .name,
+#top-list > div span:nth-child(2) {
   flex: 1;
   font-weight: 600;
   text-shadow:
-    0 0 3px #ff4fd1,
-    0 0 8px #ff4fd1;
+    0 0 3px rgba(255, 255, 255, 0.6),
+    0 0 8px rgba(255, 88, 208, 0.8);
 }
 
-#top-list .amount {
-  margin-left: 8px;
+/* Monto */
+#top-list > div .amount {
   font-weight: 700;
-  letter-spacing: 1px;
-  color: #ffffff;
-  text-shadow:
-    0 0 3px #ffb3ff,
-    0 0 9px #ff4fd1;
+  font-size: 14px;
+}
+
+/* TOP 1 más llamativo */
+#top-list > div:first-child {
+  background: linear-gradient(90deg, #ffe9ff, #ffb3ff);
+  transform: scale(1.04);
+  box-shadow:
+    0 0 16px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(255, 140, 230, 1);
+}
+
+/* Opcional: pequeño icono tipo corazón/lips al final */
+#top-list > div::after {
+  content: "💋";
+  margin-left: 6px;
+  font-size: 18px;
 }

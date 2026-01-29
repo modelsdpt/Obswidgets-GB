@@ -115,66 +115,99 @@
       box-shadow: 0 0 10px #ff8800;
     }
 
-    /* ===== BLACKJACK PLAYERS ===== */
-    .bj-admin {
+    /* ===== ENCUESTA A/B ===== */
+    .poll-admin {
       margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 24px;
       align-items: flex-start;
     }
 
-    .bj-inputs {
+    .poll-inputs {
       min-width: 260px;
+      max-width: 320px;
     }
 
-    .bj-inputs label {
+    .poll-inputs label {
       display: block;
+      margin-top: 6px;
       margin-bottom: 4px;
       font-weight: bold;
     }
 
-    .bj-inputs input {
+    .poll-inputs input {
       width: 100%;
-      margin-bottom: 6px;
+      margin-top: 0;
+      margin-bottom: 4px;
     }
 
-    .bj-inputs button {
-      display: inline-block;
-      margin-right: 8px;
-      margin-top: 6px;
+    .poll-live {
+      flex: 1 1 260px;
+      min-width: 260px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #181818;
+      border: 1px solid #333;
+      box-shadow: 0 0 12px rgba(0,0,0,0.7);
     }
 
-    .bj-lists {
-      display: flex;
-      gap: 16px;
-    }
-
-    .bj-column {
-      min-width: 160px;
-    }
-
-    .bj-column-title {
+    #pollQuestionText {
+      font-size: 15px;
       font-weight: bold;
-      margin-bottom: 6px;
-      color: #ffd36a;
-      text-shadow: 0 0 8px #000;
+      margin-bottom: 10px;
     }
 
-    .bj-select {
-      width: 180px;
-      height: 110px;
+    .poll-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .poll-option {
       background: #222;
-      color: #fff;
-      border-radius: 6px;
-      border: 1px solid #555;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #444;
     }
 
-    .bj-column button {
-      display: block;
+    .poll-option-label {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .poll-option-bar {
+      position: relative;
       width: 100%;
-      margin-top: 6px;
-      font-size: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: #101010;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .poll-option-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00f7ff, #00c8ff);
+      box-shadow: 0 0 8px rgba(0, 247, 255, 0.9);
+      transition: width 0.2s ease-out;
+    }
+
+    .poll-option-stats {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+
+    .poll-option button {
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 13px;
+      margin-top: 2px;
     }
   </style>
 </head>
@@ -230,11 +263,11 @@
 
 <h2>Action Timer</h2>
 <div class="timer-buttons">
-  <button onclick="startActionTimer(20)">20s</button>
+  <button onclick="startActionTimer(120)">120s</button>
   <button onclick="startActionTimer(30)">30s</button>
   <button onclick="startActionTimer(40)">40s</button>
   <button onclick="startActionTimer(45)">45s</button>
-    <button onclick="startActionTimer(60)">60s</button>
+  <button onclick="startActionTimer(60)">60s</button>
 </div>
 <button class="timer-stop-btn" onclick="stopActionTimer()">Detener Cronómetro</button>
 
@@ -253,30 +286,44 @@
 
 <hr>
 
-<h2>Blackjack Players</h2>
+<h2>Encuestas (A / B)</h2>
 
-<div class="bj-admin">
-  <div class="bj-inputs">
-    <label for="bjName">Nombre jugador</label>
-    <input id="bjName" placeholder="Usuario OF">
+<div class="poll-admin">
+  <div class="poll-inputs">
+    <label for="pollQuestion">Texto de la encuesta</label>
+    <input id="pollQuestion" placeholder="¿Qué hacemos ahora? (Ej: Soltar / Apretar)">
 
-    <button onclick="bjAddPlaying()">➕ Add to Playing</button>
-    <button onclick="bjAddWaiting()">➕ Add to Waiting</button>
+    <label for="pollOptionA">Opción A</label>
+    <input id="pollOptionA" placeholder="Soltar">
+
+    <label for="pollOptionB">Opción B</label>
+    <input id="pollOptionB" placeholder="Apretar">
+
+    <button onclick="pollStart()">Iniciar / Reiniciar encuesta</button>
+    <button class="danger" onclick="pollClear()">Borrar encuesta</button>
   </div>
 
-  <div class="bj-lists">
-    <div class="bj-column">
-      <div class="bj-column-title">Playing</div>
-      <select id="bjPlayingList" class="bj-select" multiple></select>
-      <button onclick="bjMoveToWaiting()">➜ To Waiting</button>
-      <button onclick="bjRemoveFromPlaying()">🗑 Remove</button>
-    </div>
+  <div class="poll-live">
+    <div id="pollQuestionText">No hay encuesta activa.</div>
 
-    <div class="bj-column">
-      <div class="bj-column-title">Waiting for Playing</div>
-      <select id="bjWaitingList" class="bj-select" multiple></select>
-      <button onclick="bjMoveToPlaying()">➜ To Playing</button>
-      <button onclick="bjRemoveFromWaiting()">🗑 Remove</button>
+    <div class="poll-options">
+      <div class="poll-option">
+        <div class="poll-option-label" id="pollLabelA">—</div>
+        <div class="poll-option-bar">
+          <div class="poll-option-fill" id="pollFillA"></div>
+        </div>
+        <div class="poll-option-stats" id="pollStatsA">0 votos (0%)</div>
+        <button onclick="pollVote('A')">Votar A</button>
+      </div>
+
+      <div class="poll-option">
+        <div class="poll-option-label" id="pollLabelB">—</div>
+        <div class="poll-option-bar">
+          <div class="poll-option-fill" id="pollFillB"></div>
+        </div>
+        <div class="poll-option-stats" id="pollStatsB">0 votos (0%)</div>
+        <button onclick="pollVote('B')">Votar B</button>
+      </div>
     </div>
   </div>
 </div>
@@ -331,11 +378,6 @@
     renderRecentNames();
   }
 
-  function clearRecentNames() {
-    recentNames = [];
-    renderRecentNames();
-  }
-
   // inicializar la vista de nombres al cargar (panel vacío + mensaje)
   renderRecentNames();
 
@@ -358,13 +400,8 @@
       return;
     }
 
-    // guardar en la lista de nombres recientes
     addRecentName(name);
-
-    // mandar al backend
     sendToServer("tip", { name, amount });
-
-    // limpiar solo el monto
     amountInput.value = "";
   }
 
@@ -408,7 +445,6 @@
       }),
     })
       .then((res) => {
-        // si no devuelve JSON no rompemos nada
         if (!res.ok) {
           console.error("❌ Respuesta HTTP no OK:", res.status);
           return null;
@@ -423,121 +459,109 @@
       .catch((err) => console.error("❌ Error en fetch:", err));
   }
 
-  /* ========= BLACKJACK PLAYERS ========= */
+  /* ========= ENCUESTA A/B ========= */
 
-  let bjPlaying = [];
-  let bjWaiting = [];
+  let pollState = {
+    question: "",
+    optionA: "",
+    optionB: "",
+    votesA: 0,
+    votesB: 0,
+  };
 
-  function bjSync() {
-    bjRenderLists();
-    sendToServer("blackjackPlayers", {
-      playing: bjPlaying,
-      waiting: bjWaiting,
-    });
-  }
+  function pollUpdateUI() {
+    const qEl = document.getElementById("pollQuestionText");
+    const labelAEl = document.getElementById("pollLabelA");
+    const labelBEl = document.getElementById("pollLabelB");
+    const statsAEl = document.getElementById("pollStatsA");
+    const statsBEl = document.getElementById("pollStatsB");
+    const fillAEl = document.getElementById("pollFillA");
+    const fillBEl = document.getElementById("pollFillB");
 
-  function bjRenderLists() {
-    const playingSelect = document.getElementById("bjPlayingList");
-    const waitingSelect = document.getElementById("bjWaitingList");
-    if (!playingSelect || !waitingSelect) return;
-
-    playingSelect.innerHTML = "";
-    bjPlaying.forEach((name) => {
-      const opt = document.createElement("option");
-      opt.value = name;
-      opt.textContent = name;
-      playingSelect.appendChild(opt);
-    });
-
-    waitingSelect.innerHTML = "";
-    bjWaiting.forEach((name) => {
-      const opt = document.createElement("option");
-      opt.value = name;
-      opt.textContent = name;
-      waitingSelect.appendChild(opt);
-    });
-  }
-
-  function bjGetNameInput() {
-    const input = document.getElementById("bjName");
-    if (!input) return null;
-    const name = input.value.trim();
-    if (!name) {
-      alert("Escribe un nombre primero.");
-      return null;
+    if (!pollState.question) {
+      if (qEl) qEl.textContent = "No hay encuesta activa.";
+      if (labelAEl) labelAEl.textContent = "—";
+      if (labelBEl) labelBEl.textContent = "—";
+      if (statsAEl) statsAEl.textContent = "0 votos (0%)";
+      if (statsBEl) statsBEl.textContent = "0 votos (0%)";
+      if (fillAEl) fillAEl.style.width = "0%";
+      if (fillBEl) fillBEl.style.width = "0%";
+      return;
     }
-    return name;
+
+    const total = pollState.votesA + pollState.votesB;
+    const pctA = total ? Math.round((pollState.votesA * 100) / total) : 0;
+    const pctB = total ? Math.round((pollState.votesB * 100) / total) : 0;
+
+    if (qEl) qEl.textContent = pollState.question;
+    if (labelAEl) labelAEl.textContent = `${pollState.optionA} (${pctA}%)`;
+    if (labelBEl) labelBEl.textContent = `${pollState.optionB} (${pctB}%)`;
+    if (statsAEl) statsAEl.textContent = `${pollState.votesA} voto(s) (${pctA}%)`;
+    if (statsBEl) statsBEl.textContent = `${pollState.votesB} voto(s) (${pctB}%)`;
+    if (fillAEl) fillAEl.style.width = `${pctA}%`;
+    if (fillBEl) fillBEl.style.width = `${pctB}%`;
   }
 
-  function bjAddPlaying() {
-    const name = bjGetNameInput();
-    if (!name) return;
+  function pollBroadcast() {
+    sendToServer("pollState", { ...pollState });
+  }
 
-    if (!bjPlaying.includes(name)) {
-      bjPlaying.push(name);
+  function pollStart() {
+    const qInput = document.getElementById("pollQuestion");
+    const aInput = document.getElementById("pollOptionA");
+    const bInput = document.getElementById("pollOptionB");
+
+    const question = qInput.value.trim();
+    const optionA = aInput.value.trim();
+    const optionB = bInput.value.trim();
+
+    if (!question || !optionA || !optionB) {
+      alert("Completa pregunta y ambas opciones.");
+      return;
     }
-    bjWaiting = bjWaiting.filter((n) => n !== name);
 
-    bjSync();
+    pollState = {
+      question,
+      optionA,
+      optionB,
+      votesA: 0,
+      votesB: 0,
+    };
+
+    pollUpdateUI();
+    pollBroadcast();
   }
 
-  function bjAddWaiting() {
-    const name = bjGetNameInput();
-    if (!name) return;
-
-    if (!bjWaiting.includes(name) && !bjPlaying.includes(name)) {
-      bjWaiting.push(name);
+  function pollVote(which) {
+    if (!pollState.question) {
+      alert("Primero inicia una encuesta.");
+      return;
     }
-    bjSync();
+
+    if (which === "A") {
+      pollState.votesA += 1;
+    } else if (which === "B") {
+      pollState.votesB += 1;
+    }
+
+    pollUpdateUI();
+    pollBroadcast();
   }
 
-  function bjMoveToWaiting() {
-    const select = document.getElementById("bjPlayingList");
-    if (!select) return;
-    const selected = Array.from(select.selectedOptions).map((o) => o.value);
-    if (!selected.length) return;
-
-    bjPlaying = bjPlaying.filter((n) => !selected.includes(n));
-    selected.forEach((name) => {
-      if (!bjWaiting.includes(name)) bjWaiting.push(name);
-    });
-
-    bjSync();
+  function pollClear() {
+    pollState = {
+      question: "",
+      optionA: "",
+      optionB: "",
+      votesA: 0,
+      votesB: 0,
+    };
+    pollUpdateUI();
+    sendToServer("pollClear");
   }
 
-  function bjMoveToPlaying() {
-    const select = document.getElementById("bjWaitingList");
-    if (!select) return;
-    const selected = Array.from(select.selectedOptions).map((o) => o.value);
-    if (!selected.length) return;
-
-    bjWaiting = bjWaiting.filter((n) => !selected.includes(n));
-    selected.forEach((name) => {
-      if (!bjPlaying.includes(name)) bjPlaying.push(name);
-    });
-
-    bjSync();
-  }
-
-  function bjRemoveFromPlaying() {
-    const select = document.getElementById("bjPlayingList");
-    if (!select) return;
-    const selected = Array.from(select.selectedOptions).map((o) => o.value);
-    if (!selected.length) return;
-
-    bjPlaying = bjPlaying.filter((n) => !selected.includes(n));
-    bjSync();
-  }
-
-  function bjRemoveFromWaiting() {
-    const select = document.getElementById("bjWaitingList");
-    if (!select) return;
-    const selected = Array.from(select.selectedOptions).map((o) => o.value);
-    if (!selected.length) return;
-
-    bjWaiting = bjWaiting.filter((n) => !selected.includes(n));
-    bjSync();
-  }
+  // dejar UI consistente al cargar
+  pollUpdateUI();
 </script>
 
 </body>

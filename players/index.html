@@ -1,22 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Blackjack Players</title>
+  <title>Poll Widget</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="poll-widget" class="poll-widget hidden">
+    <div class="poll-header">
+      <div class="poll-badge">Tip Poll</div>
+      <h2 id="poll-question" class="poll-question">
+        Waiting for next poll...
+      </h2>
+    </div>
 
-  <div id="container">
-    <h2 class="title">BLACKJACK TABLE</h2>
-
-    <div class="columns">
-      <div class="col">
-        <div class="col-title">Playing</div>
-        <ul id="playing-list"></ul>
-           <div class="col-title">Waiting for Playing</div>
-        <ul id="waiting-list"></ul>
+    <div class="poll-options">
+      <div class="poll-option" id="option-a">
+        <div class="poll-option-title">
+          <span class="poll-option-label" id="label-a">Option A</span>
+          <span class="poll-option-percent" id="percent-a">0%</span>
+        </div>
+        <div class="poll-bar">
+          <div class="poll-bar-fill" id="fill-a"></div>
+        </div>
+        <div class="poll-votes" id="votes-a">0 votes</div>
       </div>
+
+      <div class="poll-option" id="option-b">
+        <div class="poll-option-title">
+          <span class="poll-option-label" id="label-b">Option B</span>
+          <span class="poll-option-percent" id="percent-b">0%</span>
+        </div>
+        <div class="poll-bar">
+          <div class="poll-bar-fill" id="fill-b"></div>
+        </div>
+        <div class="poll-votes" id="votes-b">0 votes</div>
+      </div>
+    </div>
+
+    <div class="poll-footer">
+      <span id="poll-total">Total: 0 votes</span>
     </div>
   </div>
 

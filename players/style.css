@@ -1,114 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=DM+Serif+Display&display=swap');
-
-body {
-  background: transparent;
+/* Fondo transparente para usar en OBS */
+html, body {
   margin: 0;
-  font-family: 'Poppins', system-ui, sans-serif;
-  color: #f5f5f5;
-}
-
-/* Card principal */
-#container {
-  position: relative;
-  width: 240px;
-  padding: 18px 20px 16px;
-  border-radius: 18px;
-
-  background:
-    radial-gradient(circle at top, rgba(255, 210, 160, 0.22), #050000);
-  border: 1px solid rgba(255, 230, 180, 0.9);
-  box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.95),
-    0 0 30px rgba(0, 0, 0, 0.9);
-}
-
-/* Título */
-.title {
-  text-align: center;
-  font-family: 'DM Serif Display', serif;
-  font-size: 18px;
-  margin: 0 0 12px;
-  letter-spacing: 2px;
-
-  /* SOLO COLOR, SIN BACKGROUND RARO */
-  color: #fff8e0;
-
-  text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.9);
-}
-
-/* Contenedor de columnas: ahora es una sola columna vertical */
-.columns {
-  display: block;
-}
-
-/* Columna única */
-.col {
-  width: 100%;
-}
-
-/* Subtítulos de sección */
-.col-title {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 6px 0 4px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ffdf92;
-}
-
-/* Listas */
-#playing-list,
-#waiting-list {
-  list-style: none;
-  margin: 0 0 6px 0;
   padding: 0;
+  background: transparent;
+  font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
+  color: #ffe9ff;
 }
 
-/* Fila de jugador: todo en UNA LÍNEA (1. Nombre [tag]) */
-.player-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
-  padding: 6px 10px;
-  margin-bottom: 4px;
-  border-radius: 10px;
-
-  font-size: 14px;
-  color: #ffe8cc;
-}
-
-/* estilos distintos para playing / waiting */
-.player-row.playing {
-  background: linear-gradient(135deg, #b62424, #5a0b0b);
-  border: 1px solid rgba(255, 230, 180, 0.8);
+/* Contenedor principal */
+.poll-widget {
+  min-width: 480px;
+  max-width: 620px;
+  padding: 18px 22px 16px;
+  border-radius: 20px;
+  background: rgba(10, 0, 20, 0.92);
+  border: 2px solid rgba(255, 160, 255, 0.7);
   box-shadow:
-    inset 0 0 6px rgba(0, 0, 0, 0.85),
-    0 0 8px rgba(0, 0, 0, 0.7);
+    0 0 25px rgba(255, 105, 255, 0.9),
+    0 0 40px rgba(255, 105, 255, 0.45);
+  box-sizing: border-box;
 }
 
-.player-row.waiting {
-  background: linear-gradient(135deg, #262626, #141414);
-  border: 1px solid rgba(160, 160, 160, 0.8);
+/* Ocultar cuando no haya encuesta */
+.hidden {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
 }
 
-/* numeración */
-.player-seat {
-  font-weight: 700;
-  margin-right: 4px;
-  color: #ffd36a;
+/* Header */
+.poll-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
-/* nombre ocupa el espacio central */
-.player-name {
-  flex: 1;
-}
-
-/* tag opcional al final (ej. "VIP", "NEW") */
-.player-tag {
+.poll-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
   font-size: 11px;
   text-transform: uppercase;
-  opacity: 0.85;
+  letter-spacing: 0.18em;
+  background: linear-gradient(90deg, #ff9cfb, #ffcfff);
+  color: #3c0040;
+  box-shadow: 0 0 14px rgba(255, 140, 255, 0.85);
+}
+
+.poll-question {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffe5ff;
+  text-shadow:
+    0 0 14px rgba(255, 180, 255, 0.9),
+    0 0 24px rgba(255, 140, 255, 0.8);
+}
+
+/* Opciones */
+.poll-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.poll-option {
+  padding: 8px 10px 10px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top, rgba(255, 200, 255, 0.18), rgba(15, 0, 30, 0.9));
+  border: 1px solid rgba(255, 190, 255, 0.65);
+  box-shadow:
+    0 0 16px rgba(0, 0, 0, 0.75),
+    0 0 12px rgba(255, 120, 255, 0.65);
+}
+
+.poll-option-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.poll-option-label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffddff;
+  text-shadow:
+    0 0 10px rgba(255, 170, 255, 0.8),
+    0 0 18px rgba(255, 120, 255, 0.8);
+}
+
+.poll-option-percent {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffe9ff;
+  text-shadow: 0 0 10px rgba(255, 170, 255, 0.8);
+}
+
+/* Barra */
+.poll-bar {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(15, 0, 28, 0.9);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+.poll-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ffc6ff, #ff8bfa, #ffc6ff);
+  box-shadow:
+    0 0 12px rgba(255, 140, 255, 0.95),
+    0 0 22px rgba(255, 100, 255, 0.8);
+  transition: width 0.25s ease-out;
+}
+
+/* Votos */
+.poll-votes {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #ffe9ff;
+  opacity: 0.9;
+}
+
+/* Footer */
+.poll-footer {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: right;
+  opacity: 0.8;
+}
+
+/* Pequeño efecto de “respirar” cuando hay encuesta activa */
+.poll-widget:not(.hidden) {
+  animation: glowPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow:
+      0 0 18px rgba(255, 105, 255, 0.8),
+      0 0 32px rgba(255, 105, 255, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 26px rgba(255, 190, 255, 1),
+      0 0 50px rgba(255, 140, 255, 0.7);
+  }
+  100% {
+    box-shadow:
+      0 0 18px rgba(255, 105, 255, 0.8),
+      0 0 32px rgba(255, 105, 255, 0.45);
+  }
 }
