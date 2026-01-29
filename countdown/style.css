@@ -9,7 +9,7 @@ body {
 
 /* Card del timer */
 .timer-widget {
-  min-width: 260px;
+  min-width: 200px;
   padding: 10px 16px 14px;
   border-radius: 20px;
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.95));
@@ -40,7 +40,7 @@ body {
 }
 
 .timer-box {
-  padding: 6px 16px 8px;
+  padding: 6px 8px 8px;
   border-radius: 999px;
   background: linear-gradient(90deg, #ffe9ff, #ffc9ff);
   box-shadow:
@@ -54,7 +54,7 @@ body {
 /* Valor del tiempo */
 #timer-value {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 36px;
   letter-spacing: 2px;
   color: #ff4ccf;
   text-shadow:
@@ -65,7 +65,7 @@ body {
 /* Texto "SECONDS" */
 .timer-label {
   margin-top: 2px;
-  font-size: 11px;
+  font-size: 24px;
   letter-spacing: 3px;
   color: #ffbdf7;
   text-transform: uppercase;
