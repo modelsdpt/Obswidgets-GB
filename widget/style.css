@@ -1,98 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700&display=swap');
+
+:root {
+  --green-main: #b6ff4f;
+  --green-strong: #7dff00;
+  --green-soft: #eaffc7;
+  --green-border: rgba(182, 255, 79, 0.95);
+  --green-glow: rgba(140, 255, 120, 1);
+  --bg-dark: rgba(0, 0, 0, 0.9);
+}
 
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Baloo 2', system-ui, sans-serif;
-  color: #ffe6ff;
+  font-family: 'Baloo 2', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--green-soft);
 }
 
-/* Tarjeta general */
+/* CONTENEDOR PRINCIPAL */
 #container {
-  position: relative;
-  min-width: 280px;
-  max-width: 420px;
-  padding: 18px 18px 14px;
-  border-radius: 20px;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.95));
-  border: 2px solid rgba(255, 182, 240, 0.8);
+  width: 380px;
+  padding: 14px 16px 12px;
+  box-sizing: border-box;
+  background: var(--bg-dark);
+  border-radius: 18px;
+  border: 2px solid var(--green-border);
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.9),
-    0 0 28px rgba(255, 140, 230, 0.9);
+    0 0 18px rgba(0, 0, 0, 0.95),
+    0 0 30px var(--green-glow);
 }
 
-/* Título "Tip Menu" style */
+/* TÍTULO "TIP MENU" STYLE */
 .title {
   margin: 0 0 10px;
   text-align: center;
-  font-family: 'Pacifico', cursive;
+  font-family: 'Bungee', system-ui, sans-serif;
   font-size: 26px;
   letter-spacing: 1px;
-  color: #ffbdf7;
+  color: var(--green-main);
   text-shadow:
-    0 0 3px #ff58d0,
-    0 0 8px #ff58d0,
-    0 0 14px rgba(0, 0, 0, 0.9);
+    0 0 4px rgba(0, 0, 0, 1),
+    0 0 12px var(--green-glow);
 }
 
-/* Contenedor de los TOP */
+/* LISTA TOP 3 */
 #top-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-/* Cualquier DIV directo dentro de #top-list será una card */
+/* CARD GENÉRICA DEL MVP */
+.mvp-card,
 #top-list > div {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #ffe9ff, #ffc9ff);
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 30, 0.95),
+    rgba(70, 70, 30, 0.95)
+  );
+  border: 1px solid rgba(130, 90, 30, 0.9);
   box-shadow:
-    0 0 10px rgba(0, 0, 0, 0.7),
-    0 0 16px rgba(255, 140, 230, 0.85);
-  color: #ff4ccf;
-  font-size: 15px;
+    0 0 6px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(0, 0, 0, 0.9),
+    0 0 18px var(--green-glow);
+  font-size: 13px;
 }
 
-/* Número (si tu script lo pone en span.left o similar) */
-#top-list > div .pos,
-#top-list > div .rank {
-  font-weight: 700;
-  margin-right: 8px;
+/* TOP 1 DESTACADO */
+.mvp-card.main,
+#top-list > div:first-child {
+  padding: 8px 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(40, 40, 40, 0.98),
+    rgba(120, 120, 40, 0.98)
+  );
+  border-width: 2px;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 1),
+    0 0 26px var(--green-glow);
+  transform: scale(1.02);
 }
 
-/* Nombre del tipper */
-#top-list > div .name,
-#top-list > div span:nth-child(2) {
+/* PARTES INTERNAS */
+.mvp-rank {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  margin-right: 6px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 1);
+}
+
+.mvp-name {
   flex: 1;
   font-weight: 600;
+  color: var(--green-soft);
+}
+
+.mvp-amount {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--green-main);
   text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.6),
-    0 0 8px rgba(255, 88, 208, 0.8);
-}
-
-/* Monto */
-#top-list > div .amount {
-  font-weight: 700;
-  font-size: 14px;
-}
-
-/* TOP 1 más llamativo */
-#top-list > div:first-child {
-  background: linear-gradient(90deg, #ffe9ff, #ffb3ff);
-  transform: scale(1.04);
-  box-shadow:
-    0 0 16px rgba(0, 0, 0, 0.9),
-    0 0 30px rgba(255, 140, 230, 1);
-}
-
-/* Opcional: pequeño icono tipo corazón/lips al final */
-#top-list > div::after {
-  content: "💋";
-  margin-left: 6px;
-  font-size: 18px;
+    0 0 5px rgba(0, 0, 0, 1),
+    0 0 14px var(--green-glow);
 }

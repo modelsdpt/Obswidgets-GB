@@ -1,75 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@500;700&display=swap');
+
+:root {
+  --green-main: #b6ff4f;
+  --green-glow: rgba(140, 255, 120, 1);
+}
 
 body {
   margin: 0;
   background: transparent;
   font-family: 'Baloo 2', system-ui, sans-serif;
-  color: #ffe6ff;
+  color: #ffffff;
 }
 
-/* Card del timer */
+/* CARD DEL TIMER */
 .timer-widget {
-  width: 400px;
-  padding: 10px 16px 14px;
-  border-radius: 20px;
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.95));
-  border: 2px solid rgba(255, 182, 240, 0.85);
+  width: 260px;
+  padding: 10px 14px 12px;
+  background: rgba(0, 0, 0, 0.95);
+  border-radius: 10px;
+  border: 2px solid #8a5a22;
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.9),
-    0 0 26px rgba(255, 140, 230, 0.9);
+    0 0 18px rgba(0, 0, 0, 1),
+    0 0 24px var(--green-glow);
 }
 
-/* Título del timer */
+/* TÍTULO */
 .timer-title {
   text-align: center;
-  margin-bottom: 6px;
-  font-family: 'Pacifico', cursive;
-  font-size: 20px;
-  color: #ffbdf7;
+  margin-bottom: 4px;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 22px;
+  color: var(--green-main);
   text-shadow:
-    0 0 3px #ff58d0,
-    0 0 8px #ff58d0,
-    0 0 14px rgba(0, 0, 0, 0.9);
+    0 0 4px rgba(0, 0, 0, 1),
+    0 0 10px var(--green-glow);
 }
 
-/* Centro digital */
+/* DISPLAY */
 .timer-display {
-
+  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .timer-box {
-  padding: 6px 8px 8px;
-  border-radius: 500px;
-  background: linear-gradient(90deg, #ffe9ff, #ffc9ff);
+  padding: 6px 12px 8px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    rgba(40, 40, 40, 0.95),
+    rgba(10, 10, 10, 0.98)
+  );
+  border: 1px solid #8a5a22;
   box-shadow:
-    0 0 10px rgba(0, 0, 0, 0.7),
-    0 0 18px rgba(255, 140, 230, 0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    0 0 10px rgba(0, 0, 0, 1),
+    0 0 18px var(--green-glow);
+  text-align: center;
 }
 
-/* Valor del tiempo */
+/* VALOR DEL TIMER */
 #timer-value {
-  font-weight: 700;
-  font-size: 36px;
+  display: block;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 32px;
   letter-spacing: 2px;
-  color: #ff4ccf;
+  color: var(--green-main);
   text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.7),
-    0 0 8px rgba(255, 88, 208, 0.9);
+    0 0 6px rgba(0, 0, 0, 1),
+    0 0 14px var(--green-glow);
 }
 
-/* Texto "SECONDS" */
+/* LABEL "SECONDS" */
 .timer-label {
-  margin-top: 2px;
-  font-size: 12px;
+  display: block;
+  margin-top: -2px;
+  font-size: 11px;
   letter-spacing: 3px;
-  color: #ffbdf7;
   text-transform: uppercase;
-  text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.7),
-    0 0 8px rgba(255, 88, 208, 0.9);
+  color: #d4ffb3;
+  opacity: 0.9;
 }

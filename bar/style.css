@@ -1,69 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Baloo+2:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+:root {
+  --green-main: #b6ff4f;
+  --green-strong: #7dff00;
+  --green-border: rgba(182, 255, 79, 0.95);
+  --green-glow: rgba(140, 255, 120, 1);
+}
 
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Baloo 2', system-ui, sans-serif;
-  color: #ffe6ff;
+  font-family: 'Bungee', system-ui, sans-serif;
+  color: #ffffff;
 }
 
-/* Barra completa */
+/* CONTENEDOR BARRA */
 #goal-wrapper {
   position: relative;
   width: 520px;
-  max-width: 100%;
-  height: 52px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #2a202f, #120813);
-  border: 2px solid rgba(255, 182, 240, 0.85);
+  height: 60px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #8a5a22; /* marco tipo madera / oscuro */
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.9),
-    0 0 26px rgba(255, 140, 230, 0.9);
+    0 0 20px rgba(0, 0, 0, 1),
+    0 0 26px var(--green-glow);
   overflow: hidden;
 }
 
-/* Relleno de la barra (JS controla el width) */
+/* RELLENO (JS mueve width) */
 #bar-fill {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%; /* el script cambia esto */
-  background: linear-gradient(90deg, #ffbdf7, #ffd7ff, #ffe9ff);
+  inset: 3px;
+  width: 0%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #d0ff8d, var(--green-main), var(--green-strong));
   box-shadow:
-    0 0 10px rgba(255, 140, 230, 0.9),
-    0 0 20px rgba(255, 140, 230, 0.8);
-  transition: width 0.4s ease-out;
+    0 0 16px var(--green-glow),
+    0 0 30px var(--green-glow);
+  transition: width 0.35s ease-out;
 }
 
-/* Etiqueta encima de la barra */
+/* LABEL ENCIMA */
 .goal-label {
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
 }
 
 .goal-title {
-  font-family: 'Pacifico', cursive;
-  font-size: 22px;
-  color: #ffbdf7;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  color: var(--green-main);
   text-shadow:
-    0 0 3px #ff58d0,
-    0 0 8px #ff58d0,
-    0 0 16px rgba(0, 0, 0, 0.95);
+    0 0 6px rgba(0, 0, 0, 1),
+    0 0 14px var(--green-glow);
 }
 
-/* Monto actual / meta abajo de la barra */
+/* TEXTO MONTO */
 .goal-amount {
   margin-top: 6px;
   text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffe0ff;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 18px;
+  color: var(--green-main);
   text-shadow:
-    0 0 3px rgba(255, 255, 255, 0.5),
-    0 0 8px rgba(255, 88, 208, 0.9);
+    0 0 4px rgba(0, 0, 0, 1),
+    0 0 12px var(--green-glow);
 }
