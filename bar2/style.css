@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 
 :root {
-  --green-main: #b6ff4f;
-  --green-strong: #7dff00;
-  --green-border: rgba(182, 255, 79, 0.95);
-  --green-glow: rgba(140, 255, 120, 1);
+  --green-main: #dc4fff;
+  --green-strong: #ae00ff;
+  --green-border: rgba(255, 79, 246, 0.95);
+  --green-glow: rgb(251, 120, 255);
 }
 
 body {
@@ -34,7 +34,7 @@ body {
   inset: 3px;
   width: 0%;
   border-radius: 4px;
-  background: linear-gradient(90deg, #d0ff8d, var(--green-main), var(--green-strong));
+  background: linear-gradient(90deg, #9e8dff, var(--green-main), var(--green-strong));
   box-shadow:
     0 0 16px var(--green-glow),
     0 0 30px var(--green-glow);

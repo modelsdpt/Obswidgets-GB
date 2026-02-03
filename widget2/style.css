@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700&display=swap');
 
 :root {
-  --green-main: #b6ff4f;
-  --green-strong: #7dff00;
-  --green-soft: #eaffc7;
-  --green-border: rgba(182, 255, 79, 0.95);
+  --green-main: #ff4ff6;
+  --green-strong: #ea00ff;
+  --green-soft: #efc7ff;
+  --green-border: rgba(240, 79, 255, 0.95);
   --green-glow: rgba(140, 255, 120, 1);
   --bg-dark: rgba(0, 0, 0, 0.9);
 }
@@ -60,7 +60,7 @@ body {
   background: linear-gradient(
     90deg,
     rgba(30, 30, 30, 0.95),
-    rgba(70, 70, 30, 0.95)
+    rgba(67, 30, 70, 0.95)
   );
   border: 1px solid rgba(130, 90, 30, 0.9);
   box-shadow:
