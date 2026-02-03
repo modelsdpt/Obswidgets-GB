@@ -26,14 +26,28 @@ async function getAllReports() {
   }
 }
 
-async function findReportForModel(modelName) {
+async function findReportForModel(modelName, date, start) {
   const all = await getAllReports();
-  return all.find((r) => r.modelName === modelName) || null;
+  return (
+    all.find(
+      (r) =>
+        r.modelName === modelName &&
+        r.date === date &&
+        (r.start || "") === (start || "")
+    ) || null
+  );
 }
+
 
 async function saveReport(entry) {
   const all = await getAllReports();
-  const idx = all.findIndex((r) => r.modelName === entry.modelName);
+
+  const idx = all.findIndex(
+    (r) =>
+      r.modelName === entry.modelName &&
+      r.date === entry.date &&
+      (r.start || "") === (entry.start || "")
+  );
 
   if (idx >= 0) {
     all[idx] = { ...all[idx], ...entry };
@@ -41,14 +55,22 @@ async function saveReport(entry) {
     all.push(entry);
   }
 
-  await fs.writeFile(FILE_PATH, JSON.stringify(all, null, 2), "utf-8");
+  await writeReports(all); // el helper que uses para persistir
 }
 
-async function deleteReportForModel(modelName) {
+async function deleteReportForModel(modelName, date, start) {
   const all = await getAllReports();
-  const filtered = all.filter((r) => r.modelName !== modelName);
-  await fs.writeFile(FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+  const filtered = all.filter(
+    (r) =>
+      !(
+        r.modelName === modelName &&
+        r.date === date &&
+        (r.start || "") === (start || "")
+      )
+  );
+  await writeReports(filtered);
 }
+
 
 module.exports = {
   getAllReports,

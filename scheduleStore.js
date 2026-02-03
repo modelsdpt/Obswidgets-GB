@@ -44,10 +44,17 @@ async function saveSchedule(entry) {
   await fs.writeFile(FILE_PATH, JSON.stringify(all, null, 2), "utf-8");
 }
 
-async function deleteScheduleForModel(modelName) {
+async function deleteScheduleForModel(modelName, date, start) {
   const all = await getAllSchedules();
-  const filtered = all.filter((s) => s.modelName !== modelName);
-  await fs.writeFile(FILE_PATH, JSON.stringify(filtered, null, 2), "utf-8");
+  const filtered = all.filter(
+    (s) =>
+      !(
+        s.modelName === modelName &&
+        s.date === date &&
+        s.start === start
+      )
+  );
+  await writeSchedules(filtered);
 }
 
 module.exports = {

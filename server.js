@@ -91,39 +91,44 @@ app.post("/api/send", (req, res) => {
 // ───────── API: SCHEDULE DE MODELOS ─────────
 
 // POST: registrar / actualizar horario de una modelo
-app.post("/api/model-schedule", async (req, res) => {
-  try {
-    const { modelName, date, start } = req.body;
+app.post("/api/model-schedule", (req, res) => {
+  const { modelName, date, start, originalDate, originalStart } = req.body;
 
-    if (!modelName || !date || !start) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Datos incompletos" });
-    }
-
-    const now = new Date().toISOString();
-    const existing = await findScheduleForModel(modelName);
-
-    const entry = {
-      modelName,
-      date,
-      start,
-      end: existing?.end || "",
-      locked: false,
-      createdAt: existing?.createdAt || now,
-      updatedAt: now,
-    };
-
-    await saveSchedule(entry);
-
-    return res.json({ success: true });
-  } catch (err) {
-    console.error("Error en POST /api/model-schedule:", err);
+  if (!modelName || !date || !start) {
     return res
-      .status(500)
-      .json({ success: false, message: "Error interno del servidor" });
+      .status(400)
+      .json({ success: false, message: "Faltan campos" });
   }
+
+  const schedules = readJson("model-schedule.json"); // usa tu helper real
+
+  // upsert por modelo + fecha + hora inicio
+  const idx = schedules.findIndex(
+    (s) =>
+      s.modelName === modelName &&
+      s.date === date &&
+      s.start === start
+  );
+
+  const newData = {
+    modelName,
+    date,
+    start,
+    originalDate,
+    originalStart,
+  };
+
+  if (idx >= 0) {
+    schedules[idx] = { ...schedules[idx], ...newData };
+  } else {
+    schedules.push(newData);
+  }
+
+  writeJson("model-schedule.json", schedules); // tu helper real
+
+  res.json({ success: true });
 });
+
 
 // GET: devolver horarios para el panel admin
 app.get("/api/model-schedule", async (req, res) => {
@@ -136,18 +141,23 @@ app.get("/api/model-schedule", async (req, res) => {
   }
 });
 
-// POST: eliminar completamente un registro (horario + reporte)
+// POST: eliminar COMPLETAMENTE un livestream (horario + reporte)
+// usando modelo + fecha + hora inicio como llave
 app.post("/api/model-schedule/delete", async (req, res) => {
   try {
-    const { modelName } = req.body;
-    if (!modelName) {
+    const { modelName, date, start } = req.body;
+
+    if (!modelName || !date || !start) {
       return res
         .status(400)
-        .json({ success: false, message: "Falta modelName" });
+        .json({
+          success: false,
+          message: "Faltan modelName, date o start",
+        });
     }
 
-    await deleteScheduleForModel(modelName);
-    await deleteReportForModel(modelName);
+    await deleteScheduleForModel(modelName, date, start);
+    await deleteReportForModel(modelName, date, start);
 
     return res.json({ success: true });
   } catch (err) {
@@ -157,6 +167,8 @@ app.post("/api/model-schedule/delete", async (req, res) => {
       .json({ success: false, message: "Error interno del servidor" });
   }
 });
+
+
 
 // ───────── API: REPORTES DE LIVESTREAM ─────────
 
@@ -170,6 +182,7 @@ app.get("/api/reports", async (req, res) => {
     return res.status(500).json({ message: "Error interno" });
   }
 });
+
 
 // POST /api/reports/admin-update -> guarda feedbacks, nota, views, monto, fin
 app.post("/api/reports/admin-update", async (req, res) => {
@@ -187,19 +200,25 @@ app.post("/api/reports/admin-update", async (req, res) => {
       note,
     } = req.body;
 
-    if (!modelName) {
+    // Ahora exigimos modelName + date + start
+    if (!modelName || !date || !start) {
       return res
         .status(400)
-        .json({ success: false, message: "Falta modelName" });
+        .json({
+          success: false,
+          message: "Faltan modelName, date o start",
+        });
     }
 
     const now = new Date().toISOString();
-    const existing = await findReportForModel(modelName);
+
+    // Buscar por modelo + fecha + inicio
+    const existing = await findReportForModel(modelName, date, start);
 
     const entry = {
       modelName,
-      date: date || existing?.date || "",
-      start: start || existing?.start || "",
+      date,
+      start,
       end: typeof end === "string" ? end : existing?.end || "",
       collectedAmount: Number(
         collectedAmount ?? existing?.collectedAmount ?? 0
@@ -227,6 +246,7 @@ app.post("/api/reports/admin-update", async (req, res) => {
       updatedAt: now,
     };
 
+    // saveReport debe hacer upsert por (modelName + date + start)
     await saveReport(entry);
 
     return res.json({ success: true });
@@ -238,17 +258,21 @@ app.post("/api/reports/admin-update", async (req, res) => {
   }
 });
 
+
 // mantenemos este endpoint por si lo necesitas en otro lado
 app.post("/api/reports/delete", async (req, res) => {
   try {
-    const { modelName } = req.body;
-    if (!modelName) {
+    const { modelName, date, start } = req.body;
+    if (!modelName || !date || !start) {
       return res
         .status(400)
-        .json({ success: false, message: "Falta modelName" });
+        .json({
+          success: false,
+          message: "Faltan modelName, date o start",
+        });
     }
 
-    await deleteReportForModel(modelName);
+    await deleteReportForModel(modelName, date, start);
     return res.json({ success: true });
   } catch (err) {
     console.error("Error en POST /api/reports/delete:", err);
@@ -257,6 +281,7 @@ app.post("/api/reports/delete", async (req, res) => {
       .json({ success: false, message: "Error interno del servidor" });
   }
 });
+
 
 // ───────── WEBSOCKET SERVER ─────────
 const server = http.createServer(app);
