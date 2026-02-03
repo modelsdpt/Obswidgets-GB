@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+:root {
+  --green-main: #b6ff4f;
+  --green-strong: #7dff00;
+  --green-border: rgba(182, 255, 79, 0.95);
+  --green-glow: rgba(140, 255, 120, 1);
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  font-family: 'Bungee', system-ui, sans-serif;
+  color: #ffffff;
+}
+
+/* CONTENEDOR BARRA */
+#goal-wrapper {
+  position: relative;
+  width: 520px;
+  height: 60px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #8a5a22; /* marco tipo madera / oscuro */
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 1),
+    0 0 26px var(--green-glow);
+  overflow: hidden;
+}
+
+/* RELLENO (JS mueve width) */
+#bar-fill {
+  position: absolute;
+  inset: 3px;
+  width: 0%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #d0ff8d, var(--green-main), var(--green-strong));
+  box-shadow:
+    0 0 16px var(--green-glow),
+    0 0 30px var(--green-glow);
+  transition: width 0.35s ease-out;
+}
+
+/* LABEL ENCIMA */
+.goal-label {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.goal-title {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 30px;
+  letter-spacing: 1px;
+  color: var(--green-main);
+  text-shadow:
+    0 0 6px rgba(0, 0, 0, 1),
+    0 0 14px var(--green-glow);
+}
+
+/* TEXTO MONTO */
+.goal-amount {
+  margin-top: 6px;
+  text-align: center;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 18px;
+  color: var(--green-main);
+  text-shadow:
+    0 0 4px rgba(0, 0, 0, 1),
+    0 0 12px var(--green-glow);
+}

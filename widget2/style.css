@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700&display=swap');
+
+:root {
+  --green-main: #b6ff4f;
+  --green-strong: #7dff00;
+  --green-soft: #eaffc7;
+  --green-border: rgba(182, 255, 79, 0.95);
+  --green-glow: rgba(140, 255, 120, 1);
+  --bg-dark: rgba(0, 0, 0, 0.9);
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  font-family: 'Baloo 2', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--green-soft);
+}
+
+/* CONTENEDOR PRINCIPAL */
+#container {
+  width: 380px;
+  padding: 14px 16px 12px;
+  box-sizing: border-box;
+  background: var(--bg-dark);
+  border-radius: 18px;
+  border: 2px solid var(--green-border);
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.95),
+    0 0 30px var(--green-glow);
+}
+
+/* TÍTULO "TIP MENU" STYLE */
+.title {
+  margin: 0 0 10px;
+  text-align: center;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  color: var(--green-main);
+  text-shadow:
+    0 0 4px rgba(0, 0, 0, 1),
+    0 0 12px var(--green-glow);
+}
+
+/* LISTA TOP 3 */
+#top-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* CARD GENÉRICA DEL MVP */
+.mvp-card,
+#top-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 30, 0.95),
+    rgba(70, 70, 30, 0.95)
+  );
+  border: 1px solid rgba(130, 90, 30, 0.9);
+  box-shadow:
+    0 0 6px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(0, 0, 0, 0.9),
+    0 0 18px var(--green-glow);
+  font-size: 13px;
+}
+
+/* TOP 1 DESTACADO */
+.mvp-card.main,
+#top-list > div:first-child {
+  padding: 8px 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(40, 40, 40, 0.98),
+    rgba(120, 120, 40, 0.98)
+  );
+  border-width: 2px;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 1),
+    0 0 26px var(--green-glow);
+  transform: scale(1.02);
+}
+
+/* PARTES INTERNAS */
+.mvp-rank {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  margin-right: 6px;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 1);
+}
+
+.mvp-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--green-soft);
+}
+
+.mvp-amount {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 15px;
+  color: var(--green-main);
+  text-shadow:
+    0 0 5px rgba(0, 0, 0, 1),
+    0 0 14px var(--green-glow);
+}
