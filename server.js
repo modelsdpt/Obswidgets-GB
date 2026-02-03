@@ -91,42 +91,35 @@ app.post("/api/send", (req, res) => {
 // ───────── API: SCHEDULE DE MODELOS ─────────
 
 // POST: registrar / actualizar horario de una modelo
-app.post("/api/model-schedule", (req, res) => {
-  const { modelName, date, start, originalDate, originalStart } = req.body;
+// POST: registrar / actualizar horario de una modelo
+app.post("/api/model-schedule", async (req, res) => {
+  try {
+    const { modelName, date, start, originalDate, originalStart } = req.body;
 
-  if (!modelName || !date || !start) {
+    if (!modelName || !date || !start) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Faltan campos" });
+    }
+
+    const entry = {
+      modelName,
+      date,
+      start,
+      originalDate,
+      originalStart,
+    };
+
+    // upsert por (modelName + date + start) dentro de schedules.json
+    await saveSchedule(entry);
+
+    return res.json({ success: true });
+  } catch (err) {
+    console.error("Error en POST /api/model-schedule:", err);
     return res
-      .status(400)
-      .json({ success: false, message: "Faltan campos" });
+      .status(500)
+      .json({ success: false, message: "Error interno del servidor" });
   }
-
-  const schedules = readJson("model-schedule.json"); // usa tu helper real
-
-  // upsert por modelo + fecha + hora inicio
-  const idx = schedules.findIndex(
-    (s) =>
-      s.modelName === modelName &&
-      s.date === date &&
-      s.start === start
-  );
-
-  const newData = {
-    modelName,
-    date,
-    start,
-    originalDate,
-    originalStart,
-  };
-
-  if (idx >= 0) {
-    schedules[idx] = { ...schedules[idx], ...newData };
-  } else {
-    schedules.push(newData);
-  }
-
-  writeJson("model-schedule.json", schedules); // tu helper real
-
-  res.json({ success: true });
 });
 
 

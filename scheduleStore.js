@@ -13,6 +13,10 @@ async function ensureFile() {
   }
 }
 
+async function writeSchedules(data) {
+  await fs.writeFile(FILE_PATH, JSON.stringify(data, null, 2), "utf-8");
+}
+
 async function getAllSchedules() {
   await ensureFile();
   const raw = await fs.readFile(FILE_PATH, "utf-8");
@@ -26,14 +30,35 @@ async function getAllSchedules() {
   }
 }
 
-async function findScheduleForModel(modelName) {
+// Si llamas solo con modelName, te busca la primera coincidencia.
+// Si llamas con (modelName, date, start), busca por la “llave completa”.
+async function findScheduleForModel(modelName, date, start) {
   const all = await getAllSchedules();
+
+  if (date && start) {
+    return (
+      all.find(
+        (s) =>
+          s.modelName === modelName &&
+          s.date === date &&
+          (s.start || "") === (start || "")
+      ) || null
+    );
+  }
+
   return all.find((s) => s.modelName === modelName) || null;
 }
 
+// upsert por (modelName + date + start)
 async function saveSchedule(entry) {
   const all = await getAllSchedules();
-  const idx = all.findIndex((s) => s.modelName === entry.modelName);
+
+  const idx = all.findIndex(
+    (s) =>
+      s.modelName === entry.modelName &&
+      s.date === entry.date &&
+      (s.start || "") === (entry.start || "")
+  );
 
   if (idx >= 0) {
     all[idx] = { ...all[idx], ...entry };
@@ -41,7 +66,7 @@ async function saveSchedule(entry) {
     all.push(entry);
   }
 
-  await fs.writeFile(FILE_PATH, JSON.stringify(all, null, 2), "utf-8");
+  await writeSchedules(all);
 }
 
 async function deleteScheduleForModel(modelName, date, start) {
@@ -51,7 +76,7 @@ async function deleteScheduleForModel(modelName, date, start) {
       !(
         s.modelName === modelName &&
         s.date === date &&
-        s.start === start
+        (s.start || "") === (start || "")
       )
   );
   await writeSchedules(filtered);

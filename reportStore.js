@@ -13,6 +13,10 @@ async function ensureFile() {
   }
 }
 
+async function writeReports(data) {
+  await fs.writeFile(FILE_PATH, JSON.stringify(data, null, 2), "utf-8");
+}
+
 async function getAllReports() {
   await ensureFile();
   const raw = await fs.readFile(FILE_PATH, "utf-8");
@@ -38,7 +42,6 @@ async function findReportForModel(modelName, date, start) {
   );
 }
 
-
 async function saveReport(entry) {
   const all = await getAllReports();
 
@@ -55,7 +58,7 @@ async function saveReport(entry) {
     all.push(entry);
   }
 
-  await writeReports(all); // el helper que uses para persistir
+  await writeReports(all);
 }
 
 async function deleteReportForModel(modelName, date, start) {
@@ -70,7 +73,6 @@ async function deleteReportForModel(modelName, date, start) {
   );
   await writeReports(filtered);
 }
-
 
 module.exports = {
   getAllReports,
