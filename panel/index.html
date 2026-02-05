@@ -209,6 +209,18 @@
       font-size: 13px;
       margin-top: 2px;
     }
+
+    .volume-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.volume-row input[type="range"] {
+  flex: 1;
+}
+
   </style>
 </head>
 <body>
@@ -240,6 +252,24 @@
       <div class="names-empty">Aún no hay nombres. Envía un tip y aparecerán aquí.</div>
     </div>
   </div>
+</div>
+
+<br><br>
+
+<label style="display:block; font-size:13px; margin-top:4px;">
+  Volumen del tip
+</label>
+<div class="volume-row">
+  <input
+    id="tip-volume"
+    type="range"
+    min="0"
+    max="100"
+    value="100"
+    oninput="updateVolumeLabel(this.value)"
+    onchange="sendTipVolume(this.value)"
+  />
+  <span id="tip-volume-label">100%</span>
 </div>
 
 <hr>
@@ -458,6 +488,19 @@
       })
       .catch((err) => console.error("❌ Error en fetch:", err));
   }
+
+  function updateVolumeLabel(value) {
+  const label = document.getElementById("tip-volume-label");
+  if (label) {
+    label.textContent = `${value}%`;
+  }
+}
+
+function sendTipVolume(value) {
+  const vol = Math.max(0, Math.min(1, Number(value) / 100));
+  sendToServer("tipVolume", { volume: vol });
+}
+
 
   /* ========= ENCUESTA A/B ========= */
 

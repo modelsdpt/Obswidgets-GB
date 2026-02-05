@@ -6,6 +6,7 @@ const ws = new WebSocket(
 let goal = 0;
 let current = 0;
 let goalCompleted = false;
+let tipVolume = 1; // 100%
 
 const bar = document.getElementById("bar-fill");
 const goalTitle = document.querySelector(".goal-title");
@@ -16,7 +17,7 @@ function playTip() {
   if (!tipSound) return;
   try {
     tipSound.currentTime = 0;
-    tipSound.volume = 1;
+    tipSound.volume = tipVolume; // 👈 controlado por el panel
     tipSound.play().catch(() => {});
   } catch (e) {
     console.log("Audio error:", e);
@@ -52,6 +53,14 @@ ws.onmessage = (event) => {
     goalCompleted = false;
     updateBar(false);
   }
+    if (data.type === "tipVolume") {
+    const v = Number(data.payload?.volume);
+    if (!isNaN(v)) {
+      tipVolume = Math.max(0, Math.min(1, v));
+      console.log("Nuevo volumen de tip:", tipVolume);
+    }
+  }
+
 };
 
 function updateBar(fromTip) {
