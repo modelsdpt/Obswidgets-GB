@@ -41,21 +41,24 @@ function render() {
     const row = document.createElement("div");
     row.className = "tip";
 
-    // clases por posición
-    if (idx === 0) row.classList.add("mvp");
-    if (idx === 1) row.classList.add("second");
-    if (idx === 2) row.classList.add("third");
-
-    // icono según posición
-    const icon =
-      idx === 0
-        ? "👑" // corona
-        : "🏆"; // trofeo (lo estilamos plata / bronce en CSS)
+    let icon = "";
+    if (idx === 0) {
+      row.classList.add("mvp");
+      icon = "👑";
+    } else if (idx === 1) {
+      row.classList.add("second");
+      icon = "🥈";
+    } else if (idx === 2) {
+      row.classList.add("third");
+      icon = "🥉";
+    }
 
     row.innerHTML = `
-      <span class="rank-icon">${icon}</span>
-      <span class="name">${name}</span>
-      <span class="amount">$${total}</span>
+      <span class="icon">${icon}</span>
+      <div class="line">
+        <span class="name">${name}</span>
+        <span class="amount">$${total}</span>
+      </div>
     `;
 
     list.appendChild(row);
