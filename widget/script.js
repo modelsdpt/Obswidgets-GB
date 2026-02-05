@@ -41,11 +41,19 @@ function render() {
     const row = document.createElement("div");
     row.className = "tip";
 
+    // clases por posición
     if (idx === 0) row.classList.add("mvp");
     if (idx === 1) row.classList.add("second");
     if (idx === 2) row.classList.add("third");
 
+    // icono según posición
+    const icon =
+      idx === 0
+        ? "👑" // corona
+        : "🏆"; // trofeo (lo estilamos plata / bronce en CSS)
+
     row.innerHTML = `
+      <span class="rank-icon">${icon}</span>
       <span class="name">${name}</span>
       <span class="amount">$${total}</span>
     `;

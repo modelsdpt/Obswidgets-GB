@@ -1,76 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+/* ==== RESET ==== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-:root {
-  --green-main: #b6ff4f;
-  --green-strong: #7dff00;
-  --green-border: rgba(182, 255, 79, 0.95);
-  --green-glow: rgba(140, 255, 120, 1);
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  margin: 0;
   background: transparent;
-  font-family: 'Bungee', system-ui, sans-serif;
+  font-family: "Impact", "Oswald", system-ui, sans-serif;
   color: #ffffff;
 }
 
-/* CONTENEDOR BARRA */
-#goal-wrapper {
+/* ==== CONTENEDOR ==== */
+.goal-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 16px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Título arriba de la barra */
+.goal-title {
+  font-size: 30px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow:
+    0 0 6px rgba(0,0,0,1),
+    0 0 18px rgba(0,0,0,1);
+}
+
+/* Texto tipo “$120 / $200” */
+.goal-text {
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow:
+    0 0 4px rgba(0,0,0,1),
+    0 0 14px rgba(0,0,0,1);
+}
+
+/* ==== BARRA ==== */
+.goal-bar {
   position: relative;
-  width: 520px;
-  height: 60px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.95);
-  border: 2px solid #8a5a22; /* marco tipo madera / oscuro */
-  box-shadow:
-    0 0 20px rgba(0, 0, 0, 1),
-    0 0 26px var(--green-glow);
+  width: 100%;
+  height: 32px;
+  border-radius: 999px;
+  border: 3px solid #ffffff;
+  background: rgba(0, 0, 0, 0.85);
   overflow: hidden;
-}
 
-/* RELLENO (JS mueve width) */
-#bar-fill {
-  position: absolute;
-  inset: 3px;
-  width: 0%;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #d0ff8d, var(--green-main), var(--green-strong));
   box-shadow:
-    0 0 16px var(--green-glow),
-    0 0 30px var(--green-glow);
-  transition: width 0.35s ease-out;
+    0 0 0 1px rgba(0,0,0,0.9),
+    0 16px 26px rgba(0,0,0,0.95);
 }
 
-/* LABEL ENCIMA */
-.goal-label {
+/* fondo con cuadricula sutil como el ejemplo */
+.goal-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.22;
+}
+
+/* relleno blanco animado */
+.goal-bar-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;           /* el JS va cambiando este width */
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #f1f1f1 30%,
+    #ffffff 60%,
+    #dcdcdc 100%
+  );
+  box-shadow:
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 22px rgba(255,255,255,0.65);
+
+  animation: barShimmer 2.2s linear infinite;
+  transform-origin: left center;
+}
+
+/* texto centrado dentro de la barra, si lo usas */
+.goal-bar-label {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
+
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #000000;
+  text-shadow:
+    0 0 6px rgba(255,255,255,0.9);
 }
 
-.goal-title {
-  font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 30px;
-  letter-spacing: 1px;
-  color: var(--green-main);
-  text-shadow:
-    0 0 6px rgba(0, 0, 0, 1),
-    0 0 14px var(--green-glow);
-}
-
-/* TEXTO MONTO */
-.goal-amount {
-  margin-top: 6px;
-  text-align: center;
-  font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 18px;
-  color: var(--green-main);
-  text-shadow:
-    0 0 4px rgba(0, 0, 0, 1),
-    0 0 12px var(--green-glow);
+/* ==== ANIMACIÓN RELLENO ==== */
+@keyframes barShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 120% 50%;
+  }
 }
