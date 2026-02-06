@@ -43,9 +43,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
 
-  margin: 6px 0;
   padding: 10px 18px;
 
   background:
@@ -85,16 +84,3 @@ body {
     0 0 22px rgba(255, 215, 0, 0.9);
 }
 
-.tip.mvp .name::before {
-  content: "👑 ";
-}
-
-/* Segundo con trofeo de plata */
-.tip.second .name::before {
-  content: "🥈 ";
-}
-
-/* Tercero con trofeo de bronce */
-.tip.third .name::before {
-  content: "🥉 ";
-}
