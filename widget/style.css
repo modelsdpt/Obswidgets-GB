@@ -21,6 +21,7 @@ body {
 
 /* ==== CONTENEDOR GENERAL CENTRADO ==== */
 #container {
+  
   width: 100%;
   height: 100%;
   display: flex;
@@ -41,6 +42,7 @@ body {
 
 /* Título "my senpais" */
 .title {
+  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
   font-family: 'Pacifico', cursive;
   font-size: 40px;
   text-align: center;
@@ -92,7 +94,7 @@ body {
 
 /* MVP (oro) */
 .tip.mvp {
-  background: linear-gradient(135deg, #b8860b, #ffcc33, #ffc857);
+  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);;
   border-color: #ffe9a6;
   box-shadow:
     0 0 20px rgba(0,0,0,0.9),
@@ -101,7 +103,7 @@ body {
 
 /* 2do (plata) */
 .tip.second {
-  background: linear-gradient(135deg, #757575, #c0c0c0, #e0e0e0);
+  background: linear-gradient(135deg, #fc1f57, #b82020, #d93c3c);;
   border-color: #f5f5f5;
   box-shadow:
     0 0 16px rgba(0,0,0,0.8),
@@ -110,7 +112,7 @@ body {
 
 /* 3ro (bronce) */
 .tip.third {
-  background: linear-gradient(135deg, #8b4513, #cd7f32, #e6a96b);
+background: linear-gradient(135deg, #ff53e8, #b82020, #d93c3c);;
   border-color: #ffd7a0;
   box-shadow:
     0 0 16px rgba(0,0,0,0.8),
