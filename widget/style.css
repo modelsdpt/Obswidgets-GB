@@ -95,7 +95,7 @@ body {
   border-color: #ffe9a6;
   box-shadow:
     0 0 20px rgba(0,0,0,0.9),
-    0 0 22px rgba(255, 215, 0, 0.9);
+    0 0 22px rgba(160, 7, 7, 0.9);
 }
 
 /* 2do (plata) */
@@ -104,7 +104,7 @@ body {
   border-color: #f5f5f5;
   box-shadow:
     0 0 16px rgba(0,0,0,0.8),
-    0 0 18px rgba(200,200,200,0.7);
+    0 0 18px rgba(255, 48, 145, 0.815);
 }
 
 /* 3ro (bronce) */
@@ -113,7 +113,7 @@ body {
   border-color: #ffd7a0;
   box-shadow:
     0 0 16px rgba(0,0,0,0.8),
-    0 0 18px rgba(230,169,107,0.7);
+    0 0 18px rgba(255, 65, 144, 0.795);
 }
 
 /* icono (corona / trofeos) */
