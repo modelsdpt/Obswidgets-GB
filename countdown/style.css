@@ -1,8 +1,13 @@
 /* ====== COUNTDOWN – CARD OSCURA, DÍGITOS GRANDES ====== */
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-* {
-  box-sizing: border-box;
+:root {
+  --ls-bg: #050505;
+  --ls-card-bg: #200808;
+  --ls-card-border: #7a1818;
+  --ls-red-main: #b82020;
+  --ls-red-light: #ff4c4c;
+  --ls-text-main: #ffffff;
 }
 
 body {
@@ -18,65 +23,58 @@ body {
 
 /* Card principal */
 .timer-widget {
-  min-width: 320px;
-  padding: 12px 22px 16px;
-  border-radius: 18px;
-  background: radial-gradient(circle at top, #202020, #050505);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.98),
-    0 0 18px rgba(255, 255, 255, 0.1);
-  text-align: center;
-}
-
-/* Título “TIME” */
-.timer-title {
-  margin-bottom: 4px;
-  font-family: "Anton", Impact, system-ui, sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 12px rgba(0, 0, 0, 1),
-    0 0 18px rgba(255, 255, 255, 0.25);
-}
-
-/* Contenedor de display */
-.timer-display {
-  display: flex;
-  justify-content: center;
-}
-
-/* Caja del tiempo */
-.timer-box {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px 14px 8px;
-  border-radius: 999px;
-  background: radial-gradient(circle at top, #161616, #050505);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  padding: 14px 20px;
+  border-radius: 18px;
+
+  background: #150404;
+  border: 1px solid #7a1818;
   box-shadow:
-    0 0 14px rgba(0, 0, 0, 0.9),
-    0 0 18px rgba(0, 0, 0, 0.8);
+    0 0 20px rgba(0,0,0,0.9),
+    0 0 18px rgba(0,0,0,0.85);
 }
 
-/* Valor (mm:ss) */
-#timer-value {
-  font-family: "Anton", Impact, system-ui, sans-serif;
-  font-size: 30px;
-  letter-spacing: 0.16em;
+.timer-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  color: #ffffff;
   text-shadow:
-    0 0 12px rgba(0, 0, 0, 1),
-    0 0 18px rgba(255, 255, 255, 0.35);
+    0 0 4px #000,
+    0 0 10px rgba(0,0,0,0.9);
+  margin-bottom: 6px;
 }
 
-/* Label SECONDS */
+.timer-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-box {
+  padding: 8px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
+  border: 1px solid #f7d1d1;
+  box-shadow:
+    0 0 16px rgba(0,0,0,0.9),
+    0 0 18px rgba(217,60,60,0.8);
+}
+
+#timer-value {
+  font-family: 'Pacifico', cursive;
+  font-size: 32px;
+  color: #ffffff;
+}
+
 .timer-label {
+  display: block;
   margin-top: 2px;
-  font-size: 11px;
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
   letter-spacing: 0.18em;
-  opacity: 0.8;
-  text-transform: uppercase;
+  color: #ffe5e5;
 }
