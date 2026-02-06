@@ -24,11 +24,13 @@ body {
 /* Contenedor principal MVP */
 #container {
   background: rgba(0, 0, 0, 0.0); /* lo puedes dejar transparente si ya está así */
+  width: 450;
 }
 
 /* Título "Who Love me?" */
 .title {
   font-family: 'Pacifico', cursive;
+  width: 420px;
   font-size: 42px;
   text-align: center;
   color: #ffffff;
