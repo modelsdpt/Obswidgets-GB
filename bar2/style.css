@@ -1,76 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 :root {
-  --green-main: #dc4fff;
-  --green-strong: #ae00ff;
-  --green-border: rgba(255, 79, 246, 0.95);
-  --green-glow: rgb(251, 120, 255);
+  --vino-card: #3b1010;
+  --vino-card-dark: #220506;
+  --vino-card-light: #6b2424;
+  --vino-border: #f7e3d3;
+  --vino-fill: #e9c9ba;
+  --vino-fill-strong: #ffede0;
+  --text-main: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Bungee', system-ui, sans-serif;
-  color: #ffffff;
+  font-family: 'Bebas Neue', system-ui, sans-serif;
+  color: var(--text-main);
 }
 
-/* CONTENEDOR BARRA */
-#goal-wrapper {
-  position: relative;
-  width: 520px;
-  height: 60px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.95);
-  border: 2px solid #8a5a22; /* marco tipo madera / oscuro */
-  box-shadow:
-    0 0 20px rgba(0, 0, 0, 1),
-    0 0 26px var(--green-glow);
-  overflow: hidden;
-}
-
-/* RELLENO (JS mueve width) */
-#bar-fill {
-  position: absolute;
-  inset: 3px;
-  width: 0%;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #9e8dff, var(--green-main), var(--green-strong));
-  box-shadow:
-    0 0 16px var(--green-glow),
-    0 0 30px var(--green-glow);
-  transition: width 0.35s ease-out;
-}
-
-/* LABEL ENCIMA */
-.goal-label {
-  position: relative;
-  z-index: 1;
-  width: 100%;
+#container {
+  width: 480px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
+}
+
+/* CARD PRINCIPAL */
+.goal-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 10px 16px 12px;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, var(--vino-card-dark), var(--vino-card), var(--vino-card-light));
+  border: 1px solid var(--vino-border);
+  box-shadow:
+    0 0 22px rgba(0,0,0,0.95),
+    0 0 24px rgba(0,0,0,0.85);
+}
+
+/* HEADER: TÍTULO + MONTO AL LADO */
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
 }
 
 .goal-title {
-  font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 30px;
-  letter-spacing: 1px;
-  color: var(--green-main);
-  text-shadow:
-    0 0 6px rgba(0, 0, 0, 1),
-    0 0 14px var(--green-glow);
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgba(0,0,0,0.9);
 }
 
-/* TEXTO MONTO */
-.goal-amount {
-  margin-top: 6px;
-  text-align: center;
-  font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 18px;
-  color: var(--green-main);
+.goal-title.neon {
   text-shadow:
-    0 0 4px rgba(0, 0, 0, 1),
-    0 0 12px var(--green-glow);
+    0 0 6px rgba(255,255,255,0.9),
+    0 0 12px rgba(255,255,255,0.7);
+}
+
+.goal-amount {
+  font-size: 18px;
+}
+
+/* BARRA */
+.goal-bar {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  border-radius: 999px;
+  overflow: hidden;
+
+  background: radial-gradient(circle at 20% 0%, #4d1515, #160406 60%, #080103 100%);
+  border: 1px solid rgba(255, 230, 214, 0.7);
+  box-shadow:
+    inset 0 0 8px rgba(0,0,0,0.9),
+    0 0 12px rgba(0,0,0,0.8);
+}
+
+#bar-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #6b2b2b, var(--vino-fill), var(--vino-fill-strong));
+  box-shadow:
+    0 0 12px rgba(255, 245, 230, 0.7),
+    0 0 16px rgba(255, 235, 220, 0.8);
+  transition: width 0.35s ease-out;
 }

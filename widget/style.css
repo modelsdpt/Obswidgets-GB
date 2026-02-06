@@ -4,8 +4,10 @@
   --ls-bg: #050505;
   --ls-card-bg: #200808;
   --ls-card-border: #7a1818;
+  --ls-red-dark: #4a0505;
   --ls-red-main: #b82020;
   --ls-red-light: #ff4c4c;
+  --ls-red-soft: #ff9cb5;
   --ls-text-main: #ffffff;
 }
 
@@ -19,39 +21,53 @@ body {
   margin: 0;
 }
 
-/* ==== CONTENEDOR GENERAL CENTRADO ==== */
+/* ==== CONTENEDOR GENERAL ==== */
 #container {
-  
+  background: radial-gradient(circle at top, #220000 0%, #050000 55%, #020000 100%);
+  border: 1px solid var(--ls-card-border);
+  box-shadow:
+    0 0 20px rgba(0,0,0,0.9),
+    0 0 18px rgba(0,0,0,0.85);
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* centra horizontal */
+  align-items: center;
   justify-content: flex-start;
-  padding-top: 10px;
+  padding: 12px 0 10px;
 }
 
-/* lista centrada y con ancho máximo */
+/* ==== TÍTULO EN CARD ("my senpais") ==== */
+.title {
+  width: min(460px, 90%);
+  padding: 8px 18px;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, var(--ls-red-dark), var(--ls-red-main), var(--ls-red-soft));
+  border: 1px solid #f7d1d1;
+  box-shadow:
+    0 0 18px rgba(0,0,0,0.9),
+    0 0 20px rgba(217,60,60,0.85);
+
+  font-family: 'Pacifico', cursive;
+  font-size: 34px;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: 2px;
+  margin: 0 0 12px;
+
+  text-shadow:
+    0 0 4px #000,
+    0 0 10px rgba(0,0,0,.9);
+}
+
+/* ==== LISTA CENTRADA ==== */
 #top-list {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;      /* las cards quedan centradas */
+  align-items: center;
   gap: 8px;
-}
-
-/* Título "my senpais" */
-.title {
-  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
-  font-family: 'Pacifico', cursive;
-  font-size: 40px;
-  text-align: center;
-  color: #ffffff;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-  text-shadow:
-    0 0 4px #000,
-    0 0 10px rgba(0,0,0,.9);
 }
 
 /* ===== CARD DE CADA TIPPER ===== */
@@ -60,12 +76,11 @@ body {
   align-items: center;
   gap: 8px;
 
-  /* 👇 limita tamaño y la centra */
   width: min(460px, 90%);
   padding: 8px 16px;
 
-  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
-  border-radius: 12px;
+  background: linear-gradient(135deg, var(--ls-red-dark), var(--ls-red-main), var(--ls-red-soft));
+  border-radius: 14px;
   border: 1px solid #f9d3d3;
   box-shadow:
     0 0 18px rgba(0, 0, 0, 0.9),
@@ -74,9 +89,15 @@ body {
   color: #ffffff;
 }
 
-/* nombre + monto en una sola línea, sin hueco gigante */
+/* icono (corona / trofeos) */
+.rank-icon {
+  font-size: 22px;
+  margin-right: 6px;
+}
+
+/* nombre + monto en una sola línea, centrados en la card */
 .tip .name {
-  flex: 1;                           /* ocupa el espacio central */
+  flex: 1;
   font-family: 'Pacifico', cursive;
   font-size: 22px;
   white-space: nowrap;
@@ -86,41 +107,36 @@ body {
 
 .tip .amount {
   font-family: 'Pacifico', cursive;
-  font-size: 32px;
-  justify-content: space-between;
+  font-size: 26px;
   margin-left: 8px;
   white-space: nowrap;
 }
 
-/* MVP (oro) */
+/* === VARIANTES MVP / 2º / 3º PERO MISMA PALETA ROJA === */
+
+/* MVP: un poco más de brillo, mismos tonos rojos */
 .tip.mvp {
-  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);;
+  background: linear-gradient(135deg, #5c0505, var(--ls-red-main), var(--ls-red-soft));
   border-color: #ffe9a6;
   box-shadow:
-    0 0 20px rgba(0,0,0,0.9),
-    0 0 22px rgba(160, 7, 7, 0.9);
+    0 0 22px rgba(0,0,0,0.95),
+    0 0 26px rgba(255, 215, 0, 0.65);
 }
 
-/* 2do (plata) */
+/* 2do lugar: rojo con un toque más claro */
 .tip.second {
-  background: linear-gradient(135deg, #fc1f57, #b82020, #d93c3c);;
-  border-color: #f5f5f5;
+  background: linear-gradient(135deg, #670514, #e72f4f, var(--ls-red-soft));
+  border-color: #ffe4f0;
   box-shadow:
-    0 0 16px rgba(0,0,0,0.8),
-    0 0 18px rgba(255, 48, 145, 0.815);
+    0 0 18px rgba(0,0,0,0.9),
+    0 0 18px rgba(255, 124, 170, 0.85);
 }
 
-/* 3ro (bronce) */
+/* 3er lugar: rojo + rosado más suave */
 .tip.third {
-background: linear-gradient(135deg, #ff53e8, #b82020, #d93c3c);;
+  background: linear-gradient(135deg, #5f041d, #d52b5f, #ff9cb5);
   border-color: #ffd7a0;
   box-shadow:
-    0 0 16px rgba(0,0,0,0.8),
-    0 0 18px rgba(255, 65, 144, 0.795);
-}
-
-/* icono (corona / trofeos) */
-.rank-icon {
-  font-size: 20px;
-  margin-right: 6px;
+    0 0 18px rgba(0,0,0,0.9),
+    0 0 18px rgba(255, 110, 160, 0.8);
 }
