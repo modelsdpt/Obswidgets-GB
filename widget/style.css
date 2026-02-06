@@ -23,11 +23,6 @@ body {
 
 /* ==== CONTENEDOR GENERAL ==== */
 #container {
-  background: radial-gradient(circle at top, #220000 0%, #050000 55%, #020000 100%);
-  border: 1px solid var(--ls-card-border);
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.9),
-    0 0 18px rgba(0,0,0,0.85);
   width: 100%;
   height: 100%;
   display: flex;
