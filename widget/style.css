@@ -1,4 +1,3 @@
-/* ====== TIP MVP – BLANCO/NEGRO CON CARDS ====== */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 :root {
@@ -10,7 +9,6 @@
   --ls-text-main: #ffffff;
 }
 
-
 * {
   box-sizing: border-box;
 }
@@ -18,36 +16,53 @@
 body {
   font-family: 'Pacifico', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ls-text-main);
+  margin: 0;
 }
 
-/* Contenedor principal MVP */
+/* ==== CONTENEDOR GENERAL CENTRADO ==== */
 #container {
-  background: rgba(255, 255, 255, 0); /* lo puedes dejar transparente si ya está así */
- 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* centra horizontal */
+  justify-content: flex-start;
+  padding-top: 10px;
 }
 
-/* Título "Who Love me?" */
+/* lista centrada y con ancho máximo */
+#top-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* las cards quedan centradas */
+  gap: 8px;
+}
+
+/* Título "my senpais" */
 .title {
   font-family: 'Pacifico', cursive;
-  font-size: 42px;
+  font-size: 40px;
   text-align: center;
   color: #ffffff;
   letter-spacing: 2px;
+  margin-bottom: 12px;
   text-shadow:
     0 0 4px #000,
     0 0 10px rgba(0,0,0,.9);
 }
 
-/* Card general de cada tipper */
+/* ===== CARD DE CADA TIPPER ===== */
 .tip {
   display: flex;
   align-items: center;
   gap: 8px;
 
-  padding: 10px 18px;
+  /* 👇 limita tamaño y la centra */
+  width: min(460px, 90%);
+  padding: 8px 16px;
 
-  background:
-    linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
+  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
   border-radius: 12px;
   border: 1px solid #f9d3d3;
   box-shadow:
@@ -57,11 +72,11 @@ body {
   color: #ffffff;
 }
 
-/* Nombre y monto en una sola línea sin huecos gigantes */
+/* nombre + monto en una sola línea, sin hueco gigante */
 .tip .name {
-  flex: 1;
+  flex: 1;                           /* ocupa el espacio central */
   font-family: 'Pacifico', cursive;
-  font-size: 26px;
+  font-size: 22px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -69,17 +84,40 @@ body {
 
 .tip .amount {
   font-family: 'Pacifico', cursive;
-  font-size: 24px;
+  font-size: 20px;
+  margin-left: 8px;
   white-space: nowrap;
 }
 
-/* MVP con corona dorada */
+/* MVP (oro) */
 .tip.mvp {
-  background:
-    linear-gradient(135deg, #b8860b, #ffcc33, #ffc857);
+  background: linear-gradient(135deg, #b8860b, #ffcc33, #ffc857);
   border-color: #ffe9a6;
   box-shadow:
     0 0 20px rgba(0,0,0,0.9),
     0 0 22px rgba(255, 215, 0, 0.9);
 }
 
+/* 2do (plata) */
+.tip.second {
+  background: linear-gradient(135deg, #757575, #c0c0c0, #e0e0e0);
+  border-color: #f5f5f5;
+  box-shadow:
+    0 0 16px rgba(0,0,0,0.8),
+    0 0 18px rgba(200,200,200,0.7);
+}
+
+/* 3ro (bronce) */
+.tip.third {
+  background: linear-gradient(135deg, #8b4513, #cd7f32, #e6a96b);
+  border-color: #ffd7a0;
+  box-shadow:
+    0 0 16px rgba(0,0,0,0.8),
+    0 0 18px rgba(230,169,107,0.7);
+}
+
+/* icono (corona / trofeos) */
+.rank-icon {
+  font-size: 20px;
+  margin-right: 6px;
+}
