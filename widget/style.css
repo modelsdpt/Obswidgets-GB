@@ -84,7 +84,8 @@ body {
 
 .tip .amount {
   font-family: 'Pacifico', cursive;
-  font-size: 20px;
+  font-size: 32px;
+  justify-content: space-between;
   margin-left: 8px;
   white-space: nowrap;
 }

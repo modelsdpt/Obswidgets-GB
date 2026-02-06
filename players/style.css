@@ -1,30 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600&display=swap');
 
 :root {
-  --green-main: #b6ff4f;
-  --green-strong: #7dff00;
-  --green-soft: #eaffc7;
-  --green-border: rgba(182, 255, 79, 0.95);
-  --green-glow: rgba(140, 255, 120, 1);
+  --poll-red-main:   #ff4b5c;                 /* rojo principal */
+  --poll-red-strong: #ff1f3a;                 /* rojo intenso */
+  --poll-red-soft:   #ffd6dd;                 /* rosado claro para textos */
+  --poll-border:     rgba(255, 120, 120, 0.95);
+  --poll-glow:       rgba(255, 80, 80, 1);
 }
 
 body {
   margin: 0;
   background: transparent;
   font-family: 'Baloo 2', system-ui, sans-serif;
-  color: var(--green-soft);
+  color: #ffffff;
 }
 
 /* CONTENEDOR PRINCIPAL */
 #poll-widget {
   width: 430px;
   padding: 12px 14px 10px;
-  background: rgba(0, 0, 0, 0.95);
-  border-radius: 12px;
-  border: 2px solid #8a5a22;
+  background: radial-gradient(circle at top, #200000 0%, #050000 55%, #020000 100%);
+  border-radius: 14px;
+  border: 2px solid var(--poll-border);
   box-shadow:
-    0 0 20px rgba(0, 0, 0, 1),
-    0 0 26px var(--green-glow);
+    0 0 22px rgba(0, 0, 0, 1),
+    0 0 24px var(--poll-glow);
   box-sizing: border-box;
 }
 
@@ -45,10 +45,10 @@ body {
   text-align: center;
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 22px;
-  color: var(--green-main);
+  color: #ffffff;
   text-shadow:
-    0 0 4px rgba(0, 0, 0, 1),
-    0 0 12px var(--green-glow);
+    0 0 4px #000,
+    0 0 12px var(--poll-glow);
 }
 
 /* PREGUNTA */
@@ -57,7 +57,7 @@ body {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: var(--green-soft);
+  color: var(--poll-red-soft);
   text-shadow: 0 0 6px rgba(0, 0, 0, 1);
 }
 
@@ -70,14 +70,14 @@ body {
 
 .poll-option {
   padding: 6px 8px 7px;
-  border-radius: 8px;
+  border-radius: 10px;
   background: linear-gradient(
     180deg,
-    rgba(40, 40, 40, 0.98),
-    rgba(10, 10, 10, 0.98)
+    rgba(60, 0, 0, 0.98),
+    rgba(15, 0, 0, 0.98)
   );
-  border: 1px solid #8a5a22;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 1);
+  border: 1px solid var(--poll-border);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 
 /* HEADER (texto + %) */
@@ -93,7 +93,7 @@ body {
 #label-b {
   font-size: 14px;
   font-weight: 600;
-  color: var(--green-soft);
+  color: #ffffff;
 }
 
 .poll-percent,
@@ -101,10 +101,10 @@ body {
 #percent-b {
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 14px;
-  color: var(--green-main);
+  color: var(--poll-red-main);
   text-shadow:
     0 0 4px rgba(0, 0, 0, 1),
-    0 0 10px var(--green-glow);
+    0 0 10px var(--poll-glow);
 }
 
 /* BARRA */
@@ -114,7 +114,7 @@ body {
   border-radius: 6px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.9);
-  border: 1px solid #8a5a22;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .poll-bar-fill,
@@ -124,10 +124,15 @@ body {
   inset: 0;
   width: 0%;
   border-radius: 6px;
-  background: linear-gradient(90deg, #d0ff8d, var(--green-main), var(--green-strong));
+  background: linear-gradient(
+    90deg,
+    #ffe1e6,
+    var(--poll-red-main),
+    var(--poll-red-strong)
+  );
   box-shadow:
-    0 0 12px var(--green-glow),
-    0 0 18px var(--green-glow);
+    0 0 14px var(--poll-glow),
+    0 0 18px var(--poll-glow);
   transition: width 0.3s ease-out;
 }
 
@@ -137,7 +142,8 @@ body {
 #votes-b {
   margin-top: 2px;
   font-size: 11px;
-  opacity: 0.85;
+  opacity: 0.9;
+  color: var(--poll-red-soft);
 }
 
 /* TOTAL */
@@ -147,6 +153,6 @@ body {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--green-soft);
+  color: var(--poll-red-soft);
   opacity: 0.9;
 }
