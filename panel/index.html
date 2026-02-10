@@ -1,123 +1,342 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Panel OF</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #111;
-      color: #fff;
-    }
-    h2 {
-      color: #00f7ff;
-      text-shadow: 0 0 10px #00eaff;
-    }
-    input {
-      width: 250px;
-      padding: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 10px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      color: #000;
-      background: #00f7ff;
-      box-shadow: 0 0 10px #00dfff;
-    }
-    .danger {
-      background: red;
-      color: white !important;
-      box-shadow: 0 0 10px red;
-    }
-    hr {
-      margin: 30px 0;
-      border: 1px solid #444;
+    :root {
+      --accent: #00f7ff;
+      --accent-soft: #00eaff;
+      --bg-main: #0b0b0f;
+      --bg-panel: #111319;
+      --bg-card: #181b24;
+      --border-soft: #272a35;
+      --danger: #ff3b3b;
+      --text-main: #ffffff;
+      --text-muted: #b0b3c3;
     }
 
-    /* ===== LAYOUT Enviar Tip + lista de nombres ===== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    /* ===== LAYOUT PRINCIPAL ===== */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: linear-gradient(180deg, #05050a, #151522);
+      border-right: 1px solid #1e2130;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 18px;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(0, 247, 255, 0.6);
+      margin-bottom: 4px;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+
+    .nav-item {
+      width: 100%;
+      text-align: left;
+      padding: 9px 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-item span.icon {
+      font-size: 18px;
+    }
+
+    .nav-item:hover {
+      background: rgba(0, 247, 255, 0.06);
+      color: var(--accent-soft);
+      transform: translateX(1px);
+    }
+
+    .nav-item.active {
+      background: radial-gradient(circle at 0 0, rgba(0, 247, 255, 0.25), transparent 60%),
+                  rgba(0, 247, 255, 0.12);
+      color: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.75;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px 24px;
+      background: radial-gradient(circle at top left, #151626, #050509);
+    }
+
+    .main-header {
+      margin-bottom: 14px;
+    }
+
+    .main-header h1 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(0, 247, 255, 0.7);
+    }
+
+    .main-header p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .main-section {
+      display: none;
+    }
+
+    .main-section.active {
+      display: block;
+    }
+
+    h2 {
+      color: var(--accent-soft);
+      text-shadow: 0 0 10px rgba(0, 234, 255, 0.6);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    hr {
+      margin: 22px 0;
+      border: 1px solid #252838;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #323445;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #0f1118;
+      color: #fff;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(0, 247, 255, 0.4);
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      color: #000;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 223, 255, 0.6);
+    }
+
+    button.secondary {
+      background: #22293a;
+      color: var(--text-main);
+      box-shadow: none;
+      border: 1px solid #34384a;
+    }
+
+    .danger {
+      background: var(--danger);
+      color: white !important;
+      box-shadow: 0 0 10px rgba(255, 59, 59, 0.7);
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.75);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card-body {
+      margin-top: 4px;
+    }
+
+    /* ===== LAYOUT HOME: TIP + GOAL + TIMER ===== */
+    .home-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 16px;
+    }
+
     .tip-row {
       display: flex;
       align-items: flex-start;
-      gap: 24px;
+      gap: 18px;
     }
+
     .tip-form {
       flex: 1 1 auto;
     }
+
     .names-panel {
-      flex: 0 0 240px;
-      max-width: 260px;
+      flex: 0 0 230px;
+      max-width: 230px;
       padding: 10px 12px;
       border-radius: 10px;
-      background: #181818;
-      border: 1px solid #333;
+      background: #141622;
+      border: 1px solid #262b40;
       box-shadow: 0 0 12px rgba(0,0,0,0.7);
     }
+
     .names-panel h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
+      margin: 0 0 6px;
+      font-size: 13px;
       color: #ffd966;
     }
+
     #names-list {
       max-height: 220px;
       overflow-y: auto;
       margin-top: 4px;
     }
+
     .name-pill {
       display: inline-block;
       margin: 4px 4px 0 0;
-      padding: 6px 10px;
+      padding: 5px 9px;
       border-radius: 999px;
-      background: #222;
-      border: 1px solid #555;
+      background: #202535;
+      border: 1px solid #3b3f55;
       color: #fff;
-      font-size: 13px;
+      font-size: 12px;
       cursor: pointer;
       white-space: nowrap;
     }
+
     .name-pill:hover {
-      background: #00f7ff;
+      background: var(--accent);
       color: #000;
-      border-color: #00f7ff;
-      box-shadow: 0 0 8px #00f7ff;
+      border-color: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
     }
+
     .names-empty {
       font-size: 12px;
       opacity: 0.8;
       margin-top: 4px;
+      color: var(--text-muted);
     }
 
-    /* ===== ACTION TIMER ===== */
+    /* VOLUMEN TIP */
+    .volume-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .volume-row input[type="range"] {
+      flex: 1;
+    }
+
+    /* TIMER BUTTONS */
     .timer-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 8px;
+      margin-top: 8px;
       margin-bottom: 5px;
     }
+
     .timer-buttons button {
-      flex: 1 1 80px;
-      min-width: 80px;
+      flex: 1 1 70px;
+      min-width: 70px;
+      padding: 8px 10px;
+      font-size: 13px;
     }
+
     .timer-stop-btn {
       background: #ff8800;
       color: #000;
       box-shadow: 0 0 10px #ff8800;
+      margin-top: 6px;
     }
 
-    /* ===== ENCUESTA A/B ===== */
+    /* STATUS RE-SYNC */
+    .resync-status {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .resync-status.show {
+      opacity: 1;
+    }
+
+    /* ===== ENCUESTA A/B (EXTRAS) ===== */
     .poll-admin {
-      margin-top: 10px;
+      margin-top: 4px;
       display: flex;
       flex-wrap: wrap;
       gap: 24px;
@@ -132,14 +351,15 @@
     .poll-inputs label {
       display: block;
       margin-top: 6px;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       font-weight: bold;
+      font-size: 13px;
     }
 
     .poll-inputs input {
       width: 100%;
       margin-top: 0;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .poll-live {
@@ -147,8 +367,8 @@
       min-width: 260px;
       padding: 10px 12px;
       border-radius: 10px;
-      background: #181818;
-      border: 1px solid #333;
+      background: #151826;
+      border: 1px solid #262b40;
       box-shadow: 0 0 12px rgba(0,0,0,0.7);
     }
 
@@ -165,15 +385,16 @@
     }
 
     .poll-option {
-      background: #222;
+      background: #20253a;
       padding: 8px 10px;
       border-radius: 8px;
-      border: 1px solid #444;
+      border: 1px solid #323850;
     }
 
     .poll-option-label {
       font-weight: bold;
       margin-bottom: 4px;
+      font-size: 13px;
     }
 
     .poll-option-bar {
@@ -181,7 +402,7 @@
       width: 100%;
       height: 14px;
       border-radius: 999px;
-      background: #101010;
+      background: #101020;
       overflow: hidden;
       margin-bottom: 4px;
     }
@@ -192,13 +413,13 @@
       left: 0;
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #00f7ff, #00c8ff);
+      background: linear-gradient(90deg, var(--accent), #00c8ff);
       box-shadow: 0 0 8px rgba(0, 247, 255, 0.9);
       transition: width 0.2s ease-out;
     }
 
     .poll-option-stats {
-      font-size: 13px;
+      font-size: 12px;
       opacity: 0.9;
       margin-bottom: 4px;
     }
@@ -210,157 +431,291 @@
       margin-top: 2px;
     }
 
-    .volume-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.volume-row input[type="range"] {
-  flex: 1;
-}
-
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .layout {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+      .sidebar-footer {
+        display: none;
+      }
+      .main {
+        padding: 12px 14px 18px;
+      }
+      .home-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
 
-<h2>Enviar Tip</h2>
-
-<div class="tip-row">
-  <!-- FORMULARIO IZQUIERDA -->
-  <div class="tip-form">
-    <label>Nombre</label>
-    <br>
-    <input id="name" placeholder="Nombre del usuario">
-
-    <br><br>
-
-    <label>Monto</label>
-    <br>
-    <input id="amount" type="number" placeholder="Ej: 20">
-
-    <br>
-
-    <button onclick="sendTip()">Enviar Tip</button>
-  </div>
-
-  <!-- LISTA DERECHA -->
-  <div class="names-panel">
-    <h3>Últimos nombres</h3>
-    <div id="names-list">
-      <div class="names-empty">Aún no hay nombres. Envía un tip y aparecerán aquí.</div>
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">OF Widgets Panel</div>
+      <div class="nav-section-title">Secciones</div>
+      <button class="nav-item active" data-tab="home">
+        <span class="icon">🏠</span>
+        <span>Live (Goal + Timer)</span>
+      </button>
+      <button class="nav-item" data-tab="extras">
+        <span class="icon">✨</span>
+        <span>Extras & Encuestas</span>
+      </button>
     </div>
-  </div>
-</div>
 
-<br><br>
+    <div class="sidebar-footer">
+      Modelo actual: <strong>roman001</strong>
+    </div>
+  </aside>
 
-<label style="display:block; font-size:13px; margin-top:4px;">
-  Volumen del tip
-</label>
-<div class="volume-row">
-  <input
-    id="tip-volume"
-    type="range"
-    min="0"
-    max="100"
-    value="100"
-    oninput="updateVolumeLabel(this.value)"
-    onchange="sendTipVolume(this.value)"
-  />
-  <span id="tip-volume-label">100%</span>
-</div>
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="main-header">
+      <h1>Control del Livestream</h1>
+      <p>Maneja tips, goals, cronómetro y sincroniza widgets cuando se caiga OBS.</p>
+    </div>
 
-<hr>
+    <!-- TAB: HOME -->
+    <section class="main-section active" data-tab-content="home">
+      <div class="home-grid">
+        <!-- Columna izquierda: Tip + Goal -->
+        <div>
+          <!-- CARD TIP + NOMBRES -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Enviar Tip</div>
+                <div class="card-subtitle">Actualiza la bar y el MVP en tiempo real.</div>
+              </div>
+            </div>
 
-<h2>Top 3</h2>
-<button class="danger" onclick="clearAll()">Limpiar Top 3</button>
+            <div class="card-body">
+              <div class="tip-row">
+                <!-- FORM TIP -->
+                <div class="tip-form">
+                  <label>Nombre</label>
+                  <input id="name" placeholder="Nombre del usuario">
 
-<hr>
+                  <label style="margin-top:10px;">Monto</label>
+                  <input id="amount" type="number" placeholder="Ej: 20">
 
-<h2>Goal Bar</h2>
+                  <button onclick="sendTip()">Enviar Tip</button>
+                </div>
 
-<label>Nueva Goal ($)</label>
-<br>
-<input id="goal" type="number" placeholder="Ej: 200">
+                <!-- PANEL NOMBRES -->
+                <div class="names-panel">
+                  <h3>Últimos nombres</h3>
+                  <div id="names-list">
+                    <div class="names-empty">
+                      Aún no hay nombres. Envía un tip y aparecerán aquí.
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-<br>
-<button onclick="setGoal()">Establecer Goal</button>
-<button class="danger" onclick="clearGoal()">Limpiar Goal</button>
+              <label style="display:block; font-size:13px; margin-top:12px;">
+                Volumen del tip
+              </label>
+              <div class="volume-row">
+                <input
+                  id="tip-volume"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="100"
+                  oninput="updateVolumeLabel(this.value)"
+                  onchange="sendTipVolume(this.value)"
+                />
+                <span id="tip-volume-label">100%</span>
+              </div>
+            </div>
+          </div>
 
-<hr>
-
-<h2>Action Timer</h2>
-<div class="timer-buttons">
-  <button onclick="startActionTimer(120)">120s</button>
-  <button onclick="startActionTimer(20)">20s</button>
-  <button onclick="startActionTimer(35)">35s</button>
-  <button onclick="startActionTimer(45)">45s</button>
-  <button onclick="startActionTimer(60)">60s</button>
-</div>
-<button class="timer-stop-btn" onclick="stopActionTimer()">Detener Cronómetro</button>
-
-<hr>
-
-<button onclick="fetch('/api/send', {
-  method:'POST',
-  headers:{'Content-Type':'application/json'},
-  body: JSON.stringify({
-    modelId:'roman001',
-    type:'roulette'
-  })
-})">
-🎰 Girar Ruleta
-</button>
-
-<hr>
-
-<h2>Encuestas (A / B)</h2>
-
-<div class="poll-admin">
-  <div class="poll-inputs">
-    <label for="pollQuestion">Texto de la encuesta</label>
-    <input id="pollQuestion" placeholder="¿Qué hacemos ahora? (Ej: Soltar / Apretar)">
-
-    <label for="pollOptionA">Opción A</label>
-    <input id="pollOptionA" placeholder="Soltar">
-
-    <label for="pollOptionB">Opción B</label>
-    <input id="pollOptionB" placeholder="Apretar">
-
-    <button onclick="pollStart()">Iniciar / Reiniciar encuesta</button>
-    <button class="danger" onclick="pollClear()">Borrar encuesta</button>
-  </div>
-
-  <div class="poll-live">
-    <div id="pollQuestionText">No hay encuesta activa.</div>
-
-    <div class="poll-options">
-      <div class="poll-option">
-        <div class="poll-option-label" id="pollLabelA">—</div>
-        <div class="poll-option-bar">
-          <div class="poll-option-fill" id="pollFillA"></div>
+          <!-- CARD GOAL -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Goal Bar</div>
+                <div class="card-subtitle">Define la meta en dólares para el show actual.</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <label>Nueva Goal ($)</label>
+              <input id="goal" type="number" placeholder="Ej: 200">
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button onclick="setGoal()">Establecer Goal</button>
+                <button class="danger" onclick="clearGoal()">Limpiar Goal</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="poll-option-stats" id="pollStatsA">0 votos (0%)</div>
-        <button onclick="pollVote('A')">Votar A</button>
+
+        <!-- Columna derecha: Timer + Re-sync -->
+        <div>
+          <!-- CARD TIMER -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Action Timer</div>
+                <div class="card-subtitle">Cronómetro para juegos / retos rápidos.</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="timer-buttons">
+                <button onclick="startActionTimer(120)">120s</button>
+                <button onclick="startActionTimer(20)">20s</button>
+                <button onclick="startActionTimer(35)">35s</button>
+                <button onclick="startActionTimer(45)">45s</button>
+                <button onclick="startActionTimer(60)">60s</button>
+              </div>
+              <button class="timer-stop-btn" onclick="stopActionTimer()">Detener Cronómetro</button>
+            </div>
+          </div>
+
+          <!-- CARD RE-SYNC -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Re-sync Widgets</div>
+                <div class="card-subtitle">
+                  Si se cae OBS o el widget, reconecta y reenvía todos los eventos del show actual.
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <button class="secondary" onclick="resyncWidgets()">
+                🔄 Re-sync widgets del modelo
+              </button>
+              <div id="resync-status" class="resync-status">
+                Aún no se ha ejecutado Re-sync.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: EXTRAS -->
+    <section class="main-section" data-tab-content="extras">
+      <!-- CARD TOP 3 -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Top 3 (MVP)</div>
+            <div class="card-subtitle">
+              Controla el ranking de tus tippers. Esto limpia el widget y el historial del show.
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <button class="danger" onclick="clearAll()">Limpiar Top 3</button>
+        </div>
       </div>
 
-      <div class="poll-option">
-        <div class="poll-option-label" id="pollLabelB">—</div>
-        <div class="poll-option-bar">
-          <div class="poll-option-fill" id="pollFillB"></div>
+      <!-- CARD RULETA -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Ruleta</div>
+          <div class="card-subtitle">Dispara la ruleta en el overlay.</div>
         </div>
-        <div class="poll-option-stats" id="pollStatsB">0 votos (0%)</div>
-        <button onclick="pollVote('B')">Votar B</button>
+        <div class="card-body">
+          <button
+            onclick="sendToServer('roulette')">
+            🎰 Girar Ruleta
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
+
+      <!-- CARD ENCUESTAS -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Encuestas (A / B)</div>
+            <div class="card-subtitle">
+              Lanza votaciones rápidas para el chat (dos opciones).
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="poll-admin">
+            <div class="poll-inputs">
+              <label for="pollQuestion">Texto de la encuesta</label>
+              <input id="pollQuestion" placeholder="¿Qué hacemos ahora? (Ej: Soltar / Apretar)">
+
+              <label for="pollOptionA">Opción A</label>
+              <input id="pollOptionA" placeholder="Soltar">
+
+              <label for="pollOptionB">Opción B</label>
+              <input id="pollOptionB" placeholder="Apretar">
+
+              <button onclick="pollStart()">Iniciar / Reiniciar encuesta</button>
+              <button class="danger" onclick="pollClear()">Borrar encuesta</button>
+            </div>
+
+            <div class="poll-live">
+              <div id="pollQuestionText">No hay encuesta activa.</div>
+
+              <div class="poll-options">
+                <div class="poll-option">
+                  <div class="poll-option-label" id="pollLabelA">—</div>
+                  <div class="poll-option-bar">
+                    <div class="poll-option-fill" id="pollFillA"></div>
+                  </div>
+                  <div class="poll-option-stats" id="pollStatsA">0 votos (0%)</div>
+                  <button onclick="pollVote('A')">Votar A</button>
+                </div>
+
+                <div class="poll-option">
+                  <div class="poll-option-label" id="pollLabelB">—</div>
+                  <div class="poll-option-bar">
+                    <div class="poll-option-fill" id="pollFillB"></div>
+                  </div>
+                  <div class="poll-option-stats" id="pollStatsB">0 votos (0%)</div>
+                  <button onclick="pollVote('B')">Votar B</button>
+                </div>
+              </div>
+            </div>
+          </div> <!-- /poll-admin -->
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
 
 <script>
   const MODEL_ID = "roman001";
   const API_URL = "/api/send";
+
+  /* ========= NAV TABS ========= */
+  const navButtons = document.querySelectorAll(".nav-item[data-tab]");
+  const sections = document.querySelectorAll(".main-section[data-tab-content]");
+
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tab = btn.getAttribute("data-tab");
+
+      navButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      sections.forEach(sec => {
+        if (sec.getAttribute("data-tab-content") === tab) {
+          sec.classList.add("active");
+        } else {
+          sec.classList.remove("active");
+        }
+      });
+    });
+  });
 
   /* ========= NOMBRES RECIENTES (panel derecha) ========= */
 
@@ -405,6 +760,11 @@
       recentNames.length = MAX_NAMES;
     }
 
+    renderRecentNames();
+  }
+
+  function clearRecentNames() {
+    recentNames = [];
     renderRecentNames();
   }
 
@@ -490,17 +850,47 @@
   }
 
   function updateVolumeLabel(value) {
-  const label = document.getElementById("tip-volume-label");
-  if (label) {
-    label.textContent = `${value}%`;
+    const label = document.getElementById("tip-volume-label");
+    if (label) {
+      label.textContent = `${value}%`;
+    }
   }
-}
 
-function sendTipVolume(value) {
-  const vol = Math.max(0, Math.min(1, Number(value) / 100));
-  sendToServer("tipVolume", { volume: vol });
-}
+  function sendTipVolume(value) {
+    const vol = Math.max(0, Math.min(1, Number(value) / 100));
+    sendToServer("tipVolume", { volume: vol });
+  }
 
+  /* ========= RE-SYNC WIDGETS ========= */
+
+  function resyncWidgets() {
+    const status = document.getElementById("resync-status");
+    fetch("/api/resync", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ modelId: MODEL_ID }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Re-sync result:", data);
+        if (status) {
+          const count = data?.eventsReplayed ?? 0;
+          const clients = data?.clients ?? 0;
+          status.textContent =
+            `Re-sync enviado: ${count} evento(s) reenviado(s) a ${clients} widget(s).`;
+          status.classList.add("show");
+          setTimeout(() => status.classList.remove("show"), 4000);
+        }
+      })
+      .catch((err) => {
+        console.error("Error en /api/resync:", err);
+        if (status) {
+          status.textContent = "Error al hacer re-sync (ver consola).";
+          status.classList.add("show");
+          setTimeout(() => status.classList.remove("show"), 4000);
+        }
+      });
+  }
 
   /* ========= ENCUESTA A/B ========= */
 

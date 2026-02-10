@@ -60,17 +60,52 @@ console.log(" -> /models     =>", path.join(__dirname, "models"));
 console.log(" -> /admin      =>", path.join(__dirname, "admin"));
 console.log(" -> /players    =>", path.join(__dirname, "players"));
 
-// ───────── WEBSOCKET: MULTICONEXIONES POR modelId ─────────
-const connections = new Map();
+// ───────── WEBSOCKET: MULTICONEXIONES + HISTORIAL ─────────
+const connections = new Map(); // modelId -> [ws]
+const eventLogs   = new Map(); // modelId -> [ { type, payload } ]
+
+function appendEvent(modelId, type, payload) {
+  if (!eventLogs.has(modelId)) eventLogs.set(modelId, []);
+  const log = eventLogs.get(modelId);
+  log.push({ type, payload });
+
+  // límite de seguridad
+  if (log.length > 500) {
+    log.splice(0, log.length - 500);
+  }
+}
 
 // API para enviar eventos a los widgets conectados
 app.post("/api/send", (req, res) => {
   const { modelId, type, payload } = req.body;
 
-  console.log("POST /api/send modelId:", modelId);
+  if (!modelId || !type) {
+    return res
+      .status(400)
+      .json({ ok: false, error: "Faltan modelId o type" });
+  }
+
+  console.log("POST /api/send modelId:", modelId, "type:", type);
   console.log("Conexiones activas:", Array.from(connections.keys()));
 
   const clientList = connections.get(modelId) || [];
+
+  // Tipos que significan "reset" de estado (limpiar top 3, limpiar goal, etc.)
+  const resetTypes = ["clear", "clearGoal", "resetWidgets", "resetAll"];
+
+  if (resetTypes.includes(type)) {
+    // Empezamos show nuevo: vaciamos historial
+    eventLogs.set(modelId, []);
+  } else {
+    appendEvent(modelId, type, payload);
+  }
+
+  // Enviar evento a los widgets conectados
+  clientList.forEach((client) => {
+    if (client.readyState === 1) {
+      client.send(JSON.stringify({ type, payload }));
+    }
+  });
 
   if (clientList.length === 0) {
     return res.json({
@@ -79,18 +114,43 @@ app.post("/api/send", (req, res) => {
     });
   }
 
+  return res.json({ ok: true });
+});
+
+// ───────── BOTÓN PANEL: RE-SYNC WIDGETS ─────────
+app.post("/api/resync", (req, res) => {
+  const { modelId } = req.body;
+
+  if (!modelId) {
+    return res
+      .status(400)
+      .json({ ok: false, error: "Falta modelId" });
+  }
+
+  const log = eventLogs.get(modelId) || [];
+  const clientList = connections.get(modelId) || [];
+
   clientList.forEach((client) => {
     if (client.readyState === 1) {
-      client.send(JSON.stringify({ type, payload }));
+      log.forEach((evt) => {
+        try {
+          client.send(JSON.stringify(evt));
+        } catch (e) {
+          console.error("Error reenviando evento en /api/resync:", e);
+        }
+      });
     }
   });
 
-  return res.json({ ok: true });
+  return res.json({
+    ok: true,
+    eventsReplayed: log.length,
+    clients: clientList.length,
+  });
 });
 
 // ───────── API: SCHEDULE DE MODELOS ─────────
 
-// POST: registrar / actualizar horario de una modelo
 // POST: registrar / actualizar horario de una modelo
 app.post("/api/model-schedule", async (req, res) => {
   try {
@@ -122,7 +182,6 @@ app.post("/api/model-schedule", async (req, res) => {
   }
 });
 
-
 // GET: devolver horarios para el panel admin
 app.get("/api/model-schedule", async (req, res) => {
   try {
@@ -135,7 +194,6 @@ app.get("/api/model-schedule", async (req, res) => {
 });
 
 // POST: eliminar COMPLETAMENTE un livestream (horario + reporte)
-// usando modelo + fecha + hora inicio como llave
 app.post("/api/model-schedule/delete", async (req, res) => {
   try {
     const { modelName, date, start } = req.body;
@@ -161,8 +219,6 @@ app.post("/api/model-schedule/delete", async (req, res) => {
   }
 });
 
-
-
 // ───────── API: REPORTES DE LIVESTREAM ─────────
 
 // GET /api/reports -> listado de reportes de livestreams
@@ -175,7 +231,6 @@ app.get("/api/reports", async (req, res) => {
     return res.status(500).json({ message: "Error interno" });
   }
 });
-
 
 // POST /api/reports/admin-update -> guarda feedbacks, nota, views, monto, fin
 app.post("/api/reports/admin-update", async (req, res) => {
@@ -193,7 +248,6 @@ app.post("/api/reports/admin-update", async (req, res) => {
       note,
     } = req.body;
 
-    // Ahora exigimos modelName + date + start
     if (!modelName || !date || !start) {
       return res
         .status(400)
@@ -204,8 +258,6 @@ app.post("/api/reports/admin-update", async (req, res) => {
     }
 
     const now = new Date().toISOString();
-
-    // Buscar por modelo + fecha + inicio
     const existing = await findReportForModel(modelName, date, start);
 
     const entry = {
@@ -239,7 +291,6 @@ app.post("/api/reports/admin-update", async (req, res) => {
       updatedAt: now,
     };
 
-    // saveReport debe hacer upsert por (modelName + date + start)
     await saveReport(entry);
 
     return res.json({ success: true });
@@ -250,7 +301,6 @@ app.post("/api/reports/admin-update", async (req, res) => {
       .json({ success: false, message: "Error interno del servidor" });
   }
 });
-
 
 // mantenemos este endpoint por si lo necesitas en otro lado
 app.post("/api/reports/delete", async (req, res) => {
@@ -275,7 +325,6 @@ app.post("/api/reports/delete", async (req, res) => {
   }
 });
 
-
 // ───────── WEBSOCKET SERVER ─────────
 const server = http.createServer(app);
 const wss = new WebSocketServer({ noServer: true });
@@ -297,8 +346,20 @@ wss.on("connection", (ws, modelId) => {
   if (!connections.has(modelId)) {
     connections.set(modelId, []);
   }
-
   connections.get(modelId).push(ws);
+
+  // Reenviar historial al nuevo widget
+  const log = eventLogs.get(modelId) || [];
+  if (log.length) {
+    console.log(`Reenviando ${log.length} eventos a widget de ${modelId}`);
+    log.forEach((evt) => {
+      try {
+        ws.send(JSON.stringify(evt));
+      } catch (e) {
+        console.error("Error reenviando evento en on(connection):", e);
+      }
+    });
+  }
 
   ws.on("close", () => {
     console.log("🔌 Widget desconectado:", modelId);
