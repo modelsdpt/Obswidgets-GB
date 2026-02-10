@@ -3,10 +3,10 @@
 :root {
   --vino-dark: #1b0506;
   --vino-main: #3b1010;
-  --vino-light: #6b2424;
+  --vino-light: #f14141;
   --vino-border: #f7e3d3;
-  --vino-fill-1: #912b2b;
-  --vino-fill-2: #d76a6a;
+  --vino-fill-1: #f14141;
+  --vino-fill-2: #f14141;
   --vino-fill-3: #ffe2d2;
   --text-main: #ffffff;
 }
