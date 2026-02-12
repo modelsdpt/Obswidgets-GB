@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/* ==== GOAL BAR VALENTINE THEME ==== */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 :root {
-  --ls-bg: #050505;
-  --ls-card-bg: #200808;
-  --ls-card-border: #7a1818;
-  --ls-red-main: #b82020;
-  --ls-red-light: #ff4c4c;
-  --ls-text-main: #ffffff;
+  --val-bg: #020106;
+  --val-card-bg: #15000a;
+  --val-border: #ffb6d5;
+  --val-red-dark: #7c1029;
+  --val-red-main: #e83a57;
+  --val-red-light: #ff7a98;
+  --val-glow: rgba(255, 116, 148, 0.95);
+  --val-text: #ffffff;
 }
-
 
 * {
   box-sizing: border-box;
@@ -16,83 +18,103 @@
 
 body {
   margin: 0;
-  padding: 0;
   background: transparent;
-  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #ffffff;
+  font-family: "Fredoka One", system-ui, sans-serif;
+  color: var(--val-text);
 }
 
-/* Card de la barra */
-/* Wrapper de la barra */
+/* ===== CARD CONTENEDORA DE LA GOAL ===== */
 #goal-wrapper {
-  width: 100%;
-  max-width: 650px;
-  margin: 0 auto;
-  border-radius: 16px;
-  padding: 10px 12px;
+  position: relative;
+  width: min(480px, 96%);
+  height: 56px;
+  margin: 8px auto;
 
-  background: #100404;
-  border: 1px solid #7a1818;
+  border-radius: 999px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 10px 8px,
+      rgba(255, 255, 255, 0.16) 0,
+      rgba(255, 255, 255, 0.16) 2px,
+      transparent 3px) 0 0/20px 20px,
+    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
+
+  border: 2px solid var(--val-border);
   box-shadow:
-    0 0 18px rgba(0,0,0,0.9),
-    0 0 20px rgba(0,0,0,0.9);
+    0 0 22px rgba(0, 0, 0, 1),
+    0 0 26px var(--val-glow);
 }
 
-/* Pista de la barra */
+/* sombreado oscuro interno para que se lea bien el texto */
 #goal-wrapper::before {
   content: "";
-  display: block;
-  width: 100%;
-  height: 26px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #3a0a0a, #5a1010, #7a1818);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 0, rgba(0,0,0,0.55), transparent 60%);
+  pointer-events: none;
 }
 
-/* Relleno que se anima */
+/* ===== RELLENO PROGRESIVO DE LA BARRA ===== */
 #bar-fill {
-  position: relative;
-  display: block;
-  height: 26px;
-  margin-top: -26px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff5b5b, #ff9b9b, #ffffff);
+  position: absolute;
+  inset: 3px;
+  width: 0%;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 248, 252, 0.9),
+    var(--val-red-light),
+    var(--val-red-main)
+  );
   box-shadow:
-    0 0 15px rgba(255, 120, 120, 0.9);
+    0 0 16px var(--val-glow),
+    0 0 24px var(--val-glow);
+
   transition: width 0.35s ease-out;
 }
 
-/* Nombre de la GOAL + monto en la misma línea */
+/* ===== TEXTO DENTRO DE LA CARD ===== */
 .goal-label {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+  padding: 0 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
-  padding: 0 4px;
+  gap: 10px;
+
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 9px rgba(0, 0, 0, 0.9);
 }
 
 .goal-title {
-  font-family: 'Pacifico', cursive;
-  font-size: 24px;
-  color: #ffffff;
-  text-shadow:
-    0 0 4px #000,
-    0 0 10px rgba(0,0,0,0.9);
-}
-
-/* Estado "neon" cuando se completa la goal */
-.goal-title.neon {
-  text-shadow:
-    0 0 6px #fff,
-    0 0 16px #ff6666,
-    0 0 24px #ffcccc;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .goal-amount {
-  font-family: 'Pacifico', cursive;
-  font-size: 22px;
-  color: #ffffff;
+  font-size: 19px;
+  white-space: nowrap;
+}
+
+/* ===== NEON CUANDO LA GOAL SE COMPLETA ===== */
+.goal-title.neon {
+  color: #fff;
   text-shadow:
-    0 0 4px #000,
-    0 0 10px rgba(0,0,0,0.9);
+    0 0 5px #fff,
+    0 0 14px #ffe6ff,
+    0 0 22px var(--val-glow);
 }

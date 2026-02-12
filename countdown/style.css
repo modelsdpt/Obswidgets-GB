@@ -1,80 +1,115 @@
-/* ====== COUNTDOWN – CARD OSCURA, DÍGITOS GRANDES ====== */
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+/* ==== COUNTDOWN VALENTINE THEME ==== */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 :root {
-  --ls-bg: #050505;
-  --ls-card-bg: #200808;
-  --ls-card-border: #7a1818;
-  --ls-red-main: #b82020;
-  --ls-red-light: #ff4c4c;
-  --ls-text-main: #ffffff;
+  --val-bg: #020106;
+  --val-card-bg: #15000a;
+  --val-border: #ffb6d5;
+  --val-red-dark: #7c1029;
+  --val-red-main: #e83a57;
+  --val-red-light: #ff7a98;
+  --val-glow: rgba(255, 116, 148, 0.95);
+  --val-text: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding: 0;
   background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #ffffff;
+  font-family: "Fredoka One", system-ui, sans-serif;
+  color: var(--val-text);
 }
 
-/* Card principal */
+/* ===== CARD GENERAL DEL TIMER ===== */
 .timer-widget {
-  display: inline-flex;
+  width: min(260px, 90%);
+  margin: 10px auto 0;
+  padding: 10px 14px 12px;
+
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 8px 6px,
+      rgba(255, 255, 255, 0.18) 0,
+      rgba(255, 255, 255, 0.18) 2px,
+      transparent 3px) 0 0/18px 18px,
+    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
+
+  border: 2px solid var(--val-border);
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 1),
+    0 0 22px var(--val-glow);
+
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  padding: 14px 20px;
-  border-radius: 18px;
-
-  background: #150404;
-  border: 1px solid #7a1818;
-  box-shadow:
-    0 0 20px rgba(0,0,0,0.9),
-    0 0 18px rgba(0,0,0,0.85);
+  gap: 6px;
 }
 
+/* título tipo “Game Over” */
 .timer-title {
-  font-family: 'Pacifico', cursive;
-  font-size: 26px;
-  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
   text-shadow:
-    0 0 4px #000,
-    0 0 10px rgba(0,0,0,0.9);
-  margin-bottom: 6px;
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(0, 0, 0, 0.9);
 }
 
+/* contenedor del valor del tiempo */
 .timer-display {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
 .timer-box {
-  padding: 8px 16px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #8e1818, #b82020, #d93c3c);
-  border: 1px solid #f7d1d1;
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: radial-gradient(circle at 20% 0, rgba(0,0,0,0.6), transparent 60%);
+  border: 2px solid rgba(255, 230, 250, 0.9);
   box-shadow:
-    0 0 16px rgba(0,0,0,0.9),
-    0 0 18px rgba(217,60,60,0.8);
+    0 0 14px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(255, 190, 230, 0.8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* valor del contador */
 #timer-value {
-  font-family: 'Pacifico', cursive;
-  font-size: 32px;
-  color: #ffffff;
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 12px rgba(255, 227, 255, 0.95),
+    0 0 18px var(--val-glow);
+
+  animation: timerGlow 1.5s ease-in-out infinite alternate;
 }
 
-.timer-label {
-  display: block;
-  margin-top: 2px;
-  font-family: 'Pacifico', cursive;
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  color: #ffe5e5;
+/* suave pulso para que respire el número */
+@keyframes timerGlow {
+  from {
+    transform: scale(1);
+    text-shadow:
+      0 0 3px #fff,
+      0 0 9px rgba(255, 227, 255, 0.9),
+      0 0 14px var(--val-glow);
+  }
+  to {
+    transform: scale(1.04);
+    text-shadow:
+      0 0 6px #fff,
+      0 0 14px rgba(255, 227, 255, 1),
+      0 0 22px var(--val-glow);
+  }
 }
