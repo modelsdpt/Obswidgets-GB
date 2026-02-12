@@ -1,11 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* ==== COUNTDOWN VALENTINE THEME ==== */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
 
 :root {
-  --vino-dark: #ca000a;
-  --vino-main: #d41818;
-  --vino-light: #f14141;
-  --vino-border: #f7e3d3;
-  --text-main: #ffffff;
+  --val-bg: #020106;
+  --val-card-bg: #15000a;
+  --val-border: #ffb6d5;
+  --val-red-dark: #7c1029;
+  --val-red-main: #e83a57;
+  --val-red-light: #ff7a98;
+  --val-glow: rgba(255, 116, 148, 0.95);
+  --val-text: #ffffff;
 }
 
 * {
@@ -15,69 +20,97 @@
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Bebas Neue', system-ui, sans-serif;
-  color: var(--text-main);
+  font-family: 'Baloo 2', system-ui, sans-serif;;
+  color: var(--val-text);
 }
 
-/* ===== CARD DEL TIMER ===== */
+/* ===== CARD GENERAL DEL TIMER ===== */
 .timer-widget {
-  width: 320px;
-  padding: 10px 18px 12px;
-  border-radius: 16px;
+  width: min(260px, 90%);
+  margin: 10px auto 0;
+  padding: 10px 14px 12px;
 
-  background: radial-gradient(circle at top, var(--vino-light), var(--vino-dark));
-  border: 2px solid var(--vino-border);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 8px 6px,
+      rgba(255, 255, 255, 0.18) 0,
+      rgba(255, 255, 255, 0.18) 2px,
+      transparent 3px) 0 0/18px 18px,
+    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
+
+  border: 2px solid var(--val-border);
   box-shadow:
-    0 0 24px rgba(0,0,0,0.95),
-    0 0 26px rgba(0,0,0,0.85);
+    0 0 20px rgba(0, 0, 0, 1),
+    0 0 22px var(--val-glow);
 
-  text-align: center;
-}
-
-/* título arriba */
-.timer-title {
-  font-size: 22px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  text-shadow:
-    0 0 4px rgba(0,0,0,0.9),
-    0 0 8px rgba(0,0,0,0.9);
-}
-
-/* contenedor del tiempo */
-.timer-display {
-  margin-top: 2px;
-}
-
-/* box interna para el tiempo (mini-card) */
-.timer-box {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 6px;
+}
+
+/* título tipo “Game Over” */
+.timer-title {
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.9),
+    0 0 8px rgba(0, 0, 0, 0.9);
+}
+
+/* contenedor del valor del tiempo */
+.timer-display {
+  width: 100%;
+  display: flex;
   justify-content: center;
-  padding: 4px 12px 6px;
+}
+
+.timer-box {
+  width: 100%;
+  padding: 6px 10px;
   border-radius: 999px;
 
-  background: radial-gradient(circle at top, #4a1515, #140305);
-  border: 1px solid rgba(255,227,211,0.9);
+  background: radial-gradient(circle at 20% 0, rgba(0,0,0,0.6), transparent 60%);
+  border: 2px solid rgba(255, 230, 250, 0.9);
   box-shadow:
-    inset 0 0 8px rgba(0,0,0,0.9),
-    0 0 14px rgba(0,0,0,0.9);
+    0 0 14px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(255, 190, 230, 0.8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* tiempo grande con animación */
+/* valor del contador */
 #timer-value {
-  font-size: 40px;
-  letter-spacing: 3px;
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: #fff;
   text-shadow:
-    0 0 6px rgba(0,0,0,0.95),
-    0 0 10px rgba(0,0,0,0.9),
-    0 0 16px rgba(255,255,255,0.35);
-  animation: pulseTime 1s ease-in-out infinite;
+    0 0 5px #fff,
+    0 0 12px rgba(255, 227, 255, 0.95),
+    0 0 18px var(--val-glow);
+
+  animation: timerGlow 1.5s ease-in-out infinite alternate;
 }
 
-@keyframes pulseTime {
-  0%   { transform: scale(1);   filter: brightness(1); }
-  50%  { transform: scale(1.05); filter: brightness(1.15); }
-  100% { transform: scale(1);   filter: brightness(1); }
+/* suave pulso para que respire el número */
+@keyframes timerGlow {
+  from {
+    transform: scale(1);
+    text-shadow:
+      0 0 3px #fff,
+      0 0 9px rgba(255, 227, 255, 0.9),
+      0 0 14px var(--val-glow);
+  }
+  to {
+    transform: scale(1.04);
+    text-shadow:
+      0 0 6px #fff,
+      0 0 14px rgba(255, 227, 255, 1),
+      0 0 22px var(--val-glow);
+  }
 }

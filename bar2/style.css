@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+/* ==== GOAL BAR VALENTINE THEME ==== */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+
 
 :root {
-  --vino-dark: #ca000a;
-  --vino-main: #d41818;
-  --vino-light: #f14141;
-  --vino-border: #f7e3d3;
-  --vino-fill-1: #f14141;
-  --vino-fill-2: #f14141;
-  --vino-fill-3: #ffe2d2;
-  --text-main: #ffffff;
+  --val-bg: #020106;
+  --val-card-bg: #15000a;
+  --val-border: #ffb6d5;
+  --val-red-dark: #eb5477;
+  --val-red-main: #e83a57;
+  --val-red-light: #ff7a98;
+  --val-glow: rgba(255, 116, 148, 0.95);
+  --val-text: #ffffff;
 }
 
 * {
@@ -17,88 +19,103 @@
 
 body {
   margin: 0;
-  background: transparent;          /* OBS background */
-  font-family: 'Bebas Neue', system-ui, sans-serif;
-  color: var(--text-main);
+  background: transparent;
+  font-family: 'Baloo 2', system-ui, sans-serif;
+  color: var(--val-text);
 }
 
-/* ============ CARD + GOAL BAR ============ */
+/* ===== CARD CONTENEDORA DE LA GOAL ===== */
 #goal-wrapper {
   position: relative;
-  width: 460px;
+  width: min(480px, 96%);
   height: 56px;
+  margin: 8px auto;
+
   border-radius: 999px;
   overflow: hidden;
 
-  /* card / bar vinotinto */
-  background: radial-gradient(circle at top, var(--vino-light), var(--vino-dark));
-  border: 2px solid var(--vino-border);
-  box-shadow:
-    0 0 22px rgba(0,0,0,0.95),
-    0 0 26px rgba(0,0,0,0.85);
+  background:
+    radial-gradient(circle at 10px 8px,
+      rgba(255, 255, 255, 0.16) 0,
+      rgba(255, 255, 255, 0.16) 2px,
+      transparent 3px) 0 0/20px 20px,
+    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
 
-  display: flex;
-  align-items: center;
-  padding: 0 18px;
+  border: 2px solid var(--val-border);
+  box-shadow:
+    0 0 22px rgba(0, 0, 0, 1),
+    0 0 26px var(--val-glow);
 }
 
-/* fondo que se llena */
+/* sombreado oscuro interno para que se lea bien el texto */
+#goal-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 30% 0, rgba(0,0,0,0.55), transparent 60%);
+  pointer-events: none;
+}
+
+/* ===== RELLENO PROGRESIVO DE LA BARRA ===== */
 #bar-fill {
   position: absolute;
-  inset: 0;
+  inset: 3px;
   width: 0%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--vino-fill-1), var(--vino-fill-2), var(--vino-fill-3));
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 248, 252, 0.9),
+    var(--val-red-light),
+    var(--val-red-main)
+  );
   box-shadow:
-    0 0 14px rgba(255,226,214,0.7),
-    0 0 20px rgba(255,226,214,0.9);
+    0 0 16px var(--val-glow),
+    0 0 24px var(--val-glow);
+
   transition: width 0.35s ease-out;
-  animation: shimmer 2.5s linear infinite;
-  z-index: 0;
 }
 
-@keyframes shimmer {
-  0%   { filter: brightness(0.95); }
-  50%  { filter: brightness(1.15); }
-  100% { filter: brightness(0.95); }
-}
-
-/* contenido encima del fill */
+/* ===== TEXTO DENTRO DE LA CARD ===== */
 .goal-label {
   position: relative;
-  z-index: 1;
-  width: 100%;
+  z-index: 2;
+
+  height: 100%;
+  padding: 0 20px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 9px rgba(0, 0, 0, 0.9);
 }
 
-/* texto de la goal */
 .goal-title {
-  font-size: 24px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 8px;
-  text-shadow:
-    0 0 4px rgba(0,0,0,0.9),
-    0 0 8px rgba(0,0,0,0.9);
 }
 
-.goal-title.neon {
-  text-shadow:
-    0 0 6px rgba(255,255,255,0.9),
-    0 0 12px rgba(255,255,255,0.8);
-}
-
-/* texto del monto dentro de la barra */
 .goal-amount {
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 19px;
   white-space: nowrap;
+}
+
+/* ===== NEON CUANDO LA GOAL SE COMPLETA ===== */
+.goal-title.neon {
+  color: #fff;
   text-shadow:
-    0 0 4px rgba(0,0,0,0.9),
-    0 0 8px rgba(0,0,0,0.9);
+    0 0 5px #fff,
+    0 0 14px #ffe6ff,
+    0 0 22px var(--val-glow);
 }
