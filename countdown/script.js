@@ -21,11 +21,27 @@ function clearTimerClasses() {
   timerBox.classList.remove("timer-running", "timer-finished");
 }
 
-function startTimer(seconds) {
+/**
+ * Nuevo comportamiento:
+ * - Si NO hay timer corriendo -> inicia con esos segundos.
+ * - Si YA hay timer corriendo -> suma esos segundos al restante.
+ */
+function startOrAddTimer(seconds) {
   if (!timerBox || !timerValue) return;
 
+  const extra = Number(seconds) || 0;
+  if (extra <= 0) return;
+
+  // Si ya hay timer corriendo, solo sumamos
+  if (timerId && remaining > 0) {
+    remaining += extra;
+    timerValue.textContent = formatTime(remaining);
+    return;
+  }
+
+  // Si no hay timer activo, iniciamos uno nuevo
   clearInterval(timerId);
-  remaining = seconds;
+  remaining = extra;
 
   clearTimerClasses();
   timerBox.classList.add("timer-running");
@@ -79,7 +95,8 @@ ws.onmessage = (msg) => {
   if (data.type === "actionTimer") {
     const seconds = Number(data.payload?.seconds || 0);
     if (!isNaN(seconds) && seconds > 0) {
-      startTimer(seconds);
+      // antes: startTimer(seconds)
+      startOrAddTimer(seconds);
     }
   }
 

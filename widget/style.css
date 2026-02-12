@@ -4,11 +4,11 @@
 :root {
   --val-bg: #020106;
   --val-card-bg: #16000a;
-  --val-border: #ffb6d5;
+  --val-border: #ac0000;
   --val-red-dark: #7b1028;
-  --val-red-main: #e83a57;
+  --val-red-main: #d10e0e;
   --val-red-light: #ff7291;
-  --val-glow: rgba(255, 112, 158, 0.9);
+  --val-glow: rgba(228, 23, 23, 0.9);
   --val-text: #ffffff;
 }
 
