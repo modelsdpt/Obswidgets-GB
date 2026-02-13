@@ -3,87 +3,83 @@ const ws = new WebSocket(
   `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
 );
 
-let remaining = 0;
-let timerId = null;
+let goal = 0;
+let current = 0;
+let goalCompleted = false;
 
-const timerBox = document.querySelector(".timer-box");
-const timerValue = document.getElementById("timer-value");
-const audioEl = document.getElementById("timerEndSound");
+const bar = document.getElementById("bar-fill");
+const goalTitle = document.querySelector(".goal-title");
+const amountText = document.querySelector(".goal-amount");
+const tipSound = document.getElementById("tipSound");
 
-function formatTime(sec) {
-  const m = Math.floor(sec / 60);
-  const s = sec % 60;
-  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-}
-
-function clearTimerClasses() {
-  if (!timerBox) return;
-  timerBox.classList.remove("timer-running", "timer-finished");
-}
-
-function startTimer(seconds) {
-  if (!timerBox || !timerValue) return;
-
-  clearInterval(timerId);
-  remaining = seconds;
-
-  clearTimerClasses();
-  timerBox.classList.add("timer-running");
-  timerValue.textContent = formatTime(remaining);
-
-  timerId = setInterval(() => {
-    remaining -= 1;
-    if (remaining <= 0) {
-      remaining = 0;
-      timerValue.textContent = formatTime(remaining);
-      clearInterval(timerId);
-      timerId = null;
-      onTimerEnd();
-    } else {
-      timerValue.textContent = formatTime(remaining);
-    }
-  }, 1000);
-}
-
-function stopTimer() {
-  clearInterval(timerId);
-  timerId = null;
-  remaining = 0;
-  clearTimerClasses();
-  if (timerValue) timerValue.textContent = "00:00";
-}
-
-function onTimerEnd() {
-  if (!timerBox) return;
-  clearTimerClasses();
-  timerBox.classList.add("timer-finished");
-
-  if (audioEl) {
-    try {
-      audioEl.currentTime = 0;
-      audioEl.volume = 1;
-      audioEl.play().catch(() => {});
-    } catch {}
+function playTip() {
+  if (!tipSound) return;
+  try {
+    tipSound.currentTime = 0;
+    tipSound.volume = 1;
+    tipSound.play().catch(() => {});
+  } catch (e) {
+    console.log("Audio error:", e);
   }
 }
 
-// WebSocket: órdenes desde el panel
-ws.onmessage = (msg) => {
+ws.onmessage = (event) => {
   let data;
   try {
-    data = JSON.parse(msg.data || "{}");
+    data = JSON.parse(event.data || "{}");
   } catch {
     return;
   }
 
-  if (data.type === "actionTimer") {
-    const seconds = Number(data.payload?.seconds || 0);
-    if (!isNaN(seconds) && seconds > 0) {
-      startTimer(seconds);
+  if (data.type === "setGoal") {
+    goal = Number(data.payload?.goal || 0);
+    current = 0;
+    goalCompleted = false;
+    updateBar(false);
+  }
+
+  if (data.type === "tip") {
+    const amount = Number(data.payload?.amount || 0);
+    if (!isNaN(amount) && amount > 0) {
+      current += amount;
+      updateBar(true);
     }
   }
 
-  if (data.type === "actionTimerStop") {
-    stopTimer();
+  if (data.type === "clearGoal") {
+    goal = 0;
+    current = 0;
+    goalCompleted = false;
+    updateBar(false);
   }
 };
+
+function updateBar(fromTip) {
+  const percent = goal ? Math.min((current / goal) * 100, 100) : 0;
+
+  if (bar) {
+    bar.style.width = percent + "%";
+  }
+
+  if (amountText) {
+    amountText.textContent = goal > 0 ? `$${current} / $${goal}` : "";
+  }
+
+  if (goalTitle) {
+    if (percent >= 100 && goal > 0) {
+      goalTitle.classList.add("neon");
+      if (!goalCompleted) {
+        goalCompleted = true;
+        // sonidito extra cuando se llena: un shuffle más
+        playTip();
+      }
+    } else {
+      goalTitle.classList.remove("neon");
+      if (percent < 100) goalCompleted = false;
+    }
+  }
+
+  if (fromTip) {
+    playTip();
+  }
+}
