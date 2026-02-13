@@ -75,6 +75,99 @@ function appendEvent(modelId, type, payload) {
   }
 }
 
+
+// ───────── API: ANALYTICS / STATS ─────────
+
+function parseReportDateTime(dateStr, timeStr) {
+  if (!dateStr) return null;
+  const safeTime = (timeStr && timeStr.length >= 4) ? timeStr : "00:00";
+  const iso = `${dateStr}T${safeTime}:00`;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  return d;
+}
+
+app.get("/api/analytics/monthly", async (req, res) => {
+  try {
+    const reports = await getAllReports(); // viene de reportStore.js
+
+    const monthlyMap = new Map();
+
+    for (const r of reports) {
+      const modelName = (r.modelName || "Desconocida").trim();
+      if (!modelName) continue;
+
+      const startDt = parseReportDateTime(r.date, r.start);
+      const endDt = parseReportDateTime(r.date, r.end);
+      if (!startDt) continue;
+
+      const monthKey = `${startDt.getFullYear()}-${String(
+        startDt.getMonth() + 1
+      ).padStart(2, "0")}`;
+
+      const mapKey = `${modelName}__${monthKey}`;
+
+      const amount = Number(r.collectedAmount || 0) || 0;
+      const views = Number(r.views || 0) || 0;
+      const durationMin = endDt
+        ? Math.max(0, Math.round((endDt - startDt) / 60000))
+        : 0;
+
+      // día vs noche (ajusta rangos si quieres)
+      const hour = startDt.getHours();
+      const isDay = hour >= 10 && hour < 22;
+      const slot = isDay ? "day" : "night";
+
+      if (!monthlyMap.has(mapKey)) {
+        monthlyMap.set(mapKey, {
+          modelName,
+          month: monthKey,            // "2026-02"
+          totalAmount: 0,
+          totalViews: 0,
+          totalDurationMin: 0,
+          livestreamCount: 0,
+
+          dayStreams: 0,
+          nightStreams: 0,
+          dayAmount: 0,
+          nightAmount: 0,
+        });
+      }
+
+      const m = monthlyMap.get(mapKey);
+      m.totalAmount += amount;
+      m.totalViews += views;
+      m.totalDurationMin += durationMin;
+      m.livestreamCount += 1;
+
+      if (slot === "day") {
+        m.dayStreams += 1;
+        m.dayAmount += amount;
+      } else {
+        m.nightStreams += 1;
+        m.nightAmount += amount;
+      }
+    }
+
+    const monthly = Array.from(monthlyMap.values()).sort((a, b) => {
+      const byModel = a.modelName.localeCompare(b.modelName);
+      if (byModel !== 0) return byModel;
+      return a.month.localeCompare(b.month);
+    });
+
+    // lista de modelos disponibles para el selector
+    const models = Array.from(
+      new Set(monthly.map((m) => m.modelName))
+    ).sort((a, b) => a.localeCompare(b));
+
+    res.json({ monthly, models });
+  } catch (err) {
+    console.error("Error en GET /api/analytics/monthly:", err);
+    return res.status(500).json({ message: "Error interno del servidor" });
+  }
+});
+
+
 // API para enviar eventos a los widgets conectados
 app.post("/api/send", (req, res) => {
   const { modelId, type, payload } = req.body;

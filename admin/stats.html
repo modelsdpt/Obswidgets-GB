@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard – Stats</title>
+  <style>
+    :root {
+      --bg: #050508;
+      --card: #151522;
+      --card-soft: #1f1f30;
+      --accent: #ff4f9a;
+      --accent-soft: #ffb3d5;
+      --text-main: #f7f7ff;
+      --text-soft: #b4b4d0;
+      --border: #2b2b3d;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151525 0, #050508 55%);
+      color: var(--text-main);
+    }
+
+    /* CONTENEDOR PRINCIPAL (para meterlo en iframe o pestaña) */
+    .main {
+      height: 100vh;                  /* se mantiene en la altura visible */
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      overflow: hidden;               /* 🔒 evita que crezca infinito */
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .filters-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      align-items: center;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    select {
+      background: #121222;
+      color: var(--text-main);
+      border-radius: 8px;
+      padding: 6px 10px;
+      border: 1px solid #2b2b3d;
+      font-size: 13px;
+      min-width: 180px;
+    }
+
+    /* ========= CARDS RESUMEN ========= */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+      flex-shrink: 0; /* no se colapsa, pero tampoco crece */
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #25253b 0, var(--card) 60%);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      box-shadow: 0 0 18px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+    }
+
+    .card-main {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .card-secondary {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .card-diff {
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .card-diff.positive { color: #4dff92; }
+    .card-diff.negative { color: #ff6b6b; }
+    .card-diff.neutral  { color: var(--text-soft); }
+
+    .section-title {
+      margin-top: 8px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    /* ========= CHARTS ========= */
+    .charts-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      flex-shrink: 0;          /* se queda en su altura fija */
+    }
+
+    .chart-card {
+      background: radial-gradient(circle at top left, #25253b 0, var(--card) 60%);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      box-shadow: 0 0 18px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chart-title {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .chart-inner {
+      position: relative;
+      width: 100%;
+      height: 220px;   /* 🔒 altura fija de la gráfica */
+    }
+
+    /* ========= TABLA (SCROLL SOLO AQUÍ) ========= */
+    .table-section {
+      flex: 1;                  /* ocupa lo que queda */
+      min-height: 0;            /* truco para que el overflow funcione bien */
+      display: flex;
+      flex-direction: column;
+      margin-top: 8px;
+    }
+
+    .table-wrapper {
+      margin-top: 8px;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;           /* 🔥 el scroll vive aquí, no en el body */
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th, td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #23233a;
+      text-align: left;
+    }
+
+    th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+      background: #141426;
+      position: sticky;
+      top: 0;                  /* header fijo dentro del scroll */
+      z-index: 1;
+    }
+
+    tr:nth-child(even) td {
+      background: #0f0f1c;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: #1f1f30;
+      color: var(--text-soft);
+    }
+
+    .badge-day {
+      background: rgba(120, 210, 120, 0.14);
+      color: #86ffae;
+    }
+
+    .badge-night {
+      background: rgba(255, 118, 180, 0.18);
+      color: #ffb3d5;
+    }
+
+    @media (max-width: 960px) {
+      .cards-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .charts-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .main {
+        padding: 14px;
+        height: 100vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="main">
+    <div>
+      <div class="page-title">Analytics de Livestream</div>
+      <div class="page-subtitle">
+        Compara ingresos, views, tiempo y cantidad de shows por modelo y por mes. Día vs noche incluido.
+      </div>
+
+  <div class="filters-row">
+  <!-- MODELO -->
+  <div>
+    <label>Modelo</label><br />
+    <select id="model-select">
+      <option value="_all">Todos los modelos</option>
+    </select>
+  </div>
+
+  <!-- PERIODO BASE -->
+  <div>
+    <label>Periodo base</label><br />
+    <select id="period-base">
+      <!-- se llena en stats.js -->
+    </select>
+  </div>
+
+  <!-- PERIODO A COMPARAR -->
+  <div>
+    <label>Comparar contra</label><br />
+    <select id="period-compare">
+      <!-- se llena en stats.js -->
+    </select>
+  </div>
+</div>
+
+    <!-- CARDS COMPARACIÓN MES ACTUAL vs MES ANTERIOR -->
+    <section>
+      <div class="section-title">Mes actual vs mes anterior</div>
+      <div class="hint" id="compare-period-label"></div>
+
+      <div class="cards-row" id="cards-row">
+        <!-- se rellenan por JS -->
+      </div>
+    </section>
+
+    <!-- GRÁFICAS -->
+    <section class="charts-row">
+      <div class="chart-card">
+        <div class="chart-title">Monto mensual ($)</div>
+        <div class="chart-inner">
+          <canvas id="chart-amount"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title">Views mensuales</div>
+        <div class="chart-inner">
+          <canvas id="chart-views"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLA DETALLE POR MES -->
+    <section class="table-section">
+      <div class="section-title">Detalle mensual</div>
+      <div class="hint">
+        Cada fila es <strong>modelo + mes</strong>. Fíjate en cantidad de streams y proporción día / noche.
+      </div>
+
+      <div class="table-wrapper">
+        <table id="monthly-table">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Mes</th>
+              <th>Monto total ($)</th>
+              <th>Views</th>
+              <th>Tiempo online</th>
+              <th>Streams</th>
+              <th>Día</th>
+              <th>Noche</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- filas generadas en JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="stats.js"></script>
+</body>
+</html>
