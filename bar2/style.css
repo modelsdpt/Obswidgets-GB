@@ -6,10 +6,10 @@
   --val-bg: #020106;
   --val-card-bg: #15000a;
   --val-border: #ffb6d5;
-  --val-red-dark: #ff829f;
-  --val-red-main: rgb(255, 126, 148);
-  --val-red-light: #ff7a98;
-  --val-glow: rgba(255, 116, 148, 0.95);
+  --val-red-dark: #ff6d6d;
+  --val-red-main: rgb(255, 152, 152);
+  --val-red-light: #fc818b;
+  --val-glow: rgba(255, 136, 136, 0.95);
   --val-text: #ffffff;
 }
 

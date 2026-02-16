@@ -4,15 +4,14 @@
 
 :root {
   --val-bg: #020106;
-  --val-card-bg: #16000a;
+  --val-card-bg: #15000a;
   --val-border: #ffb6d5;
-  --val-red-dark: #ff829f;
-  --val-red-main: #e83a57;
-  --val-red-light: #ff7291;
-  --val-glow: rgba(255, 112, 158, 0.9);
+  --val-red-dark: #ff6d6d;
+  --val-red-main: rgb(255, 152, 152);
+  --val-red-light: #fc818b;
+  --val-glow: rgba(255, 136, 136, 0.95);
   --val-text: #ffffff;
 }
-
 /* Reset básico */
 * {
   box-sizing: border-box;
