@@ -1,73 +1,59 @@
-/* ==== MVP VALENTINE THEME ==== */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600&display=swap');
 
 :root {
-  --val-bg: #020106;
-  --val-card-bg: #15000a;
-  --val-border: #ffb6d5;
-  --val-red-dark: #ff6d6d;
-  --val-red-main: rgb(255, 152, 152);
-  --val-red-light: #fc818b;
-  --val-glow: rgba(255, 136, 136, 0.95);
-  --val-text: #ffffff;
+  --police-bg: #05060a;
+  --police-card: #0c0d12;
+  --police-yellow: #ffd600;
+  --police-yellow-deep: #f0c000;
+  --police-black: #050505;
+  --police-border: #111111;
 }
-/* Reset básico */
+
+/* RESET BÁSICO */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #000;
   background: transparent;
-  font-family: 'Baloo 2', system-ui, sans-serif;
-  color: var(--val-text);
 }
 
-/* ===== CONTENEDOR GENERAL ===== */
+/* CONTENEDOR GENERAL */
 #container {
   width: 100%;
   height: 100%;
-  padding: 10px 0 6px;
+  background: radial-gradient(circle at top, #141522 0, var(--police-bg) 55%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding-top: 8px;
 }
 
-/* ===== TÍTULO "MY LOVERS / MY SENPAIS" EN CARD ===== */
+/* TÍTULO: CINTA POLICIAL */
 .title {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 22px;
+  display: inline-block;
+  padding: 6px 14px;
   border-radius: 999px;
 
-  background:
-    radial-gradient(circle at 10px 8px,
-      rgba(255, 255, 255, 0.16) 0,
-      rgba(255, 255, 255, 0.16) 2px,
-      transparent 3px) 0 0/20px 20px,
-    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffd600;
 
-  border: 2px solid var(--val-border);
-  box-shadow:
-    0 0 16px rgba(0, 0, 0, 0.9),
-    0 0 22px var(--val-glow);
-
-  font-size: 28px;
-  letter-spacing: 2px;
-  color: #fff;
-  text-align: center;
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.9),
-    0 0 9px rgba(0, 0, 0, 0.9);
 
-  margin-bottom: 10px;
+  text-align: center;
+  text-shadow:
+    0 0 3px rgba(0,0,0,0.9),
+    0 0 6px rgba(0,0,0,1);
 }
 
-/* ===== LISTA CENTRADA ===== */
+/* LISTA TOP */
 #top-list {
   width: 100%;
   display: flex;
@@ -76,66 +62,97 @@ body {
   gap: 8px;
 }
 
-/* ===== CARD DE CADA TIPPER ===== */
+/* CARD GENERAL TIPPER */
 .tip {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
 
-  width: min(430px, 92%);
-  padding: 7px 16px;
+  width: min(420px, 92%);
+  padding: 8px 14px;
 
-  background:
-    radial-gradient(circle at 8px 6px,
-      rgba(255, 255, 255, 0.13) 0,
-      rgba(255, 255, 255, 0.13) 2px,
-      transparent 3px) 0 0/18px 18px,
-    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
-
+  background: var(--police-yellow);
   border-radius: 12px;
-  border: 2px solid var(--val-border);
-  box-shadow:
-    0 0 16px rgba(0, 0, 0, 0.9),
-    0 0 18px var(--val-glow);
+  border: 2px solid #000;
+  overflow: hidden;
 
-  color: #fff;
+  box-shadow:
+    0 0 16px rgba(0, 0, 0, 0.85),
+    0 0 16px rgba(0, 0, 0, 0.85);
+
+  color: #000;
 }
 
-/* icono 🏆 / 👑 */
+/* PATRÓN DE CINTA EN LA CARD */
+.tip::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.25) 0,
+      rgba(0, 0, 0, 0.25) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* CONTENIDO POR ENCIMA DEL PATRÓN */
+.tip > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ICONO (CORONA / TROFEOS) */
 .rank-icon {
-  font-size: 18px;
+  font-size: 22px;
   margin-right: 4px;
 }
 
-/* nombre + monto en una sola línea sin hueco gigante */
+/* NOMBRE + MONTO EN UNA LÍNEA */
 .tip .name {
   flex: 1;
+  font-family: "Rubik", system-ui, sans-serif;
+  font-weight: 600;
   font-size: 18px;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .tip .amount {
-  font-size: 20px;
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.08em;
   white-space: nowrap;
 }
 
-/* MVP – más glow */
+/* MVP – MÁS BRILLO Y GLOW */
 .tip.mvp {
-  border-color: #ffe4ff;
+  background: linear-gradient(135deg, var(--police-yellow-deep), var(--police-yellow));
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.9),
-    0 0 24px rgba(255, 211, 255, 0.95);
+    0 0 20px rgba(0, 0, 0, 0.9),
+    0 0 24px rgba(255, 214, 0, 0.85);
+  border-width: 3px;
 }
 
-/* 2º puesto (ligeramente más rosado) */
+.tip.mvp::before {
+  opacity: 0.9;
+}
+
+/* 2DO Y 3RO – MENOS INTENSOS PERO MANTENIENDO CINTA */
 .tip.second {
-  filter: brightness(1.02);
+  filter: saturate(0.9) brightness(0.95);
 }
 
-/* 3er puesto (ligeramente más oscuro) */
 .tip.third {
-  filter: brightness(0.95);
+  filter: saturate(0.8) brightness(0.92);
+  opacity: 0.95;
 }

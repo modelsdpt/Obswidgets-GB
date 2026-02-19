@@ -1,17 +1,12 @@
-/* ==== COUNTDOWN VALENTINE THEME ==== */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600&display=swap');
 
 :root {
-  --val-bg: #020106;
-  --val-card-bg: #15000a;
-  --val-border: #ffb6d5;
-  --val-red-dark: #ff6d6d;
-  --val-red-main: rgb(255, 152, 152);
-  --val-red-light: #fc818b;
-  --val-glow: rgba(255, 136, 136, 0.95);
-  --val-text: #ffffff;
+  --siren-red: #ff3355;
+  --siren-blue: #3f7dff;
+  --siren-bg: #05060a;
 }
 
+/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -19,97 +14,133 @@
 body {
   margin: 0;
   background: transparent;
-  font-family: 'Baloo 2', system-ui, sans-serif;;
-  color: var(--val-text);
+  font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #ffffff;
 }
 
-/* ===== CARD GENERAL DEL TIMER ===== */
+/* CARD PRINCIPAL TIMER */
 .timer-widget {
-  width: min(260px, 90%);
-  margin: 10px auto 0;
+  width: 280px;
+  max-width: 100%;
   padding: 10px 14px 12px;
+  margin: 0 auto;
 
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 8px 6px,
-      rgba(255, 255, 255, 0.18) 0,
-      rgba(255, 255, 255, 0.18) 2px,
-      transparent 3px) 0 0/18px 18px,
-    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
+  background: radial-gradient(circle at top, #17172a 0, var(--siren-bg) 55%);
+  border-radius: 16px;
+  border: 2px solid #101021;
 
-  border: 2px solid var(--val-border);
   box-shadow:
-    0 0 20px rgba(0, 0, 0, 1),
-    0 0 22px var(--val-glow);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+    0 0 22px rgba(0, 0, 0, 0.95),
+    0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-/* título tipo “Game Over” */
+/* TÍTULO */
 .timer-title {
-  font-size: 20px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #fff;
   text-align: center;
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+
+  color: #ffffff;
   text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.9),
-    0 0 8px rgba(0, 0, 0, 0.9);
+    0 0 6px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.8);
 }
 
-/* contenedor del valor del tiempo */
+/* CONTENEDOR DEL BOX */
 .timer-display {
-  width: 100%;
   display: flex;
   justify-content: center;
 }
 
+/* CAJA DEL TIEMPO (SIRENA) */
 .timer-box {
-  width: 100%;
-  padding: 6px 10px;
-  border-radius: 999px;
-
-  background: radial-gradient(circle at 20% 0, rgba(0,0,0,0.6), transparent 60%);
-  border: 2px solid rgba(255, 230, 250, 0.9);
-  box-shadow:
-    0 0 14px rgba(0, 0, 0, 0.9),
-    0 0 20px rgba(255, 190, 230, 0.8);
+  width: 220px;
+  height: 70px;
+  border-radius: 18px;
+  border: 2px solid rgba(255,255,255,0.1);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 51, 85, 0.4), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(63, 125, 255, 0.4), transparent 55%),
+    linear-gradient(120deg, #12121f, #050509);
+
+  box-shadow:
+    0 0 18px rgba(0,0,0,1),
+    0 0 14px rgba(0,0,0,0.9);
+  overflow: hidden;
 }
 
-/* valor del contador */
+/* TEXTO DEL TIEMPO */
 #timer-value {
-  font-size: 34px;
-  letter-spacing: 2px;
-  color: #fff;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 12px rgba(255, 227, 255, 0.95),
-    0 0 18px var(--val-glow);
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.16em;
+  text-align: center;
 
-  animation: timerGlow 1.5s ease-in-out infinite alternate;
+  text-shadow:
+    0 0 6px rgba(0,0,0,0.9),
+    0 0 10px rgba(0,0,0,0.9);
 }
 
-/* suave pulso para que respire el número */
-@keyframes timerGlow {
-  from {
-    transform: scale(1);
-    text-shadow:
-      0 0 3px #fff,
-      0 0 9px rgba(255, 227, 255, 0.9),
-      0 0 14px var(--val-glow);
+/* ANIMACIÓN CUANDO ESTÁ CORRIENDO */
+.timer-box.timer-running {
+  background: linear-gradient(120deg, var(--siren-red), var(--siren-blue));
+  background-size: 220% 220%;
+
+  animation:
+    siren-bg 0.65s linear infinite,
+    siren-glow 0.65s ease-in-out infinite;
+}
+
+@keyframes siren-bg {
+  0% {
+    background-position: 0% 50%;
   }
-  to {
-    transform: scale(1.04);
-    text-shadow:
-      0 0 6px #fff,
-      0 0 14px rgba(255, 227, 255, 1),
-      0 0 22px var(--val-glow);
+  50% {
+    background-position: 100% 50%;
   }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes siren-glow {
+  0% {
+    box-shadow:
+      0 0 18px rgba(0,0,0,1),
+      0 0 18px rgba(255, 51, 85, 0.9);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(0,0,0,1),
+      0 0 18px rgba(63, 125, 255, 0.9);
+  }
+  100% {
+    box-shadow:
+      0 0 18px rgba(0,0,0,1),
+      0 0 20px rgba(255, 51, 85, 0.9);
+  }
+}
+
+/* ESTADO CUANDO TERMINA (timer-finished) */
+.timer-box.timer-finished {
+  background: radial-gradient(circle at top, #1f2b05 0, #040604 65%);
+  border-color: #8cff6a;
+  box-shadow:
+    0 0 18px rgba(0,0,0,1),
+    0 0 16px rgba(140, 255, 106, 0.85);
+}
+
+.timer-box.timer-finished #timer-value {
+  color: #cfffaa;
+  text-shadow:
+    0 0 4px rgba(0,0,0,1),
+    0 0 10px rgba(140,255,106,0.9);
 }

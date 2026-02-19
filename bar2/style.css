@@ -1,121 +1,122 @@
-/* ==== GOAL BAR VALENTINE THEME ==== */
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600&display=swap');
 
 :root {
-  --val-bg: #020106;
-  --val-card-bg: #15000a;
-  --val-border: #ffb6d5;
-  --val-red-dark: #ff6d6d;
-  --val-red-main: rgb(255, 152, 152);
-  --val-red-light: #fc818b;
-  --val-glow: rgba(255, 136, 136, 0.95);
-  --val-text: #ffffff;
+  --police-yellow: #ffd600;
+  --police-yellow-deep: #f0c000;
+  --police-black: #050505;
 }
 
-* {
+/* RESET LOCAL */
+#goal-wrapper, #goal-wrapper * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  background: transparent;
-  font-family: 'Baloo 2', system-ui, sans-serif;
-  color: var(--val-text);
-}
-
-/* ===== CARD CONTENEDORA DE LA GOAL ===== */
+/* 🟡 GOAL = SOLO UNA CINTA / BARRA */
 #goal-wrapper {
   position: relative;
-  width: min(480px, 96%);
-  height: 56px;
-  margin: 8px auto;
+  width: 480px;
+  max-width: 100%;
+  height: 44px;
 
-  border-radius: 999px;
-  overflow: hidden;
+  margin: 0 auto;
 
+  /* la barra entera es la cinta */
   background:
-    radial-gradient(circle at 10px 8px,
-      rgba(255, 255, 255, 0.16) 0,
-      rgba(255, 255, 255, 0.16) 2px,
-      transparent 3px) 0 0/20px 20px,
-    linear-gradient(135deg, var(--val-red-dark), var(--val-red-main), var(--val-red-light));
+    repeating-linear-gradient(
+      -45deg,
+      #000 0,
+      #000 8px,
+      var(--police-yellow) 8px,
+      var(--police-yellow) 16px
+    );
+  border-radius: 999px;
+  border: 2px solid #000;
 
-  border: 2px solid var(--val-border);
-  box-shadow:
-    0 0 22px rgba(0, 0, 0, 1),
-    0 0 26px var(--val-glow);
+  overflow: hidden;
 }
 
-/* sombreado oscuro interno para que se lea bien el texto */
-#goal-wrapper::before {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: inherit;
-  background: radial-gradient(circle at 30% 0, rgba(0,0,0,0.55), transparent 60%);
-  pointer-events: none;
-}
-
-/* ===== RELLENO PROGRESIVO DE LA BARRA ===== */
+/* PROGRESO – relleno de la meta (controlado por JS con width%) */
 #bar-fill {
   position: absolute;
-  inset: 3px;
-  width: 0%;
-  border-radius: inherit;
+  inset: 0;
+  width: 0%; /* JS lo cambia */
+  border-radius: 999px;
 
-  background: linear-gradient(
-    90deg,
-    rgba(255, 248, 252, 0.9),
-    var(--val-red-light),
-    var(--val-red-main)
-  );
+  background:
+    linear-gradient(
+      120deg,
+      #000000,
+      #303030 12%,
+      var(--police-yellow-deep) 45%,
+      var(--police-yellow) 70%,
+      #000000 100%
+    );
+  background-size: 220% 220%;
+
   box-shadow:
-    0 0 16px var(--val-glow),
-    0 0 24px var(--val-glow);
+    0 0 10px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(255, 214, 0, 0.7);
 
-  transition: width 0.35s ease-out;
+  transform-origin: left center;
+  transition: width 0.2s ease-out;
 }
 
-/* ===== TEXTO DENTRO DE LA CARD ===== */
+/* CONTENIDO DENTRO DE LA BARRA (título + monto) */
 .goal-label {
   position: relative;
-  z-index: 2;
-
+  z-index: 1;
   height: 100%;
-  padding: 0 20px;
+  padding: 0 16px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: #fff;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 3px rgba(0, 0, 0, 0.8),
-    0 0 9px rgba(0, 0, 0, 0.9);
+  /* sacamos el color de aquí y se lo damos a los pills de texto */
+  font-family: "Rubik", system-ui, sans-serif;
 }
 
+/* TÍTULO DE LA GOAL */
 .goal-title {
-  flex: 1;
+  font-family: "Bebas Neue", system-ui, sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
 
-.goal-amount {
-  font-size: 19px;
-  white-space: nowrap;
-}
+  /* 🔥 pill negro, texto amarillo */
+  background: rgba(0, 0, 0, 0.78);
+  color: #ffd600;
+  padding: 4px 10px;
+  border-radius: 999px;
 
-/* ===== NEON CUANDO LA GOAL SE COMPLETA ===== */
-.goal-title.neon {
-  color: #fff;
   text-shadow:
-    0 0 5px #fff,
-    0 0 14px #ffe6ff,
-    0 0 22px var(--val-glow);
+    0 0 3px rgba(0,0,0,0.8),
+    0 0 6px rgba(0,0,0,0.9);
+}
+
+/* cuando se completa la goal, solo le dejamos el glow encima */
+.goal-title.neon {
+  animation: police-goal-neon 0.7s ease-in-out infinite alternate;
+}
+
+/* MONTO DENTRO DE LA BARRA */
+.goal-amount {
+  font-family: "Rubik", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  background: rgba(0, 0, 0, 0.78);
+  color: #ffd600;
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  text-shadow:
+    0 0 3px rgba(0,0,0,0.8),
+    0 0 6px rgba(0,0,0,0.9);
 }
