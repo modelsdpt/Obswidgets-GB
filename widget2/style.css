@@ -25,7 +25,7 @@ body {
 #container {
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top, #141522 0, var(--police-bg) 55%);
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,6 +141,7 @@ body {
     0 0 20px rgba(0, 0, 0, 0.9),
     0 0 24px rgba(255, 214, 0, 0.85);
   border-width: 3px;
+  
 }
 
 .tip.mvp::before {
