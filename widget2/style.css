@@ -24,7 +24,6 @@ body {
 /* Contenedor general */
 #container {
  min-width: 240px;
-  padding: 8px 10px 15px;
   border-radius: 14px;
   background: radial-gradient(circle at top, #262648, var(--disco-bg));
   border: 2px solid rgba(255, 255, 255, 0.15);

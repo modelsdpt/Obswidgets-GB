@@ -1,12 +1,14 @@
-// GOAL BAR – auto-reconnect + heartbeat
+// GOAL BAR – auto-reconnect + heartbeat + multi-stage
 const MODEL_ID = "roman001";
 
 let ws = null;
 let reconnectTimeout = null;
 let heartbeatInterval = null;
 
-let goal = 0;
+// total acumulado de tips
 let current = 0;
+// metas por tramos (cumulativas): [{ target, label }]
+let stages = [];
 let goalCompleted = false;
 
 const bar = document.getElementById("bar-fill");
@@ -22,7 +24,7 @@ function playTip() {
     tipSound.volume = 1;
     tipSound.play().catch(() => {});
   } catch (e) {
-    console.log("Audio error:", e);
+    console.log("[GOAL] Audio error:", e);
   }
 }
 
@@ -102,43 +104,116 @@ function stopHeartbeat() {
 }
 
 // -------------------- LÓGICA GOAL BAR --------------------
+
+// Normaliza stages que vengan del panel
+function setStagesFromPayload(payload) {
+  const raw = Array.isArray(payload?.stages) ? payload.stages : [];
+
+  stages = raw
+    .map((s) => ({
+      target: Number(s.target ?? s.goal ?? 0),
+      label: (s.label ?? s.title ?? "").trim() || "Goal",
+    }))
+    .filter((s) => s.target > 0)
+    .sort((a, b) => a.target - b.target);
+
+  // opcional: permitir enviar current inicial desde el panel
+  const initial = Number(payload?.current ?? 0);
+  current = isNaN(initial) || initial < 0 ? 0 : initial;
+
+  goalCompleted = false;
+  updateBar(false);
+}
+
 function handleMessage(data) {
+  // NUEVO: configuración multi-goal
+  if (data.type === "setGoalConfig") {
+    setStagesFromPayload(data.payload || {});
+    return;
+  }
+
+  // COMPAT: meta simple antigua (un solo goal)
   if (data.type === "setGoal") {
-    goal = Number(data.payload?.goal || 0);
+    const g = Number(data.payload?.goal || 0);
+    const label = (data.payload?.label || data.payload?.title || "").trim() || "Goal";
+    if (g > 0) {
+      stages = [{ target: g, label }];
+    } else {
+      stages = [];
+    }
     current = 0;
     goalCompleted = false;
     updateBar(false);
+    return;
   }
 
   if (data.type === "tip") {
     const amount = Number(data.payload?.amount || 0);
     if (!isNaN(amount) && amount > 0) {
-      current += amount;
+      current += amount;          // total acumulado
       updateBar(true);
     }
+    return;
   }
 
   if (data.type === "clearGoal") {
-    goal = 0;
+    stages = [];
     current = 0;
     goalCompleted = false;
     updateBar(false);
+    return;
   }
 }
 
 function updateBar(fromTip) {
-  const percent = goal ? Math.min((current / goal) * 100, 100) : 0;
+  let percent = 0;
+  let labelText = "";
+  let amountLabel = "";
 
-  if (bar) {
-    bar.style.width = percent + "%";
+  if (!stages.length) {
+    // si no hay configuración, escondemos todo
+    if (bar) bar.style.width = "0%";
+    if (amountText) amountText.textContent = "";
+    if (goalTitle) {
+      goalTitle.textContent = "";
+      goalTitle.classList.remove("neon");
+    }
+    return;
   }
 
-  if (amountText) {
-    amountText.textContent = goal > 0 ? `$${current} / $${goal}` : "";
+  const lastStage = stages[stages.length - 1];
+
+  // ¿qué tramo está activo para el total actual?
+  let activeIndex = stages.findIndex((s) => current <= s.target);
+  let allDone = false;
+
+  if (activeIndex === -1) {
+    // superó la última meta -> usamos la última como referencia,
+    // y marcamos como completado
+    activeIndex = stages.length - 1;
+    allDone = true;
+  }
+
+  const activeStage = stages[activeIndex];
+  const prevTarget = activeIndex > 0 ? stages[activeIndex - 1].target : 0;
+  const span = Math.max(1, activeStage.target - prevTarget);
+  const stageProgress = Math.max(0, current - prevTarget);
+
+  percent = Math.min((stageProgress / span) * 100, 100);
+  labelText = activeStage.label;
+  amountLabel = `$${current} / $${activeStage.target}`;
+
+  if (allDone && current >= lastStage.target) {
+    percent = 100;
+  }
+
+  if (bar) {
+    bar.style.width = `${percent}%`;
   }
 
   if (goalTitle) {
-    if (percent >= 100 && goal > 0) {
+    goalTitle.textContent = labelText;
+    if (current >= lastStage.target) {
       goalTitle.classList.add("neon");
       if (!goalCompleted) {
         goalCompleted = true;
@@ -146,11 +221,15 @@ function updateBar(fromTip) {
       }
     } else {
       goalTitle.classList.remove("neon");
-      if (percent < 100) goalCompleted = false;
+      goalCompleted = false;
     }
   }
 
-  if (fromTip) {
+  if (amountText) {
+    amountText.textContent = amountLabel;
+  }
+
+  if (fromTip && !goalCompleted) {
     playTip();
   }
 }
