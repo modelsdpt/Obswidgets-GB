@@ -22,8 +22,8 @@ body {
 
 /* Card principal */
 .timer-widget {
-  min-width: 260px;
-  padding: 10px 16px 14px;
+  max-width: 240px;
+  padding: 8px 10px 15px;
   border-radius: 14px;
   background: radial-gradient(circle at top, #262648, var(--timer-card));
   border: 2px solid rgba(255, 255, 255, 0.15);
