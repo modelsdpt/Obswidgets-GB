@@ -1,7 +1,9 @@
+// TIMER – auto-reconnect + heartbeat + sumar segundos
 const MODEL_ID = "roman001";
-const ws = new WebSocket(
-  `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
-);
+
+let ws = null;
+let reconnectTimeout = null;
+let heartbeatInterval = null;
 
 let remaining = 0;
 let timerId = null;
@@ -22,7 +24,7 @@ function clearTimerClasses() {
 }
 
 /**
- * Nuevo comportamiento:
+ * Comportamiento:
  * - Si NO hay timer corriendo -> inicia con esos segundos.
  * - Si YA hay timer corriendo -> suma esos segundos al restante.
  */
@@ -83,24 +85,90 @@ function onTimerEnd() {
   }
 }
 
-// WebSocket: órdenes desde el panel
-ws.onmessage = (msg) => {
-  let data;
-  try {
-    data = JSON.parse(msg.data || "{}");
-  } catch {
-    return;
-  }
+// -------------------- WS CONEXIÓN --------------------
+function connectWS() {
+  const url = `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`;
+  console.log("[TIMER WS] connecting to", url);
 
-  if (data.type === "actionTimer") {
-    const seconds = Number(data.payload?.seconds || 0);
-    if (!isNaN(seconds) && seconds > 0) {
-      // antes: startTimer(seconds)
-      startOrAddTimer(seconds);
+  ws = new WebSocket(url);
+
+  ws.onopen = () => {
+    console.log("[TIMER WS] CONNECTED");
+
+    if (reconnectTimeout) {
+      clearTimeout(reconnectTimeout);
+      reconnectTimeout = null;
     }
-  }
 
-  if (data.type === "actionTimerStop") {
-    stopTimer();
+    startHeartbeat();
+  };
+
+  ws.onmessage = (msg) => {
+    let data;
+    try {
+      data = JSON.parse(msg.data || "{}");
+    } catch {
+      return;
+    }
+
+    if (data.type === "pong") {
+      // opcional: console.log("[TIMER WS] pong");
+      return;
+    }
+
+    // órdenes desde el panel
+    if (data.type === "actionTimer") {
+      const seconds = Number(data.payload?.seconds || 0);
+      if (!isNaN(seconds) && seconds > 0) {
+        startOrAddTimer(seconds);
+      }
+    }
+
+    if (data.type === "actionTimerStop") {
+      stopTimer();
+    }
+  };
+
+  ws.onerror = (err) => {
+    console.log("[TIMER WS] ERROR", err);
+    try { ws.close(); } catch {}
+  };
+
+  ws.onclose = (ev) => {
+    console.log("[TIMER WS] CLOSED", ev.code, ev.reason);
+    stopHeartbeat();
+    scheduleReconnect();
+  };
+}
+
+function scheduleReconnect() {
+  if (reconnectTimeout) return;
+  console.log("[TIMER WS] scheduling reconnect in 3s...");
+  reconnectTimeout = setTimeout(() => {
+    reconnectTimeout = null;
+    connectWS();
+  }, 3000);
+}
+
+// -------------------- HEARTBEAT --------------------
+function startHeartbeat() {
+  stopHeartbeat();
+  heartbeatInterval = setInterval(() => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    try {
+      ws.send(JSON.stringify({ type: "ping", ts: Date.now() }));
+    } catch (e) {
+      console.log("[TIMER WS] heartbeat error", e);
+    }
+  }, 30000); // cada 30s
+}
+
+function stopHeartbeat() {
+  if (heartbeatInterval) {
+    clearInterval(heartbeatInterval);
+    heartbeatInterval = null;
   }
-};
+}
+
+// arrancar conexión al cargar el widget
+connectWS();

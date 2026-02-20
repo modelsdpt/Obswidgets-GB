@@ -1,23 +1,99 @@
+// MVP WIDGET – auto-reconnect + heartbeat
 const MODEL_ID = "roman001";
-const ws = new WebSocket(
-  `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
-);
 
+let ws = null;
+let reconnectTimeout = null;
+let heartbeatInterval = null;
+
+// mapa de scores tal como antes
 let scores = {};
 
-ws.onmessage = (msg) => {
-  let data;
-  try {
-    data = JSON.parse(msg.data || "{}");
-  } catch {
-    return;
-  }
+// -------------------- CONEXIÓN WS --------------------
+function connectWS() {
+  const url = `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`;
+  console.log("[WS] connecting to", url);
 
+  ws = new WebSocket(url);
+
+  ws.onopen = () => {
+    console.log("[WS] CONNECTED");
+
+    // limpiar cualquier intento de reconnect pendiente
+    if (reconnectTimeout) {
+      clearTimeout(reconnectTimeout);
+      reconnectTimeout = null;
+    }
+
+    startHeartbeat();
+  };
+
+  ws.onmessage = (msg) => {
+    let data;
+    try {
+      data = JSON.parse(msg.data || "{}");
+    } catch {
+      return;
+    }
+
+    // si algún día el backend responde pong, lo ignoramos o lo logueamos
+    if (data.type === "pong") {
+      // console.log("[WS] pong");
+      return;
+    }
+
+    handleMessage(data);
+  };
+
+  ws.onerror = (err) => {
+    console.log("[WS] ERROR", err);
+    // forzamos cierre para que onclose dispare el reconnect
+    try { ws.close(); } catch {}
+  };
+
+  ws.onclose = (ev) => {
+    console.log("[WS] CLOSED", ev.code, ev.reason);
+    stopHeartbeat();
+    scheduleReconnect();
+  };
+}
+
+function scheduleReconnect() {
+  if (reconnectTimeout) return; // ya hay un reconnect programado
+  console.log("[WS] scheduling reconnect in 3s...");
+  reconnectTimeout = setTimeout(() => {
+    reconnectTimeout = null;
+    connectWS();
+  }, 3000);
+}
+
+// -------------------- HEARTBEAT --------------------
+function startHeartbeat() {
+  stopHeartbeat();
+  heartbeatInterval = setInterval(() => {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    try {
+      ws.send(JSON.stringify({ type: "ping", ts: Date.now() }));
+    } catch (e) {
+      console.log("[WS] heartbeat send error", e);
+    }
+  }, 30000); // 30s
+}
+
+function stopHeartbeat() {
+  if (heartbeatInterval) {
+    clearInterval(heartbeatInterval);
+    heartbeatInterval = null;
+  }
+}
+
+// -------------------- LÓGICA DEL MVP --------------------
+function handleMessage(data) {
   if (data.type === "tip") {
     const name = (data.payload?.name || "").trim();
     const amount = Number(data.payload?.amount || 0);
     if (!name || isNaN(amount) || amount <= 0) return;
 
+    // suma al acumulado
     scores[name] = (scores[name] || 0) + amount;
     render();
   }
@@ -26,7 +102,7 @@ ws.onmessage = (msg) => {
     scores = {};
     render();
   }
-};
+}
 
 function render() {
   const list = document.getElementById("top-list");
@@ -53,3 +129,6 @@ function render() {
     list.appendChild(row);
   });
 }
+
+// arrancar conexión al cargar el widget
+connectWS();

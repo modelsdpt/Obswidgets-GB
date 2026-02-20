@@ -439,20 +439,32 @@ wss.on("connection", (ws, modelId) => {
   if (!connections.has(modelId)) {
     connections.set(modelId, []);
   }
+
   connections.get(modelId).push(ws);
 
-  // Reenviar historial al nuevo widget
-  const log = eventLogs.get(modelId) || [];
-  if (log.length) {
-    console.log(`Reenviando ${log.length} eventos a widget de ${modelId}`);
-    log.forEach((evt) => {
+  // 🔹 Escuchamos mensajes desde los widgets (MVP, goal, timer, etc.)
+  ws.on("message", (raw) => {
+    let data;
+    try {
+      data = JSON.parse(raw.toString());
+    } catch {
+      return;
+    }
+
+    // Heartbeat: el widget manda { type: "ping", ts: ... }
+    if (data.type === "ping") {
+      // opcional responder
       try {
-        ws.send(JSON.stringify(evt));
+        ws.send(JSON.stringify({ type: "pong", ts: Date.now() }));
       } catch (e) {
-        console.error("Error reenviando evento en on(connection):", e);
+        console.log("Error enviando pong:", e);
       }
-    });
-  }
+    }
+
+    // Aquí en el futuro podrías manejar cosas tipo:
+    // if (data.type === "widgetReady") { ... }
+    // if (data.type === "reportError") { ... }
+  });
 
   ws.on("close", () => {
     console.log("🔌 Widget desconectado:", modelId);
