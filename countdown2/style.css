@@ -1,12 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;600&display=swap');
+/* ==== TIMER DISCO NIGHT ==== */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 :root {
-  --siren-red: #ff3355;
-  --siren-blue: #3f7dff;
-  --siren-bg: #05060a;
+  --timer-bg: #050510;
+  --timer-card: #101022;
+  --timer-blue: #3bb4ff;
+  --timer-pink: #ff4f9a;
+  --timer-text: #ffffff;
 }
 
-/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -14,133 +16,111 @@
 body {
   margin: 0;
   background: transparent;
-  font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #ffffff;
+  font-family: 'Anton', system-ui, sans-serif;
+  color: var(--timer-text);
 }
 
-/* CARD PRINCIPAL TIMER */
+/* Card principal */
 .timer-widget {
-  width: 280px;
-  max-width: 100%;
-  padding: 10px 14px 12px;
-  margin: 0 auto;
-
-  background: radial-gradient(circle at top, #17172a 0, var(--siren-bg) 55%);
-  border-radius: 16px;
-  border: 2px solid #101021;
-
+  min-width: 260px;
+  padding: 10px 16px 14px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top, #262648, var(--timer-card));
+  border: 2px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    0 0 22px rgba(0, 0, 0, 0.95),
-    0 0 20px rgba(0, 0, 0, 0.8);
+    0 0 18px rgba(0, 0, 0, 1),
+    0 0 26px rgba(59, 180, 255, 0.85);
 }
 
-/* TÍTULO */
+/* Título */
 .timer-title {
   text-align: center;
-  font-family: "Bebas Neue", system-ui, sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.14em;
+  font-size: 20px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 8px;
-
-  color: #ffffff;
   text-shadow:
-    0 0 6px rgba(0,0,0,0.9),
-    0 0 10px rgba(0,0,0,0.8);
+    0 0 6px #000,
+    0 0 12px rgba(59, 180, 255, 0.9);
 }
 
-/* CONTENEDOR DEL BOX */
+/* Contenedor del tiempo */
 .timer-display {
   display: flex;
   justify-content: center;
 }
 
-/* CAJA DEL TIEMPO (SIRENA) */
+/* Caja de tiempo */
 .timer-box {
-  width: 220px;
-  height: 70px;
-  border-radius: 18px;
-  border: 2px solid rgba(255,255,255,0.1);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 51, 85, 0.4), transparent 55%),
-    radial-gradient(circle at 80% 80%, rgba(63, 125, 255, 0.4), transparent 55%),
-    linear-gradient(120deg, #12121f, #050509);
-
-  box-shadow:
-    0 0 18px rgba(0,0,0,1),
-    0 0 14px rgba(0,0,0,0.9);
-  overflow: hidden;
-}
-
-/* TEXTO DEL TIEMPO */
-#timer-value {
-  font-family: "Bebas Neue", system-ui, sans-serif;
-  font-size: 32px;
-  letter-spacing: 0.16em;
+  min-width: 170px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #050510;
+  border: 2px solid rgba(255, 255, 255, 0.15);
   text-align: center;
-
-  text-shadow:
-    0 0 6px rgba(0,0,0,0.9),
-    0 0 10px rgba(0,0,0,0.9);
-}
-
-/* ANIMACIÓN CUANDO ESTÁ CORRIENDO */
-.timer-box.timer-running {
-  background: linear-gradient(120deg, var(--siren-red), var(--siren-blue));
-  background-size: 220% 220%;
-
-  animation:
-    siren-bg 0.65s linear infinite,
-    siren-glow 0.65s ease-in-out infinite;
-}
-
-@keyframes siren-bg {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes siren-glow {
-  0% {
-    box-shadow:
-      0 0 18px rgba(0,0,0,1),
-      0 0 18px rgba(255, 51, 85, 0.9);
-  }
-  50% {
-    box-shadow:
-      0 0 18px rgba(0,0,0,1),
-      0 0 18px rgba(63, 125, 255, 0.9);
-  }
-  100% {
-    box-shadow:
-      0 0 18px rgba(0,0,0,1),
-      0 0 20px rgba(255, 51, 85, 0.9);
-  }
-}
-
-/* ESTADO CUANDO TERMINA (timer-finished) */
-.timer-box.timer-finished {
-  background: radial-gradient(circle at top, #1f2b05 0, #040604 65%);
-  border-color: #8cff6a;
   box-shadow:
-    0 0 18px rgba(0,0,0,1),
-    0 0 16px rgba(140, 255, 106, 0.85);
+    0 0 14px rgba(0, 0, 0, 1),
+    0 0 18px rgba(0, 0, 0, 0.9);
 }
 
-.timer-box.timer-finished #timer-value {
-  color: #cfffaa;
-  text-shadow:
-    0 0 4px rgba(0,0,0,1),
-    0 0 10px rgba(140,255,106,0.9);
+/* Texto del tiempo */
+#timer-value {
+  display: inline-block;
+  font-size: 34px;
+  letter-spacing: 3px;
+}
+
+/* Cuando está corriendo: efecto “luces de discoteca” */
+.timer-running {
+  animation: discoGlow 1s linear infinite;
+}
+
+/* Cuando termina: parpadeo en rojo */
+.timer-finished {
+  animation: finishedFlash 0.25s steps(2, jump-start) 10;
+  border-color: #ff4f76 !important;
+  box-shadow:
+    0 0 14px rgba(255, 79, 154, 0.9),
+    0 0 26px rgba(255, 79, 154, 0.9);
+}
+
+/* Keyframes – barra azul/rosa que se mueve */
+@keyframes discoGlow {
+  0% {
+    box-shadow:
+      0 0 14px rgba(0, 0, 0, 1),
+      0 0 20px rgba(59, 180, 255, 0.9),
+      0 0 30px rgba(59, 180, 255, 0.9);
+    border-image: linear-gradient(90deg, var(--timer-blue), var(--timer-pink)) 1;
+  }
+  50% {
+    box-shadow:
+      0 0 14px rgba(0, 0, 0, 1),
+      0 0 20px rgba(255, 79, 154, 0.9),
+      0 0 30px rgba(255, 79, 154, 0.9);
+    border-image: linear-gradient(90deg, var(--timer-pink), var(--timer-blue)) 1;
+  }
+  100% {
+    box-shadow:
+      0 0 14px rgba(0, 0, 0, 1),
+      0 0 20px rgba(59, 180, 255, 0.9),
+      0 0 30px rgba(59, 180, 255, 0.9);
+    border-image: linear-gradient(90deg, var(--timer-blue), var(--timer-pink)) 1;
+  }
+}
+
+/* Parpadeo final */
+@keyframes finishedFlash {
+  0% {
+    background: #050510;
+    color: #ffffff;
+  }
+  50% {
+    background: #ff1744;
+    color: #ffffff;
+  }
+  100% {
+    background: #050510;
+    color: #ffffff;
+  }
 }
