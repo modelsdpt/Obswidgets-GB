@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 :root {
-  --disco-bg: #030308;
+  --disco-bg: #18d9e7;
   --disco-blue: #3bb4ff;
   --disco-blue-soft: #7ed4ff;
   --disco-pink: #ff4f9a;
@@ -25,7 +25,7 @@ body {
 #container {
  min-width: 240px;
   border-radius: 14px;
-  background: radial-gradient(circle at top, #262648, var(--disco-bg));
+  background: radial-gradient(circle at top, #18d9e7, var(--disco-bg));
   border: 2px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 0 18px rgba(0, 0, 0, 1),
@@ -121,7 +121,7 @@ body {
 .tip.second {
   background: linear-gradient(
     90deg,
-    #0b214f,
+    #18d9e7,
     #3bb4ff,
     #0b214f
   );
@@ -131,7 +131,7 @@ body {
 .tip.third {
   background: linear-gradient(
     90deg,
-    #1d0f4f,
+    #18d9e7,
     #3bb4ff,
     #5a2cff
   );
