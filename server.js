@@ -210,6 +210,48 @@ app.post("/api/send", (req, res) => {
   return res.json({ ok: true });
 });
 
+
+// ───────── API: INGEST TIP (AUTOMATIZADO) ─────────
+// No rompe nada manual. Internamente reutiliza /api/send logic.
+app.post("/api/tip", (req, res) => {
+  const { modelId, name, amount } = req.body;
+
+  if (!modelId || !name || amount == null) {
+    return res.status(400).json({ ok: false, error: "Faltan modelId, name o amount" });
+  }
+
+  const cleanName = String(name).trim();
+  const cleanAmount = Number(amount);
+
+  if (!cleanName || !Number.isFinite(cleanAmount) || cleanAmount <= 0) {
+    return res.status(400).json({ ok: false, error: "name/amount inválidos" });
+  }
+
+  const type = "tip";
+  const payload = { name: cleanName, amount: cleanAmount };
+
+  // Reutiliza exactamente la misma lógica que /api/send
+  const clientList = connections.get(modelId) || [];
+
+  const resetTypes = ["clear", "clearGoal", "resetWidgets", "resetAll"];
+  if (resetTypes.includes(type)) {
+    eventLogs.set(modelId, []);
+  } else {
+    appendEvent(modelId, type, payload);
+  }
+
+  clientList.forEach((client) => {
+    if (client.readyState === 1) {
+      client.send(JSON.stringify({ type, payload }));
+    }
+  });
+
+  // Importante: aunque no haya widgets conectados, respondemos ok:true
+  // porque la automatización debe "enviar" igual (ya se verá en el widget cuando conecte)
+  return res.json({ ok: true, deliveredTo: clientList.length });
+});
+
+
 // ───────── BOTÓN PANEL: RE-SYNC WIDGETS ─────────
 app.post("/api/resync", (req, res) => {
   const { modelId } = req.body;
