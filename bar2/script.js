@@ -16,6 +16,13 @@ const goalTitle = document.querySelector(".goal-title");
 const amountText = document.querySelector(".goal-amount");
 const tipSound = document.getElementById("tipSound");
 
+
+function getWSBase() {
+  // http://localhost:8080  -> ws://localhost:8080
+  // https://xxx.railway.app -> wss://xxx.railway.app
+  return window.location.origin.replace(/^http/, "ws");
+}
+
 // -------------------- AUDIO --------------------
 function playTip() {
   if (!tipSound) return;
@@ -30,7 +37,9 @@ function playTip() {
 
 // -------------------- WS CONEXIÓN --------------------
 function connectWS() {
-  const url = `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`;
+  const WS_BASE = getWSBase();
+  const url = `${WS_BASE}/?modelId=${encodeURIComponent(MODEL_ID)}`;
+
   console.log("[GOAL WS] connecting to", url);
 
   ws = new WebSocket(url);
@@ -54,10 +63,7 @@ function connectWS() {
       return;
     }
 
-    if (data.type === "pong") {
-      // opcional: console.log("[GOAL WS] pong");
-      return;
-    }
+    if (data.type === "pong") return;
 
     handleMessage(data);
   };
