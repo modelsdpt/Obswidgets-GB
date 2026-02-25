@@ -1,138 +1,127 @@
-/* ==== MVP DISCO NIGHT ==== */
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
 :root {
-  --disco-bg: #18d9e7;
-  --disco-blue: #3bb4ff;
-  --disco-blue-soft: #7ed4ff;
-  --disco-pink: #ff4f9a;
-  --disco-border: #f5f5f5;
-  --disco-text: #ffffff;
+  --pink-soft: #ffe4f1;
+  --pink-main: #f9bfd6;
+  --pink-deep: #e78ab4;
+  --pink-border: #f4a8c7;
+  --text-main: #2b1221;
+  --text-soft: #5f2b49;
 }
 
-* {
-  box-sizing: border-box;
-}
-
+/* Fondo transparente para OBS */
+html,
 body {
   margin: 0;
+  padding: 0;
   background: transparent;
-  color: var(--disco-text);
-  font-family: 'Anton', system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: var(--text-main);
 }
 
-/* Contenedor general */
+/* Card principal (contenedor del MVP) */
 #container {
- min-width: 240px;
-  border-radius: 14px;
-  background: radial-gradient(circle at top, #18d9e7, var(--disco-bg));
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  min-width: 260px;
+  max-width: 340px;
+  padding: 14px 16px 12px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.85), rgba(249, 191, 214, 0.95)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(220, 150, 190, 0.4));
+  border: 2px solid var(--pink-border);
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 1),
-    0 0 26px rgba(59, 180, 255, 0.85);
+    0 0 25px rgba(249, 191, 214, 0.9),
+    0 0 40px rgba(222, 130, 174, 0.85);
+  backdrop-filter: blur(6px);
 }
 
-/* Lista centrada */
+/* Si quieres centrarlo solo mientras pruebas, descomenta esto
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+*/
+
+/* Título 👄MY LOVERS👄 */
+.title {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-main);
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.9),
+    0 0 10px rgba(255, 180, 210, 0.9);
+}
+
+/* Lista top 3 */
 #top-list {
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 6px;
 }
 
-/* Título */
-.title {
-  font-family: 'Anton', sans-serif;
-  font-size: 40px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 10px;
-  text-shadow:
-    0 0 6px #000,
-    0 0 14px rgba(59, 180, 255, 0.9),
-    0 0 22px rgba(255, 79, 154, 0.8);
-}
-
-/* Barra de cada tipper (tipo TIP MENU) */
+/* Fila base */
 .tip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-
-  width: min(520px, 94%);
-  padding: 8px 16px;
-
-  background: linear-gradient(
-    90deg,
-    rgba(15, 40, 110, 1),
-    rgba(59, 180, 255, 1),
-    rgba(15, 40, 110, 1)
-  );
-  border-radius: 6px;
-  border: 2px solid var(--disco-border);
-
-  box-shadow:
-    0 0 14px rgba(0, 0, 0, 1),
-    0 0 20px rgba(59, 180, 255, 0.95);
-
-  color: #000;
-  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffe4f1, #f9bfd6);
+  border: 1px solid #f4bcd3;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  color: var(--text-main);
+  font-size: 13px;
 }
 
-/* Nombre y monto en una línea */
+/* Nombre + monto */
 .tip .name {
-  flex: 1;
-  font-size: 22px;
-  letter-spacing: 2px;
+  font-weight: 600;
+  max-width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .tip .amount {
-  font-size: 24px;
-  white-space: nowrap;
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
 
-/* Icono de ranking (corona / trofeos) */
-.rank-icon {
-  font-size: 20px;
-  margin-right: 6px;
-}
-
-/* MVP (primero) – más glow */
+/* MVP (1er lugar) */
 .tip.mvp {
-  background: linear-gradient(
-    90deg,
-    #0f286e,
-    #3bb4ff,
-    #ff4f9a
-  );
+  background: linear-gradient(90deg, #ffe8f5, #ffbfdc);
+  border: 1px solid #ff8cbc;
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 1),
-    0 0 26px rgba(255, 79, 154, 0.9);
+    0 0 16px rgba(255, 150, 200, 0.95),
+    0 0 26px rgba(255, 200, 230, 0.95);
+  transform: translateY(-1px);
+  animation: mvpGlow 2.4s ease-in-out infinite;
 }
 
-/* Segundo – tono más frío */
+/* 2do y 3er lugar, un poco más suaves */
 .tip.second {
-  background: linear-gradient(
-    90deg,
-    #18d9e7,
-    #3bb4ff,
-    #0b214f
-  );
+  background: linear-gradient(90deg, #ffeef6, #f9cbe0);
 }
 
-/* Tercero – toque violeta */
 .tip.third {
-  background: linear-gradient(
-    90deg,
-    #18d9e7,
-    #3bb4ff,
-    #5a2cff
-  );
+  background: linear-gradient(90deg, #fff3f8, #fce0ec);
+}
+
+/* Animación MVP */
+@keyframes mvpGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(255, 150, 200, 0.6),
+      0 0 18px rgba(255, 210, 235, 0.7);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(255, 120, 185, 0.9),
+      0 0 32px rgba(255, 220, 240, 1);
+  }
 }

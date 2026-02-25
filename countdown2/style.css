@@ -1,126 +1,109 @@
-/* ==== TIMER DISCO NIGHT ==== */
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
 :root {
-  --timer-bg: #18d9e7;
-  --timer-card: #18d9e7;
-  --timer-blue: #3bb4ff;
-  --timer-pink: #ff4f9a;
-  --timer-text: #ffffff;
+  --pink-soft: #ffe4f1;
+  --pink-main: #f9bfd6;
+  --pink-deep: #e78ab4;
+  --timer-border: #f4b8d4;
+  --timer-text: #2b1221;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
+/* Fondo transparente */
+html, body {
   margin: 0;
+  padding: 0;
   background: transparent;
-  font-family: 'Anton', system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--timer-text);
 }
 
-/* Card principal */
+/* Card del timer */
 .timer-widget {
-  max-width: 240px;
-  padding: 8px 10px 15px;
-  border-radius: 14px;
-  background: radial-gradient(circle at top, #262648, var(--timer-card));
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  min-width: 220px;
+  max-width: 280px;
+  padding: 14px 16px 16px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.85), rgba(249,191,214,0.95)),
+    linear-gradient(145deg, rgba(255,255,255,0.18), rgba(220, 150, 190, 0.4));
+  border: 2px solid var(--timer-border);
   box-shadow:
-    0 0 18px rgba(0, 0, 0, 1),
-    0 0 26px rgba(59, 180, 255, 0.85);
+    0 0 24px rgba(249,191,214,0.9),
+    0 0 40px rgba(220,130,180,0.85);
+  backdrop-filter: blur(6px);
+  text-align: center;
 }
 
 /* Título */
 .timer-title {
-  text-align: center;
-  font-size: 20px;
-  letter-spacing: 3px;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 8px;
   text-shadow:
-    0 0 6px #000,
-    0 0 12px rgba(59, 180, 255, 0.9);
+    0 2px 0 rgba(255,255,255,0.9),
+    0 0 10px rgba(255,190,220,0.9);
+  margin-bottom: 10px;
 }
 
-/* Contenedor del tiempo */
+/* Contenedor del número */
 .timer-display {
   display: flex;
   justify-content: center;
 }
 
-/* Caja de tiempo */
 .timer-box {
-  min-width: 170px;
-  padding: 8px 16px;
+  min-width: 150px;
+  padding: 10px 12px;
   border-radius: 999px;
-  background: #050510;
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  text-align: center;
+  border: 2px solid var(--timer-border);
+  background: radial-gradient(circle at top, #ffeaf4, #f7c4dd);
   box-shadow:
-    0 0 14px rgba(0, 0, 0, 1),
-    0 0 18px rgba(0, 0, 0, 0.9);
+    inset 0 0 10px rgba(255,255,255,0.8),
+    0 4px 8px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 /* Texto del tiempo */
 #timer-value {
-  display: inline-block;
-  font-size: 34px;
-  letter-spacing: 3px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
-/* Cuando está corriendo: efecto “luces de discoteca” */
-.timer-running {
-  animation: discoGlow 1s linear infinite;
-}
-
-/* Cuando termina: parpadeo en rojo */
-.timer-finished {
-  animation: finishedFlash 0.25s steps(2, jump-start) 10;
-  border-color: #ff4f76 !important;
+/* Estado: corriendo (clase .timer-running puesta por JS) */
+.timer-box.timer-running {
+  transform: scale(1.03);
   box-shadow:
-    0 0 14px rgba(255, 79, 154, 0.9),
-    0 0 26px rgba(255, 79, 154, 0.9);
+    inset 0 0 10px rgba(255,255,255,0.85),
+    0 0 20px rgba(249,191,214,0.9),
+    0 0 30px rgba(221,128,177,0.95);
+  animation: timerPulse 1s ease-in-out infinite;
 }
 
-/* Keyframes – barra azul/rosa que se mueve */
-@keyframes discoGlow {
-  0% {
-    box-shadow:
-      0 0 14px rgba(0, 0, 0, 1),
-      0 0 20px rgba(59, 180, 255, 0.9),
-      0 0 30px rgba(59, 180, 255, 0.9);
-    border-image: linear-gradient(90deg, var(--timer-blue), var(--timer-pink)) 1;
+/* Estado: terminado (clase .timer-finished) */
+.timer-box.timer-finished {
+  background: radial-gradient(circle at top, #ffe4f1, #f091b9);
+  box-shadow:
+    0 0 18px rgba(255,140,190,0.95),
+    0 0 30px rgba(255,210,235,1);
+  animation: timerFinishFlash 0.7s ease-in-out 0s 3;
+}
+
+/* Animación leve mientras corre */
+@keyframes timerPulse {
+  0%, 100% {
+    transform: scale(1.03);
   }
   50% {
-    box-shadow:
-      0 0 14px rgba(0, 0, 0, 1),
-      0 0 20px rgba(255, 79, 154, 0.9),
-      0 0 30px rgba(255, 79, 154, 0.9);
-    border-image: linear-gradient(90deg, var(--timer-pink), var(--timer-blue)) 1;
-  }
-  100% {
-    box-shadow:
-      0 0 14px rgba(0, 0, 0, 1),
-      0 0 20px rgba(59, 180, 255, 0.9),
-      0 0 30px rgba(59, 180, 255, 0.9);
-    border-image: linear-gradient(90deg, var(--timer-blue), var(--timer-pink)) 1;
+    transform: scale(1.06);
   }
 }
 
-/* Parpadeo final */
-@keyframes finishedFlash {
-  0% {
-    background: #050510;
-    color: #ffffff;
+/* Pequeño flash al terminar */
+@keyframes timerFinishFlash {
+  0%, 100% {
+    filter: brightness(1);
   }
   50% {
-    background: #ff1744;
-    color: #ffffff;
-  }
-  100% {
-    background: #050510;
-    color: #ffffff;
+    filter: brightness(1.25);
   }
 }
