@@ -1,10 +1,10 @@
 :root {
-  --pink-soft: #ffe4f1;
-  --pink-main: #f9bfd6;
-  --pink-deep: #e78ab4;
-  --pink-border: #f4a8c7;
-  --text-main: #2b1221;
-  --text-soft: #5f2b49;
+  --pink-soft: #ff8989;
+  --pink-main: #ff5757;
+  --pink-deep: #ff3c3c;
+  --pink-border: #ff4891;
+  --text-main: #ffffff;
+  --text-soft: #d8d8d8;
 }
 
 /* Fondo transparente para OBS */
@@ -25,12 +25,12 @@ body {
   padding: 14px 16px 12px;
   border-radius: 18px;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.85), rgba(249, 191, 214, 0.95)),
+    radial-gradient(circle at top, rgba(255, 78, 78, 0.85), rgba(255, 49, 49, 0.95)),
     linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(220, 150, 190, 0.4));
   border: 2px solid var(--pink-border);
   box-shadow:
-    0 0 25px rgba(249, 191, 214, 0.9),
-    0 0 40px rgba(222, 130, 174, 0.85);
+    0 0 25px rgba(249, 191, 191, 0.9),
+    0 0 40px rgba(222, 130, 130, 0.85);
   backdrop-filter: blur(6px);
 }
 
@@ -93,8 +93,8 @@ body {
 
 /* MVP (1er lugar) */
 .tip.mvp {
-  background: linear-gradient(90deg, #ffe8f5, #ffbfdc);
-  border: 1px solid #ff8cbc;
+  background: linear-gradient(90deg, #ff2828, #fa2020);
+  border: 1px solid #ff3333;
   box-shadow:
     0 0 16px rgba(255, 150, 200, 0.95),
     0 0 26px rgba(255, 200, 230, 0.95);
@@ -104,11 +104,11 @@ body {
 
 /* 2do y 3er lugar, un poco más suaves */
 .tip.second {
-  background: linear-gradient(90deg, #ffeef6, #f9cbe0);
+  background: linear-gradient(90deg, #ff5b5b, #ff4545);
 }
 
 .tip.third {
-  background: linear-gradient(90deg, #fff3f8, #fce0ec);
+  background: linear-gradient(90deg, #ff4040, #ff3131);
 }
 
 /* Animación MVP */

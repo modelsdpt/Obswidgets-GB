@@ -1,10 +1,10 @@
 :root {
-  --goal-bg: rgba(0, 0, 0, 0.6);
+  --goal-bg: rgba(211, 0, 0, 0.6);
   --goal-track: rgba(255, 228, 241, 0.35);
-  --goal-fill-from: #f9bfd6;
-  --goal-fill-to: #f7a6cc;
-  --goal-border: #f4b8d4;
-  --goal-text-main: #2b1221;
+  --goal-fill-from: #ff5757;
+  --goal-fill-to: #ff5757;
+  --goal-border: #ff3c3c;
+  --goal-text-main: #ffffff;
 }
 
 /* Fondo transparente */
@@ -25,7 +25,7 @@ html, body {
   overflow: hidden;
   border: 2px solid var(--goal-border);
   background:
-    linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.8)),
+    linear-gradient(135deg, rgba(204, 0, 0, 0.45), rgba(252, 0, 0, 0.8)),
     radial-gradient(circle at top, var(--goal-track), rgba(0,0,0,0.7));
   box-shadow:
     0 0 18px rgba(0,0,0,0.8),
