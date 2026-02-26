@@ -1,127 +1,152 @@
+/* =========================
+   MVP – My Lovers (casino rosa/negro)
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&family=Montserrat:wght@600;800&display=swap');
+
 :root {
-  --pink-soft: #ff8989;
-  --pink-main: #ff5757;
-  --pink-deep: #ff3c3c;
-  --pink-border: #ff4891;
+  --bg-main: #040308;
+  --panel-dark: #080611;
+  --panel-soft: #151021;
+
+  --pink-main: #ff4fa8;
+  --pink-soft: #ffd6f0;
+
+  --accent-gold: #ffce6a;
+  --accent-silver: #e0e7ff;
+
   --text-main: #ffffff;
-  --text-soft: #d8d8d8;
 }
 
-/* Fondo transparente para OBS */
-html,
 body {
   margin: 0;
-  padding: 0;
   background: transparent;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: 'Baloo 2', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text-main);
 }
 
-/* Card principal (contenedor del MVP) */
+/* CONTENEDOR PRINCIPAL */
 #container {
-  min-width: 260px;
-  max-width: 340px;
-  padding: 14px 16px 12px;
+  width: 430px;
+  padding: 10px 14px 14px;
   border-radius: 18px;
   background:
-    radial-gradient(circle at top, rgba(255, 78, 78, 0.85), rgba(255, 49, 49, 0.95)),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(220, 150, 190, 0.4));
-  border: 2px solid var(--pink-border);
+    radial-gradient(circle at top, #281438 0, #09040f 55%),
+    linear-gradient(145deg, rgba(255,79,168,0.2), rgba(0,0,0,0.8));
+  border: 1px solid rgba(255,79,168,0.65);
   box-shadow:
-    0 0 25px rgba(249, 191, 191, 0.9),
-    0 0 40px rgba(222, 130, 130, 0.85);
-  backdrop-filter: blur(6px);
+    0 0 24px rgba(0,0,0,0.95),
+    0 0 32px rgba(255,79,168,0.55);
+  box-sizing: border-box;
 }
 
-/* Si quieres centrarlo solo mientras pruebas, descomenta esto
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-*/
-
-/* Título 👄MY LOVERS👄 */
+/* TÍTULO "MY LOVERS" */
 .title {
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  margin: 0 0 10px;
   text-align: center;
-  color: var(--text-main);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.15em;
+  color: var(--pink-soft);
+  text-transform: uppercase;
   text-shadow:
-    0 2px 0 rgba(255, 255, 255, 0.9),
-    0 0 10px rgba(255, 180, 210, 0.9);
+    0 0 4px #000,
+    0 0 10px rgba(255,114,213,0.9),
+    0 0 18px rgba(255,79,168,0.7);
 }
 
-/* Lista top 3 */
+/* LISTA */
 #top-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
-/* Fila base */
+/* CARD BASE */
 .tip {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 6px 10px;
+  gap: 8px;
+
+  padding: 8px 14px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #ffe4f1, #f9bfd6);
-  border: 1px solid #f4bcd3;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  color: var(--text-main);
-  font-size: 13px;
+  background:
+    linear-gradient(120deg, rgba(10,6,20,0.9), rgba(24,11,36,0.95));
+  border: 1px solid rgba(255,79,168,0.45);
+  box-shadow:
+    0 0 14px rgba(0,0,0,0.9),
+    0 0 18px rgba(10,6,25,0.9);
+
+  overflow: hidden;
 }
 
-/* Nombre + monto */
+/* GLOW ANIMADO */
+.tip::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255,79,168,0.35), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255,206,106,0.25), transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  animation: tipGlow 6s linear infinite;
+}
+
+@keyframes tipGlow {
+  0%   { transform: translateX(-10%) translateY(-5%); }
+  50%  { transform: translateX(10%)  translateY(5%);  }
+  100% { transform: translateX(-10%) translateY(-5%); }
+}
+
+/* TEXTO NOMBRE + MONTO */
 .tip .name {
-  font-weight: 600;
-  max-width: 60%;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pink-soft);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .tip .amount {
+  position: relative;
+  z-index: 1;
+  font-size: 26px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  color: var(--accent-gold);
+  text-shadow:
+    0 0 4px #000,
+    0 0 10px rgba(255,206,106,0.9);
 }
 
-/* MVP (1er lugar) */
+/* MVP ORO */
 .tip.mvp {
-  background: linear-gradient(90deg, #ff2828, #fa2020);
-  border: 1px solid #ff3333;
+  border-color: rgba(255,206,106,0.9);
   box-shadow:
-    0 0 16px rgba(255, 150, 200, 0.95),
-    0 0 26px rgba(255, 200, 230, 0.95);
-  transform: translateY(-1px);
-  animation: mvpGlow 2.4s ease-in-out infinite;
+    0 0 16px rgba(0,0,0,0.95),
+    0 0 30px rgba(255,206,106,0.75);
+}
+.tip.mvp .name {
+  color: var(--accent-gold);
 }
 
-/* 2do y 3er lugar, un poco más suaves */
+/* 2DO PLATA */
 .tip.second {
-  background: linear-gradient(90deg, #ff5b5b, #ff4545);
+  border-color: rgba(224,231,255,0.9);
+}
+.tip.second .amount {
+  color: var(--accent-silver);
 }
 
+/* 3RO ROSA */
 .tip.third {
-  background: linear-gradient(90deg, #ff4040, #ff3131);
+  border-color: rgba(255,114,213,0.9);
 }
-
-/* Animación MVP */
-@keyframes mvpGlow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 10px rgba(255, 150, 200, 0.6),
-      0 0 18px rgba(255, 210, 235, 0.7);
-  }
-  50% {
-    box-shadow:
-      0 0 22px rgba(255, 120, 185, 0.9),
-      0 0 32px rgba(255, 220, 240, 1);
-  }
+.tip.third .amount {
+  color: var(--pink-main);
 }
