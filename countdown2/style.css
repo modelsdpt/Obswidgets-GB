@@ -1,23 +1,17 @@
 /* =========================
-   GOAL BAR – Gris/Negro (metal)
+   TIMER – Gris/Negro (metal)
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@600;800&display=swap');
 
 :root{
   --bg0:#050506;
   --bg1:#0b0b0f;
+  --card:#0f0f14;
+  --card2:#151521;
 
   --line: rgba(255,255,255,.18);
-  --line2: rgba(255,255,255,.10);
-
   --txt:#f4f4f6;
-  --txt2: rgba(244,244,246,.80);
-
-  --fill1:#e8e8ec;
-  --fill2:#b9b9c0;
-  --fill3:#f7f7fb;
-
-  --shadow: rgba(0,0,0,.9);
+  --txt2: rgba(244,244,246,.78);
 }
 
 *{ box-sizing:border-box; }
@@ -29,52 +23,60 @@ body{
   color: var(--txt);
 }
 
-/* Barra contenedora */
-#goal-wrapper{
-  width: 520px;
-  height: 54px;
-  position: relative;
-  overflow: hidden;
+/* Card principal */
+.timer-widget{
+  width: 280px;
+  padding: 14px 14px 16px;
+  border-radius: 18px;
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,.08), transparent 55%),
+    linear-gradient(145deg, var(--bg1), var(--bg0));
+  border: 1px solid var(--line);
+  box-shadow:
+    0 0 22px rgba(0,0,0,.92),
+    0 0 26px rgba(0,0,0,.7);
+}
+
+/* Título */
+.timer-title{
+  text-align:center;
+  font-family:'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--txt);
+  margin-bottom: 10px;
+  text-shadow: 0 0 4px rgba(0,0,0,.95);
+}
+
+/* Caja del tiempo */
+.timer-display{
+  display:flex;
+  justify-content:center;
+}
+
+.timer-box{
+  position:relative;
+  width: 170px;
+  height: 72px;
   border-radius: 999px;
 
   background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255,255,255,.06) 0px,
-      rgba(255,255,255,.06) 10px,
-      rgba(255,255,255,.02) 10px,
-      rgba(255,255,255,.02) 20px
-    ),
-    linear-gradient(145deg, var(--bg1), var(--bg0));
-  border: 1.5px solid var(--line);
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+    linear-gradient(135deg, var(--card), var(--card2));
+  border: 1px solid rgba(255,255,255,.18);
   box-shadow:
-    0 0 22px rgba(0,0,0,.92),
-    inset 0 0 10px rgba(0,0,0,.75);
+    inset 0 0 10px rgba(0,0,0,.8),
+    0 0 18px rgba(0,0,0,.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-/* Fill (animado) */
-#bar-fill{
-  position:absolute;
-  inset:0;
-  width:0%;
-  border-radius: inherit;
-
-  background: linear-gradient(120deg, var(--fill1), var(--fill2), var(--fill3), var(--fill2), var(--fill1));
-  background-size: 220% 100%;
-  animation: fillFlow 3.4s linear infinite;
-
-  box-shadow:
-    0 0 18px rgba(255,255,255,.12),
-    0 0 26px rgba(255,255,255,.10);
-}
-
-@keyframes fillFlow{
-  0%{ background-position: 0% 50%; }
-  100%{ background-position: 200% 50%; }
-}
-
-/* Brillo barrido encima del fill */
-#goal-wrapper::after{
+/* brillo barrido */
+.timer-box::before{
   content:"";
   position:absolute;
   inset:-40%;
@@ -87,63 +89,41 @@ body{
     transparent 75%
   );
   transform: translateX(-120%);
-  animation: goalShine 4.6s linear infinite;
+  animation: timerShine 4.2s linear infinite;
   mix-blend-mode: screen;
-  pointer-events:none;
   opacity:.7;
 }
-
-@keyframes goalShine{
+@keyframes timerShine{
   0%{ transform: translateX(-120%); }
   40%{ transform: translateX(120%); }
   100%{ transform: translateX(120%); }
 }
 
-/* Texto dentro */
-.goal-label{
+#timer-value{
   position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding: 0 16px;
-  pointer-events:none;
-}
-
-/* Título dentro */
-.goal-title{
-  font-family:'Cinzel', serif;
-  font-size: 16px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--txt);
-  text-shadow: 0 0 4px rgba(0,0,0,.95);
-}
-
-/* Monto dentro a la derecha */
-.goal-amount{
-  font-size: 16px;
+  z-index:1;
+  font-family:'Montserrat', system-ui, sans-serif;
+  font-size: 34px;
   font-weight: 800;
+  letter-spacing:.08em;
   color: var(--txt);
-  text-shadow: 0 0 4px rgba(0,0,0,.95);
-  white-space: nowrap;
+  text-shadow:
+    0 0 4px rgba(0,0,0,.95),
+    0 0 12px rgba(255,255,255,.16);
 }
 
-/* Cuando está completada (JS agrega .neon al goalTitle) */
-.goal-title.neon{
-  animation: goalPulse 1.1s ease-in-out infinite alternate;
+/* estados */
+.timer-box.timer-running{
+  animation: timerPulse 1.1s ease-in-out infinite alternate;
 }
-@keyframes goalPulse{
-  from{
-    text-shadow:
-      0 0 4px rgba(0,0,0,.95),
-      0 0 10px rgba(255,255,255,.18);
-  }
-  to{
-    text-shadow:
-      0 0 4px rgba(0,0,0,.95),
-      0 0 18px rgba(255,255,255,.32),
-      0 0 26px rgba(255,255,255,.18);
-  }
+@keyframes timerPulse{
+  from{ transform: translateY(0); box-shadow: inset 0 0 10px rgba(0,0,0,.8), 0 0 18px rgba(0,0,0,.9); }
+  to{ transform: translateY(-1px); box-shadow: inset 0 0 10px rgba(0,0,0,.75), 0 0 22px rgba(255,255,255,.14); }
+}
+
+.timer-box.timer-finished{
+  border-color: rgba(255,255,255,.35);
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,.75),
+    0 0 26px rgba(255,255,255,.22);
 }

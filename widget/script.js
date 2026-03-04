@@ -5,12 +5,21 @@ let ws = null;
 let reconnectTimeout = null;
 let heartbeatInterval = null;
 
+
 // mapa de scores tal como antes
 let scores = {};
 
 // -------------------- CONEXIÓN WS --------------------
+
+function getWSBase() {
+  // http://localhost:8080  -> ws://localhost:8080
+  // https://xxx.railway.app -> wss://xxx.railway.app
+  return window.location.origin.replace(/^http/, "ws");
+}
 function connectWS() {
-  const url = `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`;
+  const WS_BASE = getWSBase();
+  const url = `${WS_BASE}/?modelId=${encodeURIComponent(MODEL_ID)}`;
+
   console.log("[WS] connecting to", url);
 
   ws = new WebSocket(url);
@@ -18,7 +27,6 @@ function connectWS() {
   ws.onopen = () => {
     console.log("[WS] CONNECTED");
 
-    // limpiar cualquier intento de reconnect pendiente
     if (reconnectTimeout) {
       clearTimeout(reconnectTimeout);
       reconnectTimeout = null;
@@ -35,18 +43,13 @@ function connectWS() {
       return;
     }
 
-    // si algún día el backend responde pong, lo ignoramos o lo logueamos
-    if (data.type === "pong") {
-      // console.log("[WS] pong");
-      return;
-    }
+    if (data.type === "pong") return;
 
     handleMessage(data);
   };
 
   ws.onerror = (err) => {
     console.log("[WS] ERROR", err);
-    // forzamos cierre para que onclose dispare el reconnect
     try { ws.close(); } catch {}
   };
 
@@ -56,7 +59,6 @@ function connectWS() {
     scheduleReconnect();
   };
 }
-
 function scheduleReconnect() {
   if (reconnectTimeout) return; // ya hay un reconnect programado
   console.log("[WS] scheduling reconnect in 3s...");
