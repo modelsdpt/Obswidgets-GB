@@ -1,23 +1,30 @@
 /* =========================
-   GOAL BAR – Gris/Negro (metal)
+   GOAL BAR – Trans Theme
    ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Montserrat:wght@600;700;800&display=swap');
 
 :root{
-  --bg0:#050506;
-  --bg1:#0b0b0f;
-
+ --bg0:#8fddff;
+  --bg1:#ff79c8;
   --line: rgba(255,255,255,.18);
   --line2: rgba(255,255,255,.10);
 
-  --txt:#f4f4f6;
-  --txt2: rgba(244,244,246,.80);
+  --txt:#fdfcff;
+  --txt2: rgba(253,252,255,.82);
 
-  --fill1:#e8e8ec;
-  --fill2:#b9b9c0;
-  --fill3:#f7f7fb;
+  --trans-blue:#5bc6ff;
+  --trans-blue-soft:#9be7ff;
+  --trans-pink:#ff79c8;
+  --trans-pink-soft:#ffc0e3;
+  --trans-white:#ffffff;
 
-  --shadow: rgba(0,0,0,.9);
+  --fill1:#5bc6ff;
+  --fill2:#ffffff;
+  --fill3:#ff79c8;
+  --fill4:#b6ecff;
+  --fill5:#ffd2ea;
+
+  --shadow: rgba(0,0,0,.90);
 }
 
 *{ box-sizing:border-box; }
@@ -38,18 +45,49 @@ body{
   border-radius: 999px;
 
   background:
+    radial-gradient(circle at 12% 50%, rgba(91,198,255,.15), transparent 28%),
+    radial-gradient(circle at 88% 50%, rgba(255,121,200,.15), transparent 28%),
     repeating-linear-gradient(
       135deg,
-      rgba(255,255,255,.06) 0px,
-      rgba(255,255,255,.06) 10px,
-      rgba(255,255,255,.02) 10px,
-      rgba(255,255,255,.02) 20px
+      rgba(255,255,255,.05) 0px,
+      rgba(255,255,255,.05) 10px,
+      rgba(255,255,255,.015) 10px,
+      rgba(255,255,255,.015) 20px
     ),
     linear-gradient(145deg, var(--bg1), var(--bg0));
-  border: 1.5px solid var(--line);
+  border: 1.5px solid rgba(255,255,255,.16);
   box-shadow:
     0 0 22px rgba(0,0,0,.92),
-    inset 0 0 10px rgba(0,0,0,.75);
+    0 0 18px rgba(91,198,255,.12),
+    0 0 18px rgba(255,121,200,.10),
+    inset 0 0 10px rgba(0,0,0,.72),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* borde glow */
+#goal-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  padding:1px;
+  background: linear-gradient(
+    90deg,
+    rgba(91,198,255,.75),
+    rgba(255,255,255,.65),
+    rgba(255,121,200,.75),
+    rgba(255,255,255,.65),
+    rgba(91,198,255,.75)
+  );
+  background-size: 200% 100%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity:.6;
+  animation: goalBorderFlow 5.5s linear infinite;
+  pointer-events:none;
 }
 
 /* Fill (animado) */
@@ -59,13 +97,41 @@ body{
   width:0%;
   border-radius: inherit;
 
-  background: linear-gradient(120deg, var(--fill1), var(--fill2), var(--fill3), var(--fill2), var(--fill1));
-  background-size: 220% 100%;
-  animation: fillFlow 3.4s linear infinite;
+  background:
+    linear-gradient(
+      120deg,
+      var(--fill1) 0%,
+      var(--fill4) 18%,
+      var(--fill2) 36%,
+      var(--fill5) 58%,
+      var(--fill3) 78%,
+      var(--fill2) 100%
+    );
+  background-size: 240% 100%;
+  animation: fillFlow 3.2s linear infinite;
 
   box-shadow:
-    0 0 18px rgba(255,255,255,.12),
-    0 0 26px rgba(255,255,255,.10);
+    0 0 14px rgba(255,255,255,.10),
+    0 0 18px rgba(91,198,255,.20),
+    0 0 18px rgba(255,121,200,.18),
+    inset 0 0 10px rgba(255,255,255,.08);
+}
+
+/* aura suave del fill */
+#bar-fill::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.00) 0%,
+      rgba(255,255,255,.20) 50%,
+      rgba(255,255,255,.00) 100%
+    );
+  animation: fillGlass 2.8s ease-in-out infinite;
+  pointer-events:none;
 }
 
 @keyframes fillFlow{
@@ -73,7 +139,12 @@ body{
   100%{ background-position: 200% 50%; }
 }
 
-/* Brillo barrido encima del fill */
+@keyframes fillGlass{
+  0%,100%{ opacity:.45; }
+  50%{ opacity:.9; }
+}
+
+/* Brillo barrido encima */
 #goal-wrapper::after{
   content:"";
   position:absolute;
@@ -81,22 +152,28 @@ body{
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.10) 35%,
-    rgba(255,255,255,.18) 50%,
-    rgba(255,255,255,.08) 60%,
-    transparent 75%
+    rgba(91,198,255,.08) 24%,
+    rgba(255,255,255,.18) 42%,
+    rgba(255,121,200,.18) 54%,
+    rgba(255,255,255,.08) 64%,
+    transparent 80%
   );
   transform: translateX(-120%);
   animation: goalShine 4.6s linear infinite;
   mix-blend-mode: screen;
   pointer-events:none;
-  opacity:.7;
+  opacity:.85;
 }
 
 @keyframes goalShine{
   0%{ transform: translateX(-120%); }
   40%{ transform: translateX(120%); }
   100%{ transform: translateX(120%); }
+}
+
+@keyframes goalBorderFlow{
+  0%{ background-position: 0% 50%; }
+  100%{ background-position: 200% 50%; }
 }
 
 /* Texto dentro */
@@ -113,37 +190,48 @@ body{
 
 /* Título dentro */
 .goal-title{
-  font-family:'Cinzel', serif;
-  font-size: 16px;
-  letter-spacing: .16em;
+  font-family:'Orbitron', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--txt);
-  text-shadow: 0 0 4px rgba(0,0,0,.95);
+  color: var(--trans-white);
+  text-shadow:
+    0 0 4px rgba(0,0,0,.95),
+    0 0 10px rgba(91,198,255,.20),
+    0 0 10px rgba(255,121,200,.16);
 }
 
 /* Monto dentro a la derecha */
 .goal-amount{
-  font-size: 16px;
+  font-family:'Orbitron', sans-serif;
+  font-size: 15px;
   font-weight: 800;
-  color: var(--txt);
-  text-shadow: 0 0 4px rgba(0,0,0,.95);
+  color: var(--trans-white);
+  text-shadow:
+    0 0 4px rgba(0,0,0,.95),
+    0 0 8px rgba(91,198,255,.18),
+    0 0 8px rgba(255,121,200,.16);
   white-space: nowrap;
 }
 
-/* Cuando está completada (JS agrega .neon al goalTitle) */
+/* Cuando está completada */
 .goal-title.neon{
   animation: goalPulse 1.1s ease-in-out infinite alternate;
 }
+
 @keyframes goalPulse{
   from{
     text-shadow:
       0 0 4px rgba(0,0,0,.95),
-      0 0 10px rgba(255,255,255,.18);
+      0 0 10px rgba(255,255,255,.18),
+      0 0 14px rgba(91,198,255,.18);
   }
   to{
     text-shadow:
       0 0 4px rgba(0,0,0,.95),
-      0 0 18px rgba(255,255,255,.32),
-      0 0 26px rgba(255,255,255,.18);
+      0 0 16px rgba(255,255,255,.26),
+      0 0 22px rgba(91,198,255,.24),
+      0 0 22px rgba(255,121,200,.22);
   }
 }
