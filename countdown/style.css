@@ -1,26 +1,23 @@
 /* =========================
-   TIMER – Hot Sunset Theme
+   TIMER – Black Cream Neon Pink
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Montserrat:wght@600;700;800&display=swap');
 
 :root{
-  /* fondos principales más vivos */
-  --bg0:#ff7a18;
-  --bg1:#ff3d6e;
-  --card:#7b3cff;
-  --card2:#3e6bff;
+  --bg0:#050506;
+  --bg1:#0d0a10;
+  --card:#15101a;
+  --card2:#1d1524;
 
-  --line: rgba(255,255,255,.22);
-  --line2: rgba(255,255,255,.14);
+  --line: rgba(255,120,190,.18);
+  --txt:#fff8fc;
+  --txt2: rgba(255,248,252,.80);
 
-  --txt:#fff8f2;
-  --txt2: rgba(255,248,242,.86);
-
-  --hot-red:#ff4d57;
-  --hot-orange:#ff8a2a;
-  --hot-gold:#ffd24a;
-  --hot-purple:#7f4bff;
-  --hot-blue:#3d7cff;
+  --pink-neon:#ff4fb3;
+  --pink-soft:#ff85c8;
+  --pink-cream:#ffd9ea;
+  --pink-deep:#d92c8f;
+  --white-glow:#fff4fb;
 }
 
 *{ box-sizing:border-box; }
@@ -40,16 +37,16 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 16% 20%, rgba(255,77,87,.14), transparent 34%),
-    radial-gradient(circle at 84% 24%, rgba(127,75,255,.14), transparent 36%),
-    radial-gradient(circle at 50% 0%, rgba(255,210,74,.08), transparent 42%),
-    linear-gradient(145deg, var(--bg1), var(--bg0));
+    radial-gradient(circle at 14% 18%, rgba(255,79,179,.12), transparent 24%),
+    radial-gradient(circle at 84% 20%, rgba(255,133,200,.10), transparent 28%),
+    radial-gradient(circle at 76% 82%, rgba(255,255,255,.04), transparent 22%),
+    linear-gradient(145deg, #0d0a10 0%, #09070c 36%, #120d16 68%, #050506 100%);
   border:1px solid var(--line);
   box-shadow:
     0 0 22px rgba(0,0,0,.92),
-    0 0 16px rgba(255,77,87,.10),
-    0 0 16px rgba(127,75,255,.10),
-    inset 0 1px 0 rgba(255,255,255,.05);
+    0 0 16px rgba(255,79,179,.10),
+    0 0 16px rgba(255,133,200,.08),
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 
 .timer-widget::before{
@@ -60,11 +57,11 @@ body{
   padding:1px;
   background: linear-gradient(
     135deg,
-    rgba(255,77,87,.72),
-    rgba(255,138,42,.70),
-    rgba(255,210,74,.66),
-    rgba(127,75,255,.70),
-    rgba(61,124,255,.66)
+    rgba(255,79,179,.74),
+    rgba(255,133,200,.72),
+    rgba(255,217,234,.56),
+    rgba(217,44,143,.68),
+    rgba(255,79,179,.74)
   );
   background-size:220% 100%;
   -webkit-mask:
@@ -72,12 +69,12 @@ body{
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
-  opacity:.55;
-  animation:timerBorderFlow 5.5s linear infinite;
+  opacity:.56;
+  animation:timerPinkBorderFlow 5.5s linear infinite;
   pointer-events:none;
 }
 
-@keyframes timerBorderFlow{
+@keyframes timerPinkBorderFlow{
   0%{ background-position:0% 50%; }
   100%{ background-position:200% 50%; }
 }
@@ -91,12 +88,12 @@ body{
   font-weight:800;
   letter-spacing:.16em;
   text-transform:uppercase;
-  color:var(--hot-white);
+  color:var(--white-glow);
   margin-bottom:10px;
   text-shadow:
     0 0 4px rgba(0,0,0,.95),
-    0 0 8px rgba(255,138,42,.14),
-    0 0 8px rgba(127,75,255,.14);
+    0 0 8px rgba(255,79,179,.16),
+    0 0 8px rgba(255,133,200,.12);
 }
 
 .timer-display{
@@ -116,21 +113,21 @@ body{
   backdrop-filter:blur(3px);
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015)),
     linear-gradient(
       135deg,
-      rgba(255,77,87,.15) 0%,
-      rgba(255,138,42,.13) 25%,
-      rgba(255,210,74,.08) 45%,
-      rgba(127,75,255,.13) 100%
+      rgba(255,79,179,.14) 0%,
+      rgba(255,133,200,.10) 34%,
+      rgba(255,217,234,.05) 56%,
+      rgba(21,16,26,.95) 100%
     ),
     linear-gradient(135deg, var(--card), var(--card2));
-  border:1px solid rgba(255,255,255,.16);
+  border:1px solid rgba(255,120,190,.16);
   box-shadow:
-    inset 0 0 10px rgba(0,0,0,.78),
-    0 0 16px rgba(0,0,0,.86),
-    0 0 10px rgba(255,77,87,.10),
-    0 0 10px rgba(127,75,255,.10);
+    inset 0 0 10px rgba(0,0,0,.82),
+    0 0 16px rgba(0,0,0,.90),
+    0 0 10px rgba(255,79,179,.10),
+    0 0 10px rgba(255,133,200,.08);
 }
 
 .timer-box::before{
@@ -140,11 +137,10 @@ body{
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,77,87,.08) 22%,
-    rgba(255,210,74,.14) 42%,
-    rgba(255,255,255,.18) 50%,
-    rgba(127,75,255,.14) 58%,
-    rgba(61,124,255,.08) 66%,
+    rgba(255,79,179,.08) 22%,
+    rgba(255,217,234,.14) 42%,
+    rgba(255,255,255,.16) 50%,
+    rgba(255,133,200,.12) 58%,
     transparent 82%
   );
   transform:translateX(-120%);
@@ -160,9 +156,9 @@ body{
   border-radius:inherit;
   background: linear-gradient(
     90deg,
-    rgba(255,77,87,.04),
+    rgba(255,79,179,.04),
     rgba(255,255,255,.03) 50%,
-    rgba(127,75,255,.04)
+    rgba(255,133,200,.04)
   );
   animation:timerAura 3.2s ease-in-out infinite;
 }
@@ -184,12 +180,12 @@ body{
   font-size:34px;
   font-weight:800;
   letter-spacing:.08em;
-  color:var(--hot-white);
+  color:var(--pink-cream);
   text-shadow:
     0 0 4px rgba(0,0,0,.95),
-    0 0 10px rgba(255,210,74,.16),
-    0 0 12px rgba(255,77,87,.16),
-    0 0 12px rgba(127,75,255,.14);
+    0 0 8px rgba(255,217,234,.16),
+    0 0 12px rgba(255,79,179,.18),
+    0 0 12px rgba(217,44,143,.14);
 }
 
 .timer-box.timer-running{
@@ -200,34 +196,34 @@ body{
   from{
     transform:translateY(0);
     box-shadow:
-      inset 0 0 10px rgba(0,0,0,.78),
-      0 0 16px rgba(0,0,0,.86),
-      0 0 10px rgba(255,77,87,.10),
-      0 0 10px rgba(127,75,255,.10);
+      inset 0 0 10px rgba(0,0,0,.82),
+      0 0 16px rgba(0,0,0,.90),
+      0 0 10px rgba(255,79,179,.10),
+      0 0 10px rgba(255,133,200,.08);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      inset 0 0 10px rgba(0,0,0,.72),
-      0 0 18px rgba(0,0,0,.88),
-      0 0 16px rgba(255,138,42,.14),
-      0 0 16px rgba(127,75,255,.14);
+      inset 0 0 10px rgba(0,0,0,.76),
+      0 0 18px rgba(0,0,0,.94),
+      0 0 16px rgba(255,79,179,.14),
+      0 0 16px rgba(255,217,234,.08);
   }
 }
 
 .timer-box.timer-finished{
-  border-color: rgba(255,210,74,.26);
+  border-color: rgba(255,217,234,.22);
   box-shadow:
-    inset 0 0 10px rgba(0,0,0,.70),
-    0 0 18px rgba(255,210,74,.14),
-    0 0 20px rgba(255,77,87,.16),
-    0 0 20px rgba(127,75,255,.16);
+    inset 0 0 10px rgba(0,0,0,.74),
+    0 0 18px rgba(255,217,234,.10),
+    0 0 20px rgba(255,79,179,.16),
+    0 0 20px rgba(217,44,143,.14);
 }
 
 .timer-box.timer-finished #timer-value{
   text-shadow:
     0 0 4px rgba(0,0,0,.95),
-    0 0 12px rgba(255,210,74,.20),
-    0 0 16px rgba(255,77,87,.18),
-    0 0 16px rgba(127,75,255,.18);
+    0 0 12px rgba(255,217,234,.20),
+    0 0 16px rgba(255,79,179,.20),
+    0 0 16px rgba(217,44,143,.16);
 }
