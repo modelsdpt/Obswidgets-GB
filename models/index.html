@@ -118,6 +118,7 @@
     <option value="">Selecciona tu nombre</option>
     <option value="Lili">Lili Moon</option>
     <option value="Megan">Megan</option>
+    <option value="Charlotte">Charlotte</option>
     <option value="Misty">Misty</option>
     <option value="Leana">Leana</option>
     <option value="Nikki">Nikki</option>
@@ -157,6 +158,16 @@
       { start: "22:00", label: "10:00 PM (Colombia)" },
     ],
     "Leana": [
+      { start: "09:00", label: "09:00 AM (Colombia)" },
+      { start: "10:00", label: "10:00 AM (Colombia)" },
+      { start: "11:00", label: "11:00 AM (Colombia)" },
+      { start: "12:00", label: "12:00 PM (Colombia)" },
+      { start: "19:00", label: "07:00 PM (Colombia)" },
+      { start: "20:00", label: "08:00 PM (Colombia)" },
+      { start: "21:00", label: "09:00 PM (Colombia)" },
+      { start: "22:00", label: "10:00 PM (Colombia)" },
+    ],
+      "Charlotte": [
       { start: "09:00", label: "09:00 AM (Colombia)" },
       { start: "10:00", label: "10:00 AM (Colombia)" },
       { start: "11:00", label: "11:00 AM (Colombia)" },
@@ -233,12 +244,12 @@
   // Diferencia fija (en horas) entre la hora LOCAL de la modelo y EST.
   // EST = hora_local - offsetHoras
   const MODEL_OFFSET_TO_EST = {
-    Zoe:   0,
-    Megan: 0,
-    Misty: 0,
-    Sunny: 0,
-    Nikki: 0,
-    Molly: 0,
+    Zoe:   1,
+    Megan: 1,
+    Misty: 1,
+    Sunny: 1,
+    Nikki: 1,
+    Molly: 1,
     Sasha: 2, // Argentina está +2 sobre EST
     Sara:  6, // Eslovaquia está +6 sobre EST
     Sophi: 6,
