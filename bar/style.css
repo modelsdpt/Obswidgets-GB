@@ -1,21 +1,15 @@
 /* =========================
-   GOAL BAR – Pink Cloud Menu Theme
+   GOAL BAR – Violet Magenta Kiss Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --bg0:#ffd6df;
-  --bg1:#f7b8c9;
-  --card1:#ffd9e3;
-  --card2:#f6bccd;
-  --card3:#efadc0;
-  --card4:#ffe8ee;
+  --card1:#8b1fff;
+  --card2:#c42cff;
+  --card3:#ff3ccf;
+  --card4:#7d1ef0;
 
-  --txt:#fffdfd;
-  --txt2: rgba(255,253,253,.90);
-
-  --pink-glow: rgba(244,169,191,.36);
-  --pink-glow-soft: rgba(255,210,223,.34);
+  --txt:#ffffff;
 }
 
 *{ box-sizing:border-box; }
@@ -35,16 +29,16 @@ body{
   border-radius:6px;
 
   background:
-    radial-gradient(circle at 16% 42%, rgba(255,255,255,.24), transparent 16%),
-    radial-gradient(circle at 32% 60%, rgba(255,230,238,.22), transparent 15%),
-    radial-gradient(circle at 60% 35%, rgba(255,255,255,.18), transparent 14%),
-    radial-gradient(circle at 78% 58%, rgba(244,169,191,.18), transparent 15%),
-    linear-gradient(135deg, var(--card4) 0%, var(--card1) 24%, var(--card2) 50%, var(--card3) 100%);
-  border:1px solid rgba(255,255,255,.30);
+    radial-gradient(circle at 16% 40%, rgba(255,255,255,.24), transparent 14%),
+    radial-gradient(circle at 34% 58%, rgba(255,190,244,.16), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,255,255,.18), transparent 12%),
+    radial-gradient(circle at 80% 58%, rgba(255,60,207,.16), transparent 14%),
+    linear-gradient(135deg, var(--card4) 0%, var(--card1) 24%, var(--card2) 58%, var(--card3) 100%);
+  border:1px solid rgba(255,255,255,.28);
   box-shadow:
-    0 4px 14px rgba(199,130,155,.18),
-    0 0 12px rgba(244,169,191,.14),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 4px 14px rgba(110,38,180,.18),
+    0 0 12px rgba(163,29,255,.18),
+    inset 0 1px 0 rgba(255,255,255,.20);
 }
 
 #goal-wrapper::before{
@@ -53,12 +47,12 @@ body{
   inset:0;
   border-radius:inherit;
   background:
-    radial-gradient(circle at 12% 46%, rgba(255,255,255,.18), transparent 9%),
-    radial-gradient(circle at 24% 38%, rgba(255,235,242,.14), transparent 8%),
-    radial-gradient(circle at 40% 60%, rgba(255,255,255,.14), transparent 8%),
-    radial-gradient(circle at 58% 42%, rgba(255,228,238,.12), transparent 8%),
-    radial-gradient(circle at 72% 55%, rgba(255,255,255,.12), transparent 8%),
-    radial-gradient(circle at 88% 38%, rgba(244,169,191,.10), transparent 8%);
+    radial-gradient(circle at 12% 48%, rgba(255,255,255,.18), transparent 8%),
+    radial-gradient(circle at 26% 36%, rgba(255,220,250,.12), transparent 8%),
+    radial-gradient(circle at 42% 62%, rgba(255,255,255,.14), transparent 8%),
+    radial-gradient(circle at 58% 40%, rgba(255,190,244,.10), transparent 8%),
+    radial-gradient(circle at 74% 56%, rgba(255,255,255,.12), transparent 8%),
+    radial-gradient(circle at 88% 40%, rgba(255,60,207,.10), transparent 8%);
   opacity:.95;
   pointer-events:none;
   z-index:1;
@@ -71,13 +65,13 @@ body{
   border-radius:inherit;
 
   background:
-    radial-gradient(circle at 16% 42%, rgba(255,255,255,.24), transparent 16%),
-    radial-gradient(circle at 32% 60%, rgba(255,230,238,.22), transparent 15%),
-    radial-gradient(circle at 60% 35%, rgba(255,255,255,.18), transparent 14%),
-    radial-gradient(circle at 78% 58%, rgba(244,169,191,.18), transparent 15%),
-    linear-gradient(135deg, #fff0f4 0%, #ffdce6 24%, #f7bfd0 54%, #efadc0 100%);
+    radial-gradient(circle at 16% 40%, rgba(255,255,255,.24), transparent 14%),
+    radial-gradient(circle at 34% 58%, rgba(255,190,244,.16), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,255,255,.18), transparent 12%),
+    radial-gradient(circle at 80% 58%, rgba(255,60,207,.16), transparent 14%),
+    linear-gradient(135deg, #b35fff 0%, #8b1fff 24%, #c42cff 58%, #ff3ccf 100%);
   box-shadow:
-    0 0 14px rgba(244,169,191,.18);
+    0 0 14px rgba(163,29,255,.20);
 }
 
 #bar-fill::before{
@@ -85,16 +79,15 @@ body{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 12% 46%, rgba(255,255,255,.18), transparent 9%),
-    radial-gradient(circle at 24% 38%, rgba(255,235,242,.14), transparent 8%),
-    radial-gradient(circle at 40% 60%, rgba(255,255,255,.14), transparent 8%),
-    radial-gradient(circle at 58% 42%, rgba(255,228,238,.12), transparent 8%),
-    radial-gradient(circle at 72% 55%, rgba(255,255,255,.12), transparent 8%),
-    radial-gradient(circle at 88% 38%, rgba(244,169,191,.10), transparent 8%);
+    radial-gradient(circle at 12% 48%, rgba(255,255,255,.18), transparent 8%),
+    radial-gradient(circle at 26% 36%, rgba(255,220,250,.12), transparent 8%),
+    radial-gradient(circle at 42% 62%, rgba(255,255,255,.14), transparent 8%),
+    radial-gradient(circle at 58% 40%, rgba(255,190,244,.10), transparent 8%),
+    radial-gradient(circle at 74% 56%, rgba(255,255,255,.12), transparent 8%),
+    radial-gradient(circle at 88% 40%, rgba(255,60,207,.10), transparent 8%);
   opacity:.95;
 }
 
-/* brillo barrido */
 #goal-wrapper::after{
   content:"";
   position:absolute;
@@ -103,7 +96,7 @@ body{
     120deg,
     transparent 0%,
     rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.22) 50%,
+    rgba(255,255,255,.24) 50%,
     rgba(255,255,255,.08) 62%,
     transparent 78%
   );
@@ -111,7 +104,7 @@ body{
   animation:goalShine 4.8s linear infinite;
   mix-blend-mode:screen;
   pointer-events:none;
-  opacity:.82;
+  opacity:.84;
   z-index:2;
 }
 
@@ -137,23 +130,23 @@ body{
   font-size:17px;
   letter-spacing:.05em;
   text-transform:uppercase;
-  color:#fffdfd;
+  color:#ffffff;
   text-shadow:
-    0 0 2px rgba(255,255,255,.92),
-    0 0 8px rgba(255,255,255,.28),
-    2px 2px 0 rgba(85,40,54,.44);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 8px rgba(255,255,255,.24),
+    2px 2px 0 rgba(72,22,116,.36);
 }
 
 .goal-amount{
   font-family:'Anton', sans-serif;
   font-size:17px;
   letter-spacing:.04em;
-  color:#fffdfd;
+  color:#ffffff;
   white-space:nowrap;
   text-shadow:
-    0 0 2px rgba(255,255,255,.92),
-    0 0 8px rgba(255,255,255,.28),
-    2px 2px 0 rgba(85,40,54,.44);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 8px rgba(255,255,255,.24),
+    2px 2px 0 rgba(72,22,116,.36);
 }
 
 .goal-title.neon{
@@ -163,15 +156,15 @@ body{
 @keyframes goalPulse{
   from{
     text-shadow:
-      0 0 2px rgba(255,255,255,.90),
-      0 0 8px rgba(255,255,255,.24),
-      2px 2px 0 rgba(85,40,54,.44);
+      0 0 2px rgba(255,255,255,.94),
+      0 0 8px rgba(255,255,255,.22),
+      2px 2px 0 rgba(72,22,116,.36);
   }
   to{
     text-shadow:
-      0 0 2px rgba(255,255,255,.96),
+      0 0 2px rgba(255,255,255,.98),
       0 0 12px rgba(255,255,255,.34),
-      0 0 16px rgba(244,169,191,.18),
-      2px 2px 0 rgba(85,40,54,.44);
+      0 0 16px rgba(255,60,207,.18),
+      2px 2px 0 rgba(72,22,116,.36);
   }
 }

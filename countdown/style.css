@@ -1,18 +1,15 @@
 /* =========================
-   TIMER – Pink Cloud Menu Theme
+   TIMER – Violet Magenta Kiss Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --bg0:#ffd6df;
-  --bg1:#f7b8c9;
-  --card1:#ffd9e3;
-  --card2:#f6bccd;
-  --card3:#efadc0;
-  --card4:#ffe8ee;
+  --card1:#8b1fff;
+  --card2:#c42cff;
+  --card3:#ff3ccf;
+  --card4:#7d1ef0;
 
-  --txt:#fffdfd;
-  --txt2: rgba(255,253,253,.90);
+  --txt:#ffffff;
 }
 
 *{ box-sizing:border-box; }
@@ -32,15 +29,16 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.34), transparent 20%),
-    radial-gradient(circle at 78% 26%, rgba(255,235,242,.24), transparent 22%),
-    radial-gradient(circle at 24% 70%, rgba(244,169,191,.20), transparent 24%),
-    linear-gradient(135deg, #ffe3ea 0%, #ffd0db 24%, #f7b8c9 52%, #efadc0 78%, #e79ab2 100%);
-  border:1px solid rgba(255,255,255,.30);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.22), transparent 18%),
+    radial-gradient(circle at 82% 20%, rgba(255,60,207,.18), transparent 22%),
+    radial-gradient(circle at 28% 78%, rgba(255,255,255,.10), transparent 20%),
+    linear-gradient(135deg, #8e24ff 0%, #7e20f1 22%, #9a21ff 48%, #c42cff 74%, #ff3ccf 100%);
+  border:1px solid rgba(255,255,255,.28);
   box-shadow:
-    0 8px 24px rgba(190,120,145,.18),
-    0 0 18px rgba(255,210,223,.24),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 8px 22px rgba(110,38,180,.22),
+    0 0 18px rgba(163,29,255,.24),
+    0 0 14px rgba(255,60,207,.18),
+    inset 0 1px 0 rgba(255,255,255,.20);
 }
 
 .timer-title{
@@ -54,9 +52,9 @@ body{
   color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    0 0 2px rgba(255,255,255,.85),
-    0 0 10px rgba(244,169,191,.26),
-    2px 2px 0 rgba(95,45,60,.35);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 10px rgba(255,255,255,.22),
+    2px 2px 0 rgba(72,22,116,.34);
 }
 
 .timer-display{
@@ -75,16 +73,16 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 42%, rgba(255,255,255,.24), transparent 16%),
-    radial-gradient(circle at 32% 60%, rgba(255,230,238,.22), transparent 15%),
-    radial-gradient(circle at 60% 35%, rgba(255,255,255,.18), transparent 14%),
-    radial-gradient(circle at 78% 58%, rgba(244,169,191,.18), transparent 15%),
-    linear-gradient(135deg, var(--card4) 0%, var(--card1) 24%, var(--card2) 50%, var(--card3) 100%);
-  border:1px solid rgba(255,255,255,.28);
+    radial-gradient(circle at 16% 40%, rgba(255,255,255,.24), transparent 14%),
+    radial-gradient(circle at 34% 58%, rgba(255,190,244,.16), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,255,255,.18), transparent 12%),
+    radial-gradient(circle at 80% 58%, rgba(255,60,207,.16), transparent 14%),
+    linear-gradient(135deg, var(--card4) 0%, var(--card1) 24%, var(--card2) 58%, var(--card3) 100%);
+  border:1px solid rgba(255,255,255,.26);
   box-shadow:
-    0 4px 12px rgba(199,130,155,.18),
-    0 0 12px rgba(244,169,191,.14),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 4px 12px rgba(110,38,180,.18),
+    0 0 12px rgba(163,29,255,.18),
+    inset 0 1px 0 rgba(255,255,255,.20);
 }
 
 .timer-box::before{
@@ -92,12 +90,12 @@ body{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 12% 46%, rgba(255,255,255,.18), transparent 9%),
-    radial-gradient(circle at 24% 38%, rgba(255,235,242,.14), transparent 8%),
-    radial-gradient(circle at 40% 60%, rgba(255,255,255,.14), transparent 8%),
-    radial-gradient(circle at 58% 42%, rgba(255,228,238,.12), transparent 8%),
-    radial-gradient(circle at 72% 55%, rgba(255,255,255,.12), transparent 8%),
-    radial-gradient(circle at 88% 38%, rgba(244,169,191,.10), transparent 8%);
+    radial-gradient(circle at 12% 48%, rgba(255,255,255,.18), transparent 8%),
+    radial-gradient(circle at 26% 36%, rgba(255,220,250,.12), transparent 8%),
+    radial-gradient(circle at 42% 62%, rgba(255,255,255,.14), transparent 8%),
+    radial-gradient(circle at 58% 40%, rgba(255,190,244,.10), transparent 8%),
+    radial-gradient(circle at 74% 56%, rgba(255,255,255,.12), transparent 8%),
+    radial-gradient(circle at 88% 40%, rgba(255,60,207,.10), transparent 8%);
   opacity:.95;
 }
 
@@ -109,14 +107,14 @@ body{
     120deg,
     transparent 0%,
     rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.22) 50%,
+    rgba(255,255,255,.24) 50%,
     rgba(255,255,255,.08) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
   animation:timerShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.84;
 }
 
 @keyframes timerShine{
@@ -131,11 +129,11 @@ body{
   font-family:'Anton', sans-serif;
   font-size:34px;
   letter-spacing:.06em;
-  color:#fffdfd;
+  color:#ffffff;
   text-shadow:
-    0 0 2px rgba(255,255,255,.92),
-    0 0 8px rgba(255,255,255,.28),
-    2px 2px 0 rgba(85,40,54,.44);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 8px rgba(255,255,255,.24),
+    2px 2px 0 rgba(72,22,116,.36);
 }
 
 .timer-box.timer-running{
@@ -146,30 +144,31 @@ body{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(199,130,155,.18),
-      0 0 12px rgba(244,169,191,.14),
-      inset 0 1px 0 rgba(255,255,255,.18);
+      0 4px 12px rgba(110,38,180,.18),
+      0 0 12px rgba(163,29,255,.18),
+      inset 0 1px 0 rgba(255,255,255,.20);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(199,130,155,.20),
-      0 0 16px rgba(244,169,191,.18),
-      inset 0 1px 0 rgba(255,255,255,.20);
+      0 6px 16px rgba(110,38,180,.20),
+      0 0 16px rgba(163,29,255,.22),
+      inset 0 1px 0 rgba(255,255,255,.22);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(199,130,155,.22),
-    0 0 18px rgba(244,169,191,.20),
-    inset 0 1px 0 rgba(255,255,255,.20);
+    0 6px 16px rgba(110,38,180,.22),
+    0 0 18px rgba(163,29,255,.22),
+    0 0 14px rgba(255,60,207,.18),
+    inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 .timer-box.timer-finished #timer-value{
   text-shadow:
-    0 0 2px rgba(255,255,255,.96),
+    0 0 2px rgba(255,255,255,.98),
     0 0 12px rgba(255,255,255,.34),
-    0 0 16px rgba(244,169,191,.18),
-    2px 2px 0 rgba(85,40,54,.44);
+    0 0 16px rgba(255,60,207,.18),
+    2px 2px 0 rgba(72,22,116,.36);
 }

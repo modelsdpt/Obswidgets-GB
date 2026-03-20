@@ -1,13 +1,13 @@
 /* =========================
-   TIMER – Electric Purple Theme
+   TIMER – Glossy Pink Light Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#8b39ff;
-  --card2:#a44cff;
-  --card3:#7027ea;
-  --card4:#c26dff;
+  --card1:#ffdbe5;
+  --card2:#f9bfd1;
+  --card3:#f4a8c3;
+  --card4:#ffeaf0;
 
   --txt:#ffffff;
 }
@@ -29,15 +29,15 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.22), transparent 18%),
-    radial-gradient(circle at 78% 24%, rgba(194,109,255,.24), transparent 22%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.12), transparent 20%),
-    linear-gradient(135deg, #8f45ff 0%, #7b2dff 24%, #6a22e8 52%, #5d1fcf 78%, #4e17b5 100%);
-  border:1px solid rgba(255,255,255,.26);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.40), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.18), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(244,168,195,.18), transparent 22%),
+    linear-gradient(135deg, #ff799d 0%, #ff5f89 24%, #f9bfd1 52%, #ff6fa2 78%, #ee97b8 100%);
+  border:1px solid rgba(255,255,255,.34);
   box-shadow:
-    0 8px 24px rgba(88,28,175,.22),
-    0 0 18px rgba(194,109,255,.24),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 8px 22px rgba(216,140,170,.20),
+    0 0 18px rgba(255,220,230,.30),
+    inset 0 1px 0 rgba(255,255,255,.24);
 }
 
 .timer-title{
@@ -48,12 +48,12 @@ body{
   font-size:18px;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:#f2deff;
+  color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    0 0 2px rgba(255,255,255,.9),
-    0 0 10px rgba(194,109,255,.34),
-    2px 2px 0 rgba(60,20,110,.42);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 10px rgba(255,255,255,.24),
+    2px 2px 0 rgba(118,72,88,.34);
 }
 
 .timer-display{
@@ -72,16 +72,16 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 42%, rgba(255,255,255,.20), transparent 14%),
-    radial-gradient(circle at 32% 60%, rgba(215,170,255,.18), transparent 14%),
-    radial-gradient(circle at 60% 35%, rgba(255,255,255,.16), transparent 12%),
-    radial-gradient(circle at 78% 58%, rgba(194,109,255,.18), transparent 14%),
-    linear-gradient(135deg, var(--card4) 0%, var(--card2) 24%, var(--card1) 50%, var(--card3) 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(circle at 16% 40%, rgba(255,255,255,.28), transparent 14%),
+    radial-gradient(circle at 34% 58%, rgba(255,235,242,.22), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,255,255,.20), transparent 12%),
+    radial-gradient(circle at 80% 58%, rgba(244,168,195,.18), transparent 14%),
+    linear-gradient(135deg, var(--card4) 0%, var(--card1) 24%, var(--card2) 52%, var(--card3) 100%);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 4px 12px rgba(88,28,175,.20),
-    0 0 12px rgba(145,70,255,.18),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 4px 12px rgba(216,140,170,.18),
+    0 0 12px rgba(244,168,195,.14),
+    inset 0 1px 0 rgba(255,255,255,.20);
 }
 
 .timer-box::before{
@@ -89,12 +89,12 @@ body{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 12% 46%, rgba(255,255,255,.16), transparent 9%),
-    radial-gradient(circle at 24% 38%, rgba(215,170,255,.14), transparent 8%),
-    radial-gradient(circle at 40% 60%, rgba(255,255,255,.12), transparent 8%),
-    radial-gradient(circle at 58% 42%, rgba(210,160,255,.12), transparent 8%),
-    radial-gradient(circle at 72% 55%, rgba(255,255,255,.10), transparent 8%),
-    radial-gradient(circle at 88% 38%, rgba(194,109,255,.10), transparent 8%);
+    radial-gradient(circle at 12% 48%, rgba(255,255,255,.18), transparent 8%),
+    radial-gradient(circle at 26% 36%, rgba(255,240,245,.14), transparent 8%),
+    radial-gradient(circle at 42% 62%, rgba(255,255,255,.14), transparent 8%),
+    radial-gradient(circle at 58% 40%, rgba(255,228,236,.12), transparent 8%),
+    radial-gradient(circle at 74% 56%, rgba(255,255,255,.12), transparent 8%),
+    radial-gradient(circle at 88% 40%, rgba(244,168,195,.10), transparent 8%);
   opacity:.95;
 }
 
@@ -106,14 +106,14 @@ body{
     120deg,
     transparent 0%,
     rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.22) 50%,
+    rgba(255,255,255,.24) 50%,
     rgba(255,255,255,.08) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
   animation:timerShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.84;
 }
 
 @keyframes timerShine{
@@ -130,9 +130,9 @@ body{
   letter-spacing:.06em;
   color:#ffffff;
   text-shadow:
-    0 0 2px rgba(255,255,255,.92),
-    0 0 8px rgba(255,255,255,.28),
-    2px 2px 0 rgba(56,20,102,.46);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 8px rgba(255,255,255,.22),
+    2px 2px 0 rgba(118,72,88,.34);
 }
 
 .timer-box.timer-running{
@@ -143,30 +143,30 @@ body{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(88,28,175,.20),
-      0 0 12px rgba(145,70,255,.18),
-      inset 0 1px 0 rgba(255,255,255,.18);
+      0 4px 12px rgba(216,140,170,.18),
+      0 0 12px rgba(244,168,195,.14),
+      inset 0 1px 0 rgba(255,255,255,.20);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(88,28,175,.24),
-      0 0 16px rgba(145,70,255,.22),
-      inset 0 1px 0 rgba(255,255,255,.20);
+      0 6px 16px rgba(216,140,170,.20),
+      0 0 16px rgba(244,168,195,.18),
+      inset 0 1px 0 rgba(255,255,255,.22);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(88,28,175,.24),
-    0 0 18px rgba(145,70,255,.24),
-    inset 0 1px 0 rgba(255,255,255,.20);
+    0 6px 16px rgba(216,140,170,.22),
+    0 0 18px rgba(244,168,195,.20),
+    inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 .timer-box.timer-finished #timer-value{
   text-shadow:
-    0 0 2px rgba(255,255,255,.96),
+    0 0 2px rgba(255,255,255,.98),
     0 0 12px rgba(255,255,255,.34),
-    0 0 16px rgba(194,109,255,.22),
-    2px 2px 0 rgba(56,20,102,.46);
+    0 0 16px rgba(244,168,195,.18),
+    2px 2px 0 rgba(118,72,88,.34);
 }
