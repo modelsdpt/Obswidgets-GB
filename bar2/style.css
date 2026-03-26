@@ -1,15 +1,17 @@
 /* =========================
-   GOAL BAR – Glossy Pink Light Theme
+   GOAL BAR – Black Chains Theme
    ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#ffdbe5;
-  --card2:#f9bfd1;
-  --card3:#f4a8c3;
-  --card4:#ffeaf0;
+  --card1:#121216;
+  --card2:#1a1b21;
+  --card3:#23252d;
+  --card4:#0f1014;
 
-  --txt:#ffffff;
+  --txt:#f5f7fb;
+  --steel-1:#cfd5df;
+  --steel-2:#a7afbb;
 }
 
 *{ box-sizing:border-box; }
@@ -23,37 +25,56 @@ body{
 
 #goal-wrapper{
   width:520px;
-  height:54px;
+  height:56px;
   position:relative;
   overflow:hidden;
-  border-radius:6px;
+  border-radius:14px;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.28), transparent 14%),
-    radial-gradient(circle at 34% 58%, rgba(255,235,242,.22), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.20), transparent 12%),
-    radial-gradient(circle at 80% 58%, rgba(244,168,195,.18), transparent 14%),
-    linear-gradient(135deg, #ff799d 0%, #ff5f89 24%, #f9bfd1 52%, #ff6fa2 78%, #ee97b8 100%);
-  border:1px solid rgba(255,255,255,.30);
+    linear-gradient(145deg, #111216 0%, #090a0c 36%, #050505 100%);
+  border:1px solid rgba(210,215,225,.18);
   box-shadow:
-    0 4px 14px rgba(216,140,170,.18),
-    0 0 12px rgba(244,168,195,.14),
-    inset 0 1px 0 rgba(255,255,255,.20);
+    0 0 24px rgba(0,0,0,.95),
+    0 0 14px rgba(170,180,195,.08),
+    inset 0 1px 0 rgba(255,255,255,.04);
 }
 
+/* marco */
 #goal-wrapper::before{
   content:"";
   position:absolute;
   inset:0;
   border-radius:inherit;
+  padding:1px;
   background:
-    radial-gradient(circle at 12% 48%, rgba(255,255,255,.18), transparent 8%),
-    radial-gradient(circle at 26% 36%, rgba(255,240,245,.14), transparent 8%),
-    radial-gradient(circle at 42% 62%, rgba(255,255,255,.14), transparent 8%),
-    radial-gradient(circle at 58% 40%, rgba(255,228,236,.12), transparent 8%),
-    radial-gradient(circle at 74% 56%, rgba(255,255,255,.12), transparent 8%),
-    radial-gradient(circle at 88% 40%, rgba(244,168,195,.10), transparent 8%);
-  opacity:.95;
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,.16),
+      rgba(207,213,223,.18),
+      rgba(122,129,140,.14),
+      rgba(238,242,248,.14)
+    );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.74;
+  pointer-events:none;
+  z-index:3;
+}
+
+/* cadenas */
+#goal-wrapper::after{
+  content:"⛓      ⛓      ⛓";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  color:rgba(230,235,244,.10);
+  letter-spacing:18px;
   pointer-events:none;
   z-index:1;
 }
@@ -65,13 +86,11 @@ body{
   border-radius:inherit;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.28), transparent 14%),
-    radial-gradient(circle at 34% 58%, rgba(255,235,242,.22), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.20), transparent 12%),
-    radial-gradient(circle at 80% 58%, rgba(244,168,195,.18), transparent 14%),
-    linear-gradient(135deg, #ff799d 0%, #ff5f89 24%, #f9bfd1 52%, #ff6fa2 78%, #ee97b8 100%);
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01)),
+    linear-gradient(135deg, #2a2d35 0%, #1c1e25 24%, #14161b 58%, #0d0e12 100%);
   box-shadow:
-    0 0 14px rgba(244,168,195,.18);
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 0 10px rgba(170,180,195,.08);
 }
 
 #bar-fill::before{
@@ -79,45 +98,19 @@ body{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 12% 48%, rgba(255,255,255,.18), transparent 8%),
-    radial-gradient(circle at 26% 36%, rgba(255,240,245,.14), transparent 8%),
-    radial-gradient(circle at 42% 62%, rgba(255,255,255,.14), transparent 8%),
-    radial-gradient(circle at 58% 40%, rgba(255,228,236,.12), transparent 8%),
-    radial-gradient(circle at 74% 56%, rgba(255,255,255,.12), transparent 8%),
-    radial-gradient(circle at 88% 40%, rgba(244,168,195,.10), transparent 8%);
-  opacity:.95;
-}
-
-/* brillo */
-#goal-wrapper::after{
-  content:"";
-  position:absolute;
-  inset:-30%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.24) 50%,
-    rgba(255,255,255,.08) 62%,
-    transparent 78%
-  );
-  transform:translateX(-120%);
-  animation:goalShine 4.8s linear infinite;
-  mix-blend-mode:screen;
-  pointer-events:none;
-  opacity:.84;
-  z-index:2;
-}
-
-@keyframes goalShine{
-  0%{ transform:translateX(-120%); }
-  40%{ transform:translateX(120%); }
-  100%{ transform:translateX(120%); }
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.028) 0px,
+      rgba(255,255,255,.028) 2px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0) 8px
+    );
+  opacity:.35;
 }
 
 .goal-label{
   position:relative;
-  z-index:3;
+  z-index:4;
   height:100%;
   display:flex;
   align-items:center;
@@ -127,45 +120,42 @@ body{
 }
 
 .goal-title{
-  font-family:'Anton', sans-serif;
-  font-size:17px;
-  letter-spacing:.05em;
+  font-family:'Orbitron', sans-serif;
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.14em;
   text-transform:uppercase;
-  color:#ffffff;
+  color:#eef2f8;
   text-shadow:
-    0 0 2px rgba(255,255,255,.96),
-    0 0 8px rgba(255,255,255,.22),
-    2px 2px 0 rgba(118,72,88,.34);
+    0 0 2px rgba(255,255,255,.16),
+    2px 2px 0 rgba(0,0,0,.68);
 }
 
 .goal-amount{
-  font-family:'Anton', sans-serif;
-  font-size:17px;
-  letter-spacing:.04em;
-  color:#ffffff;
+  font-family:'Orbitron', sans-serif;
+  font-size:15px;
+  font-weight:800;
+  color:#cfd5df;
   white-space:nowrap;
   text-shadow:
-    0 0 2px rgba(255,255,255,.96),
-    0 0 8px rgba(255,255,255,.22),
-    2px 2px 0 rgba(118,72,88,.34);
+    0 0 2px rgba(255,255,255,.16),
+    2px 2px 0 rgba(0,0,0,.68);
 }
 
 .goal-title.neon{
-  animation:goalPulse 1.1s ease-in-out infinite alternate;
+  animation:goalPulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes goalPulse{
   from{
     text-shadow:
-      0 0 2px rgba(255,255,255,.94),
-      0 0 8px rgba(255,255,255,.22),
-      2px 2px 0 rgba(118,72,88,.34);
+      0 0 2px rgba(255,255,255,.14),
+      2px 2px 0 rgba(0,0,0,.68);
   }
   to{
     text-shadow:
-      0 0 2px rgba(255,255,255,.98),
-      0 0 12px rgba(255,255,255,.34),
-      0 0 16px rgba(244,168,195,.18),
-      2px 2px 0 rgba(118,72,88,.34);
+      0 0 8px rgba(255,255,255,.12),
+      0 0 12px rgba(170,180,195,.08),
+      2px 2px 0 rgba(0,0,0,.68);
   }
 }
