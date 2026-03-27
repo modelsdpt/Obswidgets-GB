@@ -1,17 +1,17 @@
 /* =========================
-   GOAL BAR – Black Chains Theme
+   GOAL BAR – Glossy White Pink Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#121216;
-  --card2:#1a1b21;
-  --card3:#23252d;
-  --card4:#0f1014;
+  --card1:#fff9fc;
+  --card2:#ffe8f1;
+  --card3:#ffc8dc;
+  --card4:#ff8fbb;
 
-  --txt:#f5f7fb;
-  --steel-1:#cfd5df;
-  --steel-2:#a7afbb;
+  --txt:#ffffff;
+  --pink-1:#ff5f98;
+  --pink-2:#ff92bb;
 }
 
 *{ box-sizing:border-box; }
@@ -31,12 +31,14 @@ body{
   border-radius:14px;
 
   background:
-    linear-gradient(145deg, #111216 0%, #090a0c 36%, #050505 100%);
-  border:1px solid rgba(210,215,225,.18);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.62), transparent 18%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.24), transparent 22%),
+    linear-gradient(135deg, #ffffff 0%, #fff0f6 24%, #ffd9e7 54%, #ffbfd6 78%, #ff8fb7 100%);
+  border:1px solid rgba(255,112,166,.46);
   box-shadow:
-    0 0 24px rgba(0,0,0,.95),
-    0 0 14px rgba(170,180,195,.08),
-    inset 0 1px 0 rgba(255,255,255,.04);
+    0 8px 22px rgba(255,145,190,.16),
+    0 0 18px rgba(255,214,231,.34),
+    inset 0 1px 0 rgba(255,255,255,.55);
 }
 
 /* marco */
@@ -49,31 +51,31 @@ body{
   background:
     linear-gradient(
       120deg,
-      rgba(255,255,255,.16),
-      rgba(207,213,223,.18),
-      rgba(122,129,140,.14),
-      rgba(238,242,248,.14)
+      rgba(255,255,255,.95),
+      rgba(255,197,221,.95),
+      rgba(255,113,167,.86),
+      rgba(255,228,239,.94)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
-  opacity:.74;
+  opacity:.90;
   pointer-events:none;
   z-index:3;
 }
 
-/* cadenas */
+/* decoración */
 #goal-wrapper::after{
-  content:"⛓      ⛓      ⛓";
+  content:"✦      ✦      ✦";
   position:absolute;
   inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:13px;
-  color:rgba(230,235,244,.10);
+  font-size:12px;
+  color:rgba(255,255,255,.24);
   letter-spacing:18px;
   pointer-events:none;
   z-index:1;
@@ -86,11 +88,11 @@ body{
   border-radius:inherit;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01)),
-    linear-gradient(135deg, #2a2d35 0%, #1c1e25 24%, #14161b 58%, #0d0e12 100%);
+    linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.06)),
+    linear-gradient(135deg, #fff9fc 0%, #ffdce9 26%, #ffb8d1 62%, #ff6ea6 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 0 10px rgba(170,180,195,.08);
+    inset 0 1px 0 rgba(255,255,255,.46),
+    0 0 12px rgba(255,114,170,.18);
 }
 
 #bar-fill::before{
@@ -98,14 +100,15 @@ body{
   position:absolute;
   inset:0;
   background:
+    linear-gradient(180deg, rgba(255,255,255,.18), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.028) 0px,
-      rgba(255,255,255,.028) 2px,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0) 8px
+      rgba(255,255,255,.06) 0px,
+      rgba(255,255,255,.06) 2px,
+      rgba(255,255,255,0) 2px,
+      rgba(255,255,255,0) 8px
     );
-  opacity:.35;
+  opacity:.55;
 }
 
 .goal-label{
@@ -125,21 +128,23 @@ body{
   font-weight:800;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:#eef2f8;
+  color:#ffffff;
   text-shadow:
-    0 0 2px rgba(255,255,255,.16),
-    2px 2px 0 rgba(0,0,0,.68);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 10px rgba(255,255,255,.24),
+    2px 2px 0 rgba(173,97,125,.26);
 }
 
 .goal-amount{
   font-family:'Orbitron', sans-serif;
   font-size:15px;
   font-weight:800;
-  color:#cfd5df;
+  color:#ffffff;
   white-space:nowrap;
   text-shadow:
-    0 0 2px rgba(255,255,255,.16),
-    2px 2px 0 rgba(0,0,0,.68);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 10px rgba(255,255,255,.24),
+    2px 2px 0 rgba(173,97,125,.26);
 }
 
 .goal-title.neon{
@@ -149,13 +154,14 @@ body{
 @keyframes goalPulse{
   from{
     text-shadow:
-      0 0 2px rgba(255,255,255,.14),
-      2px 2px 0 rgba(0,0,0,.68);
+      0 0 2px rgba(255,255,255,.94),
+      0 0 8px rgba(255,255,255,.20),
+      2px 2px 0 rgba(173,97,125,.26);
   }
   to{
     text-shadow:
-      0 0 8px rgba(255,255,255,.12),
-      0 0 12px rgba(170,180,195,.08),
-      2px 2px 0 rgba(0,0,0,.68);
+      0 0 8px rgba(255,255,255,.60),
+      0 0 14px rgba(255,148,191,.24),
+      2px 2px 0 rgba(173,97,125,.26);
   }
 }

@@ -1,30 +1,30 @@
 /* =========================
-   MVP – Black Chains Theme
+   MVP – Glossy White Pink Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --bg0:#050505;
-  --bg1:#0d0d10;
-  --card1:#121216;
-  --card2:#1a1b21;
-  --card3:#23252d;
-  --card4:#0f1014;
+  --bg0:#fff8fb;
+  --bg1:#ffeef5;
+  --card1:#fff7fb;
+  --card2:#ffdce9;
+  --card3:#ffbfd7;
+  --card4:#ff95ba;
 
-  --line: rgba(210,215,225,.18);
-  --line2: rgba(210,215,225,.10);
+  --line: rgba(255,118,170,.48);
+  --line2: rgba(255,138,183,.30);
 
-  --txt:#f5f7fb;
-  --txt2: rgba(245,247,251,.82);
+  --txt:#ffffff;
+  --txt2: rgba(255,255,255,.88);
 
-  --steel-1:#cfd5df;
-  --steel-2:#a7afbb;
-  --steel-3:#7a818c;
-  --steel-4:#eef2f8;
+  --pink-1:#fff9fc;
+  --pink-2:#ffd3e3;
+  --pink-3:#ff9fc2;
+  --pink-4:#ff6fa7;
 
-  --glow-white: rgba(255,255,255,.10);
-  --glow-steel: rgba(170,180,195,.12);
-  --shadow-dark: rgba(0,0,0,.90);
+  --glow-white: rgba(255,255,255,.34);
+  --glow-pink: rgba(255,125,175,.24);
+  --shadow-dark: rgba(144,82,108,.22);
 }
 
 *{ box-sizing:border-box; }
@@ -45,18 +45,19 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 15% 18%, rgba(255,255,255,.05), transparent 20%),
-    radial-gradient(circle at 85% 24%, rgba(170,180,195,.06), transparent 24%),
-    linear-gradient(145deg, #111216 0%, #090a0c 36%, #050505 100%);
+    radial-gradient(circle at 16% 14%, rgba(255,255,255,.72), transparent 18%),
+    radial-gradient(circle at 84% 20%, rgba(255,255,255,.34), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(255,145,190,.22), transparent 35%),
+    linear-gradient(135deg, #fffefe 0%, #ffeef5 24%, #ffd7e5 54%, #ffb6d0 78%, #ff8fbb 100%);
   border:1px solid var(--line);
   box-shadow:
-    0 0 24px rgba(0,0,0,.95),
-    0 0 18px var(--glow-steel),
-    inset 0 1px 0 rgba(255,255,255,.04),
-    inset 0 -1px 0 rgba(255,255,255,.02);
+    0 10px 28px rgba(255,145,190,.18),
+    0 0 20px rgba(255,184,211,.34),
+    inset 0 1px 0 rgba(255,255,255,.62),
+    inset 0 -1px 0 rgba(255,255,255,.20);
 }
 
-/* marco metálico */
+/* marco brillante */
 #container::before{
   content:"";
   position:absolute;
@@ -66,11 +67,11 @@ body{
   background:
     linear-gradient(
       130deg,
-      rgba(255,255,255,.18),
-      rgba(207,213,223,.22),
-      rgba(122,129,140,.18),
-      rgba(238,242,248,.18),
-      rgba(130,138,150,.16)
+      rgba(255,255,255,.92),
+      rgba(255,198,221,.92),
+      rgba(255,126,175,.88),
+      rgba(255,227,238,.94),
+      rgba(255,111,167,.88)
     );
   background-size:220% 100%;
   -webkit-mask:
@@ -78,23 +79,23 @@ body{
     linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
-  opacity:.72;
+  opacity:.92;
   animation:metalBorderFlow 6s linear infinite;
   pointer-events:none;
 }
 
-/* cadenas decorativas laterales */
+/* decoración superior */
 #container::after{
-  content:"⛓ ⛓ ⛓";
+  content:"✦ ✦ ✦";
   position:absolute;
   top:10px;
   right:12px;
   font-size:13px;
   letter-spacing:4px;
-  color:rgba(215,220,228,.18);
+  color:rgba(255,255,255,.90);
   text-shadow:
-    0 0 4px rgba(255,255,255,.06),
-    0 1px 0 rgba(0,0,0,.8);
+    0 0 6px rgba(255,255,255,.70),
+    0 0 12px rgba(255,145,190,.30);
   pointer-events:none;
 }
 
@@ -114,11 +115,11 @@ body{
   font-weight:800;
   letter-spacing:.16em;
   text-transform:uppercase;
-  color:var(--steel-4);
+  color:#ffffff;
   text-shadow:
-    0 0 2px rgba(255,255,255,.18),
-    0 0 8px rgba(170,180,195,.10),
-    2px 2px 0 rgba(0,0,0,.70);
+    0 0 2px rgba(255,255,255,.96),
+    0 0 10px rgba(255,255,255,.34),
+    2px 2px 0 rgba(173,97,125,.32);
 }
 
 /* lista */
@@ -142,45 +143,48 @@ body{
   overflow:hidden;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01)),
-    linear-gradient(135deg, var(--card3) 0%, var(--card2) 22%, var(--card1) 58%, var(--card4) 100%);
+    radial-gradient(circle at 18% 22%, rgba(255,255,255,.30), transparent 14%),
+    radial-gradient(circle at 82% 26%, rgba(255,255,255,.18), transparent 14%),
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.05)),
+    linear-gradient(135deg, var(--card1) 0%, var(--card2) 30%, var(--card3) 68%, var(--card4) 100%);
   border:1px solid var(--line2);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    inset 0 -8px 20px rgba(0,0,0,.35),
-    0 4px 14px rgba(0,0,0,.55),
-    0 0 10px rgba(170,180,195,.05);
+    inset 0 1px 0 rgba(255,255,255,.42),
+    inset 0 -8px 20px rgba(255,143,187,.10),
+    0 6px 16px rgba(255,145,190,.16),
+    0 0 12px rgba(255,214,231,.30);
 }
 
-/* textura de acero cepillado */
+/* textura glossy */
 .tip::before{
   content:"";
   position:absolute;
   inset:0;
   background:
+    linear-gradient(180deg, rgba(255,255,255,.22), transparent 36%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.028) 0px,
-      rgba(255,255,255,.028) 2px,
-      rgba(0,0,0,0) 2px,
-      rgba(0,0,0,0) 8px
+      rgba(255,255,255,.05) 0px,
+      rgba(255,255,255,.05) 2px,
+      rgba(255,255,255,0) 2px,
+      rgba(255,255,255,0) 8px
     );
-  opacity:.35;
+  opacity:.70;
   pointer-events:none;
 }
 
-/* mini cadenas */
+/* mini decor */
 .tip::after{
-  content:"⛓";
+  content:"✦";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
   font-size:14px;
-  color:rgba(235,240,248,.18);
+  color:rgba(255,255,255,.96);
   text-shadow:
-    0 0 4px rgba(255,255,255,.06),
-    0 1px 0 rgba(0,0,0,.8);
+    0 0 6px rgba(255,255,255,.75),
+    0 0 12px rgba(255,145,190,.20);
   pointer-events:none;
 }
 
@@ -192,13 +196,14 @@ body{
   padding-left:16px;
   font-size:17px;
   font-weight:800;
-  color:var(--steel-4);
+  color:#ffffff;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
   text-shadow:
-    0 0 2px rgba(255,255,255,.16),
-    2px 2px 0 rgba(0,0,0,.65);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 8px rgba(255,255,255,.20),
+    2px 2px 0 rgba(173,97,125,.28);
 }
 
 .tip .amount{
@@ -208,20 +213,21 @@ body{
   font-size:19px;
   font-weight:800;
   letter-spacing:.03em;
-  color:var(--steel-1);
+  color:#ffffff;
   white-space:nowrap;
   text-shadow:
-    0 0 2px rgba(255,255,255,.18),
-    2px 2px 0 rgba(0,0,0,.65);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 10px rgba(255,255,255,.26),
+    2px 2px 0 rgba(173,97,125,.28);
 }
 
 .tip.mvp{
-  border-color: rgba(238,242,248,.16);
+  border-color: rgba(255,104,161,.52);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.06),
-    inset 0 -8px 20px rgba(0,0,0,.35),
-    0 6px 16px rgba(0,0,0,.58),
-    0 0 12px rgba(207,213,223,.08);
+    inset 0 1px 0 rgba(255,255,255,.46),
+    inset 0 -8px 20px rgba(255,143,187,.12),
+    0 8px 20px rgba(255,145,190,.20),
+    0 0 16px rgba(255,111,167,.22);
 }
 
 .tip.second{ opacity:.99; }
@@ -232,8 +238,8 @@ body{
   z-index:1;
   margin-right:6px;
   font-size:17px;
-  color:var(--steel-2);
+  color:#ffffff;
   filter:
-    drop-shadow(0 0 2px rgba(255,255,255,.12))
-    drop-shadow(1px 1px 0 rgba(0,0,0,.6));
+    drop-shadow(0 0 4px rgba(255,255,255,.36))
+    drop-shadow(1px 1px 0 rgba(173,97,125,.25));
 }
