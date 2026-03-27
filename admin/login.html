@@ -107,28 +107,54 @@
 </div>
 
 <script>
-const VALID_USER = "ModelsDpt";
-const VALID_PASS = "Livestream2026";
+const USERS = [
+  {
+    username: "ModelsDpt",
+    password: "Livestream2026",
+    role: "admin",
+    redirect: "/admin/dashboard.html",
+    sessionKey: "modelsAdmin"
+  },
+  {
+    username: "MarketingDpt",
+    password: "Marketing2026",
+    role: "readonly",
+    redirect: "/marketing/weekly-dashboard.html",
+    sessionKey: "modelsReadonly"
+  }
+];
 
 function handleLogin(e) {
   e.preventDefault();
+
   const user = document.getElementById("user").value.trim();
   const pass = document.getElementById("pass").value.trim();
   const errorEl = document.getElementById("error");
+
+  errorEl.textContent = "";
 
   if (!user || !pass) {
     errorEl.textContent = "Completa usuario y contraseña.";
     return false;
   }
 
-  if (user === VALID_USER && pass === VALID_PASS) {
-    // guardamos "sesión" en el navegador
-    sessionStorage.setItem("modelsAdmin", "1");
-    window.location.href = "/admin/dashboard.html";
-  } else {
+  const matchedUser = USERS.find(
+    (item) => item.username === user && item.password === pass
+  );
+
+  if (!matchedUser) {
     errorEl.textContent = "Credenciales inválidas.";
+    return false;
   }
 
+  sessionStorage.removeItem("modelsAdmin");
+  sessionStorage.removeItem("modelsReadonly");
+  sessionStorage.removeItem("modelsRole");
+
+  sessionStorage.setItem(matchedUser.sessionKey, "1");
+  sessionStorage.setItem("modelsRole", matchedUser.role);
+
+  window.location.href = matchedUser.redirect;
   return false;
 }
 </script>

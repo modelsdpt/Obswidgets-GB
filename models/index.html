@@ -137,6 +137,13 @@
     <option value="">Selecciona un horario</option>
   </select>
 
+  <label for="theme">Theme</label>
+<input
+  id="theme"
+  type="text"
+  maxlength="120"
+    placeholder="Example: Schoolgirl, Fitness, Pink Party, Valentine, Lingerie..."/>
+
   <button id="saveBtn" onclick="saveSchedule()">Guardar horario</button>
 
   <div id="status" class="status"></div>
@@ -145,9 +152,7 @@
 <script>
   const API_URL = "/api/model-schedule";
 
-  // Horarios que ve la modelo (en SU hora local)
   const MODEL_SLOTS = {
-    // Colombia (mismo offset que EST)
     "Lili": [
       { start: "09:00", label: "09:00 AM (Colombia)" },
       { start: "10:00", label: "10:00 AM (Colombia)" },
@@ -178,7 +183,7 @@
       { start: "21:00", label: "09:00 PM (Colombia)" },
       { start: "22:00", label: "10:00 PM (Colombia)" },
     ],
-      "Charlotte": [
+    "Charlotte": [
       { start: "09:00", label: "09:00 AM (Colombia)" },
       { start: "10:00", label: "10:00 AM (Colombia)" },
       { start: "11:00", label: "11:00 AM (Colombia)" },
@@ -228,34 +233,30 @@
       { start: "21:00", label: "09:00 PM (Colombia)" },
       { start: "22:00", label: "10:00 PM (Colombia)" },
     ],
-
-    // Eslovaquia
     "Sara": [
       { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
       { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
       { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
       { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
-      { start: "02:00", label: "02:00 (día siguiente) 🇸🇰" },
-      { start: "03:00", label: "03:00 (día siguiente) 🇸🇰" },
-      { start: "04:00", label: "04:00 (día siguiente) 🇸🇰" },
-      { start: "05:00", label: "05:00 (día siguiente) 🇸🇰" },
+      { start: "02:00", label: "02:00 (next day) 🇸🇰" },
+      { start: "03:00", label: "03:00 (next day) 🇸🇰" },
+      { start: "04:00", label: "04:00 (next day) 🇸🇰" },
+      { start: "05:00", label: "05:00 (next day) 🇸🇰" },
     ],
     "Sophi": [
       { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
       { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
       { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
       { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
-      { start: "02:00", label: "02:00 (día siguiente) 🇸🇰" },
-      { start: "03:00", label: "03:00 (día siguiente) 🇸🇰" },
-      { start: "04:00", label: "04:00 (día siguiente) 🇸🇰" },
-      { start: "05:00", label: "05:00 (día siguiente) 🇸🇰" },
+      { start: "02:00", label: "02:00 (next day) 🇸🇰" },
+      { start: "03:00", label: "03:00 (next day) 🇸🇰" },
+      { start: "04:00", label: "04:00 (next day) 🇸🇰" },
+      { start: "05:00", label: "05:00 (next day) 🇸🇰" },
     ],
   };
 
-  // Diferencia fija (en horas) entre la hora LOCAL de la modelo y EST.
-  // EST = hora_local - offsetHoras
   const MODEL_OFFSET_TO_EST = {
-    Zoe:   -1,
+    Zoe: -1,
     Megan: -1,
     Misty: -1,
     Sunny: -1,
@@ -263,17 +264,16 @@
     Molly: -1,
     Leana: -1,
     Charlotte: -1,
-    Sasha: 2, // Argentina está +2 sobre EDT
-    Sara:  5, // Eslovaquia está +6 sobre EDT
+    Sasha: 2,
+    Sara: 5,
     Sophi: 5,
   };
 
   const statusEl = document.getElementById("status");
-  const saveBtn   = document.getElementById("saveBtn");
+  const saveBtn = document.getElementById("saveBtn");
   const modelSelect = document.getElementById("model");
-  const slotSelect  = document.getElementById("slot");
+  const slotSelect = document.getElementById("slot");
 
-  // Rellenar horarios según modelo
   modelSelect.addEventListener("change", () => {
     const model = modelSelect.value;
     slotSelect.innerHTML = '<option value="">Selecciona un horario</option>';
@@ -288,13 +288,10 @@
     });
   });
 
-  // Convierte fecha/hora local de la modelo a EST (solo aritmética de horas)
   function convertLocalToEst(dateStr, timeStr, modelName) {
-    const offset = MODEL_OFFSET_TO_EST[modelName] ?? 0; // horas por delante de EST
+    const offset = MODEL_OFFSET_TO_EST[modelName] ?? 0;
 
-    // Parseamos fecha YYYY-MM-DD
     const [y, m, d] = dateStr.split("-").map(Number);
-    // HH:MM
     const [hh, mm] = timeStr.split(":").map(Number);
 
     let totalMinutes = hh * 60 + mm;
@@ -310,18 +307,17 @@
     }
 
     const estHour = String(Math.floor(totalMinutes / 60)).padStart(2, "0");
-    const estMin  = String(totalMinutes % 60).padStart(2, "0");
+    const estMin = String(totalMinutes % 60).padStart(2, "0");
 
-    // Ajustar día (usamos Date UTC para que no meta timezone del navegador)
     const dt = new Date(Date.UTC(y, m - 1, d));
     dt.setUTCDate(dt.getUTCDate() + dayShift);
 
-    const estYear  = dt.getUTCFullYear();
+    const estYear = dt.getUTCFullYear();
     const estMonth = String(dt.getUTCMonth() + 1).padStart(2, "0");
-    const estDay   = String(dt.getUTCDate()).padStart(2, "0");
+    const estDay = String(dt.getUTCDate()).padStart(2, "0");
 
     return {
-      date:  `${estYear}-${estMonth}-${estDay}`,
+      date: `${estYear}-${estMonth}-${estDay}`,
       start: `${estHour}:${estMin}`,
     };
   }
@@ -330,27 +326,19 @@
     const modelName = modelSelect.value;
     const dateLocal = document.getElementById("date").value;
     const startLocal = slotSelect.value;
+    const theme = document.getElementById("theme").value.trim();
 
     statusEl.textContent = "";
     statusEl.className = "status";
 
-    if (!modelName || !dateLocal || !startLocal) {
-      statusEl.textContent = "Completa modelo, fecha y horario.";
+    if (!modelName || !dateLocal || !startLocal || !theme) {
+      statusEl.textContent = "Completa modelo, fecha, horario y temática.";
       statusEl.classList.add("error");
       return;
     }
 
-    // Convertimos a EST antes de enviar al backend
     const { date: dateEST, start: startEST } =
       convertLocalToEst(dateLocal, startLocal, modelName);
-
-    console.log("Guardando horario:", {
-      modelName,
-      dateLocal,
-      startLocal,
-      dateEST,
-      startEST,
-    });
 
     saveBtn.disabled = true;
 
@@ -359,10 +347,9 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         modelName,
-        // Lo que se guarda y ve el dashboard: EST
+        theme,
         date: dateEST,
         start: startEST,
-        // Opcional: mandamos también lo original por si luego quieres usarlo
         originalDate: dateLocal,
         originalStart: startLocal,
       }),
@@ -372,6 +359,7 @@
         if (data && data.success) {
           statusEl.textContent = "Horario guardado / actualizado. Gracias ♥";
           statusEl.classList.add("ok");
+          document.getElementById("theme").value = "";
         } else {
           throw new Error(data?.message || "Error desconocido");
         }

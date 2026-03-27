@@ -81,5 +81,13 @@
     "start": "21:00",
     "originalDate": "2026-01-27",
     "originalStart": "21:00"
+  },
+  {
+    "modelName": "Sara",
+    "theme": "Party",
+    "date": "2026-03-26",
+    "start": "12:00",
+    "originalDate": "2026-03-26",
+    "originalStart": "17:00"
   }
 ]

@@ -32,6 +32,7 @@ app.use("/widget",   express.static(path.join(__dirname, "widget")));
 app.use("/widget2",  express.static(path.join(__dirname, "widget2")));
 
 app.use("/panel",    express.static(path.join(__dirname, "panel")));
+app.use("/marketing", express.static(path.join(__dirname, "marketing")));
 
 app.use("/bar",      express.static(path.join(__dirname, "bar")));
 app.use("/bar2",     express.static(path.join(__dirname, "bar2")));
@@ -44,6 +45,7 @@ app.use("/countdown2", express.static(path.join(__dirname, "countdown2")));
 
 app.use("/models",   express.static(path.join(__dirname, "models")));
 app.use("/admin",    express.static(path.join(__dirname, "admin")));
+
 app.use("/players",  express.static(path.join(__dirname, "players")));
 
 console.log("Rutas estáticas:");
@@ -51,6 +53,7 @@ console.log(" -> /widget     =>", path.join(__dirname, "widget"));
 console.log(" -> /widget2    =>", path.join(__dirname, "widget2"));
 console.log(" -> /panel      =>", path.join(__dirname, "panel"));
 console.log(" -> /bar        =>", path.join(__dirname, "bar"));
+console.log(" -> /marketing  =>", path.join(__dirname, "marketing"));
 console.log(" -> /bar2       =>", path.join(__dirname, "bar2"));
 console.log(" -> /countdown  =>", path.join(__dirname, "countdown"));
 console.log(" -> /countdown2 =>", path.join(__dirname, "countdown2"));
@@ -289,9 +292,11 @@ app.post("/api/resync", (req, res) => {
 // POST: registrar / actualizar horario de una modelo
 app.post("/api/model-schedule", async (req, res) => {
   try {
-    const { modelName, date, start, originalDate, originalStart } = req.body;
+    console.log("BODY /api/model-schedule =>", req.body);
 
-    if (!modelName || !date || !start) {
+    const { modelName, theme, date, start, originalDate, originalStart } = req.body;
+
+    if (!modelName || !theme || !date || !start) {
       return res
         .status(400)
         .json({ success: false, message: "Faltan campos" });
@@ -299,13 +304,15 @@ app.post("/api/model-schedule", async (req, res) => {
 
     const entry = {
       modelName,
+      theme,
       date,
       start,
       originalDate,
       originalStart,
     };
 
-    // upsert por (modelName + date + start) dentro de schedules.json
+    console.log("ENTRY A GUARDAR =>", entry);
+
     await saveSchedule(entry);
 
     return res.json({ success: true });
@@ -316,7 +323,6 @@ app.post("/api/model-schedule", async (req, res) => {
       .json({ success: false, message: "Error interno del servidor" });
   }
 });
-
 // GET: devolver horarios para el panel admin
 app.get("/api/model-schedule", async (req, res) => {
   try {
