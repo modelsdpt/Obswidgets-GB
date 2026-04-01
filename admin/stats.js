@@ -266,9 +266,9 @@ function formatDiff(newVal, oldVal, suffix) {
   if (!oldVal && newVal > 0) return { text: `+∞ ${suffix}`, cls: "positive" };
 
   const pct = ((diff / oldVal) * 100).toFixed(1);
-  if (diff > 0) return { text: `+${pct}% vs base`, cls: "positive" };
-  if (diff < 0) return { text: `${pct}% vs base`, cls: "negative" };
-  return { text: `= Igual que base`, cls: "neutral" };
+  if (diff > 0) return { text: `+${pct}% vs Last Month`, cls: "positive" };
+  if (diff < 0) return { text: `${pct}% vs Last Month`, cls: "negative" };
+  return { text: `= Igual que Last Month`, cls: "neutral" };
 }
 
 // ===== CARDS (COMPARACIÓN) =====
