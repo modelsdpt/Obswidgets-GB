@@ -32,7 +32,7 @@ body{
     radial-gradient(circle at 14% 18%, rgba(255,255,255,.58), transparent 20%),
     radial-gradient(circle at 82% 22%, rgba(255,255,255,.24), transparent 24%),
     radial-gradient(circle at 24% 72%, rgba(255,182,210,.16), transparent 22%),
-    linear-gradient(135deg, #ffffff 0%, #fff1f6 24%, #ffdbe8 52%, #ffb8d1 78%, #ff8fb7 100%);
+    linear-gradient(135deg, #ff74ae 0%, #ff5ea1 24%, #ff4485 54%, #ff2a75 78%, #ff8fbb 100%);;
   border:1px solid rgba(255,115,168,.44);
   box-shadow:
     0 8px 22px rgba(255,145,190,.16),
