@@ -1,16 +1,15 @@
 /* =========================
-   TIMER – Balloon Pop Pink Theme
+   TIMER – Glossy White Pink Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#ffb3cc;
-  --card2:#ff8fb6;
-  --card3:#ff6fa4;
-  --card4:#ff4d92;
+  --card1:#fff9fc;
+  --card2:#ffe5ef;
+  --card3:#ffc0d8;
+  --card4:#ff8fbb;
 
   --txt:#ffffff;
-  --shadow-text:#c94d86;
 }
 
 *{ box-sizing:border-box; }
@@ -30,14 +29,15 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.34), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.16), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(255,180,210,.10), transparent 22%),
-    linear-gradient(135deg, #ffb7cf 0%, #ff96ba 26%, #ff74a7 56%, #ff5d9c 80%, #ff4c92 100%);
-  border:1px solid rgba(255,110,166,.48);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.58), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.24), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(255,182,210,.16), transparent 22%),
+    linear-gradient(135deg, #ff229c 0%, #ff5ea1 24%, #ff389c 54%, #ff2a75 78%, #ff18b2 100%);
+  border:1px solid rgba(255,115,168,.44);
   box-shadow:
-    0 8px 22px rgba(255,95,155,.18),
-    inset 0 1px 0 rgba(255,255,255,.24);
+    0 8px 22px rgba(255,145,190,.16),
+    0 0 18px rgba(255,220,230,.34),
+    inset 0 1px 0 rgba(255,255,255,.52);
 }
 
 .timer-title{
@@ -51,8 +51,9 @@ body{
   color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    2px 2px 0 var(--shadow-text),
-    3px 3px 0 rgba(170,58,108,.42);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 10px rgba(255,255,255,.26),
+    2px 2px 0 rgba(173,97,125,.30);
 }
 
 .timer-display{
@@ -71,15 +72,16 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.20), transparent 14%),
-    radial-gradient(circle at 34% 58%, rgba(255,255,255,.12), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.10), transparent 12%),
-    radial-gradient(circle at 80% 58%, rgba(255,170,205,.10), transparent 14%),
-    linear-gradient(135deg, var(--card1) 0%, var(--card2) 30%, var(--card3) 62%, var(--card4) 100%);
-  border:1px solid rgba(255,110,166,.34);
+    radial-gradient(circle at 16% 40%, rgba(228, 23, 255, 0.34), transparent 14%),
+    radial-gradient(circle at 34% 58%, rgba(236, 24, 255, 0.24), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(230, 38, 255, 0.22), transparent 12%),
+    radial-gradient(circle at 80% 58%, rgba(255, 36, 255, 0.18), transparent 14%),
+    linear-gradient(135deg, var(--card1) 0%, var(--card2) 28%, var(--card3) 62%, var(--card4) 100%);
+  border:1px solid rgba(255,115,168,.34);
   box-shadow:
-    0 4px 12px rgba(255,95,155,.16),
-    inset 0 1px 0 rgba(255,255,255,.22);
+    0 4px 12px rgba(255,145,190,.14),
+    0 0 12px rgba(255,188,215,.18),
+    inset 0 1px 0 rgba(255,255,255,.36);
 }
 
 .timer-box::before{
@@ -87,12 +89,13 @@ body{
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 12% 48%, rgba(255,255,255,.10), transparent 8%),
-    radial-gradient(circle at 26% 36%, rgba(255,255,255,.08), transparent 8%),
-    radial-gradient(circle at 42% 62%, rgba(255,255,255,.08), transparent 8%),
-    radial-gradient(circle at 58% 40%, rgba(255,255,255,.06), transparent 8%),
-    radial-gradient(circle at 74% 56%, rgba(255,255,255,.06), transparent 8%);
-  opacity:.82;
+    radial-gradient(circle at 12% 48%, rgba(230, 38, 255, 0.18), transparent 8%),
+    radial-gradient(circle at 26% 36%, rgba(195, 44, 255, 0.16), transparent 8%),
+    radial-gradient(circle at 42% 62%, rgba(255, 39, 255, 0.14), transparent 8%),
+    radial-gradient(circle at 58% 40%, rgba(230, 40, 255, 0.13), transparent 8%),
+    radial-gradient(circle at 74% 56%, rgba(214, 48, 255, 0.12), transparent 8%),
+    radial-gradient(circle at 88% 40%, rgba(230, 43, 255, 0.1), transparent 8%);
+  opacity:.95;
 }
 
 .timer-box::after{
@@ -102,15 +105,15 @@ body{
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.06) 35%,
-    rgba(255,255,255,.16) 50%,
-    rgba(255,255,255,.06) 62%,
+    rgba(255,255,255,.10) 35%,
+    rgba(255,255,255,.28) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
   animation:timerShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.75;
+  opacity:.90;
 }
 
 @keyframes timerShine{
@@ -127,8 +130,9 @@ body{
   letter-spacing:.06em;
   color:#ffffff;
   text-shadow:
-    2px 2px 0 var(--shadow-text),
-    3px 3px 0 rgba(170,58,108,.42);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 8px rgba(255,255,255,.24),
+    2px 2px 0 rgba(173,97,125,.30);
 }
 
 .timer-box.timer-running{
@@ -139,26 +143,30 @@ body{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(255,95,155,.16),
-      inset 0 1px 0 rgba(255,255,255,.22);
+      0 4px 12px rgba(255,145,190,.14),
+      0 0 12px rgba(255,188,215,.18),
+      inset 0 1px 0 rgba(255,255,255,.36);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(255,95,155,.20),
-      inset 0 1px 0 rgba(255,255,255,.24);
+      0 6px 16px rgba(255,145,190,.18),
+      0 0 16px rgba(255,188,215,.24),
+      inset 0 1px 0 rgba(255,255,255,.40);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(255,95,155,.22),
-    inset 0 1px 0 rgba(255,255,255,.24);
+    0 6px 16px rgba(255,145,190,.20),
+    0 0 18px rgba(255,188,215,.26),
+    inset 0 1px 0 rgba(255,255,255,.40);
 }
 
 .timer-box.timer-finished #timer-value{
   text-shadow:
-    2px 2px 0 var(--shadow-text),
-    3px 3px 0 rgba(170,58,108,.42),
-    0 0 8px rgba(255,255,255,.10);
+    0 0 2px rgba(255,255,255,.99),
+    0 0 12px rgba(255,255,255,.36),
+    0 0 16px rgba(255,168,201,.18),
+    2px 2px 0 rgba(173,97,125,.30);
 }

@@ -1,16 +1,17 @@
 /* =========================
-   GOAL BAR – Balloon Pop Pink Theme
+   GOAL BAR – Glossy White Pink Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#ffb3cc;
-  --card2:#ff8fb6;
-  --card3:#ff6fa4;
-  --card4:#ff4d92;
+  --card1:#fff9fc;
+  --card2:#ffe8f1;
+  --card3:#ffc8dc;
+  --card4:#ff8fbb;
 
   --txt:#ffffff;
-  --shadow-text:#c94d86;
+  --pink-1:#ff5f98;
+  --pink-2:#ff92bb;
 }
 
 *{ box-sizing:border-box; }
@@ -30,15 +31,17 @@ body{
   border-radius:14px;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.34), transparent 18%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.14), transparent 22%),
-    linear-gradient(135deg, #ffb5cd 0%, #ff92b8 26%, #ff71a5 58%, #ff5a99 82%, #ff4c92 100%);
-  border:1px solid rgba(255,110,166,.52);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.62), transparent 18%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.24), transparent 22%),
+    linear-gradient(135deg, #ff229c 0%, #ff5ea1 24%, #ff389c 54%, #ff2a75 78%, #ff18b2 100%);
+  border:1px solid rgba(255,112,166,.46);
   box-shadow:
-    0 8px 22px rgba(255,96,156,.20),
-    inset 0 1px 0 rgba(255,255,255,.22);
+    0 8px 22px rgba(255,145,190,.16),
+    0 0 18px rgba(255,214,231,.34),
+    inset 0 1px 0 rgba(255,255,255,.55);
 }
 
+/* marco */
 #goal-wrapper::before{
   content:"";
   position:absolute;
@@ -48,30 +51,31 @@ body{
   background:
     linear-gradient(
       120deg,
-      rgba(255,211,227,.94),
-      rgba(255,146,190,.92),
-      rgba(255,92,154,.92),
-      rgba(255,207,224,.92)
+      rgba(255,255,255,.95),
+      rgba(255,197,221,.95),
+      rgba(255,113,167,.86),
+      rgba(255,228,239,.94)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
-  opacity:.92;
+  opacity:.90;
   pointer-events:none;
   z-index:3;
 }
 
+/* decoración */
 #goal-wrapper::after{
-  content:"✦      ✦      ✦";
+  content:"            GOAL GOAL GOAL GOAL";
   position:absolute;
   inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:12px;
-  color:rgba(255,255,255,.16);
+  color:rgba(255,255,255,.24);
   letter-spacing:18px;
   pointer-events:none;
   z-index:1;
@@ -84,11 +88,11 @@ body{
   border-radius:inherit;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03)),
-    linear-gradient(135deg, #ffc0d5 0%, #ff8ab3 28%, #ff679f 64%, #ff468d 100%);
+    linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.06)),
+    linear-gradient(135deg, #fff9fc 0%, #ffdce9 26%, #ffb8d1 62%, #ff6ea6 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.24),
-    0 0 12px rgba(255,95,155,.16);
+    inset 0 1px 0 rgba(255,255,255,.46),
+    0 0 12px rgba(255,114,170,.18);
 }
 
 #bar-fill::before{
@@ -96,15 +100,15 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.10), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.18), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.04) 0px,
-      rgba(255,255,255,.04) 2px,
+      rgba(255,255,255,.06) 0px,
+      rgba(255,255,255,.06) 2px,
       rgba(255,255,255,0) 2px,
       rgba(255,255,255,0) 8px
     );
-  opacity:.42;
+  opacity:.55;
 }
 
 .goal-label{
@@ -126,8 +130,9 @@ body{
   text-transform:uppercase;
   color:#ffffff;
   text-shadow:
-    2px 2px 0 var(--shadow-text),
-    3px 3px 0 rgba(170,58,108,.42);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 10px rgba(255,255,255,.24),
+    2px 2px 0 rgba(173,97,125,.26);
 }
 
 .goal-amount{
@@ -137,8 +142,9 @@ body{
   color:#ffffff;
   white-space:nowrap;
   text-shadow:
-    2px 2px 0 var(--shadow-text),
-    3px 3px 0 rgba(170,58,108,.42);
+    0 0 2px rgba(255,255,255,.98),
+    0 0 10px rgba(255,255,255,.24),
+    2px 2px 0 rgba(173,97,125,.26);
 }
 
 .goal-title.neon{
@@ -147,9 +153,15 @@ body{
 
 @keyframes goalPulse{
   from{
-    filter:brightness(1);
+    text-shadow:
+      0 0 2px rgba(255,255,255,.94),
+      0 0 8px rgba(255,255,255,.20),
+      2px 2px 0 rgba(173,97,125,.26);
   }
   to{
-    filter:brightness(1.06);
+    text-shadow:
+      0 0 8px rgba(255,255,255,.60),
+      0 0 14px rgba(255,148,191,.24),
+      2px 2px 0 rgba(173,97,125,.26);
   }
 }
