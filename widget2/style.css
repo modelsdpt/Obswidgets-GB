@@ -6,16 +6,17 @@
 :root{
   --bg0:#fff8fb;
   --bg1:#ffeef5;
-  --card1:#fff7fb;
-  --card2:#ffdce9;
-  --card3:#ffbfd7;
-  --card4:#ff95ba;
+--card1:#ffffff;
+  --card2:#ffffff;
+  --card3:#cececea6;
+  --card4:#ffffff;
+
 
   --line: rgba(255,118,170,.48);
   --line2: rgba(255,138,183,.30);
 
-  --txt:#ffffff;
-  --txt2: rgba(255,255,255,.88);
+  --txt:#000000;
+  --txt2: rgba(0, 0, 0, 0.88);
 
   --pink-1:#fff9fc;
   --pink-2:#ffd3e3;
