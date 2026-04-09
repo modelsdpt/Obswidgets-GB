@@ -33,7 +33,7 @@ body{
   background:
     radial-gradient(circle at 14% 18%, rgba(255,255,255,.62), transparent 18%),
     radial-gradient(circle at 82% 22%, rgba(255,255,255,.24), transparent 22%),
-    linear-gradient(135deg, #ff229c 0%, #ff5ea1 24%, #ff389c 54%, #ff2a75 78%, #ff18b2 100%);
+    linear-gradient(135deg, #5bd1ff 0%, #56c7ff 24%, #ff389c 54%, #2b9fff 78%, #11bbff 100%);
   border:1px solid rgba(255,112,166,.46);
   box-shadow:
     0 8px 22px rgba(255,145,190,.16),
@@ -51,10 +51,10 @@ body{
   background:
     linear-gradient(
       120deg,
-      rgba(255,255,255,.95),
+      rgba(107, 211, 255, 0.95),
       rgba(255,197,221,.95),
       rgba(255,113,167,.86),
-      rgba(255,228,239,.94)
+      rgba(84, 178, 255, 0.94)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -68,7 +68,7 @@ body{
 
 /* decoración */
 #goal-wrapper::after{
-  content:"            GOAL GOAL GOAL GOAL";
+  content:"😈   😈    😈    😈    😈    😈    😈    😈    😈    ";
   position:absolute;
   inset:0;
   display:flex;
