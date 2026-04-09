@@ -33,7 +33,7 @@ body{
   background:
     radial-gradient(circle at 14% 18%, rgba(255,255,255,.62), transparent 18%),
     radial-gradient(circle at 82% 22%, rgba(255,255,255,.24), transparent 22%),
-    linear-gradient(135deg, #2e8efd 0%, #ff5ea1 24%, #38afff 54%, #ff2a75 78%, #1897ff 100%);
+    linear-gradient(135deg, #000000 0%, #000000 24%, #000000 54%, #000000 78%, #000000 100%);
   border:1px solid rgba(255,112,166,.46);
   box-shadow:
     0 8px 22px rgba(255,145,190,.16),
