@@ -4,10 +4,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#fff9fc;
-  --card2:#ffe5ef;
-  --card3:#ffc0d8;
-  --card4:#ff8fbb;
+  --card1:#ffffff;
+  --card2:#ffffff;
+  --card3:#cececea6;
+  --card4:#ffffff;
 
   --txt:#ffffff;
 }
@@ -128,7 +128,7 @@ body{
   font-family:'Anton', sans-serif;
   font-size:34px;
   letter-spacing:.06em;
-  color:#ffffff;
+  color:#000000;
   text-shadow:
     0 0 2px rgba(255,255,255,.98),
     0 0 8px rgba(255,255,255,.24),
