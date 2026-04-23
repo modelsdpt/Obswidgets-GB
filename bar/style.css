@@ -1,13 +1,12 @@
 /* =========================
-   TIMER – Black Lights Pink Powerline Theme
+   GOAL BAR VERTICAL – Black MVP + Gold Fill
    ========================= */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
   --pink-line:#ff5fb2;
-  --pink-soft:#ff9bd0;
-  --gold-light:#ffd76f;
+  --gold:#ffd76f;
 }
 
 *{ box-sizing:border-box; }
@@ -19,120 +18,145 @@ body{
   color:var(--txt);
 }
 
-.timer-widget{
+/* CONTENEDOR */
+#goal-wrapper{
+  width:70px;              /* 👈 ajusta grosor aquí */
+  height:420px;
   position:relative;
-  width:280px;
-  padding:14px 14px 16px;
-  border-radius:18px;
   overflow:hidden;
+  border-radius:20px;
 
+  /* 🔥 mismo estilo que MVP */
   background:
-    radial-gradient(circle at 86% 16%, rgba(255,214,97,.92) 0%, rgba(255,214,97,.16) 6%, transparent 14%),
-    radial-gradient(circle at 78% 12%, rgba(255,255,255,.12) 0%, transparent 14%),
-    linear-gradient(145deg, #101015 0%, #060608 34%, #0d0d12 100%);
+    radial-gradient(circle at 84% 18%, rgba(255,222,132,.90) 0%, rgba(255,210,110,.18) 6%, transparent 14%),
+    radial-gradient(circle at 68% 12%, rgba(255,255,255,.18) 0%, transparent 14%),
+    radial-gradient(circle at 18% 22%, rgba(255,95,178,.18) 0%, transparent 18%),
+    linear-gradient(145deg, #0b0b0f 0%, #060608 32%, #101017 72%, #171720 100%);
+
   border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 8px 22px rgba(0,0,0,.52),
-    0 0 14px rgba(255,95,178,.08),
-    inset 0 1px 0 rgba(255,255,255,.05);
+    0 12px 30px rgba(0,0,0,.58),
+    0 0 20px rgba(255,95,178,.10),
+    inset 0 1px 0 rgba(255,255,255,.06);
 }
 
-.timer-title{
-  position:relative;
-  z-index:1;
-  text-align:center;
-  font-family:'Anton', sans-serif;
-  font-size:18px;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  color:#ffffff;
-  margin-bottom:10px;
-  text-shadow:
-    -1px 0 0 var(--pink-line),
-    1px 0 0 var(--pink-line),
-    0 -1px 0 var(--pink-line),
-    0 1px 0 var(--pink-line),
-    -1px -1px 0 var(--pink-line),
-    1px 1px 0 var(--pink-line),
-    -1px 1px 0 var(--pink-line),
-    1px -1px 0 var(--pink-line),
-    0 0 8px rgba(255,95,178,.28),
-    2px 2px 0 rgba(0,0,0,.52);
-}
-
-.timer-display{
-  display:flex;
-  justify-content:center;
-}
-
-.timer-box{
-  position:relative;
-  width:170px;
-  height:72px;
-  border-radius:8px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-    radial-gradient(circle at 84% 18%, rgba(255,214,97,.18), transparent 14%),
-    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-    linear-gradient(135deg, #171720 0%, #0e0e14 52%, #08080c 100%);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:
-    0 4px 12px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 0 12px rgba(255,95,178,.08);
-}
-
-.timer-box::before{
+/* BORDE PREMIUM */
+#goal-wrapper::before{
   content:"";
   position:absolute;
   inset:0;
+  border-radius:inherit;
+  padding:1px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.06), transparent 38%),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.015) 0px,
-      rgba(255,255,255,.015) 2px,
-      rgba(255,255,255,0) 2px,
-      rgba(255,255,255,0) 8px
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.18),
+      rgba(255,95,178,.34),
+      rgba(255,255,255,.08),
+      rgba(255,214,97,.26)
     );
-  opacity:.82;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
+  z-index:3;
 }
 
-.timer-box::after{
+/* LUZ SUPERIOR */
+#goal-wrapper::after{
   content:"";
   position:absolute;
-  inset:-30%;
+  top:-20%;
+  left:-40%;
+  width:180%;
+  height:70%;
   background: linear-gradient(
-    120deg,
+    135deg,
     transparent 0%,
-    rgba(255,255,255,.06) 35%,
-    rgba(255,255,255,.20) 50%,
-    rgba(255,255,255,.06) 62%,
-    transparent 78%
+    rgba(255,255,255,.02) 34%,
+    rgba(255,214,97,.06) 45%,
+    rgba(255,255,255,.14) 50%,
+    rgba(255,95,178,.06) 55%,
+    transparent 66%
   );
-  transform:translateX(-120%);
-  animation:timerShine 4.4s linear infinite;
+  transform:rotate(4deg);
+  pointer-events:none;
+}
+
+/* FILL DORADO TRANSPARENTE */
+#bar-fill{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:0%; /* JS controla esto */
+  border-radius:0 0 20px 20px;
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+    linear-gradient(
+      180deg,
+      rgba(255,215,111,.08) 0%,
+      rgba(255,215,111,.18) 40%,
+      rgba(255,215,111,.28) 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 0 12px rgba(255,215,111,.14),
+    0 0 18px rgba(255,215,111,.08);
+}
+
+/* SHINE VERTICAL */
+#bar-fill::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 40%,
+    rgba(255,255,255,.28) 50%,
+    rgba(255,255,255,.10) 60%,
+    transparent 100%
+  );
+  transform:translateY(120%);
+  animation:goldShine 4.5s linear infinite;
   mix-blend-mode:screen;
-  opacity:.78;
+  opacity:.7;
 }
 
-@keyframes timerShine{
-  0%{ transform:translateX(-120%); }
-  40%{ transform:translateX(120%); }
-  100%{ transform:translateX(120%); }
+@keyframes goldShine{
+  0%{ transform:translateY(120%); }
+  50%{ transform:translateY(-120%); }
+  100%{ transform:translateY(-120%); }
 }
 
-#timer-value{
+/* TEXTO */
+.goal-label{
   position:relative;
-  z-index:1;
-  font-family:'Anton', sans-serif;
-  font-size:34px;
-  letter-spacing:.06em;
+  z-index:4;
+  height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 6px;
+  text-align:center;
+}
+
+.goal-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
   color:#ffffff;
+
+  /* 🔥 powerline rosa */
   text-shadow:
     -1px 0 0 var(--pink-line),
     1px 0 0 var(--pink-line),
@@ -143,39 +167,15 @@ body{
     -1px 1px 0 var(--pink-line),
     1px -1px 0 var(--pink-line),
     0 0 8px rgba(255,95,178,.28),
-    2px 2px 0 rgba(0,0,0,.52);
+    2px 2px 0 rgba(0,0,0,.55);
 }
 
-.timer-box.timer-running{
-  animation:timerPulse 1.15s ease-in-out infinite alternate;
-}
+.goal-amount{
+  font-family:'Orbitron', sans-serif;
+  font-size:12px;
+  font-weight:800;
+  color:#ffffff;
 
-@keyframes timerPulse{
-  from{
-    transform:translateY(0);
-    box-shadow:
-      0 4px 12px rgba(0,0,0,.42),
-      inset 0 1px 0 rgba(255,255,255,.05),
-      0 0 12px rgba(255,95,178,.08);
-  }
-  to{
-    transform:translateY(-1px);
-    box-shadow:
-      0 6px 16px rgba(0,0,0,.48),
-      inset 0 1px 0 rgba(255,255,255,.07),
-      0 0 16px rgba(255,95,178,.14),
-      0 0 12px rgba(255,214,97,.08);
-  }
-}
-
-.timer-box.timer-finished{
-  box-shadow:
-    0 6px 16px rgba(0,0,0,.50),
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 0 18px rgba(255,95,178,.16);
-}
-
-.timer-box.timer-finished #timer-value{
   text-shadow:
     -1px 0 0 var(--pink-line),
     1px 0 0 var(--pink-line),
@@ -185,7 +185,6 @@ body{
     1px 1px 0 var(--pink-line),
     -1px 1px 0 var(--pink-line),
     1px -1px 0 var(--pink-line),
-    0 0 12px rgba(255,95,178,.34),
-    0 0 18px rgba(255,95,178,.16),
-    2px 2px 0 rgba(0,0,0,.52);
+    0 0 8px rgba(255,95,178,.28),
+    2px 2px 0 rgba(0,0,0,.55);
 }
