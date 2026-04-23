@@ -208,8 +208,8 @@ body{
 }
 
 .goal-amount{
-   position:absolute;
-  bottom:20px;           /* 👈 pegado al fondo */
+  position:absolute;
+  bottom:25px;           /* 👈 pegado al fondo */
   left:50%;
  transform:translateX(-50%) rotate(-90deg) translateY(2px);
   font-family:'Orbitron', sans-serif;

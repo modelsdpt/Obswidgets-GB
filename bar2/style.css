@@ -176,7 +176,7 @@ body{
 /* TEXTO ROTADO 90° */
 .goal-title{
   position:absolute;
-  bottom:20px;           /* 👈 pegado al fondo */
+  top:50%;
   left:50%;
   transform:translate(-50%, -50%) rotate(-90deg);
   transform-origin:center;
@@ -199,7 +199,7 @@ body{
   position:absolute;
   bottom:20px;           /* 👈 pegado al fondo */
   left:50%;
- transform:translateX(-50%) rotate(-90deg) translateY(2px);
+  transform:translateX(-50%) rotate(-90deg) translateY(2px);
   transform-origin:center;
 
   font-family:'Orbitron', sans-serif;
