@@ -176,7 +176,7 @@ body{
 /* TEXTO ROTADO 90° */
 .goal-title{
   position:absolute;
-  top:50%;
+  bottom:20px;           /* 👈 pegado al fondo */
   left:50%;
   transform:translate(-50%, -50%) rotate(-90deg);
   transform-origin:center;
@@ -197,7 +197,7 @@ body{
 /* monto abajo */
 .goal-amount{
   position:absolute;
-  bottom:12px;           /* 👈 pegado al fondo */
+  bottom:20px;           /* 👈 pegado al fondo */
   left:50%;
  transform:translateX(-50%) rotate(-90deg) translateY(2px);
   transform-origin:center;
