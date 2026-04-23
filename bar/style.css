@@ -1,5 +1,5 @@
 /* =========================
-   GOAL BAR VERTICAL – Black MVP + Gold Fill
+   GOAL BAR VERTICAL – Black VIP + Gold Fill (VISIBLE FIX)
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
@@ -18,29 +18,25 @@ body{
   color:var(--txt);
 }
 
-/* CONTENEDOR */
 #goal-wrapper{
-  width:70px;              /* 👈 ajusta grosor aquí */
-  height:420px;
+  width:80px;
+  height:340px;
   position:relative;
   overflow:hidden;
   border-radius:20px;
 
-  /* 🔥 mismo estilo que MVP */
   background:
-    radial-gradient(circle at 84% 18%, rgba(255,222,132,.90) 0%, rgba(255,210,110,.18) 6%, transparent 14%),
-    radial-gradient(circle at 68% 12%, rgba(255,255,255,.18) 0%, transparent 14%),
-    radial-gradient(circle at 18% 22%, rgba(255,95,178,.18) 0%, transparent 18%),
-    linear-gradient(145deg, #0b0b0f 0%, #060608 32%, #101017 72%, #171720 100%);
-
+    radial-gradient(circle at 84% 16%, rgba(255,214,97,.92) 0%, rgba(255,214,97,.14) 6%, transparent 14%),
+    radial-gradient(circle at 74% 10%, rgba(255,255,255,.16) 0%, transparent 12%),
+    radial-gradient(circle at 18% 20%, rgba(255,95,178,.14) 0%, transparent 18%),
+    linear-gradient(145deg, #0d0d11 0%, #060608 34%, #101018 72%, #171720 100%);
   border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 12px 30px rgba(0,0,0,.58),
-    0 0 20px rgba(255,95,178,.10),
-    inset 0 1px 0 rgba(255,255,255,.06);
+    0 14px 32px rgba(0,0,0,.60),
+    0 0 22px rgba(255,95,178,.08),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
-/* BORDE PREMIUM */
 #goal-wrapper::before{
   content:"";
   position:absolute;
@@ -50,10 +46,11 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.18),
+      rgba(255,255,255,.16),
       rgba(255,95,178,.34),
       rgba(255,255,255,.08),
-      rgba(255,214,97,.26)
+      rgba(255,214,97,.24),
+      rgba(255,255,255,.16)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -61,17 +58,17 @@ body{
   -webkit-mask-composite:xor;
           mask-composite:exclude;
   pointer-events:none;
-  z-index:3;
+  z-index:5;
+  opacity:.95;
 }
 
-/* LUZ SUPERIOR */
 #goal-wrapper::after{
   content:"";
   position:absolute;
-  top:-20%;
+  top:-25%;
   left:-40%;
   width:180%;
-  height:70%;
+  height:65%;
   background: linear-gradient(
     135deg,
     transparent 0%,
@@ -83,33 +80,38 @@ body{
   );
   transform:rotate(4deg);
   pointer-events:none;
+  z-index:1;
 }
 
-/* FILL DORADO TRANSPARENTE */
+/* FILL MÁS VISIBLE */
 #bar-fill{
   position:absolute;
   left:0;
   bottom:0;
   width:100%;
-  height:0%; /* JS controla esto */
+  height:0%;
+  z-index:2;
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)),
     linear-gradient(
       180deg,
-      rgba(255,215,111,.08) 0%,
-      rgba(255,215,111,.18) 40%,
-      rgba(255,215,111,.28) 100%
+      rgba(255,215,111,.18) 0%,
+      rgba(255,215,111,.32) 45%,
+      rgba(255,215,111,.48) 100%
     );
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.18),
-    0 0 12px rgba(255,215,111,.14),
-    0 0 18px rgba(255,215,111,.08);
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 0 22px rgba(255,240,180,.10),
+    0 0 14px rgba(255,215,111,.24),
+    0 0 24px rgba(255,215,111,.12);
+
+  overflow:hidden;
 }
 
-/* SHINE VERTICAL */
+/* brillo */
 #bar-fill::before{
   content:"";
   position:absolute;
@@ -117,15 +119,34 @@ body{
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255,255,255,.10) 40%,
-    rgba(255,255,255,.28) 50%,
-    rgba(255,255,255,.10) 60%,
+    rgba(255,255,255,.12) 40%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.12) 60%,
     transparent 100%
   );
   transform:translateY(120%);
   animation:goldShine 4.5s linear infinite;
   mix-blend-mode:screen;
-  opacity:.7;
+  opacity:.8;
+}
+
+/* partículas */
+#bar-fill::after{
+  content:"✦  •  ✦   •   ✦";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:8px;
+  text-align:center;
+  font-size:10px;
+  line-height:1.8;
+  color:rgba(255,232,170,.82);
+  text-shadow:
+    0 0 6px rgba(255,214,97,.42),
+    0 0 12px rgba(255,214,97,.22);
+  animation:goldParticles 3.8s linear infinite;
+  pointer-events:none;
+  opacity:.9;
 }
 
 @keyframes goldShine{
@@ -134,29 +155,45 @@ body{
   100%{ transform:translateY(-120%); }
 }
 
-/* TEXTO */
+@keyframes goldParticles{
+  0%{
+    transform:translateY(14px);
+    opacity:.20;
+  }
+  20%{
+    opacity:.90;
+  }
+  100%{
+    transform:translateY(-120px);
+    opacity:0;
+  }
+}
+
 .goal-label{
-  position:relative;
-  z-index:4;
-  height:100%;
-  width:100%;
+  position:absolute;
+  inset:0;
   display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  justify-content:center;
   align-items:center;
-  padding:14px 6px;
-  text-align:center;
+  pointer-events:none;
+  z-index:6;
 }
 
 .goal-title{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) rotate(-90deg);
+  transform-origin:center;
+
   font-family:'Orbitron', sans-serif;
-  font-size:12px;
+  font-size:14px;
   font-weight:800;
   letter-spacing:.12em;
   text-transform:uppercase;
   color:#ffffff;
+  white-space:nowrap;
 
-  /* 🔥 powerline rosa */
   text-shadow:
     -1px 0 0 var(--pink-line),
     1px 0 0 var(--pink-line),
@@ -166,25 +203,25 @@ body{
     1px 1px 0 var(--pink-line),
     -1px 1px 0 var(--pink-line),
     1px -1px 0 var(--pink-line),
-    0 0 8px rgba(255,95,178,.28),
-    2px 2px 0 rgba(0,0,0,.55);
+    0 0 10px rgba(255,95,178,.30),
+    2px 2px 0 rgba(0,0,0,.58);
 }
 
 .goal-amount{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
   font-family:'Orbitron', sans-serif;
-  font-size:12px;
+  font-size:11px;
   font-weight:800;
   color:#ffffff;
+  white-space:nowrap;
 
   text-shadow:
     -1px 0 0 var(--pink-line),
     1px 0 0 var(--pink-line),
     0 -1px 0 var(--pink-line),
     0 1px 0 var(--pink-line),
-    -1px -1px 0 var(--pink-line),
-    1px 1px 0 var(--pink-line),
-    -1px 1px 0 var(--pink-line),
-    1px -1px 0 var(--pink-line),
-    0 0 8px rgba(255,95,178,.28),
-    2px 2px 0 rgba(0,0,0,.55);
+    2px 2px 0 rgba(0,0,0,.58);
 }

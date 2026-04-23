@@ -1,5 +1,5 @@
 /* =========================
-   GOAL BAR VERTICAL – Pink (Rotated Text)
+   GOAL BAR VERTICAL – Pink Theme (VISIBLE FIX)
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
@@ -14,38 +14,155 @@ body{
   margin:0;
   background:transparent;
   font-family:'Montserrat', system-ui, sans-serif;
+  color:var(--txt);
 }
 
-/* CONTENEDOR */
 #goal-wrapper{
-  width:70px;
-  height:420px;
+  width:80px;
+  height:340px;
   position:relative;
   overflow:hidden;
   border-radius:20px;
 
   background:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.4), transparent 18%),
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.42), transparent 18%),
+    radial-gradient(circle at 76% 16%, rgba(255,255,255,.16), transparent 16%),
     linear-gradient(180deg, #ffd9e8 0%, #f8c4d9 40%, #efadc9 70%, #ffe5ef 100%);
-
-  border:1px solid rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow:
+    0 10px 24px rgba(219,140,176,.18),
+    0 0 16px rgba(255,236,243,.22),
+    inset 0 1px 0 rgba(255,255,255,.34);
 }
 
-/* FILL */
+/* marco premium */
+#goal-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.96),
+      rgba(255,230,239,.88),
+      rgba(244,184,210,.74),
+      rgba(255,255,255,.94)
+    );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.94;
+  pointer-events:none;
+  z-index:5;
+}
+
+/* reflejo */
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-40%;
+  width:180%;
+  height:60%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255,255,255,.05) 36%,
+    rgba(255,255,255,.18) 50%,
+    rgba(255,255,255,.05) 64%,
+    transparent 100%
+  );
+  transform:rotate(6deg);
+  pointer-events:none;
+  z-index:1;
+}
+
+/* FILL MÁS VISIBLE */
 #bar-fill{
   position:absolute;
   bottom:0;
   left:0;
   width:100%;
   height:0%;
+  z-index:2;
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.05)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
     linear-gradient(180deg, #ffe7f0 0%, #ffcfe0 50%, #f4abc8 100%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    inset 0 0 20px rgba(255,255,255,.08),
+    0 0 14px rgba(241,172,204,.18),
+    0 0 22px rgba(241,172,204,.10);
+
+  overflow:hidden;
 }
 
-/* TEXTO */
+/* shine vertical */
+#bar-fill::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.10) 62%,
+    transparent 100%
+  );
+  transform:translateY(120%);
+  animation:goalShineVerticalPinkFix 4.6s linear infinite;
+  mix-blend-mode:screen;
+  opacity:.82;
+}
+
+/* partículas suaves */
+#bar-fill::after{
+  content:"✦  •  ✦";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:8px;
+  text-align:center;
+  font-size:10px;
+  line-height:1.8;
+  color:rgba(255,255,255,.78);
+  text-shadow:
+    0 0 6px rgba(255,255,255,.32),
+    0 0 10px rgba(244,171,200,.18);
+  animation:pinkParticles 3.8s linear infinite;
+  pointer-events:none;
+  opacity:.85;
+}
+
+@keyframes goalShineVerticalPinkFix{
+  0%{ transform:translateY(120%); }
+  45%{ transform:translateY(-120%); }
+  100%{ transform:translateY(-120%); }
+}
+
+@keyframes pinkParticles{
+  0%{
+    transform:translateY(12px);
+    opacity:.18;
+  }
+  20%{
+    opacity:.85;
+  }
+  100%{
+    transform:translateY(-110px);
+    opacity:0;
+  }
+}
+
+/* label */
 .goal-label{
   position:absolute;
   inset:0;
@@ -53,9 +170,10 @@ body{
   justify-content:center;
   align-items:center;
   pointer-events:none;
+  z-index:6;
 }
 
-/* 🔥 ROTADO */
+/* TEXTO ROTADO 90° */
 .goal-title{
   position:absolute;
   top:50%;
@@ -69,10 +187,11 @@ body{
   letter-spacing:.12em;
   text-transform:uppercase;
   color:#fff;
+  white-space:nowrap;
 
   text-shadow:
     2px 2px 0 var(--txt-shadow),
-    0 0 10px rgba(255,255,255,.1);
+    0 0 10px rgba(255,255,255,.10);
 }
 
 /* monto abajo */
@@ -84,8 +203,19 @@ body{
 
   font-family:'Orbitron', sans-serif;
   font-size:11px;
+  font-weight:800;
   color:#fff;
+  white-space:nowrap;
 
   text-shadow:
     2px 2px 0 var(--txt-shadow);
+}
+
+.goal-title.neon{
+  animation:goalPulsePinkFix 1.25s ease-in-out infinite alternate;
+}
+
+@keyframes goalPulsePinkFix{
+  from{ filter:brightness(1); }
+  to{ filter:brightness(1.08); }
 }
