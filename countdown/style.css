@@ -1,17 +1,13 @@
 /* =========================
-   TIMER – Blue to Soft Red Glass Theme
+   TIMER – Black Lights Pink Powerline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --blue-1:#73d5ff;
-  --blue-2:#8ebdff;
-  --mid-1:#b7a8ff;
-  --pink-1:#e5a6c7;
-  --red-1:#ffabab;
-
   --txt:#ffffff;
-  --txt-shadow:#5d6f9f;
+  --pink-line:#ff5fb2;
+  --pink-soft:#ff9bd0;
+  --gold-light:#ffd76f;
 }
 
 *{ box-sizing:border-box; }
@@ -31,19 +27,14 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.38), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.16), transparent 24%),
-    radial-gradient(circle at 22% 74%, rgba(115,213,255,.10), transparent 22%),
-    radial-gradient(circle at 82% 78%, rgba(255,171,171,.08), transparent 22%),
-    linear-gradient(90deg, #71d5ff 0%, #96c3ff 32%, #b8a8ff 58%, #dfa8cd 82%, #ffafaf 100%);
-  border:1px solid rgba(255,255,255,.26);
+    radial-gradient(circle at 86% 16%, rgba(255,214,97,.92) 0%, rgba(255,214,97,.16) 6%, transparent 14%),
+    radial-gradient(circle at 78% 12%, rgba(255,255,255,.12) 0%, transparent 14%),
+    linear-gradient(145deg, #101015 0%, #060608 34%, #0d0d12 100%);
+  border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 8px 22px rgba(82,96,145,.18),
-    0 0 16px rgba(115,213,255,.14),
-    0 0 12px rgba(255,171,171,.10),
-    inset 0 1px 0 rgba(255,255,255,.28);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+    0 8px 22px rgba(0,0,0,.52),
+    0 0 14px rgba(255,95,178,.08),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .timer-title{
@@ -57,8 +48,16 @@ body{
   color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 10px rgba(255,255,255,.10);
+    -1px 0 0 var(--pink-line),
+    1px 0 0 var(--pink-line),
+    0 -1px 0 var(--pink-line),
+    0 1px 0 var(--pink-line),
+    -1px -1px 0 var(--pink-line),
+    1px 1px 0 var(--pink-line),
+    -1px 1px 0 var(--pink-line),
+    1px -1px 0 var(--pink-line),
+    0 0 8px rgba(255,95,178,.28),
+    2px 2px 0 rgba(0,0,0,.52);
 }
 
 .timer-display{
@@ -77,17 +76,14 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.22), transparent 14%),
-    radial-gradient(circle at 34% 58%, rgba(255,255,255,.12), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.10), transparent 12%),
-    linear-gradient(90deg, rgba(115,213,255,.48) 0%, rgba(183,168,255,.40) 55%, rgba(255,171,171,.40) 100%);
-  border:1px solid rgba(255,255,255,.20);
+    radial-gradient(circle at 84% 18%, rgba(255,214,97,.18), transparent 14%),
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+    linear-gradient(135deg, #171720 0%, #0e0e14 52%, #08080c 100%);
+  border:1px solid rgba(255,255,255,.12);
   box-shadow:
-    0 4px 12px rgba(82,96,145,.16),
-    inset 0 1px 0 rgba(255,255,255,.24),
-    0 0 12px rgba(115,213,255,.10);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+    0 4px 12px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 0 12px rgba(255,95,178,.08);
 }
 
 .timer-box::before{
@@ -95,11 +91,11 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.12), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.06), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.03) 0px,
-      rgba(255,255,255,.03) 2px,
+      rgba(255,255,255,.015) 0px,
+      rgba(255,255,255,.015) 2px,
       rgba(255,255,255,0) 2px,
       rgba(255,255,255,0) 8px
     );
@@ -113,15 +109,15 @@ body{
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.24) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.06) 35%,
+    rgba(255,255,255,.20) 50%,
+    rgba(255,255,255,.06) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
   animation:timerShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.78;
 }
 
 @keyframes timerShine{
@@ -138,8 +134,16 @@ body{
   letter-spacing:.06em;
   color:#ffffff;
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 10px rgba(255,255,255,.12);
+    -1px 0 0 var(--pink-line),
+    1px 0 0 var(--pink-line),
+    0 -1px 0 var(--pink-line),
+    0 1px 0 var(--pink-line),
+    -1px -1px 0 var(--pink-line),
+    1px 1px 0 var(--pink-line),
+    -1px 1px 0 var(--pink-line),
+    1px -1px 0 var(--pink-line),
+    0 0 8px rgba(255,95,178,.28),
+    2px 2px 0 rgba(0,0,0,.52);
 }
 
 .timer-box.timer-running{
@@ -150,30 +154,38 @@ body{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(82,96,145,.16),
-      inset 0 1px 0 rgba(255,255,255,.24),
-      0 0 12px rgba(115,213,255,.10);
+      0 4px 12px rgba(0,0,0,.42),
+      inset 0 1px 0 rgba(255,255,255,.05),
+      0 0 12px rgba(255,95,178,.08);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(82,96,145,.20),
-      inset 0 1px 0 rgba(255,255,255,.28),
-      0 0 16px rgba(115,213,255,.14),
-      0 0 12px rgba(255,171,171,.10);
+      0 6px 16px rgba(0,0,0,.48),
+      inset 0 1px 0 rgba(255,255,255,.07),
+      0 0 16px rgba(255,95,178,.14),
+      0 0 12px rgba(255,214,97,.08);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(82,96,145,.22),
-    inset 0 1px 0 rgba(255,255,255,.28),
-    0 0 18px rgba(255,171,171,.14);
+    0 6px 16px rgba(0,0,0,.50),
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 0 18px rgba(255,95,178,.16);
 }
 
 .timer-box.timer-finished #timer-value{
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 12px rgba(255,255,255,.18),
-    0 0 16px rgba(255,171,171,.12);
+    -1px 0 0 var(--pink-line),
+    1px 0 0 var(--pink-line),
+    0 -1px 0 var(--pink-line),
+    0 1px 0 var(--pink-line),
+    -1px -1px 0 var(--pink-line),
+    1px 1px 0 var(--pink-line),
+    -1px 1px 0 var(--pink-line),
+    1px -1px 0 var(--pink-line),
+    0 0 12px rgba(255,95,178,.34),
+    0 0 18px rgba(255,95,178,.16),
+    2px 2px 0 rgba(0,0,0,.52);
 }
