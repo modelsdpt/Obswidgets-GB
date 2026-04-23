@@ -178,7 +178,7 @@ function updateBar(fromTip) {
 
   if (!stages.length) {
     // si no hay configuración, escondemos todo
-    if (bar) bar.style.width = "0%";
+    if (bar) bar.style.height = "0%";
     if (amountText) amountText.textContent = "";
     if (goalTitle) {
       goalTitle.textContent = "";
@@ -214,7 +214,7 @@ function updateBar(fromTip) {
   }
 
   if (bar) {
-    bar.style.width = `${percent}%`;
+    bar.style.height = `${percent}%`;
   }
 
   if (goalTitle) {
