@@ -5,7 +5,7 @@
 
 :root{
   --txt:#ffffff;
-  --txt-shadow:#b96d8c;
+  --txt-shadow:#f9468e;
 }
 
 *{ box-sizing:border-box; }
@@ -27,7 +27,7 @@ body{
   background:
     radial-gradient(circle at 20% 10%, rgba(255,255,255,.42), transparent 18%),
     radial-gradient(circle at 76% 16%, rgba(255,255,255,.16), transparent 16%),
-    linear-gradient(180deg, #ffd9e8 0%, #f8c4d9 40%, #efadc9 70%, #ffe5ef 100%);
+    linear-gradient(180deg, #fb7fb1 0%, #ff7fb2 40%, #ff66a6 70%, hsl(337, 100%, 67%) 100%);
   border:1px solid rgba(255,255,255,.28);
   box-shadow:
     0 10px 24px rgba(219,140,176,.18),
@@ -45,9 +45,9 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.96),
-      rgba(255,230,239,.88),
-      rgba(244,184,210,.74),
+      rgba(247, 74, 155, 0.96),
+      rgba(255, 123, 171, 0.88),
+      rgba(255, 110, 173, 0.74),
       rgba(255,255,255,.94)
     );
   -webkit-mask:
