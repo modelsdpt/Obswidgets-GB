@@ -1,11 +1,11 @@
 /* =========================
-   GOAL BAR VERTICAL – Pink Theme (VISIBLE FIX)
+   GOAL BAR VERTICAL – Purple Pink Flash Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --txt-shadow:#f9468e;
+  --txt-shadow:#000000;
 }
 
 *{ box-sizing:border-box; }
@@ -27,11 +27,11 @@ body{
   background:
     radial-gradient(circle at 20% 10%, rgba(255,255,255,.42), transparent 18%),
     radial-gradient(circle at 76% 16%, rgba(255,255,255,.16), transparent 16%),
-    linear-gradient(180deg, #fb7fb1 0%, #ff7fb2 40%, #ff66a6 70%, hsl(337, 100%, 67%) 100%);
-  border:1px solid rgba(255,255,255,.28);
+    linear-gradient(180deg, #ff4fd8 0%, #d936ff 34%, #8a35ff 70%, #5b20d6 100%);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 10px 24px rgba(219,140,176,.18),
-    0 0 16px rgba(255,236,243,.22),
+    0 10px 24px rgba(80,20,150,.28),
+    0 0 18px rgba(255,80,220,.24),
     inset 0 1px 0 rgba(255,255,255,.34);
 }
 
@@ -45,43 +45,48 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(247, 74, 155, 0.96),
-      rgba(255, 123, 171, 0.88),
-      rgba(255, 110, 173, 0.74),
-      rgba(255,255,255,.94)
+      rgba(255,255,255,.96),
+      rgba(255,90,220,.82),
+      rgba(135,60,255,.78),
+      rgba(255,255,255,.90)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
-  opacity:.94;
+  opacity:.95;
   pointer-events:none;
   z-index:5;
 }
 
-/* reflejo */
+/* shine overlay */
 #goal-wrapper::after{
   content:"";
   position:absolute;
-  top:-20%;
-  left:-40%;
-  width:180%;
-  height:60%;
-  background: linear-gradient(
-    135deg,
+  inset:-55%;
+  background:linear-gradient(
+    120deg,
     transparent 0%,
-    rgba(255,255,255,.05) 36%,
-    rgba(255,255,255,.18) 50%,
-    rgba(255,255,255,.05) 64%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 100%
   );
-  transform:rotate(6deg);
+  transform:translateY(120%) rotate(12deg);
+  animation:goalFlashShine 4.2s linear infinite;
   pointer-events:none;
-  z-index:1;
+  z-index:3;
+  mix-blend-mode:screen;
 }
 
-/* FILL MÁS VISIBLE */
+@keyframes goalFlashShine{
+  0%{ transform:translateY(120%) rotate(12deg); }
+  45%{ transform:translateY(-120%) rotate(12deg); }
+  100%{ transform:translateY(-120%) rotate(12deg); }
+}
+
+/* fill */
 #bar-fill{
   position:absolute;
   bottom:0;
@@ -92,19 +97,18 @@ body{
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
-    linear-gradient(180deg, #ffe7f0 0%, #ffcfe0 50%, #f4abc8 100%);
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06)),
+    linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(255,180,255,.32) 50%, rgba(255,255,255,.24) 100%);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.24),
-    inset 0 0 20px rgba(255,255,255,.08),
-    0 0 14px rgba(241,172,204,.18),
-    0 0 22px rgba(241,172,204,.10);
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 0 20px rgba(255,255,255,.12),
+    0 0 16px rgba(255,255,255,.22),
+    0 0 24px rgba(255,80,220,.14);
 
   overflow:hidden;
 }
 
-/* shine vertical */
 #bar-fill::before{
   content:"";
   position:absolute;
@@ -112,18 +116,17 @@ body{
   background: linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255,255,255,.10) 38%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.10) 62%,
+    rgba(255,255,255,.12) 38%,
+    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.12) 62%,
     transparent 100%
   );
   transform:translateY(120%);
-  animation:goalShineVerticalPinkFix 4.6s linear infinite;
+  animation:goalFillShine 4.6s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.88;
 }
 
-/* partículas suaves */
 #bar-fill::after{
   content:"✦  •  ✦";
   position:absolute;
@@ -133,28 +136,29 @@ body{
   text-align:center;
   font-size:10px;
   line-height:1.8;
-  color:rgba(255,255,255,.78);
+  color:rgba(255,255,255,.86);
   text-shadow:
-    0 0 6px rgba(255,255,255,.32),
-    0 0 10px rgba(244,171,200,.18);
-  animation:pinkParticles 3.8s linear infinite;
+    -1px -1px 0 #000,
+     1px  1px 0 #000,
+     0 0 8px rgba(255,255,255,.35);
+  animation:purpleParticles 3.8s linear infinite;
   pointer-events:none;
-  opacity:.85;
+  opacity:.90;
 }
 
-@keyframes goalShineVerticalPinkFix{
+@keyframes goalFillShine{
   0%{ transform:translateY(120%); }
   45%{ transform:translateY(-120%); }
   100%{ transform:translateY(-120%); }
 }
 
-@keyframes pinkParticles{
+@keyframes purpleParticles{
   0%{
     transform:translateY(12px);
     opacity:.18;
   }
   20%{
-    opacity:.85;
+    opacity:.90;
   }
   100%{
     transform:translateY(-110px);
@@ -162,7 +166,6 @@ body{
   }
 }
 
-/* label */
 .goal-label{
   position:absolute;
   inset:0;
@@ -173,7 +176,7 @@ body{
   z-index:6;
 }
 
-/* TEXTO ROTADO 90° */
+/* texto rotado */
 .goal-title{
   position:absolute;
   top:50%;
@@ -190,14 +193,17 @@ body{
   white-space:nowrap;
 
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 10px rgba(255,255,255,.10);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 10px rgba(255,255,255,.12);
 }
 
-/* monto abajo */
+/* monto abajo rotado */
 .goal-amount{
   position:absolute;
-  bottom:20px;           /* 👈 pegado al fondo */
+  bottom:20px;
   left:50%;
   transform:translateX(-50%) rotate(-90deg) translateY(2px);
   transform-origin:center;
@@ -209,14 +215,17 @@ body{
   white-space:nowrap;
 
   text-shadow:
-    2px 2px 0 var(--txt-shadow);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000;
 }
 
 .goal-title.neon{
-  animation:goalPulsePinkFix 1.25s ease-in-out infinite alternate;
+  animation:goalPulsePurple 1.25s ease-in-out infinite alternate;
 }
 
-@keyframes goalPulsePinkFix{
+@keyframes goalPulsePurple{
   from{ filter:brightness(1); }
-  to{ filter:brightness(1.08); }
+  to{ filter:brightness(1.10); }
 }

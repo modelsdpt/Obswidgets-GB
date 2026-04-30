@@ -1,17 +1,16 @@
 /* =========================
-   TIMER – Pink Sparkle Theme
+   TIMER – Purple Pink Flash Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#ffd9e8;
-  --card2:#f8c4d9;
-  --card3:#efadc9;
-  --card4:#f5bdd4;
-  --card5:#ffe5ef;
+  --card1:#ff4fd8;
+  --card2:#d936ff;
+  --card3:#8a35ff;
+  --card4:#5b20d6;
 
   --txt:#ffffff;
-  --txt-shadow:#b96d8c;
+  --txt-shadow:#000000;
 }
 
 *{ box-sizing:border-box; }
@@ -34,17 +33,43 @@ body{
     radial-gradient(circle at 14% 18%, rgba(255,255,255,.40), transparent 20%),
     radial-gradient(circle at 82% 22%, rgba(255,255,255,.18), transparent 24%),
     radial-gradient(circle at 24% 72%, rgba(255,255,255,.10), transparent 22%),
-    linear-gradient(180deg, #fb7fb1 0%, #ff7fb2 40%, #ff66a6 70%, hsl(337, 100%, 67%) 100%);
-  border:1px solid rgba(255,255,255,.28);
+    linear-gradient(135deg, #ff4fd8 0%, #d936ff 32%, #8a35ff 68%, #5b20d6 100%);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 8px 22px rgba(219,140,176,.16),
-    0 0 16px rgba(255,236,243,.24),
+    0 8px 22px rgba(80,20,150,.28),
+    0 0 18px rgba(255,80,220,.24),
     inset 0 1px 0 rgba(255,255,255,.34);
+}
+
+/* shine overlay */
+.timer-widget::after{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:timerFlashShine 4.2s linear infinite;
+  pointer-events:none;
+  z-index:2;
+  mix-blend-mode:screen;
+}
+
+@keyframes timerFlashShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .timer-title{
   position:relative;
-  z-index:1;
+  z-index:3;
   text-align:center;
   font-family:'Anton', sans-serif;
   font-size:18px;
@@ -53,11 +78,16 @@ body{
   color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 10px rgba(255,255,255,.10);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 10px rgba(255,255,255,.12);
 }
 
 .timer-display{
+  position:relative;
+  z-index:3;
   display:flex;
   justify-content:center;
 }
@@ -73,14 +103,14 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.20), transparent 14%),
-    radial-gradient(circle at 34% 58%, rgba(255,255,255,.12), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.10), transparent 12%),
-    linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(248,196,217,.55) 45%, rgba(239,173,201,.70) 100%);
-  border:1px solid rgba(255,255,255,.22);
+    radial-gradient(circle at 16% 40%, rgba(255,255,255,.22), transparent 14%),
+    radial-gradient(circle at 34% 58%, rgba(255,255,255,.14), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,255,255,.12), transparent 12%),
+    linear-gradient(135deg, rgba(255,255,255,.24) 0%, rgba(255,90,220,.34) 42%, rgba(100,40,220,.44) 100%);
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    0 4px 12px rgba(219,140,176,.14),
-    inset 0 1px 0 rgba(255,255,255,.24);
+    0 4px 12px rgba(80,20,150,.24),
+    inset 0 1px 0 rgba(255,255,255,.26);
 }
 
 .timer-box::before{
@@ -88,15 +118,15 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.12), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.14), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.03) 0px,
-      rgba(255,255,255,.03) 2px,
+      rgba(255,255,255,.035) 0px,
+      rgba(255,255,255,.035) 2px,
       rgba(255,255,255,0) 2px,
       rgba(255,255,255,0) 8px
     );
-  opacity:.82;
+  opacity:.85;
 }
 
 .timer-box::after{
@@ -107,17 +137,17 @@ body{
     120deg,
     transparent 0%,
     rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.24) 50%,
+    rgba(255,255,255,.26) 50%,
     rgba(255,255,255,.08) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerShine 4.4s linear infinite;
+  animation:timerBoxShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.86;
 }
 
-@keyframes timerShine{
+@keyframes timerBoxShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -131,39 +161,45 @@ body{
   letter-spacing:.06em;
   color:#ffffff;
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 10px rgba(255,255,255,.12);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 10px rgba(255,255,255,.12);
 }
 
 .timer-box.timer-running{
-  animation:timerPulse 1.15s ease-in-out infinite alternate;
+  animation:timerPulsePurple 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulse{
+@keyframes timerPulsePurple{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(219,140,176,.14),
-      inset 0 1px 0 rgba(255,255,255,.24);
+      0 4px 12px rgba(80,20,150,.24),
+      inset 0 1px 0 rgba(255,255,255,.26);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(219,140,176,.18),
-      inset 0 1px 0 rgba(255,255,255,.28),
-      0 0 14px rgba(255,234,242,.18);
+      0 6px 16px rgba(80,20,150,.30),
+      inset 0 1px 0 rgba(255,255,255,.30),
+      0 0 16px rgba(255,80,220,.22);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(219,140,176,.18),
-    inset 0 1px 0 rgba(255,255,255,.28),
-    0 0 18px rgba(255,234,242,.20);
+    0 6px 16px rgba(80,20,150,.30),
+    inset 0 1px 0 rgba(255,255,255,.30),
+    0 0 20px rgba(255,80,220,.26);
 }
 
 .timer-box.timer-finished #timer-value{
   text-shadow:
-    2px 2px 0 var(--txt-shadow),
-    0 0 12px rgba(255,255,255,.18);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 14px rgba(255,255,255,.18);
 }
