@@ -1,16 +1,11 @@
 /* =========================
-   TIMER – Purple Pink Flash Theme
+   TIMER – Black Chains Shine Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --card1:#ff4fd8;
-  --card2:#d936ff;
-  --card3:#8a35ff;
-  --card4:#5b20d6;
-
   --txt:#ffffff;
-  --txt-shadow:#000000;
+  --stroke:#000000;
 }
 
 *{ box-sizing:border-box; }
@@ -30,15 +25,15 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.40), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.18), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.10), transparent 22%),
-    linear-gradient(135deg, #ff4fd8 0%, #d936ff 32%, #8a35ff 68%, #5b20d6 100%);
-  border:1px solid rgba(255,255,255,.30);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.12), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.08), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.06), transparent 22%),
+    linear-gradient(145deg, #1d1e25 0%, #0d0e13 46%, #030304 100%);
+  border:1px solid rgba(255,255,255,.16);
   box-shadow:
-    0 8px 22px rgba(80,20,150,.28),
-    0 0 18px rgba(255,80,220,.24),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 8px 22px rgba(0,0,0,.62),
+    0 0 16px rgba(255,255,255,.08),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 /* shine overlay */
@@ -49,19 +44,36 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.07) 38%,
+    rgba(255,255,255,.28) 50%,
+    rgba(255,255,255,.07) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerFlashShine 4.2s linear infinite;
+  animation:timerChainShine 4.2s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerFlashShine{
+/* chains */
+.timer-widget::before{
+  content:"⛓     ⛓     ⛓";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:6px;
+  font-size:12px;
+  letter-spacing:8px;
+  color:rgba(235,240,248,.14);
+  text-shadow:0 0 8px rgba(255,255,255,.12);
+  pointer-events:none;
+  z-index:1;
+}
+
+@keyframes timerChainShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -82,7 +94,7 @@ body{
      2px -2px 0 #000,
     -2px  2px 0 #000,
      2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.12);
+     0 0 10px rgba(255,255,255,.18);
 }
 
 .timer-display{
@@ -103,30 +115,24 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.22), transparent 14%),
-    radial-gradient(circle at 34% 58%, rgba(255,255,255,.14), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.12), transparent 12%),
-    linear-gradient(135deg, rgba(255,255,255,.24) 0%, rgba(255,90,220,.34) 42%, rgba(100,40,220,.44) 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(circle at 16% 40%, rgba(255,255,255,.12), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,255,255,.08), transparent 12%),
+    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(60,62,75,.46) 45%, rgba(6,6,8,.86) 100%);
+  border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 4px 12px rgba(80,20,150,.24),
-    inset 0 1px 0 rgba(255,255,255,.26);
+    0 4px 12px rgba(0,0,0,.44),
+    inset 0 1px 0 rgba(255,255,255,.12);
 }
 
 .timer-box::before{
-  content:"";
+  content:"⛓";
   position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.14), transparent 38%),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.035) 0px,
-      rgba(255,255,255,.035) 2px,
-      rgba(255,255,255,0) 2px,
-      rgba(255,255,255,0) 8px
-    );
-  opacity:.85;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:rgba(255,255,255,.36);
+  text-shadow:0 0 8px rgba(255,255,255,.14);
 }
 
 .timer-box::after{
@@ -137,17 +143,17 @@ body{
     120deg,
     transparent 0%,
     rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.26) 50%,
+    rgba(255,255,255,.24) 50%,
     rgba(255,255,255,.08) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxShine 4.4s linear infinite;
+  animation:timerBoxChainShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.86;
+  opacity:.82;
 }
 
-@keyframes timerBoxShine{
+@keyframes timerBoxChainShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -165,41 +171,32 @@ body{
      2px -2px 0 #000,
     -2px  2px 0 #000,
      2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.12);
+     0 0 10px rgba(255,255,255,.18);
 }
 
 .timer-box.timer-running{
-  animation:timerPulsePurple 1.15s ease-in-out infinite alternate;
+  animation:timerPulseChains 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulsePurple{
+@keyframes timerPulseChains{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(80,20,150,.24),
-      inset 0 1px 0 rgba(255,255,255,.26);
+      0 4px 12px rgba(0,0,0,.44),
+      inset 0 1px 0 rgba(255,255,255,.12);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(80,20,150,.30),
-      inset 0 1px 0 rgba(255,255,255,.30),
-      0 0 16px rgba(255,80,220,.22);
+      0 6px 16px rgba(0,0,0,.52),
+      inset 0 1px 0 rgba(255,255,255,.16),
+      0 0 16px rgba(255,255,255,.10);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(80,20,150,.30),
-    inset 0 1px 0 rgba(255,255,255,.30),
-    0 0 20px rgba(255,80,220,.26);
-}
-
-.timer-box.timer-finished #timer-value{
-  text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 14px rgba(255,255,255,.18);
+    0 6px 16px rgba(0,0,0,.52),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 20px rgba(255,255,255,.12);
 }
