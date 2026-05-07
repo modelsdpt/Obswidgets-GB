@@ -1,11 +1,12 @@
 /* =========================
-   TIMER – Black Chains Shine Theme
+   TIMER – Pink Marble Gloss Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --stroke:#000000;
+  --stroke:#b84f6c;
+  --dark-stroke:#8d3650;
 }
 
 *{ box-sizing:border-box; }
@@ -25,55 +26,41 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.12), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.08), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.06), transparent 22%),
-    linear-gradient(145deg, #1d1e25 0%, #0d0e13 46%, #030304 100%);
-  border:1px solid rgba(255,255,255,.16);
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.52), transparent 20%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.26), transparent 24%),
+    radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.16), transparent 22%),
+    linear-gradient(135deg, #ffdce3 0%, #f9b7c4 34%, #ef8fa4 68%, #ffd2da 100%);
+  border:1px solid rgba(255,255,255,.40);
   box-shadow:
-    0 8px 22px rgba(0,0,0,.62),
-    0 0 16px rgba(255,255,255,.08),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 8px 22px rgba(224,116,142,.18),
+    0 0 16px rgba(255,230,236,.30),
+    inset 0 1px 0 rgba(255,255,255,.40);
 }
 
-/* shine overlay */
+/* marble shine */
 .timer-widget::after{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.07) 38%,
-    rgba(255,255,255,.28) 50%,
-    rgba(255,255,255,.07) 62%,
-    transparent 100%
-  );
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(255,255,255,.22) 0 9%, transparent 10%),
+    radial-gradient(ellipse at 70% 42%, rgba(255,255,255,.16) 0 10%, transparent 11%),
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.08) 38%,
+      rgba(255,255,255,.32) 50%,
+      rgba(255,255,255,.08) 62%,
+      transparent 100%
+    );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerChainShine 4.2s linear infinite;
+  animation:timerMarbleShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-/* chains */
-.timer-widget::before{
-  content:"⛓     ⛓     ⛓";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:6px;
-  font-size:12px;
-  letter-spacing:8px;
-  color:rgba(235,240,248,.14);
-  text-shadow:0 0 8px rgba(255,255,255,.12);
-  pointer-events:none;
-  z-index:1;
-}
-
-@keyframes timerChainShine{
+@keyframes timerMarbleShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -90,11 +77,12 @@ body{
   color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.18);
+    -1px -1px 0 var(--dark-stroke),
+     1px -1px 0 var(--dark-stroke),
+    -1px  1px 0 var(--dark-stroke),
+     1px  1px 0 var(--dark-stroke),
+     2px  2px 0 rgba(120,45,65,.30),
+     0 0 10px rgba(255,255,255,.16);
 }
 
 .timer-display{
@@ -115,24 +103,29 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.12), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.08), transparent 12%),
-    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(60,62,75,.46) 45%, rgba(6,6,8,.86) 100%);
-  border:1px solid rgba(255,255,255,.14);
+    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.30), transparent 15%),
+    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.18), transparent 14%),
+    linear-gradient(135deg, rgba(255,255,255,.28) 0%, rgba(255,204,216,.50) 42%, rgba(239,143,164,.58) 100%);
+  border:1px solid rgba(255,255,255,.28);
   box-shadow:
-    0 4px 12px rgba(0,0,0,.44),
-    inset 0 1px 0 rgba(255,255,255,.12);
+    0 4px 12px rgba(224,116,142,.14),
+    inset 0 1px 0 rgba(255,255,255,.30);
 }
 
 .timer-box::before{
-  content:"⛓";
+  content:"";
   position:absolute;
-  left:10px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:13px;
-  color:rgba(255,255,255,.36);
-  text-shadow:0 0 8px rgba(255,255,255,.14);
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.16), transparent 38%),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.035) 0px,
+      rgba(255,255,255,.035) 2px,
+      rgba(255,255,255,0) 2px,
+      rgba(255,255,255,0) 8px
+    );
+  opacity:.85;
 }
 
 .timer-box::after{
@@ -142,18 +135,18 @@ body{
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.24) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.10) 35%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxChainShine 4.4s linear infinite;
+  animation:timerBoxMarbleShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.86;
 }
 
-@keyframes timerBoxChainShine{
+@keyframes timerBoxMarbleShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -167,36 +160,46 @@ body{
   letter-spacing:.06em;
   color:#ffffff;
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.18);
+    -1px -1px 0 var(--dark-stroke),
+     1px -1px 0 var(--dark-stroke),
+    -1px  1px 0 var(--dark-stroke),
+     1px  1px 0 var(--dark-stroke),
+     2px  2px 0 rgba(120,45,65,.30),
+     0 0 10px rgba(255,255,255,.16);
 }
 
 .timer-box.timer-running{
-  animation:timerPulseChains 1.15s ease-in-out infinite alternate;
+  animation:timerPulseMarble 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseChains{
+@keyframes timerPulseMarble{
   from{
     transform:translateY(0);
     box-shadow:
-      0 4px 12px rgba(0,0,0,.44),
-      inset 0 1px 0 rgba(255,255,255,.12);
+      0 4px 12px rgba(224,116,142,.14),
+      inset 0 1px 0 rgba(255,255,255,.30);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(0,0,0,.52),
-      inset 0 1px 0 rgba(255,255,255,.16),
-      0 0 16px rgba(255,255,255,.10);
+      0 6px 16px rgba(224,116,142,.18),
+      inset 0 1px 0 rgba(255,255,255,.34),
+      0 0 16px rgba(255,230,236,.24);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(0,0,0,.52),
-    inset 0 1px 0 rgba(255,255,255,.16),
-    0 0 20px rgba(255,255,255,.12);
+    0 6px 16px rgba(224,116,142,.18),
+    inset 0 1px 0 rgba(255,255,255,.34),
+    0 0 20px rgba(255,230,236,.26);
+}
+
+.timer-box.timer-finished #timer-value{
+  text-shadow:
+    -1px -1px 0 var(--dark-stroke),
+     1px -1px 0 var(--dark-stroke),
+    -1px  1px 0 var(--dark-stroke),
+     1px  1px 0 var(--dark-stroke),
+     0 0 14px rgba(255,255,255,.22);
 }

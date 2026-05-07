@@ -1,11 +1,12 @@
 /* =========================
-   GOAL BAR VERTICAL – Black Chains Shine Theme
+   GOAL BAR VERTICAL – Pink Marble Gloss Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --stroke:#000000;
+  --stroke:#b84f6c;
+  --dark-stroke:#8d3650;
 }
 
 *{ box-sizing:border-box; }
@@ -25,17 +26,18 @@ body{
   border-radius:20px;
 
   background:
-    radial-gradient(circle at 22% 10%, rgba(255,255,255,.12), transparent 18%),
-    radial-gradient(circle at 80% 18%, rgba(255,255,255,.08), transparent 16%),
-    linear-gradient(180deg, #1d1e25 0%, #0d0e13 46%, #030304 100%);
-  border:1px solid rgba(255,255,255,.16);
+    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.58), transparent 18%),
+    radial-gradient(ellipse at 76% 16%, rgba(255,255,255,.24), transparent 16%),
+    radial-gradient(ellipse at 28% 75%, rgba(255,255,255,.18), transparent 18%),
+    linear-gradient(180deg, #ffdce3 0%, #f9b7c4 36%, #ef8fa4 72%, #ffd2da 100%);
+  border:1px solid rgba(255,255,255,.40);
   box-shadow:
-    0 10px 24px rgba(0,0,0,.65),
-    0 0 18px rgba(255,255,255,.08),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 10px 24px rgba(224,116,142,.20),
+    0 0 18px rgba(255,230,236,.30),
+    inset 0 1px 0 rgba(255,255,255,.40);
 }
 
-/* marco */
+/* borde */
 #goal-wrapper::before{
   content:"";
   position:absolute;
@@ -45,36 +47,48 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.34),
-      rgba(115,120,132,.22),
-      rgba(255,255,255,.10),
-      rgba(220,225,235,.28)
+      rgba(255,255,255,.96),
+      rgba(255,210,220,.88),
+      rgba(239,143,164,.72),
+      rgba(255,255,255,.90)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
-  opacity:.95;
+  opacity:.96;
   pointer-events:none;
   z-index:5;
 }
 
-/* chains + shine */
+/* marble shine overlay */
 #goal-wrapper::after{
-  content:"⛓  ⛓  ⛓";
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:10px;
-  font-size:13px;
-  writing-mode:vertical-rl;
-  color:rgba(235,240,248,.15);
-  text-shadow:0 0 8px rgba(255,255,255,.12);
+  inset:-55%;
+  background:
+    radial-gradient(ellipse at 20% 25%, rgba(255,255,255,.24) 0 9%, transparent 10%),
+    radial-gradient(ellipse at 70% 40%, rgba(255,255,255,.18) 0 10%, transparent 11%),
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.08) 38%,
+      rgba(255,255,255,.34) 50%,
+      rgba(255,255,255,.08) 62%,
+      transparent 100%
+    );
+  transform:translateY(120%) rotate(12deg);
+  animation:goalMarbleShine 4.8s linear infinite;
   pointer-events:none;
-  z-index:1;
+  z-index:3;
+  mix-blend-mode:screen;
+}
+
+@keyframes goalMarbleShine{
+  0%{ transform:translateY(120%) rotate(12deg); }
+  45%{ transform:translateY(-120%) rotate(12deg); }
+  100%{ transform:translateY(-120%) rotate(12deg); }
 }
 
 #bar-fill{
@@ -87,12 +101,13 @@ body{
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
-    linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(190,195,210,.30) 50%, rgba(255,255,255,.22) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.08)),
+    linear-gradient(180deg, rgba(255,246,248,.52) 0%, rgba(255,198,211,.48) 48%, rgba(239,143,164,.44) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.30),
-    inset 0 0 22px rgba(255,255,255,.10),
-    0 0 16px rgba(255,255,255,.18);
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 0 20px rgba(255,255,255,.12),
+    0 0 16px rgba(255,255,255,.24),
+    0 0 22px rgba(224,116,142,.14);
   overflow:hidden;
 }
 
@@ -100,22 +115,23 @@ body{
   content:"";
   position:absolute;
   inset:-20%;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(255,255,255,.12) 38%,
-    rgba(255,255,255,.36) 50%,
-    rgba(255,255,255,.12) 62%,
-    transparent 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255,255,255,.12) 38%,
+      rgba(255,255,255,.38) 50%,
+      rgba(255,255,255,.12) 62%,
+      transparent 100%
+    );
   transform:translateY(120%);
-  animation:goalChainFillShine 4.6s linear infinite;
+  animation:goalFillMarbleShine 4.6s linear infinite;
   mix-blend-mode:screen;
-  opacity:.86;
+  opacity:.88;
 }
 
 #bar-fill::after{
-  content:"⛓  •  ⛓";
+  content:"✦  •  ✦";
   position:absolute;
   left:0;
   right:0;
@@ -123,23 +139,22 @@ body{
   text-align:center;
   font-size:10px;
   line-height:1.8;
-  color:rgba(255,255,255,.78);
+  color:rgba(255,255,255,.88);
   text-shadow:
-    -1px -1px 0 #000,
-     1px  1px 0 #000,
-     0 0 8px rgba(255,255,255,.32);
-  animation:chainParticles 3.8s linear infinite;
+    1px 1px 0 var(--stroke),
+    0 0 8px rgba(255,255,255,.35);
+  animation:marbleParticles 3.8s linear infinite;
   pointer-events:none;
   opacity:.90;
 }
 
-@keyframes goalChainFillShine{
+@keyframes goalFillMarbleShine{
   0%{ transform:translateY(120%); }
   45%{ transform:translateY(-120%); }
   100%{ transform:translateY(-120%); }
 }
 
-@keyframes chainParticles{
+@keyframes marbleParticles{
   0%{ transform:translateY(12px); opacity:.18; }
   20%{ opacity:.90; }
   100%{ transform:translateY(-110px); opacity:0; }
@@ -171,38 +186,47 @@ body{
   white-space:nowrap;
 
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.18);
+    -1px -1px 0 var(--dark-stroke),
+     1px -1px 0 var(--dark-stroke),
+    -1px  1px 0 var(--dark-stroke),
+     1px  1px 0 var(--dark-stroke),
+     2px  2px 0 rgba(120,45,65,.32),
+     0 0 10px rgba(255,255,255,.16);
 }
 
+/* números más legibles y separados del borde */
 .goal-amount{
   position:absolute;
-  bottom:20px;
+  bottom:42px;
   left:50%;
-  transform:translateX(-50%) rotate(-90deg) translateY(2px);
+  transform:translateX(-50%) rotate(-90deg);
   transform-origin:center;
 
   font-family:'Orbitron', sans-serif;
-  font-size:11px;
+  font-size:12px;
   font-weight:800;
   color:#fff;
   white-space:nowrap;
+  padding:2px 6px;
+  border-radius:8px;
+
+  background:rgba(140,50,75,.22);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
 
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000;
+    -1px -1px 0 var(--dark-stroke),
+     1px -1px 0 var(--dark-stroke),
+    -1px  1px 0 var(--dark-stroke),
+     1px  1px 0 var(--dark-stroke),
+     0 0 8px rgba(255,255,255,.18);
 }
 
 .goal-title.neon{
-  animation:goalPulseChains 1.25s ease-in-out infinite alternate;
+  animation:goalPulseMarble 1.25s ease-in-out infinite alternate;
 }
 
-@keyframes goalPulseChains{
+@keyframes goalPulseMarble{
   from{ filter:brightness(1); }
-  to{ filter:brightness(1.12); }
+  to{ filter:brightness(1.10); }
 }
