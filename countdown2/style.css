@@ -1,12 +1,11 @@
 /* =========================
-   TIMER – Pink Marble Gloss Theme
+   TIMER – Dark Neon Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --txt:#ffffff;
-  --stroke:#b84f6c;
-  --dark-stroke:#8d3650;
+  --txt:#fff6f8;
+  --outline:#f5c7d1;
 }
 
 *{ box-sizing:border-box; }
@@ -26,41 +25,37 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.52), transparent 20%),
-    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.26), transparent 24%),
-    radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.16), transparent 22%),
-    linear-gradient(135deg, #ffdce3 0%, #f9b7c4 34%, #ef8fa4 68%, #ffd2da 100%);
-  border:1px solid rgba(255,255,255,.40);
+    radial-gradient(circle at 14% 18%, rgba(255,218,226,.12), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,218,226,.08), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(255,218,226,.06), transparent 22%),
+    linear-gradient(145deg, #2a151d 0%, #170b10 48%, #070304 100%);
+  border:1px solid rgba(255,220,228,.20);
   box-shadow:
-    0 8px 22px rgba(224,116,142,.18),
-    0 0 16px rgba(255,230,236,.30),
-    inset 0 1px 0 rgba(255,255,255,.40);
+    0 8px 22px rgba(0,0,0,.62),
+    0 0 16px rgba(245,199,209,.10),
+    inset 0 1px 0 rgba(255,255,255,.06);
 }
 
-/* marble shine */
 .timer-widget::after{
   content:"";
   position:absolute;
   inset:-45%;
-  background:
-    radial-gradient(ellipse at 18% 28%, rgba(255,255,255,.22) 0 9%, transparent 10%),
-    radial-gradient(ellipse at 70% 42%, rgba(255,255,255,.16) 0 10%, transparent 11%),
-    linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255,255,255,.08) 38%,
-      rgba(255,255,255,.32) 50%,
-      rgba(255,255,255,.08) 62%,
-      transparent 100%
-    );
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.05) 38%,
+    rgba(255,236,241,.22) 50%,
+    rgba(255,255,255,.05) 62%,
+    transparent 100%
+  );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerMarbleShine 4.8s linear infinite;
+  animation:timerEdgeShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerMarbleShine{
+@keyframes timerEdgeShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -74,15 +69,15 @@ body{
   font-size:18px;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:#ffffff;
+  color:#fff6f8;
   margin-bottom:10px;
   text-shadow:
-    -1px -1px 0 var(--dark-stroke),
-     1px -1px 0 var(--dark-stroke),
-    -1px  1px 0 var(--dark-stroke),
-     1px  1px 0 var(--dark-stroke),
-     2px  2px 0 rgba(120,45,65,.30),
-     0 0 10px rgba(255,255,255,.16);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(245,199,209,.28),
+     2px 2px 0 rgba(0,0,0,.68);
 }
 
 .timer-display{
@@ -103,13 +98,13 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.30), transparent 15%),
-    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.18), transparent 14%),
-    linear-gradient(135deg, rgba(255,255,255,.28) 0%, rgba(255,204,216,.50) 42%, rgba(239,143,164,.58) 100%);
-  border:1px solid rgba(255,255,255,.28);
+    radial-gradient(circle at 16% 40%, rgba(255,218,226,.12), transparent 14%),
+    radial-gradient(circle at 62% 36%, rgba(255,218,226,.08), transparent 12%),
+    linear-gradient(135deg, rgba(255,236,241,.10) 0%, rgba(60,28,38,.52) 45%, rgba(8,3,4,.88) 100%);
+  border:1px solid rgba(255,220,228,.14);
   box-shadow:
-    0 4px 12px rgba(224,116,142,.14),
-    inset 0 1px 0 rgba(255,255,255,.30);
+    0 4px 12px rgba(0,0,0,.44),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .timer-box::before{
@@ -117,15 +112,15 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.16), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.06), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.035) 0px,
-      rgba(255,255,255,.035) 2px,
+      rgba(255,255,255,.014) 0px,
+      rgba(255,255,255,.014) 2px,
       rgba(255,255,255,0) 2px,
       rgba(255,255,255,0) 8px
     );
-  opacity:.85;
+  opacity:.82;
 }
 
 .timer-box::after{
@@ -135,18 +130,18 @@ body{
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.10) 35%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.10) 62%,
+    rgba(255,255,255,.06) 35%,
+    rgba(255,236,241,.24) 50%,
+    rgba(255,255,255,.06) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxMarbleShine 4.4s linear infinite;
+  animation:timerBoxEdgeShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.86;
+  opacity:.82;
 }
 
-@keyframes timerBoxMarbleShine{
+@keyframes timerBoxEdgeShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -158,48 +153,36 @@ body{
   font-family:'Anton', sans-serif;
   font-size:34px;
   letter-spacing:.06em;
-  color:#ffffff;
+  color:#fff6f8;
   text-shadow:
-    -1px -1px 0 var(--dark-stroke),
-     1px -1px 0 var(--dark-stroke),
-    -1px  1px 0 var(--dark-stroke),
-     1px  1px 0 var(--dark-stroke),
-     2px  2px 0 rgba(120,45,65,.30),
-     0 0 10px rgba(255,255,255,.16);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(245,199,209,.28),
+     2px 2px 0 rgba(0,0,0,.68);
 }
 
 .timer-box.timer-running{
-  animation:timerPulseMarble 1.15s ease-in-out infinite alternate;
+  animation:timerPulseEdge 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseMarble{
+@keyframes timerPulseEdge{
   from{
     transform:translateY(0);
-    box-shadow:
-      0 4px 12px rgba(224,116,142,.14),
-      inset 0 1px 0 rgba(255,255,255,.30);
   }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(224,116,142,.18),
-      inset 0 1px 0 rgba(255,255,255,.34),
-      0 0 16px rgba(255,230,236,.24);
+      0 6px 16px rgba(0,0,0,.50),
+      inset 0 1px 0 rgba(255,255,255,.12),
+      0 0 16px rgba(245,199,209,.12);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(224,116,142,.18),
-    inset 0 1px 0 rgba(255,255,255,.34),
-    0 0 20px rgba(255,230,236,.26);
-}
-
-.timer-box.timer-finished #timer-value{
-  text-shadow:
-    -1px -1px 0 var(--dark-stroke),
-     1px -1px 0 var(--dark-stroke),
-    -1px  1px 0 var(--dark-stroke),
-     1px  1px 0 var(--dark-stroke),
-     0 0 14px rgba(255,255,255,.22);
+    0 6px 16px rgba(0,0,0,.52),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    0 0 20px rgba(245,199,209,.16);
 }

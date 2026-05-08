@@ -1,13 +1,12 @@
 /* =========================
-   TIMER – Black Lights Pink Powerline Theme
+   TIMER – Candy Pink Neon Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --pink-line:#ff5fb2;
-  --pink-soft:#ff9bd0;
-  --gold-light:#ffd76f;
+  --outline:#ffd2e3;
+  --shadow:#b84f7d;
 }
 
 *{ box-sizing:border-box; }
@@ -27,40 +26,64 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 86% 16%, rgba(255,214,97,.92) 0%, rgba(255,214,97,.16) 6%, transparent 14%),
-    radial-gradient(circle at 78% 12%, rgba(255,255,255,.12) 0%, transparent 14%),
-    linear-gradient(145deg, #101015 0%, #060608 34%, #0d0d12 100%);
-  border:1px solid rgba(255,255,255,.14);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.38), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.18), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.12), transparent 22%),
+    linear-gradient(135deg, #ff9abc 0%, #ff7fae 34%, #f25d99 70%, #db3f86 100%);
+  border:1px solid rgba(255,255,255,.34);
   box-shadow:
-    0 8px 22px rgba(0,0,0,.52),
-    0 0 14px rgba(255,95,178,.08),
-    inset 0 1px 0 rgba(255,255,255,.05);
+    0 8px 22px rgba(219,75,135,.22),
+    0 0 16px rgba(255,170,205,.24),
+    inset 0 1px 0 rgba(255,255,255,.36);
+}
+
+.timer-widget::after{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:timerCandyShine 4.8s linear infinite;
+  pointer-events:none;
+  z-index:2;
+  mix-blend-mode:screen;
+}
+
+@keyframes timerCandyShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .timer-title{
   position:relative;
-  z-index:1;
+  z-index:3;
   text-align:center;
   font-family:'Anton', sans-serif;
   font-size:18px;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:#ffffff;
+  color:#fff;
   margin-bottom:10px;
   text-shadow:
-    -1px 0 0 var(--pink-line),
-    1px 0 0 var(--pink-line),
-    0 -1px 0 var(--pink-line),
-    0 1px 0 var(--pink-line),
-    -1px -1px 0 var(--pink-line),
-    1px 1px 0 var(--pink-line),
-    -1px 1px 0 var(--pink-line),
-    1px -1px 0 var(--pink-line),
-    0 0 8px rgba(255,95,178,.28),
-    2px 2px 0 rgba(0,0,0,.52);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     2px  2px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.18);
 }
 
 .timer-display{
+  position:relative;
+  z-index:3;
   display:flex;
   justify-content:center;
 }
@@ -76,14 +99,13 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 84% 18%, rgba(255,214,97,.18), transparent 14%),
-    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-    linear-gradient(135deg, #171720 0%, #0e0e14 52%, #08080c 100%);
-  border:1px solid rgba(255,255,255,.12);
+    radial-gradient(circle at 18% 40%, rgba(255,255,255,.28), transparent 15%),
+    radial-gradient(circle at 70% 38%, rgba(255,255,255,.16), transparent 14%),
+    linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,170,205,.38) 42%, rgba(219,63,134,.42) 100%);
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    0 4px 12px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 0 12px rgba(255,95,178,.08);
+    0 4px 12px rgba(219,75,135,.16),
+    inset 0 1px 0 rgba(255,255,255,.28);
 }
 
 .timer-box::before{
@@ -91,36 +113,36 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.06), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.14), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.015) 0px,
-      rgba(255,255,255,.015) 2px,
+      rgba(255,255,255,.035) 0px,
+      rgba(255,255,255,.035) 2px,
       rgba(255,255,255,0) 2px,
       rgba(255,255,255,0) 8px
     );
-  opacity:.82;
+  opacity:.85;
 }
 
 .timer-box::after{
   content:"";
   position:absolute;
   inset:-30%;
-  background: linear-gradient(
+  background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.06) 35%,
-    rgba(255,255,255,.20) 50%,
-    rgba(255,255,255,.06) 62%,
+    rgba(255,255,255,.10) 35%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerShine 4.4s linear infinite;
+  animation:timerBoxCandyShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.78;
+  opacity:.86;
 }
 
-@keyframes timerShine{
+@keyframes timerBoxCandyShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -132,60 +154,34 @@ body{
   font-family:'Anton', sans-serif;
   font-size:34px;
   letter-spacing:.06em;
-  color:#ffffff;
+  color:#fff;
   text-shadow:
-    -1px 0 0 var(--pink-line),
-    1px 0 0 var(--pink-line),
-    0 -1px 0 var(--pink-line),
-    0 1px 0 var(--pink-line),
-    -1px -1px 0 var(--pink-line),
-    1px 1px 0 var(--pink-line),
-    -1px 1px 0 var(--pink-line),
-    1px -1px 0 var(--pink-line),
-    0 0 8px rgba(255,95,178,.28),
-    2px 2px 0 rgba(0,0,0,.52);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     2px  2px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.18);
 }
 
 .timer-box.timer-running{
-  animation:timerPulse 1.15s ease-in-out infinite alternate;
+  animation:timerPulseCandy 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulse{
-  from{
-    transform:translateY(0);
-    box-shadow:
-      0 4px 12px rgba(0,0,0,.42),
-      inset 0 1px 0 rgba(255,255,255,.05),
-      0 0 12px rgba(255,95,178,.08);
-  }
+@keyframes timerPulseCandy{
+  from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(0,0,0,.48),
-      inset 0 1px 0 rgba(255,255,255,.07),
-      0 0 16px rgba(255,95,178,.14),
-      0 0 12px rgba(255,214,97,.08);
+      0 6px 16px rgba(219,75,135,.22),
+      inset 0 1px 0 rgba(255,255,255,.32),
+      0 0 16px rgba(255,170,205,.22);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(0,0,0,.50),
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 0 18px rgba(255,95,178,.16);
-}
-
-.timer-box.timer-finished #timer-value{
-  text-shadow:
-    -1px 0 0 var(--pink-line),
-    1px 0 0 var(--pink-line),
-    0 -1px 0 var(--pink-line),
-    0 1px 0 var(--pink-line),
-    -1px -1px 0 var(--pink-line),
-    1px 1px 0 var(--pink-line),
-    -1px 1px 0 var(--pink-line),
-    1px -1px 0 var(--pink-line),
-    0 0 12px rgba(255,95,178,.34),
-    0 0 18px rgba(255,95,178,.16),
-    2px 2px 0 rgba(0,0,0,.52);
+    0 6px 16px rgba(219,75,135,.24),
+    inset 0 1px 0 rgba(255,255,255,.32),
+    0 0 20px rgba(255,170,205,.26);
 }
