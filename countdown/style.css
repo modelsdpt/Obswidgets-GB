@@ -1,12 +1,12 @@
 /* =========================
-   TIMER – Candy Pink Neon Theme
+   TIMER – Purple Hearts Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#ffd2e3;
-  --shadow:#b84f7d;
+  --outline:#f5b8ff;
+  --shadow:#5c1fa8;
 }
 
 *{ box-sizing:border-box; }
@@ -26,15 +26,30 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.38), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.18), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.12), transparent 22%),
-    linear-gradient(135deg, #ff9abc 0%, #ff7fae 34%, #f25d99 70%, #db3f86 100%);
-  border:1px solid rgba(255,255,255,.34);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.34), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.16), transparent 24%),
+    linear-gradient(135deg, #db3fc8 0%, #b737dd 35%, #9434ee 68%, #702be0 100%);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 8px 22px rgba(219,75,135,.22),
-    0 0 16px rgba(255,170,205,.24),
-    inset 0 1px 0 rgba(255,255,255,.36);
+    0 8px 22px rgba(95,35,170,.24),
+    0 0 16px rgba(219,63,200,.22),
+    inset 0 1px 0 rgba(255,255,255,.34);
+}
+
+.timer-widget::before{
+  content:"♡     ♡     ♡";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:6px;
+  font-size:12px;
+  letter-spacing:8px;
+  color:rgba(255,225,255,.30);
+  text-shadow:0 0 8px rgba(255,255,255,.20);
+  pointer-events:none;
+  z-index:1;
 }
 
 .timer-widget::after{
@@ -50,13 +65,13 @@ body{
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerCandyShine 4.8s linear infinite;
+  animation:timerHeartShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerCandyShine{
+@keyframes timerHeartShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -99,29 +114,24 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 18% 40%, rgba(255,255,255,.28), transparent 15%),
-    radial-gradient(circle at 70% 38%, rgba(255,255,255,.16), transparent 14%),
-    linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,170,205,.38) 42%, rgba(219,63,134,.42) 100%);
+    radial-gradient(circle at 18% 40%, rgba(255,255,255,.26), transparent 15%),
+    radial-gradient(circle at 70% 38%, rgba(255,255,255,.14), transparent 14%),
+    linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(195,85,240,.34) 42%, rgba(112,43,224,.42) 100%);
   border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    0 4px 12px rgba(219,75,135,.16),
+    0 4px 12px rgba(95,35,170,.18),
     inset 0 1px 0 rgba(255,255,255,.28);
 }
 
 .timer-box::before{
-  content:"";
+  content:"♡";
   position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.14), transparent 38%),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.035) 0px,
-      rgba(255,255,255,.035) 2px,
-      rgba(255,255,255,0) 2px,
-      rgba(255,255,255,0) 8px
-    );
-  opacity:.85;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:rgba(255,255,255,.54);
+  text-shadow:0 0 8px rgba(255,255,255,.20);
 }
 
 .timer-box::after{
@@ -137,12 +147,12 @@ body{
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxCandyShine 4.4s linear infinite;
+  animation:timerBoxHeartShine 4.4s linear infinite;
   mix-blend-mode:screen;
   opacity:.86;
 }
 
-@keyframes timerBoxCandyShine{
+@keyframes timerBoxHeartShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -165,23 +175,23 @@ body{
 }
 
 .timer-box.timer-running{
-  animation:timerPulseCandy 1.15s ease-in-out infinite alternate;
+  animation:timerPulseHeart 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseCandy{
+@keyframes timerPulseHeart{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(219,75,135,.22),
+      0 6px 16px rgba(95,35,170,.24),
       inset 0 1px 0 rgba(255,255,255,.32),
-      0 0 16px rgba(255,170,205,.22);
+      0 0 16px rgba(219,63,200,.22);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(219,75,135,.24),
+    0 6px 16px rgba(95,35,170,.26),
     inset 0 1px 0 rgba(255,255,255,.32),
-    0 0 20px rgba(255,170,205,.26);
+    0 0 20px rgba(219,63,200,.26);
 }
