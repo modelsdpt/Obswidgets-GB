@@ -37,7 +37,7 @@ body{
 }
 
 .timer-widget::before{
-  content:"♡     ♡     ♡";
+  content:"💖     💖     💖   💖";
   position:absolute;
   inset:0;
   display:flex;
@@ -124,7 +124,7 @@ body{
 }
 
 .timer-box::before{
-  content:"♡";
+  content:"💖";
   position:absolute;
   left:10px;
   top:50%;

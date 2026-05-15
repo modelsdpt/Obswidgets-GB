@@ -8,9 +8,9 @@
   --stroke:#000000;
   --chain:#d7dbe4;
 
-  --gold-1:#ffe9a6;
-  --gold-2:#ffd86b;
-  --gold-3:#ffbf2f;
+  --gold-1:#fa7979;
+  --gold-2:#ff1919;
+  --gold-3:#fc1a1a;
 
   --silver-1:#f6f7fb;
   --silver-2:#d9deea;
@@ -217,7 +217,7 @@ body{
 }
 
 .tip.mvp::after{
-  content:"👑";
+  content:"💖";
 }
 
 /* 2DO PLATA */

@@ -37,7 +37,7 @@ body{
 }
 
 .timer-widget::before{
-  content:"⛓     ⛓     ⛓";
+  content:"💖    💖    💖";
   position:absolute;
   inset:0;
   display:flex;
