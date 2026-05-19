@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700;800&display=swap');
 
 :root {
-  --poll-red-main:   #ff4b5c;                 /* rojo principal */
-  --poll-red-strong: #ff1f3a;                 /* rojo intenso */
-  --poll-red-soft:   #ffd6dd;                 /* rosado claro para textos */
-  --poll-border:     rgba(255, 120, 120, 0.95);
-  --poll-glow:       rgba(255, 80, 80, 1);
+  --raffle-main: #ff4b5c;
+  --raffle-strong: #ff1f3a;
+  --raffle-soft: #ffd6dd;
+  --raffle-gold: #ffd966;
+  --raffle-border: rgba(255, 120, 120, 0.95);
+  --raffle-glow: rgba(255, 80, 80, 1);
 }
 
 body {
@@ -13,146 +14,215 @@ body {
   background: transparent;
   font-family: 'Baloo 2', system-ui, sans-serif;
   color: #ffffff;
+  overflow: hidden;
 }
 
-/* CONTENEDOR PRINCIPAL */
-#poll-widget {
-  width: 430px;
-  padding: 12px 14px 10px;
-  background: radial-gradient(circle at top, #200000 0%, #050000 55%, #020000 100%);
-  border-radius: 14px;
-  border: 2px solid var(--poll-border);
+.raffle-widget {
+  position: relative;
+  width: 460px;
+  min-height: 280px;
+  padding: 14px 16px 16px;
+  background: radial-gradient(circle at top, #250000 0%, #080000 55%, #020000 100%);
+  border-radius: 18px;
+  border: 2px solid var(--raffle-border);
   box-shadow:
     0 0 22px rgba(0, 0, 0, 1),
-    0 0 24px var(--poll-glow);
+    0 0 28px var(--raffle-glow);
   box-sizing: border-box;
+  overflow: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-#poll-widget.hidden {
-  opacity: 0;
-  transform: translateY(6px);
+.raffle-widget::before {
+  content: "";
+  position: absolute;
+  top: -80%;
+  left: -40%;
+  width: 70%;
+  height: 260%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  transform: rotate(18deg);
+  animation: raffleShine 3.2s infinite;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-#poll-widget:not(.hidden) {
-  opacity: 1;
-  transform: translateY(0);
 }
 
-/* TÍTULO ENCUESTA */
-.poll-header {
-  margin: 0 0 4px;
+@keyframes raffleShine {
+  0% {
+    left: -70%;
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  60% {
+    left: 120%;
+    opacity: 0;
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+.raffle-widget.hidden {
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  pointer-events: none;
+}
+
+.raffle-widget:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.raffle-header {
   text-align: center;
+  margin-bottom: 12px;
+}
+
+.raffle-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--raffle-main), var(--raffle-strong));
   font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 22px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 0 0 6px #000;
+  box-shadow: 0 0 14px var(--raffle-glow);
+}
+
+.raffle-title {
+  margin: 8px 0 0;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 21px;
   color: #ffffff;
   text-shadow:
-    0 0 4px #000,
-    0 0 12px var(--poll-glow);
+    0 0 5px #000,
+    0 0 12px var(--raffle-glow);
 }
 
-/* PREGUNTA */
-#poll-question {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--poll-red-soft);
-  text-shadow: 0 0 6px rgba(0, 0, 0, 1);
-}
-
-/* OPCIONES */
-.poll-options {
+.raffle-names {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
+  max-height: 190px;
+  overflow: hidden;
 }
 
-.poll-option {
-  padding: 6px 8px 7px;
-  border-radius: 10px;
+.raffle-name-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
   background: linear-gradient(
     180deg,
     rgba(60, 0, 0, 0.98),
     rgba(15, 0, 0, 0.98)
   );
-  border: 1px solid var(--poll-border);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+  border: 1px solid rgba(255, 120, 120, 0.65);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.95);
+  transition:
+    transform 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
 }
 
-/* HEADER (texto + %) */
-.poll-option-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 3px;
-}
-
-.poll-label,
-#label-a,
-#label-b {
-  font-size: 14px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.poll-percent,
-#percent-a,
-#percent-b {
-  font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 14px;
-  color: var(--poll-red-main);
-  text-shadow:
-    0 0 4px rgba(0, 0, 0, 1),
-    0 0 10px var(--poll-glow);
-}
-
-/* BARRA */
-.poll-bar {
-  position: relative;
-  height: 12px;
-  border-radius: 6px;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.poll-bar-fill,
-#fill-a,
-#fill-b {
-  position: absolute;
-  inset: 0;
-  width: 0%;
-  border-radius: 6px;
+.raffle-name-item.active {
+  transform: scale(1.055);
+  border-color: var(--raffle-gold);
   background: linear-gradient(
     90deg,
-    #ffe1e6,
-    var(--poll-red-main),
-    var(--poll-red-strong)
+    rgba(255, 217, 102, 0.28),
+    rgba(255, 31, 58, 0.34)
   );
   box-shadow:
-    0 0 14px var(--poll-glow),
-    0 0 18px var(--poll-glow);
-  transition: width 0.3s ease-out;
+    0 0 16px rgba(255, 217, 102, 0.95),
+    0 0 20px var(--raffle-glow);
 }
 
-/* TEXTO VOTOS */
-.poll-votes,
-#votes-a,
-#votes-b {
-  margin-top: 2px;
-  font-size: 11px;
-  opacity: 0.9;
-  color: var(--poll-red-soft);
+.raffle-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 0 6px #000;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* TOTAL */
-#poll-total {
-  margin-top: 6px;
+.raffle-tickets {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--raffle-soft);
+  white-space: nowrap;
+}
+
+.raffle-winner-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:
+    radial-gradient(circle at center, rgba(255, 75, 92, 0.35), rgba(0, 0, 0, 0.92) 68%),
+    rgba(0, 0, 0, 0.92);
+  z-index: 5;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.raffle-winner-screen.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.raffle-winner-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.winner-label {
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 28px;
+  color: var(--raffle-gold);
+  text-shadow:
+    0 0 8px #000,
+    0 0 18px rgba(255, 217, 102, 1);
+  margin-bottom: 8px;
+}
+
+.winner-name {
+  max-width: 92%;
+  font-family: 'Bungee', system-ui, sans-serif;
+  font-size: 44px;
+  line-height: 1.1;
+  color: #ffffff;
   text-align: center;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--poll-red-soft);
-  opacity: 0.9;
+  text-shadow:
+    0 0 8px #000,
+    0 0 18px var(--raffle-glow),
+    0 0 28px var(--raffle-glow);
+  animation: winnerPop 0.7s ease infinite alternate;
+}
+
+@keyframes winnerPop {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
 }

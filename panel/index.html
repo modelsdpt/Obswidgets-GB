@@ -662,58 +662,44 @@
         </div>
       </div>
 
-      <!-- CARD ENCUESTAS -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Encuestas (A / B)</div>
-            <div class="card-subtitle">
-              Lanza votaciones rápidas para el chat (dos opciones).
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="poll-admin">
-            <div class="poll-inputs">
-              <label for="pollQuestion">Texto de la encuesta</label>
-              <input id="pollQuestion" placeholder="¿Qué hacemos ahora? (Ej: Soltar / Apretar)">
-
-              <label for="pollOptionA">Opción A</label>
-              <input id="pollOptionA" placeholder="Soltar">
-
-              <label for="pollOptionB">Opción B</label>
-              <input id="pollOptionB" placeholder="Apretar">
-
-              <button onclick="pollStart()">Iniciar / Reiniciar encuesta</button>
-              <button class="danger" onclick="pollClear()">Borrar encuesta</button>
-            </div>
-
-            <div class="poll-live">
-              <div id="pollQuestionText">No hay encuesta activa.</div>
-
-              <div class="poll-options">
-                <div class="poll-option">
-                  <div class="poll-option-label" id="pollLabelA">—</div>
-                  <div class="poll-option-bar">
-                    <div class="poll-option-fill" id="pollFillA"></div>
-                  </div>
-                  <div class="poll-option-stats" id="pollStatsA">0 votos (0%)</div>
-                  <button onclick="pollVote('A')">Votar A</button>
-                </div>
-
-                <div class="poll-option">
-                  <div class="poll-option-label" id="pollLabelB">—</div>
-                  <div class="poll-option-bar">
-                    <div class="poll-option-fill" id="pollFillB"></div>
-                  </div>
-                  <div class="poll-option-stats" id="pollStatsB">0 votos (0%)</div>
-                  <button onclick="pollVote('B')">Votar B</button>
-                </div>
-              </div>
-            </div>
-          </div> <!-- /poll-admin -->
-        </div>
+ <!-- CARD RAFFLE -->
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="card-title">Raffle / Giveaway</div>
+      <div class="card-subtitle">
+        Agrega spenders con su cantidad de tickets y elige un ganador al final del live.
       </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="poll-admin">
+      <div class="poll-inputs">
+        <label for="raffleName">Nombre del spender</label>
+        <input id="raffleName" placeholder="Ej: Marco">
+
+        <label for="raffleTickets">Tickets</label>
+        <input id="raffleTickets" type="number" min="1" placeholder="Ej: 25">
+
+        <button onclick="raffleAddEntry()">Agregar spender</button>
+        <button onclick="raffleRun()">🎟️ Action / Elegir ganador</button>
+        <button class="danger" onclick="raffleClear()">Borrar raffle</button>
+      </div>
+
+      <div class="poll-live">
+        <div id="rafflePanelTitle">No hay participantes todavía.</div>
+
+        <div id="raffleEntriesList" style="display:flex; flex-direction:column; gap:8px; margin-top:12px;"></div>
+
+        <div
+          id="raffleWinnerText"
+          style="margin-top:12px; color:#ffd966; font-weight:bold;"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
     </section>
   </main>
 </div>
@@ -956,107 +942,158 @@ function setGoals() {
 
   /* ========= ENCUESTA A/B ========= */
 
-  let pollState = {
-    question: "",
-    optionA: "",
-    optionB: "",
-    votesA: 0,
-    votesB: 0,
-  };
+/* ========= RAFFLE / GIVEAWAY ========= */
 
-  function pollUpdateUI() {
-    const qEl = document.getElementById("pollQuestionText");
-    const labelAEl = document.getElementById("pollLabelA");
-    const labelBEl = document.getElementById("pollLabelB");
-    const statsAEl = document.getElementById("pollStatsA");
-    const statsBEl = document.getElementById("pollStatsB");
-    const fillAEl = document.getElementById("pollFillA");
-    const fillBEl = document.getElementById("pollFillB");
+let raffleEntries = [];
 
-    if (!pollState.question) {
-      if (qEl) qEl.textContent = "No hay encuesta activa.";
-      if (labelAEl) labelAEl.textContent = "—";
-      if (labelBEl) labelBEl.textContent = "—";
-      if (statsAEl) statsAEl.textContent = "0 votos (0%)";
-      if (statsBEl) statsBEl.textContent = "0 votos (0%)";
-      if (fillAEl) fillAEl.style.width = "0%";
-      if (fillBEl) fillBEl.style.width = "0%";
-      return;
+function raffleUpdateUI(winner = "") {
+  const titleEl = document.getElementById("rafflePanelTitle");
+  const listEl = document.getElementById("raffleEntriesList");
+  const winnerEl = document.getElementById("raffleWinnerText");
+
+  if (!listEl) return;
+
+  listEl.innerHTML = "";
+
+  if (!raffleEntries.length) {
+    if (titleEl) titleEl.textContent = "No hay participantes todavía.";
+    if (winnerEl) winnerEl.textContent = "";
+    return;
+  }
+
+  const totalTickets = raffleEntries.reduce((sum, entry) => {
+    return sum + Number(entry.tickets || 0);
+  }, 0);
+
+  if (titleEl) {
+    titleEl.textContent = `Participantes: ${raffleEntries.length} | Tickets totales: ${totalTickets}`;
+  }
+
+  raffleEntries.forEach((entry, index) => {
+    const row = document.createElement("div");
+
+    row.style.display = "flex";
+    row.style.justifyContent = "space-between";
+    row.style.alignItems = "center";
+    row.style.gap = "8px";
+    row.style.padding = "8px 10px";
+    row.style.borderRadius = "8px";
+    row.style.background = "#20253a";
+    row.style.border = "1px solid #323850";
+
+    row.innerHTML = `
+      <div>
+        <strong>${entry.name}</strong>
+        <div style="font-size:12px; color:#b0b3c3;">
+          ${entry.tickets} ticket${entry.tickets === 1 ? "" : "s"}
+        </div>
+      </div>
+
+      <button
+        class="danger"
+        style="padding:6px 10px; margin:0;"
+        onclick="raffleRemoveEntry(${index})"
+      >
+        X
+      </button>
+    `;
+
+    listEl.appendChild(row);
+  });
+
+  if (winnerEl) {
+    winnerEl.textContent = winner ? `Ganador: ${winner}` : "";
+  }
+}
+
+function raffleAddEntry() {
+  const nameEl = document.getElementById("raffleName");
+  const ticketsEl = document.getElementById("raffleTickets");
+
+  if (!nameEl || !ticketsEl) {
+    alert("Error interno: faltan inputs del raffle.");
+    return;
+  }
+
+  const name = nameEl.value.trim();
+  const tickets = Number(ticketsEl.value);
+
+  if (!name || !Number.isFinite(tickets) || tickets <= 0) {
+    alert("Debes escribir un nombre y una cantidad válida de tickets.");
+    return;
+  }
+
+  const existing = raffleEntries.find(
+    (entry) => entry.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (existing) {
+    existing.tickets += tickets;
+  } else {
+    raffleEntries.push({ name, tickets });
+  }
+
+  nameEl.value = "";
+  ticketsEl.value = "";
+
+  raffleUpdateUI();
+}
+
+function raffleRemoveEntry(index) {
+  raffleEntries.splice(index, 1);
+  raffleUpdateUI();
+}
+
+function raffleBuildTickets() {
+  const tickets = [];
+
+  raffleEntries.forEach((entry) => {
+    for (let i = 0; i < entry.tickets; i++) {
+      tickets.push(entry.name);
     }
+  });
 
-    const total = pollState.votesA + pollState.votesB;
-    const pctA = total ? Math.round((pollState.votesA * 100) / total) : 0;
-    const pctB = total ? Math.round((pollState.votesB * 100) / total) : 0;
+  return tickets;
+}
 
-    if (qEl) qEl.textContent = pollState.question;
-    if (labelAEl) labelAEl.textContent = `${pollState.optionA} (${pctA}%)`;
-    if (labelBEl) labelBEl.textContent = `${pollState.optionB} (${pctB}%)`;
-    if (statsAEl) statsAEl.textContent = `${pollState.votesA} voto(s) (${pctA}%)`;
-    if (statsBEl) statsBEl.textContent = `${pollState.votesB} voto(s) (${pctB}%)`;
-    if (fillAEl) fillAEl.style.width = `${pctA}%`;
-    if (fillBEl) fillBEl.style.width = `${pctB}%`;
+function rafflePickWinner() {
+  const tickets = raffleBuildTickets();
+
+  if (!tickets.length) return null;
+
+  const randomIndex = Math.floor(Math.random() * tickets.length);
+  return tickets[randomIndex];
+}
+
+function raffleRun() {
+  if (!raffleEntries.length) {
+    alert("Agrega al menos un participante.");
+    return;
   }
 
-  function pollBroadcast() {
-    sendToServer("pollState", { ...pollState });
+  const winner = rafflePickWinner();
+
+  if (!winner) {
+    alert("No se pudo elegir ganador.");
+    return;
   }
 
-  function pollStart() {
-    const qInput = document.getElementById("pollQuestion");
-    const aInput = document.getElementById("pollOptionA");
-    const bInput = document.getElementById("pollOptionB");
+  raffleUpdateUI(winner);
 
-    const question = qInput.value.trim();
-    const optionA = aInput.value.trim();
-    const optionB = bInput.value.trim();
+  sendToServer("raffleStart", {
+    entries: raffleEntries,
+    winner,
+    durationMs: 5000,
+  });
+}
 
-    if (!question || !optionA || !optionB) {
-      alert("Completa pregunta y ambas opciones.");
-      return;
-    }
+function raffleClear() {
+  raffleEntries = [];
+  raffleUpdateUI();
+  sendToServer("raffleClear");
+}
 
-    pollState = {
-      question,
-      optionA,
-      optionB,
-      votesA: 0,
-      votesB: 0,
-    };
-
-    pollUpdateUI();
-    pollBroadcast();
-  }
-
-  function pollVote(which) {
-    if (!pollState.question) {
-      alert("Primero inicia una encuesta.");
-      return;
-    }
-
-    if (which === "A") {
-      pollState.votesA += 1;
-    } else if (which === "B") {
-      pollState.votesB += 1;
-    }
-
-    pollUpdateUI();
-    pollBroadcast();
-  }
-
-  function pollClear() {
-    pollState = {
-      question: "",
-      optionA: "",
-      optionB: "",
-      votesA: 0,
-      votesB: 0,
-    };
-    pollUpdateUI();
-    sendToServer("pollClear");
-  }
-
-  // dejar UI consistente al cargar
-  pollUpdateUI();
+raffleUpdateUI();
 </script>
 
 </body>

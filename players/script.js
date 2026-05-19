@@ -1,134 +1,228 @@
-// script.js  – Poll Widget (WebSocket, estilo rosa)
+// script.js — Raffle Widget
 
-// Usa el mismo MODEL_ID y endpoint que tus otros widgets
 const MODEL_ID = "roman001";
-const ws = new WebSocket(
-  `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`
-);
 
-// Estado interno de la encuesta
-const pollState = {
-  question: "",
-  optionA: "",
-  optionB: "",
-  votesA: 0,
-  votesB: 0,
+const WS_URL = `wss://obswidgets-gb-production.up.railway.app/?modelId=${MODEL_ID}`;
+
+let ws = null;
+let reconnectTimer = null;
+let spinTimer = null;
+let hideTimer = null;
+
+const raffleState = {
+  entries: [],
+  expandedTickets: [],
+  winner: null,
+  isRunning: false,
 };
 
-// ----- Render -----
+function connectWS() {
+  ws = new WebSocket(WS_URL);
 
-function applyPollToUI() {
-  const widget = document.getElementById("poll-widget");
+  ws.onopen = () => {
+    console.log("[RAFFLE] WebSocket conectado");
+  };
 
-  const qEl = document.getElementById("poll-question");
+  ws.onmessage = (msg) => {
+    let data;
 
-  const labelA = document.getElementById("label-a");
-  const labelB = document.getElementById("label-b");
-  const percentA = document.getElementById("percent-a");
-  const percentB = document.getElementById("percent-b");
-  const fillA = document.getElementById("fill-a");
-  const fillB = document.getElementById("fill-b");
-  const votesAEl = document.getElementById("votes-a");
-  const votesBEl = document.getElementById("votes-b");
-  const totalEl = document.getElementById("poll-total");
+    try {
+      data = JSON.parse(msg.data || "{}");
+    } catch {
+      return;
+    }
 
-  const active = !!pollState.question;
+    if (data.type === "raffleStart") {
+      handleRaffleStart(data.payload || {});
+    }
 
-  // Si no hay encuesta activa, dejamos todo en cero y ocultamos el widget
-  if (!active) {
-    if (qEl) qEl.textContent = "Waiting for next poll...";
-    if (labelA) labelA.textContent = "Option A";
-    if (labelB) labelB.textContent = "Option B";
-    if (percentA) percentA.textContent = "0%";
-    if (percentB) percentB.textContent = "0%";
-    if (fillA) fillA.style.width = "0%";
-    if (fillB) fillB.style.width = "0%";
-    if (votesAEl) votesAEl.textContent = "0 votes";
-    if (votesBEl) votesBEl.textContent = "0 votes";
-    if (totalEl) totalEl.textContent = "Total: 0 votes";
-    if (widget) widget.classList.add("hidden");
-    return;
-  }
+    if (data.type === "raffleClear" || data.type === "clear") {
+      handleRaffleClear();
+    }
+  };
 
-  const total = pollState.votesA + pollState.votesB;
-  const pctA = total ? Math.round((pollState.votesA * 100) / total) : 0;
-  const pctB = total ? Math.round((pollState.votesB * 100) / total) : 0;
+  ws.onerror = (err) => {
+    console.error("[RAFFLE] WebSocket error:", err);
+  };
 
-  if (qEl) qEl.textContent = pollState.question;
-  if (labelA) labelA.textContent = pollState.optionA || "Option A";
-  if (labelB) labelB.textContent = pollState.optionB || "Option B";
+  ws.onclose = () => {
+    console.log("[RAFFLE] WebSocket cerrado. Reintentando...");
+    clearTimeout(reconnectTimer);
+    reconnectTimer = setTimeout(connectWS, 2000);
+  };
+}
 
-  if (percentA) percentA.textContent = `${pctA}%`;
-  if (percentB) percentB.textContent = `${pctB}%`;
+function buildTickets(entries) {
+  const tickets = [];
 
-  if (fillA) fillA.style.width = `${pctA}%`;
-  if (fillB) fillB.style.width = `${pctB}%`;
+  entries.forEach((entry) => {
+    const name = String(entry.name || "").trim();
+    const count = Number(entry.tickets || 0);
 
-  if (votesAEl) {
-    votesAEl.textContent = `${pollState.votesA} vote${
-      pollState.votesA === 1 ? "" : "s"
-    }`;
-  }
-  if (votesBEl) {
-    votesBEl.textContent = `${pollState.votesB} vote${
-      pollState.votesB === 1 ? "" : "s"
-    }`;
-  }
+    if (!name || !Number.isFinite(count) || count <= 0) return;
 
-  if (totalEl) {
-    totalEl.textContent = `Total: ${total} vote${total === 1 ? "" : "s"}`;
-  }
+    for (let i = 0; i < count; i++) {
+      tickets.push(name);
+    }
+  });
 
+  return tickets;
+}
+
+function pickWeightedWinner(entries) {
+  const tickets = buildTickets(entries);
+
+  if (!tickets.length) return null;
+
+  const randomIndex = Math.floor(Math.random() * tickets.length);
+  return tickets[randomIndex];
+}
+
+function renderNames(activeName = "") {
+  const namesEl = document.getElementById("raffle-names");
+  if (!namesEl) return;
+
+  namesEl.innerHTML = "";
+
+  raffleState.entries.forEach((entry) => {
+    const item = document.createElement("div");
+    item.className = "raffle-name-item";
+
+    if (activeName && entry.name === activeName) {
+      item.classList.add("active");
+    }
+
+    item.innerHTML = `
+      <span class="raffle-name">${entry.name}</span>
+      <span class="raffle-tickets">${entry.tickets} ticket${entry.tickets === 1 ? "" : "s"}</span>
+    `;
+
+    namesEl.appendChild(item);
+  });
+}
+
+function showWidget() {
+  const widget = document.getElementById("raffle-widget");
   if (widget) widget.classList.remove("hidden");
 }
 
-// ----- Handlers de mensajes -----
-
-function handlePollState(payload = {}) {
-  pollState.question = payload.question || "";
-  pollState.optionA = payload.optionA || "";
-  pollState.optionB = payload.optionB || "";
-  pollState.votesA = Number(payload.votesA || 0);
-  pollState.votesB = Number(payload.votesB || 0);
-  applyPollToUI();
+function hideWidget() {
+  const widget = document.getElementById("raffle-widget");
+  if (widget) widget.classList.add("hidden");
 }
 
-function handlePollClear() {
-  pollState.question = "";
-  pollState.optionA = "";
-  pollState.optionB = "";
-  pollState.votesA = 0;
-  pollState.votesB = 0;
-  applyPollToUI();
+function showWinner(name) {
+  const winnerScreen = document.getElementById("raffle-winner-screen");
+  const winnerName = document.getElementById("raffle-winner-name");
+  const title = document.getElementById("raffle-title");
+
+  if (title) title.textContent = "Winner selected!";
+
+  if (winnerName) winnerName.textContent = name;
+
+  if (winnerScreen) {
+    winnerScreen.classList.remove("hidden");
+    winnerScreen.classList.add("show");
+  }
+
+  clearTimeout(hideTimer);
+
+  hideTimer = setTimeout(() => {
+    handleRaffleClear();
+  }, 5000);
 }
 
-// ----- WebSocket -----
+function handleRaffleStart(payload = {}) {
+  const entries = Array.isArray(payload.entries) ? payload.entries : [];
 
-ws.onmessage = (msg) => {
-  let data;
-  try {
-    data = JSON.parse(msg.data || "{}");
-  } catch {
+  const cleanEntries = entries
+    .map((entry) => ({
+      name: String(entry.name || "").trim(),
+      tickets: Number(entry.tickets || 0),
+    }))
+    .filter((entry) => entry.name && entry.tickets > 0);
+
+  if (!cleanEntries.length) {
+    console.warn("[RAFFLE] No hay participantes válidos.");
     return;
   }
 
-  // Esperamos algo tipo:
-  // { type: "pollState", payload: { question, optionA, optionB, votesA, votesB } }
-  // { type: "pollClear" }
-  // (Y si desde el panel envías "clear" global, también podemos limpiar la encuesta)
+  clearInterval(spinTimer);
+  clearTimeout(hideTimer);
 
-  if (data.type === "pollState") {
-    handlePollState(data.payload || {});
+  raffleState.entries = cleanEntries;
+  raffleState.expandedTickets = buildTickets(cleanEntries);
+  raffleState.winner = payload.winner || pickWeightedWinner(cleanEntries);
+  raffleState.isRunning = true;
+
+  const title = document.getElementById("raffle-title");
+  const winnerScreen = document.getElementById("raffle-winner-screen");
+
+  if (title) title.textContent = "Choosing winner...";
+
+  if (winnerScreen) {
+    winnerScreen.classList.add("hidden");
+    winnerScreen.classList.remove("show");
   }
 
-  if (data.type === "pollClear" || data.type === "clear") {
-    handlePollClear();
+  showWidget();
+  renderNames();
+
+  let elapsed = 0;
+  const duration = Number(payload.durationMs || 5000);
+  const tickSpeed = 120;
+
+  spinTimer = setInterval(() => {
+    elapsed += tickSpeed;
+
+    const randomName =
+      raffleState.expandedTickets[
+        Math.floor(Math.random() * raffleState.expandedTickets.length)
+      ];
+
+    renderNames(randomName);
+
+    if (elapsed >= duration) {
+      clearInterval(spinTimer);
+      spinTimer = null;
+
+      renderNames(raffleState.winner);
+
+      setTimeout(() => {
+        showWinner(raffleState.winner);
+      }, 500);
+    }
+  }, tickSpeed);
+}
+
+function handleRaffleClear() {
+  clearInterval(spinTimer);
+  clearTimeout(hideTimer);
+
+  spinTimer = null;
+  hideTimer = null;
+
+  raffleState.entries = [];
+  raffleState.expandedTickets = [];
+  raffleState.winner = null;
+  raffleState.isRunning = false;
+
+  const namesEl = document.getElementById("raffle-names");
+  const winnerScreen = document.getElementById("raffle-winner-screen");
+  const winnerName = document.getElementById("raffle-winner-name");
+  const title = document.getElementById("raffle-title");
+
+  if (namesEl) namesEl.innerHTML = "";
+  if (winnerName) winnerName.textContent = "---";
+  if (title) title.textContent = "Choosing winner...";
+
+  if (winnerScreen) {
+    winnerScreen.classList.add("hidden");
+    winnerScreen.classList.remove("show");
   }
-};
 
-ws.onerror = (err) => {
-  console.error("[POLL] WebSocket error:", err);
-};
+  hideWidget();
+}
 
-// Estado inicial
-applyPollToUI();
+connectWS();
+handleRaffleClear();

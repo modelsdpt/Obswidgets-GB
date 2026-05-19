@@ -2,44 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Poll Widget</title>
+  <title>Raffle Widget</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="poll-widget" class="poll-widget hidden">
-    <div class="poll-header">
-      <div class="poll-badge">Tip Poll</div>
-      <h2 id="poll-question" class="poll-question">
-        Waiting for next poll...
-      </h2>
+  <div id="raffle-widget" class="raffle-widget hidden">
+    <div class="raffle-header">
+      <div class="raffle-badge">RAFFLE</div>
+      <h2 id="raffle-title" class="raffle-title">Choosing winner...</h2>
     </div>
 
-    <div class="poll-options">
-      <div class="poll-option" id="option-a">
-        <div class="poll-option-title">
-          <span class="poll-option-label" id="label-a">Option A</span>
-          <span class="poll-option-percent" id="percent-a">0%</span>
-        </div>
-        <div class="poll-bar">
-          <div class="poll-bar-fill" id="fill-a"></div>
-        </div>
-        <div class="poll-votes" id="votes-a">0 votes</div>
-      </div>
+    <div id="raffle-names" class="raffle-names"></div>
 
-      <div class="poll-option" id="option-b">
-        <div class="poll-option-title">
-          <span class="poll-option-label" id="label-b">Option B</span>
-          <span class="poll-option-percent" id="percent-b">0%</span>
-        </div>
-        <div class="poll-bar">
-          <div class="poll-bar-fill" id="fill-b"></div>
-        </div>
-        <div class="poll-votes" id="votes-b">0 votes</div>
-      </div>
-    </div>
-
-    <div class="poll-footer">
-      <span id="poll-total">Total: 0 votes</span>
+    <div id="raffle-winner-screen" class="raffle-winner-screen hidden">
+      <div class="winner-label">WINNER</div>
+      <div id="raffle-winner-name" class="winner-name">---</div>
     </div>
   </div>
 
