@@ -1,5 +1,5 @@
 /* =========================
-   TIMER – Black Chains Shine Theme
+   TIMER – Pink Hearts Black Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
@@ -25,29 +25,31 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.12), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.08), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.06), transparent 22%),
-    linear-gradient(145deg, #1d1e25 0%, #0d0e13 46%, #030304 100%);
-  border:1px solid rgba(255,255,255,.16);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.42), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.20), transparent 24%),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.12), transparent 22%),
+    linear-gradient(135deg, #ffc1d4 0%, #f99bb8 36%, #f37fa7 72%, #ec6c9a 100%);
+  border:1px solid rgba(255,255,255,.38);
   box-shadow:
-    0 8px 22px rgba(0,0,0,.62),
-    0 0 16px rgba(255,255,255,.08),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 8px 22px rgba(235,105,150,.20),
+    0 0 16px rgba(255,220,232,.28),
+    inset 0 1px 0 rgba(255,255,255,.38);
 }
 
 .timer-widget::before{
-  content:"💖    💖    💖";
+  content:"♡     ♡     ♡";
   position:absolute;
   inset:0;
   display:flex;
-  align-items:flex-start;
   justify-content:center;
+  align-items:flex-start;
   padding-top:6px;
   font-size:12px;
   letter-spacing:8px;
-  color:rgba(235,240,248,.15);
-  text-shadow:0 0 8px rgba(255,255,255,.12);
+  color:rgba(255,255,255,.36);
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,.28),
+    0 0 8px rgba(255,255,255,.22);
   pointer-events:none;
   z-index:1;
 }
@@ -59,19 +61,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.07) 38%,
-    rgba(255,255,255,.28) 50%,
-    rgba(255,255,255,.07) 62%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerChainsShine 4.8s linear infinite;
+  animation:timerPinkHeartShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerChainsShine{
+@keyframes timerPinkHeartShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -113,24 +115,26 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 16% 40%, rgba(255,255,255,.12), transparent 14%),
-    radial-gradient(circle at 62% 36%, rgba(255,255,255,.08), transparent 12%),
-    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(60,62,75,.46) 45%, rgba(6,6,8,.86) 100%);
-  border:1px solid rgba(255,255,255,.14);
+    radial-gradient(circle at 18% 40%, rgba(255,255,255,.26), transparent 15%),
+    radial-gradient(circle at 70% 38%, rgba(255,255,255,.14), transparent 14%),
+    linear-gradient(135deg, rgba(255,255,255,.24) 0%, rgba(255,178,205,.38) 42%, rgba(236,108,154,.42) 100%);
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    0 4px 12px rgba(0,0,0,.44),
-    inset 0 1px 0 rgba(255,255,255,.12);
+    0 4px 12px rgba(235,105,150,.16),
+    inset 0 1px 0 rgba(255,255,255,.28);
 }
 
 .timer-box::before{
-  content:"⛓";
+  content:"♡";
   position:absolute;
   left:10px;
   top:50%;
   transform:translateY(-50%);
   font-size:13px;
-  color:rgba(255,255,255,.36);
-  text-shadow:0 0 8px rgba(255,255,255,.14);
+  color:rgba(255,255,255,.56);
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,.30),
+    0 0 8px rgba(255,255,255,.22);
 }
 
 .timer-box::after{
@@ -140,18 +144,18 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 35%,
-    rgba(255,255,255,.24) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.10) 35%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxChainsShine 4.4s linear infinite;
+  animation:timerBoxPinkHeartShine 4.4s linear infinite;
   mix-blend-mode:screen;
-  opacity:.82;
+  opacity:.86;
 }
 
-@keyframes timerBoxChainsShine{
+@keyframes timerBoxPinkHeartShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -173,23 +177,23 @@ body{
 }
 
 .timer-box.timer-running{
-  animation:timerPulseChains 1.15s ease-in-out infinite alternate;
+  animation:timerPulsePinkHeart 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseChains{
+@keyframes timerPulsePinkHeart{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(0,0,0,.52),
-      inset 0 1px 0 rgba(255,255,255,.16),
-      0 0 16px rgba(255,255,255,.10);
+      0 6px 16px rgba(235,105,150,.22),
+      inset 0 1px 0 rgba(255,255,255,.32),
+      0 0 16px rgba(255,220,232,.22);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(0,0,0,.52),
-    inset 0 1px 0 rgba(255,255,255,.16),
-    0 0 20px rgba(255,255,255,.12);
+    0 6px 16px rgba(235,105,150,.24),
+    inset 0 1px 0 rgba(255,255,255,.32),
+    0 0 20px rgba(255,220,232,.26);
 }

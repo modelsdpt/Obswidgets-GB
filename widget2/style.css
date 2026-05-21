@@ -1,16 +1,20 @@
 /* =========================
-   MVP – Black Chains Shine Theme
+   MVP – Pink Hearts Black Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
   --stroke:#000000;
-  --chain:#d7dbe4;
 
-  --gold-1:#fa7979;
-  --gold-2:#ff1919;
-  --gold-3:#fc1a1a;
+  --pink-1:#ffc1d4;
+  --pink-2:#f99bb8;
+  --pink-3:#f37fa7;
+  --pink-4:#ec6c9a;
+
+  --gold-1:#ffe9a6;
+  --gold-2:#ffd86b;
+  --gold-3:#ffbf2f;
 
   --silver-1:#f6f7fb;
   --silver-2:#d9deea;
@@ -38,54 +42,60 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 15% 18%, rgba(255,255,255,.10), transparent 18%),
-    radial-gradient(circle at 85% 20%, rgba(255,255,255,.08), transparent 20%),
-    linear-gradient(145deg, #191a20 0%, #0b0b0f 42%, #030304 100%);
-  border:1px solid rgba(255,255,255,.16);
+    radial-gradient(circle at 12% 14%, rgba(255,255,255,.42), transparent 18%),
+    radial-gradient(circle at 78% 20%, rgba(255,255,255,.22), transparent 20%),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.16), transparent 22%),
+    linear-gradient(135deg, var(--pink-1) 0%, var(--pink-2) 34%, var(--pink-3) 68%, var(--pink-4) 100%);
+  border:1px solid rgba(255,255,255,.38);
   box-shadow:
-    0 12px 30px rgba(0,0,0,.70),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 10px 28px rgba(235,105,150,.22),
+    0 0 18px rgba(255,220,232,.30),
+    inset 0 1px 0 rgba(255,255,255,.40);
 }
 
+/* borde glossy */
 #container::before{
-  content:"⛓   ⛓   ⛓   ⛓";
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
+  background:
+    linear-gradient(
+      130deg,
+      rgba(255,255,255,.96),
+      rgba(255,212,226,.86),
+      rgba(255,255,255,.68),
+      rgba(236,108,154,.58),
+      rgba(255,255,255,.92)
+    );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.96;
+  pointer-events:none;
+  z-index:4;
+}
+
+/* corazones + brillo */
+#container::after{
+  content:"♡   ♡   ♡   ♡";
   position:absolute;
   inset:0;
   display:flex;
-  align-items:flex-start;
   justify-content:center;
+  align-items:flex-start;
   padding-top:8px;
   font-size:13px;
-  letter-spacing:10px;
-  color:rgba(215,219,228,.16);
-  text-shadow:0 0 8px rgba(255,255,255,.12);
+  letter-spacing:12px;
+  color:rgba(255,255,255,.42);
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,.28),
+    0 0 8px rgba(255,255,255,.30);
   pointer-events:none;
-  z-index:1;
-}
-
-#container::after{
-  content:"";
-  position:absolute;
-  inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.06) 38%,
-    rgba(255,255,255,.28) 50%,
-    rgba(255,255,255,.06) 62%,
-    transparent 100%
-  );
-  transform:translateX(-120%) rotate(12deg);
-  animation:chainsShine 4.4s linear infinite;
-  pointer-events:none;
-  z-index:3;
-  mix-blend-mode:screen;
-}
-
-@keyframes chainsShine{
-  0%{ transform:translateX(-120%) rotate(12deg); }
-  45%{ transform:translateX(120%) rotate(12deg); }
-  100%{ transform:translateX(120%) rotate(12deg); }
+  z-index:2;
 }
 
 .title{
@@ -104,7 +114,7 @@ body{
      2px -2px 0 var(--stroke),
     -2px  2px 0 var(--stroke),
      2px  2px 0 var(--stroke),
-     0 0 10px rgba(255,255,255,.16);
+     0 0 10px rgba(255,255,255,.18);
 }
 
 #top-list{
@@ -126,14 +136,16 @@ body{
   overflow:hidden;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-    linear-gradient(135deg, #24252d 0%, #121318 52%, #070708 100%);
-  border:1px solid rgba(255,255,255,.12);
+    radial-gradient(circle at 18% 30%, rgba(255,255,255,.22), transparent 14%),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
+    linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,122,170,.22));
+  border:1px solid rgba(255,255,255,.22);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 7px 18px rgba(0,0,0,.45);
+    inset 0 1px 0 rgba(255,255,255,.28),
+    0 6px 16px rgba(235,105,150,.16);
 }
 
+/* brillo encima de cada fila */
 .tip::before{
   content:"";
   position:absolute;
@@ -141,32 +153,40 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.06) 38%,
-    rgba(255,255,255,.26) 50%,
-    rgba(255,255,255,.06) 62%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:chainsShine 4.4s linear infinite;
+  animation:pinkHeartShine 4.4s linear infinite;
   pointer-events:none;
   z-index:1;
   mix-blend-mode:screen;
 }
 
+@keyframes pinkHeartShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
+}
+
 .tip::after{
-  content:"⛓";
+  content:"♡";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
-  font-size:14px;
-  color:rgba(235,240,248,.85);
+  font-size:15px;
+  color:#fff;
   text-shadow:
     -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
      1px  1px 0 #000,
-     0 0 8px rgba(255,255,255,.22);
-  pointer-events:none;
+     0 0 8px rgba(255,255,255,.28);
   z-index:2;
+  pointer-events:none;
 }
 
 .tip .name{
@@ -201,39 +221,39 @@ body{
      2px -2px 0 #000,
     -2px  2px 0 #000,
      2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.14);
+     0 0 10px rgba(255,255,255,.12);
 }
 
 /* 1RO ORO */
 .tip.mvp{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
     linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
   border-color:rgba(255,236,170,.58);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.36),
-    0 8px 20px rgba(255,196,64,.28),
-    0 0 18px rgba(255,221,124,.22);
+    0 8px 20px rgba(255,196,64,.26),
+    0 0 16px rgba(255,221,124,.20);
 }
 
 .tip.mvp::after{
-  content:"💖";
+  content:"👑";
 }
 
 /* 2DO PLATA */
 .tip.second{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)),
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.04)),
     linear-gradient(135deg, var(--silver-1) 0%, var(--silver-2) 48%, var(--silver-3) 100%);
-  border-color:rgba(245,248,255,.48);
+  border-color:rgba(242,245,252,.52);
 }
 
 /* 3RO BRONCE */
 .tip.third{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.03)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)),
     linear-gradient(135deg, var(--bronze-1) 0%, var(--bronze-2) 48%, var(--bronze-3) 100%);
-  border-color:rgba(238,184,138,.46);
+  border-color:rgba(233,181,139,.48);
 }
 
 .rank-icon{

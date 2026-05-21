@@ -1,72 +1,64 @@
+/* ================================
+   RAFFLE – Pink Hearts Black Outline Theme
+================================ */
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700;800&display=swap');
 
 :root {
-  --raffle-main: #ff4b5c;
-  --raffle-strong: #ff1f3a;
-  --raffle-soft: #ffd6dd;
+  --raffle-main: #f99bb8;
+  --raffle-strong: #ec6c9a;
+  --raffle-soft: #ffc1d4;
+  --raffle-light: #fff1f6;
   --raffle-gold: #ffd966;
-  --raffle-border: rgba(255, 120, 120, 0.95);
-  --raffle-glow: rgba(255, 80, 80, 1);
+
+  --raffle-border: rgba(255, 255, 255, 0.38);
+  --raffle-glow: rgba(235, 105, 150, 0.55);
+
+  --txt: #ffffff;
+  --stroke: #000000;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   background: transparent;
   font-family: 'Baloo 2', system-ui, sans-serif;
-  color: #ffffff;
+  color: var(--txt);
   overflow: hidden;
 }
+
+/* ================================
+   MAIN WIDGET
+================================ */
 
 .raffle-widget {
   position: relative;
-  width: 460px;
-  min-height: 280px;
+
+  width: 560px;
+  min-height: 430px;
   padding: 14px 16px 16px;
-  background: radial-gradient(circle at top, #250000 0%, #080000 55%, #020000 100%);
+
+  background:
+    radial-gradient(circle at 12% 14%, rgba(255,255,255,.42), transparent 18%),
+    radial-gradient(circle at 78% 20%, rgba(255,255,255,.22), transparent 20%),
+    radial-gradient(circle at 24% 72%, rgba(255,255,255,.16), transparent 22%),
+    linear-gradient(135deg, #ffc1d4 0%, #f99bb8 36%, #f37fa7 72%, #ec6c9a 100%);
+
   border-radius: 18px;
-  border: 2px solid var(--raffle-border);
+  border: 1px solid var(--raffle-border);
+
   box-shadow:
-    0 0 22px rgba(0, 0, 0, 1),
-    0 0 28px var(--raffle-glow);
-  box-sizing: border-box;
+    0 10px 28px rgba(235,105,150,.24),
+    0 0 18px rgba(255,220,232,.30),
+    inset 0 1px 0 rgba(255,255,255,.40);
+
   overflow: hidden;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
 
-.raffle-widget::before {
-  content: "";
-  position: absolute;
-  top: -80%;
-  left: -40%;
-  width: 70%;
-  height: 260%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.22),
-    transparent
-  );
-  transform: rotate(18deg);
-  animation: raffleShine 3.2s infinite;
-  pointer-events: none;
-}
-
-@keyframes raffleShine {
-  0% {
-    left: -70%;
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  60% {
-    left: 120%;
-    opacity: 0;
-  }
-  100% {
-    left: 120%;
-    opacity: 0;
-  }
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .raffle-widget.hidden {
@@ -80,56 +72,212 @@ body {
   transform: translateY(0) scale(1);
 }
 
+/* glossy border */
+.raffle-widget::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      130deg,
+      rgba(255,255,255,.96),
+      rgba(255,212,226,.86),
+      rgba(255,255,255,.68),
+      rgba(236,108,154,.58),
+      rgba(255,255,255,.92)
+    );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* hearts background */
+.raffle-widget::after {
+  content: "♡   ♡   ♡   ♡   ♡";
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 8px;
+  font-size: 14px;
+  letter-spacing: 13px;
+
+  color: rgba(255,255,255,.38);
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,.28),
+    0 0 8px rgba(255,255,255,.30);
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* shine overlay */
+.raffle-widget .shine-layer,
+.raffle-widget > .shine-layer {
+  display: none;
+}
+
+.raffle-widget::selection {
+  background: transparent;
+}
+
+.raffle-header::before {
+  content: "";
+  position: absolute;
+  inset: -260px -260px;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
+
+  transform: translateX(-120%) rotate(12deg);
+  animation: rafflePinkHeartShine 4.8s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+  mix-blend-mode: screen;
+}
+
+@keyframes rafflePinkHeartShine {
+  0% {
+    transform: translateX(-120%) rotate(12deg);
+  }
+
+  45% {
+    transform: translateX(120%) rotate(12deg);
+  }
+
+  100% {
+    transform: translateX(120%) rotate(12deg);
+  }
+}
+
+/* ================================
+   HEADER
+================================ */
+
 .raffle-header {
+  position: relative;
+  z-index: 5;
   text-align: center;
   margin-bottom: 12px;
 }
 
 .raffle-badge {
   display: inline-block;
+
   padding: 3px 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--raffle-main), var(--raffle-strong));
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffc1d4,
+      #f99bb8,
+      #ec6c9a
+    );
+
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 13px;
   letter-spacing: 1px;
+
   color: #ffffff;
-  text-shadow: 0 0 6px #000;
-  box-shadow: 0 0 14px var(--raffle-glow);
+
+  border: 1px solid rgba(255,255,255,.34);
+
+  text-shadow:
+    -2px -2px 0 var(--stroke),
+     2px -2px 0 var(--stroke),
+    -2px  2px 0 var(--stroke),
+     2px  2px 0 var(--stroke),
+     0 0 8px rgba(255,255,255,.14);
+
+  box-shadow:
+    0 0 12px rgba(255,220,232,.34),
+    inset 0 1px 0 rgba(255,255,255,.30);
 }
 
 .raffle-title {
   margin: 8px 0 0;
+
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 21px;
+  line-height: 1.1;
+
   color: #ffffff;
+
   text-shadow:
-    0 0 5px #000,
-    0 0 12px var(--raffle-glow);
+    -2px -2px 0 var(--stroke),
+     2px -2px 0 var(--stroke),
+    -2px  2px 0 var(--stroke),
+     2px  2px 0 var(--stroke),
+     0 0 10px rgba(255,255,255,.18);
 }
 
+/* ================================
+   NAMES LIST
+================================ */
+
 .raffle-names {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  z-index: 5;
+
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 7px;
-  max-height: 190px;
-  overflow: hidden;
+
+  width: 100%;
+  overflow: visible;
+}
+
+/* Mostrar solo 5 visualmente.
+   Los demás siguen participando en el sorteo. */
+.raffle-names .raffle-name-item:nth-child(n + 6) {
+  display: none;
 }
 
 .raffle-name-item {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 8px 10px;
+
+  min-height: 48px;
+  padding: 7px 10px;
+
   border-radius: 12px;
-  background: linear-gradient(
-    180deg,
-    rgba(60, 0, 0, 0.98),
-    rgba(15, 0, 0, 0.98)
-  );
-  border: 1px solid rgba(255, 120, 120, 0.65);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.95);
+
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255,255,255,.22), transparent 14%),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
+    linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,122,170,.22));
+
+  border: 1px solid rgba(255,255,255,.22);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.28),
+    0 6px 16px rgba(235,105,150,.16);
+
+  overflow: hidden;
+
   transition:
     transform 0.12s ease,
     border-color 0.12s ease,
@@ -137,51 +285,219 @@ body {
     background 0.12s ease;
 }
 
-.raffle-name-item.active {
-  transform: scale(1.055);
-  border-color: var(--raffle-gold);
+.raffle-name-item::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+
   background: linear-gradient(
-    90deg,
-    rgba(255, 217, 102, 0.28),
-    rgba(255, 31, 58, 0.34)
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
   );
+
+  transform: translateX(-120%) rotate(12deg);
+  animation: raffleNameShine 4.4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+.raffle-name-item::after {
+  content: "♡";
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+
+  font-size: 15px;
+  color: #ffffff;
+
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000,
+     0 0 8px rgba(255,255,255,.28);
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes raffleNameShine {
+  0% {
+    transform: translateX(-120%) rotate(12deg);
+  }
+
+  45% {
+    transform: translateX(120%) rotate(12deg);
+  }
+
+  100% {
+    transform: translateX(120%) rotate(12deg);
+  }
+}
+
+.raffle-name-item.active {
+  transform: scale(1.025);
+
+  border-color: var(--raffle-light);
+
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255,255,255,.26), transparent 14%),
+    linear-gradient(90deg, rgba(255,255,255,.24), rgba(236,108,154,.34));
+
   box-shadow:
-    0 0 16px rgba(255, 217, 102, 0.95),
-    0 0 20px var(--raffle-glow);
+    inset 0 1px 0 rgba(255,255,255,.34),
+    0 0 16px rgba(255,255,255,.34),
+    0 0 22px rgba(235,105,150,.34);
 }
 
 .raffle-name {
+  position: relative;
+  z-index: 3;
+
+  flex: 1 1 auto;
+  min-width: 0;
+
+  padding-left: 18px;
+
   font-size: 18px;
   font-weight: 800;
+  line-height: 1.05;
+
   color: #ffffff;
-  text-shadow: 0 0 6px #000;
-  max-width: 280px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+  text-shadow:
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 10px rgba(255,255,255,.12);
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.raffle-name-item:nth-child(n + 4) .raffle-name {
+  font-size: 16px;
 }
 
 .raffle-tickets {
+  position: relative;
+  z-index: 3;
+
+  flex: 0 0 auto;
+
   font-size: 13px;
-  font-weight: 700;
-  color: var(--raffle-soft);
+  font-weight: 800;
+
+  color: #ffffff;
   white-space: nowrap;
+
+  padding: 3px 8px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(255,255,255,.28);
+
+  text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
 }
+
+/* ================================
+   WINNER SCREEN
+================================ */
 
 .raffle-winner-screen {
   position: absolute;
   inset: 0;
+
+  z-index: 20;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  padding: 24px;
+
   background:
-    radial-gradient(circle at center, rgba(255, 75, 92, 0.35), rgba(0, 0, 0, 0.92) 68%),
-    rgba(0, 0, 0, 0.92);
-  z-index: 5;
+    radial-gradient(
+      circle at center,
+      rgba(255, 193, 212, 0.42),
+      rgba(236, 108, 154, 0.36) 36%,
+      rgba(0, 0, 0, 0.86) 76%
+    ),
+    rgba(0, 0, 0, 0.86);
+
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.raffle-winner-screen::before {
+  content: "♡   ♡   ♡";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 14px;
+
+  color: rgba(255,255,255,.38);
+  text-shadow:
+    1px 1px 0 rgba(0,0,0,.30),
+    0 0 8px rgba(255,255,255,.28);
+
+  pointer-events: none;
+}
+
+.raffle-winner-screen::after {
+  content: "";
+  position: absolute;
+  inset: -45%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
+
+  transform: translateX(-120%) rotate(12deg);
+  animation: raffleWinnerShine 4.4s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+@keyframes raffleWinnerShine {
+  0% {
+    transform: translateX(-120%) rotate(12deg);
+  }
+
+  45% {
+    transform: translateX(120%) rotate(12deg);
+  }
+
+  100% {
+    transform: translateX(120%) rotate(12deg);
+  }
 }
 
 .raffle-winner-screen.show {
@@ -195,26 +511,48 @@ body {
 }
 
 .winner-label {
+  position: relative;
+  z-index: 3;
+
   font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 28px;
-  color: var(--raffle-gold);
+  font-size: 30px;
+  line-height: 1;
+
+  color: #ffffff;
+
   text-shadow:
-    0 0 8px #000,
-    0 0 18px rgba(255, 217, 102, 1);
-  margin-bottom: 8px;
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 12px rgba(255,255,255,.20);
+
+  margin-bottom: 10px;
 }
 
 .winner-name {
-  max-width: 92%;
+  position: relative;
+  z-index: 3;
+
+  max-width: 96%;
+
   font-family: 'Bungee', system-ui, sans-serif;
-  font-size: 44px;
-  line-height: 1.1;
+  font-size: 46px;
+  line-height: 1.08;
+
   color: #ffffff;
   text-align: center;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
   text-shadow:
-    0 0 8px #000,
-    0 0 18px var(--raffle-glow),
-    0 0 28px var(--raffle-glow);
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     0 0 16px rgba(255,255,255,.22);
+
   animation: winnerPop 0.7s ease infinite alternate;
 }
 
@@ -222,7 +560,50 @@ body {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.06);
+  }
+}
+
+/* ================================
+   SMALL OBS SIZE SAFETY
+================================ */
+
+@media (max-width: 520px) {
+  .raffle-widget {
+    width: 96vw;
+    min-height: 420px;
+    padding: 12px;
+  }
+
+  .raffle-title {
+    font-size: 18px;
+  }
+
+  .raffle-name-item {
+    min-height: 46px;
+    padding: 7px 9px;
+  }
+
+  .raffle-name {
+    font-size: 16px;
+  }
+
+  .raffle-name-item:nth-child(n + 4) .raffle-name {
+    font-size: 15px;
+  }
+
+  .raffle-tickets {
+    font-size: 12px;
+    padding: 2px 7px;
+  }
+
+  .winner-label {
+    font-size: 25px;
+  }
+
+  .winner-name {
+    font-size: 36px;
   }
 }
