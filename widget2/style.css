@@ -1,16 +1,17 @@
 /* =========================
-   MVP – Pink Hearts Black Outline Theme
+   MVP – Cloud Blue Pink Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --stroke:#000000;
+  --stroke:#d772a3;
+  --stroke-dark:#b84f86;
 
-  --pink-1:#ffc1d4;
-  --pink-2:#f99bb8;
-  --pink-3:#f37fa7;
-  --pink-4:#ec6c9a;
+  --blue-1:#eaf8ff;
+  --blue-2:#cfeeff;
+  --blue-3:#a9dcff;
+  --blue-4:#7ec8f7;
 
   --gold-1:#ffe9a6;
   --gold-2:#ffd86b;
@@ -42,15 +43,15 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 12% 14%, rgba(255,255,255,.42), transparent 18%),
-    radial-gradient(circle at 78% 20%, rgba(255,255,255,.22), transparent 20%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.16), transparent 22%),
-    linear-gradient(135deg, var(--pink-1) 0%, var(--pink-2) 34%, var(--pink-3) 68%, var(--pink-4) 100%);
-  border:1px solid rgba(255,255,255,.38);
+    radial-gradient(ellipse at 16% 18%, rgba(255,255,255,.82), transparent 22%),
+    radial-gradient(ellipse at 74% 16%, rgba(255,255,255,.58), transparent 24%),
+    radial-gradient(ellipse at 42% 74%, rgba(255,255,255,.38), transparent 24%),
+    linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 34%, var(--blue-3) 68%, var(--blue-4) 100%);
+  border:1px solid rgba(255,255,255,.48);
   box-shadow:
-    0 10px 28px rgba(235,105,150,.22),
-    0 0 18px rgba(255,220,232,.30),
-    inset 0 1px 0 rgba(255,255,255,.40);
+    0 10px 28px rgba(120,180,220,.24),
+    0 0 18px rgba(220,245,255,.35),
+    inset 0 1px 0 rgba(255,255,255,.55);
 }
 
 /* borde glossy */
@@ -64,10 +65,10 @@ body{
     linear-gradient(
       130deg,
       rgba(255,255,255,.96),
-      rgba(255,212,226,.86),
-      rgba(255,255,255,.68),
-      rgba(236,108,154,.58),
-      rgba(255,255,255,.92)
+      rgba(210,240,255,.88),
+      rgba(255,255,255,.70),
+      rgba(247,201,222,.70),
+      rgba(255,255,255,.94)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -79,9 +80,9 @@ body{
   z-index:4;
 }
 
-/* corazones + brillo */
+/* nubes + corazones */
 #container::after{
-  content:"♡   ♡   ♡   ♡";
+  content:"☁   ♡   ☁   ♡   ☁";
   position:absolute;
   inset:0;
   display:flex;
@@ -89,10 +90,10 @@ body{
   align-items:flex-start;
   padding-top:8px;
   font-size:13px;
-  letter-spacing:12px;
-  color:rgba(255,255,255,.42);
+  letter-spacing:10px;
+  color:rgba(255,255,255,.52);
   text-shadow:
-    1px 1px 0 rgba(0,0,0,.28),
+    1px 1px 0 rgba(184,79,134,.30),
     0 0 8px rgba(255,255,255,.30);
   pointer-events:none;
   z-index:2;
@@ -110,11 +111,11 @@ body{
   text-transform:uppercase;
   color:#fff;
   text-shadow:
-    -2px -2px 0 var(--stroke),
-     2px -2px 0 var(--stroke),
-    -2px  2px 0 var(--stroke),
-     2px  2px 0 var(--stroke),
-     0 0 10px rgba(255,255,255,.18);
+    -2px -2px 0 var(--stroke-dark),
+     2px -2px 0 var(--stroke-dark),
+    -2px  2px 0 var(--stroke-dark),
+     2px  2px 0 var(--stroke-dark),
+     0 0 10px rgba(255,255,255,.22);
 }
 
 #top-list{
@@ -136,13 +137,13 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 18% 30%, rgba(255,255,255,.22), transparent 14%),
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
-    linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,122,170,.22));
-  border:1px solid rgba(255,255,255,.22);
+    radial-gradient(ellipse at 18% 30%, rgba(255,255,255,.40), transparent 18%),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06)),
+    linear-gradient(135deg, rgba(207,238,255,.52), rgba(247,201,222,.34));
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.28),
-    0 6px 16px rgba(235,105,150,.16);
+    inset 0 1px 0 rgba(255,255,255,.36),
+    0 6px 16px rgba(120,180,220,.16);
 }
 
 /* brillo encima de cada fila */
@@ -159,20 +160,20 @@ body{
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:pinkHeartShine 4.4s linear infinite;
+  animation:cloudHeartShine 4.4s linear infinite;
   pointer-events:none;
   z-index:1;
   mix-blend-mode:screen;
 }
 
-@keyframes pinkHeartShine{
+@keyframes cloudHeartShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .tip::after{
-  content:"♡";
+  content:"☁";
   position:absolute;
   top:50%;
   left:10px;
@@ -180,10 +181,10 @@ body{
   font-size:15px;
   color:#fff;
   text-shadow:
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000,
+    -1px -1px 0 var(--stroke-dark),
+     1px -1px 0 var(--stroke-dark),
+    -1px  1px 0 var(--stroke-dark),
+     1px  1px 0 var(--stroke-dark),
      0 0 8px rgba(255,255,255,.28);
   z-index:2;
   pointer-events:none;
@@ -217,10 +218,10 @@ body{
 .tip .name,
 .tip .amount{
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
+    -2px -2px 0 var(--stroke-dark),
+     2px -2px 0 var(--stroke-dark),
+    -2px  2px 0 var(--stroke-dark),
+     2px  2px 0 var(--stroke-dark),
      0 0 10px rgba(255,255,255,.12);
 }
 
@@ -263,6 +264,6 @@ body{
   font-size:17px;
   color:#fff;
   filter:
-    drop-shadow(-1px -1px 0 #000)
-    drop-shadow(1px 1px 0 #000);
+    drop-shadow(-1px -1px 0 var(--stroke-dark))
+    drop-shadow(1px 1px 0 var(--stroke-dark));
 }

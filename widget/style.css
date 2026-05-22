@@ -1,17 +1,12 @@
 /* =========================
-   MVP – Purple Hearts Theme
+   MVP – Fuchsia Purple Neon Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#f5b8ff;
+  --outline:#ff7de8;
   --shadow:#5c1fa8;
-
-  --purple-1:#c735d9;
-  --purple-2:#9f35ef;
-  --purple-3:#7b32e8;
-  --pink-1:#db3fc8;
 
   --gold-1:#ffe9a6;
   --gold-2:#ffd86b;
@@ -45,15 +40,14 @@ body{
   background:
     radial-gradient(circle at 15% 16%, rgba(255,255,255,.28), transparent 18%),
     radial-gradient(circle at 82% 20%, rgba(255,255,255,.16), transparent 20%),
-    linear-gradient(135deg, #db3fc8 0%, #b737dd 35%, #9434ee 68%, #702be0 100%);
+    linear-gradient(135deg, #ff2fcf 0%, #d52eff 32%, #9b2dff 68%, #5d20d6 100%);
   border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 10px 28px rgba(95,35,170,.26),
-    0 0 20px rgba(219,63,200,.24),
+    0 10px 28px rgba(95,35,170,.28),
+    0 0 20px rgba(255,47,207,.26),
     inset 0 1px 0 rgba(255,255,255,.34);
 }
 
-/* border */
 #container::before{
   content:"";
   position:absolute;
@@ -61,7 +55,7 @@ body{
   border-radius:inherit;
   padding:1px;
   background:
-    linear-gradient(130deg, rgba(255,255,255,.88), rgba(245,184,255,.74), rgba(255,255,255,.48), rgba(112,43,224,.52));
+    linear-gradient(130deg, rgba(255,255,255,.90), rgba(255,125,232,.76), rgba(255,255,255,.50), rgba(93,32,214,.54));
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -71,21 +65,29 @@ body{
   z-index:4;
 }
 
-/* hearts + shine */
 #container::after{
-  content:"♡   ♡      ♡   ♡";
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:7px;
-  font-size:13px;
-  letter-spacing:13px;
-  color:rgba(255,220,255,.34);
-  text-shadow:0 0 8px rgba(255,255,255,.20);
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:mvpFuchsiaShine 4.4s linear infinite;
   pointer-events:none;
-  z-index:2;
+  z-index:3;
+  mix-blend-mode:screen;
+}
+
+@keyframes mvpFuchsiaShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .title{
@@ -128,7 +130,7 @@ body{
 
   background:
     linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04)),
-    linear-gradient(135deg, rgba(255,255,255,.20), rgba(130,50,230,.18));
+    linear-gradient(135deg, rgba(255,255,255,.20), rgba(155,45,255,.20));
   border:1px solid rgba(255,255,255,.18);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.24),
@@ -148,25 +150,19 @@ body{
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:heartShine 4.4s linear infinite;
+  animation:mvpFuchsiaShine 4.4s linear infinite;
   pointer-events:none;
   z-index:1;
   mix-blend-mode:screen;
 }
 
-@keyframes heartShine{
-  0%{ transform:translateX(-120%) rotate(12deg); }
-  45%{ transform:translateX(120%) rotate(12deg); }
-  100%{ transform:translateX(120%) rotate(12deg); }
-}
-
 .tip::after{
-  content:"♡";
+  content:"✦";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
-  font-size:15px;
+  font-size:14px;
   color:#fff;
   text-shadow:
     1px 1px 0 var(--shadow),
@@ -208,23 +204,21 @@ body{
      2px  2px 0 var(--shadow);
 }
 
-/* 1RO ORO */
 .tip.mvp{
   background:
     linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.05)),
     linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
   border-color:rgba(255,236,170,.58);
 }
+
 .tip.mvp::after{ content:"👑"; }
 
-/* 2DO PLATA */
 .tip.second{
   background:
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)),
     linear-gradient(135deg, var(--silver-1) 0%, var(--silver-2) 48%, var(--silver-3) 100%);
 }
 
-/* 3RO BRONCE */
 .tip.third{
   background:
     linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.03)),

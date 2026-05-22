@@ -1,11 +1,12 @@
 /* =========================
-   TIMER – Pink Hearts Black Outline Theme
+   TIMER – Cloud Blue Pink Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --stroke:#000000;
+  --stroke:#d772a3;
+  --stroke-dark:#b84f86;
 }
 
 *{ box-sizing:border-box; }
@@ -25,19 +26,19 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.42), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.20), transparent 24%),
-    radial-gradient(circle at 24% 72%, rgba(255,255,255,.12), transparent 22%),
-    linear-gradient(135deg, #ffc1d4 0%, #f99bb8 36%, #f37fa7 72%, #ec6c9a 100%);
-  border:1px solid rgba(255,255,255,.38);
+    radial-gradient(ellipse at 16% 18%, rgba(255,255,255,.82), transparent 22%),
+    radial-gradient(ellipse at 74% 16%, rgba(255,255,255,.58), transparent 24%),
+    radial-gradient(ellipse at 42% 74%, rgba(255,255,255,.38), transparent 24%),
+    linear-gradient(135deg, #eaf8ff 0%, #cfeeff 36%, #a9dcff 72%, #7ec8f7 100%);
+  border:1px solid rgba(255,255,255,.48);
   box-shadow:
-    0 8px 22px rgba(235,105,150,.20),
-    0 0 16px rgba(255,220,232,.28),
-    inset 0 1px 0 rgba(255,255,255,.38);
+    0 8px 22px rgba(120,180,220,.22),
+    0 0 16px rgba(220,245,255,.32),
+    inset 0 1px 0 rgba(255,255,255,.55);
 }
 
 .timer-widget::before{
-  content:"♡     ♡     ♡";
+  content:"☁     ♡     ☁";
   position:absolute;
   inset:0;
   display:flex;
@@ -45,11 +46,11 @@ body{
   align-items:flex-start;
   padding-top:6px;
   font-size:12px;
-  letter-spacing:8px;
-  color:rgba(255,255,255,.36);
+  letter-spacing:6px;
+  color:rgba(255,255,255,.52);
   text-shadow:
-    1px 1px 0 rgba(0,0,0,.28),
-    0 0 8px rgba(255,255,255,.22);
+    1px 1px 0 rgba(184,79,134,.30),
+    0 0 8px rgba(255,255,255,.28);
   pointer-events:none;
   z-index:1;
 }
@@ -67,13 +68,13 @@ body{
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerPinkHeartShine 4.8s linear infinite;
+  animation:timerCloudShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerPinkHeartShine{
+@keyframes timerCloudShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -90,11 +91,11 @@ body{
   color:#ffffff;
   margin-bottom:10px;
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.18);
+    -2px -2px 0 var(--stroke-dark),
+     2px -2px 0 var(--stroke-dark),
+    -2px  2px 0 var(--stroke-dark),
+     2px  2px 0 var(--stroke-dark),
+     0 0 10px rgba(255,255,255,.20);
 }
 
 .timer-display{
@@ -115,26 +116,26 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 18% 40%, rgba(255,255,255,.26), transparent 15%),
-    radial-gradient(circle at 70% 38%, rgba(255,255,255,.14), transparent 14%),
-    linear-gradient(135deg, rgba(255,255,255,.24) 0%, rgba(255,178,205,.38) 42%, rgba(236,108,154,.42) 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.40), transparent 18%),
+    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.22), transparent 16%),
+    linear-gradient(135deg, rgba(207,238,255,.60) 0%, rgba(169,220,255,.50) 42%, rgba(247,201,222,.40) 100%);
+  border:1px solid rgba(255,255,255,.32);
   box-shadow:
-    0 4px 12px rgba(235,105,150,.16),
-    inset 0 1px 0 rgba(255,255,255,.28);
+    0 4px 12px rgba(120,180,220,.18),
+    inset 0 1px 0 rgba(255,255,255,.36);
 }
 
 .timer-box::before{
-  content:"♡";
+  content:"☁";
   position:absolute;
   left:10px;
   top:50%;
   transform:translateY(-50%);
   font-size:13px;
-  color:rgba(255,255,255,.56);
+  color:rgba(255,255,255,.68);
   text-shadow:
-    1px 1px 0 rgba(0,0,0,.30),
-    0 0 8px rgba(255,255,255,.22);
+    1px 1px 0 rgba(184,79,134,.30),
+    0 0 8px rgba(255,255,255,.28);
 }
 
 .timer-box::after{
@@ -150,12 +151,12 @@ body{
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxPinkHeartShine 4.4s linear infinite;
+  animation:timerBoxCloudShine 4.4s linear infinite;
   mix-blend-mode:screen;
   opacity:.86;
 }
 
-@keyframes timerBoxPinkHeartShine{
+@keyframes timerBoxCloudShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -169,31 +170,31 @@ body{
   letter-spacing:.06em;
   color:#ffffff;
   text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0 0 10px rgba(255,255,255,.18);
+    -2px -2px 0 var(--stroke-dark),
+     2px -2px 0 var(--stroke-dark),
+    -2px  2px 0 var(--stroke-dark),
+     2px  2px 0 var(--stroke-dark),
+     0 0 10px rgba(255,255,255,.20);
 }
 
 .timer-box.timer-running{
-  animation:timerPulsePinkHeart 1.15s ease-in-out infinite alternate;
+  animation:timerPulseCloud 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulsePinkHeart{
+@keyframes timerPulseCloud{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(235,105,150,.22),
-      inset 0 1px 0 rgba(255,255,255,.32),
-      0 0 16px rgba(255,220,232,.22);
+      0 6px 16px rgba(120,180,220,.26),
+      inset 0 1px 0 rgba(255,255,255,.36),
+      0 0 16px rgba(220,245,255,.28);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(235,105,150,.24),
-    inset 0 1px 0 rgba(255,255,255,.32),
-    0 0 20px rgba(255,220,232,.26);
+    0 6px 16px rgba(120,180,220,.28),
+    inset 0 1px 0 rgba(255,255,255,.36),
+    0 0 20px rgba(220,245,255,.30);
 }
