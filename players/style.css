@@ -1,21 +1,21 @@
 /* ================================
-   RAFFLE – Fuchsia Purple Neon Theme
+   RAFFLE – Pink Neon Outline Theme
 ================================ */
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700;800&display=swap');
 
 :root {
-  --raffle-main: #ff2fcf;
-  --raffle-strong: #7b2cff;
-  --raffle-soft: #ffb6f2;
+  --raffle-main: #ff9fba;
+  --raffle-strong: #f45f8e;
+  --raffle-soft: #ffc4d2;
   --raffle-light: #ffffff;
   --raffle-gold: #ffd966;
 
-  --raffle-border: rgba(255, 255, 255, 0.34);
-  --raffle-glow: rgba(255, 47, 207, 0.55);
+  --raffle-border: rgba(255, 255, 255, 0.40);
+  --raffle-glow: rgba(244, 95, 142, 0.55);
 
   --txt: #ffffff;
-  --stroke: #b00086;
-  --shadow: #4f168f;
+  --outline: #ffb6cc;
+  --shadow: #1d1116;
 }
 
 * {
@@ -39,16 +39,16 @@ body {
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.26), transparent 18%),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,.14), transparent 22%),
-    linear-gradient(135deg, #ff2fcf 0%, #d52eff 32%, #9b2dff 68%, #5d20d6 100%);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.42), transparent 18%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,.20), transparent 22%),
+    linear-gradient(135deg, #ffc4d2 0%, #ff9fba 36%, #ff789f 72%, #f45f8e 100%);
 
   border: 1px solid var(--raffle-border);
 
   box-shadow:
-    0 10px 28px rgba(90, 25, 180, .30),
-    0 0 22px rgba(255, 47, 207, .28),
-    inset 0 1px 0 rgba(255,255,255,.35);
+    0 10px 28px rgba(244,95,142,.24),
+    0 0 22px rgba(255,196,210,.28),
+    inset 0 1px 0 rgba(255,255,255,.40);
 
   transition:
     opacity 0.25s ease,
@@ -76,10 +76,10 @@ body {
   background:
     linear-gradient(
       130deg,
-      rgba(255,255,255,.90),
-      rgba(255,140,238,.74),
-      rgba(255,255,255,.50),
-      rgba(123,44,255,.56)
+      rgba(255,255,255,.98),
+      rgba(255,182,204,.88),
+      rgba(255,255,255,.68),
+      rgba(244,95,142,.64)
     );
 
   -webkit-mask:
@@ -102,7 +102,7 @@ body {
   padding-top: 8px;
   font-size: 13px;
   letter-spacing: 13px;
-  color: rgba(255,255,255,.30);
+  color: rgba(255,255,255,.32);
   text-shadow: 0 0 8px rgba(255,255,255,.26);
   pointer-events: none;
   z-index: 1;
@@ -123,20 +123,20 @@ body {
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.36) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.38) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 100%
   );
 
   transform: translateX(-120%) rotate(12deg);
-  animation: raffleFuchsiaShine 4.8s linear infinite;
+  animation: rafflePinkNeonShine 4.8s linear infinite;
   pointer-events: none;
   z-index: -1;
   mix-blend-mode: screen;
 }
 
-@keyframes raffleFuchsiaShine {
+@keyframes rafflePinkNeonShine {
   0% { transform: translateX(-120%) rotate(12deg); }
   45% { transform: translateX(120%) rotate(12deg); }
   100% { transform: translateX(120%) rotate(12deg); }
@@ -147,26 +147,24 @@ body {
   padding: 3px 12px;
   border-radius: 999px;
 
-  background:
-    linear-gradient(90deg, #ff2fcf, #d52eff, #7b2cff);
+  background: linear-gradient(90deg, #ffc4d2, #ff9fba, #f45f8e);
 
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 13px;
   letter-spacing: 1px;
   color: #ffffff;
-  border: 1px solid rgba(255,255,255,.32);
+  border: 1px solid rgba(255,255,255,.34);
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     2px  2px 0 var(--shadow),
-     0 0 8px rgba(255,255,255,.16);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 
   box-shadow:
-    0 0 14px rgba(255,47,207,.38),
-    inset 0 1px 0 rgba(255,255,255,.28);
+    0 0 14px rgba(244,95,142,.38),
+    inset 0 1px 0 rgba(255,255,255,.30);
 }
 
 .raffle-title {
@@ -177,12 +175,11 @@ body {
   color: #ffffff;
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     2px  2px 0 var(--shadow),
-     0 0 10px rgba(255,255,255,.18);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-names {
@@ -212,21 +209,15 @@ body {
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 18% 30%, rgba(255,255,255,.20), transparent 14%),
+    radial-gradient(circle at 18% 30%, rgba(255,255,255,.24), transparent 14%),
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
-    linear-gradient(135deg, rgba(255,255,255,.20), rgba(155,45,255,.22));
+    linear-gradient(135deg, rgba(255,255,255,.22), rgba(244,95,142,.24));
 
   border: 1px solid rgba(255,255,255,.22);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.26),
-    0 6px 16px rgba(90,25,180,.20);
-
-  transition:
-    transform 0.12s ease,
-    border-color 0.12s ease,
-    box-shadow 0.12s ease,
-    background 0.12s ease;
+    inset 0 1px 0 rgba(255,255,255,.28),
+    0 6px 16px rgba(244,95,142,.18);
 }
 
 .raffle-name-item::before {
@@ -242,10 +233,16 @@ body {
     transparent 100%
   );
   transform: translateX(-120%) rotate(12deg);
-  animation: raffleNameFuchsiaShine 4.4s linear infinite;
+  animation: raffleNamePinkNeonShine 4.4s linear infinite;
   pointer-events: none;
   z-index: 1;
   mix-blend-mode: screen;
+}
+
+@keyframes raffleNamePinkNeonShine {
+  0% { transform: translateX(-120%) rotate(12deg); }
+  45% { transform: translateX(120%) rotate(12deg); }
+  100% { transform: translateX(120%) rotate(12deg); }
 }
 
 .raffle-name-item::after {
@@ -263,24 +260,18 @@ body {
   pointer-events: none;
 }
 
-@keyframes raffleNameFuchsiaShine {
-  0% { transform: translateX(-120%) rotate(12deg); }
-  45% { transform: translateX(120%) rotate(12deg); }
-  100% { transform: translateX(120%) rotate(12deg); }
-}
-
 .raffle-name-item.active {
   transform: scale(1.025);
   border-color: #ffffff;
 
   background:
     radial-gradient(circle at 18% 30%, rgba(255,255,255,.28), transparent 14%),
-    linear-gradient(90deg, rgba(255,255,255,.25), rgba(255,47,207,.36));
+    linear-gradient(90deg, rgba(255,255,255,.25), rgba(244,95,142,.36));
 
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.36),
     0 0 18px rgba(255,255,255,.34),
-    0 0 24px rgba(255,47,207,.38);
+    0 0 24px rgba(244,95,142,.38);
 }
 
 .raffle-name {
@@ -296,11 +287,11 @@ body {
   color: #ffffff;
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     2px  2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 
   white-space: normal;
   overflow-wrap: anywhere;
@@ -324,14 +315,15 @@ body {
   padding: 3px 8px;
   border-radius: 999px;
 
-  background: rgba(80, 22, 143, 0.35);
+  background: rgba(29,17,22,.30);
   border: 1px solid rgba(255,255,255,.28);
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     2px  2px 0 var(--shadow);
 }
 
 .raffle-winner-screen {
@@ -347,12 +339,7 @@ body {
   padding: 24px;
 
   background:
-    radial-gradient(
-      circle at center,
-      rgba(255,47,207,.44),
-      rgba(123,44,255,.38) 40%,
-      rgba(0,0,0,.86) 76%
-    ),
+    radial-gradient(circle at center, rgba(255,196,210,.44), rgba(244,95,142,.38) 40%, rgba(0,0,0,.86) 76%),
     rgba(0,0,0,.86);
 
   opacity: 0;
@@ -380,19 +367,19 @@ body {
   background: linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.36) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.38) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 100%
   );
   transform: translateX(-120%) rotate(12deg);
-  animation: raffleWinnerFuchsiaShine 4.4s linear infinite;
+  animation: raffleWinnerPinkNeonShine 4.4s linear infinite;
   pointer-events: none;
   z-index: 1;
   mix-blend-mode: screen;
 }
 
-@keyframes raffleWinnerFuchsiaShine {
+@keyframes raffleWinnerPinkNeonShine {
   0% { transform: translateX(-120%) rotate(12deg); }
   45% { transform: translateX(120%) rotate(12deg); }
   100% { transform: translateX(120%) rotate(12deg); }
@@ -401,7 +388,6 @@ body {
 .winner-label {
   position: relative;
   z-index: 3;
-
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 30px;
   line-height: 1;
@@ -409,35 +395,34 @@ body {
   margin-bottom: 10px;
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     2px  2px 0 var(--shadow),
-     0 0 12px rgba(255,255,255,.20);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .winner-name {
   position: relative;
   z-index: 3;
-
   max-width: 96%;
+
   font-family: 'Bungee', system-ui, sans-serif;
   font-size: 46px;
   line-height: 1.08;
 
   color: #ffffff;
   text-align: center;
+
   overflow-wrap: anywhere;
   word-break: break-word;
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     2px  2px 0 var(--shadow),
-     0 0 16px rgba(255,255,255,.22);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 
   animation: winnerPop 0.7s ease infinite alternate;
 }

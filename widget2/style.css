@@ -1,17 +1,17 @@
 /* =========================
-   MVP – Cloud Blue Pink Outline Theme
+   MVP – Pink Neon Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --stroke:#d772a3;
-  --stroke-dark:#b84f86;
+  --outline:#ffb6cc;
+  --shadow:#1d1116;
 
-  --blue-1:#eaf8ff;
-  --blue-2:#cfeeff;
-  --blue-3:#a9dcff;
-  --blue-4:#7ec8f7;
+  --pink-1:#ffc4d2;
+  --pink-2:#ff9fba;
+  --pink-3:#ff789f;
+  --pink-4:#f45f8e;
 
   --gold-1:#ffe9a6;
   --gold-2:#ffd86b;
@@ -43,60 +43,53 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(ellipse at 16% 18%, rgba(255,255,255,.82), transparent 22%),
-    radial-gradient(ellipse at 74% 16%, rgba(255,255,255,.58), transparent 24%),
-    radial-gradient(ellipse at 42% 74%, rgba(255,255,255,.38), transparent 24%),
-    linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 34%, var(--blue-3) 68%, var(--blue-4) 100%);
-  border:1px solid rgba(255,255,255,.48);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.46), transparent 18%),
+    radial-gradient(circle at 82% 20%, rgba(255,255,255,.20), transparent 20%),
+    linear-gradient(135deg, var(--pink-1) 0%, var(--pink-2) 34%, var(--pink-3) 68%, var(--pink-4) 100%);
+  border:1px solid rgba(255,255,255,.40);
   box-shadow:
-    0 10px 28px rgba(120,180,220,.24),
-    0 0 18px rgba(220,245,255,.35),
-    inset 0 1px 0 rgba(255,255,255,.55);
+    0 10px 28px rgba(244,95,142,.26),
+    0 0 22px rgba(255,196,210,.28),
+    inset 0 1px 0 rgba(255,255,255,.42);
 }
 
-/* borde glossy */
 #container::before{
   content:"";
   position:absolute;
   inset:0;
   border-radius:inherit;
   padding:1px;
-  background:
-    linear-gradient(
-      130deg,
-      rgba(255,255,255,.96),
-      rgba(210,240,255,.88),
-      rgba(255,255,255,.70),
-      rgba(247,201,222,.70),
-      rgba(255,255,255,.94)
-    );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+  background:linear-gradient(130deg, rgba(255,255,255,.98), rgba(255,182,204,.88), rgba(255,255,255,.68), rgba(244,95,142,.64));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
-  opacity:.96;
   pointer-events:none;
   z-index:4;
 }
 
-/* nubes + corazones */
 #container::after{
-  content:"☁   ♡   ☁   ♡   ☁";
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  padding-top:8px;
-  font-size:13px;
-  letter-spacing:10px;
-  color:rgba(255,255,255,.52);
-  text-shadow:
-    1px 1px 0 rgba(184,79,134,.30),
-    0 0 8px rgba(255,255,255,.30);
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.38) 50%,
+    rgba(255,255,255,.10) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:mvpPinkNeonShine 4.4s linear infinite;
   pointer-events:none;
-  z-index:2;
+  z-index:3;
+  mix-blend-mode:screen;
+}
+
+@keyframes mvpPinkNeonShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .title{
@@ -111,11 +104,12 @@ body{
   text-transform:uppercase;
   color:#fff;
   text-shadow:
-    -2px -2px 0 var(--stroke-dark),
-     2px -2px 0 var(--stroke-dark),
-    -2px  2px 0 var(--stroke-dark),
-     2px  2px 0 var(--stroke-dark),
-     0 0 10px rgba(255,255,255,.22);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.18);
 }
 
 #top-list{
@@ -137,57 +131,38 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(ellipse at 18% 30%, rgba(255,255,255,.40), transparent 18%),
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06)),
-    linear-gradient(135deg, rgba(207,238,255,.52), rgba(247,201,222,.34));
-  border:1px solid rgba(255,255,255,.30);
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
+    linear-gradient(135deg, rgba(255,255,255,.22), rgba(244,95,142,.24));
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.36),
-    0 6px 16px rgba(120,180,220,.16);
+    inset 0 1px 0 rgba(255,255,255,.30),
+    0 6px 16px rgba(244,95,142,.18);
 }
 
-/* brillo encima de cada fila */
 .tip::before{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.08) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 38%, rgba(255,255,255,.30) 50%, rgba(255,255,255,.08) 62%, transparent 100%);
   transform:translateX(-120%) rotate(12deg);
-  animation:cloudHeartShine 4.4s linear infinite;
+  animation:mvpPinkNeonShine 4.4s linear infinite;
   pointer-events:none;
   z-index:1;
   mix-blend-mode:screen;
 }
 
-@keyframes cloudHeartShine{
-  0%{ transform:translateX(-120%) rotate(12deg); }
-  45%{ transform:translateX(120%) rotate(12deg); }
-  100%{ transform:translateX(120%) rotate(12deg); }
-}
-
 .tip::after{
-  content:"☁";
+  content:"✦";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
-  font-size:15px;
+  font-size:14px;
   color:#fff;
   text-shadow:
-    -1px -1px 0 var(--stroke-dark),
-     1px -1px 0 var(--stroke-dark),
-    -1px  1px 0 var(--stroke-dark),
-     1px  1px 0 var(--stroke-dark),
-     0 0 8px rgba(255,255,255,.28);
+    1px 1px 0 var(--shadow),
+    0 0 8px rgba(255,255,255,.35);
   z-index:2;
-  pointer-events:none;
 }
 
 .tip .name{
@@ -210,7 +185,6 @@ body{
   font-family:'Orbitron', sans-serif;
   font-size:19px;
   font-weight:800;
-  letter-spacing:.03em;
   color:#fff;
   white-space:nowrap;
 }
@@ -218,43 +192,32 @@ body{
 .tip .name,
 .tip .amount{
   text-shadow:
-    -2px -2px 0 var(--stroke-dark),
-     2px -2px 0 var(--stroke-dark),
-    -2px  2px 0 var(--stroke-dark),
-     2px  2px 0 var(--stroke-dark),
-     0 0 10px rgba(255,255,255,.12);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
-/* 1RO ORO */
 .tip.mvp{
   background:
     linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
     linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
   border-color:rgba(255,236,170,.58);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.36),
-    0 8px 20px rgba(255,196,64,.26),
-    0 0 16px rgba(255,221,124,.20);
 }
 
-.tip.mvp::after{
-  content:"👑";
-}
+.tip.mvp::after{ content:"👑"; }
 
-/* 2DO PLATA */
 .tip.second{
   background:
     linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.04)),
     linear-gradient(135deg, var(--silver-1) 0%, var(--silver-2) 48%, var(--silver-3) 100%);
-  border-color:rgba(242,245,252,.52);
 }
 
-/* 3RO BRONCE */
 .tip.third{
   background:
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)),
     linear-gradient(135deg, var(--bronze-1) 0%, var(--bronze-2) 48%, var(--bronze-3) 100%);
-  border-color:rgba(233,181,139,.48);
 }
 
 .rank-icon{
@@ -263,7 +226,5 @@ body{
   margin-right:6px;
   font-size:17px;
   color:#fff;
-  filter:
-    drop-shadow(-1px -1px 0 var(--stroke-dark))
-    drop-shadow(1px 1px 0 var(--stroke-dark));
+  filter:drop-shadow(2px 2px 0 var(--shadow));
 }
