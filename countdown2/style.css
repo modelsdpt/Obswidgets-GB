@@ -1,12 +1,12 @@
 /* =========================
-   TIMER – Red Blue Gradient Theme
+   TIMER – Black Grey Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --stroke:#30252e;
-  --shadow:#181217;
+  --outline:#bfc3cc;
+  --shadow:#050505;
 }
 
 *{ box-sizing:border-box; }
@@ -26,14 +26,14 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.34), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.18), transparent 24%),
-    linear-gradient(90deg, #ff4f62 0%, #e85c78 28%, #b67d99 52%, #6cc7df 78%, #36c6e7 100%);
-  border:1px solid rgba(255,255,255,.34);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.12), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.08), transparent 24%),
+    linear-gradient(145deg, #1d1e24 0%, #0b0c10 48%, #020203 100%);
+  border:1px solid rgba(255,255,255,.18);
   box-shadow:
-    0 8px 22px rgba(64,80,110,.24),
-    0 0 16px rgba(54,198,231,.20),
-    inset 0 1px 0 rgba(255,255,255,.36);
+    0 8px 22px rgba(0,0,0,.62),
+    0 0 16px rgba(210,215,225,.10),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .timer-widget::after{
@@ -43,19 +43,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.07) 38%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.07) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerRedBlueShine 4.8s linear infinite;
+  animation:timerBlackGreyShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerRedBlueShine{
+@keyframes timerBlackGreyShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -72,10 +72,10 @@ body{
   color:#fff;
   margin-bottom:10px;
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
      3px  3px 0 var(--shadow);
 }
 
@@ -97,13 +97,13 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 18% 40%, rgba(255,255,255,.26), transparent 15%),
-    radial-gradient(circle at 70% 38%, rgba(255,255,255,.14), transparent 14%),
-    linear-gradient(90deg, rgba(255,255,255,.22) 0%, rgba(255,120,140,.28) 30%, rgba(120,210,230,.36) 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(circle at 18% 40%, rgba(255,255,255,.12), transparent 15%),
+    radial-gradient(circle at 70% 38%, rgba(255,255,255,.08), transparent 14%),
+    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(60,62,75,.46) 45%, rgba(6,6,8,.86) 100%);
+  border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 4px 12px rgba(64,80,110,.18),
-    inset 0 1px 0 rgba(255,255,255,.28);
+    0 4px 12px rgba(0,0,0,.44),
+    inset 0 1px 0 rgba(255,255,255,.12);
 }
 
 .timer-box::before{
@@ -111,11 +111,11 @@ body{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.14), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 38%),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.035) 0px,
-      rgba(255,255,255,.035) 2px,
+      rgba(255,255,255,.018) 0px,
+      rgba(255,255,255,.018) 2px,
       rgba(255,255,255,0) 2px,
       rgba(255,255,255,0) 8px
     );
@@ -129,18 +129,18 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.10) 35%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.10) 62%,
+    rgba(255,255,255,.08) 35%,
+    rgba(255,255,255,.24) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxRedBlueShine 4.4s linear infinite;
+  animation:timerBoxBlackGreyShine 4.4s linear infinite;
   mix-blend-mode:screen;
   opacity:.86;
 }
 
-@keyframes timerBoxRedBlueShine{
+@keyframes timerBoxBlackGreyShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -154,31 +154,31 @@ body{
   letter-spacing:.06em;
   color:#fff;
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
      3px  3px 0 var(--shadow);
 }
 
 .timer-box.timer-running{
-  animation:timerPulseRedBlue 1.15s ease-in-out infinite alternate;
+  animation:timerPulseBlackGrey 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseRedBlue{
+@keyframes timerPulseBlackGrey{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(64,80,110,.24),
-      inset 0 1px 0 rgba(255,255,255,.32),
-      0 0 16px rgba(54,198,231,.20);
+      0 6px 16px rgba(0,0,0,.52),
+      inset 0 1px 0 rgba(255,255,255,.16),
+      0 0 16px rgba(210,215,225,.12);
   }
 }
 
 .timer-box.timer-finished{
   box-shadow:
-    0 6px 16px rgba(64,80,110,.26),
-    inset 0 1px 0 rgba(255,255,255,.32),
-    0 0 20px rgba(54,198,231,.24);
+    0 6px 16px rgba(0,0,0,.52),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 20px rgba(210,215,225,.14);
 }
