@@ -1,12 +1,17 @@
 /* =========================
-   MVP – Fuchsia Purple Neon Theme
+   MVP – Soft Pink Gold Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#ff7de8;
-  --shadow:#5c1fa8;
+  --outline:#d6a94f;
+  --shadow:#7b5a1d;
+
+  --pink-1:#f8c4cf;
+  --pink-2:#f0a8b7;
+  --pink-3:#e894a6;
+  --pink-4:#ffd9df;
 
   --gold-1:#ffe9a6;
   --gold-2:#ffd86b;
@@ -38,14 +43,14 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 15% 16%, rgba(255,255,255,.28), transparent 18%),
-    radial-gradient(circle at 82% 20%, rgba(255,255,255,.16), transparent 20%),
-    linear-gradient(135deg, #ff2fcf 0%, #d52eff 32%, #9b2dff 68%, #5d20d6 100%);
-  border:1px solid rgba(255,255,255,.30);
+    radial-gradient(ellipse at 88% 18%, rgba(255,255,255,.50), transparent 20%),
+    radial-gradient(ellipse at 18% 18%, rgba(255,255,255,.32), transparent 18%),
+    linear-gradient(135deg, #ffd9df 0%, #f8c4cf 36%, #f0a8b7 72%, #e894a6 100%);
+  border:1px solid rgba(255,255,255,.42);
   box-shadow:
-    0 10px 28px rgba(95,35,170,.28),
-    0 0 20px rgba(255,47,207,.26),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 10px 28px rgba(210,120,140,.22),
+    0 0 18px rgba(255,220,225,.30),
+    inset 0 1px 0 rgba(255,255,255,.42);
 }
 
 #container::before{
@@ -54,11 +59,8 @@ body{
   inset:0;
   border-radius:inherit;
   padding:1px;
-  background:
-    linear-gradient(130deg, rgba(255,255,255,.90), rgba(255,125,232,.76), rgba(255,255,255,.50), rgba(93,32,214,.54));
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+  background:linear-gradient(130deg, rgba(255,255,255,.95), rgba(255,236,190,.72), rgba(214,169,79,.48), rgba(255,255,255,.90));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
           mask-composite:exclude;
   pointer-events:none;
@@ -69,22 +71,15 @@ body{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.36) 50%,
-    rgba(255,255,255,.08) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 38%, rgba(255,255,255,.38) 50%, rgba(255,255,255,.10) 62%, transparent 100%);
   transform:translateX(-120%) rotate(12deg);
-  animation:mvpFuchsiaShine 4.4s linear infinite;
+  animation:softPinkGoldShine 4.8s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes mvpFuchsiaShine{
+@keyframes softPinkGoldShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -106,8 +101,8 @@ body{
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
-     2px  2px 0 var(--shadow),
-     0 0 12px rgba(255,255,255,.18);
+     3px  3px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.20);
 }
 
 #top-list{
@@ -129,28 +124,22 @@ body{
   overflow:hidden;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04)),
-    linear-gradient(135deg, rgba(255,255,255,.20), rgba(155,45,255,.20));
-  border:1px solid rgba(255,255,255,.18);
+    radial-gradient(ellipse at 82% 18%, rgba(255,255,255,.26), transparent 18%),
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.05)),
+    linear-gradient(135deg, rgba(255,255,255,.20), rgba(232,148,166,.22));
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.24),
-    0 6px 16px rgba(95,35,170,.20);
+    inset 0 1px 0 rgba(255,255,255,.30),
+    0 6px 16px rgba(210,120,140,.16);
 }
 
 .tip::before{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.06) 38%,
-    rgba(255,255,255,.26) 50%,
-    rgba(255,255,255,.06) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 38%, rgba(255,255,255,.30) 50%, rgba(255,255,255,.08) 62%, transparent 100%);
   transform:translateX(-120%) rotate(12deg);
-  animation:mvpFuchsiaShine 4.4s linear infinite;
+  animation:softPinkGoldShine 4.8s linear infinite;
   pointer-events:none;
   z-index:1;
   mix-blend-mode:screen;
@@ -163,10 +152,10 @@ body{
   left:10px;
   transform:translateY(-50%);
   font-size:14px;
-  color:#fff;
+  color:#fff8d8;
   text-shadow:
     1px 1px 0 var(--shadow),
-    0 0 8px rgba(255,255,255,.34);
+    0 0 8px rgba(255,225,150,.35);
   z-index:2;
 }
 
@@ -201,27 +190,25 @@ body{
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
-     2px  2px 0 var(--shadow);
+     3px  3px 0 var(--shadow);
 }
 
 .tip.mvp{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.05)),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
     linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
-  border-color:rgba(255,236,170,.58);
 }
-
 .tip.mvp::after{ content:"👑"; }
 
 .tip.second{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04)),
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.04)),
     linear-gradient(135deg, var(--silver-1) 0%, var(--silver-2) 48%, var(--silver-3) 100%);
 }
 
 .tip.third{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.03)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)),
     linear-gradient(135deg, var(--bronze-1) 0%, var(--bronze-2) 48%, var(--bronze-3) 100%);
 }
 
