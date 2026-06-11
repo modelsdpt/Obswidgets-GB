@@ -1,12 +1,12 @@
 /* =========================
-   GOAL BAR VERTICAL – Cute Pink Marble Theme
+   GOAL BAR VERTICAL – Black Grey Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#d85f8d;
-  --shadow:#9b365e;
+  --outline:#bfc3cc;
+  --shadow:#050505;
 }
 
 *{ box-sizing:border-box; }
@@ -26,49 +26,52 @@ body{
   border-radius:20px;
 
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.54), transparent 20%),
-    radial-gradient(ellipse at 76% 16%, rgba(255,255,255,.28), transparent 18%),
-    radial-gradient(ellipse at 28% 74%, rgba(255,255,255,.22), transparent 20%),
-    linear-gradient(180deg, #ffd2df 0%, #ffb3ca 34%, #f990b4 70%, #f47aa5 100%);
-  border:1px solid rgba(255,255,255,.42);
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.12), transparent 18%),
+    radial-gradient(circle at 76% 16%, rgba(255,255,255,.08), transparent 16%),
+    linear-gradient(180deg, #1d1e24 0%, #0b0c10 48%, #020203 100%);
+  border:1px solid rgba(255,255,255,.18);
   box-shadow:
-    0 10px 24px rgba(216,95,141,.22),
-    0 0 18px rgba(255,220,232,.28),
-    inset 0 1px 0 rgba(255,255,255,.44);
+    0 10px 24px rgba(0,0,0,.65),
+    0 0 18px rgba(210,215,225,.10),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 #goal-wrapper::before{
   content:"";
   position:absolute;
-  inset:-20%;
+  inset:0;
+  border-radius:inherit;
+  padding:1px;
   background:
-    radial-gradient(ellipse at 25% 20%, rgba(255,255,255,.34) 0 8%, transparent 9%),
-    radial-gradient(ellipse at 70% 44%, rgba(255,255,255,.24) 0 9%, transparent 10%),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.12) 0px,
-      rgba(255,255,255,.12) 2px,
-      transparent 2px,
-      transparent 14px
-    );
-  opacity:.42;
+    linear-gradient(180deg, rgba(255,255,255,.40), rgba(180,185,195,.20), rgba(255,255,255,.10), rgba(210,215,225,.30));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.96;
   pointer-events:none;
-  z-index:1;
+  z-index:5;
 }
 
 #goal-wrapper::after{
   content:"";
   position:absolute;
   inset:-55%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 38%, rgba(255,255,255,.42) 50%, rgba(255,255,255,.10) 62%, transparent 100%);
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.07) 38%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.07) 62%,
+    transparent 100%
+  );
   transform:translateY(120%) rotate(12deg);
-  animation:goalCuteMarbleShine 4.8s linear infinite;
+  animation:goalBlackGreyShine 4.8s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes goalCuteMarbleShine{
+@keyframes goalBlackGreyShine{
   0%{ transform:translateY(120%) rotate(12deg); }
   45%{ transform:translateY(-120%) rotate(12deg); }
   100%{ transform:translateY(-120%) rotate(12deg); }
@@ -84,13 +87,12 @@ body{
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.32), rgba(255,255,255,.08)),
-    linear-gradient(180deg, rgba(255,248,251,.56) 0%, rgba(255,179,202,.44) 50%, rgba(244,122,165,.34) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
+    linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(190,195,210,.26) 50%, rgba(255,255,255,.18) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.38),
-    inset 0 0 20px rgba(255,255,255,.14),
-    0 0 16px rgba(255,255,255,.24),
-    0 0 22px rgba(216,95,141,.16);
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 0 22px rgba(255,255,255,.10),
+    0 0 16px rgba(255,255,255,.18);
   overflow:hidden;
 }
 
@@ -98,11 +100,18 @@ body{
   content:"";
   position:absolute;
   inset:-20%;
-  background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,.14) 38%, rgba(255,255,255,.42) 50%, rgba(255,255,255,.14) 62%, transparent 100%);
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.12) 38%,
+    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.12) 62%,
+    transparent 100%
+  );
   transform:translateY(120%);
-  animation:goalFillCuteMarbleShine 4.6s linear infinite;
+  animation:goalFillBlackGreyShine 4.6s linear infinite;
   mix-blend-mode:screen;
-  opacity:.90;
+  opacity:.86;
 }
 
 #bar-fill::after{
@@ -114,20 +123,22 @@ body{
   text-align:center;
   font-size:10px;
   line-height:1.8;
-  color:rgba(255,255,255,.88);
-  text-shadow:1px 1px 0 var(--shadow);
-  animation:cuteParticles 3.8s linear infinite;
+  color:rgba(255,255,255,.78);
+  text-shadow:
+    1px 1px 0 var(--shadow),
+    0 0 8px rgba(255,255,255,.32);
+  animation:greyParticles 3.8s linear infinite;
   pointer-events:none;
   opacity:.90;
 }
 
-@keyframes goalFillCuteMarbleShine{
+@keyframes goalFillBlackGreyShine{
   0%{ transform:translateY(120%); }
   45%{ transform:translateY(-120%); }
   100%{ transform:translateY(-120%); }
 }
 
-@keyframes cuteParticles{
+@keyframes greyParticles{
   0%{ transform:translateY(12px); opacity:.18; }
   20%{ opacity:.90; }
   100%{ transform:translateY(-110px); opacity:0; }
@@ -149,6 +160,7 @@ body{
   left:50%;
   transform:translate(-50%, -50%) rotate(-90deg);
   transform-origin:center;
+
   font-family:'Orbitron', sans-serif;
   font-size:14px;
   font-weight:800;
@@ -156,6 +168,7 @@ body{
   text-transform:uppercase;
   color:#fff;
   white-space:nowrap;
+
   text-shadow:
     -1px -1px 0 var(--outline),
      1px -1px 0 var(--outline),
@@ -170,6 +183,7 @@ body{
   left:50%;
   transform:translateX(-50%) rotate(-90deg);
   transform-origin:center;
+
   font-family:'Orbitron', sans-serif;
   font-size:12px;
   font-weight:800;
@@ -177,11 +191,21 @@ body{
   white-space:nowrap;
   padding:2px 6px;
   border-radius:8px;
-  background:rgba(155,54,94,.24);
+  background:rgba(0,0,0,.30);
+
   text-shadow:
     -1px -1px 0 var(--outline),
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
      3px  3px 0 var(--shadow);
+}
+
+.goal-title.neon{
+  animation:goalPulseBlackGrey 1.25s ease-in-out infinite alternate;
+}
+
+@keyframes goalPulseBlackGrey{
+  from{ filter:brightness(1); }
+  to{ filter:brightness(1.12); }
 }
