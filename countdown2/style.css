@@ -29,7 +29,7 @@ body{
     radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.76), transparent 24%),
     radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.38), transparent 24%),
     radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.28), transparent 22%),
-    linear-gradient(135deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+    linear-gradient(135deg, #FDB2B4 0%, #fc9ea1 30%, #f89498 60%, #f7979b 82%, #eef8ff 100%);
   border:1px solid rgba(255,255,255,.52);
   box-shadow:
     0 8px 22px rgba(90,130,170,.18),
