@@ -1,29 +1,30 @@
 /* =========================
-   MVP – Pink White Outline Text Theme
+   MVP – Sky Clouds Pink Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --txt-fill:rgba(255,255,255,.08);
-  --outline:#ffffff;
-  --shadow:#b83f77;
+  --txt:#ffffff;
+  --outline:#d9799d;
+  --shadow:#7a4b63;
 
-  --pink-1:#ff9abc;
-  --pink-2:#f471a3;
-  --pink-3:#e95896;
-  --pink-4:#d94386;
+  --sky-1:#f7fbff;
+  --sky-2:#dcebff;
+  --sky-3:#b8d7f2;
+  --sky-4:#96c4e8;
+  --pink-soft:#f8c4d7;
 
-  --gold-1:#d94386;
-  --gold-2:#e95896;
-  --gold-3:#f471a3;
+  --gold-1:#ffe9a6;
+  --gold-2:#ffd86b;
+  --gold-3:#ffbf2f;
 
-  --silver-1:#d94386;
-  --silver-2:#e95896;
-  --silver-3:#f471a3;
+  --silver-1:#f6f7fb;
+  --silver-2:#d9deea;
+  --silver-3:#b8c0cf;
 
-  --bronze-1:#d94386;
-  --bronze-2:#e95896;
-  --bronze-3:#f471a3;
+  --bronze-1:#f2c6a2;
+  --bronze-2:#d99a67;
+  --bronze-3:#b86e36;
 }
 
 *{ box-sizing:border-box; }
@@ -31,7 +32,7 @@
 body{
   margin:0;
   background:transparent;
-  color:white;
+  color:var(--txt);
   font-family:'Montserrat', system-ui, sans-serif;
 }
 
@@ -43,14 +44,34 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 15% 18%, rgba(255,255,255,.24), transparent 18%),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,.14), transparent 20%),
-    linear-gradient(135deg, #ff9abc 0%, #f471a3 34%, #e95896 68%, #d94386 100%);
-  border:1px solid rgba(255,255,255,.34);
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.86), transparent 24%),
+    radial-gradient(ellipse at 44% 10%, rgba(255,255,255,.58), transparent 22%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.46), transparent 24%),
+    radial-gradient(ellipse at 26% 78%, rgba(255,255,255,.34), transparent 24%),
+    linear-gradient(135deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+  border:1px solid rgba(255,255,255,.52);
   box-shadow:
-    0 10px 28px rgba(184,63,119,.24),
-    0 0 20px rgba(255,180,205,.24),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 10px 28px rgba(90,130,170,.20),
+    0 0 20px rgba(255,220,236,.28),
+    inset 0 1px 0 rgba(255,255,255,.50);
+}
+
+#container::before{
+  content:"☁   ☁   ☁   ☁";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:8px;
+  font-size:13px;
+  letter-spacing:13px;
+  color:rgba(255,255,255,.42);
+  text-shadow:
+    1px 1px 0 rgba(122,75,99,.34),
+    0 0 8px rgba(255,255,255,.28);
+  pointer-events:none;
+  z-index:1;
 }
 
 #container::after{
@@ -60,19 +81,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:outlinePinkShine 4.8s linear infinite;
+  animation:skyCloudShine 4.8s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes outlinePinkShine{
+@keyframes skyCloudShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -88,14 +109,14 @@ body{
   font-weight:800;
   letter-spacing:.16em;
   text-transform:uppercase;
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.4px var(--outline);
-
+  color:#fff;
   text-shadow:
-    0 0 6px rgba(255,255,255,.22),
-    2px 2px 0 var(--shadow),
-    0 0 12px rgba(255,255,255,.12);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.22);
 }
 
 #top-list{
@@ -117,12 +138,13 @@ body{
   overflow:hidden;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
-    linear-gradient(135deg, rgba(255,255,255,.16), rgba(217,67,134,.24));
-  border:1px solid rgba(255,255,255,.22);
+    radial-gradient(ellipse at 18% 30%, rgba(255,255,255,.40), transparent 16%),
+    linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.07)),
+    linear-gradient(135deg, rgba(184,215,242,.32), rgba(248,196,215,.28));
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.28),
-    0 6px 16px rgba(184,63,119,.16);
+    inset 0 1px 0 rgba(255,255,255,.32),
+    0 6px 16px rgba(90,130,170,.16);
 }
 
 .tip::before{
@@ -132,27 +154,26 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.07) 38%,
-    rgba(255,255,255,.28) 50%,
-    rgba(255,255,255,.07) 62%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.32) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:outlinePinkShine 4.8s linear infinite;
+  animation:skyCloudShine 4.8s linear infinite;
   pointer-events:none;
   z-index:1;
   mix-blend-mode:screen;
 }
 
 .tip::after{
-  content:"♡";
+  content:"☁";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
   font-size:15px;
-  color:transparent;
-  -webkit-text-stroke:1px #fff;
+  color:#fff;
   text-shadow:1px 1px 0 var(--shadow);
   z-index:2;
 }
@@ -161,13 +182,14 @@ body{
 .tip .amount{
   position:relative;
   z-index:3;
+  color:#fff;
   white-space:nowrap;
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.15px var(--outline);
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .tip .name{
@@ -191,11 +213,7 @@ body{
     linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
     linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
 }
-.tip.mvp::after{
-  content:"👑";
-  color:#fff;
-  -webkit-text-stroke:0;
-}
+.tip.mvp::after{ content:"👑"; }
 
 .tip.second{
   background:

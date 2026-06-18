@@ -1,12 +1,12 @@
 /* =========================
-   TIMER – Pink White Outline Text Theme
+   TIMER – Sky Clouds Pink Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --txt-fill:rgba(255,255,255,.08);
-  --outline:#ffffff;
-  --shadow:#b83f77;
+  --txt:#ffffff;
+  --outline:#d9799d;
+  --shadow:#7a4b63;
 }
 
 *{ box-sizing:border-box; }
@@ -15,6 +15,7 @@ body{
   margin:0;
   background:transparent;
   font-family:'Montserrat', system-ui, sans-serif;
+  color:var(--txt);
 }
 
 .timer-widget{
@@ -25,14 +26,31 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.28), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.16), transparent 24%),
-    linear-gradient(135deg, #ff9abc 0%, #f471a3 34%, #e95896 68%, #d94386 100%);
-  border:1px solid rgba(255,255,255,.34);
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.76), transparent 24%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.38), transparent 24%),
+    radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.28), transparent 22%),
+    linear-gradient(135deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+  border:1px solid rgba(255,255,255,.52);
   box-shadow:
-    0 8px 22px rgba(184,63,119,.22),
-    0 0 16px rgba(255,180,205,.24),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 8px 22px rgba(90,130,170,.18),
+    0 0 16px rgba(255,220,236,.28),
+    inset 0 1px 0 rgba(255,255,255,.46);
+}
+
+.timer-widget::before{
+  content:"☁     ☁     ☁";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:6px;
+  font-size:12px;
+  letter-spacing:8px;
+  color:rgba(255,255,255,.48);
+  text-shadow:1px 1px 0 rgba(122,75,99,.36);
+  pointer-events:none;
+  z-index:1;
 }
 
 .timer-widget::after{
@@ -42,19 +60,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,.10) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerOutlinePinkShine 4.8s linear infinite;
+  animation:timerSkyCloudShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerOutlinePinkShine{
+@keyframes timerSkyCloudShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -68,12 +86,14 @@ body{
   font-size:18px;
   letter-spacing:.06em;
   text-transform:uppercase;
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.1px var(--outline);
+  color:#fff;
   margin-bottom:10px;
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .timer-display{
@@ -94,13 +114,24 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 18% 40%, rgba(255,255,255,.24), transparent 15%),
-    radial-gradient(circle at 70% 38%, rgba(255,255,255,.14), transparent 14%),
-    linear-gradient(135deg, rgba(255,255,255,.20) 0%, rgba(255,170,205,.34) 42%, rgba(217,67,134,.38) 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.40), transparent 16%),
+    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.24), transparent 15%),
+    linear-gradient(135deg, rgba(255,255,255,.30) 0%, rgba(184,215,242,.38) 44%, rgba(248,196,215,.36) 100%);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 4px 12px rgba(184,63,119,.16),
-    inset 0 1px 0 rgba(255,255,255,.28);
+    0 4px 12px rgba(90,130,170,.14),
+    inset 0 1px 0 rgba(255,255,255,.32);
+}
+
+.timer-box::before{
+  content:"☁";
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:rgba(255,255,255,.58);
+  text-shadow:1px 1px 0 rgba(122,75,99,.34);
 }
 
 .timer-box::after{
@@ -110,17 +141,18 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.10) 35%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.10) 62%,
+    rgba(255,255,255,.12) 35%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.12) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxOutlinePinkShine 4.4s linear infinite;
+  animation:timerBoxSkyCloudShine 4.4s linear infinite;
   mix-blend-mode:screen;
+  opacity:.88;
 }
 
-@keyframes timerBoxOutlinePinkShine{
+@keyframes timerBoxSkyCloudShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -132,24 +164,33 @@ body{
   font-family:'Anton', sans-serif;
   font-size:34px;
   letter-spacing:.06em;
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.25px var(--outline);
+  color:#fff;
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .timer-box.timer-running{
-  animation:timerPulseOutlinePink 1.15s ease-in-out infinite alternate;
+  animation:timerPulseSkyCloud 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseOutlinePink{
+@keyframes timerPulseSkyCloud{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(184,63,119,.24),
-      inset 0 1px 0 rgba(255,255,255,.32),
-      0 0 16px rgba(255,180,205,.22);
+      0 6px 16px rgba(90,130,170,.20),
+      inset 0 1px 0 rgba(255,255,255,.36),
+      0 0 16px rgba(255,220,236,.24);
   }
+}
+
+.timer-box.timer-finished{
+  box-shadow:
+    0 6px 16px rgba(90,130,170,.22),
+    inset 0 1px 0 rgba(255,255,255,.36),
+    0 0 20px rgba(255,220,236,.28);
 }
