@@ -163,7 +163,7 @@ body{
   transform-origin:center;
 
   font-family:'Orbitron', sans-serif;
-  font-size:12px;
+  font-size:18px;
   font-weight:800;
   color:var(--txt-fill);
   -webkit-text-stroke:1.05px var(--outline);
