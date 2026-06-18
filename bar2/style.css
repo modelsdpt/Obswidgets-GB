@@ -1,12 +1,12 @@
 /* =========================
-   GOAL BAR VERTICAL – Black Grey Outline Theme
+   GOAL BAR VERTICAL – Pink White Outline Text Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
-  --txt:#ffffff;
-  --outline:#bfc3cc;
-  --shadow:#050505;
+  --txt-fill:rgba(255,255,255,.08);
+  --outline:#ffffff;
+  --shadow:#b83f77;
 }
 
 *{ box-sizing:border-box; }
@@ -15,7 +15,6 @@ body{
   margin:0;
   background:transparent;
   font-family:'Montserrat', system-ui, sans-serif;
-  color:var(--txt);
 }
 
 #goal-wrapper{
@@ -26,30 +25,14 @@ body{
   border-radius:20px;
 
   background:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.12), transparent 18%),
-    radial-gradient(circle at 76% 16%, rgba(255,255,255,.08), transparent 16%),
-    linear-gradient(180deg, #1d1e24 0%, #0b0c10 48%, #020203 100%);
-  border:1px solid rgba(255,255,255,.18);
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.28), transparent 18%),
+    radial-gradient(circle at 76% 16%, rgba(255,255,255,.16), transparent 16%),
+    linear-gradient(180deg, #ff9abc 0%, #f471a3 34%, #e95896 68%, #d94386 100%);
+  border:1px solid rgba(255,255,255,.34);
   box-shadow:
-    0 10px 24px rgba(0,0,0,.65),
-    0 0 18px rgba(210,215,225,.10),
-    inset 0 1px 0 rgba(255,255,255,.08);
-}
-
-#goal-wrapper::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  padding:1px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.40), rgba(180,185,195,.20), rgba(255,255,255,.10), rgba(210,215,225,.30));
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-          mask-composite:exclude;
-  opacity:.96;
-  pointer-events:none;
-  z-index:5;
+    0 10px 24px rgba(184,63,119,.24),
+    0 0 18px rgba(255,180,205,.24),
+    inset 0 1px 0 rgba(255,255,255,.34);
 }
 
 #goal-wrapper::after{
@@ -59,19 +42,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.07) 38%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.07) 62%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 100%
   );
   transform:translateY(120%) rotate(12deg);
-  animation:goalBlackGreyShine 4.8s linear infinite;
+  animation:goalOutlinePinkShine 4.8s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes goalBlackGreyShine{
+@keyframes goalOutlinePinkShine{
   0%{ transform:translateY(120%) rotate(12deg); }
   45%{ transform:translateY(-120%) rotate(12deg); }
   100%{ transform:translateY(-120%) rotate(12deg); }
@@ -87,12 +70,12 @@ body{
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
-    linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(190,195,210,.26) 50%, rgba(255,255,255,.18) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.08)),
+    linear-gradient(180deg, rgba(255,245,250,.48) 0%, rgba(255,170,205,.38) 50%, rgba(217,67,134,.28) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.30),
-    inset 0 0 22px rgba(255,255,255,.10),
-    0 0 16px rgba(255,255,255,.18);
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 0 20px rgba(255,255,255,.12),
+    0 0 16px rgba(255,255,255,.20);
   overflow:hidden;
 }
 
@@ -104,18 +87,17 @@ body{
     180deg,
     transparent 0%,
     rgba(255,255,255,.12) 38%,
-    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.40) 50%,
     rgba(255,255,255,.12) 62%,
     transparent 100%
   );
   transform:translateY(120%);
-  animation:goalFillBlackGreyShine 4.6s linear infinite;
+  animation:goalFillOutlinePinkShine 4.6s linear infinite;
   mix-blend-mode:screen;
-  opacity:.86;
 }
 
 #bar-fill::after{
-  content:"✦  •  ✦";
+  content:"♡  •  ♡";
   position:absolute;
   left:0;
   right:0;
@@ -123,22 +105,20 @@ body{
   text-align:center;
   font-size:10px;
   line-height:1.8;
-  color:rgba(255,255,255,.78);
-  text-shadow:
-    1px 1px 0 var(--shadow),
-    0 0 8px rgba(255,255,255,.32);
-  animation:greyParticles 3.8s linear infinite;
+  color:transparent;
+  -webkit-text-stroke:1px #fff;
+  text-shadow:1px 1px 0 var(--shadow);
+  animation:outlineParticles 3.8s linear infinite;
   pointer-events:none;
-  opacity:.90;
 }
 
-@keyframes goalFillBlackGreyShine{
+@keyframes goalFillOutlinePinkShine{
   0%{ transform:translateY(120%); }
   45%{ transform:translateY(-120%); }
   100%{ transform:translateY(-120%); }
 }
 
-@keyframes greyParticles{
+@keyframes outlineParticles{
   0%{ transform:translateY(12px); opacity:.18; }
   20%{ opacity:.90; }
   100%{ transform:translateY(-110px); opacity:0; }
@@ -166,15 +146,13 @@ body{
   font-weight:800;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:#fff;
+  color:var(--txt-fill);
+  -webkit-text-stroke:1.15px var(--outline);
   white-space:nowrap;
 
   text-shadow:
-    -1px -1px 0 var(--outline),
-     1px -1px 0 var(--outline),
-    -1px  1px 0 var(--outline),
-     1px  1px 0 var(--outline),
-     3px  3px 0 var(--shadow);
+    0 0 5px rgba(255,255,255,.20),
+    2px 2px 0 var(--shadow);
 }
 
 .goal-amount{
@@ -187,25 +165,14 @@ body{
   font-family:'Orbitron', sans-serif;
   font-size:12px;
   font-weight:800;
-  color:#fff;
+  color:var(--txt-fill);
+  -webkit-text-stroke:1.05px var(--outline);
   white-space:nowrap;
   padding:2px 6px;
   border-radius:8px;
-  background:rgba(0,0,0,.30);
+  background:rgba(184,63,119,.24);
 
   text-shadow:
-    -1px -1px 0 var(--outline),
-     1px -1px 0 var(--outline),
-    -1px  1px 0 var(--outline),
-     1px  1px 0 var(--outline),
-     3px  3px 0 var(--shadow);
-}
-
-.goal-title.neon{
-  animation:goalPulseBlackGrey 1.25s ease-in-out infinite alternate;
-}
-
-@keyframes goalPulseBlackGrey{
-  from{ filter:brightness(1); }
-  to{ filter:brightness(1.12); }
+    0 0 5px rgba(255,255,255,.20),
+    2px 2px 0 var(--shadow);
 }

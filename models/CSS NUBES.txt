@@ -1,0 +1,847 @@
+/* =========================
+   MVP – Sky Clouds Pink Outline Theme
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
+
+:root{
+  --txt:#ffffff;
+  --outline:#d9799d;
+  --shadow:#7a4b63;
+
+  --sky-1:#f7fbff;
+  --sky-2:#dcebff;
+  --sky-3:#b8d7f2;
+  --sky-4:#96c4e8;
+  --pink-soft:#f8c4d7;
+
+  --gold-1:#ffe9a6;
+  --gold-2:#ffd86b;
+  --gold-3:#ffbf2f;
+
+  --silver-1:#f6f7fb;
+  --silver-2:#d9deea;
+  --silver-3:#b8c0cf;
+
+  --bronze-1:#f2c6a2;
+  --bronze-2:#d99a67;
+  --bronze-3:#b86e36;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:transparent;
+  color:var(--txt);
+  font-family:'Montserrat', system-ui, sans-serif;
+}
+
+#container{
+  position:relative;
+  width:430px;
+  padding:12px 14px 14px;
+  border-radius:20px;
+  overflow:hidden;
+
+  background:
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.86), transparent 24%),
+    radial-gradient(ellipse at 44% 10%, rgba(255,255,255,.58), transparent 22%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.46), transparent 24%),
+    radial-gradient(ellipse at 26% 78%, rgba(255,255,255,.34), transparent 24%),
+    linear-gradient(135deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+  border:1px solid rgba(255,255,255,.52);
+  box-shadow:
+    0 10px 28px rgba(90,130,170,.20),
+    0 0 20px rgba(255,220,236,.28),
+    inset 0 1px 0 rgba(255,255,255,.50);
+}
+
+#container::before{
+  content:"☁   ☁   ☁   ☁";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:8px;
+  font-size:13px;
+  letter-spacing:13px;
+  color:rgba(255,255,255,.42);
+  text-shadow:
+    1px 1px 0 rgba(122,75,99,.34),
+    0 0 8px rgba(255,255,255,.28);
+  pointer-events:none;
+  z-index:1;
+}
+
+#container::after{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,.10) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:skyCloudShine 4.8s linear infinite;
+  pointer-events:none;
+  z-index:3;
+  mix-blend-mode:screen;
+}
+
+@keyframes skyCloudShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
+}
+
+.title{
+  position:relative;
+  z-index:5;
+  margin:0 0 12px;
+  text-align:center;
+  font-family:'Orbitron', sans-serif;
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#fff;
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.22);
+}
+
+#top-list{
+  position:relative;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.tip{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:14px;
+  overflow:hidden;
+
+  background:
+    radial-gradient(ellipse at 18% 30%, rgba(255,255,255,.40), transparent 16%),
+    linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,.07)),
+    linear-gradient(135deg, rgba(184,215,242,.32), rgba(248,196,215,.28));
+  border:1px solid rgba(255,255,255,.30);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.32),
+    0 6px 16px rgba(90,130,170,.16);
+}
+
+.tip::before{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.32) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:skyCloudShine 4.8s linear infinite;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:screen;
+}
+
+.tip::after{
+  content:"☁";
+  position:absolute;
+  top:50%;
+  left:10px;
+  transform:translateY(-50%);
+  font-size:15px;
+  color:#fff;
+  text-shadow:1px 1px 0 var(--shadow);
+  z-index:2;
+}
+
+.tip .name,
+.tip .amount{
+  position:relative;
+  z-index:3;
+  color:#fff;
+  white-space:nowrap;
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
+}
+
+.tip .name{
+  flex:1;
+  min-width:0;
+  padding-left:18px;
+  font-size:17px;
+  font-weight:800;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.tip .amount{
+  font-family:'Orbitron', sans-serif;
+  font-size:19px;
+  font-weight:800;
+}
+
+.tip.mvp{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
+    linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
+}
+.tip.mvp::after{ content:"👑"; }
+
+.tip.second{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.04)),
+    linear-gradient(135deg, var(--silver-1) 0%, var(--silver-2) 48%, var(--silver-3) 100%);
+}
+
+.tip.third{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)),
+    linear-gradient(135deg, var(--bronze-1) 0%, var(--bronze-2) 48%, var(--bronze-3) 100%);
+}
+
+
+
+/* =========================
+   GOAL BAR VERTICAL – Sky Clouds Pink Outline Theme
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
+
+:root{
+  --txt:#ffffff;
+  --outline:#d9799d;
+  --shadow:#7a4b63;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:transparent;
+  font-family:'Montserrat', system-ui, sans-serif;
+  color:var(--txt);
+}
+
+#goal-wrapper{
+  width:72px;
+  height:420px;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.76), transparent 22%),
+    radial-gradient(ellipse at 76% 16%, rgba(255,255,255,.38), transparent 20%),
+    radial-gradient(ellipse at 28% 74%, rgba(255,255,255,.30), transparent 22%),
+    linear-gradient(180deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+  border:1px solid rgba(255,255,255,.52);
+  box-shadow:
+    0 10px 24px rgba(90,130,170,.20),
+    0 0 18px rgba(255,220,236,.28),
+    inset 0 1px 0 rgba(255,255,255,.46);
+}
+
+#goal-wrapper::before{
+  content:"☁  ☁  ☁";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:10px;
+  font-size:13px;
+  writing-mode:vertical-rl;
+  color:rgba(255,255,255,.58);
+  text-shadow:
+    1px 1px 0 rgba(122,75,99,.38),
+    0 0 8px rgba(255,255,255,.32);
+  pointer-events:none;
+  z-index:1;
+}
+
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:-55%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,.10) 62%,
+    transparent 100%
+  );
+  transform:translateY(120%) rotate(12deg);
+  animation:goalSkyCloudShine 4.8s linear infinite;
+  pointer-events:none;
+  z-index:3;
+  mix-blend-mode:screen;
+}
+
+@keyframes goalSkyCloudShine{
+  0%{ transform:translateY(120%) rotate(12deg); }
+  45%{ transform:translateY(-120%) rotate(12deg); }
+  100%{ transform:translateY(-120%) rotate(12deg); }
+}
+
+#bar-fill{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:0%;
+  z-index:2;
+  border-radius:0 0 20px 20px;
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.10)),
+    linear-gradient(180deg, rgba(255,250,252,.58) 0%, rgba(184,215,242,.46) 48%, rgba(248,196,215,.38) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.38),
+    inset 0 0 20px rgba(255,255,255,.14),
+    0 0 16px rgba(255,255,255,.26),
+    0 0 22px rgba(90,130,170,.16);
+  overflow:hidden;
+}
+
+#bar-fill::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.14) 38%,
+    rgba(255,255,255,.44) 50%,
+    rgba(255,255,255,.14) 62%,
+    transparent 100%
+  );
+  transform:translateY(120%);
+  animation:goalFillSkyCloudShine 4.6s linear infinite;
+  mix-blend-mode:screen;
+  opacity:.90;
+}
+
+#bar-fill::after{
+  content:"☁  •  ☁";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:8px;
+  text-align:center;
+  font-size:10px;
+  line-height:1.8;
+  color:rgba(255,255,255,.90);
+  text-shadow:1px 1px 0 var(--shadow);
+  animation:cloudGoalParticles 3.8s linear infinite;
+  pointer-events:none;
+  opacity:.90;
+}
+
+@keyframes goalFillSkyCloudShine{
+  0%{ transform:translateY(120%); }
+  45%{ transform:translateY(-120%); }
+  100%{ transform:translateY(-120%); }
+}
+
+@keyframes cloudGoalParticles{
+  0%{ transform:translateY(12px); opacity:.18; }
+  20%{ opacity:.90; }
+  100%{ transform:translateY(-110px); opacity:0; }
+}
+
+.goal-label{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  pointer-events:none;
+  z-index:6;
+}
+
+.goal-title{
+  position:absolute;
+  top:48%;
+  left:50%;
+  transform:translate(-50%, -50%) rotate(-90deg);
+  transform-origin:center;
+
+  font-family:'Orbitron', sans-serif;
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#fff;
+  white-space:nowrap;
+
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
+}
+
+/* números más grandes y legibles */
+.goal-amount{
+  position:absolute;
+  bottom:52px;
+  left:50%;
+  transform:translateX(-50%) rotate(-90deg);
+  transform-origin:center;
+
+  font-family:'Orbitron', sans-serif;
+  font-size:15px;
+  font-weight:800;
+  color:#fff;
+  white-space:nowrap;
+  padding:4px 9px;
+  border-radius:10px;
+
+  background:rgba(122,75,99,.32);
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow),
+     0 0 10px rgba(255,255,255,.20);
+}
+
+.goal-title.neon{
+  animation:goalPulseSkyCloud 1.25s ease-in-out infinite alternate;
+}
+
+@keyframes goalPulseSkyCloud{
+  from{ filter:brightness(1); }
+  to{ filter:brightness(1.12); }
+}
+
+
+/* =========================
+   TIMER – Sky Clouds Pink Outline Theme
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
+
+:root{
+  --txt:#ffffff;
+  --outline:#d9799d;
+  --shadow:#7a4b63;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:transparent;
+  font-family:'Montserrat', system-ui, sans-serif;
+  color:var(--txt);
+}
+
+.timer-widget{
+  position:relative;
+  width:280px;
+  padding:14px 14px 16px;
+  border-radius:18px;
+  overflow:hidden;
+
+  background:
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.76), transparent 24%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.38), transparent 24%),
+    radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.28), transparent 22%),
+    linear-gradient(135deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+  border:1px solid rgba(255,255,255,.52);
+  box-shadow:
+    0 8px 22px rgba(90,130,170,.18),
+    0 0 16px rgba(255,220,236,.28),
+    inset 0 1px 0 rgba(255,255,255,.46);
+}
+
+.timer-widget::before{
+  content:"☁     ☁     ☁";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:6px;
+  font-size:12px;
+  letter-spacing:8px;
+  color:rgba(255,255,255,.48);
+  text-shadow:1px 1px 0 rgba(122,75,99,.36);
+  pointer-events:none;
+  z-index:1;
+}
+
+.timer-widget::after{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,.10) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:timerSkyCloudShine 4.8s linear infinite;
+  pointer-events:none;
+  z-index:2;
+  mix-blend-mode:screen;
+}
+
+@keyframes timerSkyCloudShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
+}
+
+.timer-title{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  font-family:'Anton', sans-serif;
+  font-size:18px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#fff;
+  margin-bottom:10px;
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
+}
+
+.timer-display{
+  position:relative;
+  z-index:3;
+  display:flex;
+  justify-content:center;
+}
+
+.timer-box{
+  position:relative;
+  width:170px;
+  height:72px;
+  border-radius:8px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.40), transparent 16%),
+    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.24), transparent 15%),
+    linear-gradient(135deg, rgba(255,255,255,.30) 0%, rgba(184,215,242,.38) 44%, rgba(248,196,215,.36) 100%);
+  border:1px solid rgba(255,255,255,.30);
+  box-shadow:
+    0 4px 12px rgba(90,130,170,.14),
+    inset 0 1px 0 rgba(255,255,255,.32);
+}
+
+.timer-box::before{
+  content:"☁";
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:rgba(255,255,255,.58);
+  text-shadow:1px 1px 0 rgba(122,75,99,.34);
+}
+
+.timer-box::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.12) 35%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.12) 62%,
+    transparent 78%
+  );
+  transform:translateX(-120%);
+  animation:timerBoxSkyCloudShine 4.4s linear infinite;
+  mix-blend-mode:screen;
+  opacity:.88;
+}
+
+@keyframes timerBoxSkyCloudShine{
+  0%{ transform:translateX(-120%); }
+  40%{ transform:translateX(120%); }
+  100%{ transform:translateX(120%); }
+}
+
+#timer-value{
+  position:relative;
+  z-index:1;
+  font-family:'Anton', sans-serif;
+  font-size:34px;
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
+}
+
+.timer-box.timer-running{
+  animation:timerPulseSkyCloud 1.15s ease-in-out infinite alternate;
+}
+
+@keyframes timerPulseSkyCloud{
+  from{ transform:translateY(0); }
+  to{
+    transform:translateY(-1px);
+    box-shadow:
+      0 6px 16px rgba(90,130,170,.20),
+      inset 0 1px 0 rgba(255,255,255,.36),
+      0 0 16px rgba(255,220,236,.24);
+  }
+}
+
+.timer-box.timer-finished{
+  box-shadow:
+    0 6px 16px rgba(90,130,170,.22),
+    inset 0 1px 0 rgba(255,255,255,.36),
+    0 0 20px rgba(255,220,236,.28);
+}
+
+
+
+/* =========================
+   TIMER – Sky Clouds Pink Outline Theme
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
+
+:root{
+  --txt:#ffffff;
+  --outline:#d9799d;
+  --shadow:#7a4b63;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:transparent;
+  font-family:'Montserrat', system-ui, sans-serif;
+  color:var(--txt);
+}
+
+.timer-widget{
+  position:relative;
+  width:280px;
+  padding:14px 14px 16px;
+  border-radius:18px;
+  overflow:hidden;
+
+  background:
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.76), transparent 24%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.38), transparent 24%),
+    radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.28), transparent 22%),
+    linear-gradient(135deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
+  border:1px solid rgba(255,255,255,.52);
+  box-shadow:
+    0 8px 22px rgba(90,130,170,.18),
+    0 0 16px rgba(255,220,236,.28),
+    inset 0 1px 0 rgba(255,255,255,.46);
+}
+
+.timer-widget::before{
+  content:"☁     ☁     ☁";
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:6px;
+  font-size:12px;
+  letter-spacing:8px;
+  color:rgba(255,255,255,.48);
+  text-shadow:1px 1px 0 rgba(122,75,99,.36);
+  pointer-events:none;
+  z-index:1;
+}
+
+.timer-widget::after{
+  content:"";
+  position:absolute;
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.10) 38%,
+    rgba(255,255,255,.42) 50%,
+    rgba(255,255,255,.10) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:timerSkyCloudShine 4.8s linear infinite;
+  pointer-events:none;
+  z-index:2;
+  mix-blend-mode:screen;
+}
+
+@keyframes timerSkyCloudShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
+}
+
+.timer-title{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  font-family:'Anton', sans-serif;
+  font-size:18px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#fff;
+  margin-bottom:10px;
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
+}
+
+.timer-display{
+  position:relative;
+  z-index:3;
+  display:flex;
+  justify-content:center;
+}
+
+.timer-box{
+  position:relative;
+  width:170px;
+  height:72px;
+  border-radius:8px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.40), transparent 16%),
+    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.24), transparent 15%),
+    linear-gradient(135deg, rgba(255,255,255,.30) 0%, rgba(184,215,242,.38) 44%, rgba(248,196,215,.36) 100%);
+  border:1px solid rgba(255,255,255,.30);
+  box-shadow:
+    0 4px 12px rgba(90,130,170,.14),
+    inset 0 1px 0 rgba(255,255,255,.32);
+}
+
+.timer-box::before{
+  content:"☁";
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:rgba(255,255,255,.58);
+  text-shadow:1px 1px 0 rgba(122,75,99,.34);
+}
+
+.timer-box::after{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.12) 35%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.12) 62%,
+    transparent 78%
+  );
+  transform:translateX(-120%);
+  animation:timerBoxSkyCloudShine 4.4s linear infinite;
+  mix-blend-mode:screen;
+  opacity:.88;
+}
+
+@keyframes timerBoxSkyCloudShine{
+  0%{ transform:translateX(-120%); }
+  40%{ transform:translateX(120%); }
+  100%{ transform:translateX(120%); }
+}
+
+#timer-value{
+  position:relative;
+  z-index:1;
+  font-family:'Anton', sans-serif;
+  font-size:34px;
+  letter-spacing:.06em;
+  color:#fff;
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
+}
+
+.timer-box.timer-running{
+  animation:timerPulseSkyCloud 1.15s ease-in-out infinite alternate;
+}
+
+@keyframes timerPulseSkyCloud{
+  from{ transform:translateY(0); }
+  to{
+    transform:translateY(-1px);
+    box-shadow:
+      0 6px 16px rgba(90,130,170,.20),
+      inset 0 1px 0 rgba(255,255,255,.36),
+      0 0 16px rgba(255,220,236,.24);
+  }
+}
+
+.timer-box.timer-finished{
+  box-shadow:
+    0 6px 16px rgba(90,130,170,.22),
+    inset 0 1px 0 rgba(255,255,255,.36),
+    0 0 20px rgba(255,220,236,.28);
+}
