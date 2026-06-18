@@ -1,12 +1,17 @@
 /* ================================
-   RAFFLE – Pink White Outline Text Theme
+   RAFFLE – Cute Pink Marble Theme
 ================================ */
 @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700;800&display=swap');
 
-:root{
-  --txt-fill:rgba(255,255,255,.08);
-  --outline:#ffffff;
-  --shadow:#b83f77;
+:root {
+  --raffle-main:#ffb3ca;
+  --raffle-strong:#f47aa5;
+  --raffle-soft:#ffd2df;
+  --raffle-light:#ffffff;
+
+  --txt:#ffffff;
+  --outline:#d85f8d;
+  --shadow:#9b365e;
 }
 
 *{ box-sizing:border-box; }
@@ -15,6 +20,7 @@ body{
   margin:0;
   background:transparent;
   font-family:'Baloo 2', system-ui, sans-serif;
+  color:var(--txt);
   overflow:hidden;
 }
 
@@ -27,14 +33,15 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.28), transparent 18%),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,.16), transparent 22%),
-    linear-gradient(135deg, #ff9abc 0%, #f471a3 34%, #e95896 68%, #d94386 100%);
-  border:1px solid rgba(255,255,255,.34);
+    radial-gradient(ellipse at 18% 18%, rgba(255,255,255,.50), transparent 20%),
+    radial-gradient(ellipse at 72% 24%, rgba(255,255,255,.34), transparent 22%),
+    radial-gradient(ellipse at 30% 78%, rgba(255,255,255,.24), transparent 22%),
+    linear-gradient(135deg, #ffd2df 0%, #ffb3ca 34%, #f990b4 68%, #f47aa5 100%);
+  border:1px solid rgba(255,255,255,.42);
   box-shadow:
-    0 10px 28px rgba(184,63,119,.24),
-    0 0 20px rgba(255,180,205,.24),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 10px 28px rgba(216,95,141,.22),
+    0 0 20px rgba(255,220,232,.30),
+    inset 0 1px 0 rgba(255,255,255,.44);
 }
 
 .raffle-widget.hidden{
@@ -48,26 +55,39 @@ body{
   transform:translateY(0) scale(1);
 }
 
+.raffle-widget::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(255,255,255,.32) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 52% 20%, rgba(255,255,255,.22) 0 10%, transparent 11%),
+    radial-gradient(ellipse at 82% 42%, rgba(255,255,255,.20) 0 9%, transparent 10%),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.12) 0px,
+      rgba(255,255,255,.12) 2px,
+      transparent 2px,
+      transparent 14px
+    );
+  opacity:.42;
+  pointer-events:none;
+  z-index:1;
+}
+
 .raffle-widget::after{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.08) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 38%, rgba(255,255,255,.42) 50%, rgba(255,255,255,.10) 62%, transparent 100%);
   transform:translateX(-120%) rotate(12deg);
-  animation:raffleOutlinePinkShine 4.8s linear infinite;
+  animation:raffleCuteMarbleShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes raffleOutlinePinkShine{
+@keyframes raffleCuteMarbleShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -88,18 +108,18 @@ body{
   display:inline-block;
   padding:3px 12px;
   border-radius:999px;
-  background:rgba(184,63,119,.20);
+  background:linear-gradient(90deg, #ffd2df, #ffb3ca, #f47aa5);
   font-family:'Bungee', system-ui, sans-serif;
   font-size:13px;
   letter-spacing:1px;
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1px var(--outline);
-  border:1px solid rgba(255,255,255,.28);
-
+  color:#fff;
+  border:1px solid rgba(255,255,255,.34);
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-title{
@@ -107,13 +127,13 @@ body{
   font-family:'Bungee', system-ui, sans-serif;
   font-size:21px;
   line-height:1.1;
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.1px var(--outline);
-
+  color:#fff;
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-names{
@@ -140,44 +160,37 @@ body{
   overflow:hidden;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.05)),
-    linear-gradient(135deg, rgba(255,255,255,.16), rgba(217,67,134,.24));
-  border:1px solid rgba(255,255,255,.22);
+    radial-gradient(ellipse at 18% 30%, rgba(255,255,255,.32), transparent 16%),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.06)),
+    linear-gradient(135deg, rgba(255,255,255,.20), rgba(244,122,165,.24));
+  border:1px solid rgba(255,255,255,.26);
 }
 
 .raffle-name-item::before{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.07) 38%,
-    rgba(255,255,255,.28) 50%,
-    rgba(255,255,255,.07) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 38%, rgba(255,255,255,.32) 50%, rgba(255,255,255,.08) 62%, transparent 100%);
   transform:translateX(-120%) rotate(12deg);
-  animation:raffleNameOutlinePinkShine 4.4s linear infinite;
+  animation:raffleNameCuteMarbleShine 4.4s linear infinite;
   pointer-events:none;
   z-index:1;
 }
 
-@keyframes raffleNameOutlinePinkShine{
+@keyframes raffleNameCuteMarbleShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .raffle-name-item::after{
-  content:"♡";
+  content:"✦";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
-  font-size:15px;
-  color:transparent;
-  -webkit-text-stroke:1px #fff;
+  font-size:14px;
+  color:#fff;
   text-shadow:1px 1px 0 var(--shadow);
   z-index:2;
 }
@@ -191,17 +204,16 @@ body{
   font-size:18px;
   font-weight:800;
   line-height:1.05;
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.05px var(--outline);
-
+  color:#fff;
   white-space:normal;
   overflow-wrap:anywhere;
   word-break:break-word;
-
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-tickets{
@@ -210,18 +222,18 @@ body{
   flex:0 0 auto;
   font-size:13px;
   font-weight:800;
+  color:#fff;
   white-space:nowrap;
   padding:3px 8px;
   border-radius:999px;
-  background:rgba(184,63,119,.24);
+  background:rgba(155,54,94,.24);
   border:1px solid rgba(255,255,255,.26);
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1px var(--outline);
-
   text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     2px  2px 0 var(--shadow);
 }
 
 .raffle-winner-screen{
@@ -234,7 +246,7 @@ body{
   align-items:center;
   padding:24px;
   background:
-    radial-gradient(circle at center, rgba(255,154,188,.44), rgba(217,67,134,.38) 42%, rgba(0,0,0,.76) 82%),
+    radial-gradient(circle at center, rgba(255,210,223,.44), rgba(244,122,165,.38) 42%, rgba(0,0,0,.76) 82%),
     rgba(0,0,0,.76);
   opacity:0;
   transform:scale(.9);
@@ -256,14 +268,14 @@ body{
   position:relative;
   z-index:3;
   font-family:'Bungee', system-ui, sans-serif;
+  color:#fff;
   text-align:center;
-
-  color:var(--txt-fill);
-  -webkit-text-stroke:1.2px var(--outline);
-
   text-shadow:
-    0 0 6px rgba(255,255,255,.22),
-    2px 2px 0 var(--shadow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     3px  3px 0 var(--shadow);
 }
 
 .winner-label{
