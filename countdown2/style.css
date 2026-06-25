@@ -1,12 +1,12 @@
 /* =========================
-   TIMER – Sky Clouds Pink Outline Theme
+   TIMER – Red Fire Marble Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#d9799d;
-  --shadow:#7a4b63;
+  --outline:#ff3d4f;
+  --shadow:#4b050b;
 }
 
 *{ box-sizing:border-box; }
@@ -15,7 +15,6 @@ body{
   margin:0;
   background:transparent;
   font-family:'Montserrat', system-ui, sans-serif;
-  color:var(--txt);
 }
 
 .timer-widget{
@@ -26,53 +25,48 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.76), transparent 24%),
-    radial-gradient(ellipse at 82% 22%, rgba(255,255,255,.38), transparent 24%),
-    radial-gradient(ellipse at 24% 72%, rgba(255,255,255,.28), transparent 22%),
-    linear-gradient(135deg, #FDB2B4 0%, #fc9ea1 30%, #f89498 60%, #f7979b 82%, #eef8ff 100%);
-  border:1px solid rgba(255,255,255,.52);
+    radial-gradient(ellipse at 14% 18%, rgba(255,255,255,.24), transparent 20%),
+    radial-gradient(ellipse at 82% 22%, rgba(255,120,120,.20), transparent 22%),
+    linear-gradient(135deg, #ff3045 0%, #c90f22 38%, #740711 72%, #1a0205 100%);
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    0 8px 22px rgba(90,130,170,.18),
-    0 0 16px rgba(255,220,236,.28),
-    inset 0 1px 0 rgba(255,255,255,.46);
+    0 8px 22px rgba(120,0,10,.34),
+    0 0 16px rgba(255,40,60,.24),
+    inset 0 1px 0 rgba(255,255,255,.24);
 }
 
 .timer-widget::before{
-  content:"☁     ☁     ☁";
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  padding-top:6px;
-  font-size:12px;
-  letter-spacing:8px;
-  color:rgba(255,255,255,.48);
-  text-shadow:1px 1px 0 rgba(122,75,99,.36);
-  pointer-events:none;
+  inset:-25%;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(255,255,255,.22) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 70% 40%, rgba(255,255,255,.14) 0 9%, transparent 10%),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.09) 0px,
+      rgba(255,255,255,.09) 2px,
+      transparent 2px,
+      transparent 15px
+    );
+  opacity:.40;
   z-index:1;
+  pointer-events:none;
 }
 
 .timer-widget::after{
   content:"";
   position:absolute;
   inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.10) 38%,
-    rgba(255,255,255,.42) 50%,
-    rgba(255,255,255,.10) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 38%, rgba(255,255,255,.34) 50%, rgba(255,255,255,.08) 62%, transparent 100%);
   transform:translateX(-120%) rotate(12deg);
-  animation:timerSkyCloudShine 4.8s linear infinite;
+  animation:timerRedFireShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerSkyCloudShine{
+@keyframes timerRedFireShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -114,45 +108,27 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.40), transparent 16%),
-    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.24), transparent 15%),
-    linear-gradient(135deg, rgba(255,255,255,.30) 0%, rgba(184,215,242,.38) 44%, rgba(248,196,215,.36) 100%);
-  border:1px solid rgba(255,255,255,.30);
+    radial-gradient(ellipse at 18% 40%, rgba(255,255,255,.22), transparent 16%),
+    radial-gradient(ellipse at 70% 38%, rgba(255,255,255,.14), transparent 15%),
+    linear-gradient(135deg, rgba(255,255,255,.16) 0%, rgba(255,48,69,.32) 44%, rgba(75,5,11,.58) 100%);
+  border:1px solid rgba(255,255,255,.18);
   box-shadow:
-    0 4px 12px rgba(90,130,170,.14),
-    inset 0 1px 0 rgba(255,255,255,.32);
-}
-
-.timer-box::before{
-  content:"☁";
-  position:absolute;
-  left:10px;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:13px;
-  color:rgba(255,255,255,.58);
-  text-shadow:1px 1px 0 rgba(122,75,99,.34);
+    0 4px 12px rgba(120,0,10,.26),
+    inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 .timer-box::after{
   content:"";
   position:absolute;
   inset:-30%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.12) 35%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.12) 62%,
-    transparent 78%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 35%, rgba(255,255,255,.30) 50%, rgba(255,255,255,.10) 62%, transparent 78%);
   transform:translateX(-120%);
-  animation:timerBoxSkyCloudShine 4.4s linear infinite;
+  animation:timerBoxRedFireShine 4.4s linear infinite;
   mix-blend-mode:screen;
   opacity:.88;
 }
 
-@keyframes timerBoxSkyCloudShine{
+@keyframes timerBoxRedFireShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -174,23 +150,16 @@ body{
 }
 
 .timer-box.timer-running{
-  animation:timerPulseSkyCloud 1.15s ease-in-out infinite alternate;
+  animation:timerPulseRedFire 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulseSkyCloud{
+@keyframes timerPulseRedFire{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(90,130,170,.20),
-      inset 0 1px 0 rgba(255,255,255,.36),
-      0 0 16px rgba(255,220,236,.24);
+      0 6px 16px rgba(120,0,10,.34),
+      inset 0 1px 0 rgba(255,255,255,.26),
+      0 0 16px rgba(255,40,60,.24);
   }
-}
-
-.timer-box.timer-finished{
-  box-shadow:
-    0 6px 16px rgba(90,130,170,.22),
-    inset 0 1px 0 rgba(255,255,255,.36),
-    0 0 20px rgba(255,220,236,.28);
 }

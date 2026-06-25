@@ -1,12 +1,12 @@
 /* =========================
-   GOAL BAR VERTICAL – Sky Clouds Pink Outline Theme
+   GOAL BAR VERTICAL – Red Fire Marble Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#d9799d;
-  --shadow:#7a4b63;
+  --outline:#ff3d4f;
+  --shadow:#4b050b;
 }
 
 *{ box-sizing:border-box; }
@@ -15,7 +15,6 @@ body{
   margin:0;
   background:transparent;
   font-family:'Montserrat', system-ui, sans-serif;
-  color:var(--txt);
 }
 
 #goal-wrapper{
@@ -26,31 +25,31 @@ body{
   border-radius:20px;
 
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.76), transparent 22%),
-    radial-gradient(ellipse at 76% 16%, rgba(255,255,255,.38), transparent 20%),
-    radial-gradient(ellipse at 28% 74%, rgba(255,255,255,.30), transparent 22%),
-    linear-gradient(180deg, #f7fbff 0%, #dcebff 30%, #b8d7f2 60%, #f8c4d7 82%, #eef8ff 100%);
-  border:1px solid rgba(255,255,255,.52);
+    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.26), transparent 18%),
+    radial-gradient(ellipse at 76% 16%, rgba(255,120,120,.20), transparent 18%),
+    linear-gradient(180deg, #ff3045 0%, #c90f22 38%, #740711 72%, #1a0205 100%);
+  border:1px solid rgba(255,255,255,.24);
   box-shadow:
-    0 10px 24px rgba(90,130,170,.20),
-    0 0 18px rgba(255,220,236,.28),
-    inset 0 1px 0 rgba(255,255,255,.46);
+    0 10px 24px rgba(120,0,10,.36),
+    0 0 18px rgba(255,40,60,.24),
+    inset 0 1px 0 rgba(255,255,255,.24);
 }
 
 #goal-wrapper::before{
-  content:"☁  ☁  ☁";
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  padding-top:10px;
-  font-size:13px;
-  writing-mode:vertical-rl;
-  color:rgba(255,255,255,.58);
-  text-shadow:
-    1px 1px 0 rgba(122,75,99,.38),
-    0 0 8px rgba(255,255,255,.32);
+  inset:-25%;
+  background:
+    radial-gradient(ellipse at 25% 20%, rgba(255,255,255,.26) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 70% 44%, rgba(255,255,255,.16) 0 9%, transparent 10%),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.10) 0px,
+      rgba(255,255,255,.10) 2px,
+      transparent 2px,
+      transparent 15px
+    );
+  opacity:.42;
   pointer-events:none;
   z-index:1;
 }
@@ -59,22 +58,15 @@ body{
   content:"";
   position:absolute;
   inset:-55%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.10) 38%,
-    rgba(255,255,255,.42) 50%,
-    rgba(255,255,255,.10) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 38%, rgba(255,255,255,.34) 50%, rgba(255,255,255,.08) 62%, transparent 100%);
   transform:translateY(120%) rotate(12deg);
-  animation:goalSkyCloudShine 4.8s linear infinite;
+  animation:goalRedFireShine 4.8s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes goalSkyCloudShine{
+@keyframes goalRedFireShine{
   0%{ transform:translateY(120%) rotate(12deg); }
   45%{ transform:translateY(-120%) rotate(12deg); }
   100%{ transform:translateY(-120%) rotate(12deg); }
@@ -90,13 +82,12 @@ body{
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.10)),
-    linear-gradient(180deg, rgba(255,250,252,.58) 0%, rgba(184,215,242,.46) 48%, rgba(248,196,215,.38) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,.07)),
+    linear-gradient(180deg, rgba(255,240,240,.46) 0%, rgba(255,75,90,.36) 48%, rgba(120,0,10,.34) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.38),
-    inset 0 0 20px rgba(255,255,255,.14),
-    0 0 16px rgba(255,255,255,.26),
-    0 0 22px rgba(90,130,170,.16);
+    inset 0 1px 0 rgba(255,255,255,.30),
+    inset 0 0 20px rgba(255,255,255,.10),
+    0 0 16px rgba(255,80,80,.22);
   overflow:hidden;
 }
 
@@ -104,22 +95,14 @@ body{
   content:"";
   position:absolute;
   inset:-20%;
-  background:linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(255,255,255,.14) 38%,
-    rgba(255,255,255,.44) 50%,
-    rgba(255,255,255,.14) 62%,
-    transparent 100%
-  );
+  background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,.12) 38%, rgba(255,255,255,.38) 50%, rgba(255,255,255,.12) 62%, transparent 100%);
   transform:translateY(120%);
-  animation:goalFillSkyCloudShine 4.6s linear infinite;
+  animation:goalFillRedFireShine 4.6s linear infinite;
   mix-blend-mode:screen;
-  opacity:.90;
 }
 
 #bar-fill::after{
-  content:"☁  •  ☁";
+  content:"🔥  •  🔥";
   position:absolute;
   left:0;
   right:0;
@@ -129,18 +112,17 @@ body{
   line-height:1.8;
   color:rgba(255,255,255,.90);
   text-shadow:1px 1px 0 var(--shadow);
-  animation:cloudGoalParticles 3.8s linear infinite;
+  animation:redFireParticles 3.8s linear infinite;
   pointer-events:none;
-  opacity:.90;
 }
 
-@keyframes goalFillSkyCloudShine{
+@keyframes goalFillRedFireShine{
   0%{ transform:translateY(120%); }
   45%{ transform:translateY(-120%); }
   100%{ transform:translateY(-120%); }
 }
 
-@keyframes cloudGoalParticles{
+@keyframes redFireParticles{
   0%{ transform:translateY(12px); opacity:.18; }
   20%{ opacity:.90; }
   100%{ transform:translateY(-110px); opacity:0; }
@@ -179,7 +161,6 @@ body{
      3px  3px 0 var(--shadow);
 }
 
-/* números más grandes y legibles */
 .goal-amount{
   position:absolute;
   bottom:52px;
@@ -188,15 +169,15 @@ body{
   transform-origin:center;
 
   font-family:'Orbitron', sans-serif;
-  font-size:20px;
+  font-size:15px;
   font-weight:800;
   color:#fff;
   white-space:nowrap;
   padding:4px 9px;
   border-radius:10px;
 
-  background:rgba(122,75,99,.32);
-  border:1px solid rgba(255,255,255,.28);
+  background:rgba(75,5,11,.44);
+  border:1px solid rgba(255,255,255,.24);
   backdrop-filter:blur(4px);
   -webkit-backdrop-filter:blur(4px);
 
@@ -205,15 +186,5 @@ body{
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
-     3px  3px 0 var(--shadow),
-     0 0 10px rgba(255,255,255,.20);
-}
-
-.goal-title.neon{
-  animation:goalPulseSkyCloud 1.25s ease-in-out infinite alternate;
-}
-
-@keyframes goalPulseSkyCloud{
-  from{ filter:brightness(1); }
-  to{ filter:brightness(1.12); }
+     3px  3px 0 var(--shadow);
 }
