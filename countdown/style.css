@@ -1,12 +1,12 @@
 /* =========================
-   TIMER – Pink Lilac Glow Theme
+   TIMER – Black Grey Outline Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#ff9fbd;
-  --shadow:#5f3f58;
+  --outline:#bfc3cc;
+  --shadow:#050505;
 }
 
 *{ box-sizing:border-box; }
@@ -15,6 +15,7 @@ body{
   margin:0;
   background:transparent;
   font-family:'Montserrat', system-ui, sans-serif;
+  color:var(--txt);
 }
 
 .timer-widget{
@@ -25,14 +26,14 @@ body{
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.34), transparent 20%),
-    radial-gradient(circle at 82% 22%, rgba(255,255,255,.16), transparent 24%),
-    linear-gradient(180deg, #FDB2B4 0%, #fc9ea1 34%, #f89498 68%, #f7979b 100%);
-  border:1px solid rgba(255,255,255,.36);
+    radial-gradient(circle at 14% 18%, rgba(255,255,255,.12), transparent 20%),
+    radial-gradient(circle at 82% 22%, rgba(255,255,255,.08), transparent 24%),
+    linear-gradient(145deg, #1d1e24 0%, #0b0c10 48%, #020203 100%);
+  border:1px solid rgba(255,255,255,.18);
   box-shadow:
-    0 8px 22px rgba(130,90,130,.22),
-    0 0 16px rgba(255,170,200,.24),
-    inset 0 1px 0 rgba(255,255,255,.38);
+    0 8px 22px rgba(0,0,0,.62),
+    0 0 16px rgba(210,215,225,.10),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .timer-widget::after{
@@ -42,19 +43,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.09) 38%,
-    rgba(255,255,255,.36) 50%,
-    rgba(255,255,255,.09) 62%,
+    rgba(255,255,255,.07) 38%,
+    rgba(255,255,255,.30) 50%,
+    rgba(255,255,255,.07) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:timerPinkLilacShine 4.8s linear infinite;
+  animation:timerBlackGreyShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
 }
 
-@keyframes timerPinkLilacShine{
+@keyframes timerBlackGreyShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -96,13 +97,29 @@ body{
   justify-content:center;
 
   background:
-    radial-gradient(circle at 18% 40%, rgba(255,255,255,.26), transparent 15%),
-    radial-gradient(circle at 70% 38%, rgba(255,255,255,.14), transparent 14%),
-    linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,170,205,.34) 42%, rgba(200,180,225,.38) 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(circle at 18% 40%, rgba(255,255,255,.12), transparent 15%),
+    radial-gradient(circle at 70% 38%, rgba(255,255,255,.08), transparent 14%),
+    linear-gradient(135deg, rgba(255,255,255,.10) 0%, rgba(60,62,75,.46) 45%, rgba(6,6,8,.86) 100%);
+  border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 4px 12px rgba(130,90,130,.16),
-    inset 0 1px 0 rgba(255,255,255,.28);
+    0 4px 12px rgba(0,0,0,.44),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.timer-box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 38%),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.018) 0px,
+      rgba(255,255,255,.018) 2px,
+      rgba(255,255,255,0) 2px,
+      rgba(255,255,255,0) 8px
+    );
+  opacity:.86;
 }
 
 .timer-box::after{
@@ -112,17 +129,18 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.10) 35%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.10) 62%,
+    rgba(255,255,255,.08) 35%,
+    rgba(255,255,255,.24) 50%,
+    rgba(255,255,255,.08) 62%,
     transparent 78%
   );
   transform:translateX(-120%);
-  animation:timerBoxPinkLilacShine 4.4s linear infinite;
+  animation:timerBoxBlackGreyShine 4.4s linear infinite;
   mix-blend-mode:screen;
+  opacity:.86;
 }
 
-@keyframes timerBoxPinkLilacShine{
+@keyframes timerBoxBlackGreyShine{
   0%{ transform:translateX(-120%); }
   40%{ transform:translateX(120%); }
   100%{ transform:translateX(120%); }
@@ -144,16 +162,23 @@ body{
 }
 
 .timer-box.timer-running{
-  animation:timerPulsePinkLilac 1.15s ease-in-out infinite alternate;
+  animation:timerPulseBlackGrey 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerPulsePinkLilac{
+@keyframes timerPulseBlackGrey{
   from{ transform:translateY(0); }
   to{
     transform:translateY(-1px);
     box-shadow:
-      0 6px 16px rgba(130,90,130,.24),
-      inset 0 1px 0 rgba(255,255,255,.32),
-      0 0 16px rgba(255,170,200,.22);
+      0 6px 16px rgba(0,0,0,.52),
+      inset 0 1px 0 rgba(255,255,255,.16),
+      0 0 16px rgba(210,215,225,.12);
   }
+}
+
+.timer-box.timer-finished{
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.52),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 20px rgba(210,215,225,.14);
 }
