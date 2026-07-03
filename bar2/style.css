@@ -1,12 +1,12 @@
 /* =========================
-   GOAL BAR VERTICAL – Red Fire Marble Theme
+   GOAL BAR VERTICAL – Purple Pink Hearts Theme
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#ff3d4f;
-  --shadow:#4b050b;
+  --outline:#ffc7ef;
+  --shadow:#6b2198;
 }
 
 *{ box-sizing:border-box; }
@@ -25,31 +25,28 @@ body{
   border-radius:20px;
 
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.26), transparent 18%),
-    radial-gradient(ellipse at 76% 16%, rgba(255,120,120,.20), transparent 18%),
-    linear-gradient(180deg, #ff3045 0%, #c90f22 38%, #740711 72%, #1a0205 100%);
-  border:1px solid rgba(255,255,255,.24);
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.28), transparent 18%),
+    radial-gradient(circle at 76% 16%, rgba(255,255,255,.16), transparent 16%),
+    linear-gradient(180deg, #8b35f2 0%, #a833e8 34%, #d936c7 68%, #f24bbd 100%);
+  border:1px solid rgba(255,255,255,.32);
   box-shadow:
-    0 10px 24px rgba(120,0,10,.36),
-    0 0 18px rgba(255,40,60,.24),
-    inset 0 1px 0 rgba(255,255,255,.24);
+    0 10px 24px rgba(107,33,152,.28),
+    0 0 18px rgba(242,75,189,.24),
+    inset 0 1px 0 rgba(255,255,255,.34);
 }
 
 #goal-wrapper::before{
-  content:"";
+  content:"♡  ♡  ♡";
   position:absolute;
-  inset:-25%;
-  background:
-    radial-gradient(ellipse at 25% 20%, rgba(255,255,255,.26) 0 8%, transparent 9%),
-    radial-gradient(ellipse at 70% 44%, rgba(255,255,255,.16) 0 9%, transparent 10%),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.10) 0px,
-      rgba(255,255,255,.10) 2px,
-      transparent 2px,
-      transparent 15px
-    );
-  opacity:.42;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:10px;
+  font-size:13px;
+  writing-mode:vertical-rl;
+  color:rgba(255,220,248,.45);
+  text-shadow:1px 1px 0 var(--shadow);
   pointer-events:none;
   z-index:1;
 }
@@ -58,15 +55,22 @@ body{
   content:"";
   position:absolute;
   inset:-55%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 38%, rgba(255,255,255,.34) 50%, rgba(255,255,255,.08) 62%, transparent 100%);
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.08) 38%,
+    rgba(255,255,255,.36) 50%,
+    rgba(255,255,255,.08) 62%,
+    transparent 100%
+  );
   transform:translateY(120%) rotate(12deg);
-  animation:goalRedFireShine 4.8s linear infinite;
+  animation:goalHeartPurpleShine 4.8s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes goalRedFireShine{
+@keyframes goalHeartPurpleShine{
   0%{ transform:translateY(120%) rotate(12deg); }
   45%{ transform:translateY(-120%) rotate(12deg); }
   100%{ transform:translateY(-120%) rotate(12deg); }
@@ -82,12 +86,12 @@ body{
   border-radius:0 0 20px 20px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,.07)),
-    linear-gradient(180deg, rgba(255,240,240,.46) 0%, rgba(255,75,90,.36) 48%, rgba(120,0,10,.34) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.08)),
+    linear-gradient(180deg, rgba(255,235,250,.50) 0%, rgba(220,120,240,.40) 48%, rgba(242,75,189,.34) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.30),
-    inset 0 0 20px rgba(255,255,255,.10),
-    0 0 16px rgba(255,80,80,.22);
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 0 20px rgba(255,255,255,.12),
+    0 0 16px rgba(255,255,255,.22);
   overflow:hidden;
 }
 
@@ -95,14 +99,21 @@ body{
   content:"";
   position:absolute;
   inset:-20%;
-  background:linear-gradient(180deg, transparent 0%, rgba(255,255,255,.12) 38%, rgba(255,255,255,.38) 50%, rgba(255,255,255,.12) 62%, transparent 100%);
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.12) 38%,
+    rgba(255,255,255,.40) 50%,
+    rgba(255,255,255,.12) 62%,
+    transparent 100%
+  );
   transform:translateY(120%);
-  animation:goalFillRedFireShine 4.6s linear infinite;
+  animation:goalFillHeartPurpleShine 4.6s linear infinite;
   mix-blend-mode:screen;
 }
 
 #bar-fill::after{
-  content:"🔥  •  🔥";
+  content:"♡  •  ♡";
   position:absolute;
   left:0;
   right:0;
@@ -112,17 +123,17 @@ body{
   line-height:1.8;
   color:rgba(255,255,255,.90);
   text-shadow:1px 1px 0 var(--shadow);
-  animation:redFireParticles 3.8s linear infinite;
+  animation:heartPurpleParticles 3.8s linear infinite;
   pointer-events:none;
 }
 
-@keyframes goalFillRedFireShine{
+@keyframes goalFillHeartPurpleShine{
   0%{ transform:translateY(120%); }
   45%{ transform:translateY(-120%); }
   100%{ transform:translateY(-120%); }
 }
 
-@keyframes redFireParticles{
+@keyframes heartPurpleParticles{
   0%{ transform:translateY(12px); opacity:.18; }
   20%{ opacity:.90; }
   100%{ transform:translateY(-110px); opacity:0; }
@@ -144,7 +155,6 @@ body{
   left:50%;
   transform:translate(-50%, -50%) rotate(-90deg);
   transform-origin:center;
-
   font-family:'Orbitron', sans-serif;
   font-size:15px;
   font-weight:800;
@@ -152,7 +162,6 @@ body{
   text-transform:uppercase;
   color:#fff;
   white-space:nowrap;
-
   text-shadow:
     -1px -1px 0 var(--outline),
      1px -1px 0 var(--outline),
@@ -167,7 +176,6 @@ body{
   left:50%;
   transform:translateX(-50%) rotate(-90deg);
   transform-origin:center;
-
   font-family:'Orbitron', sans-serif;
   font-size:15px;
   font-weight:800;
@@ -175,12 +183,10 @@ body{
   white-space:nowrap;
   padding:4px 9px;
   border-radius:10px;
-
-  background:rgba(75,5,11,.44);
-  border:1px solid rgba(255,255,255,.24);
+  background:rgba(107,33,152,.34);
+  border:1px solid rgba(255,255,255,.28);
   backdrop-filter:blur(4px);
   -webkit-backdrop-filter:blur(4px);
-
   text-shadow:
     -1px -1px 0 var(--outline),
      1px -1px 0 var(--outline),
