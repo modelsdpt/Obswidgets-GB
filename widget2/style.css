@@ -1,29 +1,29 @@
 /* =========================
-   MVP – Purple Pink Hearts Theme
+   MVP – Red Heartbeat Theme!
    ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&family=Montserrat:wght@700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#ffc7ef;
-  --shadow:#6b2198;
+  --outline:#ff1e1e;
+  --shadow:#2b0000;
 
-  --purple-1:#8b35f2;
-  --purple-2:#a833e8;
-  --pink-1:#d936c7;
-  --pink-2:#f24bbd;
+  --red-1:#260000;
+  --red-2:#5a0505;
+  --red-3:#9b0b0b;
+  --red-4:#e01919;
 
-  --gold-1:#a833e8;
-  --gold-2:#f24bbd;
-  --gold-3:#8b35f2;
+  --gold-1:#3a0000;
+  --gold-2:#b00000;
+  --gold-3:#ff2a2a;
 
-  --silver-1:#f24bbd;
-  --silver-2:#8b35f2;
-  --silver-3:#d936c7;
+  --silver-1:#210000;
+  --silver-2:#790707;
+  --silver-3:#d71919;
 
-  --bronze-1:#a833e8;
-  --bronze-2:#f24bbd;
-  --bronze-3:#d936c7;
+  --bronze-1:#2a0000;
+  --bronze-2:#6d0505;
+  --bronze-3:#c91515;
 }
 
 *{ box-sizing:border-box; }
@@ -39,34 +39,75 @@ body{
   position:relative;
   width:430px;
   padding:12px 14px 14px;
-  border-radius:20px;
+  border-radius:18px;
   overflow:hidden;
 
   background:
-    radial-gradient(circle at 14% 18%, rgba(255,255,255,.26), transparent 18%),
-    radial-gradient(circle at 82% 20%, rgba(255,255,255,.14), transparent 20%),
-    linear-gradient(135deg, #8b35f2 0%, #a833e8 34%, #d936c7 68%, #f24bbd 100%);
-  border:1px solid rgba(255,255,255,.32);
+    radial-gradient(circle at 22% 35%, rgba(255,0,0,.38), transparent 24%),
+    radial-gradient(circle at 78% 68%, rgba(160,0,0,.34), transparent 28%),
+    linear-gradient(135deg, #120000 0%, #330000 28%, #6b0404 58%, #1a0000 100%);
+  border:1px solid rgba(255,45,45,.72);
   box-shadow:
-    0 10px 28px rgba(107,33,152,.28),
-    0 0 20px rgba(242,75,189,.26),
-    inset 0 1px 0 rgba(255,255,255,.34);
+    0 0 18px rgba(255,0,0,.42),
+    0 10px 28px rgba(0,0,0,.42),
+    inset 0 0 24px rgba(255,0,0,.22);
 }
 
 #container::before{
-  content:"♡   ♡   ♡   ♡";
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  padding-top:8px;
-  font-size:14px;
-  letter-spacing:13px;
-  color:rgba(255,220,248,.42);
-  text-shadow:
-    0 0 8px rgba(255,255,255,.26),
-    1px 1px 0 rgba(107,33,152,.45);
+  left:-8%;
+  right:-8%;
+  top:42%;
+  height:34px;
+  transform:translateY(-50%);
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      transparent 5%,
+      #ff2626 6%,
+      #ff2626 7%,
+      transparent 8%,
+      transparent 13%,
+      #ff2626 14%,
+      #ff2626 16%,
+      transparent 17%,
+      transparent 22%,
+      #ffffff 23%,
+      #ff2626 24%,
+      transparent 25%,
+      transparent 31%,
+      #ff2626 32%,
+      #ff2626 33%,
+      transparent 34%,
+      transparent 42%,
+      #ff2626 43%,
+      #ff2626 45%,
+      transparent 46%,
+      transparent 55%,
+      #ffffff 56%,
+      #ff2626 57%,
+      transparent 58%,
+      transparent 65%,
+      #ff2626 66%,
+      #ff2626 68%,
+      transparent 69%,
+      transparent 77%,
+      #ff2626 78%,
+      #ff2626 79%,
+      transparent 80%,
+      transparent 100%);
+  clip-path:polygon(
+    0 50%, 6% 50%, 9% 22%, 12% 75%, 16% 50%,
+    25% 50%, 28% 12%, 31% 88%, 35% 50%,
+    45% 50%, 48% 24%, 51% 78%, 55% 50%,
+    65% 50%, 68% 10%, 71% 90%, 75% 50%,
+    84% 50%, 87% 30%, 90% 72%, 94% 50%, 100% 50%
+  );
+  filter:
+    drop-shadow(0 0 4px rgba(255,255,255,.8))
+    drop-shadow(0 0 10px rgba(255,0,0,.9));
+  opacity:.95;
   pointer-events:none;
   z-index:1;
 }
@@ -78,19 +119,19 @@ body{
   background:linear-gradient(
     120deg,
     transparent 0%,
-    rgba(255,255,255,.08) 38%,
-    rgba(255,255,255,.36) 50%,
-    rgba(255,255,255,.08) 62%,
+    rgba(255,255,255,.04) 38%,
+    rgba(255,255,255,.28) 50%,
+    rgba(255,255,255,.05) 62%,
     transparent 100%
   );
   transform:translateX(-120%) rotate(12deg);
-  animation:heartPurpleShine 4.8s linear infinite;
+  animation:redHeartbeatShine 4.6s linear infinite;
   pointer-events:none;
   z-index:3;
   mix-blend-mode:screen;
 }
 
-@keyframes heartPurpleShine{
+@keyframes redHeartbeatShine{
   0%{ transform:translateX(-120%) rotate(12deg); }
   45%{ transform:translateX(120%) rotate(12deg); }
   100%{ transform:translateX(120%) rotate(12deg); }
@@ -112,6 +153,7 @@ body{
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.85),
      3px  3px 0 var(--shadow);
 }
 
@@ -130,45 +172,54 @@ body{
   justify-content:space-between;
   gap:10px;
   padding:10px 14px;
-  border-radius:14px;
+  border-radius:12px;
   overflow:hidden;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.17), rgba(255,255,255,.05)),
-    linear-gradient(135deg, rgba(255,255,255,.18), rgba(242,75,189,.22));
-  border:1px solid rgba(255,255,255,.22);
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+    linear-gradient(135deg, rgba(80,0,0,.88), rgba(190,0,0,.55), rgba(25,0,0,.95));
+  border:1px solid rgba(255,55,55,.62);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.26),
-    0 6px 16px rgba(107,33,152,.20);
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 0 12px rgba(255,0,0,.28),
+    0 6px 16px rgba(0,0,0,.32);
 }
 
 .tip::before{
   content:"";
   position:absolute;
-  inset:-45%;
-  background:linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255,255,255,.07) 38%,
-    rgba(255,255,255,.30) 50%,
-    rgba(255,255,255,.07) 62%,
-    transparent 100%
+  left:-12%;
+  right:-12%;
+  top:50%;
+  height:22px;
+  transform:translateY(-50%);
+  background:#ff2020;
+  clip-path:polygon(
+    0 50%, 12% 50%, 15% 20%, 18% 80%, 22% 50%,
+    37% 50%, 40% 16%, 43% 86%, 47% 50%,
+    60% 50%, 63% 28%, 66% 74%, 70% 50%,
+    84% 50%, 87% 18%, 90% 82%, 94% 50%, 100% 50%
   );
-  transform:translateX(-120%) rotate(12deg);
-  animation:heartPurpleShine 4.8s linear infinite;
+  filter:drop-shadow(0 0 7px rgba(255,0,0,.9));
+  opacity:.42;
   pointer-events:none;
   z-index:1;
 }
 
 .tip::after{
-  content:"♡";
+  content:"♥";
   position:absolute;
   top:50%;
   left:10px;
   transform:translateY(-50%);
   font-size:15px;
   color:#fff;
-  text-shadow:1px 1px 0 var(--shadow);
+  text-shadow:
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.9);
   z-index:2;
 }
 
@@ -183,6 +234,7 @@ body{
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.9),
      3px  3px 0 var(--shadow);
 }
 
@@ -204,19 +256,24 @@ body{
 
 .tip.mvp{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05)),
-    linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 46%, var(--gold-3) 100%);
+    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.03)),
+    linear-gradient(135deg, var(--gold-1) 0%, var(--gold-2) 48%, var(--gold-3) 100%);
 }
-.tip.mvp::after{ content:"👑"; }
+.tip.mvp::after{ content:"👑💉"; }
 
 .tip.second{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.04)),
+    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.03)),
     linear-gradient(135deg, var(--silver-1) 0%, var(--silver-2) 48%, var(--silver-3) 100%);
 }
 
 .tip.third{
   background:
-    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.03)),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
     linear-gradient(135deg, var(--bronze-1) 0%, var(--bronze-2) 48%, var(--bronze-3) 100%);
 }
+
+
+
+
+
