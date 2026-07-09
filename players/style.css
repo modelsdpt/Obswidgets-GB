@@ -1,16 +1,13 @@
+
 /* ================================
-   RAFFLE – Yellow Pink Pixel Glow Theme
-   Match MVP Style
+   RAFFLE – Red Heartbeat Theme
 ================================ */
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@700;800&family=Baloo+2:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700;800&display=swap');
 
 :root{
   --txt:#ffffff;
-  --outline:#ff9ccf;
-  --shadow:#7d2b53;
-  --yellow:#fff200;
-  --yellow-dark:#b8a900;
-  --pink:#f5a3c7;
+  --outline:#ff1e1e;
+  --shadow:#2b0000;
 }
 
 *{ box-sizing:border-box; }
@@ -26,21 +23,19 @@ body{
   position:relative;
   width:560px;
   min-height:430px;
-  padding:16px 18px 18px;
+  padding:14px 16px 16px;
+  border-radius:18px;
   overflow:hidden;
-  border-radius:0;
 
   background:
-    linear-gradient(90deg, transparent 0 8px, var(--yellow) 8px calc(100% - 8px), transparent calc(100% - 8px)),
-    linear-gradient(180deg, transparent 0 8px, var(--yellow) 8px calc(100% - 8px), transparent calc(100% - 8px)),
-    linear-gradient(135deg, #ffe1ee 0%, #f8a9c7 48%, #fff2f8 100%);
-
-  border:4px solid var(--yellow);
+    radial-gradient(circle at 22% 35%, rgba(255,0,0,.36), transparent 24%),
+    radial-gradient(circle at 78% 68%, rgba(120,0,0,.36), transparent 30%),
+    linear-gradient(135deg, #120000 0%, #330000 28%, #850606 58%, #180000 100%);
+  border:1px solid rgba(255,45,45,.72);
   box-shadow:
-    0 0 0 2px #000,
-    0 0 0 5px var(--yellow),
-    7px 7px 0 rgba(0,0,0,.86),
-    0 0 20px rgba(255,242,0,.9);
+    0 0 18px rgba(255,0,0,.42),
+    0 10px 28px rgba(0,0,0,.42),
+    inset 0 0 24px rgba(255,0,0,.22);
 }
 
 .raffle-widget.hidden{
@@ -57,27 +52,50 @@ body{
 .raffle-widget::before{
   content:"";
   position:absolute;
-  inset:4px;
-  border:2px dashed rgba(255,255,0,.95);
+  left:-8%;
+  right:-8%;
+  top:40%;
+  height:34px;
+  transform:translateY(-50%);
+  background:#ff2020;
+  clip-path:polygon(
+    0 50%, 6% 50%, 9% 22%, 12% 75%, 16% 50%,
+    25% 50%, 28% 12%, 31% 88%, 35% 50%,
+    45% 50%, 48% 24%, 51% 78%, 55% 50%,
+    65% 50%, 68% 10%, 71% 90%, 75% 50%,
+    84% 50%, 87% 30%, 90% 72%, 94% 50%, 100% 50%
+  );
+  filter:
+    drop-shadow(0 0 4px rgba(255,255,255,.72))
+    drop-shadow(0 0 10px rgba(255,0,0,.95));
+  opacity:.78;
   pointer-events:none;
   z-index:1;
-  filter:drop-shadow(0 0 4px #fff200);
 }
 
 .raffle-widget::after{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.18), transparent 18%, transparent 82%, rgba(255,255,255,.18)),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,.12) 0 3px,
-      transparent 3px 8px
-    );
+  inset:-45%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,.05) 38%,
+    rgba(255,255,255,.28) 50%,
+    rgba(255,255,255,.05) 62%,
+    transparent 100%
+  );
+  transform:translateX(-120%) rotate(12deg);
+  animation:raffleRedHeartbeatShine 4.8s linear infinite;
   pointer-events:none;
   z-index:2;
   mix-blend-mode:screen;
+}
+
+@keyframes raffleRedHeartbeatShine{
+  0%{ transform:translateX(-120%) rotate(12deg); }
+  45%{ transform:translateX(120%) rotate(12deg); }
+  100%{ transform:translateX(120%) rotate(12deg); }
 }
 
 .raffle-header,
@@ -93,54 +111,43 @@ body{
 
 .raffle-badge{
   display:inline-block;
-  padding:3px 13px;
-  border-radius:0;
-
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.56), rgba(245,163,199,.82), rgba(255,255,255,.42));
-  border:3px solid var(--yellow);
-  box-shadow:
-    0 0 0 2px #000,
-    4px 4px 0 rgba(0,0,0,.78),
-    inset 0 0 10px rgba(255,255,255,.55),
-    0 0 12px rgba(255,242,0,.7);
-
-  font-family:'Lobster', cursive;
-  font-size:26px;
-  font-weight:400;
-  letter-spacing:.02em;
+  padding:3px 12px;
+  border-radius:999px;
+  background:linear-gradient(90deg, #260000, #9b0505, #ff1f1f);
+  font-family:'Bungee', system-ui, sans-serif;
+  font-size:13px;
+  letter-spacing:1px;
   color:#fff;
+  border:1px solid rgba(255,55,55,.66);
+  box-shadow:0 0 12px rgba(255,0,0,.35);
   text-shadow:
-    -2px -2px 0 var(--outline),
-     2px -2px 0 var(--outline),
-    -2px  2px 0 var(--outline),
-     2px  2px 0 var(--outline),
-     0 0 4px #fff,
-     4px 4px 0 var(--shadow),
-     6px 6px 0 #000;
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.9),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-title{
   margin:8px 0 0;
-  font-family:'Lobster', cursive;
-  font-size:36px;
-  font-weight:400;
+  font-family:'Bungee', system-ui, sans-serif;
+  font-size:21px;
   line-height:1.1;
   color:#fff;
   text-shadow:
-    -2px -2px 0 var(--outline),
-     2px -2px 0 var(--outline),
-    -2px  2px 0 var(--outline),
-     2px  2px 0 var(--outline),
-     0 0 4px #fff,
-     4px 4px 0 var(--shadow),
-     6px 6px 0 #000;
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.9),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-names{
   display:grid;
   grid-template-columns:1fr;
-  gap:10px;
+  gap:7px;
   width:100%;
   overflow:visible;
 }
@@ -155,47 +162,55 @@ body{
   justify-content:space-between;
   align-items:center;
   gap:10px;
-  min-height:50px;
-  padding:8px 11px;
+  min-height:48px;
+  padding:7px 10px;
+  border-radius:12px;
   overflow:hidden;
-  border-radius:0;
 
   background:
-    linear-gradient(135deg, rgba(255,255,255,.56), rgba(245,163,199,.82), rgba(255,255,255,.42));
-  border:3px solid var(--yellow);
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.02)),
+    linear-gradient(135deg, rgba(45,0,0,.94), rgba(150,0,0,.64), rgba(22,0,0,.96));
+  border:1px solid rgba(255,55,55,.58);
   box-shadow:
-    0 0 0 2px #000,
-    4px 4px 0 rgba(0,0,0,.78),
-    inset 0 0 10px rgba(255,255,255,.55),
-    0 0 12px rgba(255,242,0,.7);
+    inset 0 1px 0 rgba(255,255,255,.16),
+    0 0 12px rgba(255,0,0,.22);
 }
 
 .raffle-name-item::before{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,242,0,.34) 0 6px,
-      transparent 6px 12px
-    );
-  opacity:.45;
+  left:-12%;
+  right:-12%;
+  top:50%;
+  height:22px;
+  transform:translateY(-50%);
+  background:#ff2020;
+  clip-path:polygon(
+    0 50%, 12% 50%, 15% 20%, 18% 80%, 22% 50%,
+    37% 50%, 40% 16%, 43% 86%, 47% 50%,
+    60% 50%, 63% 28%, 66% 74%, 70% 50%,
+    84% 50%, 87% 18%, 90% 82%, 94% 50%, 100% 50%
+  );
+  filter:drop-shadow(0 0 7px rgba(255,0,0,.9));
+  opacity:.36;
   pointer-events:none;
   z-index:1;
 }
 
 .raffle-name-item::after{
-  content:"★";
+  content:"♥";
   position:absolute;
   top:50%;
-  left:9px;
+  left:10px;
   transform:translateY(-50%);
   font-size:15px;
-  color:var(--yellow);
+  color:#fff;
   text-shadow:
-    1px 1px 0 #000,
-    0 0 6px var(--yellow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.9);
   z-index:2;
 }
 
@@ -204,55 +219,47 @@ body{
   z-index:3;
   flex:1 1 auto;
   min-width:0;
-  padding-left:20px;
-  font-family:'Lobster', cursive;
-  font-size:27px;
-  font-weight:400;
+  padding-left:18px;
+  font-size:18px;
+  font-weight:800;
   line-height:1.05;
   color:#fff;
   white-space:normal;
   overflow-wrap:anywhere;
   word-break:break-word;
   text-shadow:
-    -2px -2px 0 var(--outline),
-     2px -2px 0 var(--outline),
-    -2px  2px 0 var(--outline),
-     2px  2px 0 var(--outline),
-     0 0 4px #fff,
-     4px 4px 0 var(--shadow),
-     6px 6px 0 #000;
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 8px rgba(255,0,0,.9),
+     3px  3px 0 var(--shadow);
 }
 
 .raffle-name-item:nth-child(n + 4) .raffle-name{
-  font-size:24px;
+  font-size:16px;
 }
 
 .raffle-tickets{
   position:relative;
   z-index:3;
   flex:0 0 auto;
-  font-family:'Baloo 2', system-ui, sans-serif;
-  font-size:14px;
+  font-size:13px;
   font-weight:800;
   color:#fff;
   white-space:nowrap;
-  padding:3px 9px;
-  border-radius:0;
-
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.56), rgba(245,163,199,.82), rgba(255,255,255,.42));
-  border:3px solid var(--yellow);
-  box-shadow:
-    0 0 0 2px #000,
-    0 0 10px rgba(255,242,0,.8);
-
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(35,0,0,.72);
+  border:1px solid rgba(255,55,55,.58);
+  box-shadow:0 0 10px rgba(255,0,0,.25);
   text-shadow:
     -1px -1px 0 var(--outline),
      1px -1px 0 var(--outline),
     -1px  1px 0 var(--outline),
      1px  1px 0 var(--outline),
-     2px  2px 0 var(--shadow),
-     3px  3px 0 #000;
+     0 0 8px rgba(255,0,0,.85),
+     2px  2px 0 var(--shadow);
 }
 
 .raffle-winner-screen{
@@ -266,8 +273,8 @@ body{
   padding:24px;
 
   background:
-    radial-gradient(circle at center, rgba(255,242,0,.52), rgba(245,163,199,.64) 42%, rgba(0,0,0,.78) 82%),
-    rgba(0,0,0,.78);
+    radial-gradient(circle at center, rgba(255,0,0,.48), rgba(80,0,0,.55) 42%, rgba(0,0,0,.82) 82%),
+    rgba(0,0,0,.82);
 
   opacity:0;
   transform:scale(.9);
@@ -288,40 +295,37 @@ body{
 .winner-name{
   position:relative;
   z-index:3;
-  font-family:'Lobster', cursive;
-  font-weight:400;
+  font-family:'Bungee', system-ui, sans-serif;
   color:#fff;
   text-align:center;
   text-shadow:
-    -2px -2px 0 var(--outline),
-     2px -2px 0 var(--outline),
-    -2px  2px 0 var(--outline),
-     2px  2px 0 var(--outline),
-     0 0 4px #fff,
-     4px 4px 0 var(--shadow),
-     6px 6px 0 #000,
-     0 0 14px var(--yellow);
+    -1px -1px 0 var(--outline),
+     1px -1px 0 var(--outline),
+    -1px  1px 0 var(--outline),
+     1px  1px 0 var(--outline),
+     0 0 10px rgba(255,0,0,.95),
+     3px  3px 0 var(--shadow);
 }
 
 .winner-label{
-  font-size:42px;
+  font-size:30px;
   line-height:1;
   margin-bottom:10px;
 }
 
 .winner-name{
   max-width:96%;
-  font-size:58px;
+  font-size:46px;
   line-height:1.08;
   overflow-wrap:anywhere;
   word-break:break-word;
-  animation:winnerPixelPop .7s ease infinite alternate;
+  animation:winnerRedHeartbeatPop .7s ease infinite alternate;
 }
 
-@keyframes winnerPixelPop{
+@keyframes winnerRedHeartbeatPop{
   from{ transform:scale(1); }
   to{
     transform:scale(1.06);
-    filter:drop-shadow(0 0 10px rgba(255,242,0,.95));
+    filter:drop-shadow(0 0 10px rgba(255,0,0,.75));
   }
 }
