@@ -1,15 +1,16 @@
-/* ================================
-   GOAL BAR VERTICAL – Red Heartbeat Theme
-================================ */
+/* ==========================================
+   GOAL BAR VERTICAL – Black Glossy Pink Theme
+========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&family=Baloo+2:wght@400;600;700;800&display=swap');
 
 :root{
-  --txt:#ffffff;
-  --stroke:#ff1e1e;
-  --stroke-dark:#750000;
-  --heartbeat-red:#ff2020;
-  --heartbeat-dark:#2b0000;
+  --text:#ffffff;
+  --pink:#ff63b6;
+  --pink-light:#ffc1e3;
+  --pink-soft:#ff9dce;
+  --pink-dark:#a41761;
+  --pink-deep:#4c092d;
 }
 
 *{
@@ -20,129 +21,105 @@ body{
   margin:0;
   background:transparent;
   font-family:'Baloo 2', system-ui, sans-serif;
-  color:var(--txt);
+  color:var(--text);
 }
 
 #goal-wrapper{
   position:relative;
-  width:65px;
+  width:68px;
   height:420px;
   overflow:hidden;
-  border-radius:20px;
+  border-radius:22px;
 
   background:
     radial-gradient(
-      circle at 30% 12%,
-      rgba(255,0,0,.30),
-      transparent 27%
+      circle at 35% 10%,
+      rgba(255,99,182,.22),
+      transparent 26%
     ),
     radial-gradient(
-      circle at 70% 80%,
-      rgba(125,0,0,.32),
+      circle at 65% 88%,
+      rgba(255,99,182,.12),
       transparent 28%
     ),
     linear-gradient(
       180deg,
-      #100000 0%,
-      #300000 28%,
-      #750505 58%,
-      #a80808 80%,
-      #180000 100%
+      #010102 0%,
+      #0a0a0d 30%,
+      #171017 58%,
+      #08080b 80%,
+      #000000 100%
     );
 
-  border:1px solid rgba(255,45,45,.70);
+  border:1px solid rgba(255,99,182,.72);
 
   box-shadow:
-    0 0 18px rgba(255,0,0,.38),
-    0 10px 28px rgba(0,0,0,.44),
-    inset 0 0 22px rgba(255,0,0,.18),
-    inset 0 1px 0 rgba(255,120,120,.18);
+    0 0 8px rgba(255,99,182,.52),
+    0 0 22px rgba(255,99,182,.22),
+    0 11px 30px rgba(0,0,0,.56),
+    inset 0 1px 0 rgba(255,255,255,.20),
+    inset 0 0 22px rgba(255,99,182,.08);
 }
 
-/* Heartbeat vertical */
+/* Reflejo del vidrio */
 #goal-wrapper::before{
   content:"";
   position:absolute;
-  width:420px;
-  height:22px;
-  top:50%;
-  left:50%;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(90deg);
-
-  background:var(--heartbeat-red);
-
-  clip-path:polygon(
-    0 50%,
-    8% 50%,
-    11% 25%,
-    14% 75%,
-    18% 50%,
-    27% 50%,
-    30% 10%,
-    33% 90%,
-    37% 50%,
-    46% 50%,
-    49% 24%,
-    52% 78%,
-    56% 50%,
-    65% 50%,
-    68% 10%,
-    71% 90%,
-    75% 50%,
-    84% 50%,
-    87% 30%,
-    90% 72%,
-    94% 50%,
-    100% 50%
-  );
-
-  filter:
-    drop-shadow(0 0 4px rgba(255,255,255,.62))
-    drop-shadow(0 0 10px rgba(255,0,0,.95));
-
-  opacity:.36;
-  pointer-events:none;
-  z-index:1;
-}
-
-/* Sweep shine vertical */
-#goal-wrapper::after{
-  content:"";
-  position:absolute;
-  inset:-55%;
+  top:0;
+  left:0;
+  width:44%;
+  height:100%;
 
   background:
     linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255,255,255,.04) 38%,
-      rgba(255,255,255,.24) 50%,
-      rgba(255,255,255,.04) 62%,
-      transparent 100%
+      90deg,
+      rgba(255,255,255,.14),
+      rgba(255,255,255,.03),
+      transparent
     );
 
-  transform:translateY(120%) rotate(12deg);
-  animation:darkGoalShine 4.8s linear infinite;
-
+  border-radius:22px 0 0 22px;
+  opacity:.72;
   pointer-events:none;
   z-index:3;
-  mix-blend-mode:screen;
 }
 
-@keyframes darkGoalShine{
+/* Brillo vertical en movimiento */
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  top:115%;
+  left:-70%;
+  width:220%;
+  height:48%;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(255,255,255,.04),
+      rgba(255,255,255,.24),
+      rgba(255,99,182,.10),
+      transparent
+    );
+
+  transform:rotate(-8deg);
+  animation:goalWrapperShine 5s linear infinite;
+  pointer-events:none;
+  z-index:5;
+}
+
+@keyframes goalWrapperShine{
   0%{
-    transform:translateY(120%) rotate(12deg);
+    top:115%;
   }
 
   45%{
-    transform:translateY(-120%) rotate(12deg);
+    top:-60%;
   }
 
   100%{
-    transform:translateY(-120%) rotate(12deg);
+    top:-60%;
   }
 }
 
@@ -154,53 +131,53 @@ body{
   height:0%;
   z-index:2;
   overflow:hidden;
-  border-radius:0 0 20px 20px;
+  border-radius:0 0 21px 21px;
 
   background:
     linear-gradient(
-      180deg,
-      rgba(255,255,255,.16),
-      rgba(255,255,255,.02)
+      90deg,
+      rgba(255,255,255,.24),
+      rgba(255,255,255,.03) 35%,
+      transparent 62%
     ),
     linear-gradient(
       180deg,
-      rgba(255,85,85,.94) 0%,
-      rgba(255,20,20,.94) 34%,
-      rgba(170,0,0,.96) 68%,
-      rgba(75,0,0,.98) 100%
+      var(--pink-light) 0%,
+      var(--pink) 22%,
+      #d42b87 55%,
+      var(--pink-dark) 78%,
+      var(--pink-deep) 100%
     );
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.30),
-    inset 0 0 20px rgba(255,0,0,.20),
-    0 0 18px rgba(255,0,0,.50),
-    0 0 30px rgba(255,0,0,.26);
+    inset 0 1px 0 rgba(255,255,255,.55),
+    inset 0 0 18px rgba(255,255,255,.09),
+    0 0 11px rgba(255,99,182,.75),
+    0 0 28px rgba(255,99,182,.36);
 }
 
 #bar-fill::before{
   content:"";
   position:absolute;
-  inset:-20%;
+  inset:-25%;
 
   background:
     linear-gradient(
       180deg,
       transparent 0%,
       rgba(255,255,255,.05) 38%,
-      rgba(255,255,255,.34) 50%,
+      rgba(255,255,255,.38) 50%,
       rgba(255,255,255,.05) 62%,
       transparent 100%
     );
 
-  transform:translateY(120%);
-  animation:darkGoalFillShine 4.6s linear infinite;
-
-  mix-blend-mode:screen;
-  opacity:.90;
+  transform:translateY(125%);
+  animation:goalFillShine 4.5s linear infinite;
+  pointer-events:none;
 }
 
 #bar-fill::after{
-  content:"♥  •  ♥";
+  content:"♥  ✦  ♥";
   position:absolute;
   left:0;
   right:0;
@@ -211,33 +188,33 @@ body{
   line-height:1.8;
   color:#ffffff;
 
-  text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     0 0 9px rgba(255,0,0,.95);
+  -webkit-text-stroke:.6px var(--pink-dark);
 
-  animation:darkHeartParticles 3.8s linear infinite;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px var(--pink),
+    0 0 17px rgba(255,99,182,.80);
+
+  animation:goalHeartParticles 3.8s linear infinite;
   pointer-events:none;
-  opacity:.90;
+  opacity:.95;
 }
 
-@keyframes darkGoalFillShine{
+@keyframes goalFillShine{
   0%{
-    transform:translateY(120%);
+    transform:translateY(125%);
   }
 
   45%{
-    transform:translateY(-120%);
+    transform:translateY(-125%);
   }
 
   100%{
-    transform:translateY(-120%);
+    transform:translateY(-125%);
   }
 }
 
-@keyframes darkHeartParticles{
+@keyframes goalHeartParticles{
   0%{
     transform:translateY(12px) scale(.90);
     opacity:.18;
@@ -248,8 +225,8 @@ body{
   }
 
   55%{
-    transform:translateY(-55px) scale(1.06);
-    opacity:.75;
+    transform:translateY(-55px) scale(1.08);
+    opacity:.78;
   }
 
   100%{
@@ -265,7 +242,7 @@ body{
   justify-content:center;
   align-items:center;
   pointer-events:none;
-  z-index:6;
+  z-index:7;
 }
 
 .goal-title{
@@ -279,28 +256,30 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bungee', system-ui, sans-serif;
-  font-size:14px;
-  font-weight:400;
+  font-family:'Lobster Two', cursive;
+  font-size:20px;
+  font-weight:700;
   line-height:1;
-  letter-spacing:.08em;
-  text-transform:uppercase;
+  letter-spacing:.02em;
   color:#ffffff;
   white-space:nowrap;
 
+  -webkit-text-stroke:1px var(--pink);
+
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     0 0 10px rgba(255,0,0,.95),
-     0 0 22px rgba(255,0,0,.58),
-     3px 3px 0 var(--heartbeat-dark);
+    -2px -2px 0 var(--pink-dark),
+     2px -2px 0 var(--pink-dark),
+    -2px  2px 0 var(--pink-dark),
+     2px  2px 0 var(--pink-dark),
+     0 0 5px #ffffff,
+     0 0 11px var(--pink),
+     0 0 22px rgba(255,99,182,.62),
+     3px 4px 0 #31051d;
 }
 
 .goal-amount{
   position:absolute;
-  bottom:42px;
+  bottom:43px;
   left:50%;
 
   transform:
@@ -309,61 +288,73 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bungee', system-ui, sans-serif;
-  font-size:12px;
-  font-weight:400;
+  font-family:'Baloo 2', system-ui, sans-serif;
+  font-size:13px;
+  font-weight:800;
   line-height:1;
   color:#ffffff;
   white-space:nowrap;
 
-  padding:3px 7px;
-  border-radius:8px;
+  padding:4px 8px;
+  border-radius:9px;
 
-  background:rgba(30,0,0,.72);
-  border:1px solid rgba(255,55,55,.45);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.11),
+      rgba(255,255,255,.02)
+    ),
+    rgba(4,4,6,.82);
+
+  border:1px solid rgba(255,99,182,.68);
 
   box-shadow:
-    0 0 10px rgba(255,0,0,.24),
-    inset 0 1px 0 rgba(255,255,255,.10);
+    0 0 9px rgba(255,99,182,.40),
+    inset 0 1px 0 rgba(255,255,255,.18);
+
+  -webkit-text-stroke:.45px var(--pink);
 
   text-shadow:
-    -1px -1px 0 var(--stroke),
-     1px -1px 0 var(--stroke),
-    -1px  1px 0 var(--stroke),
-     1px  1px 0 var(--stroke),
-     0 0 10px rgba(255,0,0,.95),
-     2px 2px 0 var(--heartbeat-dark);
+    -1px -1px 0 var(--pink-dark),
+     1px -1px 0 var(--pink-dark),
+    -1px  1px 0 var(--pink-dark),
+     1px  1px 0 var(--pink-dark),
+     0 0 7px rgba(255,255,255,.68),
+     0 0 11px rgba(255,99,182,.82),
+     2px 3px 0 #260317;
 }
 
 .goal-title.neon{
-  animation:darkGoalPulse 1.25s ease-in-out infinite alternate;
+  animation:goalPinkPulse 1.3s ease-in-out infinite alternate;
 }
 
-@keyframes darkGoalPulse{
+@keyframes goalPinkPulse{
   from{
     filter:brightness(1);
 
     text-shadow:
-      -1px -1px 0 var(--stroke),
-       1px -1px 0 var(--stroke),
-      -1px  1px 0 var(--stroke),
-       1px  1px 0 var(--stroke),
-       0 0 10px rgba(255,0,0,.90),
-       0 0 22px rgba(255,0,0,.55),
-       3px 3px 0 var(--heartbeat-dark);
+      -2px -2px 0 var(--pink-dark),
+       2px -2px 0 var(--pink-dark),
+      -2px  2px 0 var(--pink-dark),
+       2px  2px 0 var(--pink-dark),
+       0 0 5px #ffffff,
+       0 0 10px rgba(255,99,182,.82),
+       0 0 20px rgba(255,99,182,.48),
+       3px 4px 0 #31051d;
   }
 
   to{
     filter:brightness(1.18);
 
     text-shadow:
-      -1px -1px 0 var(--stroke),
-       1px -1px 0 var(--stroke),
-      -1px  1px 0 var(--stroke),
-       1px  1px 0 var(--stroke),
-       0 0 16px rgba(255,0,0,1),
-       0 0 34px rgba(255,0,0,.82),
-       0 0 48px rgba(255,60,60,.50),
-       3px 3px 0 var(--heartbeat-dark);
+      -2px -2px 0 var(--pink-dark),
+       2px -2px 0 var(--pink-dark),
+      -2px  2px 0 var(--pink-dark),
+       2px  2px 0 var(--pink-dark),
+       0 0 7px #ffffff,
+       0 0 16px var(--pink),
+       0 0 32px rgba(255,99,182,.86),
+       0 0 48px rgba(255,99,182,.45),
+       3px 4px 0 #31051d;
   }
 }
