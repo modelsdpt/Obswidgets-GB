@@ -1,16 +1,17 @@
 /* ==========================================
-   GOAL BAR VERTICAL – Black Glossy Pink Theme
+   GOALBAR – Glossy Soft Pink Theme
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&family=Baloo+2:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700;800&display=swap');
 
 :root{
-  --text:#ffffff;
-  --pink:#ff63b6;
-  --pink-light:#ffc1e3;
-  --pink-soft:#ff9dce;
-  --pink-dark:#a41761;
-  --pink-deep:#4c092d;
+  --white:#ffffff;
+  --pink-light:#ffe0eb;
+  --pink-soft:#ffb0ca;
+  --pink:#ff79a5;
+  --pink-medium:#df477b;
+  --pink-dark:#9b234d;
+  --black:#090909;
 }
 
 *{
@@ -20,8 +21,8 @@
 body{
   margin:0;
   background:transparent;
-  font-family:'Baloo 2', system-ui, sans-serif;
-  color:var(--text);
+  color:var(--white);
+  font-family:'Barlow Condensed', Arial, sans-serif;
 }
 
 #goal-wrapper{
@@ -29,97 +30,88 @@ body{
   width:68px;
   height:420px;
   overflow:hidden;
-  border-radius:22px;
+  border-radius:17px;
 
   background:
     radial-gradient(
-      circle at 35% 10%,
-      rgba(255,99,182,.22),
-      transparent 26%
+      circle at 38% 10%,
+      rgba(255,255,255,.72),
+      transparent 25%
     ),
     radial-gradient(
-      circle at 65% 88%,
-      rgba(255,99,182,.12),
-      transparent 28%
+      circle at 60% 86%,
+      rgba(255,63,127,.32),
+      transparent 30%
     ),
     linear-gradient(
       180deg,
-      #010102 0%,
-      #0a0a0d 30%,
-      #171017 58%,
-      #08080b 80%,
-      #000000 100%
+      #ffe2ed 0%,
+      #ffb3cc 30%,
+      #ff87ae 58%,
+      #dc4779 80%,
+      #902047 100%
     );
 
-  border:1px solid rgba(255,99,182,.72);
+  border:2px solid #111111;
 
   box-shadow:
-    0 0 8px rgba(255,99,182,.52),
-    0 0 22px rgba(255,99,182,.22),
-    0 11px 30px rgba(0,0,0,.56),
-    inset 0 1px 0 rgba(255,255,255,.20),
-    inset 0 0 22px rgba(255,99,182,.08);
+    0 0 0 2px rgba(255,255,255,.60),
+    0 0 0 4px rgba(255,105,157,.46),
+    0 0 15px rgba(255,70,135,.42),
+    0 10px 27px rgba(0,0,0,.40),
+    inset 0 2px 0 rgba(255,255,255,.74),
+    inset 0 -15px 25px rgba(126,17,57,.22);
 }
 
-/* Reflejo del vidrio */
 #goal-wrapper::before{
   content:"";
   position:absolute;
-  top:0;
-  left:0;
-  width:44%;
-  height:100%;
+  inset:5px;
+  border-radius:11px;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.14),
-      rgba(255,255,255,.03),
-      transparent
-    );
+  border:1px solid rgba(255,255,255,.60);
 
-  border-radius:22px 0 0 22px;
-  opacity:.72;
+  box-shadow:
+    inset 0 0 0 1px rgba(150,31,73,.22);
+
   pointer-events:none;
-  z-index:3;
+  z-index:5;
 }
 
-/* Brillo vertical en movimiento */
 #goal-wrapper::after{
   content:"";
   position:absolute;
-  top:115%;
-  left:-70%;
-  width:220%;
-  height:48%;
+  left:0;
+  top:110%;
+  width:100%;
+  height:35%;
 
   background:
     linear-gradient(
       180deg,
       transparent,
-      rgba(255,255,255,.04),
-      rgba(255,255,255,.24),
-      rgba(255,99,182,.10),
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.62),
+      rgba(255,255,255,.12),
       transparent
     );
 
-  transform:rotate(-8deg);
-  animation:goalWrapperShine 5s linear infinite;
+  animation:goalSoftPinkShine 5s linear infinite;
   pointer-events:none;
-  z-index:5;
+  z-index:4;
 }
 
-@keyframes goalWrapperShine{
+@keyframes goalSoftPinkShine{
   0%{
-    top:115%;
+    top:110%;
   }
 
   45%{
-    top:-60%;
+    top:-45%;
   }
 
   100%{
-    top:-60%;
+    top:-45%;
   }
 }
 
@@ -131,76 +123,77 @@ body{
   height:0%;
   z-index:2;
   overflow:hidden;
-  border-radius:0 0 21px 21px;
+  border-radius:0 0 15px 15px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,255,255,.24),
-      rgba(255,255,255,.03) 35%,
-      transparent 62%
+      rgba(255,255,255,.55),
+      rgba(255,255,255,.10) 38%,
+      transparent 65%
     ),
     linear-gradient(
       180deg,
-      var(--pink-light) 0%,
-      var(--pink) 22%,
-      #d42b87 55%,
-      var(--pink-dark) 78%,
-      var(--pink-deep) 100%
+      #fff0f5 0%,
+      #ffafca 24%,
+      #ff6d9e 52%,
+      #d63f73 76%,
+      #8e2047 100%
     );
 
+  border-top:2px solid rgba(94,13,43,.82);
+
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.55),
-    inset 0 0 18px rgba(255,255,255,.09),
-    0 0 11px rgba(255,99,182,.75),
-    0 0 28px rgba(255,99,182,.36);
+    inset 0 2px 0 rgba(255,255,255,.78),
+    inset 0 0 18px rgba(255,255,255,.18),
+    0 0 14px rgba(255,61,126,.58),
+    0 0 25px rgba(255,61,126,.30);
 }
 
 #bar-fill::before{
   content:"";
   position:absolute;
-  inset:-25%;
+  inset:-30%;
 
   background:
     linear-gradient(
       180deg,
-      transparent 0%,
-      rgba(255,255,255,.05) 38%,
-      rgba(255,255,255,.38) 50%,
-      rgba(255,255,255,.05) 62%,
-      transparent 100%
+      transparent,
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.68),
+      rgba(255,255,255,.12),
+      transparent
     );
 
   transform:translateY(125%);
-  animation:goalFillShine 4.5s linear infinite;
+  animation:goalFillSoftPinkShine 4.3s linear infinite;
   pointer-events:none;
 }
 
 #bar-fill::after{
-  content:"♥  ✦  ♥";
+  content:"♥";
   position:absolute;
-  left:0;
-  right:0;
-  bottom:8px;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
 
-  text-align:center;
-  font-size:10px;
-  line-height:1.8;
+  font-size:12px;
   color:#ffffff;
 
-  -webkit-text-stroke:.6px var(--pink-dark);
+  -webkit-text-stroke:1px var(--pink-dark);
 
   text-shadow:
-    0 0 5px #ffffff,
-    0 0 10px var(--pink),
-    0 0 17px rgba(255,99,182,.80);
+    -1px -1px 0 var(--pink-dark),
+     1px -1px 0 var(--pink-dark),
+    -1px  1px 0 var(--pink-dark),
+     1px  1px 0 var(--pink-dark),
+     0 0 7px rgba(255,255,255,.92),
+     2px 3px 0 #111111;
 
-  animation:goalHeartParticles 3.8s linear infinite;
-  pointer-events:none;
-  opacity:.95;
+  animation:goalPinkHeartRise 3.6s linear infinite;
 }
 
-@keyframes goalFillShine{
+@keyframes goalFillSoftPinkShine{
   0%{
     transform:translateY(125%);
   }
@@ -214,23 +207,23 @@ body{
   }
 }
 
-@keyframes goalHeartParticles{
+@keyframes goalPinkHeartRise{
   0%{
-    transform:translateY(12px) scale(.90);
-    opacity:.18;
+    transform:translate(-50%, 15px) scale(.85);
+    opacity:0;
   }
 
-  20%{
-    opacity:.95;
+  25%{
+    opacity:1;
   }
 
-  55%{
-    transform:translateY(-55px) scale(1.08);
+  70%{
+    transform:translate(-50%, -65px) scale(1.08);
     opacity:.78;
   }
 
   100%{
-    transform:translateY(-110px) scale(.90);
+    transform:translate(-50%, -115px) scale(.90);
     opacity:0;
   }
 }
@@ -256,25 +249,25 @@ body{
 
   transform-origin:center;
 
-  font-family:'Lobster Two', cursive;
+  font-family:'Bebas Neue', sans-serif;
   font-size:20px;
-  font-weight:700;
   line-height:1;
-  letter-spacing:.02em;
+  letter-spacing:.07em;
+  text-transform:uppercase;
   color:#ffffff;
   white-space:nowrap;
 
-  -webkit-text-stroke:1px var(--pink);
+  -webkit-text-stroke:1px var(--pink-dark);
 
   text-shadow:
     -2px -2px 0 var(--pink-dark),
      2px -2px 0 var(--pink-dark),
     -2px  2px 0 var(--pink-dark),
      2px  2px 0 var(--pink-dark),
-     0 0 5px #ffffff,
-     0 0 11px var(--pink),
-     0 0 22px rgba(255,99,182,.62),
-     3px 4px 0 #31051d;
+     0 0 4px #ffffff,
+     0 0 9px rgba(255,255,255,.86),
+     0 0 13px rgba(255,55,123,.65),
+     3px 4px 0 #111111;
 }
 
 .goal-amount{
@@ -288,73 +281,54 @@ body{
 
   transform-origin:center;
 
-  font-family:'Baloo 2', system-ui, sans-serif;
-  font-size:13px;
-  font-weight:800;
+  font-family:'Bebas Neue', sans-serif;
+  font-size:15px;
   line-height:1;
+  letter-spacing:.05em;
   color:#ffffff;
   white-space:nowrap;
 
   padding:4px 8px;
-  border-radius:9px;
+  border-radius:7px;
 
   background:
     linear-gradient(
-      180deg,
-      rgba(255,255,255,.11),
-      rgba(255,255,255,.02)
-    ),
-    rgba(4,4,6,.82);
+      90deg,
+      #ffd9e6,
+      #ff9ebd,
+      #dc4678
+    );
 
-  border:1px solid rgba(255,99,182,.68);
+  border:2px solid #111111;
 
   box-shadow:
-    0 0 9px rgba(255,99,182,.40),
-    inset 0 1px 0 rgba(255,255,255,.18);
+    0 0 0 1px rgba(255,255,255,.60),
+    0 0 9px rgba(255,59,125,.38);
 
-  -webkit-text-stroke:.45px var(--pink);
+  -webkit-text-stroke:.7px var(--pink-dark);
 
   text-shadow:
     -1px -1px 0 var(--pink-dark),
      1px -1px 0 var(--pink-dark),
     -1px  1px 0 var(--pink-dark),
      1px  1px 0 var(--pink-dark),
-     0 0 7px rgba(255,255,255,.68),
-     0 0 11px rgba(255,99,182,.82),
-     2px 3px 0 #260317;
+     0 0 4px rgba(255,255,255,.82),
+     2px 3px 0 #111111;
 }
 
 .goal-title.neon{
-  animation:goalPinkPulse 1.3s ease-in-out infinite alternate;
+  animation:goalSoftPinkPulse 1.25s ease-in-out infinite alternate;
 }
 
-@keyframes goalPinkPulse{
+@keyframes goalSoftPinkPulse{
   from{
     filter:brightness(1);
-
-    text-shadow:
-      -2px -2px 0 var(--pink-dark),
-       2px -2px 0 var(--pink-dark),
-      -2px  2px 0 var(--pink-dark),
-       2px  2px 0 var(--pink-dark),
-       0 0 5px #ffffff,
-       0 0 10px rgba(255,99,182,.82),
-       0 0 20px rgba(255,99,182,.48),
-       3px 4px 0 #31051d;
   }
 
   to{
-    filter:brightness(1.18);
-
-    text-shadow:
-      -2px -2px 0 var(--pink-dark),
-       2px -2px 0 var(--pink-dark),
-      -2px  2px 0 var(--pink-dark),
-       2px  2px 0 var(--pink-dark),
-       0 0 7px #ffffff,
-       0 0 16px var(--pink),
-       0 0 32px rgba(255,99,182,.86),
-       0 0 48px rgba(255,99,182,.45),
-       3px 4px 0 #31051d;
+    filter:
+      brightness(1.16)
+      drop-shadow(0 0 8px rgba(255,255,255,.72))
+      drop-shadow(0 0 11px rgba(255,48,117,.58));
   }
 }
