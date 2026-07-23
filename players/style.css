@@ -376,7 +376,7 @@ body{
     ),
     rgba(5,5,7,.84);
 
-  border:1px solid rgba(255,99,182,.60);
+  border:1px solid rgba(201, 0, 0, 0.888);
 
   box-shadow:
     0 0 9px rgba(255,99,182,.32),
@@ -389,7 +389,7 @@ body{
      1px -1px 0 var(--pink-dark),
     -1px  1px 0 var(--pink-dark),
      1px  1px 0 var(--pink-dark),
-     0 0 7px rgba(255,99,182,.82);
+     0 0 7px rgba(104, 0, 7, 0.886);
 }
 
 .raffle-winner-screen{
@@ -407,7 +407,7 @@ body{
   background:
     radial-gradient(
       circle at center,
-      rgba(255,99,182,.32),
+      rgba(250, 100, 100, 0.32),
       rgba(74,9,44,.30) 38%,
       rgba(0,0,0,.92) 78%
     ),
@@ -481,7 +481,7 @@ body{
      0 0 6px #ffffff,
      0 0 13px var(--pink),
      0 0 28px rgba(217, 11, 11, 0.7),
-     3px 4px 0 #31051d;
+     3px 4px 0 #560505;
 }
 
 .winner-label{
