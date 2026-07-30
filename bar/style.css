@@ -1,16 +1,17 @@
 /* ==========================================
-   GOALBAR – Black to Red Gradient Theme
+   GOALBAR – BLACK & WHITE JOB THEME
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
   --white:#ffffff;
-  --black:#000000;
-  --red:#d60016;
-  --red-light:#ff3249;
-  --red-medium:#9b0012;
-  --red-dark:#4e0008;
+  --white-soft:#f2f2f2;
+  --silver:#c7c7c7;
+  --gray-light:#919191;
+  --gray:#4d4d4d;
+  --gray-dark:#202020;
+  --black:#030303;
 }
 
 *{
@@ -21,7 +22,7 @@ body{
   margin:0;
   background:transparent;
   color:var(--white);
-  font-family:'Barlow Condensed', Arial, sans-serif;
+  font-family:'Oswald', Arial, sans-serif;
 }
 
 #goal-wrapper{
@@ -29,39 +30,59 @@ body{
   width:68px;
   height:420px;
   overflow:hidden;
-  border-radius:19px;
+  border-radius:6px;
 
   background:
     radial-gradient(
-      circle at 60% 82%,
-      rgba(255,30,50,.25),
+      circle at 38% 9%,
+      rgba(255,255,255,.14),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 60% 87%,
+      rgba(255,255,255,.06),
       transparent 30%
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.017) 0,
+      rgba(255,255,255,.017) 1px,
+      transparent 1px,
+      transparent 5px
     ),
     linear-gradient(
       180deg,
-      #000000 0%,
-      #090001 28%,
-      #260003 54%,
-      #6b000c 78%,
-      #ad0015 100%
+      #252525 0%,
+      #111111 28%,
+      #050505 58%,
+      #161616 80%,
+      #020202 100%
     );
 
-  border:2px solid #000000;
+  border:3px solid #050505;
 
   box-shadow:
-    0 0 0 1px rgba(255,40,60,.38),
-    0 0 15px rgba(195,0,24,.43),
-    0 10px 27px rgba(0,0,0,.56),
-    inset 0 1px 0 rgba(255,255,255,.15),
-    inset 0 0 22px rgba(0,0,0,.40);
+    0 0 0 2px rgba(255,255,255,.88),
+    0 0 0 4px rgba(72,72,72,.92),
+    0 0 13px rgba(255,255,255,.30),
+    0 0 24px rgba(255,255,255,.09),
+    0 10px 27px rgba(0,0,0,.76),
+    inset 0 2px 0 rgba(255,255,255,.23),
+    inset 0 -16px 26px rgba(0,0,0,.68);
 }
 
 #goal-wrapper::before{
   content:"";
   position:absolute;
-  inset:3px;
-  border-radius:14px;
-  border:1px solid rgba(255,35,55,.31);
+  inset:5px;
+  border-radius:2px;
+
+  border:1px solid rgba(255,255,255,.50);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.90),
+    inset 0 0 11px rgba(255,255,255,.04);
+
   pointer-events:none;
   z-index:5;
 }
@@ -72,24 +93,24 @@ body{
   left:0;
   top:110%;
   width:100%;
-  height:35%;
+  height:34%;
 
   background:
     linear-gradient(
       180deg,
       transparent,
-      rgba(255,255,255,.04),
-      rgba(255,255,255,.18),
+      rgba(255,255,255,.03),
+      rgba(255,255,255,.24),
       rgba(255,255,255,.04),
       transparent
     );
 
-  animation:goalRedShine 5s linear infinite;
+  animation:goalWhiteShine 5.4s linear infinite;
   pointer-events:none;
   z-index:4;
 }
 
-@keyframes goalRedShine{
+@keyframes goalWhiteShine{
   0%{
     top:110%;
   }
@@ -103,6 +124,7 @@ body{
   }
 }
 
+/* Progreso visible */
 #bar-fill{
   position:absolute;
   bottom:0;
@@ -111,32 +133,37 @@ body{
   height:0%;
   z-index:2;
   overflow:hidden;
-  border-radius:0 0 17px 17px;
+  border-radius:0 0 3px 3px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,255,255,.20),
-      rgba(255,255,255,.02) 36%,
-      transparent 62%
+      rgba(255,255,255,.94) 0%,
+      rgba(255,255,255,.32) 22%,
+      rgba(255,255,255,.08) 48%,
+      rgba(255,255,255,.55) 76%,
+      rgba(255,255,255,.92) 100%
     ),
     linear-gradient(
       180deg,
-      #ff334b 0%,
-      #d6001a 30%,
-      #9b0012 60%,
-      #4c0008 100%
+      #ffffff 0%,
+      #ececec 20%,
+      #bcbcbc 48%,
+      #777777 75%,
+      #353535 100%
     );
 
-  border-top:2px solid rgba(0,0,0,.88);
+  border-top:3px solid #ffffff;
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.32),
-    inset 0 0 18px rgba(0,0,0,.24),
-    0 0 14px rgba(245,0,30,.54),
-    0 0 25px rgba(210,0,25,.30);
+    inset 0 2px 0 rgba(255,255,255,1),
+    inset 0 0 15px rgba(255,255,255,.38),
+    inset 0 -10px 18px rgba(0,0,0,.26),
+    0 0 10px rgba(255,255,255,.90),
+    0 0 22px rgba(255,255,255,.50);
 }
 
+/* Línea luminosa en el nivel del progreso */
 #bar-fill::before{
   content:"";
   position:absolute;
@@ -146,40 +173,44 @@ body{
     linear-gradient(
       180deg,
       transparent,
-      rgba(255,255,255,.05),
-      rgba(255,255,255,.32),
-      rgba(255,255,255,.05),
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.90),
+      rgba(255,255,255,.12),
       transparent
     );
 
   transform:translateY(125%);
-  animation:goalFillRedShine 4.3s linear infinite;
+  animation:goalFillWhiteShine 4.3s linear infinite;
   pointer-events:none;
 }
 
+/* Símbolo animado */
 #bar-fill::after{
-  content:"▲";
+  content:"$";
   position:absolute;
   left:50%;
   bottom:10px;
   transform:translateX(-50%);
 
-  font-size:11px;
+  font-family:'Anton', Impact, sans-serif;
+  font-size:15px;
   color:#ffffff;
 
-  -webkit-text-stroke:1px #000000;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -1px -1px 0 #000000,
-     1px -1px 0 #000000,
-    -1px  1px 0 #000000,
-     1px  1px 0 #000000,
-     0 0 6px rgba(255,255,255,.60);
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 6px #ffffff,
+     0 0 11px rgba(255,255,255,.85),
+     2px 3px 0 #292929;
 
-  animation:goalArrowRise 3.6s linear infinite;
+  animation:goalDollarRise 3.6s linear infinite;
 }
 
-@keyframes goalFillRedShine{
+@keyframes goalFillWhiteShine{
   0%{
     transform:translateY(125%);
   }
@@ -193,9 +224,9 @@ body{
   }
 }
 
-@keyframes goalArrowRise{
+@keyframes goalDollarRise{
   0%{
-    transform:translate(-50%, 15px);
+    transform:translate(-50%, 15px) scale(.85);
     opacity:0;
   }
 
@@ -204,12 +235,12 @@ body{
   }
 
   70%{
-    transform:translate(-50%, -65px);
-    opacity:.75;
+    transform:translate(-50%, -65px) scale(1.12);
+    opacity:.82;
   }
 
   100%{
-    transform:translate(-50%, -115px);
+    transform:translate(-50%, -115px) scale(.90);
     opacity:0;
   }
 }
@@ -235,25 +266,25 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bebas Neue', sans-serif;
+  font-family:'Anton', Impact, sans-serif;
   font-size:20px;
-  font-weight:400;
   line-height:1;
-  letter-spacing:.08em;
+  letter-spacing:.055em;
   text-transform:uppercase;
   color:#ffffff;
   white-space:nowrap;
 
-  -webkit-text-stroke:1.2px #000000;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -2px -2px 0 #000000,
-     2px -2px 0 #000000,
-    -2px  2px 0 #000000,
-     2px  2px 0 #000000,
-     0 0 4px rgba(255,255,255,.62),
-     0 0 9px rgba(255,20,45,.58),
-     3px 4px 0 rgba(0,0,0,.95);
+    -2px -2px 0 #050505,
+     2px -2px 0 #050505,
+    -2px  2px 0 #050505,
+     2px  2px 0 #050505,
+     0 0 4px #ffffff,
+     0 0 9px rgba(255,255,255,.68),
+     0 0 14px rgba(255,255,255,.25),
+     3px 4px 0 #292929;
 }
 
 .goal-amount{
@@ -267,54 +298,62 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bebas Neue', sans-serif;
+  font-family:'Anton', Impact, sans-serif;
   font-size:15px;
-  font-weight:400;
   line-height:1;
-  letter-spacing:.05em;
+  letter-spacing:.04em;
   color:#ffffff;
   white-space:nowrap;
 
   padding:4px 8px;
-  border-radius:7px;
+  border-radius:3px;
 
   background:
     linear-gradient(
+      180deg,
+      rgba(255,255,255,.16),
+      rgba(255,255,255,.02) 42%,
+      rgba(0,0,0,.42)
+    ),
+    linear-gradient(
       90deg,
-      #000000,
-      #2b0004,
-      #72000d
+      #3c3c3c,
+      #191919,
+      #070707
     );
 
-  border:2px solid #000000;
+  border:2px solid #050505;
 
   box-shadow:
-    0 0 0 1px rgba(255,40,60,.38),
-    0 0 9px rgba(210,0,25,.30);
+    0 0 0 1px rgba(255,255,255,.85),
+    0 0 0 2px rgba(65,65,65,.92),
+    0 0 10px rgba(255,255,255,.28),
+    inset 0 1px 0 rgba(255,255,255,.22);
 
-  -webkit-text-stroke:.8px #000000;
+  -webkit-text-stroke:.7px #050505;
 
   text-shadow:
-    -1px -1px 0 #000000,
-     1px -1px 0 #000000,
-    -1px  1px 0 #000000,
-     1px  1px 0 #000000,
-     0 0 4px rgba(255,255,255,.48),
-     2px 3px 0 rgba(0,0,0,.90);
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 5px rgba(255,255,255,.70),
+     2px 3px 0 #292929;
 }
 
 .goal-title.neon{
-  animation:goalTitleRedPulse 1.25s ease-in-out infinite alternate;
+  animation:goalWhitePulse 1.25s ease-in-out infinite alternate;
 }
 
-@keyframes goalTitleRedPulse{
+@keyframes goalWhitePulse{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.18)
-      drop-shadow(0 0 7px rgba(255,25,50,.62));
+      brightness(1.22)
+      drop-shadow(0 0 7px rgba(255,255,255,.75))
+      drop-shadow(0 0 12px rgba(255,255,255,.42));
   }
 }

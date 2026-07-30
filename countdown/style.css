@@ -1,15 +1,16 @@
 /* ==========================================
-   TIMER – Black to Red Gradient Theme
+   TIMER – BLACK & WHITE JOB THEME
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
   --white:#ffffff;
-  --black:#000000;
-  --red:#d60016;
-  --red-light:#ff2038;
-  --red-dark:#570009;
+  --white-soft:#f2f2f2;
+  --silver:#c7c7c7;
+  --gray:#4d4d4d;
+  --gray-dark:#202020;
+  --black:#030303;
 }
 
 *{
@@ -20,47 +21,68 @@ body{
   margin:0;
   background:transparent;
   color:var(--white);
-  font-family:'Barlow Condensed', Arial, sans-serif;
+  font-family:'Oswald', Arial, sans-serif;
 }
 
 .timer-widget{
   position:relative;
   width:280px;
-  padding:14px 14px 16px;
-  border-radius:18px;
+  padding:15px 15px 17px;
+  border-radius:6px;
   overflow:hidden;
 
   background:
     radial-gradient(
-      circle at 80% 78%,
-      rgba(255,30,55,.26),
-      transparent 32%
+      circle at 18% 12%,
+      rgba(255,255,255,.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 82% 82%,
+      rgba(255,255,255,.06),
+      transparent 33%
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.017) 0,
+      rgba(255,255,255,.017) 1px,
+      transparent 1px,
+      transparent 5px
     ),
     linear-gradient(
       145deg,
-      #000000 0%,
-      #090001 25%,
-      #290004 52%,
-      #72000d 78%,
-      #b70016 100%
+      #252525 0%,
+      #111111 32%,
+      #050505 60%,
+      #161616 82%,
+      #020202 100%
     );
 
-  border:2px solid #000000;
+  border:3px solid #050505;
 
   box-shadow:
-    0 0 0 1px rgba(255,40,60,.38),
-    0 0 15px rgba(200,0,25,.45),
-    0 9px 26px rgba(0,0,0,.56),
-    inset 0 1px 0 rgba(255,255,255,.16),
-    inset 0 0 22px rgba(0,0,0,.42);
+    0 0 0 2px rgba(255,255,255,.88),
+    0 0 0 4px rgba(72,72,72,.92),
+    0 0 13px rgba(255,255,255,.30),
+    0 0 24px rgba(255,255,255,.09),
+    0 10px 26px rgba(0,0,0,.76),
+    inset 0 2px 0 rgba(255,255,255,.23),
+    inset 0 -15px 26px rgba(0,0,0,.68);
 }
 
 .timer-widget::before{
   content:"";
   position:absolute;
-  inset:3px;
-  border-radius:14px;
-  border:1px solid rgba(255,40,60,.30);
+  inset:5px;
+  border-radius:2px;
+
+  border:1px solid rgba(255,255,255,.50);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.90),
+    inset 0 0 11px rgba(255,255,255,.04),
+    0 0 7px rgba(255,255,255,.17);
+
   pointer-events:none;
   z-index:5;
 }
@@ -70,26 +92,26 @@ body{
   position:absolute;
   top:-70%;
   left:-70%;
-  width:48%;
+  width:44%;
   height:240%;
 
   background:
     linear-gradient(
       110deg,
-      transparent,
-      rgba(255,255,255,.03),
-      rgba(255,255,255,.18),
-      rgba(255,255,255,.03),
-      transparent
+      transparent 0%,
+      rgba(255,255,255,.02) 35%,
+      rgba(255,255,255,.23) 48%,
+      rgba(255,255,255,.04) 58%,
+      transparent 72%
     );
 
   transform:rotate(17deg);
-  animation:timerRedShine 5.2s linear infinite;
+  animation:timerWhiteShine 5.5s linear infinite;
   pointer-events:none;
   z-index:2;
 }
 
-@keyframes timerRedShine{
+@keyframes timerWhiteShine{
   0%{
     left:-70%;
   }
@@ -106,27 +128,28 @@ body{
 .timer-title{
   position:relative;
   z-index:6;
-  margin-bottom:10px;
+  margin-bottom:11px;
   text-align:center;
 
-  font-family:'Bebas Neue', sans-serif;
-  font-size:25px;
+  font-family:'Anton', Impact, sans-serif;
+  font-size:26px;
   font-weight:400;
   line-height:1;
-  letter-spacing:.07em;
+  letter-spacing:.045em;
   text-transform:uppercase;
   color:#ffffff;
 
-  -webkit-text-stroke:1.1px #000000;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -2px -2px 0 #000000,
-     2px -2px 0 #000000,
-    -2px  2px 0 #000000,
-     2px  2px 0 #000000,
-     0 0 4px rgba(255,255,255,.62),
-     0 0 9px rgba(255,20,45,.56),
-     3px 4px 0 rgba(0,0,0,.95);
+    -2px -2px 0 #050505,
+     2px -2px 0 #050505,
+    -2px  2px 0 #050505,
+     2px  2px 0 #050505,
+     0 0 4px #ffffff,
+     0 0 9px rgba(255,255,255,.68),
+     0 0 14px rgba(255,255,255,.25),
+     3px 4px 0 #292929;
 }
 
 .timer-display{
@@ -138,9 +161,9 @@ body{
 
 .timer-box{
   position:relative;
-  width:180px;
-  height:74px;
-  border-radius:11px;
+  width:182px;
+  height:76px;
+  border-radius:4px;
   overflow:hidden;
 
   display:flex;
@@ -150,43 +173,49 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,.09),
-      rgba(255,255,255,.01) 42%,
-      rgba(0,0,0,.24)
+      rgba(255,255,255,.17),
+      rgba(255,255,255,.025) 40%,
+      rgba(0,0,0,.46)
     ),
     linear-gradient(
       100deg,
-      #000000 0%,
-      #210003 48%,
-      #79000e 100%
+      #3b3b3b 0%,
+      #191919 50%,
+      #050505 100%
     );
 
-  border:2px solid #000000;
+  border:3px solid #050505;
 
   box-shadow:
-    0 0 0 1px rgba(255,35,55,.40),
-    0 0 14px rgba(205,0,25,.28),
-    0 6px 17px rgba(0,0,0,.52),
-    inset 0 1px 0 rgba(255,255,255,.16);
+    0 0 0 1px rgba(255,255,255,.90),
+    0 0 0 3px rgba(70,70,70,.94),
+    0 0 14px rgba(255,255,255,.28),
+    0 7px 18px rgba(0,0,0,.72),
+    inset 0 2px 0 rgba(255,255,255,.24),
+    inset 0 -10px 19px rgba(0,0,0,.60);
 }
 
 .timer-box::before{
   content:"";
   position:absolute;
-  top:0;
   left:0;
+  top:0;
   bottom:0;
-  width:6px;
+  width:8px;
 
   background:
     linear-gradient(
       180deg,
-      #ff334b,
-      #ca0018,
-      #60000a
+      #ffffff 0%,
+      #ededed 38%,
+      #969696 70%,
+      #323232 100%
     );
 
-  box-shadow:0 0 8px rgba(255,0,30,.70);
+  box-shadow:
+    1px 0 0 #000000,
+    0 0 10px rgba(255,255,255,.62);
+
   z-index:2;
 }
 
@@ -202,18 +231,19 @@ body{
     linear-gradient(
       105deg,
       transparent,
+      rgba(255,255,255,.03),
+      rgba(255,255,255,.26),
       rgba(255,255,255,.04),
-      rgba(255,255,255,.20),
       transparent
     );
 
   transform:skewX(-18deg);
-  animation:timerBoxRedShine 4.5s linear infinite;
+  animation:timerBoxWhiteShine 4.8s linear infinite;
   pointer-events:none;
   z-index:1;
 }
 
-@keyframes timerBoxRedShine{
+@keyframes timerBoxWhiteShine{
   0%{
     left:-100%;
   }
@@ -231,57 +261,77 @@ body{
   position:relative;
   z-index:3;
 
-  font-family:'Bebas Neue', sans-serif;
-  font-size:39px;
+  font-family:'Anton', Impact, sans-serif;
+  font-size:40px;
   font-weight:400;
   line-height:1;
-  letter-spacing:.07em;
+  letter-spacing:.055em;
   color:#ffffff;
 
-  -webkit-text-stroke:1.2px #000000;
+  -webkit-text-stroke:1.2px #050505;
 
   text-shadow:
-    -2px -2px 0 #000000,
-     2px -2px 0 #000000,
-    -2px  2px 0 #000000,
-     2px  2px 0 #000000,
-     0 0 5px rgba(255,255,255,.72),
-     0 0 10px rgba(255,20,45,.68),
-     3px 4px 0 rgba(0,0,0,.96);
+    -2px -2px 0 #050505,
+     2px -2px 0 #050505,
+    -2px  2px 0 #050505,
+     2px  2px 0 #050505,
+     0 0 4px #ffffff,
+     0 0 9px rgba(255,255,255,.78),
+     0 0 14px rgba(255,255,255,.32),
+     4px 5px 0 #292929;
 }
 
 .timer-box.timer-running{
-  animation:timerRedPulse 1.15s ease-in-out infinite alternate;
+  animation:timerWhitePulse 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerRedPulse{
+@keyframes timerWhitePulse{
   from{
     transform:scale(1);
 
     box-shadow:
-      0 0 0 1px rgba(255,35,55,.36),
-      0 0 12px rgba(205,0,25,.24),
-      0 6px 17px rgba(0,0,0,.50),
-      inset 0 1px 0 rgba(255,255,255,.15);
+      0 0 0 1px rgba(255,255,255,.82),
+      0 0 0 3px rgba(70,70,70,.90),
+      0 0 12px rgba(255,255,255,.20),
+      0 7px 18px rgba(0,0,0,.68),
+      inset 0 2px 0 rgba(255,255,255,.20);
   }
 
   to{
     transform:scale(1.025);
 
     box-shadow:
-      0 0 0 1px rgba(255,45,65,.62),
-      0 0 23px rgba(235,0,30,.50),
-      0 8px 21px rgba(0,0,0,.56),
-      inset 0 1px 0 rgba(255,255,255,.22);
+      0 0 0 1px #ffffff,
+      0 0 0 3px rgba(105,105,105,.96),
+      0 0 23px rgba(255,255,255,.54),
+      0 9px 21px rgba(0,0,0,.75),
+      inset 0 2px 0 rgba(255,255,255,.38);
   }
 }
 
 .timer-box.timer-finished{
-  filter:brightness(1.17);
+  filter:brightness(1.18);
 
   box-shadow:
-    0 0 0 1px rgba(255,65,80,.72),
-    0 0 28px rgba(255,0,35,.62),
-    0 8px 22px rgba(0,0,0,.58),
-    inset 0 1px 0 rgba(255,255,255,.22);
+    0 0 0 1px #ffffff,
+    0 0 0 3px #707070,
+    0 0 30px rgba(255,255,255,.65),
+    0 9px 23px rgba(0,0,0,.78),
+    inset 0 2px 0 rgba(255,255,255,.48);
+}
+
+.timer-box.timer-finished::after{
+  animation:
+    timerBoxWhiteShine 1.5s linear infinite,
+    timerFinishedWhiteFlash .7s ease-in-out infinite alternate;
+}
+
+@keyframes timerFinishedWhiteFlash{
+  from{
+    opacity:.50;
+  }
+
+  to{
+    opacity:1;
+  }
 }

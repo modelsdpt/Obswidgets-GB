@@ -1,17 +1,23 @@
 /* ==========================================
-   GOALBAR – Glossy Soft Pink Theme
+   GOALBAR – $25 JOB / BLACK & GOLD THEME
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
+  --cream:#fff3d0;
   --white:#ffffff;
-  --pink-light:#ffe0eb;
-  --pink-soft:#ffb0ca;
-  --pink:#ff79a5;
-  --pink-medium:#df477b;
-  --pink-dark:#9b234d;
-  --black:#090909;
+
+  --gold-light:#ffe28a;
+  --gold:#f6a800;
+  --orange:#dc7000;
+  --orange-dark:#873100;
+
+  --brown:#3b1b0b;
+  --brown-dark:#1f0e06;
+
+  --black:#050403;
+  --black-soft:#100b07;
 }
 
 *{
@@ -21,87 +27,100 @@
 body{
   margin:0;
   background:transparent;
-  color:var(--white);
-  font-family:'Barlow Condensed', Arial, sans-serif;
+  color:var(--cream);
+  font-family:'Oswald', Arial, sans-serif;
 }
 
+/* Contenedor exterior de la barra */
 #goal-wrapper{
   position:relative;
   width:68px;
   height:420px;
   overflow:hidden;
-  border-radius:17px;
+  border-radius:5px;
 
   background:
     radial-gradient(
-      circle at 38% 10%,
-      rgba(255,255,255,.72),
-      transparent 25%
+      circle at 40% 9%,
+      rgba(255,191,64,.22),
+      transparent 24%
     ),
     radial-gradient(
-      circle at 60% 86%,
-      rgba(255,63,127,.32),
+      circle at 58% 86%,
+      rgba(180,65,0,.28),
       transparent 30%
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,.016) 0,
+      rgba(255,255,255,.016) 1px,
+      transparent 1px,
+      transparent 5px
     ),
     linear-gradient(
       180deg,
-      #ffe2ed 0%,
-      #ffb3cc 30%,
-      #ff87ae 58%,
-      #dc4779 80%,
-      #902047 100%
+      #2e170b 0%,
+      #17100b 28%,
+      #090706 58%,
+      #1c0d06 80%,
+      #050403 100%
     );
 
-  border:2px solid #111111;
+  border:3px solid var(--black);
 
   box-shadow:
-    0 0 0 2px rgba(255,255,255,.60),
-    0 0 0 4px rgba(255,105,157,.46),
-    0 0 15px rgba(255,70,135,.42),
-    0 10px 27px rgba(0,0,0,.40),
-    inset 0 2px 0 rgba(255,255,255,.74),
-    inset 0 -15px 25px rgba(126,17,57,.22);
+    0 0 0 2px var(--gold-light),
+    0 0 0 5px var(--orange-dark),
+    0 0 13px rgba(255,155,0,.72),
+    0 0 24px rgba(209,77,0,.32),
+    0 10px 27px rgba(0,0,0,.70),
+    inset 0 2px 0 rgba(255,218,115,.32),
+    inset 0 -16px 26px rgba(0,0,0,.64);
 }
 
+/* Marco interior */
 #goal-wrapper::before{
   content:"";
   position:absolute;
   inset:5px;
-  border-radius:11px;
+  border-radius:2px;
 
-  border:1px solid rgba(255,255,255,.60);
+  border:1px solid rgba(255,210,99,.72);
 
   box-shadow:
-    inset 0 0 0 1px rgba(150,31,73,.22);
+    inset 0 0 0 1px rgba(94,34,0,.90),
+    inset 0 0 11px rgba(255,148,0,.10),
+    0 0 7px rgba(255,158,0,.30);
 
   pointer-events:none;
   z-index:5;
 }
 
+/* Brillo vertical animado */
 #goal-wrapper::after{
   content:"";
   position:absolute;
   left:0;
   top:110%;
   width:100%;
-  height:35%;
+  height:34%;
 
   background:
     linear-gradient(
       180deg,
       transparent,
-      rgba(255,255,255,.12),
-      rgba(255,255,255,.62),
-      rgba(255,255,255,.12),
+      rgba(255,171,42,.04),
+      rgba(255,235,173,.28),
+      rgba(255,153,0,.10),
       transparent
     );
 
-  animation:goalSoftPinkShine 5s linear infinite;
+  animation:goalGoldShine 5.4s linear infinite;
   pointer-events:none;
   z-index:4;
 }
 
-@keyframes goalSoftPinkShine{
+@keyframes goalGoldShine{
   0%{
     top:110%;
   }
@@ -115,6 +134,7 @@ body{
   }
 }
 
+/* Relleno de progreso */
 #bar-fill{
   position:absolute;
   bottom:0;
@@ -123,33 +143,35 @@ body{
   height:0%;
   z-index:2;
   overflow:hidden;
-  border-radius:0 0 15px 15px;
+  border-radius:0 0 2px 2px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,255,255,.55),
-      rgba(255,255,255,.10) 38%,
+      rgba(255,245,195,.38),
+      rgba(255,255,255,.05) 38%,
       transparent 65%
     ),
     linear-gradient(
       180deg,
-      #fff0f5 0%,
-      #ffafca 24%,
-      #ff6d9e 52%,
-      #d63f73 76%,
-      #8e2047 100%
+      #ffeaa5 0%,
+      #ffc331 22%,
+      #f18a00 48%,
+      #c74c00 74%,
+      #671d00 100%
     );
 
-  border-top:2px solid rgba(94,13,43,.82);
+  border-top:3px solid #050403;
 
   box-shadow:
-    inset 0 2px 0 rgba(255,255,255,.78),
-    inset 0 0 18px rgba(255,255,255,.18),
-    0 0 14px rgba(255,61,126,.58),
-    0 0 25px rgba(255,61,126,.30);
+    inset 0 2px 0 rgba(255,244,190,.78),
+    inset 0 0 15px rgba(255,255,255,.12),
+    inset 0 -10px 18px rgba(76,18,0,.38),
+    0 0 14px rgba(255,157,0,.72),
+    0 0 25px rgba(220,86,0,.42);
 }
 
+/* Brillo que recorre el relleno */
 #bar-fill::before{
   content:"";
   position:absolute;
@@ -159,41 +181,44 @@ body{
     linear-gradient(
       180deg,
       transparent,
-      rgba(255,255,255,.12),
-      rgba(255,255,255,.68),
-      rgba(255,255,255,.12),
+      rgba(255,184,52,.05),
+      rgba(255,246,198,.48),
+      rgba(255,146,0,.10),
       transparent
     );
 
   transform:translateY(125%);
-  animation:goalFillSoftPinkShine 4.3s linear infinite;
+  animation:goalFillGoldShine 4.5s linear infinite;
   pointer-events:none;
 }
 
+/* Símbolo de dinero ascendente */
 #bar-fill::after{
-  content:"♥";
+  content:"$";
   position:absolute;
   left:50%;
   bottom:10px;
   transform:translateX(-50%);
 
-  font-size:12px;
-  color:#ffffff;
+  font-family:'Anton', Impact, sans-serif;
+  font-size:15px;
+  color:var(--cream);
 
-  -webkit-text-stroke:1px var(--pink-dark);
+  -webkit-text-stroke:1px var(--black);
 
   text-shadow:
-    -1px -1px 0 var(--pink-dark),
-     1px -1px 0 var(--pink-dark),
-    -1px  1px 0 var(--pink-dark),
-     1px  1px 0 var(--pink-dark),
-     0 0 7px rgba(255,255,255,.92),
-     2px 3px 0 #111111;
+    -1px -1px 0 var(--black),
+     1px -1px 0 var(--black),
+    -1px  1px 0 var(--black),
+     1px  1px 0 var(--black),
+     0 0 5px #fff2b6,
+     0 0 9px rgba(255,174,0,.90),
+     2px 3px 0 #7e2b00;
 
-  animation:goalPinkHeartRise 3.6s linear infinite;
+  animation:goalDollarRise 3.6s linear infinite;
 }
 
-@keyframes goalFillSoftPinkShine{
+@keyframes goalFillGoldShine{
   0%{
     transform:translateY(125%);
   }
@@ -207,7 +232,7 @@ body{
   }
 }
 
-@keyframes goalPinkHeartRise{
+@keyframes goalDollarRise{
   0%{
     transform:translate(-50%, 15px) scale(.85);
     opacity:0;
@@ -218,8 +243,8 @@ body{
   }
 
   70%{
-    transform:translate(-50%, -65px) scale(1.08);
-    opacity:.78;
+    transform:translate(-50%, -65px) scale(1.12);
+    opacity:.82;
   }
 
   100%{
@@ -228,6 +253,7 @@ body{
   }
 }
 
+/* Contenedor de los textos */
 .goal-label{
   position:absolute;
   inset:0;
@@ -238,6 +264,7 @@ body{
   z-index:7;
 }
 
+/* Título vertical */
 .goal-title{
   position:absolute;
   top:50%;
@@ -249,27 +276,28 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bebas Neue', sans-serif;
+  font-family:'Anton', Impact, sans-serif;
   font-size:20px;
   line-height:1;
-  letter-spacing:.07em;
+  letter-spacing:.055em;
   text-transform:uppercase;
-  color:#ffffff;
+  color:var(--cream);
   white-space:nowrap;
 
-  -webkit-text-stroke:1px var(--pink-dark);
+  -webkit-text-stroke:1px #050403;
 
   text-shadow:
-    -2px -2px 0 var(--pink-dark),
-     2px -2px 0 var(--pink-dark),
-    -2px  2px 0 var(--pink-dark),
-     2px  2px 0 var(--pink-dark),
-     0 0 4px #ffffff,
-     0 0 9px rgba(255,255,255,.86),
-     0 0 13px rgba(255,55,123,.65),
-     3px 4px 0 #111111;
+    -2px -2px 0 #050403,
+     2px -2px 0 #050403,
+    -2px  2px 0 #050403,
+     2px  2px 0 #050403,
+     0 0 3px #fff6d2,
+     0 0 8px rgba(255,219,111,.76),
+     0 0 13px rgba(255,142,0,.70),
+     3px 4px 0 #712700;
 }
 
+/* Cantidad de la meta */
 .goal-amount{
   position:absolute;
   bottom:43px;
@@ -281,54 +309,63 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bebas Neue', sans-serif;
+  font-family:'Anton', Impact, sans-serif;
   font-size:15px;
   line-height:1;
-  letter-spacing:.05em;
-  color:#ffffff;
+  letter-spacing:.04em;
+  color:var(--cream);
   white-space:nowrap;
 
   padding:4px 8px;
-  border-radius:7px;
+  border-radius:3px;
 
   background:
     linear-gradient(
+      180deg,
+      rgba(255,235,165,.18),
+      rgba(255,255,255,.02) 40%,
+      rgba(0,0,0,.35)
+    ),
+    linear-gradient(
       90deg,
-      #ffd9e6,
-      #ff9ebd,
-      #dc4678
+      #5c2708,
+      #251208,
+      #0b0806
     );
 
-  border:2px solid #111111;
+  border:2px solid #050403;
 
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.60),
-    0 0 9px rgba(255,59,125,.38);
+    0 0 0 1px var(--gold),
+    0 0 0 2px rgba(111,39,0,.86),
+    0 0 10px rgba(255,145,0,.50),
+    inset 0 1px 0 rgba(255,222,128,.28);
 
-  -webkit-text-stroke:.7px var(--pink-dark);
+  -webkit-text-stroke:.7px #050403;
 
   text-shadow:
-    -1px -1px 0 var(--pink-dark),
-     1px -1px 0 var(--pink-dark),
-    -1px  1px 0 var(--pink-dark),
-     1px  1px 0 var(--pink-dark),
-     0 0 4px rgba(255,255,255,.82),
-     2px 3px 0 #111111;
+    -1px -1px 0 #050403,
+     1px -1px 0 #050403,
+    -1px  1px 0 #050403,
+     1px  1px 0 #050403,
+     0 0 4px rgba(255,238,181,.70),
+     2px 3px 0 #762900;
 }
 
+/* Pulso luminoso del título */
 .goal-title.neon{
-  animation:goalSoftPinkPulse 1.25s ease-in-out infinite alternate;
+  animation:goalGoldPulse 1.25s ease-in-out infinite alternate;
 }
 
-@keyframes goalSoftPinkPulse{
+@keyframes goalGoldPulse{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.16)
-      drop-shadow(0 0 8px rgba(255,255,255,.72))
-      drop-shadow(0 0 11px rgba(255,48,117,.58));
+      brightness(1.18)
+      drop-shadow(0 0 7px rgba(255,237,177,.70))
+      drop-shadow(0 0 12px rgba(255,145,0,.72));
   }
 }
