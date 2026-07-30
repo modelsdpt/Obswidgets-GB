@@ -1,23 +1,18 @@
 /* ==========================================
-   TIMER – $25 JOB / BLACK & GOLD THEME
+   TIMER – PINK & PURPLE DREAM THEME
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
-  --cream:#fff3d0;
   --white:#ffffff;
-
-  --gold-light:#ffe28a;
-  --gold:#f6a800;
-  --orange:#dc7000;
-  --orange-dark:#873100;
-
-  --brown:#3b1b0b;
-  --brown-dark:#1f0e06;
-
-  --black:#050403;
-  --black-soft:#100b07;
+  --lavender-light:#ead7ff;
+  --lavender:#c994ff;
+  --purple:#9454d8;
+  --purple-dark:#542277;
+  --pink-light:#ffcaf0;
+  --pink:#ff77c8;
+  --pink-dark:#8e1f69;
 }
 
 *{
@@ -27,101 +22,96 @@
 body{
   margin:0;
   background:transparent;
-  color:var(--cream);
+  color:#ffffff;
   font-family:'Oswald', Arial, sans-serif;
 }
 
-/* Contenedor principal */
 .timer-widget{
   position:relative;
   width:280px;
   padding:15px 15px 17px;
-  border-radius:5px;
+  border-radius:16px;
   overflow:hidden;
 
   background:
     radial-gradient(
       circle at 18% 12%,
-      rgba(255,188,56,.20),
-      transparent 28%
+      rgba(255,255,255,.70),
+      transparent 27%
     ),
     radial-gradient(
       circle at 82% 82%,
-      rgba(181,64,0,.28),
+      rgba(255,89,201,.45),
       transparent 33%
     ),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.016) 0,
-      rgba(255,255,255,.016) 1px,
-      transparent 1px,
-      transparent 5px
+    radial-gradient(
+      circle at 76% 18%,
+      rgba(211,169,255,.48),
+      transparent 24%
     ),
     linear-gradient(
       145deg,
-      #2d160a 0%,
-      #17100b 32%,
-      #090706 60%,
-      #1d0d06 82%,
-      #050403 100%
+      #f3e2ff 0%,
+      #d6a4ff 28%,
+      #c46be2 54%,
+      #ef5db8 78%,
+      #8435a4 100%
     );
 
-  border:3px solid var(--black);
+  border:2px solid #351044;
 
   box-shadow:
-    0 0 0 2px var(--gold-light),
-    0 0 0 5px var(--orange-dark),
-    0 0 13px rgba(255,155,0,.72),
-    0 0 24px rgba(209,77,0,.32),
-    0 10px 26px rgba(0,0,0,.70),
-    inset 0 2px 0 rgba(255,218,115,.30),
-    inset 0 -15px 26px rgba(0,0,0,.64);
+    0 0 0 2px rgba(255,255,255,.80),
+    0 0 0 5px rgba(222,91,203,.72),
+    0 0 16px rgba(255,102,215,.62),
+    0 0 28px rgba(155,71,218,.35),
+    0 10px 27px rgba(48,8,64,.56),
+    inset 0 3px 0 rgba(255,255,255,.72),
+    inset 0 -15px 27px rgba(98,20,119,.26);
 }
 
-/* Marco interior */
 .timer-widget::before{
   content:"";
   position:absolute;
-  inset:5px;
-  border-radius:2px;
+  inset:6px;
+  border-radius:11px;
 
-  border:1px solid rgba(255,210,99,.72);
+  border:1px solid rgba(255,255,255,.70);
 
   box-shadow:
-    inset 0 0 0 1px rgba(94,34,0,.90),
-    inset 0 0 11px rgba(255,148,0,.10),
-    0 0 7px rgba(255,158,0,.30);
+    inset 0 0 0 1px rgba(111,33,134,.36),
+    inset 0 0 14px rgba(255,255,255,.10),
+    0 0 8px rgba(255,255,255,.26);
 
   pointer-events:none;
   z-index:5;
 }
 
-/* Brillo diagonal animado */
 .timer-widget::after{
   content:"";
   position:absolute;
   top:-70%;
   left:-70%;
-  width:44%;
+  width:46%;
   height:240%;
 
   background:
     linear-gradient(
       110deg,
-      transparent 0%,
-      rgba(255,173,43,.03) 35%,
-      rgba(255,234,169,.30) 48%,
-      rgba(255,145,0,.10) 58%,
-      transparent 72%
+      transparent,
+      rgba(255,255,255,.09),
+      rgba(255,255,255,.60),
+      rgba(255,215,245,.18),
+      transparent
     );
 
   transform:rotate(17deg);
-  animation:timerGoldShine 5.5s linear infinite;
+  animation:timerDreamShine 5.2s linear infinite;
   pointer-events:none;
   z-index:2;
 }
 
-@keyframes timerGoldShine{
+@keyframes timerDreamShine{
   0%{
     left:-70%;
   }
@@ -135,7 +125,6 @@ body{
   }
 }
 
-/* Título */
 .timer-title{
   position:relative;
   z-index:6;
@@ -148,22 +137,21 @@ body{
   line-height:1;
   letter-spacing:.045em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
 
-  -webkit-text-stroke:1px #050403;
+  -webkit-text-stroke:1px #421153;
 
   text-shadow:
-    -2px -2px 0 #050403,
-     2px -2px 0 #050403,
-    -2px  2px 0 #050403,
-     2px  2px 0 #050403,
-     0 0 3px #fff6d2,
-     0 0 8px rgba(255,219,111,.76),
-     0 0 13px rgba(255,142,0,.70),
-     3px 4px 0 #712700;
+    -2px -2px 0 #421153,
+     2px -2px 0 #421153,
+    -2px  2px 0 #421153,
+     2px  2px 0 #421153,
+     0 0 4px #ffffff,
+     0 0 10px rgba(255,255,255,.90),
+     0 0 16px rgba(255,87,201,.82),
+     3px 4px 0 #77248d;
 }
 
-/* Área del contador */
 .timer-display{
   position:relative;
   z-index:6;
@@ -171,12 +159,11 @@ body{
   justify-content:center;
 }
 
-/* Caja del tiempo */
 .timer-box{
   position:relative;
   width:182px;
   height:76px;
-  border-radius:4px;
+  border-radius:11px;
   overflow:hidden;
 
   display:flex;
@@ -186,29 +173,28 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,213,117,.18),
-      rgba(255,255,255,.025) 40%,
-      rgba(0,0,0,.42)
+      rgba(255,255,255,.68),
+      rgba(255,255,255,.13) 42%,
+      rgba(90,20,112,.20)
     ),
     linear-gradient(
       100deg,
-      #552507 0%,
-      #271408 50%,
-      #0a0705 100%
+      #efd9ff 0%,
+      #d486ef 48%,
+      #f16bc1 100%
     );
 
-  border:3px solid #050403;
+  border:2px solid #421153;
 
   box-shadow:
-    0 0 0 1px var(--gold),
-    0 0 0 3px rgba(112,40,0,.92),
-    0 0 14px rgba(255,146,0,.52),
-    0 7px 18px rgba(0,0,0,.65),
-    inset 0 2px 0 rgba(255,222,128,.28),
-    inset 0 -10px 19px rgba(0,0,0,.56);
+    0 0 0 1px rgba(255,255,255,.82),
+    0 0 0 3px rgba(213,78,192,.54),
+    0 0 16px rgba(255,96,211,.60),
+    0 7px 18px rgba(68,12,88,.42),
+    inset 0 2px 0 rgba(255,255,255,.84),
+    inset 0 -10px 19px rgba(91,23,109,.22);
 }
 
-/* Barra dorada lateral */
 .timer-box::before{
   content:"";
   position:absolute;
@@ -220,20 +206,19 @@ body{
   background:
     linear-gradient(
       180deg,
-      #fff2b4 0%,
-      #ffbd28 38%,
-      #e66f00 70%,
-      #7d2600 100%
+      #ffffff 0%,
+      #ffe0f6 30%,
+      #ff79cc 64%,
+      #a84dde 100%
     );
 
   box-shadow:
-    1px 0 0 #050403,
-    0 0 10px rgba(255,171,0,.84);
+    1px 0 0 rgba(68,13,88,.75),
+    0 0 11px rgba(255,255,255,.85);
 
   z-index:2;
 }
 
-/* Reflejo animado en la caja */
 .timer-box::after{
   content:"";
   position:absolute;
@@ -246,19 +231,19 @@ body{
     linear-gradient(
       105deg,
       transparent,
-      rgba(255,184,52,.04),
-      rgba(255,238,185,.30),
-      rgba(255,145,0,.08),
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.65),
+      rgba(255,215,245,.17),
       transparent
     );
 
   transform:skewX(-18deg);
-  animation:timerBoxGoldShine 4.8s linear infinite;
+  animation:timerBoxDreamShine 4.6s linear infinite;
   pointer-events:none;
   z-index:1;
 }
 
-@keyframes timerBoxGoldShine{
+@keyframes timerBoxDreamShine{
   0%{
     left:-100%;
   }
@@ -272,7 +257,6 @@ body{
   }
 }
 
-/* Números del temporizador */
 #timer-value{
   position:relative;
   z-index:3;
@@ -282,75 +266,56 @@ body{
   font-weight:400;
   line-height:1;
   letter-spacing:.055em;
-  color:var(--cream);
+  color:#ffffff;
 
-  -webkit-text-stroke:1.2px #050403;
+  -webkit-text-stroke:1.2px #421153;
 
   text-shadow:
-    -2px -2px 0 #050403,
-     2px -2px 0 #050403,
-    -2px  2px 0 #050403,
-     2px  2px 0 #050403,
-     0 0 3px #fff6d2,
-     0 0 8px rgba(255,222,124,.82),
-     0 0 14px rgba(255,148,0,.78),
-     4px 5px 0 #772900;
+    -2px -2px 0 #421153,
+     2px -2px 0 #421153,
+    -2px  2px 0 #421153,
+     2px  2px 0 #421153,
+     0 0 4px #ffffff,
+     0 0 10px rgba(255,255,255,.95),
+     0 0 17px rgba(255,78,198,.85),
+     4px 5px 0 #76248c;
 }
 
-/* Animación mientras está activo */
 .timer-box.timer-running{
-  animation:timerGoldPulse 1.15s ease-in-out infinite alternate;
+  animation:timerDreamPulse 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes timerGoldPulse{
+@keyframes timerDreamPulse{
   from{
     transform:scale(1);
 
     box-shadow:
-      0 0 0 1px var(--gold),
-      0 0 0 3px rgba(112,40,0,.90),
-      0 0 12px rgba(255,145,0,.38),
-      0 7px 18px rgba(0,0,0,.62),
-      inset 0 2px 0 rgba(255,222,128,.25);
+      0 0 0 1px rgba(255,255,255,.75),
+      0 0 0 3px rgba(213,78,192,.50),
+      0 0 14px rgba(255,96,211,.45),
+      0 7px 18px rgba(68,12,88,.38),
+      inset 0 2px 0 rgba(255,255,255,.76);
   }
 
   to{
-    transform:scale(1.025);
+    transform:scale(1.028);
 
     box-shadow:
-      0 0 0 1px #ffe59a,
-      0 0 0 3px rgba(146,52,0,.96),
-      0 0 23px rgba(255,157,0,.76),
-      0 9px 21px rgba(0,0,0,.70),
-      inset 0 2px 0 rgba(255,235,168,.42);
+      0 0 0 1px #ffffff,
+      0 0 0 3px rgba(232,91,211,.75),
+      0 0 27px rgba(255,93,214,.84),
+      0 9px 22px rgba(68,12,88,.50),
+      inset 0 2px 0 rgba(255,255,255,.94);
   }
 }
 
-/* Estado finalizado */
 .timer-box.timer-finished{
-  filter:brightness(1.16);
+  filter:brightness(1.15);
 
   box-shadow:
-    0 0 0 1px #fff0b3,
-    0 0 0 3px #a74200,
-    0 0 30px rgba(255,153,0,.85),
-    0 9px 23px rgba(0,0,0,.72),
-    inset 0 2px 0 rgba(255,241,185,.50);
-}
-
-/* Destello al finalizar */
-.timer-box.timer-finished::after{
-  animation:
-    timerBoxGoldShine 1.5s linear infinite,
-    timerFinishedFlash .7s ease-in-out infinite alternate;
-}
-
-@keyframes timerFinishedFlash{
-  from{
-    opacity:.50;
-  }
-
-  to{
-    opacity:1;
-  }
+    0 0 0 1px #ffffff,
+    0 0 0 3px rgba(237,104,216,.86),
+    0 0 32px rgba(255,85,207,.92),
+    0 9px 24px rgba(67,11,87,.54),
+    inset 0 2px 0 rgba(255,255,255,.98);
 }

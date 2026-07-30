@@ -1,23 +1,24 @@
 /* ==========================================
-   MVP – $25 JOB / BLACK & GOLD THEME
+   MVP – PINK & PURPLE DREAM THEME
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
-  --cream:#fff3d0;
   --white:#ffffff;
+  --white-soft:#fff7ff;
 
-  --gold-light:#ffd76a;
-  --gold:#f6a800;
-  --orange:#d96b00;
-  --orange-dark:#8b3500;
+  --lavender-light:#ead7ff;
+  --lavender:#c994ff;
+  --purple:#9454d8;
+  --purple-dark:#542277;
 
-  --brown:#40200f;
-  --brown-dark:#211008;
+  --pink-light:#ffcaf0;
+  --pink:#ff77c8;
+  --pink-strong:#e83eab;
+  --pink-dark:#8e1f69;
 
-  --black:#050403;
-  --black-soft:#100c09;
+  --black-purple:#1b0925;
 }
 
 *{
@@ -27,101 +28,103 @@
 body{
   margin:0;
   background:transparent;
-  color:var(--cream);
+  color:var(--white);
   font-family:'Oswald', Arial, sans-serif;
 }
 
-/* Contenedor principal */
 #container{
   position:relative;
   width:430px;
   padding:14px 15px 16px;
-  border-radius:4px;
+  border-radius:16px;
   overflow:hidden;
 
   background:
     radial-gradient(
-      circle at 15% 12%,
-      rgba(255,179,46,.18),
-      transparent 28%
+      circle at 15% 10%,
+      rgba(255,255,255,.74),
+      transparent 20%
     ),
     radial-gradient(
-      circle at 84% 82%,
-      rgba(185,69,0,.28),
-      transparent 34%
+      circle at 84% 16%,
+      rgba(255,194,239,.54),
+      transparent 24%
     ),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.018) 0,
-      rgba(255,255,255,.018) 1px,
-      transparent 1px,
-      transparent 5px
+    radial-gradient(
+      circle at 76% 84%,
+      rgba(150,74,217,.60),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 18% 83%,
+      rgba(255,92,193,.45),
+      transparent 28%
     ),
     linear-gradient(
       145deg,
-      #24130a 0%,
-      #120c08 32%,
-      #090706 62%,
-      #1d0e07 82%,
-      #050403 100%
+      #f5e5ff 0%,
+      #d7a7ff 22%,
+      #c56ce3 46%,
+      #f15bb8 70%,
+      #8e3daf 100%
     );
 
-  border:3px solid var(--black);
+  border:2px solid #351044;
 
   box-shadow:
-    0 0 0 2px var(--gold-light),
-    0 0 0 5px var(--orange-dark),
-    0 0 12px rgba(255,150,0,.75),
-    0 0 22px rgba(217,87,0,.42),
-    0 10px 28px rgba(0,0,0,.72),
-    inset 0 2px 0 rgba(255,215,106,.32),
-    inset 0 -15px 28px rgba(0,0,0,.65);
+    0 0 0 2px rgba(255,255,255,.80),
+    0 0 0 5px rgba(222,91,203,.75),
+    0 0 17px rgba(255,102,215,.65),
+    0 0 30px rgba(155,71,218,.38),
+    0 11px 29px rgba(48,8,64,.55),
+    inset 0 3px 0 rgba(255,255,255,.75),
+    inset 0 -16px 30px rgba(98,20,119,.26);
 }
 
-/* Marco interior dorado */
+/* Marco interior */
 #container::before{
   content:"";
   position:absolute;
-  inset:5px;
-  border-radius:2px;
+  inset:6px;
+  border-radius:11px;
 
-  border:1px solid rgba(255,205,85,.72);
+  border:1px solid rgba(255,255,255,.73);
 
   box-shadow:
-    inset 0 0 0 1px rgba(98,39,0,.85),
-    inset 0 0 12px rgba(255,142,0,.12),
-    0 0 7px rgba(255,160,0,.35);
+    inset 0 0 0 1px rgba(111,33,134,.36),
+    inset 0 0 17px rgba(255,255,255,.12),
+    0 0 10px rgba(255,255,255,.34);
 
   pointer-events:none;
   z-index:6;
 }
 
-/* Brillo dorado animado */
+/* Reflejo animado */
 #container::after{
   content:"";
   position:absolute;
   top:-75%;
   left:-70%;
-  width:38%;
+  width:42%;
   height:250%;
 
   background:
     linear-gradient(
       110deg,
       transparent 0%,
-      rgba(255,173,43,.03) 35%,
-      rgba(255,230,160,.32) 48%,
-      rgba(255,166,0,.13) 58%,
+      rgba(255,255,255,.06) 34%,
+      rgba(255,255,255,.60) 49%,
+      rgba(255,210,244,.20) 58%,
       transparent 72%
     );
 
-  transform:rotate(16deg);
-  animation:mvpGoldShine 6s linear infinite;
+  transform:rotate(17deg);
+  animation:mvpDreamShine 5.8s linear infinite;
   pointer-events:none;
   z-index:2;
 }
 
-@keyframes mvpGoldShine{
+@keyframes mvpDreamShine{
   0%{
     left:-70%;
   }
@@ -135,7 +138,6 @@ body{
   }
 }
 
-/* Título principal */
 .title{
   position:relative;
   z-index:7;
@@ -146,24 +148,24 @@ body{
   font-size:30px;
   font-weight:400;
   line-height:1;
-  letter-spacing:.035em;
+  letter-spacing:.04em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
 
-  -webkit-text-stroke:1px #080503;
+  -webkit-text-stroke:1px #351044;
 
   text-shadow:
-    -2px -2px 0 #050403,
-     2px -2px 0 #050403,
-    -2px  2px 0 #050403,
-     2px  2px 0 #050403,
-     0 0 2px #fff7dc,
-     0 0 7px rgba(255,218,112,.80),
-     0 0 13px rgba(255,145,0,.68),
-     4px 5px 0 #6e2900;
+    -2px -2px 0 #351044,
+     2px -2px 0 #351044,
+    -2px  2px 0 #351044,
+     2px  2px 0 #351044,
+     0 0 4px #ffffff,
+     0 0 9px rgba(255,255,255,.90),
+     0 0 16px rgba(255,91,203,.90),
+     0 0 24px rgba(157,76,218,.68),
+     4px 5px 0 #74238f;
 }
 
-/* Lista */
 #top-list{
   position:relative;
   z-index:7;
@@ -172,7 +174,6 @@ body{
   gap:10px;
 }
 
-/* Filas */
 .tip{
   position:relative;
   display:flex;
@@ -182,85 +183,83 @@ body{
 
   min-height:53px;
   padding:9px 13px 9px 17px;
-  border-radius:3px;
+  border-radius:12px;
   overflow:hidden;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,204,99,.14),
-      rgba(255,255,255,.025) 38%,
-      rgba(0,0,0,.38)
+      rgba(255,255,255,.58),
+      rgba(255,255,255,.12) 42%,
+      rgba(96,22,121,.18)
     ),
     linear-gradient(
       100deg,
-      #32190c 0%,
-      #17100b 48%,
-      #080605 100%
+      #f1d9ff 0%,
+      #d590f3 42%,
+      #f16ac1 72%,
+      #b447c7 100%
     );
 
-  border:2px solid #050403;
+  border:2px solid rgba(67,16,89,.94);
 
   box-shadow:
-    0 0 0 1px var(--gold),
-    0 0 0 2px rgba(112,43,0,.90),
-    inset 0 2px 0 rgba(255,216,111,.20),
-    inset 0 -9px 18px rgba(0,0,0,.55),
-    0 5px 14px rgba(0,0,0,.62),
-    0 0 9px rgba(230,112,0,.22);
+    0 0 0 1px rgba(255,255,255,.72),
+    inset 0 2px 0 rgba(255,255,255,.76),
+    inset 0 -10px 20px rgba(93,24,112,.24),
+    0 6px 16px rgba(72,15,94,.34),
+    0 0 12px rgba(255,105,211,.30);
 }
 
-/* Barra lateral */
 .tip::before{
   content:"";
   position:absolute;
   left:0;
   top:0;
   bottom:0;
-  width:6px;
+  width:7px;
 
   background:
     linear-gradient(
       180deg,
-      #ffe698 0%,
-      #f6a800 42%,
-      #bd4c00 75%,
-      #5f1c00 100%
+      #ffffff 0%,
+      #ffd0f1 30%,
+      #ff73ca 62%,
+      #8945d2 100%
     );
 
   box-shadow:
-    1px 0 0 #050403,
-    0 0 8px rgba(255,160,0,.72);
+    1px 0 0 rgba(63,12,85,.75),
+    0 0 10px rgba(255,255,255,.74);
 
   z-index:2;
 }
 
-/* Reflejo de cada fila */
 .tip::after{
   content:"";
   position:absolute;
   top:0;
   left:-95%;
-  width:52%;
+  width:55%;
   height:100%;
 
   background:
     linear-gradient(
       105deg,
       transparent,
-      rgba(255,190,72,.04),
-      rgba(255,231,169,.25),
-      rgba(255,145,0,.08),
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.62),
+      rgba(255,213,244,.16),
       transparent
     );
 
   transform:skewX(-18deg);
-  animation:mvpRowGoldShine 5.3s ease-in-out infinite;
+  animation:mvpDreamRowShine 5s ease-in-out infinite;
   pointer-events:none;
   z-index:1;
 }
 
-@keyframes mvpRowGoldShine{
+@keyframes mvpDreamRowShine{
   0%{
     left:-95%;
   }
@@ -274,27 +273,25 @@ body{
   }
 }
 
-/* Nombre */
 .tip .name{
   position:relative;
   z-index:3;
   flex:1;
   min-width:0;
 
-  font-family:'Oswald', sans-serif;
+  font-family:'Oswald', Arial, sans-serif;
   font-size:19px;
   font-weight:700;
   line-height:1;
   letter-spacing:.02em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
-/* Cantidad */
 .tip .amount{
   position:relative;
   z-index:3;
@@ -302,123 +299,114 @@ body{
   font-family:'Anton', Impact, sans-serif;
   font-size:22px;
   line-height:1;
-  letter-spacing:.035em;
-  color:var(--cream);
+  letter-spacing:.04em;
+  color:#ffffff;
   white-space:nowrap;
 }
 
-/* Contorno del texto */
 .tip .name,
 .tip .amount{
-  -webkit-text-stroke:.7px #050403;
+  -webkit-text-stroke:.75px #421254;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 4px rgba(255,239,193,.58),
-     2px 3px 0 #7a2e00;
+    -1px -1px 0 #421254,
+     1px -1px 0 #421254,
+    -1px  1px 0 #421254,
+     1px  1px 0 #421254,
+     0 0 4px rgba(255,255,255,.95),
+     0 0 8px rgba(255,100,207,.64),
+     2px 3px 0 #7c278f;
 }
 
-/* ==========================================
-   PRIMER LUGAR
-========================================== */
-
+/* Primer lugar */
 .tip.mvp{
   background:
     linear-gradient(
       180deg,
-      rgba(255,245,194,.28),
-      rgba(255,184,50,.08) 42%,
-      rgba(73,25,0,.35)
+      rgba(255,255,255,.72),
+      rgba(255,255,255,.18) 43%,
+      rgba(110,24,129,.20)
     ),
     linear-gradient(
       100deg,
-      #6d3008 0%,
-      #321608 48%,
-      #130b07 100%
+      #fff0ff 0%,
+      #e2b5ff 35%,
+      #ff8ad5 68%,
+      #cc59df 100%
     );
 
-  border-color:#050403;
+  border-color:#491257;
 
   box-shadow:
-    0 0 0 1px #ffd768,
-    0 0 0 3px #a23d00,
-    0 0 15px rgba(255,153,0,.60),
-    inset 0 2px 0 rgba(255,230,152,.38),
-    inset 0 -10px 19px rgba(0,0,0,.55),
-    0 6px 17px rgba(0,0,0,.65);
+    0 0 0 1px rgba(255,255,255,.90),
+    0 0 0 3px rgba(224,82,199,.68),
+    0 0 20px rgba(255,100,215,.65),
+    inset 0 2px 0 rgba(255,255,255,.88),
+    inset 0 -10px 20px rgba(93,24,112,.25),
+    0 7px 18px rgba(72,15,94,.38);
 }
 
 .tip.mvp::before{
-  width:8px;
+  width:9px;
 
   background:
     linear-gradient(
       180deg,
-      #fff2b4 0%,
-      #ffbd28 38%,
-      #e66f00 70%,
-      #7d2600 100%
+      #ffffff 0%,
+      #ffe1f7 30%,
+      #ff7dcc 62%,
+      #a150df 100%
     );
 
   box-shadow:
-    1px 0 0 #050403,
-    0 0 11px rgba(255,171,0,.85);
+    1px 0 0 rgba(63,12,85,.78),
+    0 0 13px rgba(255,255,255,.88);
 }
 
-/* ==========================================
-   SEGUNDO LUGAR
-========================================== */
-
+/* Segundo lugar */
 .tip.second{
   background:
     linear-gradient(
       180deg,
-      rgba(255,215,129,.17),
-      rgba(255,255,255,.025) 42%,
-      rgba(0,0,0,.42)
+      rgba(255,255,255,.58),
+      rgba(255,255,255,.11) 42%,
+      rgba(96,22,121,.20)
     ),
     linear-gradient(
       100deg,
-      #44200d,
-      #21120a,
-      #0b0806
+      #ead0ff,
+      #c982ec,
+      #ea62b6
     );
 }
 
-/* ==========================================
-   TERCER LUGAR
-========================================== */
-
+/* Tercer lugar */
 .tip.third{
   background:
     linear-gradient(
       180deg,
-      rgba(223,145,62,.13),
-      rgba(255,255,255,.018) 42%,
-      rgba(0,0,0,.48)
+      rgba(255,255,255,.48),
+      rgba(255,255,255,.08) 42%,
+      rgba(83,17,108,.23)
     ),
     linear-gradient(
       100deg,
-      #30170b,
-      #170f0a,
-      #070504
+      #dcb9f7,
+      #b768dc,
+      #d64ca6
     );
 }
 
-/* Íconos de posición */
 .rank-icon{
   position:relative;
   z-index:3;
   margin-right:5px;
-  font-size:18px;
-  color:var(--gold-light);
+  font-size:19px;
+  color:#ffffff;
 
   filter:
-    drop-shadow(1px 1px 0 #050403)
-    drop-shadow(-1px -1px 0 #050403)
-    drop-shadow(2px 3px 0 #7a2900)
-    drop-shadow(0 0 6px rgba(255,170,0,.75));
+    drop-shadow(1px 1px 0 #451055)
+    drop-shadow(-1px -1px 0 #451055)
+    drop-shadow(2px 3px 0 #77248e)
+    drop-shadow(0 0 7px rgba(255,255,255,.90));
 }

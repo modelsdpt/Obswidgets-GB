@@ -1,23 +1,16 @@
 /* ==========================================
-   RAFFLE – $25 JOB / BLACK & GOLD THEME
+   RAFFLE – BLACK & WHITE JOB THEME
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
-  --cream:#fff3d0;
   --white:#ffffff;
-
-  --gold-light:#ffe28a;
-  --gold:#f6a800;
-  --orange:#dc7000;
-  --orange-dark:#873100;
-
-  --brown:#3b1b0b;
-  --brown-dark:#1f0e06;
-
-  --black:#050403;
-  --black-soft:#100b07;
+  --white-soft:#f2f2f2;
+  --silver:#c7c7c7;
+  --gray:#4d4d4d;
+  --gray-dark:#202020;
+  --black:#030303;
 }
 
 *{
@@ -31,52 +24,51 @@ body{
   overflow:hidden;
 }
 
-/* Contenedor principal */
 .raffle-widget{
   position:relative;
   width:560px;
   min-height:430px;
   padding:15px 17px 17px;
-  border-radius:6px;
+  border-radius:7px;
   overflow:hidden;
 
   background:
     radial-gradient(
       circle at 18% 13%,
-      rgba(255,174,34,.19),
+      rgba(255,255,255,.13),
       transparent 27%
     ),
     radial-gradient(
       circle at 83% 83%,
-      rgba(177,60,0,.27),
+      rgba(255,255,255,.06),
       transparent 32%
     ),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.015) 0,
-      rgba(255,255,255,.015) 1px,
+      rgba(255,255,255,.016) 0,
+      rgba(255,255,255,.016) 1px,
       transparent 1px,
       transparent 5px
     ),
     linear-gradient(
       140deg,
-      #2d160a 0%,
-      #15100c 30%,
-      #080706 58%,
-      #1c0d06 80%,
-      #040302 100%
+      #252525 0%,
+      #111111 30%,
+      #050505 58%,
+      #161616 80%,
+      #020202 100%
     );
 
-  border:3px solid var(--black);
+  border:3px solid #050505;
 
   box-shadow:
-    0 0 0 2px var(--gold-light),
-    0 0 0 5px var(--orange-dark),
-    0 0 15px rgba(255,153,0,.72),
-    0 0 28px rgba(205,73,0,.34),
-    0 13px 34px rgba(0,0,0,.72),
-    inset 0 2px 0 rgba(255,219,117,.31),
-    inset 0 -18px 30px rgba(0,0,0,.66);
+    0 0 0 2px rgba(255,255,255,.88),
+    0 0 0 5px rgba(70,70,70,.94),
+    0 0 15px rgba(255,255,255,.30),
+    0 0 28px rgba(255,255,255,.08),
+    0 13px 34px rgba(0,0,0,.78),
+    inset 0 2px 0 rgba(255,255,255,.23),
+    inset 0 -18px 30px rgba(0,0,0,.70);
 
   transition:
     opacity .28s ease,
@@ -94,32 +86,30 @@ body{
   transform:translateY(0) scale(1);
 }
 
-/* Marco interior */
 .raffle-widget::before{
   content:"";
   position:absolute;
   inset:6px;
   border-radius:2px;
 
-  border:1px solid rgba(255,211,102,.72);
+  border:1px solid rgba(255,255,255,.50);
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,220,128,.08),
+      rgba(255,255,255,.07),
       transparent 27%
     );
 
   box-shadow:
-    inset 0 0 0 1px rgba(92,32,0,.92),
-    inset 0 0 18px rgba(255,138,0,.07),
-    0 0 8px rgba(255,157,0,.26);
+    inset 0 0 0 1px rgba(0,0,0,.92),
+    inset 0 0 18px rgba(255,255,255,.03),
+    0 0 8px rgba(255,255,255,.14);
 
   pointer-events:none;
   z-index:1;
 }
 
-/* Brillo diagonal animado */
 .raffle-widget::after{
   content:"";
   position:absolute;
@@ -132,19 +122,19 @@ body{
     linear-gradient(
       110deg,
       transparent 0%,
-      rgba(255,173,43,.03) 34%,
-      rgba(255,235,178,.27) 49%,
-      rgba(255,145,0,.09) 58%,
+      rgba(255,255,255,.02) 34%,
+      rgba(255,255,255,.22) 49%,
+      rgba(255,255,255,.04) 58%,
       transparent 72%
     );
 
   transform:rotate(17deg);
-  animation:raffleGoldShine 6s linear infinite;
+  animation:raffleWhiteShine 6s linear infinite;
   pointer-events:none;
   z-index:2;
 }
 
-@keyframes raffleGoldShine{
+@keyframes raffleWhiteShine{
   0%{
     left:-65%;
   }
@@ -164,30 +154,28 @@ body{
   z-index:5;
 }
 
-/* Encabezado */
 .raffle-header{
   text-align:center;
   margin-bottom:13px;
 }
 
-/* Etiqueta superior */
 .raffle-badge{
   display:inline-block;
   padding:5px 16px;
-  border-radius:3px;
+  border-radius:4px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,231,165,.18),
+      rgba(255,255,255,.17),
       rgba(255,255,255,.02) 42%,
-      rgba(0,0,0,.38)
+      rgba(0,0,0,.42)
     ),
     linear-gradient(
       90deg,
-      #632a08,
-      #2c1609,
-      #0d0906
+      #3e3e3e,
+      #191919,
+      #070707
     );
 
   font-family:'Oswald', Arial, sans-serif;
@@ -196,29 +184,28 @@ body{
   line-height:1.1;
   letter-spacing:.07em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
 
-  border:2px solid #050403;
+  border:2px solid #050505;
 
   box-shadow:
-    0 0 0 1px var(--gold),
-    0 0 0 2px rgba(112,39,0,.88),
-    0 0 10px rgba(255,145,0,.52),
-    inset 0 1px 0 rgba(255,224,139,.28);
+    0 0 0 1px rgba(255,255,255,.86),
+    0 0 0 2px rgba(65,65,65,.90),
+    0 0 10px rgba(255,255,255,.25),
+    inset 0 1px 0 rgba(255,255,255,.23);
 
-  -webkit-text-stroke:.55px #050403;
+  -webkit-text-stroke:.55px #050505;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 4px rgba(255,242,193,.72),
-     0 0 9px rgba(255,154,0,.70),
-     2px 3px 0 #742700;
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 5px rgba(255,255,255,.70),
+     0 0 9px rgba(255,255,255,.32),
+     2px 3px 0 #292929;
 }
 
-/* Título principal */
 .raffle-title{
   margin:9px 0 0;
 
@@ -228,22 +215,21 @@ body{
   line-height:1.05;
   letter-spacing:.035em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
 
-  -webkit-text-stroke:1px #050403;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -2px -2px 0 #050403,
-     2px -2px 0 #050403,
-    -2px  2px 0 #050403,
-     2px  2px 0 #050403,
-     0 0 3px #fff5ca,
-     0 0 9px rgba(255,220,113,.82),
-     0 0 17px rgba(255,144,0,.72),
-     4px 5px 0 #742800;
+    -2px -2px 0 #050505,
+     2px -2px 0 #050505,
+    -2px  2px 0 #050505,
+     2px  2px 0 #050505,
+     0 0 4px #ffffff,
+     0 0 9px rgba(255,255,255,.70),
+     0 0 17px rgba(255,255,255,.25),
+     4px 5px 0 #292929;
 }
 
-/* Lista de participantes */
 .raffle-names{
   display:grid;
   grid-template-columns:1fr;
@@ -256,7 +242,6 @@ body{
   display:none;
 }
 
-/* Tarjeta de cada participante */
 .raffle-name-item{
   position:relative;
   display:flex;
@@ -272,29 +257,28 @@ body{
   background:
     linear-gradient(
       180deg,
-      rgba(255,211,111,.14),
+      rgba(255,255,255,.13),
       rgba(255,255,255,.02) 40%,
-      rgba(0,0,0,.45)
+      rgba(0,0,0,.48)
     ),
     linear-gradient(
       135deg,
-      #3e1c0a 0%,
-      #18100a 48%,
-      #070504 100%
+      #303030 0%,
+      #151515 48%,
+      #050505 100%
     );
 
-  border:2px solid #050403;
+  border:2px solid #050505;
 
   box-shadow:
-    0 0 0 1px rgba(246,168,0,.82),
-    0 0 0 2px rgba(102,35,0,.76),
-    inset 0 2px 0 rgba(255,220,128,.19),
-    inset 0 -10px 22px rgba(0,0,0,.52),
-    0 0 10px rgba(255,132,0,.20),
-    0 6px 16px rgba(0,0,0,.62);
+    0 0 0 1px rgba(255,255,255,.70),
+    0 0 0 2px rgba(60,60,60,.82),
+    inset 0 2px 0 rgba(255,255,255,.18),
+    inset 0 -10px 22px rgba(0,0,0,.56),
+    0 0 10px rgba(255,255,255,.08),
+    0 6px 16px rgba(0,0,0,.70);
 }
 
-/* Brillo de cada participante */
 .raffle-name-item::before{
   content:"";
   position:absolute;
@@ -307,19 +291,19 @@ body{
     linear-gradient(
       105deg,
       transparent,
-      rgba(255,180,47,.03),
-      rgba(255,235,176,.24),
-      rgba(255,141,0,.08),
+      rgba(255,255,255,.03),
+      rgba(255,255,255,.22),
+      rgba(255,255,255,.04),
       transparent
     );
 
   transform:skewX(-18deg);
-  animation:raffleItemGoldShine 5.3s ease-in-out infinite;
+  animation:raffleItemWhiteShine 5.3s ease-in-out infinite;
   pointer-events:none;
   z-index:1;
 }
 
-@keyframes raffleItemGoldShine{
+@keyframes raffleItemWhiteShine{
   0%{
     left:-110%;
   }
@@ -333,7 +317,6 @@ body{
   }
 }
 
-/* Símbolo lateral */
 .raffle-name-item::after{
   content:"$";
   position:absolute;
@@ -343,24 +326,23 @@ body{
 
   font-family:'Anton', Impact, sans-serif;
   font-size:17px;
-  color:var(--gold-light);
+  color:#ffffff;
 
-  -webkit-text-stroke:1px #050403;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 5px rgba(255,240,179,.82),
-     0 0 10px rgba(255,153,0,.88),
-     2px 3px 0 #762900;
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 5px rgba(255,255,255,.82),
+     0 0 10px rgba(255,255,255,.40),
+     2px 3px 0 #292929;
 
   z-index:2;
   pointer-events:none;
 }
 
-/* Nombre del participante */
 .raffle-name{
   position:relative;
   z-index:3;
@@ -374,29 +356,28 @@ body{
   line-height:1.05;
   letter-spacing:.025em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
 
   white-space:normal;
   overflow-wrap:anywhere;
   word-break:break-word;
 
-  -webkit-text-stroke:.55px #050403;
+  -webkit-text-stroke:.55px #050505;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 4px rgba(255,239,184,.65),
-     0 0 8px rgba(255,143,0,.55),
-     2px 3px 0 #702500;
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 5px rgba(255,255,255,.64),
+     0 0 8px rgba(255,255,255,.20),
+     2px 3px 0 #292929;
 }
 
 .raffle-name-item:nth-child(n + 4) .raffle-name{
   font-size:16px;
 }
 
-/* Contador de tickets */
 .raffle-tickets{
   position:relative;
   z-index:3;
@@ -405,42 +386,39 @@ body{
   font-size:0;
   font-weight:0;
   line-height:1;
-  color:var(--cream);
+  color:#ffffff;
   white-space:nowrap;
 
   padding:5px 9px;
-  border-radius:3px;
+  border-radius:4px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,220,130,.13),
+      rgba(255,255,255,.13),
       rgba(255,255,255,.02) 44%,
-      rgba(0,0,0,.38)
+      rgba(0,0,0,.42)
     ),
-    #0b0806;
+    #080808;
 
-  border:2px solid #050403;
+  border:2px solid #050505;
 
   box-shadow:
-    0 0 0 1px rgba(246,168,0,.80),
-    0 0 8px rgba(255,139,0,.34),
-    inset 0 1px 0 rgba(255,224,139,.18);
+    0 0 0 1px rgba(255,255,255,.72),
+    0 0 8px rgba(255,255,255,.18),
+    inset 0 1px 0 rgba(255,255,255,.17);
 
-  -webkit-text-stroke:.4px #050403;
+  -webkit-text-stroke:.4px #050505;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 7px rgba(255,145,0,.70);
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 7px rgba(255,255,255,.40);
 }
 
-/* ==========================================
-   PANTALLA DEL GANADOR
-========================================== */
-
+/* Pantalla del ganador */
 .raffle-winner-screen{
   position:absolute;
   inset:0;
@@ -456,9 +434,9 @@ body{
   background:
     radial-gradient(
       circle at center,
-      rgba(255,170,29,.30),
-      rgba(105,38,0,.27) 38%,
-      rgba(0,0,0,.94) 78%
+      rgba(255,255,255,.17),
+      rgba(40,40,40,.28) 38%,
+      rgba(0,0,0,.95) 78%
     ),
     repeating-linear-gradient(
       115deg,
@@ -467,7 +445,7 @@ body{
       transparent 1px,
       transparent 5px
     ),
-    rgba(0,0,0,.90);
+    rgba(0,0,0,.92);
 
   opacity:0;
   transform:scale(.90);
@@ -477,7 +455,6 @@ body{
     transform .25s ease;
 }
 
-/* Decoración superior */
 .raffle-winner-screen::before{
   content:"✦  $  ✦";
   position:absolute;
@@ -487,25 +464,25 @@ body{
 
   font-family:'Anton', Impact, sans-serif;
   font-size:27px;
-  color:var(--gold-light);
+  color:#ffffff;
   white-space:nowrap;
 
-  -webkit-text-stroke:1px #050403;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 6px #fff0b1,
-     0 0 14px var(--gold),
-     0 0 28px rgba(255,112,0,.80),
-     3px 4px 0 #762700;
+    -1px -1px 0 #050505,
+     1px -1px 0 #050505,
+    -1px  1px 0 #050505,
+     1px  1px 0 #050505,
+     0 0 6px #ffffff,
+     0 0 14px rgba(255,255,255,.70),
+     0 0 28px rgba(255,255,255,.30),
+     3px 4px 0 #292929;
 
-  animation:winnerGoldSparkle 1.15s ease-in-out infinite alternate;
+  animation:winnerWhiteSparkle 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes winnerGoldSparkle{
+@keyframes winnerWhiteSparkle{
   from{
     opacity:.55;
     transform:translateX(-50%) scale(.95);
@@ -527,29 +504,27 @@ body{
   pointer-events:none;
 }
 
-/* Textos del ganador */
 .winner-label,
 .winner-name{
   position:relative;
   z-index:3;
-  color:var(--cream);
+  color:#ffffff;
   text-align:center;
   text-transform:uppercase;
 
-  -webkit-text-stroke:1px #050403;
+  -webkit-text-stroke:1px #050505;
 
   text-shadow:
-    -2px -2px 0 #050403,
-     2px -2px 0 #050403,
-    -2px  2px 0 #050403,
-     2px  2px 0 #050403,
-     0 0 4px #fff5ca,
-     0 0 12px rgba(255,213,92,.90),
-     0 0 27px rgba(255,126,0,.80),
-     4px 5px 0 #782900;
+    -2px -2px 0 #050505,
+     2px -2px 0 #050505,
+    -2px  2px 0 #050505,
+     2px  2px 0 #050505,
+     0 0 5px #ffffff,
+     0 0 13px rgba(255,255,255,.72),
+     0 0 27px rgba(255,255,255,.28),
+     4px 5px 0 #292929;
 }
 
-/* Etiqueta WINNER */
 .winner-label{
   font-family:'Oswald', Arial, sans-serif;
   font-size:26px;
@@ -559,7 +534,6 @@ body{
   margin-bottom:10px;
 }
 
-/* Nombre ganador */
 .winner-name{
   max-width:96%;
 
@@ -572,10 +546,10 @@ body{
   overflow-wrap:anywhere;
   word-break:break-word;
 
-  animation:winnerGoldPop .7s ease-in-out infinite alternate;
+  animation:winnerWhitePop .7s ease-in-out infinite alternate;
 }
 
-@keyframes winnerGoldPop{
+@keyframes winnerWhitePop{
   from{
     transform:scale(1);
     filter:brightness(1);
@@ -585,7 +559,7 @@ body{
     transform:scale(1.06);
 
     filter:
-      brightness(1.17)
-      drop-shadow(0 0 13px rgba(255,143,0,.82));
+      brightness(1.20)
+      drop-shadow(0 0 13px rgba(255,255,255,.60));
   }
 }

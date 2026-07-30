@@ -1,23 +1,19 @@
 /* ==========================================
-   GOALBAR – $25 JOB / BLACK & GOLD THEME
+   GOALBAR – PINK & PURPLE DREAM THEME
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
-  --cream:#fff3d0;
   --white:#ffffff;
-
-  --gold-light:#ffe28a;
-  --gold:#f6a800;
-  --orange:#dc7000;
-  --orange-dark:#873100;
-
-  --brown:#3b1b0b;
-  --brown-dark:#1f0e06;
-
-  --black:#050403;
-  --black-soft:#100b07;
+  --lavender-light:#ead7ff;
+  --lavender:#c994ff;
+  --purple:#9454d8;
+  --purple-dark:#542277;
+  --pink-light:#ffcaf0;
+  --pink:#ff77c8;
+  --pink-strong:#e83eab;
+  --dark:#1b0925;
 }
 
 *{
@@ -27,76 +23,73 @@
 body{
   margin:0;
   background:transparent;
-  color:var(--cream);
+  color:var(--white);
   font-family:'Oswald', Arial, sans-serif;
 }
 
-/* Contenedor exterior de la barra */
 #goal-wrapper{
   position:relative;
   width:68px;
   height:420px;
   overflow:hidden;
-  border-radius:5px;
+  border-radius:17px;
 
   background:
     radial-gradient(
-      circle at 40% 9%,
-      rgba(255,191,64,.22),
-      transparent 24%
+      circle at 38% 9%,
+      rgba(255,255,255,.48),
+      transparent 22%
     ),
     radial-gradient(
-      circle at 58% 86%,
-      rgba(180,65,0,.28),
+      circle at 60% 86%,
+      rgba(255,93,199,.30),
       transparent 30%
     ),
     repeating-linear-gradient(
       115deg,
-      rgba(255,255,255,.016) 0,
-      rgba(255,255,255,.016) 1px,
+      rgba(255,255,255,.025) 0,
+      rgba(255,255,255,.025) 1px,
       transparent 1px,
       transparent 5px
     ),
     linear-gradient(
       180deg,
-      #2e170b 0%,
-      #17100b 28%,
-      #090706 58%,
-      #1c0d06 80%,
-      #050403 100%
+      #b67ee0 0%,
+      #7e41af 28%,
+      #4d1c68 58%,
+      #341043 80%,
+      #1b0925 100%
     );
 
-  border:3px solid var(--black);
+  border:2px solid #351044;
 
   box-shadow:
-    0 0 0 2px var(--gold-light),
-    0 0 0 5px var(--orange-dark),
-    0 0 13px rgba(255,155,0,.72),
-    0 0 24px rgba(209,77,0,.32),
-    0 10px 27px rgba(0,0,0,.70),
-    inset 0 2px 0 rgba(255,218,115,.32),
-    inset 0 -16px 26px rgba(0,0,0,.64);
+    0 0 0 2px rgba(255,255,255,.80),
+    0 0 0 5px rgba(222,91,203,.72),
+    0 0 17px rgba(255,102,215,.62),
+    0 0 29px rgba(155,71,218,.35),
+    0 10px 27px rgba(48,8,64,.58),
+    inset 0 3px 0 rgba(255,255,255,.68),
+    inset 0 -16px 27px rgba(30,5,41,.46);
 }
 
-/* Marco interior */
 #goal-wrapper::before{
   content:"";
   position:absolute;
-  inset:5px;
-  border-radius:2px;
+  inset:6px;
+  border-radius:11px;
 
-  border:1px solid rgba(255,210,99,.72);
+  border:1px solid rgba(255,255,255,.66);
 
   box-shadow:
-    inset 0 0 0 1px rgba(94,34,0,.90),
-    inset 0 0 11px rgba(255,148,0,.10),
-    0 0 7px rgba(255,158,0,.30);
+    inset 0 0 0 1px rgba(73,16,94,.55),
+    inset 0 0 15px rgba(255,255,255,.08),
+    0 0 8px rgba(255,255,255,.25);
 
   pointer-events:none;
   z-index:5;
 }
 
-/* Brillo vertical animado */
 #goal-wrapper::after{
   content:"";
   position:absolute;
@@ -109,18 +102,18 @@ body{
     linear-gradient(
       180deg,
       transparent,
-      rgba(255,171,42,.04),
-      rgba(255,235,173,.28),
-      rgba(255,153,0,.10),
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.58),
+      rgba(255,212,245,.14),
       transparent
     );
 
-  animation:goalGoldShine 5.4s linear infinite;
+  animation:goalDreamShine 5.2s linear infinite;
   pointer-events:none;
   z-index:4;
 }
 
-@keyframes goalGoldShine{
+@keyframes goalDreamShine{
   0%{
     top:110%;
   }
@@ -134,7 +127,7 @@ body{
   }
 }
 
-/* Relleno de progreso */
+/* Relleno del progreso */
 #bar-fill{
   position:absolute;
   bottom:0;
@@ -143,98 +136,104 @@ body{
   height:0%;
   z-index:2;
   overflow:hidden;
-  border-radius:0 0 2px 2px;
+  border-radius:0 0 15px 15px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,245,195,.38),
-      rgba(255,255,255,.05) 38%,
-      transparent 65%
+      rgba(255,255,255,.75) 0%,
+      rgba(255,255,255,.17) 28%,
+      rgba(255,255,255,.04) 54%,
+      rgba(255,255,255,.36) 78%,
+      rgba(255,255,255,.66) 100%
     ),
     linear-gradient(
       180deg,
-      #ffeaa5 0%,
-      #ffc331 22%,
-      #f18a00 48%,
-      #c74c00 74%,
-      #671d00 100%
+      #fff8ff 0%,
+      #ffd2f0 17%,
+      #ff8fd4 40%,
+      #e75abc 64%,
+      #a658da 84%,
+      #633095 100%
     );
 
-  border-top:3px solid #050403;
+  /* Línea claramente visible */
+  border-top:3px solid #ffffff;
 
   box-shadow:
-    inset 0 2px 0 rgba(255,244,190,.78),
-    inset 0 0 15px rgba(255,255,255,.12),
-    inset 0 -10px 18px rgba(76,18,0,.38),
-    0 0 14px rgba(255,157,0,.72),
-    0 0 25px rgba(220,86,0,.42);
+    inset 0 3px 0 rgba(255,255,255,.95),
+    inset 0 0 18px rgba(255,255,255,.28),
+    inset 0 -12px 19px rgba(81,21,104,.25),
+    0 -2px 8px rgba(255,255,255,.95),
+    0 0 17px rgba(255,99,211,.85),
+    0 0 30px rgba(166,81,220,.62);
 }
 
-/* Brillo que recorre el relleno */
+/* Luz en el borde superior del progreso */
 #bar-fill::before{
   content:"";
   position:absolute;
-  inset:-30%;
+  top:0;
+  left:0;
+  width:100%;
+  height:7px;
 
   background:
     linear-gradient(
       180deg,
-      transparent,
-      rgba(255,184,52,.05),
-      rgba(255,246,198,.48),
-      rgba(255,146,0,.10),
+      rgba(255,255,255,1),
+      rgba(255,255,255,.56),
       transparent
     );
 
-  transform:translateY(125%);
-  animation:goalFillGoldShine 4.5s linear infinite;
+  box-shadow:
+    0 0 7px #ffffff,
+    0 0 14px rgba(255,116,216,.95);
+
+  animation:goalTopLinePulse 1.15s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-/* Símbolo de dinero ascendente */
+@keyframes goalTopLinePulse{
+  from{
+    opacity:.72;
+    filter:brightness(1);
+  }
+
+  to{
+    opacity:1;
+    filter:brightness(1.35);
+  }
+}
+
+/* Estrella que sube */
 #bar-fill::after{
-  content:"$";
+  content:"✦";
   position:absolute;
   left:50%;
   bottom:10px;
   transform:translateX(-50%);
 
-  font-family:'Anton', Impact, sans-serif;
   font-size:15px;
-  color:var(--cream);
+  color:#ffffff;
 
-  -webkit-text-stroke:1px var(--black);
+  -webkit-text-stroke:1px #5a1d70;
 
   text-shadow:
-    -1px -1px 0 var(--black),
-     1px -1px 0 var(--black),
-    -1px  1px 0 var(--black),
-     1px  1px 0 var(--black),
-     0 0 5px #fff2b6,
-     0 0 9px rgba(255,174,0,.90),
-     2px 3px 0 #7e2b00;
+    -1px -1px 0 #5a1d70,
+     1px -1px 0 #5a1d70,
+    -1px  1px 0 #5a1d70,
+     1px  1px 0 #5a1d70,
+     0 0 7px #ffffff,
+     0 0 13px rgba(255,103,211,.95),
+     2px 3px 0 #75248c;
 
-  animation:goalDollarRise 3.6s linear infinite;
+  animation:goalStarRise 3.6s linear infinite;
 }
 
-@keyframes goalFillGoldShine{
+@keyframes goalStarRise{
   0%{
-    transform:translateY(125%);
-  }
-
-  45%{
-    transform:translateY(-125%);
-  }
-
-  100%{
-    transform:translateY(-125%);
-  }
-}
-
-@keyframes goalDollarRise{
-  0%{
-    transform:translate(-50%, 15px) scale(.85);
+    transform:translate(-50%, 15px) scale(.75) rotate(0deg);
     opacity:0;
   }
 
@@ -243,17 +242,16 @@ body{
   }
 
   70%{
-    transform:translate(-50%, -65px) scale(1.12);
-    opacity:.82;
+    transform:translate(-50%, -65px) scale(1.18) rotate(120deg);
+    opacity:.85;
   }
 
   100%{
-    transform:translate(-50%, -115px) scale(.90);
+    transform:translate(-50%, -115px) scale(.85) rotate(220deg);
     opacity:0;
   }
 }
 
-/* Contenedor de los textos */
 .goal-label{
   position:absolute;
   inset:0;
@@ -264,7 +262,6 @@ body{
   z-index:7;
 }
 
-/* Título vertical */
 .goal-title{
   position:absolute;
   top:50%;
@@ -281,23 +278,22 @@ body{
   line-height:1;
   letter-spacing:.055em;
   text-transform:uppercase;
-  color:var(--cream);
+  color:#ffffff;
   white-space:nowrap;
 
-  -webkit-text-stroke:1px #050403;
+  -webkit-text-stroke:1px #421153;
 
   text-shadow:
-    -2px -2px 0 #050403,
-     2px -2px 0 #050403,
-    -2px  2px 0 #050403,
-     2px  2px 0 #050403,
-     0 0 3px #fff6d2,
-     0 0 8px rgba(255,219,111,.76),
-     0 0 13px rgba(255,142,0,.70),
-     3px 4px 0 #712700;
+    -2px -2px 0 #421153,
+     2px -2px 0 #421153,
+    -2px  2px 0 #421153,
+     2px  2px 0 #421153,
+     0 0 4px #ffffff,
+     0 0 10px rgba(255,255,255,.90),
+     0 0 17px rgba(255,87,201,.85),
+     3px 4px 0 #77248d;
 }
 
-/* Cantidad de la meta */
 .goal-amount{
   position:absolute;
   bottom:43px;
@@ -313,59 +309,57 @@ body{
   font-size:15px;
   line-height:1;
   letter-spacing:.04em;
-  color:var(--cream);
+  color:#ffffff;
   white-space:nowrap;
 
   padding:4px 8px;
-  border-radius:3px;
+  border-radius:8px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,235,165,.18),
-      rgba(255,255,255,.02) 40%,
-      rgba(0,0,0,.35)
+      rgba(255,255,255,.62),
+      rgba(255,255,255,.13) 42%,
+      rgba(70,17,91,.25)
     ),
     linear-gradient(
       90deg,
-      #5c2708,
-      #251208,
-      #0b0806
+      #e3bdff,
+      #d16fe4,
+      #f05eb9
     );
 
-  border:2px solid #050403;
+  border:2px solid #421153;
 
   box-shadow:
-    0 0 0 1px var(--gold),
-    0 0 0 2px rgba(111,39,0,.86),
-    0 0 10px rgba(255,145,0,.50),
-    inset 0 1px 0 rgba(255,222,128,.28);
+    0 0 0 1px rgba(255,255,255,.78),
+    0 0 11px rgba(255,93,207,.65),
+    inset 0 1px 0 rgba(255,255,255,.72);
 
-  -webkit-text-stroke:.7px #050403;
+  -webkit-text-stroke:.7px #421153;
 
   text-shadow:
-    -1px -1px 0 #050403,
-     1px -1px 0 #050403,
-    -1px  1px 0 #050403,
-     1px  1px 0 #050403,
-     0 0 4px rgba(255,238,181,.70),
-     2px 3px 0 #762900;
+    -1px -1px 0 #421153,
+     1px -1px 0 #421153,
+    -1px  1px 0 #421153,
+     1px  1px 0 #421153,
+     0 0 5px rgba(255,255,255,.92),
+     2px 3px 0 #77248d;
 }
 
-/* Pulso luminoso del título */
 .goal-title.neon{
-  animation:goalGoldPulse 1.25s ease-in-out infinite alternate;
+  animation:goalDreamPulse 1.2s ease-in-out infinite alternate;
 }
 
-@keyframes goalGoldPulse{
+@keyframes goalDreamPulse{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.18)
-      drop-shadow(0 0 7px rgba(255,237,177,.70))
-      drop-shadow(0 0 12px rgba(255,145,0,.72));
+      brightness(1.20)
+      drop-shadow(0 0 8px rgba(255,255,255,.85))
+      drop-shadow(0 0 13px rgba(255,83,202,.78));
   }
 }
