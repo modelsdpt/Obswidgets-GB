@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Livestream Schedule</title>
+  <style>
+    :root {
+      --bg: #050508;
+      --bg-soft: #0d0f18;
+      --card: #151828;
+      --card-2: #0b0d16;
+      --border: rgba(180, 160, 90, 0.45);
+      --border-soft: rgba(255, 255, 255, 0.08);
+      --text: #f7f7ff;
+      --text-soft: #b7bdd1;
+      --gold: #f1dd8a;
+      --gold-dark: #c59d42;
+      --pink: #ff6ab0;
+      --blue: #73b8ff;
+      --shadow:
+        0 0 20px rgba(0, 0, 0, 0.9),
+        inset 0 0 8px rgba(0, 0, 0, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1a1830 0%, #050508 55%);
+      color: var(--text);
+    }
+
+    .topbar {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top, rgba(210, 190, 120, 0.16), #050814);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.3px;
+    }
+
+    .topbar-left p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .week-badge {
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .btn-refresh {
+      background: linear-gradient(135deg, #9fd6ff, #52a3ff);
+      color: #071421;
+      box-shadow: 0 0 16px rgba(82, 163, 255, 0.45);
+    }
+
+    .btn-logout {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .container {
+      padding: 20px 24px 28px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .summary-card {
+      background: radial-gradient(circle at top, #16192a, #090b13);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .summary-card .value {
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .summary-card .subtext {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .board-wrapper {
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(240px, 1fr));
+      gap: 14px;
+      min-width: 1700px;
+    }
+
+    .day-column {
+      background: radial-gradient(circle at top, #16192a, #090b13);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 420px;
+    }
+
+    .day-header {
+      padding: 14px 14px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(241, 221, 138, 0.08), rgba(255,255,255,0.01));
+    }
+
+    .day-name {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .day-date {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .day-content {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .stream-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .stream-time {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(115, 184, 255, 0.12);
+      border: 1px solid rgba(115, 184, 255, 0.35);
+      color: #d9efff;
+      margin-bottom: 10px;
+    }
+
+    .stream-model {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffdcef;
+      line-height: 1.35;
+    }
+
+    .empty-day {
+      margin-top: auto;
+      margin-bottom: auto;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-soft);
+      opacity: 0.8;
+      padding: 18px 8px;
+    }
+
+    .loading-box,
+    .error-box {
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #16192a, #090b13);
+      box-shadow: var(--shadow);
+      color: var(--text-soft);
+    }
+
+    .error-box {
+      color: #ffb1b1;
+    }
+
+    @media (max-width: 900px) {
+      .summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1>Weekly Livestream Schedule(EDT TIME)</h1>
+      <p>Read-only schedule for marketing planning and campaign timing.</p>
+      
+    </div>
+
+    <div class="topbar-right">
+      <div id="weekBadge" class="week-badge">Loading week...</div>
+      <button class="btn btn-refresh" onclick="loadSchedules()">Refresh</button>
+      <button class="btn btn-logout" onclick="logout()">Log out</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary">
+      <div class="summary-card">
+        <div class="label">Total Livestreams</div>
+        <div class="value" id="totalStreams">0</div>
+        <div class="subtext">Scheduled for this week</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="label">Models</div>
+        <div class="value" id="totalModels">0</div>
+        <div class="subtext">Unique models this week</div>
+      </div>
+
+      <div class="summary-card">
+        <div class="label">Week Range</div>
+        <div class="value" id="weekRangeText" style="font-size:18px;">Loading...</div>
+        <div class="subtext">Monday through Sunday</div>
+      </div>
+    </section>
+
+    <div id="contentArea">
+      <div class="loading-box">Loading weekly schedule...</div>
+    </div>
+  </main>
+
+  <script>
+    if (
+      sessionStorage.getItem("modelsReadonly") !== "1" ||
+      sessionStorage.getItem("modelsRole") !== "readonly"
+    ) {
+      window.location.href = "/admin/login.html";
+    }
+
+    let SCHEDULES = [];
+
+    const DAY_NAMES = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ];
+
+    function logout() {
+      sessionStorage.removeItem("modelsReadonly");
+      sessionStorage.removeItem("modelsRole");
+      window.location.href = "/admin/login.html";
+    }
+
+    function getStartOfWeek(date = new Date()) {
+      const d = new Date(date);
+      d.setHours(0, 0, 0, 0);
+
+      const day = d.getDay(); // Sunday=0, Monday=1...
+      const diff = day === 0 ? -6 : 1 - day; // move to Monday
+      d.setDate(d.getDate() + diff);
+
+      return d;
+    }
+
+    function getEndOfWeek(startOfWeek) {
+      const d = new Date(startOfWeek);
+      d.setDate(d.getDate() + 6);
+      d.setHours(23, 59, 59, 999);
+      return d;
+    }
+
+    function formatDateISO(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function formatShortDate(iso) {
+      const [year, month, day] = iso.split("-");
+      return `${month}/${day}/${year}`;
+    }
+
+    function getWeekDates() {
+      const start = getStartOfWeek(new Date());
+      const days = [];
+
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(start);
+        d.setDate(start.getDate() + i);
+
+        days.push({
+          dateObj: d,
+          iso: formatDateISO(d),
+          dayName: DAY_NAMES[d.getDay()]
+        });
+      }
+
+      return days;
+    }
+
+    function getWeekInfo() {
+      const start = getStartOfWeek(new Date());
+      const end = getEndOfWeek(start);
+
+      return {
+        start,
+        end,
+        startISO: formatDateISO(start),
+        endISO: formatDateISO(end)
+      };
+    }
+
+    function updateWeekLabels() {
+      const { startISO, endISO } = getWeekInfo();
+      const label = `${formatShortDate(startISO)} - ${formatShortDate(endISO)}`;
+
+      document.getElementById("weekBadge").textContent = `Current week: ${label}`;
+      document.getElementById("weekRangeText").textContent = label;
+    }
+
+    function normalizeSchedules(raw) {
+      return (raw || [])
+        .filter(item => item && item.date && item.start && item.modelName)
+        .map(item => ({
+          modelName: String(item.modelName).trim(),
+          theme: String(item.theme || "").trim(),
+          date: String(item.date).trim(),
+          start: String(item.start).trim()
+        }));
+    }
+
+    function filterCurrentWeek(items) {
+      const { startISO, endISO } = getWeekInfo();
+      return items.filter(item => item.date >= startISO && item.date <= endISO);
+    }
+
+    function sortSchedules(items) {
+      return [...items].sort((a, b) => {
+        if (a.date === b.date) {
+          return a.start.localeCompare(b.start);
+        }
+        return a.date.localeCompare(b.date);
+      });
+    }
+
+    function groupSchedulesByDay(items) {
+      const grouped = {};
+      const weekDays = getWeekDates();
+
+      weekDays.forEach(day => {
+        grouped[day.iso] = [];
+      });
+
+      items.forEach(item => {
+        if (grouped[item.date]) {
+          grouped[item.date].push(item);
+        }
+      });
+
+      Object.keys(grouped).forEach(date => {
+        grouped[date].sort((a, b) => a.start.localeCompare(b.start));
+      });
+
+      return grouped;
+    }
+
+    function renderBoard() {
+      const contentArea = document.getElementById("contentArea");
+      const weekDays = getWeekDates();
+      const weekItems = sortSchedules(filterCurrentWeek(SCHEDULES));
+      const grouped = groupSchedulesByDay(weekItems);
+
+      document.getElementById("totalStreams").textContent = weekItems.length;
+
+      const uniqueModels = new Set(
+        weekItems.map(item => item.modelName.toLowerCase())
+      );
+      document.getElementById("totalModels").textContent = uniqueModels.size;
+
+      const boardHTML = weekDays.map(day => {
+        const entries = grouped[day.iso] || [];
+
+      const content = entries.length
+  ? entries.map(item => `
+      <div class="stream-card">
+        <div class="stream-time">${item.start}</div>
+        <div class="stream-model">${escapeHtml(item.modelName)}</div>
+        <div class="stream-theme">
+          <strong>Theme:</strong> ${escapeHtml(item.theme || "Not provided")}
+        </div>
+      </div>
+    `).join("")
+  : `<div class="empty-day">No livestreams scheduled</div>`;
+
+        return `
+          <section class="day-column">
+            <div class="day-header">
+              <div class="day-name">${day.dayName}</div>
+              <div class="day-date">${formatShortDate(day.iso)}</div>
+            </div>
+            <div class="day-content">
+              ${content}
+            </div>
+          </section>
+        `;
+      }).join("");
+
+      contentArea.innerHTML = `
+        <div class="board-wrapper">
+          <div class="board">
+            ${boardHTML}
+          </div>
+        </div>
+      `;
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function loadSchedules() {
+      updateWeekLabels();
+
+      document.getElementById("contentArea").innerHTML =
+        '<div class="loading-box">Loading weekly schedule...</div>';
+
+      fetch("/api/model-schedule")
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          return res.json();
+        })
+        .then(data => {
+          SCHEDULES = normalizeSchedules(data);
+          renderBoard();
+        })
+        .catch(err => {
+          console.error("Error loading schedule:", err);
+          document.getElementById("contentArea").innerHTML =
+            '<div class="error-box">Failed to load the weekly schedule.</div>';
+        });
+    }
+
+    loadSchedules();
+  </script>
+</body>
+</html>

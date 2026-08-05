@@ -1,294 +1,1233 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weekly Livestream Schedule</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Weekly Livestream Marketing Schedule</title>
+
   <style>
-    :root {
-      --bg: #050508;
-      --bg-soft: #0d0f18;
-      --card: #151828;
-      --card-2: #0b0d16;
-      --border: rgba(180, 160, 90, 0.45);
-      --border-soft: rgba(255, 255, 255, 0.08);
-      --text: #f7f7ff;
-      --text-soft: #b7bdd1;
-      --gold: #f1dd8a;
-      --gold-dark: #c59d42;
-      --pink: #ff6ab0;
-      --blue: #73b8ff;
-      --shadow:
-        0 0 20px rgba(0, 0, 0, 0.9),
-        inset 0 0 8px rgba(0, 0, 0, 0.85);
-    }
 
-    * {
-      box-sizing: border-box;
-    }
+:root {
+  --background: #07080d;
+  --background-soft: #0d0f18;
+  --panel: #11131e;
+  --panel-light: #171a27;
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1a1830 0%, #050508 55%);
-      color: var(--text);
-    }
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(223, 194, 99, 0.65);
 
-    .topbar {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--border-soft);
-      background: radial-gradient(circle at top, rgba(210, 190, 120, 0.16), #050814);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+  --text: #f5f5fb;
+  --text-soft: #aeb4cb;
 
-    .topbar-left h1 {
-      margin: 0;
-      font-size: 24px;
-      letter-spacing: 0.3px;
-    }
+  --gold: #f1d879;
+  --gold-dark: #c9a746;
 
-    .topbar-left p {
-      margin: 6px 0 0;
-      font-size: 13px;
-      color: var(--text-soft);
-    }
+  --blue: #7fb9ff;
+  --blue-dark: #5599eb;
 
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+  --green: #8be1ae;
+  --pink: #ffd7ed;
+  --red: #ff6868;
 
-    .week-badge {
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
-      font-size: 12px;
-      color: var(--text);
-    }
+  --shadow:
+    0 14px 38px rgba(0, 0, 0, 0.42),
+    inset 0 1px rgba(255, 255, 255, 0.025);
+}
 
-    .btn {
-      border: none;
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
+/* =====================================================
+   GENERAL
+===================================================== */
 
-    .btn:hover {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .btn-refresh {
-      background: linear-gradient(135deg, #9fd6ff, #52a3ff);
-      color: #071421;
-      box-shadow: 0 0 16px rgba(82, 163, 255, 0.45);
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    .btn-logout {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,0.18);
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
 
-    .container {
-      padding: 20px 24px 28px;
-    }
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(180px, 1fr));
-      gap: 14px;
-      margin-bottom: 18px;
-    }
+  background:
+    radial-gradient(
+      circle at top,
+      #171824 0%,
+      #0b0c13 38%,
+      var(--background) 100%
+    );
 
-    .summary-card {
-      background: radial-gradient(circle at top, #16192a, #090b13);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px 16px;
-      box-shadow: var(--shadow);
-    }
+  color: var(--text);
+}
 
-    .summary-card .label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--gold);
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
+/* =====================================================
+   TOP BAR
+===================================================== */
 
-    .summary-card .value {
-      font-size: 26px;
-      font-weight: 800;
-    }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
 
-    .summary-card .subtext {
-      margin-top: 4px;
-      font-size: 13px;
-      color: var(--text-soft);
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-    .board-wrapper {
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
+  gap: 16px;
+  padding: 17px 22px;
 
-    .board {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(240px, 1fr));
-      gap: 14px;
-      min-width: 1700px;
-    }
+  border-bottom: 1px solid var(--border);
 
-    .day-column {
-      background: radial-gradient(circle at top, #16192a, #090b13);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 420px;
-    }
+  background:
+    linear-gradient(
+      180deg,
+      rgba(26, 27, 39, 0.98),
+      rgba(10, 11, 18, 0.96)
+    );
 
-    .day-header {
-      padding: 14px 14px 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(180deg, rgba(241, 221, 138, 0.08), rgba(255,255,255,0.01));
-    }
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.35);
 
-    .day-name {
-      font-size: 16px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
+  backdrop-filter: blur(14px);
+}
 
-    .day-date {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
+.topbar-left {
+  min-width: 270px;
+}
 
-    .day-content {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      flex: 1;
-    }
+.topbar-left h1 {
+  margin: 0;
 
-    .stream-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 12px;
-    }
+  font-size: 23px;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+}
 
-    .stream-time {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      background: rgba(115, 184, 255, 0.12);
-      border: 1px solid rgba(115, 184, 255, 0.35);
-      color: #d9efff;
-      margin-bottom: 10px;
-    }
+.topbar-left p {
+  margin: 5px 0 0;
 
-    .stream-model {
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffdcef;
-      line-height: 1.35;
-    }
+  color: var(--text-soft);
 
-    .empty-day {
-      margin-top: auto;
-      margin-bottom: auto;
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-soft);
-      opacity: 0.8;
-      padding: 18px 8px;
-    }
+  font-size: 12px;
+  line-height: 1.45;
+}
 
-    .loading-box,
-    .error-box {
-      border-radius: 18px;
-      padding: 18px;
-      text-align: center;
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top, #16192a, #090b13);
-      box-shadow: var(--shadow);
-      color: var(--text-soft);
-    }
+.topbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 
-    .error-box {
-      color: #ffb1b1;
-    }
+  gap: 8px;
+}
 
-    @media (max-width: 900px) {
-      .summary {
-        grid-template-columns: 1fr;
-      }
-    }
+.week-badge {
+  padding: 9px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: #d8dbeb;
+
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.week-navigation {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+/* =====================================================
+   GENERAL BUTTONS
+===================================================== */
+
+.btn {
+  min-height: 36px;
+  padding: 9px 13px;
+
+  border: none;
+  border-radius: 999px;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.16s ease,
+    opacity 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.btn-week {
+  color: #2a220d;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-dark)
+    );
+
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.28);
+}
+
+.btn-current {
+  color: #180f2d;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dacbff,
+      #a288f0
+    );
+}
+
+.btn-refresh {
+  color: #061522;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a6d5ff,
+      #64a7ef
+    );
+}
+
+.btn-logout {
+  color: var(--text);
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+.container {
+  width: 100%;
+  max-width: none;
+
+  margin: 0 auto;
+  padding: 18px 16px 36px;
+}
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(220px, 1fr));
+
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.summary-card {
+  padding: 14px 16px;
+
+  border: 1px solid var(--border);
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(27, 29, 43, 0.95),
+      rgba(14, 16, 25, 0.95)
+    );
+
+  box-shadow: var(--shadow);
+}
+
+.summary-card .label {
+  margin-bottom: 6px;
+
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.summary-card .value {
+  font-size: 23px;
+  font-weight: 850;
+}
+
+.summary-card .subtext {
+  margin-top: 4px;
+
+  color: var(--text-soft);
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* =====================================================
+   WEEK BOARD
+===================================================== */
+
+.board {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.day-section {
+  overflow: hidden;
+
+  border: 1px solid rgba(221, 190, 84, 0.48);
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 17, 27, 0.98),
+      rgba(7, 8, 13, 0.98)
+    );
+
+  box-shadow: var(--shadow);
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  padding: 11px 15px;
+
+  border-bottom: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(241, 216, 121, 0.12),
+      rgba(255, 255, 255, 0.018)
+    );
+}
+
+.day-title-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 9px;
+}
+
+.day-name {
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.day-date {
+  color: var(--text-soft);
+
+  font-size: 11px;
+}
+
+.day-count {
+  padding: 5px 9px;
+
+  border: 1px solid rgba(241, 216, 121, 0.3);
+  border-radius: 999px;
+
+  background: rgba(241, 216, 121, 0.08);
+  color: var(--gold);
+
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.day-content {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 13px;
+  padding: 0;
+}
+
+.empty-day {
+  padding: 22px;
+
+  color: var(--text-soft);
+
+  text-align: center;
+  font-size: 12px;
+
+  opacity: 0.75;
+}
+
+/* =====================================================
+   STREAM CARD
+===================================================== */
+
+.stream-card {
+  display: grid;
+
+  grid-template-columns:
+    minmax(300px, 1fr) auto;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 0;
+
+  background: transparent;
+}
+
+.stream-card:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.stream-header {
+  grid-column: 1;
+  grid-row: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  gap: 16px;
+  min-height: 57px;
+  margin: 0;
+  padding: 10px 18px;
+
+  border-bottom: 1px solid var(--border);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.012)
+    );
+}
+
+.stream-model {
+  color: var(--pink);
+
+  font-size: 22px;
+  font-weight: 900;
+
+  text-shadow:
+    1px 1px 0 rgba(77, 143, 255, 0.65),
+    -1px 0 0 rgba(255, 142, 197, 0.45);
+}
+
+.stream-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.stream-time,
+.material-count {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 31px;
+  padding: 6px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.stream-time {
+  color: #c6d6f4;
+}
+
+.material-count {
+  color: #b9caef;
+}
+
+.material-count.empty {
+  color: var(--text-soft);
+}
+
+/* =====================================================
+   THEME ON THE RIGHT SIDE
+===================================================== */
+
+.theme-box {
+  grid-column: 2;
+  grid-row: 1;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 57px;
+  max-width: 520px;
+  margin: 0;
+  padding: 10px 18px;
+
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012),
+      rgba(255, 255, 255, 0.045)
+    );
+
+  color: #c6cbe0;
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.theme-label {
+  display: inline;
+
+  flex: 0 0 auto;
+
+  margin: 0 4px 0 0;
+
+  color: var(--gold);
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.theme-label::after {
+  content: ":";
+}
+
+/* =====================================================
+   FIVE FLYERS IN ONE HORIZONTAL ROW
+===================================================== */
+
+.marketing-materials {
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(230px, 1fr));
+
+  gap: 16px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 18px 16px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  border: none;
+  border-radius: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 6, 11, 0.92),
+      rgba(9, 10, 17, 0.96)
+    );
+
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(241, 216, 121, 0.5)
+    rgba(255, 255, 255, 0.05);
+}
+
+.marketing-materials::-webkit-scrollbar {
+  height: 9px;
+}
+
+.marketing-materials::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.marketing-materials::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background: rgba(241, 216, 121, 0.45);
+}
+
+/*
+  These wrappers are visually removed so the five flyer
+  cards become direct items of the same grid.
+*/
+
+.material-category {
+  display: contents;
+}
+
+.material-category-header {
+  display: none;
+}
+
+.material-category-content {
+  display: contents;
+}
+
+/* =====================================================
+   FLYER CARDS
+===================================================== */
+
+.flyer-card,
+.single-file .flyer-card,
+.internal-files .flyer-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 230px;
+  height: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #181b29,
+      #11131e
+    );
+
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.3);
+
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.flyer-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(241, 216, 121, 0.35);
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.42);
+}
+
+/* =====================================================
+   FLYER TITLE
+===================================================== */
+
+.flyer-card-title,
+.single-file .flyer-card-title,
+.internal-files .flyer-card-title {
+  display: block;
+
+  min-height: 45px;
+  padding: 13px 14px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(28, 31, 46, 0.98),
+      rgba(21, 23, 35, 0.98)
+    );
+
+  color: var(--gold);
+
+  font-size: 13px;
+  font-weight: 900;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+.flyer-preview-link,
+.single-file .flyer-preview-link,
+.internal-files .flyer-preview-link {
+  position: relative;
+
+  display: block;
+  flex: 1 1 auto;
+
+  width: 100%;
+  height: auto;
+  min-height: 280px;
+  max-height: 480px;
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  background: #000;
+}
+
+.flyer-preview,
+.single-file .flyer-preview,
+.internal-files .flyer-preview {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  background: #000;
+
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.flyer-preview:hover {
+  transform: scale(1.018);
+  opacity: 0.97;
+}
+
+/* =====================================================
+   FILE NAME
+===================================================== */
+
+.flyer-file-name,
+.single-file .flyer-file-name,
+.internal-files .flyer-file-name {
+  display: block;
+
+  min-width: 0;
+  min-height: 36px;
+  padding: 9px 11px 5px;
+
+  color: #aebce1;
+
+  font-size: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================================
+   VIEW AND DOWNLOAD BUTTONS
+===================================================== */
+
+.flyer-actions,
+.single-file .flyer-actions,
+.internal-files .flyer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+  padding: 8px 11px 12px;
+}
+
+.flyer-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+  padding: 8px 10px;
+
+  border-radius: 999px;
+
+  text-align: center;
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.16s ease,
+    filter 0.16s ease,
+    box-shadow 0.16s ease;
+}
+
+.flyer-action:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.flyer-view {
+  color: #06101d;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9ed2ff,
+      #67a8f2
+    );
+
+  box-shadow:
+    0 5px 12px rgba(74, 145, 235, 0.2);
+}
+
+.flyer-download {
+  color: #2c220b;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f2dd88,
+      #d0ad52
+    );
+
+  box-shadow:
+    0 5px 12px rgba(210, 173, 82, 0.2);
+}
+
+/* =====================================================
+   EMPTY FLYER CARD
+===================================================== */
+
+.empty-flyer-card,
+.single-file .empty-flyer-card,
+.internal-files .empty-flyer-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 230px;
+  min-height: 395px;
+}
+
+.empty-flyer-message,
+.single-file .empty-flyer-message,
+.internal-files .empty-flyer-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+
+  min-height: 310px;
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #050608,
+      #0b0c12
+    );
+
+  color: var(--text-soft);
+
+  text-align: center;
+  font-size: 11px;
+
+  opacity: 0.75;
+}
+
+/* =====================================================
+   LOADING AND ERROR
+===================================================== */
+
+.loading-box,
+.error-box {
+  padding: 24px;
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(27, 29, 43, 0.96),
+      rgba(12, 14, 22, 0.96)
+    );
+
+  box-shadow: var(--shadow);
+
+  color: var(--text-soft);
+
+  text-align: center;
+}
+
+.error-box {
+  color: #ffaaaa;
+}
+
+/* =====================================================
+   LARGE MONITORS
+===================================================== */
+
+@media (min-width: 1800px) {
+  .marketing-materials {
+    grid-template-columns:
+      repeat(5, minmax(290px, 1fr));
+  }
+
+  .flyer-preview-link,
+  .single-file .flyer-preview-link,
+  .internal-files .flyer-preview-link {
+    max-height: 520px;
+  }
+}
+
+/* =====================================================
+   MEDIUM SCREENS
+===================================================== */
+
+@media (max-width: 1350px) {
+  .marketing-materials {
+    grid-template-columns:
+      repeat(5, minmax(245px, 1fr));
+  }
+
+  .theme-box {
+    max-width: 390px;
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .topbar-right {
+    justify-content: flex-start;
+
+    width: 100%;
+  }
+
+  .stream-card {
+    grid-template-columns: 1fr;
+  }
+
+  .stream-header {
+    grid-column: 1;
+    grid-row: 1;
+
+    border-bottom: none;
+  }
+
+  .theme-box {
+    grid-column: 1;
+    grid-row: 2;
+
+    max-width: none;
+    min-height: 42px;
+    padding-top: 0;
+
+    border-bottom: 1px solid var(--border);
+  }
+
+  .marketing-materials {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+  .container {
+    padding: 12px 9px 28px;
+  }
+
+  .topbar {
+    padding: 14px 12px;
+  }
+
+  .topbar-left h1 {
+    font-size: 20px;
+  }
+
+  .week-navigation {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    width: 100%;
+  }
+
+  .week-navigation .btn {
+    width: 100%;
+  }
+
+  .btn-refresh,
+  .btn-logout {
+    flex: 1;
+  }
+
+  .day-header {
+    padding: 10px 12px;
+  }
+
+  .stream-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding: 12px;
+  }
+
+  .stream-model {
+    font-size: 20px;
+  }
+
+  .theme-box {
+    padding: 0 12px 12px;
+  }
+
+  /*
+    On mobile the same five-card visual is preserved
+    with horizontal scrolling instead of stacking.
+  */
+
+  .marketing-materials {
+    grid-template-columns:
+      repeat(5, 230px);
+
+    gap: 11px;
+    padding: 13px 11px;
+  }
+
+  .flyer-card,
+  .single-file .flyer-card,
+  .internal-files .flyer-card {
+    min-width: 230px;
+  }
+
+  .flyer-preview-link,
+  .single-file .flyer-preview-link,
+  .internal-files .flyer-preview-link {
+    min-height: 285px;
+    max-height: 360px;
+  }
+}
+
   </style>
+
 </head>
+
 <body>
 
+  <!-- =====================================================
+       TOP BAR
+  ====================================================== -->
+
   <header class="topbar">
+
     <div class="topbar-left">
-      <h1>Weekly Livestream Schedule(EDT TIME)</h1>
-      <p>Read-only schedule for marketing planning and campaign timing.</p>
-      
+
+      <h1>
+        Weekly Livestream Marketing Schedule
+      </h1>
+
+      <p>
+        Weekly schedule and downloadable advertising materials.
+        All times are displayed in EDT.
+      </p>
+
     </div>
 
     <div class="topbar-right">
-      <div id="weekBadge" class="week-badge">Loading week...</div>
-      <button class="btn btn-refresh" onclick="loadSchedules()">Refresh</button>
-      <button class="btn btn-logout" onclick="logout()">Log out</button>
+
+      <div
+        id="weekBadge"
+        class="week-badge"
+      >
+        Loading week...
+      </div>
+
+      <div class="week-navigation">
+
+        <button
+          type="button"
+          class="btn btn-week"
+          onclick="changeWeek(-1)"
+        >
+          ← Previous Week
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-current"
+          onclick="goToCurrentWeek()"
+        >
+          Current Week
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-week"
+          onclick="changeWeek(1)"
+        >
+          Next Week →
+        </button>
+
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-refresh"
+        onclick="loadSchedules()"
+      >
+        Refresh
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-logout"
+        onclick="logout()"
+      >
+        Log out
+      </button>
+
     </div>
+
   </header>
 
+  <!-- =====================================================
+       MAIN CONTENT
+  ====================================================== -->
+
   <main class="container">
+
     <section class="summary">
+
       <div class="summary-card">
-        <div class="label">Total Livestreams</div>
-        <div class="value" id="totalStreams">0</div>
-        <div class="subtext">Scheduled for this week</div>
+
+        <div class="label">
+          Total Livestreams
+        </div>
+
+        <div
+          id="totalStreams"
+          class="value"
+        >
+          0
+        </div>
+
+        <div class="subtext">
+          Livestreams scheduled during the selected week.
+        </div>
+
       </div>
 
       <div class="summary-card">
-        <div class="label">Models</div>
-        <div class="value" id="totalModels">0</div>
-        <div class="subtext">Unique models this week</div>
+
+        <div class="label">
+          Models
+        </div>
+
+        <div
+          id="totalModels"
+          class="value"
+        >
+          0
+        </div>
+
+        <div class="subtext">
+          Unique models scheduled during the selected week.
+        </div>
+
       </div>
 
       <div class="summary-card">
-        <div class="label">Week Range</div>
-        <div class="value" id="weekRangeText" style="font-size:18px;">Loading...</div>
-        <div class="subtext">Monday through Sunday</div>
+
+        <div class="label">
+          Week Range
+        </div>
+
+        <div
+          id="weekRangeText"
+          class="value"
+          style="font-size: 18px;"
+        >
+          Loading...
+        </div>
+
+        <div
+          id="weekStatusText"
+          class="subtext"
+        >
+          Monday through Sunday.
+        </div>
+
       </div>
+
     </section>
 
     <div id="contentArea">
-      <div class="loading-box">Loading weekly schedule...</div>
+
+      <div class="loading-box">
+        Loading weekly schedule...
+      </div>
+
     </div>
+
   </main>
 
   <script>
+
+    /* =====================================================
+       LOGIN PROTECTION
+    ===================================================== */
+
     if (
       sessionStorage.getItem("modelsReadonly") !== "1" ||
       sessionStorage.getItem("modelsRole") !== "readonly"
@@ -296,7 +1235,14 @@
       window.location.href = "/admin/login.html";
     }
 
+    /* =====================================================
+       GLOBAL STATE
+    ===================================================== */
+
     let SCHEDULES = [];
+
+    let selectedWeekStart =
+      getStartOfWeek(new Date());
 
     const DAY_NAMES = [
       "Sunday",
@@ -308,210 +1254,1008 @@
       "Saturday"
     ];
 
+    /* =====================================================
+       SESSION
+    ===================================================== */
+
     function logout() {
+
       sessionStorage.removeItem("modelsReadonly");
       sessionStorage.removeItem("modelsRole");
+
       window.location.href = "/admin/login.html";
+
     }
+
+    /* =====================================================
+       DATE FUNCTIONS
+    ===================================================== */
 
     function getStartOfWeek(date = new Date()) {
-      const d = new Date(date);
-      d.setHours(0, 0, 0, 0);
 
-      const day = d.getDay(); // Sunday=0, Monday=1...
-      const diff = day === 0 ? -6 : 1 - day; // move to Monday
-      d.setDate(d.getDate() + diff);
+      const result = new Date(date);
 
-      return d;
+      result.setHours(0, 0, 0, 0);
+
+      const day = result.getDay();
+
+      const difference =
+        day === 0
+          ? -6
+          : 1 - day;
+
+      result.setDate(
+        result.getDate() + difference
+      );
+
+      return result;
+
     }
 
-    function getEndOfWeek(startOfWeek) {
-      const d = new Date(startOfWeek);
-      d.setDate(d.getDate() + 6);
-      d.setHours(23, 59, 59, 999);
-      return d;
+    function addDays(date, numberOfDays) {
+
+      const result = new Date(date);
+
+      result.setDate(
+        result.getDate() + numberOfDays
+      );
+
+      result.setHours(0, 0, 0, 0);
+
+      return result;
+
+    }
+
+    function getEndOfWeek(startDate) {
+
+      const result = new Date(startDate);
+
+      result.setDate(
+        result.getDate() + 6
+      );
+
+      result.setHours(
+        23,
+        59,
+        59,
+        999
+      );
+
+      return result;
+
     }
 
     function formatDateISO(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
+
+      const year =
+        date.getFullYear();
+
+      const month = String(
+        date.getMonth() + 1
+      ).padStart(2, "0");
+
+      const day = String(
+        date.getDate()
+      ).padStart(2, "0");
+
       return `${year}-${month}-${day}`;
+
     }
 
-    function formatShortDate(iso) {
-      const [year, month, day] = iso.split("-");
+    function formatShortDate(isoDate) {
+
+      const [
+        year,
+        month,
+        day
+      ] = isoDate.split("-");
+
       return `${month}/${day}/${year}`;
+
     }
 
-    function getWeekDates() {
-      const start = getStartOfWeek(new Date());
-      const days = [];
+    function getSelectedWeekInfo() {
 
-      for (let i = 0; i < 7; i++) {
-        const d = new Date(start);
-        d.setDate(start.getDate() + i);
+      const start =
+        new Date(selectedWeekStart);
 
-        days.push({
-          dateObj: d,
-          iso: formatDateISO(d),
-          dayName: DAY_NAMES[d.getDay()]
-        });
-      }
-
-      return days;
-    }
-
-    function getWeekInfo() {
-      const start = getStartOfWeek(new Date());
-      const end = getEndOfWeek(start);
+      const end =
+        getEndOfWeek(start);
 
       return {
         start,
         end,
-        startISO: formatDateISO(start),
-        endISO: formatDateISO(end)
+        startISO:
+          formatDateISO(start),
+        endISO:
+          formatDateISO(end)
       };
+
+    }
+
+    function getSelectedWeekDates() {
+
+      const days = [];
+
+      for (
+        let index = 0;
+        index < 7;
+        index += 1
+      ) {
+
+        const date =
+          addDays(
+            selectedWeekStart,
+            index
+          );
+
+        days.push({
+          dateObject: date,
+          iso: formatDateISO(date),
+          dayName:
+            DAY_NAMES[date.getDay()]
+        });
+
+      }
+
+      return days;
+
+    }
+
+    function isCurrentWeekSelected() {
+
+      const currentWeekStart =
+        formatDateISO(
+          getStartOfWeek(new Date())
+        );
+
+      const selectedStart =
+        formatDateISO(
+          selectedWeekStart
+        );
+
+      return (
+        currentWeekStart === selectedStart
+      );
+
+    }
+
+    function changeWeek(direction) {
+
+      selectedWeekStart =
+        addDays(
+          selectedWeekStart,
+          direction * 7
+        );
+
+      updateWeekLabels();
+      renderBoard();
+
+    }
+
+    function goToCurrentWeek() {
+
+      selectedWeekStart =
+        getStartOfWeek(new Date());
+
+      updateWeekLabels();
+      renderBoard();
+
     }
 
     function updateWeekLabels() {
-      const { startISO, endISO } = getWeekInfo();
-      const label = `${formatShortDate(startISO)} - ${formatShortDate(endISO)}`;
 
-      document.getElementById("weekBadge").textContent = `Current week: ${label}`;
-      document.getElementById("weekRangeText").textContent = label;
+      const {
+        startISO,
+        endISO
+      } = getSelectedWeekInfo();
+
+      const range =
+        `${formatShortDate(startISO)} - ` +
+        `${formatShortDate(endISO)}`;
+
+      const prefix =
+        isCurrentWeekSelected()
+          ? "Current week"
+          : "Selected week";
+
+      document
+        .getElementById("weekBadge")
+        .textContent =
+          `${prefix}: ${range}`;
+
+      document
+        .getElementById("weekRangeText")
+        .textContent = range;
+
+      document
+        .getElementById("weekStatusText")
+        .textContent =
+          isCurrentWeekSelected()
+            ? "Current Monday through Sunday."
+            : "Viewing another scheduled week.";
+
     }
 
-    function normalizeSchedules(raw) {
-      return (raw || [])
-        .filter(item => item && item.date && item.start && item.modelName)
-        .map(item => ({
-          modelName: String(item.modelName).trim(),
-          theme: String(item.theme || "").trim(),
-          date: String(item.date).trim(),
-          start: String(item.start).trim()
-        }));
+    /* =====================================================
+       NORMALIZATION
+    ===================================================== */
+
+    function getFileNameFromUrl(url) {
+
+      try {
+
+        const cleanUrl =
+          String(url || "")
+            .split("?")[0];
+
+        const sections =
+          cleanUrl.split("/");
+
+        return decodeURIComponent(
+          sections[
+            sections.length - 1
+          ] || "flyer"
+        );
+
+      } catch {
+
+        return "flyer";
+
+      }
+
     }
 
-    function filterCurrentWeek(items) {
-      const { startISO, endISO } = getWeekInfo();
-      return items.filter(item => item.date >= startISO && item.date <= endISO);
+    function normalizeFlyer(value) {
+
+      if (!value) {
+        return null;
+      }
+
+      if (typeof value === "string") {
+
+        return {
+          url: value,
+          fileName:
+            getFileNameFromUrl(value),
+          originalName:
+            getFileNameFromUrl(value)
+        };
+
+      }
+
+      if (
+        typeof value === "object" &&
+        typeof value.url === "string" &&
+        value.url.trim() !== ""
+      ) {
+
+        return {
+          url:
+            String(value.url),
+
+          fileName:
+            String(
+              value.fileName ||
+              getFileNameFromUrl(
+                value.url
+              )
+            ),
+
+          originalName:
+            String(
+              value.originalName ||
+              value.fileName ||
+              getFileNameFromUrl(
+                value.url
+              )
+            ),
+
+          mimeType:
+            String(
+              value.mimeType || ""
+            ),
+
+          size:
+            Number(
+              value.size || 0
+            )
+        };
+
+      }
+
+      return null;
+
+    }
+
+    function normalizeSchedules(rawData) {
+
+      return (rawData || [])
+        .filter((item) => {
+
+          return (
+            item &&
+            item.modelName &&
+            item.date &&
+            item.start
+          );
+
+        })
+        .map((item) => {
+
+          const internalFlyers =
+            Array.isArray(item.flyers)
+              ? item.flyers
+                  .map(normalizeFlyer)
+                  .filter(Boolean)
+                  .slice(0, 3)
+              : [];
+
+          return {
+
+            modelName:
+              String(
+                item.modelName
+              ).trim(),
+
+            theme:
+              String(
+                item.theme || ""
+              ).trim(),
+
+            date:
+              String(
+                item.date
+              ).trim(),
+
+            start:
+              String(
+                item.start
+              ).trim(),
+
+            generalFlyer:
+              normalizeFlyer(
+                item.flyer ||
+                item.flyerUrl
+              ),
+
+            redditFlyer:
+              normalizeFlyer(
+                item.reddit ||
+                item.redditUrl
+              ),
+
+            internalFlyers
+
+          };
+
+        });
+
+    }
+
+    /* =====================================================
+       FILTERING AND SORTING
+    ===================================================== */
+
+    function filterSelectedWeek(items) {
+
+      const {
+        startISO,
+        endISO
+      } = getSelectedWeekInfo();
+
+      return items.filter((item) => {
+
+        return (
+          item.date >= startISO &&
+          item.date <= endISO
+        );
+
+      });
+
     }
 
     function sortSchedules(items) {
-      return [...items].sort((a, b) => {
-        if (a.date === b.date) {
-          return a.start.localeCompare(b.start);
+
+      return [...items].sort(
+        (first, second) => {
+
+          if (
+            first.date === second.date
+          ) {
+
+            return first.start.localeCompare(
+              second.start
+            );
+
+          }
+
+          return first.date.localeCompare(
+            second.date
+          );
+
         }
-        return a.date.localeCompare(b.date);
-      });
+      );
+
     }
 
     function groupSchedulesByDay(items) {
-      const grouped = {};
-      const weekDays = getWeekDates();
 
-      weekDays.forEach(day => {
+      const grouped = {};
+
+      const weekDays =
+        getSelectedWeekDates();
+
+      weekDays.forEach((day) => {
         grouped[day.iso] = [];
       });
 
-      items.forEach(item => {
+      items.forEach((item) => {
+
         if (grouped[item.date]) {
-          grouped[item.date].push(item);
+
+          grouped[item.date].push(
+            item
+          );
+
         }
+
       });
 
-      Object.keys(grouped).forEach(date => {
-        grouped[date].sort((a, b) => a.start.localeCompare(b.start));
-      });
+      Object
+        .keys(grouped)
+        .forEach((date) => {
+
+          grouped[date].sort(
+            (first, second) => {
+
+              return first.start.localeCompare(
+                second.start
+              );
+
+            }
+          );
+
+        });
 
       return grouped;
+
     }
 
-    function renderBoard() {
-      const contentArea = document.getElementById("contentArea");
-      const weekDays = getWeekDates();
-      const weekItems = sortSchedules(filterCurrentWeek(SCHEDULES));
-      const grouped = groupSchedulesByDay(weekItems);
+    /* =====================================================
+       MATERIAL COUNTER
+    ===================================================== */
 
-      document.getElementById("totalStreams").textContent = weekItems.length;
+    function countMaterials(schedule) {
 
-      const uniqueModels = new Set(
-        weekItems.map(item => item.modelName.toLowerCase())
-      );
-      document.getElementById("totalModels").textContent = uniqueModels.size;
+      let total = 0;
 
-      const boardHTML = weekDays.map(day => {
-        const entries = grouped[day.iso] || [];
+      if (schedule.generalFlyer) {
+        total += 1;
+      }
 
-      const content = entries.length
-  ? entries.map(item => `
-      <div class="stream-card">
-        <div class="stream-time">${item.start}</div>
-        <div class="stream-model">${escapeHtml(item.modelName)}</div>
-        <div class="stream-theme">
-          <strong>Theme:</strong> ${escapeHtml(item.theme || "Not provided")}
-        </div>
-      </div>
-    `).join("")
-  : `<div class="empty-day">No livestreams scheduled</div>`;
+      if (schedule.redditFlyer) {
+        total += 1;
+      }
+
+      total +=
+        schedule.internalFlyers.length;
+
+      return total;
+
+    }
+
+    /* =====================================================
+       FLYER RENDERING
+    ===================================================== */
+
+    function renderFlyerCard(
+      flyer,
+      title
+    ) {
+
+      if (!flyer?.url) {
 
         return `
-          <section class="day-column">
-            <div class="day-header">
-              <div class="day-name">${day.dayName}</div>
-              <div class="day-date">${formatShortDate(day.iso)}</div>
-            </div>
-            <div class="day-content">
-              ${content}
-            </div>
-          </section>
-        `;
-      }).join("");
+          <article class="flyer-card empty-flyer-card">
 
-      contentArea.innerHTML = `
-        <div class="board-wrapper">
-          <div class="board">
-            ${boardHTML}
+            <div class="flyer-card-title">
+              ${escapeHtml(title)}
+            </div>
+
+            <div class="empty-flyer-message">
+              This flyer has not been uploaded yet.
+            </div>
+
+          </article>
+        `;
+
+      }
+
+      const url =
+        escapeAttribute(
+          flyer.url
+        );
+
+      const fileName =
+        flyer.originalName ||
+        flyer.fileName ||
+        title;
+
+      return `
+        <article class="flyer-card">
+
+          <div
+            class="flyer-card-title"
+            title="${escapeAttribute(title)}"
+          >
+            ${escapeHtml(title)}
           </div>
-        </div>
+
+          <a
+            href="${url}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flyer-preview-link"
+          >
+            <img
+              src="${url}"
+              alt="${escapeAttribute(title)}"
+              class="flyer-preview"
+              loading="lazy"
+              onerror="handleImageError(this)"
+            />
+          </a>
+
+          <div
+            class="flyer-file-name"
+            title="${escapeAttribute(fileName)}"
+          >
+            ${escapeHtml(fileName)}
+          </div>
+
+          <div class="flyer-actions">
+
+            <a
+              href="${url}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flyer-action flyer-view"
+            >
+              View
+            </a>
+
+            <a
+              href="${url}"
+              download="${escapeAttribute(fileName)}"
+              class="flyer-action flyer-download"
+            >
+              Download
+            </a>
+
+          </div>
+
+        </article>
       `;
+
     }
 
+    function renderMaterialCategory({
+      title,
+      description,
+      contentClass,
+      flyerCards
+    }) {
+
+      return `
+        <section class="material-category">
+
+          <header class="material-category-header">
+
+            <h3 class="material-category-title">
+              ${escapeHtml(title)}
+            </h3>
+
+            <div class="material-category-description">
+              ${escapeHtml(description)}
+            </div>
+
+          </header>
+
+          <div
+            class="material-category-content ${contentClass}"
+          >
+            ${flyerCards.join("")}
+          </div>
+
+        </section>
+      `;
+
+    }
+
+    function renderMarketingMaterials(schedule) {
+
+      const internal =
+        schedule.internalFlyers || [];
+
+      const generalFlyers =
+        renderMaterialCategory({
+
+          title:
+            "General Flyers",
+
+          description:
+            "Main promotional material for general advertising.",
+
+          contentClass:
+            "single-file",
+
+          flyerCards: [
+            renderFlyerCard(
+              schedule.generalFlyer,
+              "General Flyer"
+            )
+          ]
+
+        });
+
+      const redditFlyers =
+        renderMaterialCategory({
+
+          title:
+            "Reddit Flyers",
+
+          description:
+            "Promotional material prepared specifically for Reddit.",
+
+          contentClass:
+            "single-file",
+
+          flyerCards: [
+            renderFlyerCard(
+              schedule.redditFlyer,
+              "Reddit Flyer"
+            )
+          ]
+
+        });
+
+      const internalMarketingFlyers =
+        renderMaterialCategory({
+
+          title:
+            "Flyers for Internal Marketing",
+
+          description:
+            "Three additional flyers for internal marketing campaigns.",
+
+          contentClass:
+            "internal-files",
+
+          flyerCards: [
+
+            renderFlyerCard(
+              internal[0],
+              "Internal Marketing Flyer 1"
+            ),
+
+            renderFlyerCard(
+              internal[1],
+              "Internal Marketing Flyer 2"
+            ),
+
+            renderFlyerCard(
+              internal[2],
+              "Internal Marketing Flyer 3"
+            )
+
+          ]
+
+        });
+
+      return `
+        <div class="marketing-materials">
+
+          ${generalFlyers}
+
+          ${redditFlyers}
+
+          ${internalMarketingFlyers}
+
+        </div>
+      `;
+
+    }
+
+    /* =====================================================
+       STREAM CARD
+    ===================================================== */
+
+    function renderStreamCard(item) {
+
+      const materialCount =
+        countMaterials(item);
+
+      const materialClass =
+        materialCount > 0
+          ? "material-count"
+          : "material-count empty";
+
+      const materialText =
+        materialCount > 0
+          ? `${materialCount} file${materialCount === 1 ? "" : "s"}`
+          : "No files uploaded";
+
+      return `
+        <article class="stream-card">
+
+          <header class="stream-header">
+
+            <div class="stream-model">
+              ${escapeHtml(item.modelName)}
+            </div>
+
+            <div class="stream-meta">
+
+              <span class="stream-time">
+                ${escapeHtml(item.start)} EDT
+              </span>
+
+              <span class="${materialClass}">
+                ${escapeHtml(materialText)}
+              </span>
+
+            </div>
+
+          </header>
+
+          <div class="theme-box">
+
+            <span class="theme-label">
+              Livestream Theme
+            </span>
+
+            ${escapeHtml(
+              item.theme ||
+              "No theme provided."
+            )}
+
+          </div>
+
+          ${renderMarketingMaterials(item)}
+
+        </article>
+      `;
+
+    }
+
+    /* =====================================================
+       BOARD RENDERING
+    ===================================================== */
+
+    function renderBoard() {
+
+      const contentArea =
+        document.getElementById(
+          "contentArea"
+        );
+
+      const weekDays =
+        getSelectedWeekDates();
+
+      const selectedItems =
+        sortSchedules(
+          filterSelectedWeek(
+            SCHEDULES
+          )
+        );
+
+      const groupedItems =
+        groupSchedulesByDay(
+          selectedItems
+        );
+
+      document
+        .getElementById("totalStreams")
+        .textContent =
+          selectedItems.length;
+
+      const uniqueModels =
+        new Set(
+          selectedItems.map((item) => {
+
+            return item.modelName
+              .toLowerCase();
+
+          })
+        );
+
+      document
+        .getElementById("totalModels")
+        .textContent =
+          uniqueModels.size;
+
+      const daysHtml =
+        weekDays
+          .map((day) => {
+
+            const entries =
+              groupedItems[day.iso] || [];
+
+            const streamsHtml =
+              entries.length > 0
+                ? entries
+                    .map(renderStreamCard)
+                    .join("")
+                : `
+                  <div class="empty-day">
+                    No livestreams scheduled for this day.
+                  </div>
+                `;
+
+            return `
+              <section class="day-section">
+
+                <header class="day-header">
+
+                  <div class="day-title-wrapper">
+
+                    <div class="day-name">
+                      ${escapeHtml(day.dayName)}
+                    </div>
+
+                    <div class="day-date">
+                      ${formatShortDate(day.iso)}
+                    </div>
+
+                  </div>
+
+                  <div class="day-count">
+                    ${entries.length}
+                    livestream${entries.length === 1 ? "" : "s"}
+                  </div>
+
+                </header>
+
+                <div class="day-content">
+                  ${streamsHtml}
+                </div>
+
+              </section>
+            `;
+
+          })
+          .join("");
+
+      contentArea.innerHTML = `
+        <div class="board">
+          ${daysHtml}
+        </div>
+      `;
+
+    }
+
+    /* =====================================================
+       IMAGE ERROR
+    ===================================================== */
+
+    function handleImageError(image) {
+
+      image.style.display = "none";
+
+      const wrapper =
+        image.parentElement;
+
+      if (!wrapper) {
+        return;
+      }
+
+      wrapper.removeAttribute("href");
+
+      wrapper.style.display = "flex";
+      wrapper.style.alignItems = "center";
+      wrapper.style.justifyContent = "center";
+      wrapper.style.padding = "16px";
+
+      wrapper.style.color =
+        "#b7bdd1";
+
+      wrapper.style.fontSize =
+        "11px";
+
+      wrapper.style.textAlign =
+        "center";
+
+      wrapper.textContent =
+        "Image unavailable";
+
+    }
+
+    /* =====================================================
+       TEXT SECURITY
+    ===================================================== */
+
     function escapeHtml(value) {
-      return value
+
+      return String(value ?? "")
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+
     }
 
-    function loadSchedules() {
+    function escapeAttribute(value) {
+      return escapeHtml(value);
+    }
+
+    /* =====================================================
+       API LOAD
+    ===================================================== */
+
+    async function loadSchedules() {
+
       updateWeekLabels();
 
-      document.getElementById("contentArea").innerHTML =
-        '<div class="loading-box">Loading weekly schedule...</div>';
+      document
+        .getElementById("contentArea")
+        .innerHTML = `
+          <div class="loading-box">
+            Loading weekly schedule...
+          </div>
+        `;
 
-      fetch("/api/model-schedule")
-        .then(res => {
-          if (!res.ok) {
-            throw new Error(`HTTP ${res.status}`);
-          }
-          return res.json();
-        })
-        .then(data => {
-          SCHEDULES = normalizeSchedules(data);
-          renderBoard();
-        })
-        .catch(err => {
-          console.error("Error loading schedule:", err);
-          document.getElementById("contentArea").innerHTML =
-            '<div class="error-box">Failed to load the weekly schedule.</div>';
-        });
+      try {
+
+        const response =
+          await fetch(
+            "/api/model-schedule"
+          );
+
+        if (!response.ok) {
+
+          throw new Error(
+            `HTTP ${response.status}`
+          );
+
+        }
+
+        const data =
+          await response.json();
+
+        SCHEDULES =
+          normalizeSchedules(data);
+
+        renderBoard();
+
+      } catch (error) {
+
+        console.error(
+          "Error loading schedules:",
+          error
+        );
+
+        document
+          .getElementById("contentArea")
+          .innerHTML = `
+            <div class="error-box">
+              The weekly schedule could not be loaded.
+            </div>
+          `;
+
+      }
+
     }
 
+    /* =====================================================
+       START
+    ===================================================== */
+
     loadSchedules();
+
   </script>
+
 </body>
+
 </html>
