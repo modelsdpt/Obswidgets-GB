@@ -1,26 +1,30 @@
 /* ==========================================
-   RAFFLE – VINTAGE IVORY JOB THEME
-   Adaptada al MVP, GOALBAR y TIMER
+   RAFFLE – DARK CRIMSON GRUNGE THEME
+   Adaptado al MVP, GOALBAR y TIMER
 ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
-  --paper:#f4efe5;
-  --paper-light:#fffdf7;
-  --paper-soft:#e8e0d3;
-  --paper-dark:#c9bca9;
-
-  --ink:#090807;
-  --ink-soft:#171513;
-  --charcoal:#25211e;
-  --graphite:#403a34;
-
-  --taupe:#807365;
-  --shadow-brown:#4a4037;
-
   --white:#ffffff;
-  --black:#020202;
+  --ivory:#fffaf1;
+  --ivory-muted:#e4dad0;
+
+  --red-light:#ff5969;
+  --red:#d3233a;
+  --red-dark:#8c1022;
+
+  --wine:#530713;
+  --wine-dark:#2b0309;
+  --wine-deep:#160104;
+
+  --black:#050505;
+  --black-soft:#0b090a;
+
+  --graphite:#171316;
+  --graphite-light:#242024;
+
+  --shadow:rgba(0,0,0,.78);
 }
 
 *{
@@ -30,7 +34,7 @@
 body{
   margin:0;
   background:transparent;
-  color:var(--ink);
+  color:var(--white);
   font-family:'Oswald', Arial, sans-serif;
   overflow:hidden;
 }
@@ -48,73 +52,64 @@ body{
 
   padding:15px 17px 17px;
 
-  border:3px solid var(--black);
-  border-radius:4px;
+  border:2px solid #791323;
+  border-radius:8px;
 
   overflow:hidden;
   isolation:isolate;
 
   background:
-    /* Mancha clara superior */
-    radial-gradient(
-      ellipse at 17% 10%,
-      rgba(255,255,255,.76),
-      transparent 28%
-    ),
-
-    /* Mancha envejecida inferior */
-    radial-gradient(
-      ellipse at 86% 88%,
-      rgba(73,59,48,.12),
-      transparent 32%
-    ),
-
-    /* Desgaste lateral */
-    radial-gradient(
-      ellipse at 100% 32%,
-      rgba(92,75,61,.07),
-      transparent 24%
-    ),
-
-    /* Fibras horizontales */
-    repeating-linear-gradient(
-      0deg,
-      rgba(20,17,14,.022) 0,
-      rgba(20,17,14,.022) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-
-    /* Arañazos diagonales */
+    /* Textura diagonal desgastada */
     repeating-linear-gradient(
       112deg,
       transparent 0,
-      transparent 10px,
-      rgba(0,0,0,.018) 11px,
-      transparent 12px
+      transparent 8px,
+      rgba(255,255,255,.018) 9px,
+      transparent 10px
     ),
 
-    /* Papel envejecido */
+    /* Marcas cruzadas */
+    repeating-linear-gradient(
+      18deg,
+      transparent 0,
+      transparent 14px,
+      rgba(255,255,255,.012) 15px,
+      transparent 16px
+    ),
+
+    /* Resplandor superior */
+    radial-gradient(
+      circle at 18% 0%,
+      rgba(218,34,55,.25),
+      transparent 39%
+    ),
+
+    /* Resplandor carmesí inferior */
+    radial-gradient(
+      circle at 88% 100%,
+      rgba(116,8,25,.28),
+      transparent 45%
+    ),
+
+    /* Fondo metálico principal */
     linear-gradient(
-      145deg,
-      #fffdf7 0%,
-      #eee7da 27%,
-      #d9cdbc 55%,
-      #f1eae0 78%,
-      #c5b6a3 100%
+      150deg,
+      #21181b 0%,
+      #100d0f 28%,
+      #070607 58%,
+      #0c0809 78%,
+      #18070b 100%
     );
 
   box-shadow:
-    0 0 0 2px rgba(244,239,229,.96),
-    0 0 0 6px rgba(4,4,4,.98),
-    0 0 0 8px rgba(82,74,66,.70),
-
-    0 13px 34px rgba(0,0,0,.76),
-
-    inset 0 2px 0 rgba(255,255,255,.90),
-    inset 0 -20px 30px rgba(66,53,43,.16),
-    inset 13px 0 24px rgba(255,255,255,.14),
-    inset -13px 0 24px rgba(66,53,43,.12);
+    0 0 0 1px rgba(255,77,92,.16),
+    0 0 0 4px rgba(28,1,6,.96),
+    0 0 0 6px rgba(105,9,23,.52),
+    0 0 16px rgba(214,30,52,.38),
+    0 0 30px rgba(104,6,20,.26),
+    0 13px 34px rgba(0,0,0,.80),
+    inset 0 2px 0 rgba(255,255,255,.08),
+    inset 0 -20px 32px rgba(0,0,0,.72);
 
   transition:
     opacity .28s ease,
@@ -153,77 +148,77 @@ body{
   inset:6px;
   z-index:4;
 
-  border:1px solid rgba(9,8,7,.82);
-  border-radius:1px;
+  border:1px solid rgba(200,37,55,.43);
+  border-radius:3px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,255,255,.14),
-      transparent 15%,
-      transparent 85%,
-      rgba(0,0,0,.04)
+      rgba(255,255,255,.035),
+      transparent 16%,
+      transparent 84%,
+      rgba(255,255,255,.025)
     );
 
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.42),
-    inset 0 0 16px rgba(0,0,0,.07),
-    0 0 0 1px rgba(76,66,57,.25);
+    inset 0 0 0 1px rgba(0,0,0,.92),
+    inset 0 0 16px rgba(163,14,34,.13),
+    0 0 8px rgba(207,28,48,.17);
 
   pointer-events:none;
 }
 
 /* ==========================================
-   REFLEJO DIAGONAL
+   BARRIDO GENERAL DE LUZ
 ========================================== */
 
 .raffle-widget::after{
   content:"";
 
   position:absolute;
-  top:-75%;
-  left:-68%;
+  top:-72%;
+  left:-65%;
   z-index:2;
 
   width:38%;
-  height:250%;
+  height:245%;
 
   background:
     linear-gradient(
       110deg,
       transparent 0%,
-      rgba(255,255,255,.03) 31%,
-      rgba(255,255,255,.27) 47%,
-      rgba(255,255,255,.50) 51%,
-      rgba(255,255,255,.10) 59%,
+      rgba(255,30,52,.02) 30%,
+      rgba(255,59,76,.14) 44%,
+      rgba(255,238,235,.16) 50%,
+      rgba(198,21,43,.08) 59%,
       transparent 72%
     );
 
   transform:rotate(17deg);
 
-  animation:rafflePaperShine 7.5s linear infinite;
+  animation:raffleCrimsonShine 7s linear infinite;
 
   pointer-events:none;
 }
 
-@keyframes rafflePaperShine{
+@keyframes raffleCrimsonShine{
   0%{
-    left:-68%;
+    left:-65%;
     opacity:0;
   }
 
-  9%{
+  8%{
     opacity:1;
   }
 
   42%{
-    left:142%;
-    opacity:.72;
+    left:140%;
+    opacity:1;
   }
 
   52%,
   100%{
-    left:142%;
+    left:140%;
     opacity:0;
   }
 }
@@ -258,65 +253,67 @@ body{
 
   padding:5px 17px 6px;
 
-  border:2px solid var(--ink);
-  border-radius:1px;
+  border:1px solid rgba(214,42,60,.92);
+  border-radius:3px;
 
   overflow:hidden;
 
   background:
     repeating-linear-gradient(
-      110deg,
+      112deg,
       transparent 0,
       transparent 8px,
-      rgba(0,0,0,.027) 9px,
+      rgba(255,255,255,.026) 9px,
       transparent 10px
     ),
-
     radial-gradient(
-      ellipse at 23% 0%,
-      rgba(255,255,255,.78),
-      transparent 43%
+      circle at 30% 0%,
+      rgba(255,255,255,.10),
+      transparent 45%
     ),
-
     linear-gradient(
       180deg,
-      #fffdf7 0%,
-      #ebe3d7 50%,
-      #cbbda9 100%
+      #29181c 0%,
+      #0c090a 49%,
+      #1d060b 100%
     );
 
   font-family:'Oswald', Arial, sans-serif;
   font-size:13px;
   font-weight:700;
   line-height:1.1;
-  letter-spacing:.085em;
+  letter-spacing:.08em;
 
-  color:var(--ink);
+  color:var(--ivory);
 
   text-transform:uppercase;
 
   box-shadow:
-    2px 3px 0 var(--ink),
-    4px 5px 0 rgba(70,61,53,.30),
-    0 4px 9px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.95),
+    0 0 0 3px rgba(83,5,17,.45),
+    0 0 10px rgba(207,27,49,.35),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -7px 12px rgba(62,0,9,.38);
 
-    inset 0 1px 0 rgba(255,255,255,.94),
-    inset 0 -6px 11px rgba(69,53,41,.12);
-
-  -webkit-text-stroke:.25px var(--ink);
+  -webkit-text-stroke:.35px rgba(27,0,4,.95);
 
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.72),
-    2px 2px 0 rgba(94,81,69,.18);
+    -1px -1px 0 #190104,
+     1px -1px 0 #190104,
+    -1px  1px 0 #190104,
+     1px  1px 0 #190104,
+     0 2px 0 #650b17,
+     0 0 5px rgba(255,255,255,.28),
+     0 0 8px rgba(208,30,51,.26);
 }
 
-/* Línea de tinta dentro del badge */
+/* Línea brillante del badge */
 .raffle-badge::after{
   content:"";
 
   position:absolute;
-  left:9%;
-  right:9%;
+  left:10%;
+  right:10%;
   bottom:0;
 
   height:1px;
@@ -325,9 +322,12 @@ body{
     linear-gradient(
       90deg,
       transparent,
-      rgba(9,8,7,.78),
+      rgba(239,52,73,.72),
       transparent
     );
+
+  box-shadow:
+    0 0 6px rgba(230,40,61,.52);
 }
 
 /* ==========================================
@@ -337,69 +337,64 @@ body{
 .raffle-title{
   position:relative;
 
-  margin:11px 0 0;
+  margin:10px 0 0;
   padding:7px 13px 8px;
 
-  border:2px solid var(--ink);
-  border-radius:1px;
+  border:1px solid rgba(182,29,47,.78);
+  border-radius:3px;
 
   background:
     repeating-linear-gradient(
-      108deg,
+      105deg,
       transparent 0,
-      transparent 12px,
-      rgba(0,0,0,.025) 13px,
-      transparent 14px
+      transparent 13px,
+      rgba(255,255,255,.032) 14px,
+      transparent 15px
     ),
-
-    radial-gradient(
-      ellipse at 18% 15%,
-      rgba(255,255,255,.76),
-      transparent 34%
-    ),
-
     linear-gradient(
       180deg,
-      #fffef8 0%,
-      #eee7da 48%,
-      #d7cbbb 100%
+      #1e1618 0%,
+      #080708 48%,
+      #130609 100%
     );
 
   font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
   font-size:34px;
   font-weight:400;
   line-height:.95;
-  letter-spacing:.055em;
+  letter-spacing:.06em;
 
-  color:var(--ink);
+  color:var(--ivory);
 
-  text-align:center;
   text-transform:uppercase;
 
   box-shadow:
-    3px 4px 0 var(--ink),
-    6px 7px 0 rgba(73,64,56,.40),
-    0 0 0 1px rgba(255,255,255,.74),
+    0 0 0 1px rgba(0,0,0,.92),
+    0 0 0 3px rgba(89,5,17,.46),
+    0 0 12px rgba(194,24,44,.30),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 -8px 18px rgba(91,3,14,.32);
 
-    inset 0 1px 0 rgba(255,255,255,.94),
-    inset 0 -7px 13px rgba(62,49,39,.12);
-
-  -webkit-text-stroke:.65px var(--ink);
+  -webkit-text-stroke:.55px rgba(31,0,5,.96);
 
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.68),
-    2px 2px 0 rgba(255,255,255,.30),
-    4px 4px 0 rgba(49,43,38,.22);
+    -1px -1px 0 #180104,
+     1px -1px 0 #180104,
+    -1px  1px 0 #180104,
+     1px  1px 0 #180104,
+     0 3px 0 #5f0916,
+     0 0 4px rgba(255,255,255,.42),
+     0 0 10px rgba(207,31,50,.30);
 }
 
-/* Línea decorativa debajo del título */
+/* Línea carmesí debajo del título */
 .raffle-title::after{
   content:"";
 
   position:absolute;
   left:8%;
   right:8%;
-  bottom:-7px;
+  bottom:-5px;
 
   height:2px;
 
@@ -407,14 +402,14 @@ body{
     linear-gradient(
       90deg,
       transparent,
-      rgba(8,7,6,.55) 12%,
-      var(--ink) 50%,
-      rgba(8,7,6,.55) 88%,
+      #76101e 12%,
+      #ef3449 50%,
+      #76101e 88%,
       transparent
     );
 
   box-shadow:
-    0 1px 0 rgba(255,255,255,.60);
+    0 0 7px rgba(230,40,61,.62);
 }
 
 /* ==========================================
@@ -431,7 +426,7 @@ body{
   overflow:visible;
 }
 
-/* Conserva un máximo visible de cinco nombres */
+/* Solo muestra los primeros cinco */
 .raffle-names .raffle-name-item:nth-child(n + 6){
   display:none;
 }
@@ -452,98 +447,112 @@ body{
 
   padding:8px 11px 8px 15px;
 
-  border:2px solid var(--ink);
-  border-radius:2px;
+  border:1px solid rgba(148,24,39,.92);
+  border-radius:4px;
 
   overflow:hidden;
   isolation:isolate;
 
   background:
-    /* Textura impresa */
+    /* Barra roja lateral */
+    linear-gradient(
+      90deg,
+      #ff5969 0,
+      #d3233a 3px,
+      #8c1022 7px,
+      transparent 7px
+    ),
+
+    /* Textura desgastada */
     repeating-linear-gradient(
-      113deg,
+      116deg,
       transparent 0,
-      transparent 11px,
-      rgba(0,0,0,.022) 12px,
-      transparent 13px
+      transparent 10px,
+      rgba(255,255,255,.020) 11px,
+      transparent 12px
     ),
 
     /* Luz superior */
     radial-gradient(
-      ellipse at 18% 0%,
-      rgba(255,255,255,.72),
-      transparent 37%
+      circle at 23% 0%,
+      rgba(255,255,255,.075),
+      transparent 44%
     ),
 
-    /* Papel */
+    /* Fondo */
     linear-gradient(
-      100deg,
-      #fffdf7 0%,
-      #ebe3d6 48%,
-      #d1c3b1 100%
+      105deg,
+      #23191c 0%,
+      #0d0b0c 47%,
+      #18080c 100%
     );
 
   box-shadow:
-    2px 3px 0 var(--ink),
-    4px 5px 0 rgba(70,61,53,.30),
-    0 5px 13px rgba(0,0,0,.34),
-
-    inset 0 1px 0 rgba(255,255,255,.92),
-    inset 0 -8px 15px rgba(70,55,43,.13);
+    0 0 0 1px rgba(0,0,0,.96),
+    inset 7px 0 10px rgba(213,35,58,.12),
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 -10px 20px rgba(0,0,0,.50),
+    0 5px 14px rgba(0,0,0,.62),
+    0 0 9px rgba(182,18,39,.17);
 
   transition:
     transform .22s ease,
     filter .22s ease,
-    box-shadow .22s ease,
-    background .22s ease;
+    border-color .22s ease,
+    box-shadow .22s ease;
 }
 
-/* ==========================================
-   BARRA LATERAL DE TINTA
-========================================== */
-
+/* Reflejo sobre cada participante */
 .raffle-name-item::before{
   content:"";
 
   position:absolute;
   top:0;
-  bottom:0;
-  left:0;
-  z-index:2;
+  left:-110%;
+  z-index:1;
 
-  width:7px;
+  width:65%;
   height:100%;
 
   background:
     linear-gradient(
-      180deg,
-      #302b27 0%,
-      #090807 25%,
-      #000000 70%,
-      #39322c 100%
+      105deg,
+      transparent 0%,
+      rgba(255,255,255,.020) 24%,
+      rgba(255,255,255,.10) 47%,
+      rgba(218,30,51,.09) 57%,
+      transparent 76%
     );
 
-  border-right:1px solid rgba(255,255,255,.30);
+  transform:skewX(-19deg);
 
-  box-shadow:
-    2px 0 0 rgba(0,0,0,.23),
-    3px 0 7px rgba(0,0,0,.24);
+  animation:raffleItemCrimsonShine 5.6s ease-in-out infinite;
 
-  animation:none;
-  transform:none;
+  pointer-events:none;
 }
 
-/* ==========================================
-   SÍMBOLO DE PARTICIPACIÓN
-========================================== */
+@keyframes raffleItemCrimsonShine{
+  0%{
+    left:-110%;
+  }
 
+  38%{
+    left:145%;
+  }
+
+  100%{
+    left:145%;
+  }
+}
+
+/* Símbolo de participación */
 .raffle-name-item::after{
   content:"$";
 
   position:absolute;
   top:50%;
   left:13px;
-  z-index:3;
+  z-index:2;
 
   transform:translateY(-50%);
 
@@ -551,132 +560,39 @@ body{
   font-size:19px;
   line-height:1;
 
-  color:var(--paper-light);
+  color:var(--ivory);
 
   pointer-events:none;
 
-  -webkit-text-stroke:.65px var(--black);
+  -webkit-text-stroke:.65px rgba(29,0,5,.97);
 
   text-shadow:
-    -1px -1px 0 var(--black),
-     1px -1px 0 var(--black),
-    -1px  1px 0 var(--black),
-     1px  1px 0 var(--black),
-     0 2px 0 #4b433c,
-     0 0 4px rgba(255,255,255,.32);
+    -1px -1px 0 #190104,
+     1px -1px 0 #190104,
+    -1px  1px 0 #190104,
+     1px  1px 0 #190104,
+     0 2px 0 #750c1c,
+     0 0 5px rgba(255,255,255,.34),
+     0 0 9px rgba(225,40,61,.42);
 }
 
-/* ==========================================
-   REFLEJO ANIMADO DE CADA FILA
-========================================== */
-
-.raffle-name-item{
-  background-color:var(--paper);
-}
-
-/*
-   Se crea el reflejo mediante background-position para no ocupar
-   los pseudo-elementos usados por la barra y el símbolo.
-*/
-.raffle-name-item{
-  background-image:
-    linear-gradient(
-      105deg,
-      transparent 0%,
-      transparent 33%,
-      rgba(255,255,255,.50) 48%,
-      rgba(255,255,255,.12) 56%,
-      transparent 69%
-    ),
-
-    repeating-linear-gradient(
-      113deg,
-      transparent 0,
-      transparent 11px,
-      rgba(0,0,0,.022) 12px,
-      transparent 13px
-    ),
-
-    radial-gradient(
-      ellipse at 18% 0%,
-      rgba(255,255,255,.72),
-      transparent 37%
-    ),
-
-    linear-gradient(
-      100deg,
-      #fffdf7 0%,
-      #ebe3d6 48%,
-      #d1c3b1 100%
-    );
-
-  background-size:
-    54% 100%,
-    auto,
-    auto,
-    auto;
-
-  background-repeat:
-    no-repeat,
-    repeat,
-    no-repeat,
-    no-repeat;
-
-  background-position:
-    -130% 0,
-    0 0,
-    0 0,
-    0 0;
-
-  animation:raffleItemPaperShine 6.3s ease-in-out infinite;
-}
-
-@keyframes raffleItemPaperShine{
-  0%{
-    background-position:
-      -130% 0,
-      0 0,
-      0 0,
-      0 0;
-  }
-
-  38%{
-    background-position:
-      230% 0,
-      0 0,
-      0 0,
-      0 0;
-  }
-
-  100%{
-    background-position:
-      230% 0,
-      0 0,
-      0 0,
-      0 0;
-  }
-}
-
-/* ==========================================
-   INTERACCIÓN
-========================================== */
-
+/* Hover */
 .raffle-name-item:hover{
   transform:
     translateY(-2px)
-    translateX(-1px);
+    scale(1.006);
 
-  filter:
-    brightness(1.04)
-    contrast(1.03);
+  filter:brightness(1.08);
+
+  border-color:#ef4054;
 
   box-shadow:
-    3px 4px 0 var(--ink),
-    6px 7px 0 rgba(70,61,53,.32),
-    0 8px 16px rgba(0,0,0,.40),
-
-    inset 0 1px 0 rgba(255,255,255,.96),
-    inset 0 -8px 15px rgba(70,55,43,.14);
+    0 0 0 1px rgba(0,0,0,.96),
+    inset 7px 0 11px rgba(224,37,61,.18),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -10px 20px rgba(0,0,0,.52),
+    0 7px 17px rgba(0,0,0,.70),
+    0 0 15px rgba(220,32,53,.31);
 }
 
 /* ==========================================
@@ -685,7 +601,7 @@ body{
 
 .raffle-name{
   position:relative;
-  z-index:4;
+  z-index:3;
 
   flex:1 1 auto;
   min-width:0;
@@ -698,7 +614,7 @@ body{
   line-height:1.05;
   letter-spacing:.03em;
 
-  color:var(--ink);
+  color:var(--ivory);
 
   text-transform:uppercase;
 
@@ -706,78 +622,105 @@ body{
   overflow-wrap:anywhere;
   word-break:break-word;
 
-  -webkit-text-stroke:.25px var(--ink);
+  -webkit-text-stroke:.35px rgba(24,0,4,.96);
 
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.70),
-    2px 2px 0 rgba(94,81,69,.18);
+    -1px -1px 0 #170104,
+     1px -1px 0 #170104,
+    -1px  1px 0 #170104,
+     1px  1px 0 #170104,
+     0 2px 0 #520712,
+     0 0 5px rgba(255,255,255,.22);
 }
 
-/* Nombres inferiores ligeramente más pequeños */
+/* Participantes inferiores ligeramente más pequeños */
 .raffle-name-item:nth-child(n + 4) .raffle-name{
   font-size:16px;
 }
 
 /* ==========================================
-   CONTENEDOR DE TICKETS
+   CANTIDAD DE TICKETS
 ========================================== */
 
 .raffle-tickets{
   position:relative;
-  z-index:4;
+  z-index:3;
 
   flex:0 0 auto;
 
-  padding:5px 9px;
+  padding:5px 10px 6px;
 
-  border:2px solid var(--ink);
-  border-radius:1px;
+  border:1px solid rgba(203,38,56,.88);
+  border-radius:3px;
 
   background:
     repeating-linear-gradient(
-      110deg,
+      112deg,
       transparent 0,
       transparent 8px,
-      rgba(255,255,255,.025) 9px,
+      rgba(255,255,255,.022) 9px,
       transparent 10px
     ),
-
     linear-gradient(
-      100deg,
-      #37312c 0%,
-      #171412 40%,
-      #050504 76%,
-      #1e1a17 100%
+      180deg,
+      #241519 0%,
+      #090708 52%,
+      #180509 100%
     );
 
-  /*
-     Se conserva el tamaño original en cero para no alterar
-     la forma en la que el widget maneja este contenido.
-  */
-  font-size:0;
-  font-weight:0;
-  line-height:1;
-
-  color:var(--paper-light);
-
+  color:var(--ivory);
   white-space:nowrap;
 
   box-shadow:
-    2px 3px 0 rgba(72,63,54,.38),
-    0 4px 8px rgba(0,0,0,.30),
-
-    inset 0 1px 0 rgba(255,255,255,.16),
-    inset 0 -5px 9px rgba(0,0,0,.36);
-
-  -webkit-text-stroke:.4px var(--black);
+    0 0 0 1px rgba(0,0,0,.94),
+    0 0 0 2px rgba(89,5,17,.38),
+    0 0 8px rgba(207,27,49,.24),
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 -5px 10px rgba(58,0,9,.35);
 
   text-shadow:
-    -1px -1px 0 var(--black),
-     1px -1px 0 var(--black),
-    -1px  1px 0 var(--black),
-     1px  1px 0 var(--black),
-     0 0 5px rgba(255,255,255,.28);
+    -1px -1px 0 #180104,
+     1px -1px 0 #180104,
+    -1px  1px 0 #180104,
+     1px  1px 0 #180104,
+     0 0 5px rgba(255,255,255,.25);
 }
+
+/*
+   Mantiene oculto cualquier texto original
+   y permite mostrar el número mediante ::after.
+*/
+.raffle-tickets{
+  font-size:0;
+  line-height:1;
+}
+
+/*
+   En caso de que el valor esté almacenado
+   en data-tickets:
+   <span class="raffle-tickets" data-tickets="25"></span>
+*/
+.raffle-tickets::after{
+  content:attr(data-tickets);
+
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:19px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:.055em;
+
+  color:var(--ivory);
+
+  -webkit-text-stroke:.3px rgba(24,0,4,.96);
+}
+
+/*
+   Si el número ya se imprime directamente dentro
+   de .raffle-tickets y no utilizas data-tickets,
+   elimina las dos reglas anteriores:
+   .raffle-tickets { font-size:0; }
+   .raffle-tickets::after { ... }
+*/
 
 /* ==========================================
    PANTALLA DEL GANADOR
@@ -798,40 +741,30 @@ body{
   overflow:hidden;
 
   background:
-    /* Iluminación central */
+    /* Centro iluminado */
     radial-gradient(
       circle at center,
-      rgba(255,255,255,.15) 0%,
-      rgba(81,70,60,.12) 28%,
-      rgba(15,13,12,.90) 63%,
-      rgba(2,2,2,.99) 86%
+      rgba(236,48,68,.27) 0%,
+      rgba(116,10,27,.20) 30%,
+      rgba(19,4,7,.84) 62%,
+      rgba(3,3,3,.98) 86%
     ),
 
-    /* Rayas de tinta */
+    /* Textura */
     repeating-linear-gradient(
       112deg,
       transparent 0,
-      transparent 9px,
-      rgba(255,255,255,.016) 10px,
-      transparent 11px
-    ),
-
-    /* Grano horizontal */
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,.012) 0,
-      rgba(255,255,255,.012) 1px,
-      transparent 1px,
-      transparent 4px
+      transparent 8px,
+      rgba(255,255,255,.017) 9px,
+      transparent 10px
     ),
 
     /* Fondo oscuro */
     linear-gradient(
       150deg,
-      #2a2521 0%,
-      #100e0d 38%,
-      #030303 72%,
-      #1b1714 100%
+      rgba(31,15,19,.98),
+      rgba(5,5,5,.98) 55%,
+      rgba(29,4,10,.98)
     );
 
   opacity:0;
@@ -843,21 +776,21 @@ body{
     transform .25s ease;
 }
 
-/* Marco interior de la pantalla ganadora */
+/* Viñeta interior */
 .raffle-winner-screen::after{
   content:"";
 
   position:absolute;
-  inset:8px;
+  inset:7px;
   z-index:1;
 
-  border:1px solid rgba(244,239,229,.54);
-  border-radius:1px;
+  border:1px solid rgba(220,43,62,.50);
+  border-radius:3px;
 
   box-shadow:
     inset 0 0 0 1px rgba(0,0,0,.92),
-    inset 0 0 32px rgba(255,255,255,.035),
-    0 0 8px rgba(255,255,255,.12);
+    inset 0 0 35px rgba(196,19,43,.18),
+    0 0 14px rgba(207,28,48,.23);
 
   pointer-events:none;
 }
@@ -867,39 +800,39 @@ body{
   content:"✦  $  ✦";
 
   position:absolute;
-  top:24%;
+  top:23%;
   left:50%;
   z-index:3;
 
   transform:translateX(-50%);
 
   font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:30px;
+  font-size:29px;
   line-height:1;
-  letter-spacing:.11em;
+  letter-spacing:.10em;
 
-  color:var(--paper-light);
+  color:var(--ivory);
 
   white-space:nowrap;
 
-  -webkit-text-stroke:.7px var(--black);
+  -webkit-text-stroke:.65px rgba(31,0,5,.98);
 
   text-shadow:
-    -1px -1px 0 var(--black),
-     1px -1px 0 var(--black),
-    -1px  1px 0 var(--black),
-     1px  1px 0 var(--black),
+    -1px -1px 0 #1c0105,
+     1px -1px 0 #1c0105,
+    -1px  1px 0 #1c0105,
+     1px  1px 0 #1c0105,
+     0 3px 0 #790d1c,
+     0 0 6px rgba(255,255,255,.46),
+     0 0 14px rgba(239,51,72,.72),
+     0 0 27px rgba(177,15,39,.52);
 
-     0 3px 0 #4b433c,
-     0 0 6px rgba(255,255,255,.55),
-     0 0 14px rgba(255,255,255,.28);
-
-  animation:winnerIvorySparkle 1.15s ease-in-out infinite alternate;
+  animation:winnerCrimsonSparkle 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes winnerIvorySparkle{
+@keyframes winnerCrimsonSparkle{
   from{
-    opacity:.55;
+    opacity:.60;
 
     transform:
       translateX(-50%)
@@ -917,7 +850,7 @@ body{
 
     filter:
       brightness(1.25)
-      drop-shadow(0 0 8px rgba(255,255,255,.32));
+      drop-shadow(0 0 8px rgba(227,42,63,.52));
   }
 }
 
@@ -925,8 +858,6 @@ body{
 .raffle-winner-screen.show{
   opacity:1;
   transform:scale(1);
-
-  animation:winnerScreenInkPulse 1.6s ease-in-out infinite alternate;
 }
 
 /* Estado oculto */
@@ -944,25 +875,25 @@ body{
   position:relative;
   z-index:4;
 
-  color:var(--paper-light);
+  color:var(--ivory);
 
   text-align:center;
   text-transform:uppercase;
 
-  -webkit-text-stroke:.75px var(--black);
+  -webkit-text-stroke:.65px rgba(28,0,5,.98);
 
   text-shadow:
-    -1px -1px 0 var(--black),
-     1px -1px 0 var(--black),
-    -1px  1px 0 var(--black),
-     1px  1px 0 var(--black),
-
-     0 3px 0 #4b433c,
-     0 0 5px rgba(255,255,255,.42),
-     0 0 13px rgba(255,255,255,.20);
+    -1px -1px 0 #180104,
+     1px -1px 0 #180104,
+    -1px  1px 0 #180104,
+     1px  1px 0 #180104,
+     0 3px 0 #6f0b1a,
+     0 0 5px rgba(255,255,255,.38),
+     0 0 13px rgba(235,45,66,.50),
+     0 0 26px rgba(173,14,37,.32);
 }
 
-/* Etiqueta del ganador */
+/* Etiqueta "Winner" */
 .winner-label{
   margin-bottom:10px;
 
@@ -986,10 +917,10 @@ body{
   overflow-wrap:anywhere;
   word-break:break-word;
 
-  animation:winnerIvoryPop .75s ease-in-out infinite alternate;
+  animation:winnerCrimsonPop .75s ease-in-out infinite alternate;
 }
 
-@keyframes winnerIvoryPop{
+@keyframes winnerCrimsonPop{
   from{
     transform:scale(1);
     filter:brightness(1);
@@ -1000,21 +931,28 @@ body{
 
     filter:
       brightness(1.18)
-      drop-shadow(0 0 7px rgba(255,255,255,.26))
-      drop-shadow(4px 4px 0 rgba(77,67,58,.20));
+      drop-shadow(0 0 7px rgba(255,255,255,.30))
+      drop-shadow(0 0 15px rgba(239,52,73,.62));
   }
 }
 
-/* Pulso del fondo al mostrar el ganador */
-@keyframes winnerScreenInkPulse{
+/* ==========================================
+   RESPLANDOR AL MOSTRAR EL GANADOR
+========================================== */
+
+.raffle-winner-screen.show{
+  animation:winnerScreenCrimsonPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes winnerScreenCrimsonPulse{
   from{
     box-shadow:
-      inset 0 0 35px rgba(255,255,255,.025);
+      inset 0 0 35px rgba(159,13,35,.12);
   }
 
   to{
     box-shadow:
-      inset 0 0 65px rgba(255,255,255,.075);
+      inset 0 0 65px rgba(221,35,57,.24);
   }
 }
 
@@ -1093,6 +1031,7 @@ body{
   .raffle-widget,
   .raffle-widget::after,
   .raffle-name-item,
+  .raffle-name-item::before,
   .raffle-winner-screen,
   .raffle-winner-screen::before,
   .raffle-winner-screen.show,
