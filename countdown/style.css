@@ -1,16 +1,26 @@
 /* ==========================================
-   TIMER – BLACK & WHITE JOB THEME
+   TIMER – VINTAGE IVORY JOB THEME
+   Adaptado al MVP y la GOALBAR
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
+  --paper:#f4efe5;
+  --paper-light:#fffdf7;
+  --paper-soft:#e8e0d3;
+  --paper-dark:#c9bca9;
+
+  --ink:#090807;
+  --ink-soft:#171513;
+  --charcoal:#25211e;
+  --graphite:#403a34;
+
+  --taupe:#807365;
+  --shadow-brown:#4a4037;
+
   --white:#ffffff;
-  --white-soft:#f2f2f2;
-  --silver:#c7c7c7;
-  --gray:#4d4d4d;
-  --gray-dark:#202020;
-  --black:#030303;
+  --black:#020202;
 }
 
 *{
@@ -20,235 +30,402 @@
 body{
   margin:0;
   background:transparent;
-  color:var(--white);
+  color:var(--ink);
   font-family:'Oswald', Arial, sans-serif;
 }
 
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
 .timer-widget{
   position:relative;
+
   width:280px;
+  max-width:100%;
+
   padding:15px 15px 17px;
-  border-radius:6px;
+
+  border:3px solid var(--black);
+  border-radius:4px;
+
   overflow:hidden;
+  isolation:isolate;
 
   background:
+    /* Mancha superior de papel */
     radial-gradient(
-      circle at 18% 12%,
-      rgba(255,255,255,.14),
+      ellipse at 18% 10%,
+      rgba(255,255,255,.74),
       transparent 28%
     ),
+
+    /* Mancha inferior envejecida */
     radial-gradient(
-      circle at 82% 82%,
-      rgba(255,255,255,.06),
+      ellipse at 84% 86%,
+      rgba(75,61,50,.11),
       transparent 33%
     ),
+
+    /* Fibras horizontales */
     repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.017) 0,
-      rgba(255,255,255,.017) 1px,
+      0deg,
+      rgba(20,17,14,.022) 0,
+      rgba(20,17,14,.022) 1px,
       transparent 1px,
-      transparent 5px
+      transparent 4px
     ),
+
+    /* Arañazos diagonales */
+    repeating-linear-gradient(
+      112deg,
+      transparent 0,
+      transparent 10px,
+      rgba(0,0,0,.018) 11px,
+      transparent 12px
+    ),
+
+    /* Papel envejecido */
     linear-gradient(
       145deg,
-      #252525 0%,
-      #111111 32%,
-      #050505 60%,
-      #161616 82%,
-      #020202 100%
+      #fffdf7 0%,
+      #eee7da 28%,
+      #d9cdbc 56%,
+      #f0e9df 79%,
+      #c6b8a5 100%
     );
 
-  border:3px solid #050505;
-
   box-shadow:
-    0 0 0 2px rgba(255,255,255,.88),
-    0 0 0 4px rgba(72,72,72,.92),
-    0 0 13px rgba(255,255,255,.30),
-    0 0 24px rgba(255,255,255,.09),
-    0 10px 26px rgba(0,0,0,.76),
-    inset 0 2px 0 rgba(255,255,255,.23),
-    inset 0 -15px 26px rgba(0,0,0,.68);
+    0 0 0 2px rgba(244,239,229,.96),
+    0 0 0 6px rgba(4,4,4,.98),
+    0 0 0 8px rgba(82,74,66,.70),
+
+    0 11px 28px rgba(0,0,0,.74),
+
+    inset 0 2px 0 rgba(255,255,255,.90),
+    inset 0 -18px 27px rgba(66,53,43,.16),
+    inset 10px 0 20px rgba(255,255,255,.14),
+    inset -10px 0 20px rgba(66,53,43,.12);
 }
+
+/* ==========================================
+   MARCO INTERIOR
+========================================== */
 
 .timer-widget::before{
   content:"";
-  position:absolute;
-  inset:5px;
-  border-radius:2px;
 
-  border:1px solid rgba(255,255,255,.50);
+  position:absolute;
+  inset:6px;
+  z-index:5;
+
+  border:1px solid rgba(9,8,7,.82);
+  border-radius:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.14),
+      transparent 16%,
+      transparent 84%,
+      rgba(0,0,0,.04)
+    );
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.90),
-    inset 0 0 11px rgba(255,255,255,.04),
-    0 0 7px rgba(255,255,255,.17);
+    inset 0 0 0 1px rgba(255,255,255,.43),
+    inset 0 0 13px rgba(0,0,0,.07),
+    0 0 0 1px rgba(76,66,57,.25);
 
   pointer-events:none;
-  z-index:5;
 }
+
+/* ==========================================
+   REFLEJO DIAGONAL
+========================================== */
 
 .timer-widget::after{
   content:"";
+
   position:absolute;
-  top:-70%;
+  top:-75%;
   left:-70%;
-  width:44%;
-  height:240%;
+  z-index:2;
+
+  width:42%;
+  height:250%;
 
   background:
     linear-gradient(
       110deg,
       transparent 0%,
-      rgba(255,255,255,.02) 35%,
-      rgba(255,255,255,.23) 48%,
-      rgba(255,255,255,.04) 58%,
+      rgba(255,255,255,.03) 31%,
+      rgba(255,255,255,.28) 47%,
+      rgba(255,255,255,.52) 51%,
+      rgba(255,255,255,.10) 59%,
       transparent 72%
     );
 
   transform:rotate(17deg);
-  animation:timerWhiteShine 5.5s linear infinite;
+
+  animation:timerPaperShine 7.2s linear infinite;
+
   pointer-events:none;
-  z-index:2;
 }
 
-@keyframes timerWhiteShine{
+@keyframes timerPaperShine{
   0%{
     left:-70%;
+    opacity:0;
   }
 
-  45%{
-    left:140%;
+  9%{
+    opacity:1;
   }
 
+  42%{
+    left:145%;
+    opacity:.72;
+  }
+
+  52%,
   100%{
-    left:140%;
+    left:145%;
+    opacity:0;
   }
 }
+
+/* ==========================================
+   TÍTULO
+========================================== */
 
 .timer-title{
   position:relative;
   z-index:6;
-  margin-bottom:11px;
+
+  margin:0 0 14px;
+  padding:7px 11px 8px;
+
+  border:2px solid var(--ink);
+  border-radius:1px;
+
   text-align:center;
 
-  font-family:'Anton', Impact, sans-serif;
-  font-size:26px;
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:29px;
   font-weight:400;
-  line-height:1;
-  letter-spacing:.045em;
-  text-transform:uppercase;
-  color:#ffffff;
+  line-height:.95;
+  letter-spacing:.06em;
 
-  -webkit-text-stroke:1px #050505;
+  color:var(--ink);
+
+  text-transform:uppercase;
+
+  background:
+    /* Textura impresa */
+    repeating-linear-gradient(
+      108deg,
+      transparent 0,
+      transparent 12px,
+      rgba(0,0,0,.025) 13px,
+      transparent 14px
+    ),
+
+    radial-gradient(
+      ellipse at 20% 15%,
+      rgba(255,255,255,.74),
+      transparent 34%
+    ),
+
+    linear-gradient(
+      180deg,
+      #fffef8 0%,
+      #eee7da 48%,
+      #d7cbbb 100%
+    );
+
+  box-shadow:
+    3px 4px 0 var(--ink),
+    6px 7px 0 rgba(73,64,56,.40),
+    0 0 0 1px rgba(255,255,255,.74),
+
+    inset 0 1px 0 rgba(255,255,255,.94),
+    inset 0 -7px 13px rgba(62,49,39,.12);
+
+  -webkit-text-stroke:.65px var(--ink);
 
   text-shadow:
-    -2px -2px 0 #050505,
-     2px -2px 0 #050505,
-    -2px  2px 0 #050505,
-     2px  2px 0 #050505,
-     0 0 4px #ffffff,
-     0 0 9px rgba(255,255,255,.68),
-     0 0 14px rgba(255,255,255,.25),
-     3px 4px 0 #292929;
+    1px 1px 0 rgba(255,255,255,.68),
+    2px 2px 0 rgba(255,255,255,.30),
+    4px 4px 0 rgba(49,43,38,.22);
 }
+
+/* Línea decorativa debajo del título */
+.timer-title::after{
+  content:"";
+
+  position:absolute;
+  left:9%;
+  right:9%;
+  bottom:-7px;
+
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(8,7,6,.55) 12%,
+      var(--ink) 50%,
+      rgba(8,7,6,.55) 88%,
+      transparent
+    );
+
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.60);
+}
+
+/* ==========================================
+   CONTENEDOR DEL RELOJ
+========================================== */
 
 .timer-display{
   position:relative;
   z-index:6;
+
   display:flex;
+  align-items:center;
   justify-content:center;
 }
 
+/* ==========================================
+   CAJA DEL TIEMPO
+========================================== */
+
 .timer-box{
   position:relative;
-  width:182px;
-  height:76px;
-  border-radius:4px;
-  overflow:hidden;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  width:182px;
+  height:76px;
+
+  border:3px solid var(--ink);
+  border-radius:2px;
+
+  overflow:hidden;
+  isolation:isolate;
+
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.17),
-      rgba(255,255,255,.025) 40%,
-      rgba(0,0,0,.46)
+    /* Desgaste sutil */
+    repeating-linear-gradient(
+      112deg,
+      transparent 0,
+      transparent 10px,
+      rgba(0,0,0,.025) 11px,
+      transparent 12px
     ),
+
+    /* Luz superior */
+    radial-gradient(
+      ellipse at 22% 0%,
+      rgba(255,255,255,.88),
+      transparent 42%
+    ),
+
+    /* Papel interior */
     linear-gradient(
       100deg,
-      #3b3b3b 0%,
-      #191919 50%,
-      #050505 100%
+      #fffdf7 0%,
+      #ebe3d6 48%,
+      #ccbda9 100%
     );
 
-  border:3px solid #050505;
-
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.90),
-    0 0 0 3px rgba(70,70,70,.94),
-    0 0 14px rgba(255,255,255,.28),
-    0 7px 18px rgba(0,0,0,.72),
-    inset 0 2px 0 rgba(255,255,255,.24),
-    inset 0 -10px 19px rgba(0,0,0,.60);
+    4px 5px 0 var(--ink),
+    7px 8px 0 rgba(72,63,54,.36),
+    0 8px 18px rgba(0,0,0,.42),
+
+    inset 0 2px 0 rgba(255,255,255,.98),
+    inset 0 -11px 19px rgba(69,53,41,.16);
+
+  transition:
+    transform .25s ease,
+    filter .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
 }
+
+/* ==========================================
+   BARRA LATERAL DE TINTA
+========================================== */
 
 .timer-box::before{
   content:"";
+
   position:absolute;
-  left:0;
   top:0;
   bottom:0;
-  width:8px;
+  left:0;
+  z-index:3;
+
+  width:9px;
 
   background:
     linear-gradient(
       180deg,
-      #ffffff 0%,
-      #ededed 38%,
-      #969696 70%,
-      #323232 100%
+      #5a5149 0%,
+      #151210 22%,
+      #000000 68%,
+      #4a423b 100%
     );
 
-  box-shadow:
-    1px 0 0 #000000,
-    0 0 10px rgba(255,255,255,.62);
+  border-right:1px solid rgba(255,255,255,.28);
 
-  z-index:2;
+  box-shadow:
+    2px 0 0 rgba(0,0,0,.25),
+    4px 0 8px rgba(0,0,0,.24);
 }
+
+/* ==========================================
+   REFLEJO DE LA CAJA
+========================================== */
 
 .timer-box::after{
   content:"";
+
   position:absolute;
   top:0;
   left:-100%;
+  z-index:1;
+
   width:60%;
   height:100%;
 
   background:
     linear-gradient(
       105deg,
-      transparent,
-      rgba(255,255,255,.03),
-      rgba(255,255,255,.26),
-      rgba(255,255,255,.04),
-      transparent
+      transparent 0%,
+      rgba(255,255,255,.08) 28%,
+      rgba(255,255,255,.58) 49%,
+      rgba(255,255,255,.13) 59%,
+      transparent 76%
     );
 
-  transform:skewX(-18deg);
-  animation:timerBoxWhiteShine 4.8s linear infinite;
+  transform:skewX(-19deg);
+
+  animation:timerBoxPaperShine 6s ease-in-out infinite;
+
   pointer-events:none;
-  z-index:1;
 }
 
-@keyframes timerBoxWhiteShine{
+@keyframes timerBoxPaperShine{
   0%{
     left:-100%;
   }
 
-  42%{
+  38%{
     left:145%;
   }
 
@@ -257,81 +434,262 @@ body{
   }
 }
 
+/* ==========================================
+   VALOR DEL TIMER
+========================================== */
+
 #timer-value{
   position:relative;
-  z-index:3;
+  z-index:4;
 
-  font-family:'Anton', Impact, sans-serif;
-  font-size:40px;
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:44px;
   font-weight:400;
   line-height:1;
-  letter-spacing:.055em;
-  color:#ffffff;
+  letter-spacing:.075em;
 
-  -webkit-text-stroke:1.2px #050505;
+  color:var(--ink);
+
+  white-space:nowrap;
+
+  -webkit-text-stroke:.7px var(--ink);
 
   text-shadow:
-    -2px -2px 0 #050505,
-     2px -2px 0 #050505,
-    -2px  2px 0 #050505,
-     2px  2px 0 #050505,
-     0 0 4px #ffffff,
-     0 0 9px rgba(255,255,255,.78),
-     0 0 14px rgba(255,255,255,.32),
-     4px 5px 0 #292929;
+    1px 1px 0 rgba(255,255,255,.82),
+    2px 2px 0 rgba(98,84,71,.25),
+    4px 4px 0 rgba(49,42,35,.16);
 }
+
+/* Compatibilidad si cada número usa span */
+#timer-value span{
+  display:inline-block;
+}
+
+/* ==========================================
+   TIMER EN FUNCIONAMIENTO
+========================================== */
 
 .timer-box.timer-running{
-  animation:timerWhitePulse 1.15s ease-in-out infinite alternate;
+  animation:timerVintagePulse 1.3s ease-in-out infinite alternate;
 }
 
-@keyframes timerWhitePulse{
+@keyframes timerVintagePulse{
   from{
     transform:scale(1);
 
+    filter:
+      brightness(1)
+      contrast(1);
+
     box-shadow:
-      0 0 0 1px rgba(255,255,255,.82),
-      0 0 0 3px rgba(70,70,70,.90),
-      0 0 12px rgba(255,255,255,.20),
-      0 7px 18px rgba(0,0,0,.68),
-      inset 0 2px 0 rgba(255,255,255,.20);
+      4px 5px 0 var(--ink),
+      7px 8px 0 rgba(72,63,54,.34),
+      0 8px 18px rgba(0,0,0,.40),
+
+      inset 0 2px 0 rgba(255,255,255,.94),
+      inset 0 -11px 19px rgba(69,53,41,.14);
   }
 
   to{
-    transform:scale(1.025);
+    transform:
+      translateY(-1px)
+      scale(1.025);
+
+    filter:
+      brightness(1.06)
+      contrast(1.03);
 
     box-shadow:
-      0 0 0 1px #ffffff,
-      0 0 0 3px rgba(105,105,105,.96),
-      0 0 23px rgba(255,255,255,.54),
-      0 9px 21px rgba(0,0,0,.75),
-      inset 0 2px 0 rgba(255,255,255,.38);
+      5px 6px 0 var(--ink),
+      9px 10px 0 rgba(72,63,54,.38),
+      0 11px 22px rgba(0,0,0,.46),
+
+      inset 0 2px 0 rgba(255,255,255,1),
+      inset 0 -11px 19px rgba(69,53,41,.17);
   }
 }
+
+/* Pulso suave de los números */
+.timer-box.timer-running #timer-value{
+  animation:timerNumberInkPulse 1.3s ease-in-out infinite alternate;
+}
+
+@keyframes timerNumberInkPulse{
+  from{
+    filter:
+      brightness(1)
+      drop-shadow(0 0 0 transparent);
+  }
+
+  to{
+    filter:
+      brightness(1.08)
+      drop-shadow(2px 2px 0 rgba(255,255,255,.34))
+      drop-shadow(3px 3px 0 rgba(55,47,40,.14));
+  }
+}
+
+/* ==========================================
+   TIMER FINALIZADO
+========================================== */
 
 .timer-box.timer-finished{
-  filter:brightness(1.18);
+  background:
+    /* Grano de tinta */
+    repeating-linear-gradient(
+      112deg,
+      transparent 0,
+      transparent 8px,
+      rgba(255,255,255,.025) 9px,
+      transparent 10px
+    ),
+
+    /* Tinta negra */
+    linear-gradient(
+      100deg,
+      #37312c 0%,
+      #171412 38%,
+      #050504 72%,
+      #1e1a17 100%
+    );
+
+  filter:brightness(1.05);
+
+  animation:timerFinishedStamp .72s ease-in-out infinite alternate;
 
   box-shadow:
-    0 0 0 1px #ffffff,
-    0 0 0 3px #707070,
-    0 0 30px rgba(255,255,255,.65),
-    0 9px 23px rgba(0,0,0,.78),
-    inset 0 2px 0 rgba(255,255,255,.48);
+    5px 6px 0 var(--ink),
+    9px 10px 0 rgba(72,63,54,.42),
+    0 12px 24px rgba(0,0,0,.50),
+
+    inset 0 2px 0 rgba(255,255,255,.16),
+    inset 0 -13px 20px rgba(0,0,0,.48);
 }
 
+/* Números invertidos al finalizar */
+.timer-box.timer-finished #timer-value{
+  color:var(--paper-light);
+
+  -webkit-text-stroke:.75px var(--black);
+
+  text-shadow:
+    -1px -1px 0 var(--black),
+     1px -1px 0 var(--black),
+    -1px  1px 0 var(--black),
+     1px  1px 0 var(--black),
+
+     0 3px 0 #4b433c,
+     0 0 5px rgba(255,255,255,.48),
+     0 0 10px rgba(255,255,255,.22);
+}
+
+/* Barra lateral clara al finalizar */
+.timer-box.timer-finished::before{
+  background:
+    linear-gradient(
+      180deg,
+      #fffef8 0%,
+      #e8dfd2 38%,
+      #afa08e 70%,
+      #51483f 100%
+    );
+
+  box-shadow:
+    2px 0 0 rgba(0,0,0,.60),
+    4px 0 9px rgba(255,255,255,.18);
+}
+
+/* Reflejo más rápido cuando termina */
 .timer-box.timer-finished::after{
   animation:
-    timerBoxWhiteShine 1.5s linear infinite,
-    timerFinishedWhiteFlash .7s ease-in-out infinite alternate;
+    timerBoxPaperShine 1.7s linear infinite,
+    timerFinishedPaperFlash .75s ease-in-out infinite alternate;
 }
 
-@keyframes timerFinishedWhiteFlash{
+@keyframes timerFinishedStamp{
   from{
-    opacity:.50;
+    transform:
+      scale(1)
+      rotate(-.25deg);
   }
 
   to{
-    opacity:1;
+    transform:
+      scale(1.035)
+      rotate(.25deg);
+  }
+}
+
+@keyframes timerFinishedPaperFlash{
+  from{
+    opacity:.38;
+  }
+
+  to{
+    opacity:.90;
+  }
+}
+
+/* ==========================================
+   INTERACCIÓN
+========================================== */
+
+.timer-box:hover{
+  transform:
+    translateY(-2px)
+    translateX(-1px);
+
+  filter:
+    brightness(1.04)
+    contrast(1.03);
+
+  box-shadow:
+    5px 6px 0 var(--ink),
+    9px 10px 0 rgba(72,63,54,.38),
+    0 11px 22px rgba(0,0,0,.46),
+
+    inset 0 2px 0 rgba(255,255,255,1),
+    inset 0 -11px 19px rgba(69,53,41,.17);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width:310px){
+  .timer-widget{
+    width:100%;
+    padding:13px 12px 15px;
+  }
+
+  .timer-title{
+    font-size:26px;
+  }
+
+  .timer-box{
+    width:170px;
+    height:70px;
+  }
+
+  #timer-value{
+    font-size:40px;
+  }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+@media (prefers-reduced-motion:reduce){
+  .timer-widget::after,
+  .timer-box::after,
+  .timer-box.timer-running,
+  .timer-box.timer-running #timer-value,
+  .timer-box.timer-finished{
+    animation:none;
+  }
+
+  .timer-box{
+    transition:none;
   }
 }

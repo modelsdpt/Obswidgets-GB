@@ -1,18 +1,29 @@
 /* ==========================================
-   TIMER – PINK & PURPLE DREAM THEME
+   TIMER – DARK CRIMSON GRUNGE THEME
+   Adaptado al estilo del MVP y la GOALBAR
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
   --white:#ffffff;
-  --lavender-light:#ead7ff;
-  --lavender:#c994ff;
-  --purple:#9454d8;
-  --purple-dark:#542277;
-  --pink-light:#ffcaf0;
-  --pink:#ff77c8;
-  --pink-dark:#8e1f69;
+  --ivory:#fffaf1;
+  --ivory-muted:#e4dad0;
+
+  --red-light:#ff5362;
+  --red:#d3233a;
+  --red-dark:#8c1022;
+
+  --wine:#530713;
+  --wine-dark:#2b0309;
+  --wine-deep:#160104;
+
+  --black:#050505;
+  --black-soft:#0b090a;
+  --graphite:#171316;
+  --graphite-light:#242024;
+
+  --shadow:rgba(0,0,0,.78);
 }
 
 *{
@@ -22,233 +33,396 @@
 body{
   margin:0;
   background:transparent;
-  color:#ffffff;
+  color:var(--white);
   font-family:'Oswald', Arial, sans-serif;
 }
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
 
 .timer-widget{
   position:relative;
   width:280px;
+  max-width:100%;
+
   padding:15px 15px 17px;
-  border-radius:16px;
+
+  border:2px solid #791323;
+  border-radius:8px;
+
   overflow:hidden;
+  isolation:isolate;
 
   background:
-    radial-gradient(
-      circle at 18% 12%,
-      rgba(255,255,255,.70),
-      transparent 27%
+    /* Textura diagonal desgastada */
+    repeating-linear-gradient(
+      112deg,
+      transparent 0,
+      transparent 8px,
+      rgba(255,255,255,.019) 9px,
+      transparent 10px
     ),
-    radial-gradient(
-      circle at 82% 82%,
-      rgba(255,89,201,.45),
-      transparent 33%
+
+    /* Líneas irregulares */
+    repeating-linear-gradient(
+      18deg,
+      transparent 0,
+      transparent 14px,
+      rgba(255,255,255,.013) 15px,
+      transparent 16px
     ),
+
+    /* Resplandor superior */
     radial-gradient(
-      circle at 76% 18%,
-      rgba(211,169,255,.48),
-      transparent 24%
+      circle at 22% 0%,
+      rgba(218,34,55,.25),
+      transparent 40%
     ),
+
+    /* Resplandor inferior */
+    radial-gradient(
+      circle at 88% 100%,
+      rgba(116,8,25,.25),
+      transparent 45%
+    ),
+
+    /* Fondo metálico oscuro */
     linear-gradient(
-      145deg,
-      #f3e2ff 0%,
-      #d6a4ff 28%,
-      #c46be2 54%,
-      #ef5db8 78%,
-      #8435a4 100%
+      150deg,
+      #21181b 0%,
+      #100d0f 28%,
+      #070607 58%,
+      #0c0809 78%,
+      #18070b 100%
     );
 
-  border:2px solid #351044;
-
   box-shadow:
-    0 0 0 2px rgba(255,255,255,.80),
-    0 0 0 5px rgba(222,91,203,.72),
-    0 0 16px rgba(255,102,215,.62),
-    0 0 28px rgba(155,71,218,.35),
-    0 10px 27px rgba(48,8,64,.56),
-    inset 0 3px 0 rgba(255,255,255,.72),
-    inset 0 -15px 27px rgba(98,20,119,.26);
+    0 0 0 1px rgba(255,77,92,.16),
+    0 0 0 4px rgba(28,1,6,.96),
+    0 0 0 6px rgba(105,9,23,.52),
+    0 0 16px rgba(214,30,52,.38),
+    0 0 30px rgba(104,6,20,.26),
+    0 11px 28px rgba(0,0,0,.76),
+    inset 0 2px 0 rgba(255,255,255,.08),
+    inset 0 -20px 30px rgba(0,0,0,.70);
 }
+
+/* ==========================================
+   MARCO INTERIOR
+========================================== */
 
 .timer-widget::before{
   content:"";
+
   position:absolute;
   inset:6px;
-  border-radius:11px;
+  z-index:5;
 
-  border:1px solid rgba(255,255,255,.70);
+  border:1px solid rgba(200,37,55,.43);
+  border-radius:3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.035),
+      transparent 16%,
+      transparent 84%,
+      rgba(255,255,255,.025)
+    );
 
   box-shadow:
-    inset 0 0 0 1px rgba(111,33,134,.36),
-    inset 0 0 14px rgba(255,255,255,.10),
-    0 0 8px rgba(255,255,255,.26);
+    inset 0 0 0 1px rgba(0,0,0,.92),
+    inset 0 0 14px rgba(163,14,34,.13),
+    0 0 8px rgba(207,28,48,.17);
 
   pointer-events:none;
-  z-index:5;
 }
+
+/* ==========================================
+   BARRIDO DE LUZ CARMESÍ
+========================================== */
 
 .timer-widget::after{
   content:"";
+
   position:absolute;
-  top:-70%;
+  top:-75%;
   left:-70%;
-  width:46%;
-  height:240%;
+  z-index:2;
+
+  width:42%;
+  height:250%;
 
   background:
     linear-gradient(
       110deg,
-      transparent,
-      rgba(255,255,255,.09),
-      rgba(255,255,255,.60),
-      rgba(255,215,245,.18),
-      transparent
+      transparent 0%,
+      rgba(255,30,52,.02) 30%,
+      rgba(255,59,76,.14) 44%,
+      rgba(255,238,235,.16) 50%,
+      rgba(198,21,43,.08) 59%,
+      transparent 72%
     );
 
   transform:rotate(17deg);
-  animation:timerDreamShine 5.2s linear infinite;
+
+  animation:timerCrimsonSweep 6.8s linear infinite;
+
   pointer-events:none;
-  z-index:2;
 }
 
-@keyframes timerDreamShine{
+@keyframes timerCrimsonSweep{
   0%{
     left:-70%;
+    opacity:0;
   }
 
-  45%{
-    left:140%;
+  8%{
+    opacity:1;
   }
 
+  42%{
+    left:145%;
+    opacity:1;
+  }
+
+  52%,
   100%{
-    left:140%;
+    left:145%;
+    opacity:0;
   }
 }
+
+/* ==========================================
+   TÍTULO
+========================================== */
 
 .timer-title{
   position:relative;
   z-index:6;
-  margin-bottom:11px;
+
+  margin:0 0 13px;
+  padding:6px 10px 7px;
+
   text-align:center;
 
-  font-family:'Anton', Impact, sans-serif;
-  font-size:26px;
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:28px;
   font-weight:400;
-  line-height:1;
-  letter-spacing:.045em;
-  text-transform:uppercase;
-  color:#ffffff;
+  line-height:.95;
+  letter-spacing:.065em;
 
-  -webkit-text-stroke:1px #421153;
+  color:var(--ivory);
+
+  text-transform:uppercase;
+
+  background:
+    repeating-linear-gradient(
+      105deg,
+      transparent 0,
+      transparent 13px,
+      rgba(255,255,255,.032) 14px,
+      transparent 15px
+    ),
+    linear-gradient(
+      180deg,
+      #1e1618 0%,
+      #080708 48%,
+      #130609 100%
+    );
+
+  border:1px solid rgba(182,29,47,.78);
+  border-radius:3px;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.92),
+    0 0 0 3px rgba(89,5,17,.46),
+    0 0 12px rgba(194,24,44,.30),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 -8px 18px rgba(91,3,14,.32);
+
+  -webkit-text-stroke:.5px rgba(31,0,5,.96);
 
   text-shadow:
-    -2px -2px 0 #421153,
-     2px -2px 0 #421153,
-    -2px  2px 0 #421153,
-     2px  2px 0 #421153,
-     0 0 4px #ffffff,
-     0 0 10px rgba(255,255,255,.90),
-     0 0 16px rgba(255,87,201,.82),
-     3px 4px 0 #77248d;
+    -1px -1px 0 #180104,
+     1px -1px 0 #180104,
+    -1px  1px 0 #180104,
+     1px  1px 0 #180104,
+     0 2px 0 #550813,
+     0 0 4px rgba(255,255,255,.40),
+     0 0 9px rgba(207,31,50,.28);
 }
+
+/* Línea decorativa inferior */
+.timer-title::after{
+  content:"";
+
+  position:absolute;
+  left:10%;
+  right:10%;
+  bottom:-5px;
+
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #76101e 12%,
+      #ef3449 50%,
+      #76101e 88%,
+      transparent
+    );
+
+  box-shadow:
+    0 0 7px rgba(230,40,61,.60);
+}
+
+/* ==========================================
+   CONTENEDOR DEL RELOJ
+========================================== */
 
 .timer-display{
   position:relative;
   z-index:6;
+
   display:flex;
+  align-items:center;
   justify-content:center;
 }
 
+/* ==========================================
+   CAJA DEL TIEMPO
+========================================== */
+
 .timer-box{
   position:relative;
-  width:182px;
-  height:76px;
-  border-radius:11px;
-  overflow:hidden;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  width:182px;
+  height:76px;
+
+  border:1px solid #cf293e;
+  border-radius:4px;
+
+  overflow:hidden;
+  isolation:isolate;
+
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.68),
-      rgba(255,255,255,.13) 42%,
-      rgba(90,20,112,.20)
+    /* Textura desgastada */
+    repeating-linear-gradient(
+      116deg,
+      transparent 0,
+      transparent 10px,
+      rgba(255,255,255,.022) 11px,
+      transparent 12px
     ),
+
+    /* Luz superior */
+    radial-gradient(
+      circle at 28% 0%,
+      rgba(255,255,255,.11),
+      transparent 44%
+    ),
+
+    /* Resplandor carmesí inferior */
+    radial-gradient(
+      circle at 85% 100%,
+      rgba(198,19,42,.22),
+      transparent 46%
+    ),
+
+    /* Fondo metálico */
     linear-gradient(
-      100deg,
-      #efd9ff 0%,
-      #d486ef 48%,
-      #f16bc1 100%
+      105deg,
+      #2a171b 0%,
+      #110a0c 44%,
+      #21070d 100%
     );
 
-  border:2px solid #421153;
-
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.82),
-    0 0 0 3px rgba(213,78,192,.54),
-    0 0 16px rgba(255,96,211,.60),
-    0 7px 18px rgba(68,12,88,.42),
-    inset 0 2px 0 rgba(255,255,255,.84),
-    inset 0 -10px 19px rgba(91,23,109,.22);
+    0 0 0 1px rgba(0,0,0,.96),
+    0 0 0 3px rgba(101,7,20,.48),
+    0 0 15px rgba(214,31,53,.38),
+    0 0 25px rgba(125,8,25,.20),
+    0 7px 18px rgba(0,0,0,.62),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -13px 23px rgba(52,0,8,.52);
+
+  transition:
+    transform .25s ease,
+    filter .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
 
+/* Barra carmesí lateral */
 .timer-box::before{
   content:"";
+
   position:absolute;
-  left:0;
   top:0;
   bottom:0;
-  width:8px;
+  left:0;
+  z-index:3;
+
+  width:9px;
 
   background:
     linear-gradient(
       180deg,
-      #ffffff 0%,
-      #ffe0f6 30%,
-      #ff79cc 64%,
-      #a84dde 100%
+      #ff6872 0%,
+      #e32940 25%,
+      #970e23 63%,
+      #4c0610 100%
     );
 
-  box-shadow:
-    1px 0 0 rgba(68,13,88,.75),
-    0 0 11px rgba(255,255,255,.85);
+  border-right:1px solid rgba(255,104,114,.22);
 
-  z-index:2;
+  box-shadow:
+    2px 0 12px rgba(229,40,62,.52),
+    inset -1px 0 0 rgba(0,0,0,.62);
 }
 
+/* Reflejo horizontal */
 .timer-box::after{
   content:"";
+
   position:absolute;
   top:0;
   left:-100%;
-  width:60%;
+  z-index:1;
+
+  width:58%;
   height:100%;
 
   background:
     linear-gradient(
       105deg,
-      transparent,
-      rgba(255,255,255,.12),
-      rgba(255,255,255,.65),
-      rgba(255,215,245,.17),
-      transparent
+      transparent 0%,
+      rgba(255,255,255,.025) 23%,
+      rgba(255,255,255,.12) 47%,
+      rgba(218,30,51,.10) 56%,
+      transparent 75%
     );
 
-  transform:skewX(-18deg);
-  animation:timerBoxDreamShine 4.6s linear infinite;
+  transform:skewX(-20deg);
+
+  animation:timerBoxCrimsonSweep 5.4s ease-in-out infinite;
+
   pointer-events:none;
-  z-index:1;
 }
 
-@keyframes timerBoxDreamShine{
+@keyframes timerBoxCrimsonSweep{
   0%{
     left:-100%;
   }
 
-  42%{
+  38%{
     left:145%;
   }
 
@@ -257,65 +431,205 @@ body{
   }
 }
 
+/* ==========================================
+   VALOR DEL TIMER
+========================================== */
+
 #timer-value{
   position:relative;
-  z-index:3;
+  z-index:4;
 
-  font-family:'Anton', Impact, sans-serif;
-  font-size:40px;
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:43px;
   font-weight:400;
   line-height:1;
-  letter-spacing:.055em;
-  color:#ffffff;
+  letter-spacing:.075em;
 
-  -webkit-text-stroke:1.2px #421153;
+  color:var(--ivory);
+
+  white-space:nowrap;
+
+  -webkit-text-stroke:.7px rgba(30,0,5,.97);
 
   text-shadow:
-    -2px -2px 0 #421153,
-     2px -2px 0 #421153,
-    -2px  2px 0 #421153,
-     2px  2px 0 #421153,
-     0 0 4px #ffffff,
-     0 0 10px rgba(255,255,255,.95),
-     0 0 17px rgba(255,78,198,.85),
-     4px 5px 0 #76248c;
+    -1px -1px 0 #190104,
+     1px -1px 0 #190104,
+    -1px  1px 0 #190104,
+     1px  1px 0 #190104,
+
+     0 3px 0 #6c0917,
+     0 0 5px rgba(255,255,255,.28),
+     0 0 11px rgba(226,37,59,.28);
 }
+
+/* Separadores del tiempo */
+#timer-value span{
+  display:inline-block;
+}
+
+/* ==========================================
+   TIMER ACTIVO
+========================================== */
 
 .timer-box.timer-running{
-  animation:timerDreamPulse 1.15s ease-in-out infinite alternate;
+  animation:timerCrimsonPulse 1.3s ease-in-out infinite alternate;
 }
 
-@keyframes timerDreamPulse{
+@keyframes timerCrimsonPulse{
   from{
     transform:scale(1);
 
+    border-color:#b61d33;
+
     box-shadow:
-      0 0 0 1px rgba(255,255,255,.75),
-      0 0 0 3px rgba(213,78,192,.50),
-      0 0 14px rgba(255,96,211,.45),
-      0 7px 18px rgba(68,12,88,.38),
-      inset 0 2px 0 rgba(255,255,255,.76);
+      0 0 0 1px rgba(0,0,0,.96),
+      0 0 0 3px rgba(88,6,18,.46),
+      0 0 12px rgba(194,24,46,.28),
+      0 7px 18px rgba(0,0,0,.60),
+      inset 0 1px 0 rgba(255,255,255,.10),
+      inset 0 -13px 23px rgba(52,0,8,.48);
   }
 
   to{
-    transform:scale(1.028);
+    transform:scale(1.025);
+
+    border-color:#ef4054;
 
     box-shadow:
-      0 0 0 1px #ffffff,
-      0 0 0 3px rgba(232,91,211,.75),
-      0 0 27px rgba(255,93,214,.84),
-      0 9px 22px rgba(68,12,88,.50),
-      inset 0 2px 0 rgba(255,255,255,.94);
+      0 0 0 1px rgba(0,0,0,.96),
+      0 0 0 3px rgba(130,9,27,.60),
+      0 0 20px rgba(225,39,60,.52),
+      0 0 30px rgba(129,8,25,.28),
+      0 9px 22px rgba(0,0,0,.70),
+      inset 0 1px 0 rgba(255,255,255,.15),
+      inset 0 -13px 23px rgba(52,0,8,.55);
   }
 }
 
+/* Brillo del número mientras corre */
+.timer-box.timer-running #timer-value{
+  animation:timerNumberPulse 1.3s ease-in-out infinite alternate;
+}
+
+@keyframes timerNumberPulse{
+  from{
+    filter:brightness(1);
+  }
+
+  to{
+    filter:
+      brightness(1.12)
+      drop-shadow(0 0 4px rgba(255,255,255,.32))
+      drop-shadow(0 0 8px rgba(221,37,58,.46));
+  }
+}
+
+/* ==========================================
+   TIMER FINALIZADO
+========================================== */
+
 .timer-box.timer-finished{
-  filter:brightness(1.15);
+  border-color:#ff5969;
+
+  filter:brightness(1.10);
+
+  animation:timerFinishedAlert .7s ease-in-out infinite alternate;
 
   box-shadow:
-    0 0 0 1px #ffffff,
-    0 0 0 3px rgba(237,104,216,.86),
-    0 0 32px rgba(255,85,207,.92),
-    0 9px 24px rgba(67,11,87,.54),
-    inset 0 2px 0 rgba(255,255,255,.98);
+    0 0 0 1px rgba(0,0,0,.96),
+    0 0 0 3px rgba(145,10,29,.72),
+    0 0 24px rgba(238,45,66,.65),
+    0 0 38px rgba(147,9,29,.42),
+    0 9px 24px rgba(0,0,0,.72),
+    inset 0 1px 0 rgba(255,255,255,.18),
+    inset 0 -13px 23px rgba(62,0,10,.58);
+}
+
+.timer-box.timer-finished #timer-value{
+  color:#ffffff;
+
+  text-shadow:
+    -1px -1px 0 #200005,
+     1px -1px 0 #200005,
+    -1px  1px 0 #200005,
+     1px  1px 0 #200005,
+     0 3px 0 #810d1e,
+     0 0 7px rgba(255,255,255,.50),
+     0 0 14px rgba(247,54,74,.65),
+     0 0 24px rgba(186,18,43,.46);
+}
+
+@keyframes timerFinishedAlert{
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.035);
+  }
+}
+
+/* ==========================================
+   EFECTO HOVER
+========================================== */
+
+.timer-box:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+  border-color:#ef4054;
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.96),
+    0 0 0 3px rgba(118,8,25,.56),
+    0 0 20px rgba(223,35,56,.47),
+    0 9px 22px rgba(0,0,0,.68),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -13px 23px rgba(52,0,8,.55);
+}
+
+/* Evita que el hover interrumpa la animación */
+.timer-box.timer-running:hover{
+  animation-play-state:running;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width:310px){
+  .timer-widget{
+    width:100%;
+    padding:13px 12px 15px;
+  }
+
+  .timer-title{
+    font-size:25px;
+  }
+
+  .timer-box{
+    width:170px;
+    height:70px;
+  }
+
+  #timer-value{
+    font-size:39px;
+  }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+@media (prefers-reduced-motion:reduce){
+  .timer-widget::after,
+  .timer-box::after,
+  .timer-box.timer-running,
+  .timer-box.timer-running #timer-value,
+  .timer-box.timer-finished{
+    animation:none;
+  }
+
+  .timer-box{
+    transition:none;
+  }
 }

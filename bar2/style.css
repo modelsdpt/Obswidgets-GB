@@ -1,19 +1,29 @@
 /* ==========================================
-   GOALBAR – PINK & PURPLE DREAM THEME
+   GOALBAR – DARK CRIMSON GRUNGE THEME
+   Negro, rojo vino, blanco vintage y textura urbana
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
 
 :root{
   --white:#ffffff;
-  --lavender-light:#ead7ff;
-  --lavender:#c994ff;
-  --purple:#9454d8;
-  --purple-dark:#542277;
-  --pink-light:#ffcaf0;
-  --pink:#ff77c8;
-  --pink-strong:#e83eab;
-  --dark:#1b0925;
+  --ivory:#fffaf1;
+  --ivory-muted:#e4dad0;
+
+  --red-light:#ff5362;
+  --red:#d3233a;
+  --red-dark:#8c1022;
+
+  --wine:#530713;
+  --wine-dark:#2b0309;
+  --wine-deep:#160104;
+
+  --black:#050505;
+  --black-soft:#0b090a;
+  --graphite:#171316;
+  --graphite-light:#242024;
+
+  --shadow:rgba(0,0,0,.78);
 }
 
 *{
@@ -27,177 +37,266 @@ body{
   font-family:'Oswald', Arial, sans-serif;
 }
 
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
 #goal-wrapper{
   position:relative;
+
   width:68px;
   height:420px;
+
   overflow:hidden;
-  border-radius:17px;
+  isolation:isolate;
+
+  border:2px solid #791323;
+  border-radius:8px;
 
   background:
-    radial-gradient(
-      circle at 38% 9%,
-      rgba(255,255,255,.48),
-      transparent 22%
-    ),
-    radial-gradient(
-      circle at 60% 86%,
-      rgba(255,93,199,.30),
-      transparent 30%
-    ),
+    /* Marcas diagonales desgastadas */
     repeating-linear-gradient(
-      115deg,
-      rgba(255,255,255,.025) 0,
-      rgba(255,255,255,.025) 1px,
-      transparent 1px,
-      transparent 5px
+      112deg,
+      transparent 0,
+      transparent 8px,
+      rgba(255,255,255,.019) 9px,
+      transparent 10px
     ),
+
+    /* Líneas verticales sutiles */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 10px,
+      rgba(255,255,255,.012) 11px,
+      transparent 12px
+    ),
+
+    /* Luz superior */
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(218,34,55,.28),
+      transparent 35%
+    ),
+
+    /* Resplandor inferior */
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(115,8,25,.28),
+      transparent 42%
+    ),
+
+    /* Fondo metálico */
     linear-gradient(
       180deg,
-      #b67ee0 0%,
-      #7e41af 28%,
-      #4d1c68 58%,
-      #341043 80%,
-      #1b0925 100%
+      #20181b 0%,
+      #100d0f 21%,
+      #080708 52%,
+      #0c0809 77%,
+      #17070a 100%
     );
 
-  border:2px solid #351044;
-
   box-shadow:
-    0 0 0 2px rgba(255,255,255,.80),
-    0 0 0 5px rgba(222,91,203,.72),
-    0 0 17px rgba(255,102,215,.62),
-    0 0 29px rgba(155,71,218,.35),
-    0 10px 27px rgba(48,8,64,.58),
-    inset 0 3px 0 rgba(255,255,255,.68),
-    inset 0 -16px 27px rgba(30,5,41,.46);
+    0 0 0 1px rgba(255,77,92,.16),
+    0 0 0 4px rgba(28,1,6,.96),
+    0 0 0 6px rgba(105,9,23,.52),
+    0 0 16px rgba(214,30,52,.38),
+    0 0 30px rgba(104,6,20,.26),
+    0 11px 28px rgba(0,0,0,.76),
+    inset 0 2px 0 rgba(255,255,255,.08),
+    inset 0 -20px 30px rgba(0,0,0,.70);
 }
+
+/* ==========================================
+   MARCO INTERIOR
+========================================== */
 
 #goal-wrapper::before{
   content:"";
+
   position:absolute;
   inset:6px;
-  border-radius:11px;
+  z-index:6;
 
-  border:1px solid rgba(255,255,255,.66);
-
-  box-shadow:
-    inset 0 0 0 1px rgba(73,16,94,.55),
-    inset 0 0 15px rgba(255,255,255,.08),
-    0 0 8px rgba(255,255,255,.25);
-
-  pointer-events:none;
-  z-index:5;
-}
-
-#goal-wrapper::after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:110%;
-  width:100%;
-  height:34%;
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(255,255,255,.10),
-      rgba(255,255,255,.58),
-      rgba(255,212,245,.14),
-      transparent
-    );
-
-  animation:goalDreamShine 5.2s linear infinite;
-  pointer-events:none;
-  z-index:4;
-}
-
-@keyframes goalDreamShine{
-  0%{
-    top:110%;
-  }
-
-  45%{
-    top:-45%;
-  }
-
-  100%{
-    top:-45%;
-  }
-}
-
-/* Relleno del progreso */
-#bar-fill{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:0%;
-  z-index:2;
-  overflow:hidden;
-  border-radius:0 0 15px 15px;
+  border:1px solid rgba(200,37,55,.43);
+  border-radius:3px;
 
   background:
     linear-gradient(
       90deg,
-      rgba(255,255,255,.75) 0%,
-      rgba(255,255,255,.17) 28%,
-      rgba(255,255,255,.04) 54%,
-      rgba(255,255,255,.36) 78%,
-      rgba(255,255,255,.66) 100%
-    ),
-    linear-gradient(
-      180deg,
-      #fff8ff 0%,
-      #ffd2f0 17%,
-      #ff8fd4 40%,
-      #e75abc 64%,
-      #a658da 84%,
-      #633095 100%
+      rgba(255,255,255,.035),
+      transparent 16%,
+      transparent 84%,
+      rgba(255,255,255,.025)
     );
 
-  /* Línea claramente visible */
-  border-top:3px solid #ffffff;
-
   box-shadow:
-    inset 0 3px 0 rgba(255,255,255,.95),
-    inset 0 0 18px rgba(255,255,255,.28),
-    inset 0 -12px 19px rgba(81,21,104,.25),
-    0 -2px 8px rgba(255,255,255,.95),
-    0 0 17px rgba(255,99,211,.85),
-    0 0 30px rgba(166,81,220,.62);
+    inset 0 0 0 1px rgba(0,0,0,.92),
+    inset 0 0 12px rgba(163,14,34,.13),
+    0 0 8px rgba(207,28,48,.17);
+
+  pointer-events:none;
 }
 
-/* Luz en el borde superior del progreso */
-#bar-fill::before{
+/* ==========================================
+   BARRIDO DE LUZ
+========================================== */
+
+#goal-wrapper::after{
   content:"";
+
   position:absolute;
-  top:0;
+  top:115%;
   left:0;
+  z-index:5;
+
   width:100%;
-  height:7px;
+  height:28%;
 
   background:
     linear-gradient(
       180deg,
-      rgba(255,255,255,1),
-      rgba(255,255,255,.56),
-      transparent
+      transparent 0%,
+      rgba(202,27,47,.03) 20%,
+      rgba(255,62,78,.14) 43%,
+      rgba(255,235,235,.14) 50%,
+      rgba(194,20,42,.07) 63%,
+      transparent 100%
     );
 
-  box-shadow:
-    0 0 7px #ffffff,
-    0 0 14px rgba(255,116,216,.95);
+  animation:goalCrimsonSweep 6.8s linear infinite;
 
-  animation:goalTopLinePulse 1.15s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-@keyframes goalTopLinePulse{
+@keyframes goalCrimsonSweep{
+  0%{
+    top:115%;
+    opacity:0;
+  }
+
+  8%{
+    opacity:1;
+  }
+
+  42%{
+    top:-38%;
+    opacity:1;
+  }
+
+  52%,
+  100%{
+    top:-38%;
+    opacity:0;
+  }
+}
+
+/* ==========================================
+   RELLENO DEL PROGRESO
+========================================== */
+
+#bar-fill{
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:2;
+
+  width:100%;
+  height:0%;
+
+  overflow:hidden;
+
+  border-radius:0 0 6px 6px;
+
+  background:
+    /* Brillos verticales */
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,.035) 18%,
+      transparent 42%,
+      rgba(0,0,0,.16) 66%,
+      rgba(255,255,255,.11) 87%,
+      rgba(255,255,255,.20) 100%
+    ),
+
+    /* Textura desgastada */
+    repeating-linear-gradient(
+      118deg,
+      transparent 0,
+      transparent 9px,
+      rgba(255,255,255,.024) 10px,
+      transparent 11px
+    ),
+
+    /* Color principal */
+    linear-gradient(
+      180deg,
+      #e42b43 0%,
+      #bc182f 22%,
+      #8f1023 48%,
+      #620918 74%,
+      #31040b 100%
+    );
+
+  border-top:3px solid #fff7f4;
+
+  box-shadow:
+    inset 0 4px 0 rgba(255,255,255,.38),
+    inset 6px 0 12px rgba(255,255,255,.06),
+    inset -7px 0 12px rgba(0,0,0,.28),
+    inset 0 -15px 24px rgba(37,0,6,.56),
+
+    0 -2px 5px rgba(255,255,255,.74),
+    0 -3px 10px rgba(255,53,72,.82),
+    0 0 18px rgba(211,24,48,.58),
+    0 0 28px rgba(112,7,23,.44);
+
+  transition:
+    height .8s cubic-bezier(.22,.8,.25,1),
+    filter .3s ease;
+}
+
+/* ==========================================
+   LÍNEA SUPERIOR DEL PROGRESO
+========================================== */
+
+#bar-fill::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:3;
+
+  width:100%;
+  height:8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255,248,241,.92) 20%,
+      rgba(255,89,102,.66) 46%,
+      rgba(186,17,39,.20) 76%,
+      transparent 100%
+    );
+
+  box-shadow:
+    0 -1px 4px rgba(255,255,255,.96),
+    0 0 8px rgba(255,255,255,.76),
+    0 0 13px rgba(255,49,69,.90),
+    0 0 22px rgba(206,24,47,.67);
+
+  animation:goalProgressPulse 1.35s ease-in-out infinite alternate;
+
+  pointer-events:none;
+}
+
+@keyframes goalProgressPulse{
   from{
     opacity:.72;
-    filter:brightness(1);
+    filter:brightness(.95);
   }
 
   to{
@@ -206,61 +305,94 @@ body{
   }
 }
 
-/* Estrella que sube */
+/* ==========================================
+   PARTÍCULA ASCENDENTE
+========================================== */
+
 #bar-fill::after{
   content:"✦";
+
   position:absolute;
   left:50%;
-  bottom:10px;
+  bottom:13px;
+  z-index:4;
+
   transform:translateX(-50%);
 
-  font-size:15px;
-  color:#ffffff;
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  line-height:1;
 
-  -webkit-text-stroke:1px #5a1d70;
+  color:#fffaf2;
+
+  -webkit-text-stroke:.6px #3f030d;
 
   text-shadow:
-    -1px -1px 0 #5a1d70,
-     1px -1px 0 #5a1d70,
-    -1px  1px 0 #5a1d70,
-     1px  1px 0 #5a1d70,
-     0 0 7px #ffffff,
-     0 0 13px rgba(255,103,211,.95),
-     2px 3px 0 #75248c;
+    -1px -1px 0 #310108,
+     1px -1px 0 #310108,
+    -1px  1px 0 #310108,
+     1px  1px 0 #310108,
+     0 0 5px #ffffff,
+     0 0 9px rgba(255,72,89,.92),
+     0 0 15px rgba(190,19,43,.80);
 
-  animation:goalStarRise 3.6s linear infinite;
+  animation:goalCrimsonSpark 3.8s linear infinite;
+
+  pointer-events:none;
 }
 
-@keyframes goalStarRise{
+@keyframes goalCrimsonSpark{
   0%{
-    transform:translate(-50%, 15px) scale(.75) rotate(0deg);
+    transform:
+      translate(-50%, 18px)
+      scale(.55)
+      rotate(0deg);
+
     opacity:0;
   }
 
-  25%{
+  18%{
     opacity:1;
   }
 
-  70%{
-    transform:translate(-50%, -65px) scale(1.18) rotate(120deg);
-    opacity:.85;
+  65%{
+    transform:
+      translate(-50%, -73px)
+      scale(1.05)
+      rotate(135deg);
+
+    opacity:.82;
   }
 
   100%{
-    transform:translate(-50%, -115px) scale(.85) rotate(220deg);
+    transform:
+      translate(-50%, -128px)
+      scale(.65)
+      rotate(250deg);
+
     opacity:0;
   }
 }
+
+/* ==========================================
+   CAPA DE TEXTOS
+========================================== */
 
 .goal-label{
   position:absolute;
   inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  pointer-events:none;
   z-index:7;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  pointer-events:none;
 }
+
+/* ==========================================
+   TÍTULO CENTRAL
+========================================== */
 
 .goal-title{
   position:absolute;
@@ -273,26 +405,61 @@ body{
 
   transform-origin:center;
 
-  font-family:'Anton', Impact, sans-serif;
-  font-size:20px;
-  line-height:1;
-  letter-spacing:.055em;
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:22px;
+  font-weight:400;
+  line-height:.95;
+  letter-spacing:.075em;
+
+  color:var(--ivory);
+
   text-transform:uppercase;
-  color:#ffffff;
   white-space:nowrap;
 
-  -webkit-text-stroke:1px #421153;
+  -webkit-text-stroke:.55px rgba(28,0,5,.96);
 
   text-shadow:
-    -2px -2px 0 #421153,
-     2px -2px 0 #421153,
-    -2px  2px 0 #421153,
-     2px  2px 0 #421153,
-     0 0 4px #ffffff,
-     0 0 10px rgba(255,255,255,.90),
-     0 0 17px rgba(255,87,201,.85),
-     3px 4px 0 #77248d;
+    -1px -1px 0 #1b0105,
+     1px -1px 0 #1b0105,
+    -1px  1px 0 #1b0105,
+     1px  1px 0 #1b0105,
+
+     0 2px 0 #5e0916,
+     0 0 4px rgba(255,255,255,.44),
+     0 0 9px rgba(211,31,51,.29);
 }
+
+/* Línea decorativa detrás del título */
+.goal-title::after{
+  content:"";
+
+  position:absolute;
+  top:50%;
+  left:-16px;
+
+  width:calc(100% + 32px);
+  height:1px;
+
+  transform:translateY(-50%);
+  z-index:-1;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(157,18,37,.44) 14%,
+      rgba(224,45,63,.70) 50%,
+      rgba(157,18,37,.44) 86%,
+      transparent
+    );
+
+  box-shadow:
+    0 0 6px rgba(207,27,47,.38);
+}
+
+/* ==========================================
+   CANTIDAD / META
+========================================== */
 
 .goal-amount{
   position:absolute;
@@ -305,61 +472,123 @@ body{
 
   transform-origin:center;
 
-  font-family:'Anton', Impact, sans-serif;
-  font-size:15px;
-  line-height:1;
-  letter-spacing:.04em;
-  color:#ffffff;
-  white-space:nowrap;
+  min-width:max-content;
+  padding:4px 9px 5px;
 
-  padding:4px 8px;
-  border-radius:8px;
+  border:1px solid rgba(207,40,57,.92);
+  border-radius:3px;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.62),
-      rgba(255,255,255,.13) 42%,
-      rgba(70,17,91,.25)
+    repeating-linear-gradient(
+      112deg,
+      transparent 0,
+      transparent 8px,
+      rgba(255,255,255,.027) 9px,
+      transparent 10px
+    ),
+    radial-gradient(
+      circle at 30% 0%,
+      rgba(255,255,255,.10),
+      transparent 45%
     ),
     linear-gradient(
-      90deg,
-      #e3bdff,
-      #d16fe4,
-      #f05eb9
+      180deg,
+      #29181c 0%,
+      #0c090a 49%,
+      #1d060b 100%
     );
 
-  border:2px solid #421153;
-
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.78),
-    0 0 11px rgba(255,93,207,.65),
-    inset 0 1px 0 rgba(255,255,255,.72);
+    0 0 0 1px rgba(0,0,0,.95),
+    0 0 0 3px rgba(83,5,17,.45),
+    0 0 10px rgba(207,27,49,.35),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -7px 12px rgba(62,0,9,.38);
 
-  -webkit-text-stroke:.7px #421153;
+  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-size:17px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:.06em;
+
+  color:var(--ivory);
+
+  white-space:nowrap;
+
+  -webkit-text-stroke:.4px rgba(27,0,4,.95);
 
   text-shadow:
-    -1px -1px 0 #421153,
-     1px -1px 0 #421153,
-    -1px  1px 0 #421153,
-     1px  1px 0 #421153,
-     0 0 5px rgba(255,255,255,.92),
-     2px 3px 0 #77248d;
+    -1px -1px 0 #190104,
+     1px -1px 0 #190104,
+    -1px  1px 0 #190104,
+     1px  1px 0 #190104,
+
+     0 2px 0 #650b17,
+     0 0 5px rgba(255,255,255,.27),
+     0 0 8px rgba(208,30,51,.24);
 }
+
+/* ==========================================
+   EFECTO NEÓN CONTROLADO
+========================================== */
 
 .goal-title.neon{
-  animation:goalDreamPulse 1.2s ease-in-out infinite alternate;
+  animation:goalCrimsonTextPulse 1.6s ease-in-out infinite alternate;
 }
 
-@keyframes goalDreamPulse{
+@keyframes goalCrimsonTextPulse{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.20)
-      drop-shadow(0 0 8px rgba(255,255,255,.85))
-      drop-shadow(0 0 13px rgba(255,83,202,.78));
+      brightness(1.14)
+      drop-shadow(0 0 4px rgba(255,255,255,.42))
+      drop-shadow(0 0 8px rgba(213,34,54,.44));
+  }
+}
+
+/* ==========================================
+   DETALLE DE PROFUNDIDAD EN EL PROGRESO
+========================================== */
+
+#bar-fill:hover{
+  filter:brightness(1.08);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-height:460px){
+  #goal-wrapper{
+    height:360px;
+  }
+
+  .goal-title{
+    font-size:20px;
+  }
+
+  .goal-amount{
+    bottom:39px;
+    font-size:15px;
+  }
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+@media (prefers-reduced-motion:reduce){
+  #goal-wrapper::after,
+  #bar-fill::before,
+  #bar-fill::after,
+  .goal-title.neon{
+    animation:none;
+  }
+
+  #bar-fill{
+    transition:none;
   }
 }
