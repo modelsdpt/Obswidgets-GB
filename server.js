@@ -27,13 +27,23 @@ const {
 } = require("./reportStore");
 
 // ───────── CONFIGURACIÓN DE UPLOADS / FLYERS ─────────
-const UPLOADS_DIR = path.join(__dirname, "uploads");
+
+// Detecta si Railway tiene el volumen persistente montado.
+// En Railway usaremos /app/data.
+// En local seguirá usando Backend/uploads.
+const UPLOADS_DIR = process.env.RAILWAY_ENVIRONMENT_ID
+  ? path.join("/app/data", "uploads")
+  : path.join(__dirname, "uploads");
+
 const FLYERS_DIR = path.join(UPLOADS_DIR, "flyers");
 
 const MAX_FLYER_SIZE = 15 * 1024 * 1024;
 
-// Crear la carpeta automáticamente si todavía no existe
+// Crear las carpetas automáticamente si todavía no existen
 fs.mkdirSync(FLYERS_DIR, { recursive: true });
+
+console.log("📁 Directorio de uploads:", UPLOADS_DIR);
+console.log("🖼️ Directorio de flyers:", FLYERS_DIR);
 
 function sanitizeFileName(value) {
   return String(value || "flyer")
