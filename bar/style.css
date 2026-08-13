@@ -7,7 +7,7 @@
 
 :root{
   --white:#ffffff;
-  --white-soft:#f6f6f6;
+  --white-soft:#f7f7f7;
 
   --silver-100:#eeeeee;
   --silver-200:#d7d7d7;
@@ -56,33 +56,32 @@ body{
    CONTENEDOR PRINCIPAL
 ========================================================= */
 
-.timer-widget{
+#goal-wrapper{
   position:relative;
   isolation:isolate;
 
-  width:280px;
-  max-width:100%;
-
-  padding:11px;
+  width:74px;
+  height:420px;
 
   overflow:hidden;
-  border-radius:24px;
+  border-radius:25px;
 
   background:
     radial-gradient(
-      circle at 18% -5%,
-      rgba(255,255,255,.085) 0%,
-      rgba(255,255,255,0) 34%
+      ellipse at 50% -5%,
+      rgba(255,255,255,.09) 0%,
+      rgba(255,255,255,0) 30%
     ),
     radial-gradient(
-      circle at 90% 110%,
+      ellipse at 50% 105%,
       rgba(255,255,255,.025) 0%,
-      rgba(255,255,255,0) 43%
+      rgba(255,255,255,0) 40%
     ),
     linear-gradient(
-      145deg,
-      #151515 0%,
-      #080808 48%,
+      180deg,
+      #181818 0%,
+      #0c0c0c 35%,
+      #060606 72%,
       #030303 100%
     );
 
@@ -90,279 +89,164 @@ body{
 
   box-shadow:
     0 18px 38px rgba(0,0,0,.50),
-    0 7px 16px rgba(0,0,0,.36),
+    0 7px 16px rgba(0,0,0,.34),
     0 0 0 1px rgba(0,0,0,.88),
     inset 0 1px 0 rgba(255,255,255,.11),
-    inset 0 -1px 0 rgba(255,255,255,.025);
+    inset 0 -1px 0 rgba(255,255,255,.02);
 }
 
 
 /* Marco interior */
 
-.timer-widget::before{
+#goal-wrapper::before{
   content:"";
 
   position:absolute;
   inset:5px;
-  z-index:5;
+  z-index:6;
 
-  border-radius:19px;
+  border-radius:20px;
+
   border:1px solid rgba(255,255,255,.055);
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.66);
+    inset 0 0 0 1px rgba(0,0,0,.65),
+    inset 0 0 18px rgba(255,255,255,.012);
 
   pointer-events:none;
 }
 
 
-/* Barrido editorial blanco */
+/* Barrido vertical blanco muy suave */
 
-.timer-widget::after{
+#goal-wrapper::after{
   content:"";
 
   position:absolute;
-  top:-62%;
-  left:-48%;
-  z-index:2;
+  left:0;
+  top:112%;
+  z-index:5;
 
-  width:33%;
-  height:245%;
+  width:100%;
+  height:22%;
 
-  opacity:.28;
+  opacity:.32;
 
   background:
     linear-gradient(
-      108deg,
+      180deg,
       transparent 0%,
-      rgba(255,255,255,.01) 30%,
-      rgba(255,255,255,.12) 47%,
-      rgba(255,255,255,.26) 51%,
-      rgba(255,255,255,.06) 58%,
-      transparent 72%
+      rgba(255,255,255,.015) 25%,
+      rgba(255,255,255,.11) 47%,
+      rgba(255,255,255,.22) 52%,
+      rgba(255,255,255,.06) 62%,
+      transparent 100%
     );
 
-  transform:rotate(17deg);
-
-  animation:badGirlTimerAmbient 8.6s ease-in-out infinite;
+  animation:badGirlGoalSweep 8.2s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes badGirlTimerAmbient{
+@keyframes badGirlGoalSweep{
   0%{
-    left:-48%;
+    top:112%;
     opacity:0;
   }
 
   9%{
-    opacity:.28;
+    opacity:.32;
   }
 
   38%{
-    left:145%;
-    opacity:.28;
+    top:-32%;
+    opacity:.32;
   }
 
   49%,
   100%{
-    left:145%;
+    top:-32%;
     opacity:0;
   }
 }
 
 
 /* =========================================================
-   TÍTULO
+   RELLENO DEL PROGRESO
 ========================================================= */
 
-.timer-title{
-  position:relative;
-  z-index:6;
+#bar-fill{
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:2;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  min-height:46px;
-
-  margin:0 0 9px;
-  padding:7px 15px;
+  width:100%;
+  height:0%;
 
   overflow:hidden;
-  border-radius:17px;
 
-  text-align:center;
-  text-transform:uppercase;
-
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:27px;
-  font-weight:900;
-  line-height:1;
-  letter-spacing:.055em;
-
-  color:#ffffff;
+  border-radius:0 0 24px 24px;
 
   background:
+    /* reflejo lateral */
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.12) 0%,
+      rgba(255,255,255,.025) 18%,
+      transparent 42%,
+      rgba(0,0,0,.16) 68%,
+      rgba(255,255,255,.035) 88%,
+      rgba(255,255,255,.09) 100%
+    ),
+
+    /* profundidad */
     linear-gradient(
       180deg,
-      rgba(255,255,255,.075) 0%,
-      rgba(255,255,255,.018) 40%,
-      rgba(0,0,0,.07) 100%
+      rgba(255,255,255,.055) 0%,
+      rgba(255,255,255,.015) 25%,
+      rgba(0,0,0,.14) 75%,
+      rgba(0,0,0,.28) 100%
     ),
+
+    /* color principal del progreso */
     linear-gradient(
-      135deg,
-      #191919 0%,
-      #080808 52%,
-      #020202 100%
+      180deg,
+      #3a3a3a 0%,
+      #2c2c2c 25%,
+      #1f1f1f 52%,
+      #141414 77%,
+      #0d0d0d 100%
     );
 
-  border:1px solid rgba(255,255,255,.16);
-
   box-shadow:
-    0 8px 18px rgba(0,0,0,.36),
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -1px 0 rgba(0,0,0,.94);
+    inset 7px 0 12px rgba(255,255,255,.03),
+    inset -8px 0 14px rgba(0,0,0,.30),
+    inset 0 -18px 24px rgba(0,0,0,.24),
 
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.96),
-    0 0 5px rgba(255,255,255,.16);
+    0 0 12px rgba(255,255,255,.035),
+    0 -2px 8px rgba(255,255,255,.07);
+
+  transition:
+    height .85s cubic-bezier(.22,.8,.25,1),
+    filter .3s ease;
 }
 
 
-/* Highlight superior */
+/* =========================================================
+   CABEZA DEL PROGRESO
+========================================================= */
 
-.timer-title::before{
+#bar-fill::before{
   content:"";
 
   position:absolute;
   top:0;
-  left:14%;
-  right:14%;
+  left:0;
+  z-index:4;
 
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.58),
-      transparent
-    );
-}
-
-
-/* Línea inferior */
-
-.timer-title::after{
-  content:"";
-
-  position:absolute;
-  left:31%;
-  right:31%;
-  bottom:0;
-
-  height:2px;
-
-  border-radius:999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.48),
-      #ffffff,
-      rgba(255,255,255,.48),
-      transparent
-    );
-
-  box-shadow:
-    0 0 7px rgba(255,255,255,.15);
-}
-
-
-/* =========================================================
-   CONTENEDOR DEL RELOJ
-========================================================= */
-
-.timer-display{
-  position:relative;
-  z-index:6;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:3px 0 1px;
-}
-
-
-/* =========================================================
-   CAJA DEL TIEMPO
-========================================================= */
-
-.timer-box{
-  position:relative;
-  isolation:isolate;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:190px;
-  height:78px;
-
-  overflow:hidden;
-  border-radius:20px;
-
-  background:
-    radial-gradient(
-      circle at 16% 0%,
-      rgba(255,255,255,.09) 0%,
-      rgba(255,255,255,0) 35%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.045) 0%,
-      rgba(255,255,255,.012) 42%,
-      rgba(0,0,0,.055) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #202020 0%,
-      #0c0c0c 50%,
-      #050505 100%
-    );
-
-  border:1px solid rgba(255,255,255,.20);
-
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.42),
-    0 0 0 1px rgba(255,255,255,.025),
-    0 0 14px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -1px 0 rgba(0,0,0,.90);
-
-  transition:
-    transform .24s ease,
-    filter .24s ease,
-    border-color .24s ease,
-    box-shadow .24s ease;
-}
-
-
-/* Acento lateral blanco / gris */
-
-.timer-box::before{
-  content:"";
-
-  position:absolute;
-  top:11px;
-  bottom:11px;
-  left:8px;
-  z-index:3;
-
-  width:4px;
+  width:100%;
+  height:5px;
 
   border-radius:999px;
 
@@ -370,187 +254,257 @@ body{
     linear-gradient(
       180deg,
       #ffffff 0%,
-      #e7e7e7 22%,
-      #bcbcbc 58%,
-      #555555 100%
+      #eeeeee 28%,
+      #bdbdbd 58%,
+      rgba(255,255,255,.10) 100%
     );
 
   box-shadow:
-    0 0 7px rgba(255,255,255,.21),
-    0 0 12px rgba(255,255,255,.05);
-}
+    0 0 5px rgba(255,255,255,.65),
+    0 0 10px rgba(255,255,255,.24),
+    0 0 16px rgba(255,255,255,.08);
 
-
-/* Reflejo horizontal */
-
-.timer-box::after{
-  content:"";
-
-  position:absolute;
-  top:0;
-  left:-82%;
-  z-index:1;
-
-  width:42%;
-  height:100%;
-
-  opacity:.34;
-
-  background:
-    linear-gradient(
-      105deg,
-      transparent 0%,
-      rgba(255,255,255,.015) 24%,
-      rgba(255,255,255,.105) 48%,
-      rgba(255,255,255,.025) 62%,
-      transparent 76%
-    );
-
-  transform:skewX(-18deg);
-
-  animation:badGirlTimerBoxFlash 7s ease-in-out infinite;
+  animation:badGirlGoalProgressBreath 1.9s ease-in-out infinite alternate;
 
   pointer-events:none;
 }
 
-@keyframes badGirlTimerBoxFlash{
-  0%{
-    left:-82%;
+@keyframes badGirlGoalProgressBreath{
+  from{
+    opacity:.78;
+    filter:brightness(.95);
   }
 
-  30%{
-    left:145%;
-  }
-
-  100%{
-    left:145%;
+  to{
+    opacity:1;
+    filter:brightness(1.15);
   }
 }
 
 
 /* =========================================================
-   VALOR DEL TIMER
+   PARTÍCULA / PUNTO DE LUZ
 ========================================================= */
 
-#timer-value{
-  position:relative;
+#bar-fill::after{
+  content:"";
+
+  position:absolute;
+  left:50%;
+  bottom:14px;
   z-index:4;
 
-  padding-left:5px;
+  width:5px;
+  height:5px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:#ffffff;
+
+  box-shadow:
+    0 0 5px rgba(255,255,255,.74),
+    0 0 10px rgba(255,255,255,.26);
+
+  animation:badGirlGoalParticle 4.5s ease-in-out infinite;
+
+  pointer-events:none;
+}
+
+@keyframes badGirlGoalParticle{
+  0%{
+    transform:translate(-50%, 14px) scale(.50);
+    opacity:0;
+  }
+
+  18%{
+    opacity:.62;
+  }
+
+  68%{
+    transform:translate(-50%, -72px) scale(.95);
+    opacity:.46;
+  }
+
+  100%{
+    transform:translate(-50%, -118px) scale(.60);
+    opacity:0;
+  }
+}
+
+
+/* =========================================================
+   CAPA DE TEXTOS
+========================================================= */
+
+.goal-label{
+  position:absolute;
+  inset:0;
+  z-index:7;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   TÍTULO CENTRAL
+========================================================= */
+
+.goal-title{
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-90deg);
+
+  transform-origin:center;
+
+  min-width:max-content;
+
+  padding:4px 9px 5px;
+
+  border-radius:9px;
 
   font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:45px;
+  font-size:22px;
   font-weight:900;
   line-height:1;
-  letter-spacing:.065em;
+  letter-spacing:.075em;
+
+  color:#ffffff;
+
+  text-transform:uppercase;
+  white-space:nowrap;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.04),
+      rgba(255,255,255,.01)
+    );
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.96),
+    0 0 4px rgba(255,255,255,.13);
+}
+
+
+/* Línea editorial detrás del título */
+
+.goal-title::after{
+  content:"";
+
+  position:absolute;
+  z-index:-1;
+
+  top:50%;
+  left:-14px;
+
+  width:calc(100% + 28px);
+  height:1px;
+
+  transform:translateY(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.07) 18%,
+      rgba(255,255,255,.31) 50%,
+      rgba(255,255,255,.07) 82%,
+      transparent
+    );
+
+  box-shadow:
+    0 0 5px rgba(255,255,255,.05);
+}
+
+
+/* =========================================================
+   CANTIDAD / META
+========================================================= */
+
+.goal-amount{
+  position:absolute;
+
+  bottom:42px;
+  left:50%;
+
+  transform:
+    translateX(-50%)
+    rotate(-90deg);
+
+  transform-origin:center;
+
+  min-width:max-content;
+
+  padding:6px 11px 7px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.07) 0%,
+      rgba(255,255,255,.015) 42%,
+      rgba(0,0,0,.05) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #1b1b1b 0%,
+      #090909 58%,
+      #050505 100%
+    );
+
+  border:1px solid rgba(255,255,255,.14);
+
+  box-shadow:
+    0 5px 13px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 -1px 0 rgba(0,0,0,.85);
+
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:17px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.05em;
 
   color:#ffffff;
 
   white-space:nowrap;
 
   text-shadow:
-    0 3px 0 rgba(0,0,0,.98),
-    0 0 5px rgba(255,255,255,.14);
-}
-
-#timer-value span{
-  display:inline-block;
+    0 2px 0 rgba(0,0,0,.96),
+    0 0 4px rgba(255,255,255,.09);
 }
 
 
 /* =========================================================
-   TIMER ACTIVO
+   ESTADO DESTACADO / NEON CONTROLADO
 ========================================================= */
 
-.timer-box.timer-running{
-  animation:badGirlTimerRunning 2.25s ease-in-out infinite alternate;
+.goal-title.neon{
+  animation:badGirlGoalTextBreath 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes badGirlTimerRunning{
-  from{
-    transform:scale(1);
-
-    border-color:rgba(255,255,255,.18);
-
-    box-shadow:
-      0 10px 22px rgba(0,0,0,.42),
-      0 0 0 1px rgba(255,255,255,.022),
-      0 0 12px rgba(255,255,255,.018),
-      inset 0 1px 0 rgba(255,255,255,.09),
-      inset 0 -1px 0 rgba(0,0,0,.90);
-  }
-
-  to{
-    transform:scale(1.012);
-
-    border-color:rgba(255,255,255,.28);
-
-    box-shadow:
-      0 11px 24px rgba(0,0,0,.44),
-      0 0 0 1px rgba(255,255,255,.04),
-      0 0 17px rgba(255,255,255,.045),
-      inset 0 1px 0 rgba(255,255,255,.12),
-      inset 0 -1px 0 rgba(0,0,0,.90);
-  }
-}
-
-
-/* Número activo */
-
-.timer-box.timer-running #timer-value{
-  animation:badGirlTimerNumber 2.25s ease-in-out infinite alternate;
-}
-
-@keyframes badGirlTimerNumber{
+@keyframes badGirlGoalTextBreath{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.07)
+      brightness(1.08)
       drop-shadow(0 0 4px rgba(255,255,255,.10))
-      drop-shadow(0 0 8px rgba(255,255,255,.035));
-  }
-}
-
-
-/* =========================================================
-   TIMER FINALIZADO
-========================================================= */
-
-.timer-box.timer-finished{
-  border-color:rgba(255,255,255,.48);
-
-  filter:brightness(1.07);
-
-  animation:badGirlTimerFinished 1s ease-in-out infinite alternate;
-
-  box-shadow:
-    0 12px 26px rgba(0,0,0,.47),
-    0 0 0 1px rgba(255,255,255,.06),
-    0 0 19px rgba(255,255,255,.08),
-    0 0 30px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.16),
-    inset 0 -1px 0 rgba(0,0,0,.90);
-}
-
-.timer-box.timer-finished #timer-value{
-  color:#ffffff;
-
-  text-shadow:
-    0 3px 0 rgba(0,0,0,.98),
-    0 0 6px rgba(255,255,255,.28),
-    0 0 13px rgba(255,255,255,.10);
-}
-
-@keyframes badGirlTimerFinished{
-  from{
-    transform:scale(1);
-  }
-
-  to{
-    transform:scale(1.025);
+      drop-shadow(0 0 7px rgba(255,255,255,.05));
   }
 }
 
@@ -559,23 +513,8 @@ body{
    HOVER
 ========================================================= */
 
-.timer-box:hover{
-  transform:translateY(-1px);
-
-  filter:brightness(1.045);
-
-  border-color:rgba(255,255,255,.28);
-
-  box-shadow:
-    0 12px 25px rgba(0,0,0,.45),
-    0 0 0 1px rgba(255,255,255,.035),
-    0 0 16px rgba(255,255,255,.04),
-    inset 0 1px 0 rgba(255,255,255,.12),
-    inset 0 -1px 0 rgba(0,0,0,.90);
-}
-
-.timer-box.timer-running:hover{
-  animation-play-state:running;
+#bar-fill:hover{
+  filter:brightness(1.04);
 }
 
 
@@ -583,37 +522,35 @@ body{
    RESPONSIVE
 ========================================================= */
 
-@media (max-width:310px){
+@media (max-height:460px){
 
-  .timer-widget{
-    width:100%;
-    padding:9px;
+  #goal-wrapper{
+    width:70px;
+    height:360px;
 
-    border-radius:21px;
+    border-radius:22px;
   }
 
-  .timer-widget::before{
-    border-radius:16px;
+  #goal-wrapper::before{
+    border-radius:17px;
   }
 
-  .timer-title{
-    min-height:43px;
-    padding:6px 12px;
-
-    border-radius:15px;
-
-    font-size:24px;
+  #bar-fill{
+    border-radius:0 0 21px 21px;
   }
 
-  .timer-box{
-    width:172px;
-    height:70px;
-
-    border-radius:18px;
+  .goal-title{
+    font-size:20px;
   }
 
-  #timer-value{
-    font-size:39px;
+  .goal-amount{
+    bottom:38px;
+
+    padding:5px 10px 6px;
+
+    border-radius:10px;
+
+    font-size:15px;
   }
 }
 
@@ -624,15 +561,14 @@ body{
 
 @media (prefers-reduced-motion:reduce){
 
-  .timer-widget::after,
-  .timer-box::after,
-  .timer-box.timer-running,
-  .timer-box.timer-running #timer-value,
-  .timer-box.timer-finished{
+  #goal-wrapper::after,
+  #bar-fill::before,
+  #bar-fill::after,
+  .goal-title.neon{
     animation:none;
   }
 
-  .timer-box{
+  #bar-fill{
     transition:none;
   }
 }
