@@ -3,593 +3,636 @@
    Adaptada al nuevo estilo del MVP
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
 
 :root{
-  --paper:#f4efe5;
-  --paper-light:#fffdf7;
-  --paper-soft:#e8e0d3;
-  --paper-dark:#c9bca9;
-
-  --ink:#090807;
-  --ink-soft:#171513;
-  --charcoal:#25211e;
-  --graphite:#403a34;
-
-  --taupe:#807365;
-  --shadow-brown:#4a4037;
-
   --white:#ffffff;
-  --black:#020202;
+  --white-soft:#f6f6f6;
+
+  --silver-100:#eeeeee;
+  --silver-200:#d7d7d7;
+  --silver-300:#b7b7b7;
+  --silver-500:#777777;
+
+  --black:#040404;
+  --black-2:#080808;
+  --black-3:#0d0d0d;
+
+  --charcoal:#151515;
+  --charcoal-2:#202020;
+  --charcoal-3:#2b2b2b;
+
+  --line:rgba(255,255,255,.13);
+  --line-strong:rgba(255,255,255,.28);
+
+  --shadow:rgba(0,0,0,.72);
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
   background:transparent;
-  color:var(--ink);
-  font-family:'Oswald', Arial, sans-serif;
 }
 
-/* ==========================================
+body{
+  color:var(--white);
+  font-family:'Inter', Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
    CONTENEDOR PRINCIPAL
-========================================== */
+========================================================= */
 
-#goal-wrapper{
+.timer-widget{
   position:relative;
-
-  width:68px;
-  height:420px;
-
-  border:3px solid var(--black);
-  border-radius:4px;
-
-  overflow:hidden;
   isolation:isolate;
 
-  background:
-    /* Manchas del papel */
-    radial-gradient(
-      ellipse at 38% 8%,
-      rgba(255,255,255,.72),
-      transparent 25%
-    ),
+  width:280px;
+  max-width:100%;
 
-    radial-gradient(
-      ellipse at 65% 88%,
-      rgba(79,65,53,.12),
-      transparent 31%
-    ),
-
-    /* Fibras horizontales */
-    repeating-linear-gradient(
-      0deg,
-      rgba(20,17,14,.022) 0,
-      rgba(20,17,14,.022) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-
-    /* Arañazos diagonales */
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 10px,
-      rgba(0,0,0,.018) 11px,
-      transparent 12px
-    ),
-
-    /* Papel envejecido */
-    linear-gradient(
-      180deg,
-      #fffdf7 0%,
-      #eee7da 27%,
-      #d9cdbc 56%,
-      #eee7dc 79%,
-      #c5b6a3 100%
-    );
-
-  box-shadow:
-    0 0 0 2px rgba(244,239,229,.96),
-    0 0 0 6px rgba(4,4,4,.98),
-    0 0 0 8px rgba(82,74,66,.70),
-
-    0 11px 28px rgba(0,0,0,.74),
-
-    inset 0 2px 0 rgba(255,255,255,.90),
-    inset 0 -18px 27px rgba(66,53,43,.16),
-    inset 8px 0 17px rgba(255,255,255,.14),
-    inset -8px 0 18px rgba(66,53,43,.12);
-}
-
-/* ==========================================
-   MARCO INTERIOR
-========================================== */
-
-#goal-wrapper::before{
-  content:"";
-
-  position:absolute;
-  inset:6px;
-  z-index:5;
-
-  border:1px solid rgba(9,8,7,.82);
-  border-radius:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.14),
-      transparent 17%,
-      transparent 83%,
-      rgba(0,0,0,.04)
-    );
-
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.42),
-    inset 0 0 12px rgba(0,0,0,.07),
-    0 0 0 1px rgba(76,66,57,.25);
-
-  pointer-events:none;
-}
-
-/* ==========================================
-   REFLEJO ASCENDENTE DEL PAPEL
-========================================== */
-
-#goal-wrapper::after{
-  content:"";
-
-  position:absolute;
-  top:110%;
-  left:0;
-  z-index:4;
-
-  width:100%;
-  height:31%;
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255,255,255,.08) 23%,
-      rgba(255,255,255,.52) 49%,
-      rgba(255,255,255,.16) 61%,
-      transparent 100%
-    );
-
-  animation:goalPaperShine 6.8s linear infinite;
-
-  pointer-events:none;
-}
-
-@keyframes goalPaperShine{
-  0%{
-    top:110%;
-    opacity:0;
-  }
-
-  8%{
-    opacity:.80;
-  }
-
-  43%{
-    top:-38%;
-    opacity:.60;
-  }
-
-  53%,
-  100%{
-    top:-38%;
-    opacity:0;
-  }
-}
-
-/* ==========================================
-   PROGRESO
-========================================== */
-
-#bar-fill{
-  position:absolute;
-  bottom:0;
-  left:0;
-  z-index:2;
-
-  width:100%;
-  height:0%;
-
-  border-top:3px solid var(--ink);
-  border-radius:0 0 1px 1px;
+  padding:11px;
 
   overflow:hidden;
+  border-radius:24px;
 
   background:
-    /* Desgaste de tinta */
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 8px,
-      rgba(255,255,255,.025) 9px,
-      transparent 10px
+    radial-gradient(
+      circle at 18% -5%,
+      rgba(255,255,255,.085) 0%,
+      rgba(255,255,255,0) 34%
     ),
-
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,.018) 0,
-      rgba(255,255,255,.018) 1px,
-      transparent 1px,
-      transparent 4px
+    radial-gradient(
+      circle at 90% 110%,
+      rgba(255,255,255,.025) 0%,
+      rgba(255,255,255,0) 43%
     ),
-
-    /* Reflejo metálico de la tinta */
     linear-gradient(
-      90deg,
-      rgba(255,255,255,.14) 0%,
-      rgba(255,255,255,.035) 20%,
-      rgba(0,0,0,.08) 46%,
-      rgba(255,255,255,.08) 76%,
-      rgba(255,255,255,.15) 100%
-    ),
-
-    /* Tinta negra */
-    linear-gradient(
-      180deg,
-      #38322d 0%,
-      #171412 18%,
-      #080706 46%,
-      #030303 76%,
-      #171310 100%
+      145deg,
+      #151515 0%,
+      #080808 48%,
+      #030303 100%
     );
 
+  border:1px solid rgba(255,255,255,.17);
+
   box-shadow:
-    inset 0 3px 0 rgba(255,255,255,.15),
-    inset 7px 0 12px rgba(255,255,255,.045),
-    inset -7px 0 12px rgba(0,0,0,.25),
-    inset 0 -14px 21px rgba(0,0,0,.44),
-
-    0 -2px 0 rgba(255,255,255,.72),
-    0 -4px 0 rgba(9,8,7,.26),
-    0 -5px 9px rgba(0,0,0,.32);
-
-  transition:
-    height .8s cubic-bezier(.22,.8,.25,1),
-    filter .25s ease;
+    0 18px 38px rgba(0,0,0,.50),
+    0 7px 16px rgba(0,0,0,.36),
+    0 0 0 1px rgba(0,0,0,.88),
+    inset 0 1px 0 rgba(255,255,255,.11),
+    inset 0 -1px 0 rgba(255,255,255,.025);
 }
 
-/* ==========================================
-   LÍNEA DEL NIVEL ACTUAL
-========================================== */
 
-#bar-fill::before{
+/* Marco interior */
+
+.timer-widget::before{
   content:"";
 
   position:absolute;
-  top:0;
-  left:0;
-  z-index:3;
+  inset:5px;
+  z-index:5;
 
-  width:100%;
-  height:8px;
+  border-radius:19px;
+  border:1px solid rgba(255,255,255,.055);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.66);
+
+  pointer-events:none;
+}
+
+
+/* Barrido editorial blanco */
+
+.timer-widget::after{
+  content:"";
+
+  position:absolute;
+  top:-62%;
+  left:-48%;
+  z-index:2;
+
+  width:33%;
+  height:245%;
+
+  opacity:.28;
 
   background:
     linear-gradient(
-      180deg,
-      rgba(255,255,255,.95) 0%,
-      rgba(244,239,229,.68) 21%,
-      rgba(9,8,7,.48) 48%,
-      transparent 100%
+      108deg,
+      transparent 0%,
+      rgba(255,255,255,.01) 30%,
+      rgba(255,255,255,.12) 47%,
+      rgba(255,255,255,.26) 51%,
+      rgba(255,255,255,.06) 58%,
+      transparent 72%
     );
 
-  box-shadow:
-    0 -1px 0 rgba(255,255,255,.92),
-    0 1px 0 rgba(0,0,0,.72),
-    0 0 7px rgba(255,255,255,.30);
+  transform:rotate(17deg);
 
-  animation:goalInkLinePulse 1.6s ease-in-out infinite alternate;
+  animation:badGirlTimerAmbient 8.6s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes goalInkLinePulse{
-  from{
-    opacity:.72;
-    filter:brightness(.94);
-  }
-
-  to{
-    opacity:1;
-    filter:brightness(1.18);
-  }
-}
-
-/* ==========================================
-   SÍMBOLO ASCENDENTE
-========================================== */
-
-#bar-fill::after{
-  content:"$";
-
-  position:absolute;
-  left:50%;
-  bottom:12px;
-  z-index:4;
-
-  transform:translateX(-50%);
-
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:18px;
-  line-height:1;
-
-  color:var(--paper-light);
-
-  -webkit-text-stroke:.65px var(--black);
-
-  text-shadow:
-    -1px -1px 0 var(--black),
-     1px -1px 0 var(--black),
-    -1px  1px 0 var(--black),
-     1px  1px 0 var(--black),
-
-     0 2px 0 #4b433c,
-     0 0 5px rgba(255,255,255,.52),
-     0 0 9px rgba(255,255,255,.24);
-
-  animation:goalDollarRise 3.8s linear infinite;
-
-  pointer-events:none;
-}
-
-@keyframes goalDollarRise{
+@keyframes badGirlTimerAmbient{
   0%{
-    transform:
-      translate(-50%, 17px)
-      scale(.72)
-      rotate(-7deg);
-
+    left:-48%;
     opacity:0;
   }
 
-  22%{
-    opacity:1;
+  9%{
+    opacity:.28;
   }
 
-  68%{
-    transform:
-      translate(-50%, -67px)
-      scale(1.10)
-      rotate(5deg);
-
-    opacity:.82;
+  38%{
+    left:145%;
+    opacity:.28;
   }
 
+  49%,
   100%{
-    transform:
-      translate(-50%, -118px)
-      scale(.82)
-      rotate(-4deg);
-
+    left:145%;
     opacity:0;
   }
 }
 
-/* ==========================================
-   CAPA DE TEXTO
-========================================== */
 
-.goal-label{
-  position:absolute;
-  inset:0;
-  z-index:7;
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.timer-title{
+  position:relative;
+  z-index:6;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  pointer-events:none;
-}
+  min-height:46px;
 
-/* ==========================================
-   TÍTULO CENTRAL
-========================================== */
+  margin:0 0 9px;
+  padding:7px 15px;
 
-.goal-title{
-  position:absolute;
-  top:50%;
-  left:50%;
+  overflow:hidden;
+  border-radius:17px;
 
-  transform:
-    translate(-50%, -50%)
-    rotate(-90deg);
-
-  transform-origin:center;
-
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:22px;
-  font-weight:400;
-  line-height:.95;
-  letter-spacing:.075em;
-
-  color:var(--ink);
-
+  text-align:center;
   text-transform:uppercase;
-  white-space:nowrap;
 
-  -webkit-text-stroke:.65px var(--ink);
-
-  text-shadow:
-    1px 1px 0 rgba(255,255,255,.82),
-    2px 2px 0 rgba(96,82,69,.24),
-    4px 4px 0 rgba(45,38,32,.14);
-}
-
-/* Franja clara detrás del título */
-.goal-title::before{
-  content:"";
-
-  position:absolute;
-  top:50%;
-  left:-14px;
-  z-index:-1;
-
-  width:calc(100% + 28px);
-  height:25px;
-
-  transform:translateY(-50%);
-
-  border-top:1px solid rgba(9,8,7,.54);
-  border-bottom:1px solid rgba(9,8,7,.54);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.55),
-      rgba(232,224,211,.50)
-    );
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.82),
-    inset 0 -1px 0 rgba(73,62,52,.13);
-}
-
-/* ==========================================
-   CANTIDAD / META
-========================================== */
-
-.goal-amount{
-  position:absolute;
-  bottom:43px;
-  left:50%;
-
-  transform:
-    translateX(-50%)
-    rotate(-90deg);
-
-  transform-origin:center;
-
-  min-width:max-content;
-
-  padding:5px 9px 6px;
-
-  border:2px solid var(--ink);
-  border-radius:1px;
-
-  background:
-    repeating-linear-gradient(
-      110deg,
-      transparent 0,
-      transparent 8px,
-      rgba(0,0,0,.027) 9px,
-      transparent 10px
-    ),
-
-    radial-gradient(
-      ellipse at 22% 0%,
-      rgba(255,255,255,.75),
-      transparent 42%
-    ),
-
-    linear-gradient(
-      180deg,
-      #fffdf7 0%,
-      #ebe3d7 50%,
-      #cbbda9 100%
-    );
-
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:17px;
-  font-weight:400;
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:27px;
+  font-weight:900;
   line-height:1;
   letter-spacing:.055em;
 
-  color:var(--ink);
+  color:#ffffff;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.075) 0%,
+      rgba(255,255,255,.018) 40%,
+      rgba(0,0,0,.07) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #191919 0%,
+      #080808 52%,
+      #020202 100%
+    );
+
+  border:1px solid rgba(255,255,255,.16);
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.36),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(0,0,0,.94);
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.96),
+    0 0 5px rgba(255,255,255,.16);
+}
+
+
+/* Highlight superior */
+
+.timer-title::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:14%;
+  right:14%;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.58),
+      transparent
+    );
+}
+
+
+/* Línea inferior */
+
+.timer-title::after{
+  content:"";
+
+  position:absolute;
+  left:31%;
+  right:31%;
+  bottom:0;
+
+  height:2px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.48),
+      #ffffff,
+      rgba(255,255,255,.48),
+      transparent
+    );
+
+  box-shadow:
+    0 0 7px rgba(255,255,255,.15);
+}
+
+
+/* =========================================================
+   CONTENEDOR DEL RELOJ
+========================================================= */
+
+.timer-display{
+  position:relative;
+  z-index:6;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:3px 0 1px;
+}
+
+
+/* =========================================================
+   CAJA DEL TIEMPO
+========================================================= */
+
+.timer-box{
+  position:relative;
+  isolation:isolate;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:190px;
+  height:78px;
+
+  overflow:hidden;
+  border-radius:20px;
+
+  background:
+    radial-gradient(
+      circle at 16% 0%,
+      rgba(255,255,255,.09) 0%,
+      rgba(255,255,255,0) 35%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.045) 0%,
+      rgba(255,255,255,.012) 42%,
+      rgba(0,0,0,.055) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #202020 0%,
+      #0c0c0c 50%,
+      #050505 100%
+    );
+
+  border:1px solid rgba(255,255,255,.20);
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.025),
+    0 0 14px rgba(255,255,255,.025),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(0,0,0,.90);
+
+  transition:
+    transform .24s ease,
+    filter .24s ease,
+    border-color .24s ease,
+    box-shadow .24s ease;
+}
+
+
+/* Acento lateral blanco / gris */
+
+.timer-box::before{
+  content:"";
+
+  position:absolute;
+  top:11px;
+  bottom:11px;
+  left:8px;
+  z-index:3;
+
+  width:4px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #e7e7e7 22%,
+      #bcbcbc 58%,
+      #555555 100%
+    );
+
+  box-shadow:
+    0 0 7px rgba(255,255,255,.21),
+    0 0 12px rgba(255,255,255,.05);
+}
+
+
+/* Reflejo horizontal */
+
+.timer-box::after{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:-82%;
+  z-index:1;
+
+  width:42%;
+  height:100%;
+
+  opacity:.34;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(255,255,255,.015) 24%,
+      rgba(255,255,255,.105) 48%,
+      rgba(255,255,255,.025) 62%,
+      transparent 76%
+    );
+
+  transform:skewX(-18deg);
+
+  animation:badGirlTimerBoxFlash 7s ease-in-out infinite;
+
+  pointer-events:none;
+}
+
+@keyframes badGirlTimerBoxFlash{
+  0%{
+    left:-82%;
+  }
+
+  30%{
+    left:145%;
+  }
+
+  100%{
+    left:145%;
+  }
+}
+
+
+/* =========================================================
+   VALOR DEL TIMER
+========================================================= */
+
+#timer-value{
+  position:relative;
+  z-index:4;
+
+  padding-left:5px;
+
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:45px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.065em;
+
+  color:#ffffff;
 
   white-space:nowrap;
 
-  box-shadow:
-    2px 3px 0 var(--ink),
-    4px 5px 0 rgba(70,61,53,.30),
-    0 4px 9px rgba(0,0,0,.28),
-
-    inset 0 1px 0 rgba(255,255,255,.94),
-    inset 0 -6px 11px rgba(69,53,41,.12);
-
-  -webkit-text-stroke:.35px var(--ink);
-
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.70),
-    2px 2px 0 rgba(94,81,69,.19);
+    0 3px 0 rgba(0,0,0,.98),
+    0 0 5px rgba(255,255,255,.14);
 }
 
-/* ==========================================
-   PULSO DEL TÍTULO
-========================================== */
-
-.goal-title.neon{
-  animation:goalVintagePulse 1.55s ease-in-out infinite alternate;
+#timer-value span{
+  display:inline-block;
 }
 
-@keyframes goalVintagePulse{
+
+/* =========================================================
+   TIMER ACTIVO
+========================================================= */
+
+.timer-box.timer-running{
+  animation:badGirlTimerRunning 2.25s ease-in-out infinite alternate;
+}
+
+@keyframes badGirlTimerRunning{
   from{
-    filter:
-      brightness(1)
-      drop-shadow(0 0 0 transparent);
+    transform:scale(1);
+
+    border-color:rgba(255,255,255,.18);
+
+    box-shadow:
+      0 10px 22px rgba(0,0,0,.42),
+      0 0 0 1px rgba(255,255,255,.022),
+      0 0 12px rgba(255,255,255,.018),
+      inset 0 1px 0 rgba(255,255,255,.09),
+      inset 0 -1px 0 rgba(0,0,0,.90);
+  }
+
+  to{
+    transform:scale(1.012);
+
+    border-color:rgba(255,255,255,.28);
+
+    box-shadow:
+      0 11px 24px rgba(0,0,0,.44),
+      0 0 0 1px rgba(255,255,255,.04),
+      0 0 17px rgba(255,255,255,.045),
+      inset 0 1px 0 rgba(255,255,255,.12),
+      inset 0 -1px 0 rgba(0,0,0,.90);
+  }
+}
+
+
+/* Número activo */
+
+.timer-box.timer-running #timer-value{
+  animation:badGirlTimerNumber 2.25s ease-in-out infinite alternate;
+}
+
+@keyframes badGirlTimerNumber{
+  from{
+    filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.08)
-      drop-shadow(2px 2px 0 rgba(255,255,255,.35))
-      drop-shadow(3px 3px 0 rgba(55,47,40,.15));
+      brightness(1.07)
+      drop-shadow(0 0 4px rgba(255,255,255,.10))
+      drop-shadow(0 0 8px rgba(255,255,255,.035));
   }
 }
 
-/* ==========================================
-   INTERACCIÓN
-========================================== */
 
-#bar-fill:hover{
-  filter:brightness(1.10);
+/* =========================================================
+   TIMER FINALIZADO
+========================================================= */
+
+.timer-box.timer-finished{
+  border-color:rgba(255,255,255,.48);
+
+  filter:brightness(1.07);
+
+  animation:badGirlTimerFinished 1s ease-in-out infinite alternate;
+
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.47),
+    0 0 0 1px rgba(255,255,255,.06),
+    0 0 19px rgba(255,255,255,.08),
+    0 0 30px rgba(255,255,255,.025),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(0,0,0,.90);
 }
 
-/* ==========================================
+.timer-box.timer-finished #timer-value{
+  color:#ffffff;
+
+  text-shadow:
+    0 3px 0 rgba(0,0,0,.98),
+    0 0 6px rgba(255,255,255,.28),
+    0 0 13px rgba(255,255,255,.10);
+}
+
+@keyframes badGirlTimerFinished{
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.025);
+  }
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.timer-box:hover{
+  transform:translateY(-1px);
+
+  filter:brightness(1.045);
+
+  border-color:rgba(255,255,255,.28);
+
+  box-shadow:
+    0 12px 25px rgba(0,0,0,.45),
+    0 0 0 1px rgba(255,255,255,.035),
+    0 0 16px rgba(255,255,255,.04),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.90);
+}
+
+.timer-box.timer-running:hover{
+  animation-play-state:running;
+}
+
+
+/* =========================================================
    RESPONSIVE
-========================================== */
+========================================================= */
 
-@media (max-height:460px){
-  #goal-wrapper{
-    height:360px;
+@media (max-width:310px){
+
+  .timer-widget{
+    width:100%;
+    padding:9px;
+
+    border-radius:21px;
   }
 
-  .goal-title{
-    font-size:20px;
+  .timer-widget::before{
+    border-radius:16px;
   }
 
-  .goal-title::before{
-    height:23px;
+  .timer-title{
+    min-height:43px;
+    padding:6px 12px;
+
+    border-radius:15px;
+
+    font-size:24px;
   }
 
-  .goal-amount{
-    bottom:39px;
-    font-size:15px;
+  .timer-box{
+    width:172px;
+    height:70px;
+
+    border-radius:18px;
+  }
+
+  #timer-value{
+    font-size:39px;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    ACCESIBILIDAD
-========================================== */
+========================================================= */
 
 @media (prefers-reduced-motion:reduce){
-  #goal-wrapper::after,
-  #bar-fill::before,
-  #bar-fill::after,
-  .goal-title.neon{
+
+  .timer-widget::after,
+  .timer-box::after,
+  .timer-box.timer-running,
+  .timer-box.timer-running #timer-value,
+  .timer-box.timer-finished{
     animation:none;
   }
 
-  #bar-fill{
+  .timer-box{
     transition:none;
   }
 }

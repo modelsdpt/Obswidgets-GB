@@ -3,287 +3,282 @@
    Marfil envejecido, tinta negra y estilo grunge
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
 
 :root{
-  --paper:#f4efe5;
-  --paper-light:#fffdf7;
-  --paper-soft:#e8e0d3;
-  --paper-dark:#c9bca9;
-
-  --ink:#090807;
-  --ink-soft:#171513;
-  --charcoal:#25211e;
-  --graphite:#403a34;
-
-  --taupe:#807365;
-  --shadow-brown:#4a4037;
-
   --white:#ffffff;
-  --black:#020202;
+  --white-soft:#f6f6f6;
+  --silver:#cfcfcf;
+  --silver-dark:#8f8f8f;
+
+  --black:#050505;
+  --black-2:#090909;
+  --black-3:#101010;
+  --charcoal:#171717;
+  --charcoal-2:#202020;
+
+  --line:rgba(255,255,255,.15);
+  --line-strong:rgba(255,255,255,.30);
+
+  --shadow:rgba(0,0,0,.72);
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
   background:transparent;
-  color:var(--ink);
-  font-family:'Oswald', Arial, sans-serif;
 }
 
-/* ==========================================
+body{
+  color:var(--white);
+  font-family:'Inter', Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
    CONTENEDOR PRINCIPAL
-========================================== */
+========================================================= */
 
 #container{
   position:relative;
+  isolation:isolate;
 
   width:430px;
   max-width:100%;
 
-  padding:15px 15px 17px;
-
-  border:3px solid var(--black);
-  border-radius:4px;
+  padding:11px;
 
   overflow:hidden;
-  isolation:isolate;
+  border-radius:24px;
 
   background:
-    /* Manchas de tinta sutiles */
     radial-gradient(
-      ellipse at 12% 12%,
-      rgba(0,0,0,.07),
-      transparent 24%
+      circle at 20% -10%,
+      rgba(255,255,255,.08) 0%,
+      rgba(255,255,255,0) 34%
     ),
     radial-gradient(
-      ellipse at 89% 83%,
-      rgba(74,64,55,.09),
-      transparent 30%
+      circle at 92% 110%,
+      rgba(255,255,255,.035) 0%,
+      rgba(255,255,255,0) 42%
     ),
-
-    /* Fibras horizontales */
-    repeating-linear-gradient(
-      0deg,
-      rgba(20,17,14,.022) 0,
-      rgba(20,17,14,.022) 1px,
-      transparent 1px,
-      transparent 4px
-    ),
-
-    /* Arañazos diagonales */
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 10px,
-      rgba(0,0,0,.018) 11px,
-      transparent 12px
-    ),
-
-    /* Papel envejecido */
     linear-gradient(
       145deg,
-      #fffdf7 0%,
-      #eee7da 27%,
-      #d9cdbc 55%,
-      #f3ede3 78%,
-      #c8baa7 100%
+      #151515 0%,
+      #080808 46%,
+      #030303 100%
     );
 
-  box-shadow:
-    0 0 0 2px rgba(244,239,229,.95),
-    0 0 0 6px rgba(4,4,4,.98),
-    0 0 0 8px rgba(82,74,66,.72),
-    0 0 15px rgba(255,255,255,.20),
-    0 12px 30px rgba(0,0,0,.76),
+  border:1px solid rgba(255,255,255,.18);
 
-    inset 0 2px 0 rgba(255,255,255,.82),
-    inset 0 -18px 28px rgba(66,53,43,.16),
-    inset 12px 0 25px rgba(255,255,255,.15),
-    inset -12px 0 22px rgba(66,53,43,.12);
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.50),
+    0 7px 16px rgba(0,0,0,.38),
+    0 0 0 1px rgba(0,0,0,.85),
+    inset 0 1px 0 rgba(255,255,255,.11),
+    inset 0 -1px 0 rgba(255,255,255,.025);
 }
 
-/* ==========================================
-   MARCO INTERIOR
-========================================== */
+
+/* Marco interior suave */
 
 #container::before{
   content:"";
 
   position:absolute;
-  inset:6px;
-  z-index:6;
+  inset:5px;
+  z-index:5;
 
-  border:1px solid rgba(9,8,7,.82);
-  border-radius:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.14),
-      transparent 14%,
-      transparent 86%,
-      rgba(0,0,0,.04)
-    );
+  border-radius:19px;
+  border:1px solid rgba(255,255,255,.06);
 
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.45),
-    inset 0 0 13px rgba(0,0,0,.07),
-    0 0 0 1px rgba(76,66,57,.28);
+    inset 0 0 0 1px rgba(0,0,0,.65);
 
   pointer-events:none;
 }
 
-/* ==========================================
-   REFLEJO DE PAPEL
-========================================== */
+
+/* Barrido blanco tipo flash editorial */
 
 #container::after{
   content:"";
 
   position:absolute;
-  top:-75%;
-  left:-70%;
+  top:-65%;
+  left:-48%;
   z-index:2;
 
-  width:38%;
+  width:30%;
   height:250%;
+
+  opacity:.28;
 
   background:
     linear-gradient(
-      110deg,
+      108deg,
       transparent 0%,
-      rgba(255,255,255,.02) 31%,
-      rgba(255,255,255,.28) 47%,
-      rgba(255,255,255,.52) 51%,
-      rgba(255,255,255,.10) 59%,
+      rgba(255,255,255,.01) 30%,
+      rgba(255,255,255,.12) 47%,
+      rgba(255,255,255,.27) 51%,
+      rgba(255,255,255,.07) 58%,
       transparent 72%
     );
 
   transform:rotate(17deg);
 
-  animation:mvpPaperShine 7.5s linear infinite;
+  animation:badGirlContainerFlash 8.5s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes mvpPaperShine{
+@keyframes badGirlContainerFlash{
   0%{
-    left:-70%;
+    left:-48%;
     opacity:0;
   }
 
   9%{
-    opacity:1;
+    opacity:.28;
   }
 
-  42%{
-    left:145%;
-    opacity:.72;
+  38%{
+    left:142%;
+    opacity:.28;
   }
 
-  52%,
+  49%,
   100%{
-    left:145%;
+    left:142%;
     opacity:0;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    TÍTULO
-========================================== */
+========================================================= */
 
 .title{
   position:relative;
   z-index:7;
 
-  margin:0 0 15px;
-  padding:7px 12px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  border:2px solid var(--ink);
-  border-radius:1px;
+  min-height:47px;
+
+  margin:0 0 9px;
+  padding:7px 18px;
+
+  overflow:hidden;
+  border-radius:17px;
 
   text-align:center;
-
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:32px;
-  font-weight:400;
-  line-height:.95;
-  letter-spacing:.055em;
-
-  color:var(--ink);
-
   text-transform:uppercase;
 
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:30px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.045em;
+
+  color:#ffffff;
+
   background:
-    /* Desgaste del papel */
-    repeating-linear-gradient(
-      108deg,
-      transparent 0,
-      transparent 12px,
-      rgba(0,0,0,.025) 13px,
-      transparent 14px
-    ),
-
-    radial-gradient(
-      ellipse at 20% 20%,
-      rgba(255,255,255,.72),
-      transparent 30%
-    ),
-
     linear-gradient(
       180deg,
-      #fffef8 0%,
-      #eee7da 48%,
-      #d8cdbc 100%
+      rgba(255,255,255,.085) 0%,
+      rgba(255,255,255,.02) 38%,
+      rgba(0,0,0,.08) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #191919 0%,
+      #080808 52%,
+      #020202 100%
     );
 
-  box-shadow:
-    3px 4px 0 var(--ink),
-    6px 7px 0 rgba(73,64,56,.42),
-    0 0 0 1px rgba(255,255,255,.75),
-    inset 0 1px 0 rgba(255,255,255,.92),
-    inset 0 -7px 13px rgba(62,49,39,.12);
+  border:1px solid rgba(255,255,255,.17);
 
-  -webkit-text-stroke:.7px var(--ink);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.36),
+    inset 0 1px 0 rgba(255,255,255,.11),
+    inset 0 -1px 0 rgba(0,0,0,.95);
 
   text-shadow:
-    1px 1px 0 rgba(255,255,255,.62),
-    2px 2px 0 rgba(255,255,255,.30),
-    4px 4px 0 rgba(49,43,38,.24);
+    0 2px 0 rgba(0,0,0,.94),
+    0 0 5px rgba(255,255,255,.19);
 }
 
-/* Línea decorativa desgastada */
-.title::after{
+
+/* Línea blanca editorial */
+
+.title::before{
   content:"";
 
   position:absolute;
-  left:7%;
-  right:7%;
-  bottom:-7px;
+  top:0;
+  left:13%;
+  right:13%;
 
-  height:2px;
+  height:1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(8,7,6,.55) 12%,
-      var(--ink) 50%,
-      rgba(8,7,6,.55) 88%,
+      rgba(255,255,255,.64),
+      transparent
+    );
+}
+
+
+/* Subrayado estilo razor */
+
+.title::after{
+  content:"";
+
+  position:absolute;
+  left:30%;
+  right:30%;
+  bottom:0;
+
+  height:2px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.54),
+      #ffffff,
+      rgba(255,255,255,.54),
       transparent
     );
 
   box-shadow:
-    0 1px 0 rgba(255,255,255,.60);
+    0 0 7px rgba(255,255,255,.18);
 }
 
-/* ==========================================
-   LISTA
-========================================== */
+
+/* =========================================================
+   LISTADO
+========================================================= */
 
 #top-list{
   position:relative;
@@ -291,425 +286,534 @@ body{
 
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
 }
 
-/* ==========================================
-   FILA GENERAL
-========================================== */
+
+/* =========================================================
+   FILAS
+========================================================= */
 
 .tip{
   position:relative;
+  isolation:isolate;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:11px;
 
-  min-height:53px;
+  min-height:52px;
 
-  padding:9px 13px 9px 18px;
-
-  border:2px solid var(--ink);
-  border-radius:2px;
+  padding:8px 13px 8px 13px;
 
   overflow:hidden;
-  isolation:isolate;
+  border-radius:16px;
 
   background:
-    repeating-linear-gradient(
-      113deg,
-      transparent 0,
-      transparent 11px,
-      rgba(0,0,0,.022) 12px,
-      transparent 13px
-    ),
-
     radial-gradient(
-      ellipse at 18% 0%,
-      rgba(255,255,255,.72),
-      transparent 37%
+      circle at 12% 0%,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,0) 34%
     ),
-
     linear-gradient(
-      100deg,
-      #fffdf7 0%,
-      #ebe3d6 48%,
-      #d1c3b1 100%
+      180deg,
+      rgba(255,255,255,.045) 0%,
+      rgba(255,255,255,.015) 42%,
+      rgba(0,0,0,.05) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #171717 0%,
+      #090909 54%,
+      #050505 100%
     );
 
-  box-shadow:
-    2px 3px 0 var(--ink),
-    4px 5px 0 rgba(70,61,53,.30),
-    0 5px 13px rgba(0,0,0,.36),
+  border:1px solid rgba(255,255,255,.10);
 
-    inset 0 1px 0 rgba(255,255,255,.92),
-    inset 0 -8px 15px rgba(70,55,43,.13);
+  box-shadow:
+    0 6px 14px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 -1px 0 rgba(0,0,0,.82);
 
   transition:
     transform .22s ease,
-    filter .22s ease,
+    border-color .22s ease,
     box-shadow .22s ease,
-    background .22s ease;
+    filter .22s ease;
 }
 
-/* Barra lateral de tinta */
+
+/* Acento lateral tipo blade */
+
 .tip::before{
   content:"";
 
   position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  z-index:2;
+  z-index:3;
 
-  width:7px;
+  left:8px;
+  top:10px;
+  bottom:10px;
+
+  width:3px;
+
+  border-radius:999px;
 
   background:
     linear-gradient(
       180deg,
-      #302b27 0%,
-      #090807 25%,
-      #000000 70%,
-      #39322c 100%
+      #ffffff 0%,
+      #bcbcbc 48%,
+      #555555 100%
     );
 
-  border-right:1px solid rgba(255,255,255,.30);
-
   box-shadow:
-    2px 0 0 rgba(0,0,0,.23),
-    3px 0 7px rgba(0,0,0,.24);
+    0 0 7px rgba(255,255,255,.12);
 }
 
-/* Reflejo de la fila */
+
+/* Flash individual */
+
 .tip::after{
   content:"";
 
   position:absolute;
   top:0;
-  left:-100%;
+  left:-80%;
   z-index:1;
 
-  width:54%;
+  width:38%;
   height:100%;
+
+  opacity:.35;
 
   background:
     linear-gradient(
       105deg,
       transparent 0%,
-      rgba(255,255,255,.08) 28%,
-      rgba(255,255,255,.55) 49%,
-      rgba(255,255,255,.12) 58%,
-      transparent 75%
+      rgba(255,255,255,.015) 24%,
+      rgba(255,255,255,.11) 48%,
+      rgba(255,255,255,.025) 62%,
+      transparent 76%
     );
 
-  transform:skewX(-19deg);
+  transform:skewX(-18deg);
 
-  animation:mvpRowPaperShine 6.2s ease-in-out infinite;
+  animation:badGirlRowFlash 7.2s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes mvpRowPaperShine{
+@keyframes badGirlRowFlash{
   0%{
-    left:-100%;
+    left:-80%;
   }
 
-  38%{
-    left:145%;
+  29%{
+    left:142%;
   }
 
   100%{
-    left:145%;
+    left:142%;
   }
 }
 
-/* ==========================================
-   INTERACCIÓN
-========================================== */
+
+/* Hover */
 
 .tip:hover{
-  transform:
-    translateY(-2px)
-    translateX(-1px);
+  transform:translateY(-1px);
 
-  filter:brightness(1.04) contrast(1.03);
+  filter:brightness(1.05);
 
-  background:
-    repeating-linear-gradient(
-      113deg,
-      transparent 0,
-      transparent 11px,
-      rgba(0,0,0,.025) 12px,
-      transparent 13px
-    ),
-    linear-gradient(
-      100deg,
-      #ffffff 0%,
-      #f1eade 48%,
-      #dbcebd 100%
-    );
+  border-color:rgba(255,255,255,.19);
 
   box-shadow:
-    3px 4px 0 var(--ink),
-    6px 7px 0 rgba(70,61,53,.32),
-    0 8px 16px rgba(0,0,0,.40),
-    inset 0 1px 0 rgba(255,255,255,.96),
-    inset 0 -8px 15px rgba(70,55,43,.14);
+    0 8px 18px rgba(0,0,0,.36),
+    0 0 12px rgba(255,255,255,.035),
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 -1px 0 rgba(0,0,0,.82);
 }
 
-/* ==========================================
-   NOMBRE Y CANTIDAD
-========================================== */
+
+/* =========================================================
+   NOMBRE
+========================================================= */
 
 .tip .name{
   position:relative;
-  z-index:3;
+  z-index:4;
 
   flex:1;
   min-width:0;
 
-  font-family:'Oswald', Arial, sans-serif;
-  font-size:19px;
-  font-weight:700;
-  line-height:1;
+  padding-left:5px;
+
+  font-family:'Inter', Arial, sans-serif;
+  font-size:17px;
+  font-weight:800;
+  line-height:1.05;
   letter-spacing:.025em;
 
-  color:var(--ink);
+  color:rgba(255,255,255,.94);
 
   text-transform:uppercase;
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.90);
 }
+
+
+/* =========================================================
+   CANTIDAD
+========================================================= */
 
 .tip .amount{
   position:relative;
-  z-index:3;
+  z-index:4;
 
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:24px;
-  font-weight:400;
-  line-height:1;
-  letter-spacing:.055em;
+  flex-shrink:0;
 
-  color:var(--ink);
+  padding:3px 7px 4px;
 
-  white-space:nowrap;
-}
-
-.tip .name,
-.tip .amount{
-  -webkit-text-stroke:.3px rgba(0,0,0,.96);
-
-  text-shadow:
-    1px 1px 0 rgba(255,255,255,.65),
-    2px 2px 0 rgba(94,81,69,.20);
-}
-
-/* ==========================================
-   PRIMER LUGAR
-========================================== */
-
-.tip.mvp{
-  min-height:58px;
-
-  border-width:3px;
-
-  background:
-    repeating-linear-gradient(
-      110deg,
-      transparent 0,
-      transparent 9px,
-      rgba(0,0,0,.028) 10px,
-      transparent 11px
-    ),
-
-    radial-gradient(
-      ellipse at 20% 0%,
-      rgba(255,255,255,.95),
-      transparent 40%
-    ),
-
-    linear-gradient(
-      100deg,
-      #fffef9 0%,
-      #f0e8dc 43%,
-      #cdbda9 100%
-    );
-
-  box-shadow:
-    4px 5px 0 var(--ink),
-    7px 8px 0 rgba(72,63,54,.38),
-    0 8px 17px rgba(0,0,0,.42),
-
-    inset 0 2px 0 rgba(255,255,255,.98),
-    inset 0 -10px 18px rgba(69,53,41,.16);
-}
-
-.tip.mvp::before{
-  width:9px;
+  border-radius:9px;
 
   background:
     linear-gradient(
       180deg,
-      #5a5149 0%,
-      #151210 22%,
-      #000000 68%,
-      #4a423b 100%
+      rgba(255,255,255,.07),
+      rgba(255,255,255,.015)
+    );
+
+  border:1px solid rgba(255,255,255,.08);
+
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:25px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.025em;
+
+  color:#ffffff;
+
+  white-space:nowrap;
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.95),
+    0 0 4px rgba(255,255,255,.10);
+}
+
+
+/* =========================================================
+   PRIMER LUGAR — MVP
+========================================================= */
+
+.tip.mvp{
+  min-height:61px;
+
+  border-radius:18px;
+
+  background:
+    radial-gradient(
+      circle at 12% 0%,
+      rgba(255,255,255,.11) 0%,
+      rgba(255,255,255,0) 34%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.06) 0%,
+      rgba(255,255,255,.02) 40%,
+      rgba(0,0,0,.05) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #222222 0%,
+      #0d0d0d 50%,
+      #050505 100%
+    );
+
+  border:1px solid rgba(255,255,255,.22);
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.42),
+    0 0 0 1px rgba(255,255,255,.035),
+    0 0 15px rgba(255,255,255,.035),
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.88);
+
+  animation:badGirlMvpBreath 5s ease-in-out infinite;
+}
+
+
+/* Acento blanco del #1 */
+
+.tip.mvp::before{
+  width:4px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #ededed 22%,
+      #bdbdbd 57%,
+      #555555 100%
     );
 
   box-shadow:
-    2px 0 0 rgba(0,0,0,.25),
-    4px 0 8px rgba(0,0,0,.25);
+    0 0 7px rgba(255,255,255,.24),
+    0 0 12px rgba(255,255,255,.06);
 }
 
 .tip.mvp .name{
-  font-size:20px;
+  font-size:18px;
+  font-weight:800;
+  color:#ffffff;
 }
 
 .tip.mvp .amount{
-  font-size:27px;
+  font-size:29px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.10),
+      rgba(255,255,255,.025)
+    );
+
+  border-color:rgba(255,255,255,.13);
+
+  color:#ffffff;
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.98),
+    0 0 5px rgba(255,255,255,.13);
 }
 
-/* ==========================================
+@keyframes badGirlMvpBreath{
+  0%,
+  100%{
+    box-shadow:
+      0 10px 22px rgba(0,0,0,.42),
+      0 0 0 1px rgba(255,255,255,.035),
+      0 0 13px rgba(255,255,255,.025),
+      inset 0 1px 0 rgba(255,255,255,.12),
+      inset 0 -1px 0 rgba(0,0,0,.88);
+  }
+
+  50%{
+    box-shadow:
+      0 11px 24px rgba(0,0,0,.44),
+      0 0 0 1px rgba(255,255,255,.06),
+      0 0 17px rgba(255,255,255,.045),
+      inset 0 1px 0 rgba(255,255,255,.14),
+      inset 0 -1px 0 rgba(0,0,0,.88);
+  }
+}
+
+
+/* =========================================================
    SEGUNDO LUGAR
-========================================== */
+========================================================= */
 
 .tip.second{
   background:
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 11px,
-      rgba(0,0,0,.021) 12px,
-      transparent 13px
-    ),
-
-    radial-gradient(
-      ellipse at 16% 0%,
-      rgba(255,255,255,.65),
-      transparent 38%
-    ),
-
     linear-gradient(
-      100deg,
-      #f4efe6 0%,
-      #dfd5c7 48%,
-      #c5b6a3 100%
+      180deg,
+      rgba(255,255,255,.045) 0%,
+      rgba(255,255,255,.015) 42%,
+      rgba(0,0,0,.05) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #191919 0%,
+      #090909 55%,
+      #050505 100%
     );
 }
 
-/* ==========================================
+
+/* =========================================================
    TERCER LUGAR
-========================================== */
+========================================================= */
 
 .tip.third{
   background:
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 12px,
-      rgba(0,0,0,.022) 13px,
-      transparent 14px
-    ),
-
     linear-gradient(
-      100deg,
-      #e7ded2 0%,
-      #cec1b1 50%,
-      #aa9b89 100%
+      180deg,
+      rgba(255,255,255,.035) 0%,
+      rgba(255,255,255,.01) 42%,
+      rgba(0,0,0,.06) 100%
+    ),
+    linear-gradient(
+      135deg,
+      #151515 0%,
+      #080808 58%,
+      #040404 100%
     );
 
-  filter:brightness(.97);
+  opacity:.94;
 }
 
-/* ==========================================
+
+/* =========================================================
    ICONOS DE POSICIÓN
-========================================== */
+========================================================= */
 
 .rank-icon{
   position:relative;
-  z-index:3;
+  z-index:4;
 
   display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  margin-right:5px;
+  flex-shrink:0;
 
-  font-size:19px;
-  color:var(--ink);
+  width:29px;
+  height:29px;
 
-  filter:
-    drop-shadow(1px 1px 0 rgba(255,255,255,.75))
-    drop-shadow(2px 2px 0 rgba(80,69,59,.24));
+  margin-right:1px;
+
+  border-radius:10px;
+
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:16px;
+  font-weight:900;
+
+  color:#ffffff;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.02)
+    );
+
+  border:1px solid rgba(255,255,255,.09);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 3px 8px rgba(0,0,0,.30);
+
+  filter:none;
 }
 
 .tip.mvp .rank-icon{
-  font-size:22px;
+  width:34px;
+  height:34px;
 
-  filter:
-    drop-shadow(1px 1px 0 rgba(255,255,255,.85))
-    drop-shadow(2px 2px 0 rgba(62,52,44,.30));
+  border-radius:12px;
+
+  font-size:18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.025)
+    );
+
+  border-color:rgba(255,255,255,.15);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.13),
+    0 4px 10px rgba(0,0,0,.34),
+    0 0 8px rgba(255,255,255,.025);
 }
 
-/* ==========================================
-   EFECTO DE TINTA EN EL PRIMER LUGAR
-========================================== */
 
-.tip.mvp .name,
-.tip.mvp .amount{
-  text-shadow:
-    1px 1px 0 rgba(255,255,255,.80),
-    2px 2px 0 rgba(85,72,61,.23),
-    0 0 1px rgba(0,0,0,.55);
-}
-
-/* ==========================================
+/* =========================================================
    RESPONSIVE
-========================================== */
+========================================================= */
 
 @media (max-width:460px){
+
   #container{
     width:100%;
-    padding:13px 12px 15px;
+    padding:9px;
+
+    border-radius:21px;
+  }
+
+  #container::before{
+    border-radius:16px;
   }
 
   .title{
-    font-size:28px;
+    min-height:44px;
+    padding:6px 14px;
+
+    border-radius:15px;
+
+    font-size:27px;
+  }
+
+  #top-list{
+    gap:7px;
   }
 
   .tip{
-    min-height:50px;
-    padding:8px 11px 8px 16px;
+    min-height:49px;
+    padding:7px 10px 7px 12px;
+
+    border-radius:14px;
   }
 
-  .tip .name{
+  .tip.mvp{
+    min-height:57px;
+
+    border-radius:16px;
+  }
+
+  .rank-icon{
+    width:27px;
+    height:27px;
+
+    border-radius:9px;
+
+    font-size:15px;
+  }
+
+  .tip.mvp .rank-icon{
+    width:31px;
+    height:31px;
+
+    border-radius:10px;
+
     font-size:17px;
   }
 
+  .tip .name{
+    font-size:15px;
+  }
+
   .tip .amount{
-    font-size:21px;
+    font-size:22px;
   }
 
   .tip.mvp .name{
-    font-size:18px;
+    font-size:16px;
   }
 
   .tip.mvp .amount{
-    font-size:24px;
+    font-size:26px;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    ACCESIBILIDAD
-========================================== */
+========================================================= */
 
 @media (prefers-reduced-motion:reduce){
+
   #container::after,
-  .tip::after{
+  .tip::after,
+  .tip.mvp{
     animation:none;
   }
 
