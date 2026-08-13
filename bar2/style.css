@@ -1,199 +1,165 @@
-/* ==========================================
-   GOALBAR – DARK CRIMSON GRUNGE THEME
-   Negro, rojo vino, blanco vintage y textura urbana
-========================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
 
 :root{
+  --pink-50:#fff7fa;
+  --pink-100:#ffeaf1;
+  --pink-200:#ffd2df;
+  --pink-300:#ffb4c9;
+  --pink-400:#f58da9;
+  --pink-500:#e86f93;
+  --pink-600:#cc4f76;
+  --pink-700:#9d3558;
+
+  --ink:#09070a;
+  --ink-soft:#141016;
+  --ink-muted:#241b22;
+
   --white:#ffffff;
-  --ivory:#fffaf1;
-  --ivory-muted:#e4dad0;
-
-  --red-light:#ff5362;
-  --red:#d3233a;
-  --red-dark:#8c1022;
-
-  --wine:#530713;
-  --wine-dark:#2b0309;
-  --wine-deep:#160104;
-
-  --black:#050505;
-  --black-soft:#0b090a;
-  --graphite:#171316;
-  --graphite-light:#242024;
-
-  --shadow:rgba(0,0,0,.78);
+  --white-soft:#fff8fb;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
   background:transparent;
-  color:var(--white);
-  font-family:'Oswald', Arial, sans-serif;
 }
 
-/* ==========================================
-   CONTENEDOR PRINCIPAL
-========================================== */
+body{
+  color:var(--white);
+  font-family:'Inter', Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
+   GOALBAR / CONTENEDOR
+========================================================= */
 
 #goal-wrapper{
   position:relative;
+  isolation:isolate;
 
-  width:68px;
+  width:72px;
   height:420px;
 
   overflow:hidden;
-  isolation:isolate;
-
-  border:2px solid #791323;
-  border-radius:8px;
+  border-radius:22px;
 
   background:
-    /* Marcas diagonales desgastadas */
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 8px,
-      rgba(255,255,255,.019) 9px,
-      transparent 10px
-    ),
-
-    /* Líneas verticales sutiles */
-    repeating-linear-gradient(
-      90deg,
-      transparent 0,
-      transparent 10px,
-      rgba(255,255,255,.012) 11px,
-      transparent 12px
-    ),
-
-    /* Luz superior */
     radial-gradient(
       ellipse at 50% 0%,
-      rgba(218,34,55,.28),
-      transparent 35%
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,0) 31%
     ),
-
-    /* Resplandor inferior */
     radial-gradient(
       ellipse at 50% 100%,
-      rgba(115,8,25,.28),
-      transparent 42%
+      rgba(204,79,118,.10) 0%,
+      rgba(204,79,118,0) 40%
     ),
-
-    /* Fondo metálico */
     linear-gradient(
       180deg,
-      #20181b 0%,
-      #100d0f 21%,
-      #080708 52%,
-      #0c0809 77%,
-      #17070a 100%
+      rgba(34,25,31,.98) 0%,
+      rgba(15,11,13,.99) 42%,
+      rgba(20,12,16,.99) 100%
     );
 
+  border:1px solid rgba(255,255,255,.18);
+
   box-shadow:
-    0 0 0 1px rgba(255,77,92,.16),
-    0 0 0 4px rgba(28,1,6,.96),
-    0 0 0 6px rgba(105,9,23,.52),
-    0 0 16px rgba(214,30,52,.38),
-    0 0 30px rgba(104,6,20,.26),
-    0 11px 28px rgba(0,0,0,.76),
-    inset 0 2px 0 rgba(255,255,255,.08),
-    inset 0 -20px 30px rgba(0,0,0,.70);
+    0 16px 34px rgba(0,0,0,.38),
+    0 5px 14px rgba(0,0,0,.28),
+    0 0 0 1px rgba(85,28,49,.25),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -1px 0 rgba(0,0,0,.68);
 }
 
-/* ==========================================
-   MARCO INTERIOR
-========================================== */
+
+/* Marco interior limpio y redondeado */
 
 #goal-wrapper::before{
   content:"";
-
   position:absolute;
-  inset:6px;
+  inset:5px;
   z-index:6;
 
-  border:1px solid rgba(200,37,55,.43);
-  border-radius:3px;
+  pointer-events:none;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.035),
-      transparent 16%,
-      transparent 84%,
-      rgba(255,255,255,.025)
-    );
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.10);
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.92),
-    inset 0 0 12px rgba(163,14,34,.13),
-    0 0 8px rgba(207,28,48,.17);
-
-  pointer-events:none;
+    inset 0 0 0 1px rgba(69,19,37,.16),
+    inset 0 0 16px rgba(232,111,147,.035);
 }
 
-/* ==========================================
-   BARRIDO DE LUZ
-========================================== */
+
+/* Barrido ambiental muy suave */
 
 #goal-wrapper::after{
   content:"";
-
   position:absolute;
-  top:115%;
-  left:0;
   z-index:5;
+  pointer-events:none;
+
+  left:0;
+  top:115%;
 
   width:100%;
-  height:28%;
+  height:22%;
+
+  opacity:.48;
 
   background:
     linear-gradient(
       180deg,
       transparent 0%,
-      rgba(202,27,47,.03) 20%,
-      rgba(255,62,78,.14) 43%,
-      rgba(255,235,235,.14) 50%,
-      rgba(194,20,42,.07) 63%,
+      rgba(255,255,255,.02) 24%,
+      rgba(255,224,233,.14) 46%,
+      rgba(255,255,255,.22) 52%,
+      rgba(245,141,169,.08) 62%,
       transparent 100%
     );
 
-  animation:goalCrimsonSweep 6.8s linear infinite;
-
-  pointer-events:none;
+  animation:goalSoftSweep 7.8s ease-in-out infinite;
 }
 
-@keyframes goalCrimsonSweep{
+@keyframes goalSoftSweep{
   0%{
     top:115%;
     opacity:0;
   }
 
-  8%{
-    opacity:1;
+  9%{
+    opacity:.48;
   }
 
-  42%{
-    top:-38%;
-    opacity:1;
+  39%{
+    top:-34%;
+    opacity:.48;
   }
 
-  52%,
+  49%,
   100%{
-    top:-38%;
+    top:-34%;
     opacity:0;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    RELLENO DEL PROGRESO
-========================================== */
+========================================================= */
 
 #bar-fill{
   position:absolute;
@@ -206,60 +172,56 @@ body{
 
   overflow:hidden;
 
-  border-radius:0 0 6px 6px;
+  border-radius:0 0 21px 21px;
 
   background:
-    /* Brillos verticales */
+    /* reflejo vertical */
     linear-gradient(
       90deg,
-      rgba(255,255,255,.20) 0%,
-      rgba(255,255,255,.035) 18%,
-      transparent 42%,
-      rgba(0,0,0,.16) 66%,
-      rgba(255,255,255,.11) 87%,
-      rgba(255,255,255,.20) 100%
+      rgba(255,255,255,.22) 0%,
+      rgba(255,255,255,.07) 18%,
+      transparent 39%,
+      rgba(112,33,60,.08) 68%,
+      rgba(255,255,255,.08) 88%,
+      rgba(255,255,255,.16) 100%
     ),
 
-    /* Textura desgastada */
-    repeating-linear-gradient(
-      118deg,
-      transparent 0,
-      transparent 9px,
-      rgba(255,255,255,.024) 10px,
-      transparent 11px
-    ),
-
-    /* Color principal */
+    /* profundidad */
     linear-gradient(
       180deg,
-      #e42b43 0%,
-      #bc182f 22%,
-      #8f1023 48%,
-      #620918 74%,
-      #31040b 100%
+      rgba(255,255,255,.08) 0%,
+      rgba(255,255,255,.02) 24%,
+      rgba(126,39,67,.12) 72%,
+      rgba(71,20,38,.24) 100%
+    ),
+
+    /* rosa principal */
+    linear-gradient(
+      180deg,
+      #f9a4ba 0%,
+      #ef7f9f 23%,
+      #e4628a 52%,
+      #ca4c75 76%,
+      #9d3558 100%
     );
 
-  border-top:3px solid #fff7f4;
-
   box-shadow:
-    inset 0 4px 0 rgba(255,255,255,.38),
-    inset 6px 0 12px rgba(255,255,255,.06),
-    inset -7px 0 12px rgba(0,0,0,.28),
-    inset 0 -15px 24px rgba(37,0,6,.56),
+    inset 7px 0 12px rgba(255,255,255,.05),
+    inset -8px 0 13px rgba(64,14,33,.18),
+    inset 0 -18px 24px rgba(86,22,45,.18),
 
-    0 -2px 5px rgba(255,255,255,.74),
-    0 -3px 10px rgba(255,53,72,.82),
-    0 0 18px rgba(211,24,48,.58),
-    0 0 28px rgba(112,7,23,.44);
+    0 0 14px rgba(234,111,148,.18),
+    0 -2px 8px rgba(255,201,217,.20);
 
   transition:
-    height .8s cubic-bezier(.22,.8,.25,1),
+    height .85s cubic-bezier(.22,.8,.25,1),
     filter .3s ease;
 }
 
-/* ==========================================
-   LÍNEA SUPERIOR DEL PROGRESO
-========================================== */
+
+/* =========================================================
+   CABEZA / LÍNEA DE PROGRESO
+========================================================= */
 
 #bar-fill::before{
   content:"";
@@ -267,116 +229,101 @@ body{
   position:absolute;
   top:0;
   left:0;
-  z-index:3;
+  z-index:4;
 
   width:100%;
-  height:8px;
+  height:5px;
+
+  border-radius:999px;
 
   background:
     linear-gradient(
       180deg,
-      #ffffff 0%,
-      rgba(255,248,241,.92) 20%,
-      rgba(255,89,102,.66) 46%,
-      rgba(186,17,39,.20) 76%,
-      transparent 100%
+      rgba(255,255,255,1) 0%,
+      rgba(255,245,248,.96) 28%,
+      rgba(255,204,219,.76) 58%,
+      rgba(245,141,169,.14) 100%
     );
 
   box-shadow:
-    0 -1px 4px rgba(255,255,255,.96),
-    0 0 8px rgba(255,255,255,.76),
-    0 0 13px rgba(255,49,69,.90),
-    0 0 22px rgba(206,24,47,.67);
+    0 0 5px rgba(255,255,255,.78),
+    0 0 10px rgba(255,208,220,.52),
+    0 0 15px rgba(240,126,159,.28);
 
-  animation:goalProgressPulse 1.35s ease-in-out infinite alternate;
+  animation:goalProgressBreath 1.8s ease-in-out infinite alternate;
 
   pointer-events:none;
 }
 
-@keyframes goalProgressPulse{
+@keyframes goalProgressBreath{
   from{
-    opacity:.72;
-    filter:brightness(.95);
+    opacity:.78;
+    filter:brightness(.96);
   }
 
   to{
     opacity:1;
-    filter:brightness(1.35);
+    filter:brightness(1.16);
   }
 }
 
-/* ==========================================
-   PARTÍCULA ASCENDENTE
-========================================== */
+
+/* =========================================================
+   DETALLE LUMINOSO ASCENDENTE
+========================================================= */
 
 #bar-fill::after{
-  content:"✦";
+  content:"";
 
   position:absolute;
   left:50%;
-  bottom:13px;
+  bottom:14px;
   z-index:4;
+
+  width:5px;
+  height:5px;
 
   transform:translateX(-50%);
 
-  font-family:Arial, sans-serif;
-  font-size:14px;
-  line-height:1;
+  border-radius:50%;
 
-  color:#fffaf2;
+  background:#ffffff;
 
-  -webkit-text-stroke:.6px #3f030d;
+  box-shadow:
+    0 0 5px rgba(255,255,255,.88),
+    0 0 9px rgba(255,211,224,.75),
+    0 0 15px rgba(245,141,169,.44);
 
-  text-shadow:
-    -1px -1px 0 #310108,
-     1px -1px 0 #310108,
-    -1px  1px 0 #310108,
-     1px  1px 0 #310108,
-     0 0 5px #ffffff,
-     0 0 9px rgba(255,72,89,.92),
-     0 0 15px rgba(190,19,43,.80);
-
-  animation:goalCrimsonSpark 3.8s linear infinite;
+  animation:goalSoftParticle 4.2s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes goalCrimsonSpark{
+@keyframes goalSoftParticle{
   0%{
-    transform:
-      translate(-50%, 18px)
-      scale(.55)
-      rotate(0deg);
-
+    transform:translate(-50%, 14px) scale(.55);
     opacity:0;
   }
 
   18%{
-    opacity:1;
+    opacity:.72;
   }
 
-  65%{
-    transform:
-      translate(-50%, -73px)
-      scale(1.05)
-      rotate(135deg);
-
-    opacity:.82;
+  68%{
+    transform:translate(-50%, -74px) scale(1);
+    opacity:.58;
   }
 
   100%{
-    transform:
-      translate(-50%, -128px)
-      scale(.65)
-      rotate(250deg);
-
+    transform:translate(-50%, -118px) scale(.65);
     opacity:0;
   }
 }
 
-/* ==========================================
-   CAPA DE TEXTOS
-========================================== */
+
+/* =========================================================
+   CAPA DE TEXTO
+========================================================= */
 
 .goal-label{
   position:absolute;
@@ -390,12 +337,14 @@ body{
   pointer-events:none;
 }
 
-/* ==========================================
+
+/* =========================================================
    TÍTULO CENTRAL
-========================================== */
+========================================================= */
 
 .goal-title{
   position:absolute;
+
   top:50%;
   left:50%;
 
@@ -405,65 +354,76 @@ body{
 
   transform-origin:center;
 
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:22px;
-  font-weight:400;
-  line-height:.95;
-  letter-spacing:.075em;
+  min-width:max-content;
 
-  color:var(--ivory);
+  padding:3px 8px 4px;
+
+  border-radius:8px;
+
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:22px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:.065em;
+
+  color:rgba(255,255,255,.96);
 
   text-transform:uppercase;
   white-space:nowrap;
 
-  -webkit-text-stroke:.55px rgba(28,0,5,.96);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.05),
+      rgba(255,255,255,.015)
+    );
 
   text-shadow:
-    -1px -1px 0 #1b0105,
-     1px -1px 0 #1b0105,
-    -1px  1px 0 #1b0105,
-     1px  1px 0 #1b0105,
-
-     0 2px 0 #5e0916,
-     0 0 4px rgba(255,255,255,.44),
-     0 0 9px rgba(211,31,51,.29);
+    0 2px 0 rgba(92,30,52,.75),
+    0 0 5px rgba(255,255,255,.20),
+    0 0 10px rgba(245,141,169,.12);
 }
 
-/* Línea decorativa detrás del título */
+
+/* Línea decorativa delicada */
+
 .goal-title::after{
   content:"";
 
   position:absolute;
-  top:50%;
-  left:-16px;
+  z-index:-1;
 
-  width:calc(100% + 32px);
+  top:50%;
+  left:-13px;
+
+  width:calc(100% + 26px);
   height:1px;
 
   transform:translateY(-50%);
-  z-index:-1;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(157,18,37,.44) 14%,
-      rgba(224,45,63,.70) 50%,
-      rgba(157,18,37,.44) 86%,
+      rgba(245,141,169,.16) 18%,
+      rgba(255,228,236,.42) 50%,
+      rgba(245,141,169,.16) 82%,
       transparent
     );
 
   box-shadow:
-    0 0 6px rgba(207,27,47,.38);
+    0 0 6px rgba(245,141,169,.10);
 }
 
-/* ==========================================
+
+/* =========================================================
    CANTIDAD / META
-========================================== */
+========================================================= */
 
 .goal-amount{
   position:absolute;
-  bottom:43px;
+
+  bottom:42px;
   left:50%;
 
   transform:
@@ -473,97 +433,96 @@ body{
   transform-origin:center;
 
   min-width:max-content;
-  padding:4px 9px 5px;
+  padding:6px 11px 7px;
 
-  border:1px solid rgba(207,40,57,.92);
-  border-radius:3px;
+  border-radius:10px;
 
   background:
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 8px,
-      rgba(255,255,255,.027) 9px,
-      transparent 10px
-    ),
-    radial-gradient(
-      circle at 30% 0%,
-      rgba(255,255,255,.10),
-      transparent 45%
-    ),
     linear-gradient(
       180deg,
-      #29181c 0%,
-      #0c090a 49%,
-      #1d060b 100%
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.03) 40%,
+      rgba(0,0,0,.04) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(52,33,41,.98) 0%,
+      rgba(18,12,15,.99) 58%,
+      rgba(35,17,25,.99) 100%
     );
 
+  border:1px solid rgba(255,216,227,.26);
+
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.95),
-    0 0 0 3px rgba(83,5,17,.45),
-    0 0 10px rgba(207,27,49,.35),
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -7px 12px rgba(62,0,9,.38);
+    0 5px 13px rgba(0,0,0,.30),
+    0 0 10px rgba(238,116,151,.08),
+    inset 0 1px 0 rgba(255,255,255,.12);
 
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
+  font-family:'Barlow Condensed', Impact, sans-serif;
   font-size:17px;
-  font-weight:400;
+  font-weight:800;
   line-height:1;
-  letter-spacing:.06em;
+  letter-spacing:.045em;
 
-  color:var(--ivory);
+  color:#fff8fb;
 
   white-space:nowrap;
 
-  -webkit-text-stroke:.4px rgba(27,0,4,.95);
-
   text-shadow:
-    -1px -1px 0 #190104,
-     1px -1px 0 #190104,
-    -1px  1px 0 #190104,
-     1px  1px 0 #190104,
-
-     0 2px 0 #650b17,
-     0 0 5px rgba(255,255,255,.27),
-     0 0 8px rgba(208,30,51,.24);
+    0 1px 2px rgba(0,0,0,.80),
+    0 0 5px rgba(255,255,255,.16);
 }
 
-/* ==========================================
-   EFECTO NEÓN CONTROLADO
-========================================== */
+
+/* =========================================================
+   NEON / ESTADO DESTACADO
+========================================================= */
 
 .goal-title.neon{
-  animation:goalCrimsonTextPulse 1.6s ease-in-out infinite alternate;
+  animation:goalTitleBreath 2.3s ease-in-out infinite alternate;
 }
 
-@keyframes goalCrimsonTextPulse{
+@keyframes goalTitleBreath{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.14)
-      drop-shadow(0 0 4px rgba(255,255,255,.42))
-      drop-shadow(0 0 8px rgba(213,34,54,.44));
+      brightness(1.08)
+      drop-shadow(0 0 4px rgba(255,255,255,.14))
+      drop-shadow(0 0 8px rgba(245,141,169,.14));
   }
 }
 
-/* ==========================================
-   DETALLE DE PROFUNDIDAD EN EL PROGRESO
-========================================== */
+
+/* =========================================================
+   HOVER
+========================================================= */
 
 #bar-fill:hover{
-  filter:brightness(1.08);
+  filter:brightness(1.04);
 }
 
-/* ==========================================
+
+/* =========================================================
    RESPONSIVE
-========================================== */
+========================================================= */
 
 @media (max-height:460px){
+
   #goal-wrapper{
     height:360px;
+    width:68px;
+    border-radius:20px;
+  }
+
+  #goal-wrapper::before{
+    border-radius:15px;
+  }
+
+  #bar-fill{
+    border-radius:0 0 19px 19px;
   }
 
   .goal-title{
@@ -571,16 +530,20 @@ body{
   }
 
   .goal-amount{
-    bottom:39px;
+    bottom:38px;
+    padding:5px 10px 6px;
+    border-radius:9px;
     font-size:15px;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    ACCESIBILIDAD
-========================================== */
+========================================================= */
 
 @media (prefers-reduced-motion:reduce){
+
   #goal-wrapper::after,
   #bar-fill::before,
   #bar-fill::after,

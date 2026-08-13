@@ -1,262 +1,272 @@
 /* ==========================================
-   MVP – DARK CRIMSON GRUNGE THEME
-   Inspirado en la referencia:
-   negro, rojo vino, blanco vintage y textura urbana
+   MVP – PINK NEON / Y2K SIGN THEME
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
 
 :root{
+  --pink-50:#fff7fa;
+  --pink-100:#ffeaf1;
+  --pink-200:#ffd2df;
+  --pink-300:#ffb4c9;
+  --pink-400:#f58da9;
+  --pink-500:#e86f93;
+  --pink-600:#cc4f76;
+  --pink-700:#9d3558;
+
+  --ink:#09070a;
+  --ink-soft:#141016;
+  --ink-muted:#241b22;
+
   --white:#ffffff;
-  --ivory:#fffaf1;
-  --ivory-muted:#e8dfd4;
+  --white-soft:#fff8fb;
 
-  --red-light:#ff4b57;
-  --red:#c91f32;
-  --red-dark:#7e0e1c;
-  --wine:#4b0711;
-  --wine-deep:#250308;
-
-  --black:#050505;
-  --black-soft:#0c0b0c;
-  --graphite:#171417;
-  --graphite-light:#252025;
-
-  --shadow:rgba(0,0,0,.78);
+  --line:rgba(255,255,255,.32);
+  --shadow:rgba(0,0,0,.60);
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
   background:transparent;
-  color:var(--white);
-  font-family:'Oswald', Arial, sans-serif;
 }
 
-/* ==========================================
+body{
+  color:var(--white);
+  font-family:'Inter', Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
    CONTENEDOR PRINCIPAL
-========================================== */
+========================================================= */
 
 #container{
   position:relative;
-  width:430px;
-  max-width:100%;
-  padding:15px 15px 17px;
-  border-radius:7px;
-  overflow:hidden;
   isolation:isolate;
 
+  width:430px;
+  max-width:100%;
+
+  padding:12px;
+
+  overflow:hidden;
+  border-radius:18px;
+
   background:
-    /* Arañazos y textura */
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 7px,
-      rgba(255,255,255,.018) 8px,
-      transparent 9px
-    ),
-    repeating-linear-gradient(
-      17deg,
-      transparent 0,
-      transparent 13px,
-      rgba(255,255,255,.016) 14px,
-      transparent 15px
-    ),
-
-    /* Resplandores */
     radial-gradient(
-      circle at 50% -10%,
-      rgba(218,35,54,.28),
-      transparent 43%
+      circle at 18% 0%,
+      rgba(255,255,255,.22) 0%,
+      rgba(255,255,255,0) 32%
     ),
     radial-gradient(
-      circle at 90% 80%,
-      rgba(126,14,28,.24),
-      transparent 42%
+      circle at 90% 100%,
+      rgba(170,48,88,.24) 0%,
+      rgba(170,48,88,0) 42%
     ),
-    radial-gradient(
-      circle at 10% 90%,
-      rgba(105,8,20,.18),
-      transparent 36%
-    ),
-
-    /* Fondo principal */
     linear-gradient(
-      155deg,
-      #171216 0%,
-      #090809 34%,
-      #050505 67%,
-      #12090b 100%
+      145deg,
+      rgba(245,141,169,.97) 0%,
+      rgba(228,103,142,.97) 48%,
+      rgba(183,65,101,.97) 100%
     );
 
-  border:2px solid #7f1724;
+  border:1px solid rgba(255,255,255,.48);
 
   box-shadow:
-    0 0 0 1px rgba(255,82,94,.17),
-    0 0 0 4px rgba(31,2,7,.96),
-    0 0 0 6px rgba(115,12,25,.54),
-    0 0 18px rgba(214,24,47,.40),
-    0 0 38px rgba(109,5,19,.28),
-    0 12px 30px rgba(0,0,0,.74),
-    inset 0 1px 0 rgba(255,255,255,.08),
-    inset 0 -20px 35px rgba(0,0,0,.70);
+    0 18px 38px rgba(0,0,0,.34),
+    0 6px 14px rgba(0,0,0,.26),
+    0 0 0 1px rgba(62,17,35,.28),
+    inset 0 1px 0 rgba(255,255,255,.58),
+    inset 0 -1px 0 rgba(88,22,44,.24);
 }
 
-/* Marco interior envejecido */
+
+/* Borde interior limpio */
+
 #container::before{
   content:"";
   position:absolute;
-  inset:6px;
-  z-index:6;
-  border-radius:3px;
+  inset:5px;
+  z-index:5;
+
+  border-radius:14px;
   pointer-events:none;
 
-  border:1px solid rgba(216,44,60,.48);
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.05),
-      transparent 8%,
-      transparent 92%,
-      rgba(255,255,255,.035)
-    );
+  border:1px solid rgba(255,255,255,.22);
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.90),
-    inset 0 0 18px rgba(166,12,32,.12),
-    0 0 8px rgba(208,27,47,.18);
+    inset 0 0 0 1px rgba(73,20,39,.10);
 }
 
-/* Barrido de luz roja */
+
+/* Reflejo ambiental muy suave */
+
 #container::after{
   content:"";
   position:absolute;
-  top:-80%;
-  left:-65%;
-  z-index:2;
+  z-index:1;
+  pointer-events:none;
+
+  top:-55%;
+  left:-40%;
 
   width:34%;
-  height:270%;
+  height:220%;
+
+  opacity:.40;
 
   background:
     linear-gradient(
-      110deg,
+      105deg,
       transparent 0%,
-      rgba(255,29,53,.02) 30%,
-      rgba(255,55,70,.18) 47%,
-      rgba(255,223,223,.16) 51%,
-      rgba(190,18,38,.08) 58%,
+      rgba(255,255,255,.02) 30%,
+      rgba(255,255,255,.20) 47%,
+      rgba(255,255,255,.40) 51%,
+      rgba(255,255,255,.10) 58%,
       transparent 72%
     );
 
-  transform:rotate(16deg);
-  animation:mvpCrimsonSweep 7s linear infinite;
-  pointer-events:none;
+  transform:rotate(15deg);
+  animation:mvpContainerSheen 8s ease-in-out infinite;
 }
 
-@keyframes mvpCrimsonSweep{
+@keyframes mvpContainerSheen{
   0%{
-    left:-65%;
+    left:-45%;
   }
 
-  38%{
-    left:145%;
+  34%{
+    left:128%;
   }
 
   100%{
-    left:145%;
+    left:128%;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    TÍTULO
-========================================== */
+========================================================= */
 
 .title{
   position:relative;
   z-index:7;
 
-  margin:1px 0 14px;
-  padding:7px 12px 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:48px;
+  margin:0 0 10px;
+  padding:7px 18px;
+
+  overflow:hidden;
+  border-radius:13px;
 
   text-align:center;
-
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:31px;
-  font-weight:400;
-  line-height:.95;
-  letter-spacing:.055em;
   text-transform:uppercase;
 
-  color:var(--ivory);
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:29px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.045em;
+
+  color:var(--white);
 
   background:
-    repeating-linear-gradient(
-      105deg,
-      transparent 0,
-      transparent 13px,
-      rgba(255,255,255,.035) 14px,
-      transparent 15px
-    ),
     linear-gradient(
       180deg,
-      #1d1517 0%,
-      #080708 46%,
-      #120609 100%
+      rgba(255,255,255,.13) 0%,
+      rgba(255,255,255,.03) 42%,
+      rgba(0,0,0,.04) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(28,20,25,.96) 0%,
+      rgba(11,8,10,.98) 55%,
+      rgba(25,13,18,.98) 100%
     );
 
-  border:1px solid rgba(182,29,47,.78);
-  border-radius:3px;
+  border:1px solid rgba(255,255,255,.22);
 
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.92),
-    0 0 0 3px rgba(89,5,17,.55),
-    0 0 13px rgba(194,24,44,.34),
-    inset 0 1px 0 rgba(255,255,255,.08),
-    inset 0 -8px 18px rgba(91,3,14,.32);
-
-  -webkit-text-stroke:.55px rgba(33,0,5,.95);
+    0 8px 18px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.15),
+    inset 0 -1px 0 rgba(0,0,0,.70),
+    0 0 0 1px rgba(56,14,30,.35);
 
   text-shadow:
-    -1px -1px 0 #160104,
-     1px -1px 0 #160104,
-    -1px  1px 0 #160104,
-     1px  1px 0 #160104,
-     0 2px 0 #4b0711,
-     0 0 5px rgba(255,255,255,.45),
-     0 0 10px rgba(207,31,50,.30);
+    0 2px 0 rgba(84,28,48,.85),
+    0 0 6px rgba(255,255,255,.32),
+    0 0 13px rgba(255,167,192,.20);
 }
 
-/* Línea roja decorativa debajo del título */
-.title::after{
+
+/* Highlight rosado sutil del título */
+
+.title::before{
   content:"";
   position:absolute;
-  left:8%;
-  right:8%;
-  bottom:-5px;
-  height:2px;
+  top:0;
+  left:10%;
+  right:10%;
+  height:1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      #76101e 12%,
-      #ef3449 50%,
-      #76101e 88%,
+      rgba(255,222,232,.85),
+      transparent
+    );
+}
+
+
+/* Línea inferior elegante */
+
+.title::after{
+  content:"";
+  position:absolute;
+  left:20%;
+  right:20%;
+  bottom:0;
+
+  height:2px;
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,178,201,.62),
+      rgba(255,239,245,.94),
+      rgba(255,178,201,.62),
       transparent
     );
 
   box-shadow:
-    0 0 7px rgba(230,40,61,.65);
+    0 0 8px rgba(255,188,207,.36);
 }
 
-/* ==========================================
+
+/* =========================================================
    LISTADO
-========================================== */
+========================================================= */
 
 #top-list{
   position:relative;
@@ -264,12 +274,13 @@ body{
 
   display:flex;
   flex-direction:column;
-  gap:9px;
+  gap:8px;
 }
 
-/* ==========================================
+
+/* =========================================================
    FILAS
-========================================== */
+========================================================= */
 
 .tip{
   position:relative;
@@ -277,42 +288,34 @@ body{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:12px;
 
-  min-height:53px;
-  padding:9px 14px 9px 18px;
+  min-height:52px;
+  padding:8px 14px 8px 15px;
 
-  border:1px solid rgba(134,22,35,.92);
-  border-radius:4px;
   overflow:hidden;
+  border-radius:12px;
 
   background:
-    /* Textura desgastada */
-    repeating-linear-gradient(
-      118deg,
-      transparent 0,
-      transparent 11px,
-      rgba(255,255,255,.018) 12px,
-      transparent 13px
-    ),
-    radial-gradient(
-      circle at 25% 0%,
-      rgba(255,255,255,.065),
-      transparent 42%
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.03) 42%,
+      rgba(0,0,0,.04) 100%
     ),
     linear-gradient(
-      105deg,
-      #1c1719 0%,
-      #0b0a0b 46%,
-      #14080b 100%
+      135deg,
+      rgba(34,25,31,.96) 0%,
+      rgba(13,10,12,.98) 54%,
+      rgba(28,15,21,.98) 100%
     );
 
+  border:1px solid rgba(255,255,255,.14);
+
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.96),
-    inset 0 1px 0 rgba(255,255,255,.075),
-    inset 0 -10px 17px rgba(0,0,0,.44),
-    0 5px 12px rgba(0,0,0,.48),
-    0 0 8px rgba(155,14,32,.16);
+    0 6px 14px rgba(0,0,0,.26),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(0,0,0,.62);
 
   transition:
     transform .22s ease,
@@ -321,345 +324,462 @@ body{
     filter .22s ease;
 }
 
-/* Barra roja lateral */
+
+/* Acento lateral redondeado */
+
 .tip::before{
   content:"";
   position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  z-index:2;
+  z-index:3;
 
-  width:7px;
+  left:7px;
+  top:10px;
+  bottom:10px;
+
+  width:3px;
+
+  border-radius:999px;
 
   background:
     linear-gradient(
       180deg,
-      #ff4b58 0%,
-      #c81c32 28%,
-      #700b19 70%,
-      #33040b 100%
+      var(--pink-200) 0%,
+      var(--pink-400) 46%,
+      var(--pink-600) 100%
     );
 
-  border-right:1px solid rgba(255,93,105,.23);
-
   box-shadow:
-    2px 0 8px rgba(211,25,47,.34),
-    inset -1px 0 0 rgba(0,0,0,.55);
+    0 0 7px rgba(245,141,169,.48);
 }
 
-/* Reflejo suave de cada fila */
+
+/* Sheen individual de cada fila */
+
 .tip::after{
   content:"";
   position:absolute;
-  top:0;
-  left:-85%;
   z-index:1;
+  pointer-events:none;
 
-  width:42%;
+  top:0;
+  left:-65%;
+
+  width:30%;
   height:100%;
+
+  opacity:.48;
 
   background:
     linear-gradient(
       105deg,
       transparent,
-      rgba(255,255,255,.025),
-      rgba(255,255,255,.10),
-      rgba(198,21,43,.09),
+      rgba(255,255,255,.02),
+      rgba(255,255,255,.13),
+      rgba(255,255,255,.02),
       transparent
     );
 
-  transform:skewX(-20deg);
-  animation:mvpRowSweep 6.2s ease-in-out infinite;
-  pointer-events:none;
+  transform:skewX(-18deg);
+  animation:mvpRowSheen 7.2s ease-in-out infinite;
 }
 
-@keyframes mvpRowSweep{
+@keyframes mvpRowSheen{
   0%{
-    left:-85%;
+    left:-65%;
   }
 
-  34%{
-    left:145%;
+  26%{
+    left:130%;
   }
 
   100%{
-    left:145%;
+    left:130%;
   }
 }
 
-/* Interacción */
+
+/* Hover limpio */
+
 .tip:hover{
-  transform:translateY(-2px) scale(1.008);
-  border-color:rgba(236,45,65,.95);
-  filter:brightness(1.08);
+  transform:translateY(-1px);
+
+  border-color:rgba(255,196,213,.28);
 
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.96),
-    0 0 12px rgba(210,28,49,.30),
-    inset 0 1px 0 rgba(255,255,255,.09),
-    inset 0 -10px 18px rgba(0,0,0,.46),
-    0 7px 16px rgba(0,0,0,.58);
+    0 8px 18px rgba(0,0,0,.31),
+    0 0 12px rgba(239,117,151,.12),
+    inset 0 1px 0 rgba(255,255,255,.13),
+    inset 0 -1px 0 rgba(0,0,0,.60);
+
+  filter:brightness(1.04);
 }
 
-/* ==========================================
-   NOMBRE Y CANTIDAD
-========================================== */
+
+/* =========================================================
+   NOMBRE
+========================================================= */
 
 .tip .name{
   position:relative;
-  z-index:3;
+  z-index:4;
 
   flex:1;
   min-width:0;
 
-  font-family:'Oswald', Arial, sans-serif;
-  font-size:19px;
+  padding-left:5px;
+
+  font-family:'Inter', Arial, sans-serif;
+  font-size:17px;
   font-weight:700;
-  line-height:1;
-  letter-spacing:.035em;
+  line-height:1.05;
+  letter-spacing:.025em;
   text-transform:uppercase;
 
-  color:var(--ivory);
+  color:rgba(255,255,255,.94);
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.72);
 }
+
+
+/* =========================================================
+   CANTIDAD
+========================================================= */
 
 .tip .amount{
   position:relative;
-  z-index:3;
+  z-index:4;
 
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:24px;
-  font-weight:400;
+  flex-shrink:0;
+
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:25px;
+  font-weight:800;
   line-height:1;
-  letter-spacing:.055em;
+  letter-spacing:.02em;
 
-  color:var(--ivory);
+  color:var(--white);
+
   white-space:nowrap;
-}
-
-.tip .name,
-.tip .amount{
-  -webkit-text-stroke:.35px rgba(20,0,3,.92);
 
   text-shadow:
-    -1px -1px 0 #150104,
-     1px -1px 0 #150104,
-    -1px  1px 0 #150104,
-     1px  1px 0 #150104,
-     0 2px 0 #4c0711,
-     0 0 5px rgba(255,255,255,.20);
+    0 2px 0 rgba(93,31,53,.76),
+    0 0 6px rgba(255,255,255,.18);
 }
 
-/* ==========================================
-   PRIMER LUGAR – MVP
-========================================== */
+
+/* =========================================================
+   PRIMER LUGAR — MVP
+========================================================= */
 
 .tip.mvp{
-  min-height:59px;
+  min-height:61px;
+
+  border-radius:14px;
 
   background:
-    repeating-linear-gradient(
-      115deg,
-      transparent 0,
-      transparent 10px,
-      rgba(255,255,255,.023) 11px,
-      transparent 12px
-    ),
     radial-gradient(
-      circle at 18% 0%,
-      rgba(255,255,255,.11),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 90% 100%,
-      rgba(204,22,45,.22),
-      transparent 48%
+      circle at 15% 0%,
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,0) 34%
     ),
     linear-gradient(
-      105deg,
-      #2a171b 0%,
-      #100a0c 42%,
-      #20070d 100%
+      180deg,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.03) 42%,
+      rgba(0,0,0,.04) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(66,34,47,.98) 0%,
+      rgba(25,15,20,.99) 48%,
+      rgba(47,18,30,.99) 100%
     );
 
-  border-color:#d12b40;
+  border:1px solid rgba(255,210,222,.40);
 
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.96),
-    0 0 0 3px rgba(101,7,20,.48),
-    0 0 14px rgba(214,31,53,.37),
-    0 0 25px rgba(125,8,25,.20),
-    inset 0 1px 0 rgba(255,255,255,.12),
-    inset 0 -13px 23px rgba(52,0,8,.52),
-    0 7px 17px rgba(0,0,0,.62);
+    0 10px 22px rgba(0,0,0,.34),
+    0 0 0 1px rgba(225,100,137,.15),
+    0 0 16px rgba(235,105,144,.14),
+    inset 0 1px 0 rgba(255,255,255,.20),
+    inset 0 -1px 0 rgba(0,0,0,.62);
 }
 
+
+/* Acento del MVP */
+
 .tip.mvp::before{
-  width:9px;
+  left:7px;
+  top:9px;
+  bottom:9px;
+
+  width:4px;
 
   background:
     linear-gradient(
       180deg,
-      #ff6872 0%,
-      #e32940 25%,
-      #970e23 63%,
-      #4c0610 100%
+      #ffffff 0%,
+      var(--pink-200) 20%,
+      var(--pink-400) 55%,
+      var(--pink-600) 100%
     );
 
   box-shadow:
-    2px 0 12px rgba(229,40,62,.53),
-    inset -1px 0 0 rgba(0,0,0,.62);
+    0 0 8px rgba(255,220,230,.65),
+    0 0 14px rgba(239,117,151,.32);
 }
 
+
+/* Halo discreto del MVP */
+
 .tip.mvp .name{
-  font-size:20px;
+  font-size:18px;
+  font-weight:800;
+  color:#ffffff;
 }
 
 .tip.mvp .amount{
-  font-size:27px;
+  font-size:29px;
+  font-weight:900;
 
-  color:#ffffff;
+  color:#fff7fa;
 
   text-shadow:
-    -1px -1px 0 #210005,
-     1px -1px 0 #210005,
-    -1px  1px 0 #210005,
-     1px  1px 0 #210005,
-     0 2px 0 #6c0917,
-     0 0 6px rgba(255,255,255,.30),
-     0 0 11px rgba(226,37,59,.30);
+    0 2px 0 rgba(115,37,64,.90),
+    0 0 5px rgba(255,255,255,.34),
+    0 0 11px rgba(255,170,195,.25);
 }
 
-/* ==========================================
+
+/* =========================================================
    SEGUNDO LUGAR
-========================================== */
+========================================================= */
 
 .tip.second{
   background:
-    repeating-linear-gradient(
-      120deg,
-      transparent 0,
-      transparent 12px,
-      rgba(255,255,255,.018) 13px,
-      transparent 14px
-    ),
-    radial-gradient(
-      circle at 20% 0%,
-      rgba(255,255,255,.07),
-      transparent 43%
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.09) 0%,
+      rgba(255,255,255,.02) 42%,
+      rgba(0,0,0,.04) 100%
     ),
     linear-gradient(
-      105deg,
-      #21191b 0%,
-      #0e0c0d 48%,
-      #17090c 100%
+      135deg,
+      rgba(38,28,34,.97) 0%,
+      rgba(14,11,13,.99) 56%,
+      rgba(31,17,23,.99) 100%
     );
-
-  border-color:rgba(161,28,43,.90);
 }
 
-/* ==========================================
+
+/* =========================================================
    TERCER LUGAR
-========================================== */
+========================================================= */
 
 .tip.third{
   background:
-    repeating-linear-gradient(
-      120deg,
-      transparent 0,
-      transparent 14px,
-      rgba(255,255,255,.014) 15px,
-      transparent 16px
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.07) 0%,
+      rgba(255,255,255,.02) 42%,
+      rgba(0,0,0,.05) 100%
     ),
     linear-gradient(
-      105deg,
-      #191517 0%,
-      #090809 52%,
-      #12080a 100%
+      135deg,
+      rgba(31,23,28,.97) 0%,
+      rgba(11,9,10,.99) 58%,
+      rgba(24,14,19,.99) 100%
     );
 
-  border-color:rgba(116,22,33,.88);
-  filter:brightness(.94);
+  opacity:.94;
 }
 
-/* ==========================================
+
+/* =========================================================
    ICONOS DE POSICIÓN
-========================================== */
+========================================================= */
 
 .rank-icon{
   position:relative;
-  z-index:3;
+  z-index:4;
 
   display:inline-flex;
   align-items:center;
   justify-content:center;
 
-  margin-right:5px;
+  flex-shrink:0;
 
-  font-size:19px;
-  color:var(--ivory);
+  width:29px;
+  height:29px;
+  margin-right:1px;
 
-  filter:
-    drop-shadow(1px 1px 0 #190104)
-    drop-shadow(-1px -1px 0 #190104)
-    drop-shadow(0 2px 0 #68101b)
-    drop-shadow(0 0 5px rgba(214,37,57,.42));
+  border-radius:9px;
+
+  font-size:16px;
+  color:#ffffff;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,197,214,.20),
+      rgba(239,117,151,.08)
+    );
+
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.13),
+    0 3px 8px rgba(0,0,0,.23);
+
+  filter:none;
 }
+
+
+/* Icono del MVP */
 
 .tip.mvp .rank-icon{
-  font-size:22px;
+  width:33px;
+  height:33px;
 
-  filter:
-    drop-shadow(1px 1px 0 #190104)
-    drop-shadow(-1px -1px 0 #190104)
-    drop-shadow(0 2px 0 #861224)
-    drop-shadow(0 0 8px rgba(239,48,70,.60));
+  border-radius:10px;
+
+  font-size:18px;
+
+  color:#ffffff;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,225,234,.26),
+      rgba(232,111,147,.14)
+    );
+
+  border:1px solid rgba(255,222,231,.24);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 3px 10px rgba(0,0,0,.26),
+    0 0 10px rgba(241,135,165,.16);
+
+  filter:none;
 }
 
-/* ==========================================
+
+/* =========================================================
+   PEQUEÑO DETALLE DE RESPIRACIÓN DEL MVP
+========================================================= */
+
+.tip.mvp{
+  animation:mvpSoftPulse 4.8s ease-in-out infinite;
+}
+
+@keyframes mvpSoftPulse{
+  0%,
+  100%{
+    box-shadow:
+      0 10px 22px rgba(0,0,0,.34),
+      0 0 0 1px rgba(225,100,137,.15),
+      0 0 14px rgba(235,105,144,.11),
+      inset 0 1px 0 rgba(255,255,255,.20),
+      inset 0 -1px 0 rgba(0,0,0,.62);
+  }
+
+  50%{
+    box-shadow:
+      0 10px 22px rgba(0,0,0,.34),
+      0 0 0 1px rgba(240,128,159,.21),
+      0 0 19px rgba(246,137,169,.18),
+      inset 0 1px 0 rgba(255,255,255,.22),
+      inset 0 -1px 0 rgba(0,0,0,.62);
+  }
+}
+
+
+/* =========================================================
    RESPONSIVE
-========================================== */
+========================================================= */
 
 @media (max-width:460px){
+
   #container{
     width:100%;
-    padding:13px 12px 15px;
+    padding:10px;
+    border-radius:16px;
+  }
+
+  #container::before{
+    border-radius:12px;
   }
 
   .title{
-    font-size:27px;
+    min-height:44px;
+    padding:6px 14px;
+    border-radius:12px;
+
+    font-size:26px;
+  }
+
+  #top-list{
+    gap:7px;
   }
 
   .tip{
-    min-height:50px;
-    padding:8px 11px 8px 16px;
+    min-height:49px;
+    padding:7px 11px 7px 12px;
+    border-radius:11px;
   }
 
-  .tip .name{
+  .tip.mvp{
+    min-height:56px;
+    border-radius:13px;
+  }
+
+  .rank-icon{
+    width:27px;
+    height:27px;
+    border-radius:8px;
+    font-size:15px;
+  }
+
+  .tip.mvp .rank-icon{
+    width:30px;
+    height:30px;
+    border-radius:9px;
     font-size:17px;
   }
 
+  .tip .name{
+    font-size:15px;
+  }
+
   .tip .amount{
-    font-size:21px;
+    font-size:22px;
   }
 
   .tip.mvp .name{
-    font-size:18px;
+    font-size:16px;
   }
 
   .tip.mvp .amount{
-    font-size:24px;
+    font-size:26px;
   }
 }
 
-/* Reduce las animaciones para usuarios que lo prefieran */
+
+/* =========================================================
+   ACCESIBILIDAD / OBS
+========================================================= */
+
 @media (prefers-reduced-motion:reduce){
+
   #container::after,
-  .tip::after{
+  .tip::after,
+  .tip.mvp{
     animation:none;
   }
 

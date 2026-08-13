@@ -3,285 +3,284 @@
    Adaptado al estilo del MVP y la GOALBAR
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
 
 :root{
+  --pink-50:#fff7fa;
+  --pink-100:#ffeaf1;
+  --pink-200:#ffd2df;
+  --pink-300:#ffb4c9;
+  --pink-400:#f58da9;
+  --pink-500:#e86f93;
+  --pink-600:#cc4f76;
+  --pink-700:#9d3558;
+
+  --ink:#09070a;
+  --ink-soft:#141016;
+  --ink-muted:#241b22;
+
   --white:#ffffff;
-  --ivory:#fffaf1;
-  --ivory-muted:#e4dad0;
-
-  --red-light:#ff5362;
-  --red:#d3233a;
-  --red-dark:#8c1022;
-
-  --wine:#530713;
-  --wine-dark:#2b0309;
-  --wine-deep:#160104;
-
-  --black:#050505;
-  --black-soft:#0b090a;
-  --graphite:#171316;
-  --graphite-light:#242024;
-
-  --shadow:rgba(0,0,0,.78);
+  --white-soft:#fff8fb;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
   background:transparent;
-  color:var(--white);
-  font-family:'Oswald', Arial, sans-serif;
 }
 
-/* ==========================================
+body{
+  color:var(--white);
+  font-family:'Inter', Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
    CONTENEDOR PRINCIPAL
-========================================== */
+========================================================= */
 
 .timer-widget{
   position:relative;
+  isolation:isolate;
+
   width:280px;
   max-width:100%;
 
-  padding:15px 15px 17px;
-
-  border:2px solid #791323;
-  border-radius:8px;
+  padding:12px;
 
   overflow:hidden;
-  isolation:isolate;
+  border-radius:18px;
 
   background:
-    /* Textura diagonal desgastada */
-    repeating-linear-gradient(
-      112deg,
-      transparent 0,
-      transparent 8px,
-      rgba(255,255,255,.019) 9px,
-      transparent 10px
-    ),
-
-    /* Líneas irregulares */
-    repeating-linear-gradient(
-      18deg,
-      transparent 0,
-      transparent 14px,
-      rgba(255,255,255,.013) 15px,
-      transparent 16px
-    ),
-
-    /* Resplandor superior */
     radial-gradient(
-      circle at 22% 0%,
-      rgba(218,34,55,.25),
-      transparent 40%
+      circle at 18% 0%,
+      rgba(255,255,255,.18) 0%,
+      rgba(255,255,255,0) 32%
     ),
-
-    /* Resplandor inferior */
     radial-gradient(
       circle at 88% 100%,
-      rgba(116,8,25,.25),
-      transparent 45%
+      rgba(179,57,96,.22) 0%,
+      rgba(179,57,96,0) 44%
     ),
-
-    /* Fondo metálico oscuro */
     linear-gradient(
-      150deg,
-      #21181b 0%,
-      #100d0f 28%,
-      #070607 58%,
-      #0c0809 78%,
-      #18070b 100%
+      145deg,
+      rgba(245,141,169,.97) 0%,
+      rgba(228,103,142,.97) 48%,
+      rgba(183,65,101,.97) 100%
     );
 
+  border:1px solid rgba(255,255,255,.46);
+
   box-shadow:
-    0 0 0 1px rgba(255,77,92,.16),
-    0 0 0 4px rgba(28,1,6,.96),
-    0 0 0 6px rgba(105,9,23,.52),
-    0 0 16px rgba(214,30,52,.38),
-    0 0 30px rgba(104,6,20,.26),
-    0 11px 28px rgba(0,0,0,.76),
-    inset 0 2px 0 rgba(255,255,255,.08),
-    inset 0 -20px 30px rgba(0,0,0,.70);
+    0 18px 38px rgba(0,0,0,.34),
+    0 6px 14px rgba(0,0,0,.26),
+    0 0 0 1px rgba(62,17,35,.28),
+    inset 0 1px 0 rgba(255,255,255,.54),
+    inset 0 -1px 0 rgba(88,22,44,.24);
 }
 
-/* ==========================================
-   MARCO INTERIOR
-========================================== */
+
+/* Marco interior sutil */
 
 .timer-widget::before{
   content:"";
 
   position:absolute;
-  inset:6px;
+  inset:5px;
   z-index:5;
 
-  border:1px solid rgba(200,37,55,.43);
-  border-radius:3px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.035),
-      transparent 16%,
-      transparent 84%,
-      rgba(255,255,255,.025)
-    );
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.20);
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.92),
-    inset 0 0 14px rgba(163,14,34,.13),
-    0 0 8px rgba(207,28,48,.17);
+    inset 0 0 0 1px rgba(73,20,39,.09);
 
   pointer-events:none;
 }
 
-/* ==========================================
-   BARRIDO DE LUZ CARMESÍ
-========================================== */
+
+/* Brillo ambiental */
 
 .timer-widget::after{
   content:"";
 
   position:absolute;
-  top:-75%;
-  left:-70%;
+  top:-58%;
+  left:-48%;
   z-index:2;
 
-  width:42%;
-  height:250%;
+  width:38%;
+  height:235%;
+
+  opacity:.36;
 
   background:
     linear-gradient(
-      110deg,
+      108deg,
       transparent 0%,
-      rgba(255,30,52,.02) 30%,
-      rgba(255,59,76,.14) 44%,
-      rgba(255,238,235,.16) 50%,
-      rgba(198,21,43,.08) 59%,
+      rgba(255,255,255,.02) 30%,
+      rgba(255,255,255,.18) 46%,
+      rgba(255,255,255,.38) 51%,
+      rgba(255,255,255,.09) 58%,
       transparent 72%
     );
 
-  transform:rotate(17deg);
+  transform:rotate(16deg);
 
-  animation:timerCrimsonSweep 6.8s linear infinite;
+  animation:timerAmbientSheen 8.4s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes timerCrimsonSweep{
+@keyframes timerAmbientSheen{
   0%{
-    left:-70%;
+    left:-48%;
     opacity:0;
   }
 
   8%{
-    opacity:1;
+    opacity:.36;
   }
 
-  42%{
+  38%{
     left:145%;
-    opacity:1;
+    opacity:.36;
   }
 
-  52%,
+  48%,
   100%{
     left:145%;
     opacity:0;
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    TÍTULO
-========================================== */
+========================================================= */
 
 .timer-title{
   position:relative;
   z-index:6;
 
-  margin:0 0 13px;
-  padding:6px 10px 7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:46px;
+
+  margin:0 0 10px;
+  padding:7px 16px;
+
+  overflow:hidden;
+  border-radius:13px;
 
   text-align:center;
-
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:28px;
-  font-weight:400;
-  line-height:.95;
-  letter-spacing:.065em;
-
-  color:var(--ivory);
-
   text-transform:uppercase;
 
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:27px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.05em;
+
+  color:#ffffff;
+
   background:
-    repeating-linear-gradient(
-      105deg,
-      transparent 0,
-      transparent 13px,
-      rgba(255,255,255,.032) 14px,
-      transparent 15px
-    ),
     linear-gradient(
       180deg,
-      #1e1618 0%,
-      #080708 48%,
-      #130609 100%
+      rgba(255,255,255,.12) 0%,
+      rgba(255,255,255,.03) 42%,
+      rgba(0,0,0,.04) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(28,20,25,.96) 0%,
+      rgba(11,8,10,.98) 55%,
+      rgba(25,13,18,.98) 100%
     );
 
-  border:1px solid rgba(182,29,47,.78);
-  border-radius:3px;
+  border:1px solid rgba(255,255,255,.20);
 
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.92),
-    0 0 0 3px rgba(89,5,17,.46),
-    0 0 12px rgba(194,24,44,.30),
-    inset 0 1px 0 rgba(255,255,255,.08),
-    inset 0 -8px 18px rgba(91,3,14,.32);
-
-  -webkit-text-stroke:.5px rgba(31,0,5,.96);
+    0 8px 18px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.14),
+    inset 0 -1px 0 rgba(0,0,0,.68),
+    0 0 0 1px rgba(56,14,30,.32);
 
   text-shadow:
-    -1px -1px 0 #180104,
-     1px -1px 0 #180104,
-    -1px  1px 0 #180104,
-     1px  1px 0 #180104,
-     0 2px 0 #550813,
-     0 0 4px rgba(255,255,255,.40),
-     0 0 9px rgba(207,31,50,.28);
+    0 2px 0 rgba(84,28,48,.82),
+    0 0 6px rgba(255,255,255,.28),
+    0 0 12px rgba(255,167,192,.18);
 }
 
-/* Línea decorativa inferior */
-.timer-title::after{
+
+/* brillo superior del título */
+
+.timer-title::before{
   content:"";
 
   position:absolute;
-  left:10%;
-  right:10%;
-  bottom:-5px;
+  top:0;
+  left:11%;
+  right:11%;
 
-  height:2px;
+  height:1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      #76101e 12%,
-      #ef3449 50%,
-      #76101e 88%,
+      rgba(255,222,232,.82),
+      transparent
+    );
+}
+
+
+/* línea decorativa inferior */
+
+.timer-title::after{
+  content:"";
+
+  position:absolute;
+  left:23%;
+  right:23%;
+  bottom:0;
+
+  height:2px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,178,201,.55),
+      rgba(255,239,245,.90),
+      rgba(255,178,201,.55),
       transparent
     );
 
   box-shadow:
-    0 0 7px rgba(230,40,61,.60);
+    0 0 8px rgba(255,188,207,.30);
 }
 
-/* ==========================================
+
+/* =========================================================
    CONTENEDOR DEL RELOJ
-========================================== */
+========================================================= */
 
 .timer-display{
   position:relative;
@@ -290,139 +289,133 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+
+  padding:3px 0 1px;
 }
 
-/* ==========================================
+
+/* =========================================================
    CAJA DEL TIEMPO
-========================================== */
+========================================================= */
 
 .timer-box{
   position:relative;
+  isolation:isolate;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  width:182px;
-  height:76px;
-
-  border:1px solid #cf293e;
-  border-radius:4px;
+  width:190px;
+  height:78px;
 
   overflow:hidden;
-  isolation:isolate;
+  border-radius:18px;
 
   background:
-    /* Textura desgastada */
-    repeating-linear-gradient(
-      116deg,
-      transparent 0,
-      transparent 10px,
-      rgba(255,255,255,.022) 11px,
-      transparent 12px
-    ),
-
-    /* Luz superior */
     radial-gradient(
-      circle at 28% 0%,
-      rgba(255,255,255,.11),
-      transparent 44%
+      circle at 18% 0%,
+      rgba(255,255,255,.16) 0%,
+      rgba(255,255,255,0) 35%
     ),
-
-    /* Resplandor carmesí inferior */
-    radial-gradient(
-      circle at 85% 100%,
-      rgba(198,19,42,.22),
-      transparent 46%
-    ),
-
-    /* Fondo metálico */
     linear-gradient(
-      105deg,
-      #2a171b 0%,
-      #110a0c 44%,
-      #21070d 100%
+      180deg,
+      rgba(255,255,255,.09) 0%,
+      rgba(255,255,255,.025) 42%,
+      rgba(0,0,0,.05) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(60,36,47,.98) 0%,
+      rgba(19,13,16,.99) 50%,
+      rgba(43,19,29,.99) 100%
     );
 
+  border:1px solid rgba(255,215,226,.34);
+
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.96),
-    0 0 0 3px rgba(101,7,20,.48),
-    0 0 15px rgba(214,31,53,.38),
-    0 0 25px rgba(125,8,25,.20),
-    0 7px 18px rgba(0,0,0,.62),
-    inset 0 1px 0 rgba(255,255,255,.12),
-    inset 0 -13px 23px rgba(52,0,8,.52);
+    0 10px 22px rgba(0,0,0,.34),
+    0 0 0 1px rgba(225,100,137,.12),
+    0 0 15px rgba(235,105,144,.10),
+    inset 0 1px 0 rgba(255,255,255,.16),
+    inset 0 -1px 0 rgba(0,0,0,.64);
 
   transition:
-    transform .25s ease,
-    filter .25s ease,
-    border-color .25s ease,
-    box-shadow .25s ease;
+    transform .24s ease,
+    filter .24s ease,
+    border-color .24s ease,
+    box-shadow .24s ease;
 }
 
-/* Barra carmesí lateral */
+
+/* Acento lateral elegante */
+
 .timer-box::before{
   content:"";
 
   position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
+  top:11px;
+  bottom:11px;
+  left:8px;
   z-index:3;
 
-  width:9px;
+  width:4px;
+
+  border-radius:999px;
 
   background:
     linear-gradient(
       180deg,
-      #ff6872 0%,
-      #e32940 25%,
-      #970e23 63%,
-      #4c0610 100%
+      #ffffff 0%,
+      var(--pink-200) 20%,
+      var(--pink-400) 55%,
+      var(--pink-600) 100%
     );
 
-  border-right:1px solid rgba(255,104,114,.22);
-
   box-shadow:
-    2px 0 12px rgba(229,40,62,.52),
-    inset -1px 0 0 rgba(0,0,0,.62);
+    0 0 8px rgba(255,220,230,.62),
+    0 0 13px rgba(239,117,151,.28);
 }
 
-/* Reflejo horizontal */
+
+/* Reflejo de la caja */
+
 .timer-box::after{
   content:"";
 
   position:absolute;
   top:0;
-  left:-100%;
+  left:-85%;
   z-index:1;
 
-  width:58%;
+  width:42%;
   height:100%;
+
+  opacity:.48;
 
   background:
     linear-gradient(
       105deg,
       transparent 0%,
-      rgba(255,255,255,.025) 23%,
-      rgba(255,255,255,.12) 47%,
-      rgba(218,30,51,.10) 56%,
-      transparent 75%
+      rgba(255,255,255,.02) 24%,
+      rgba(255,255,255,.14) 48%,
+      rgba(255,255,255,.03) 62%,
+      transparent 76%
     );
 
-  transform:skewX(-20deg);
+  transform:skewX(-18deg);
 
-  animation:timerBoxCrimsonSweep 5.4s ease-in-out infinite;
+  animation:timerBoxSheen 6.8s ease-in-out infinite;
 
   pointer-events:none;
 }
 
-@keyframes timerBoxCrimsonSweep{
+@keyframes timerBoxSheen{
   0%{
-    left:-100%;
+    left:-85%;
   }
 
-  38%{
+  32%{
     left:145%;
   }
 
@@ -431,132 +424,123 @@ body{
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    VALOR DEL TIMER
-========================================== */
+========================================================= */
 
 #timer-value{
   position:relative;
   z-index:4;
 
-  font-family:'Bebas Neue', 'Anton', Impact, sans-serif;
-  font-size:43px;
-  font-weight:400;
-  line-height:1;
-  letter-spacing:.075em;
+  padding-left:5px;
 
-  color:var(--ivory);
+  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-size:45px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.065em;
+
+  color:#fff8fb;
 
   white-space:nowrap;
 
-  -webkit-text-stroke:.7px rgba(30,0,5,.97);
-
   text-shadow:
-    -1px -1px 0 #190104,
-     1px -1px 0 #190104,
-    -1px  1px 0 #190104,
-     1px  1px 0 #190104,
-
-     0 3px 0 #6c0917,
-     0 0 5px rgba(255,255,255,.28),
-     0 0 11px rgba(226,37,59,.28);
+    0 3px 0 rgba(105,34,59,.84),
+    0 0 5px rgba(255,255,255,.30),
+    0 0 11px rgba(255,170,195,.18);
 }
 
-/* Separadores del tiempo */
 #timer-value span{
   display:inline-block;
 }
 
-/* ==========================================
+
+/* =========================================================
    TIMER ACTIVO
-========================================== */
+========================================================= */
 
 .timer-box.timer-running{
-  animation:timerCrimsonPulse 1.3s ease-in-out infinite alternate;
+  animation:timerRunningBreath 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes timerCrimsonPulse{
+@keyframes timerRunningBreath{
   from{
     transform:scale(1);
 
-    border-color:#b61d33;
+    border-color:rgba(255,215,226,.30);
 
     box-shadow:
-      0 0 0 1px rgba(0,0,0,.96),
-      0 0 0 3px rgba(88,6,18,.46),
-      0 0 12px rgba(194,24,46,.28),
-      0 7px 18px rgba(0,0,0,.60),
-      inset 0 1px 0 rgba(255,255,255,.10),
-      inset 0 -13px 23px rgba(52,0,8,.48);
+      0 10px 22px rgba(0,0,0,.34),
+      0 0 0 1px rgba(225,100,137,.10),
+      0 0 13px rgba(235,105,144,.08),
+      inset 0 1px 0 rgba(255,255,255,.15),
+      inset 0 -1px 0 rgba(0,0,0,.64);
   }
 
   to{
-    transform:scale(1.025);
+    transform:scale(1.012);
 
-    border-color:#ef4054;
+    border-color:rgba(255,222,231,.44);
 
     box-shadow:
-      0 0 0 1px rgba(0,0,0,.96),
-      0 0 0 3px rgba(130,9,27,.60),
-      0 0 20px rgba(225,39,60,.52),
-      0 0 30px rgba(129,8,25,.28),
-      0 9px 22px rgba(0,0,0,.70),
-      inset 0 1px 0 rgba(255,255,255,.15),
-      inset 0 -13px 23px rgba(52,0,8,.55);
+      0 11px 24px rgba(0,0,0,.36),
+      0 0 0 1px rgba(238,119,153,.16),
+      0 0 18px rgba(245,137,169,.15),
+      inset 0 1px 0 rgba(255,255,255,.19),
+      inset 0 -1px 0 rgba(0,0,0,.64);
   }
 }
 
-/* Brillo del número mientras corre */
+
+/* brillo discreto del número mientras corre */
+
 .timer-box.timer-running #timer-value{
-  animation:timerNumberPulse 1.3s ease-in-out infinite alternate;
+  animation:timerNumberBreath 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes timerNumberPulse{
+@keyframes timerNumberBreath{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.12)
-      drop-shadow(0 0 4px rgba(255,255,255,.32))
-      drop-shadow(0 0 8px rgba(221,37,58,.46));
+      brightness(1.07)
+      drop-shadow(0 0 4px rgba(255,255,255,.16))
+      drop-shadow(0 0 8px rgba(245,141,169,.14));
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    TIMER FINALIZADO
-========================================== */
+========================================================= */
 
 .timer-box.timer-finished{
-  border-color:#ff5969;
+  border-color:rgba(255,226,234,.62);
 
-  filter:brightness(1.10);
+  filter:brightness(1.06);
 
-  animation:timerFinishedAlert .7s ease-in-out infinite alternate;
+  animation:timerFinishedAlert 1s ease-in-out infinite alternate;
 
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.96),
-    0 0 0 3px rgba(145,10,29,.72),
-    0 0 24px rgba(238,45,66,.65),
-    0 0 38px rgba(147,9,29,.42),
-    0 9px 24px rgba(0,0,0,.72),
-    inset 0 1px 0 rgba(255,255,255,.18),
-    inset 0 -13px 23px rgba(62,0,10,.58);
+    0 11px 25px rgba(0,0,0,.38),
+    0 0 0 1px rgba(244,134,164,.22),
+    0 0 19px rgba(255,160,187,.23),
+    0 0 30px rgba(218,91,130,.16),
+    inset 0 1px 0 rgba(255,255,255,.23),
+    inset 0 -1px 0 rgba(0,0,0,.62);
 }
 
 .timer-box.timer-finished #timer-value{
   color:#ffffff;
 
   text-shadow:
-    -1px -1px 0 #200005,
-     1px -1px 0 #200005,
-    -1px  1px 0 #200005,
-     1px  1px 0 #200005,
-     0 3px 0 #810d1e,
-     0 0 7px rgba(255,255,255,.50),
-     0 0 14px rgba(247,54,74,.65),
-     0 0 24px rgba(186,18,43,.46);
+    0 3px 0 rgba(112,36,62,.90),
+    0 0 6px rgba(255,255,255,.44),
+    0 0 13px rgba(255,187,207,.40),
+    0 0 22px rgba(232,111,147,.26);
 }
 
 @keyframes timerFinishedAlert{
@@ -565,50 +549,67 @@ body{
   }
 
   to{
-    transform:scale(1.035);
+    transform:scale(1.022);
   }
 }
 
-/* ==========================================
-   EFECTO HOVER
-========================================== */
+
+/* =========================================================
+   HOVER
+========================================================= */
 
 .timer-box:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.06);
-  border-color:#ef4054;
+  transform:translateY(-1px);
+
+  filter:brightness(1.04);
+
+  border-color:rgba(255,220,230,.46);
 
   box-shadow:
-    0 0 0 1px rgba(0,0,0,.96),
-    0 0 0 3px rgba(118,8,25,.56),
-    0 0 20px rgba(223,35,56,.47),
-    0 9px 22px rgba(0,0,0,.68),
-    inset 0 1px 0 rgba(255,255,255,.14),
-    inset 0 -13px 23px rgba(52,0,8,.55);
+    0 12px 25px rgba(0,0,0,.37),
+    0 0 0 1px rgba(235,111,148,.16),
+    0 0 18px rgba(245,137,169,.14),
+    inset 0 1px 0 rgba(255,255,255,.19),
+    inset 0 -1px 0 rgba(0,0,0,.64);
 }
 
-/* Evita que el hover interrumpa la animación */
+
+/* evita que hover detenga la animación */
+
 .timer-box.timer-running:hover{
   animation-play-state:running;
 }
 
-/* ==========================================
+
+/* =========================================================
    RESPONSIVE
-========================================== */
+========================================================= */
 
 @media (max-width:310px){
+
   .timer-widget{
     width:100%;
-    padding:13px 12px 15px;
+    padding:10px;
+    border-radius:16px;
+  }
+
+  .timer-widget::before{
+    border-radius:12px;
   }
 
   .timer-title{
-    font-size:25px;
+    min-height:43px;
+    padding:6px 12px;
+    border-radius:12px;
+
+    font-size:24px;
   }
 
   .timer-box{
-    width:170px;
+    width:172px;
     height:70px;
+
+    border-radius:16px;
   }
 
   #timer-value{
@@ -616,11 +617,13 @@ body{
   }
 }
 
-/* ==========================================
+
+/* =========================================================
    ACCESIBILIDAD
-========================================== */
+========================================================= */
 
 @media (prefers-reduced-motion:reduce){
+
   .timer-widget::after,
   .timer-box::after,
   .timer-box.timer-running,
