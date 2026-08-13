@@ -1,15 +1,11 @@
-/* ==========================================
-   MVP – PINK NEON / Y2K SIGN THEME
-========================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Titan+One&display=swap');
 
 :root{
   --pink-50:#fff7fa;
   --pink-100:#ffeaf1;
   --pink-200:#ffd2df;
   --pink-300:#ffb4c9;
-  --pink-400:#f58da9;
+  --pink-400:#1b0e11;
   --pink-500:#e86f93;
   --pink-600:#cc4f76;
   --pink-700:#9d3558;
@@ -785,5 +781,458 @@ body{
 
   .tip{
     transition:none;
+  }
+}
+
+/* =========================================================
+   WIDGET 1 — PURPLE / PINK POP THEME
+   Adapted from the supplied visual reference.
+   This section intentionally overrides only presentation.
+   Existing HTML structure / class names / behavior are kept.
+========================================================= */
+
+:root{
+  --theme-violet:#7666df;
+  --theme-purple:#9a5bd5;
+  --theme-magenta:#c347aa;
+  --theme-pink:#dc3f91;
+  --theme-deep:#443768;
+  --theme-deeper:#322946;
+  --theme-white:#ffffff;
+}
+
+
+/* ---------- MAIN CARD ---------- */
+
+#container{
+  width:430px;
+  max-width:100%;
+  padding:10px;
+
+  border-radius:4px;
+  border:2px solid rgba(52,42,79,.82);
+
+  background:
+    radial-gradient(circle at 8% 18%, rgba(255,255,255,.45) 0 2px, transparent 3px),
+    radial-gradient(circle at 20% 70%, rgba(255,255,255,.24) 0 3px, transparent 7px),
+    radial-gradient(circle at 34% 18%, rgba(255,255,255,.20) 0 2px, transparent 6px),
+    radial-gradient(circle at 52% 64%, rgba(255,255,255,.20) 0 2px, transparent 6px),
+    radial-gradient(circle at 72% 22%, rgba(255,255,255,.27) 0 2px, transparent 7px),
+    radial-gradient(circle at 91% 68%, rgba(255,255,255,.26) 0 2px, transparent 7px),
+    linear-gradient(
+      90deg,
+      #7567df 0%,
+      #8662dc 24%,
+      #a656cc 52%,
+      #c346aa 76%,
+      #dc3f91 100%
+    );
+
+  box-shadow:
+    0 3px 0 rgba(48,38,69,.72),
+    0 8px 16px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.32),
+    inset 0 -2px 0 rgba(82,42,99,.26);
+}
+
+
+/* soft cloudy texture + tiny highlights */
+
+#container::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+
+  border:0;
+  border-radius:2px;
+
+  background:
+    radial-gradient(ellipse at 13% 56%, rgba(255,255,255,.18) 0 4%, transparent 13%),
+    radial-gradient(ellipse at 31% 22%, rgba(255,255,255,.13) 0 3%, transparent 11%),
+    radial-gradient(ellipse at 48% 78%, rgba(255,255,255,.12) 0 4%, transparent 14%),
+    radial-gradient(ellipse at 66% 31%, rgba(255,255,255,.16) 0 3%, transparent 12%),
+    radial-gradient(ellipse at 84% 63%, rgba(255,255,255,.13) 0 4%, transparent 14%);
+  box-shadow:none;
+}
+
+
+/* slow glossy pass */
+
+#container::after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+
+  top:-35%;
+  left:-48%;
+  width:24%;
+  height:175%;
+
+  opacity:.26;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      rgba(255,255,255,.04) 32%,
+      rgba(255,255,255,.55) 50%,
+      rgba(255,255,255,.08) 68%,
+      transparent 100%
+    );
+
+  transform:skewX(-14deg);
+  animation:mvpContainerSheen 8s ease-in-out infinite;
+}
+
+
+/* ---------- TITLE ---------- */
+
+.title{
+  z-index:7;
+
+  min-height:50px;
+  margin:0 0 8px;
+  padding:6px 12px 7px;
+
+  border-radius:3px;
+  border:1px solid rgba(255,255,255,.22);
+
+  font-family:'Titan One', Impact, sans-serif;
+  font-size:29px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+
+  color:#ffffff;
+
+  background:
+    radial-gradient(circle at 10% 30%, rgba(255,255,255,.34) 0 2px, transparent 3px),
+    radial-gradient(circle at 27% 72%, rgba(255,255,255,.19) 0 2px, transparent 5px),
+    radial-gradient(circle at 52% 22%, rgba(255,255,255,.20) 0 2px, transparent 5px),
+    radial-gradient(circle at 78% 68%, rgba(255,255,255,.17) 0 2px, transparent 5px),
+    linear-gradient(
+      90deg,
+      rgba(116,103,226,.94) 0%,
+      rgba(148,89,212,.95) 40%,
+      rgba(190,66,174,.96) 72%,
+      rgba(220,62,143,.97) 100%
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.36),
+    inset 0 -2px 0 rgba(69,44,99,.22);
+
+  -webkit-text-stroke:1px rgba(61,51,86,.58);
+
+  text-shadow:
+    1px 1px 0 rgba(61,51,86,.72),
+    2px 2px 0 rgba(74,61,104,.60),
+    0 3px 1px rgba(46,36,68,.45),
+    0 0 4px rgba(255,255,255,.20);
+}
+
+.title::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  height:auto;
+  left:0;
+  right:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(circle at 6% 24%, rgba(255,255,255,.80) 0 1px, transparent 2px),
+    radial-gradient(circle at 23% 70%, rgba(255,255,255,.55) 0 1px, transparent 2px),
+    radial-gradient(circle at 39% 16%, rgba(255,255,255,.58) 0 1px, transparent 2px),
+    radial-gradient(circle at 61% 76%, rgba(255,255,255,.55) 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 23%, rgba(255,255,255,.58) 0 1px, transparent 2px),
+    radial-gradient(circle at 94% 64%, rgba(255,255,255,.45) 0 1px, transparent 2px);
+}
+
+.title::after{
+  display:none;
+}
+
+
+/* ---------- LIST ---------- */
+
+#top-list{
+  z-index:7;
+  gap:6px;
+}
+
+
+/* ---------- ROWS ---------- */
+
+.tip{
+  min-height:50px;
+  padding:7px 12px;
+  border-radius:3px;
+
+  border:1px solid rgba(255,255,255,.22);
+
+  background:
+    radial-gradient(circle at 15% 30%, rgba(255,255,255,.16) 0 2px, transparent 5px),
+    radial-gradient(circle at 68% 72%, rgba(255,255,255,.12) 0 2px, transparent 6px),
+    linear-gradient(
+      90deg,
+      rgba(100,88,204,.88) 0%,
+      rgba(142,79,194,.90) 42%,
+      rgba(193,61,158,.91) 75%,
+      rgba(215,55,135,.92) 100%
+    );
+
+  box-shadow:
+    0 2px 0 rgba(64,48,92,.42),
+    inset 0 1px 0 rgba(255,255,255,.24);
+
+  transition:
+    transform .18s ease,
+    filter .18s ease,
+    box-shadow .18s ease;
+}
+
+.tip::before{
+  display:none;
+}
+
+.tip::after{
+  z-index:1;
+  width:22%;
+  opacity:.28;
+
+  background:
+    linear-gradient(
+      105deg,
+      transparent,
+      rgba(255,255,255,.05),
+      rgba(255,255,255,.42),
+      rgba(255,255,255,.05),
+      transparent
+    );
+
+  animation:mvpRowSheen 7.2s ease-in-out infinite;
+}
+
+.tip:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+
+  border-color:rgba(255,255,255,.36);
+
+  box-shadow:
+    0 3px 0 rgba(64,48,92,.44),
+    0 6px 12px rgba(0,0,0,.12),
+    inset 0 1px 0 rgba(255,255,255,.28);
+}
+
+
+/* ---------- NAME + AMOUNT ---------- */
+
+.tip .name,
+.tip .amount{
+  font-family:'Titan One', Impact, sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+
+  color:#ffffff;
+
+  -webkit-text-stroke:.8px rgba(61,51,86,.54);
+
+  text-shadow:
+    1px 1px 0 rgba(61,51,86,.70),
+    2px 2px 0 rgba(73,59,103,.52),
+    0 3px 1px rgba(47,37,68,.38);
+}
+
+.tip .name{
+  padding-left:2px;
+  font-size:17px;
+  line-height:1;
+  letter-spacing:.005em;
+}
+
+.tip .amount{
+  font-size:24px;
+  line-height:1;
+  letter-spacing:0;
+}
+
+
+/* ---------- MVP ---------- */
+
+.tip.mvp{
+  min-height:57px;
+  border-radius:3px;
+
+  background:
+    radial-gradient(circle at 12% 28%, rgba(255,255,255,.26) 0 2px, transparent 6px),
+    radial-gradient(circle at 46% 75%, rgba(255,255,255,.15) 0 2px, transparent 7px),
+    radial-gradient(circle at 80% 25%, rgba(255,255,255,.16) 0 2px, transparent 7px),
+    linear-gradient(
+      90deg,
+      #7768e2 0%,
+      #9160d5 35%,
+      #b64cba 66%,
+      #d83e92 100%
+    );
+
+  border:1px solid rgba(255,255,255,.34);
+
+  box-shadow:
+    0 3px 0 rgba(64,48,92,.52),
+    0 7px 14px rgba(0,0,0,.13),
+    inset 0 1px 0 rgba(255,255,255,.36);
+
+  animation:mvpSoftPulse 4.8s ease-in-out infinite;
+}
+
+.tip.mvp::before{
+  display:none;
+}
+
+.tip.mvp .name{
+  font-family:'Titan One', Impact, sans-serif;
+  font-size:18px;
+  font-weight:400;
+  color:#ffffff;
+}
+
+.tip.mvp .amount{
+  font-family:'Titan One', Impact, sans-serif;
+  font-size:28px;
+  font-weight:400;
+  color:#ffffff;
+
+  text-shadow:
+    1px 1px 0 rgba(61,51,86,.76),
+    2px 2px 0 rgba(74,60,104,.62),
+    0 3px 1px rgba(47,37,68,.46);
+}
+
+
+/* ---------- SECOND / THIRD ---------- */
+
+.tip.second{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(111,95,210,.90) 0%,
+      rgba(148,79,194,.91) 47%,
+      rgba(205,59,147,.92) 100%
+    );
+}
+
+.tip.third{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(101,89,194,.88) 0%,
+      rgba(137,75,182,.89) 48%,
+      rgba(191,57,139,.90) 100%
+    );
+  opacity:.96;
+}
+
+
+/* ---------- RANK ICON ---------- */
+
+.rank-icon,
+.tip.mvp .rank-icon{
+  border-radius:3px;
+  color:#ffffff;
+
+  background:rgba(255,255,255,.13);
+
+  border:1px solid rgba(255,255,255,.26);
+
+  box-shadow:
+    1px 2px 0 rgba(66,51,91,.38),
+    inset 0 1px 0 rgba(255,255,255,.22);
+
+  filter:none;
+}
+
+
+/* ---------- MVP PULSE IN THE NEW PALETTE ---------- */
+
+@keyframes mvpSoftPulse{
+  0%,
+  100%{
+    box-shadow:
+      0 3px 0 rgba(64,48,92,.52),
+      0 7px 14px rgba(0,0,0,.13),
+      0 0 8px rgba(220,62,143,.10),
+      inset 0 1px 0 rgba(255,255,255,.36);
+  }
+
+  50%{
+    box-shadow:
+      0 3px 0 rgba(64,48,92,.52),
+      0 7px 14px rgba(0,0,0,.13),
+      0 0 14px rgba(159,89,211,.22),
+      inset 0 1px 0 rgba(255,255,255,.40);
+  }
+}
+
+
+/* ---------- RESPONSIVE OVERRIDES ---------- */
+
+@media (max-width:460px){
+
+  #container{
+    width:100%;
+    padding:8px;
+    border-radius:4px;
+  }
+
+  .title{
+    min-height:46px;
+    padding:6px 10px;
+    border-radius:3px;
+    font-size:26px;
+  }
+
+  #top-list{
+    gap:5px;
+  }
+
+  .tip{
+    min-height:47px;
+    padding:7px 10px;
+    border-radius:3px;
+  }
+
+  .tip.mvp{
+    min-height:53px;
+    border-radius:3px;
+  }
+
+  .rank-icon{
+    border-radius:3px;
+  }
+
+  .tip.mvp .rank-icon{
+    border-radius:3px;
+  }
+
+  .tip .name{
+    font-size:15px;
+  }
+
+  .tip .amount{
+    font-size:21px;
+  }
+
+  .tip.mvp .name{
+    font-size:16px;
+  }
+
+  .tip.mvp .amount{
+    font-size:25px;
   }
 }

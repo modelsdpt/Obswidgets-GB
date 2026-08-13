@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Titan+One&display=swap');
 
 :root{
   --pink-50:#fff7fa;
@@ -553,5 +553,351 @@ body{
 
   #bar-fill{
     transition:none;
+  }
+}
+
+/* =========================================================
+   GOALBAR — PURPLE / PINK POP THEME
+   Visual match for Widget 1.
+   Existing HTML / JS behavior is preserved.
+========================================================= */
+
+:root{
+  --theme-violet:#7567df;
+  --theme-purple:#925fd5;
+  --theme-magenta:#b84bbb;
+  --theme-pink:#dc3f91;
+  --theme-deep:#443768;
+  --theme-deeper:#322946;
+  --theme-white:#ffffff;
+}
+
+
+/* =========================================================
+   WRAPPER
+========================================================= */
+
+#goal-wrapper{
+  width:72px;
+  height:420px;
+
+  overflow:hidden;
+
+  border-radius:5px;
+  border:2px solid rgba(54,43,80,.82);
+
+  background:
+    radial-gradient(circle at 28% 8%, rgba(255,255,255,.34) 0 2px, transparent 4px),
+    radial-gradient(circle at 70% 18%, rgba(255,255,255,.18) 0 2px, transparent 5px),
+    radial-gradient(circle at 26% 41%, rgba(255,255,255,.13) 0 2px, transparent 6px),
+    radial-gradient(circle at 72% 60%, rgba(255,255,255,.17) 0 2px, transparent 6px),
+    radial-gradient(circle at 31% 84%, rgba(255,255,255,.16) 0 2px, transparent 6px),
+    linear-gradient(
+      180deg,
+      #7567df 0%,
+      #8a61da 24%,
+      #a755cb 50%,
+      #c347aa 74%,
+      #dc3f91 100%
+    );
+
+  box-shadow:
+    3px 4px 0 rgba(50,41,70,.62),
+    0 8px 16px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -2px 0 rgba(76,40,91,.24);
+}
+
+
+/* cloudy / sparkly texture */
+
+#goal-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:6;
+
+  pointer-events:none;
+
+  border:0;
+  border-radius:3px;
+
+  background:
+    radial-gradient(ellipse at 38% 14%, rgba(255,255,255,.15) 0 4%, transparent 14%),
+    radial-gradient(ellipse at 68% 34%, rgba(255,255,255,.12) 0 4%, transparent 14%),
+    radial-gradient(ellipse at 34% 57%, rgba(255,255,255,.13) 0 4%, transparent 14%),
+    radial-gradient(ellipse at 63% 80%, rgba(255,255,255,.12) 0 4%, transparent 14%);
+
+  box-shadow:none;
+}
+
+
+/* glossy sweep */
+
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  z-index:5;
+  pointer-events:none;
+
+  left:0;
+  top:115%;
+
+  width:100%;
+  height:22%;
+
+  opacity:.30;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255,255,255,.03) 23%,
+      rgba(255,255,255,.42) 50%,
+      rgba(255,255,255,.06) 70%,
+      transparent 100%
+    );
+
+  animation:goalSoftSweep 7.8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   PROGRESS FILL
+========================================================= */
+
+#bar-fill{
+  border-radius:0 0 3px 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.30) 0%,
+      rgba(255,255,255,.08) 20%,
+      transparent 44%,
+      rgba(92,54,142,.10) 72%,
+      rgba(255,255,255,.14) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.025) 26%,
+      rgba(72,40,118,.10) 74%,
+      rgba(54,30,91,.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      #e85ba6 0%,
+      #dc3f91 20%,
+      #c44aa9 46%,
+      #a854c8 70%,
+      #7766df 100%
+    );
+
+  box-shadow:
+    inset 6px 0 10px rgba(255,255,255,.06),
+    inset -7px 0 12px rgba(70,37,106,.15),
+    inset 0 -18px 24px rgba(64,36,102,.14),
+    0 0 12px rgba(210,67,151,.20),
+    0 -2px 8px rgba(255,255,255,.18);
+}
+
+
+/* progress cap */
+
+#bar-fill::before{
+  height:5px;
+
+  border-radius:0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255,255,255,.98) 34%,
+      rgba(243,218,255,.88) 66%,
+      rgba(210,174,247,.30) 100%
+    );
+
+  box-shadow:
+    0 0 5px rgba(255,255,255,.82),
+    0 0 10px rgba(226,197,255,.58),
+    0 0 15px rgba(201,97,205,.28);
+
+  animation:goalProgressBreath 1.8s ease-in-out infinite alternate;
+}
+
+
+/* floating sparkle */
+
+#bar-fill::after{
+  width:5px;
+  height:5px;
+
+  border-radius:50%;
+  background:#ffffff;
+
+  box-shadow:
+    0 0 5px rgba(255,255,255,.90),
+    0 0 10px rgba(224,196,255,.76),
+    0 0 15px rgba(220,63,145,.42);
+
+  animation:goalSoftParticle 4.2s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.goal-title{
+  padding:4px 8px 5px;
+
+  border-radius:3px;
+
+  font-family:'Titan One', Impact, sans-serif;
+  font-size:22px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:.01em;
+
+  color:#ffffff;
+
+  background:rgba(255,255,255,.035);
+
+  -webkit-text-stroke:.8px rgba(61,51,86,.56);
+
+  text-shadow:
+    1px 1px 0 rgba(61,51,86,.74),
+    2px 2px 0 rgba(73,59,103,.54),
+    0 3px 1px rgba(47,37,68,.38),
+    0 0 4px rgba(255,255,255,.18);
+}
+
+
+/* decorative line behind title */
+
+.goal-title::after{
+  left:-12px;
+  width:calc(100% + 24px);
+  height:2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.10) 18%,
+      rgba(255,255,255,.48) 50%,
+      rgba(255,255,255,.10) 82%,
+      transparent
+    );
+
+  box-shadow:
+    0 0 6px rgba(255,255,255,.12);
+}
+
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.goal-amount{
+  bottom:42px;
+
+  padding:6px 10px 7px;
+
+  border-radius:3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(117,103,223,.90) 0%,
+      rgba(164,84,202,.92) 48%,
+      rgba(220,63,145,.94) 100%
+    );
+
+  border:1px solid rgba(255,255,255,.30);
+
+  box-shadow:
+    2px 3px 0 rgba(59,46,82,.46),
+    0 5px 11px rgba(0,0,0,.14),
+    inset 0 1px 0 rgba(255,255,255,.26);
+
+  font-family:'Titan One', Impact, sans-serif;
+  font-size:17px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+
+  color:#ffffff;
+
+  -webkit-text-stroke:.6px rgba(61,51,86,.50);
+
+  text-shadow:
+    1px 1px 0 rgba(61,51,86,.70),
+    2px 2px 0 rgba(74,60,104,.46);
+}
+
+
+/* =========================================================
+   NEON / ACTIVE STATE
+========================================================= */
+
+.goal-title.neon{
+  animation:goalTitleBreath 2.3s ease-in-out infinite alternate;
+}
+
+@keyframes goalTitleBreath{
+  from{
+    filter:brightness(1);
+  }
+
+  to{
+    filter:
+      brightness(1.08)
+      drop-shadow(0 0 3px rgba(255,255,255,.16))
+      drop-shadow(0 0 7px rgba(202,101,216,.20));
+  }
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+#bar-fill:hover{
+  filter:brightness(1.07);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-height:460px){
+
+  #goal-wrapper{
+    height:360px;
+    width:68px;
+    border-radius:5px;
+  }
+
+  #goal-wrapper::before{
+    border-radius:3px;
+  }
+
+  #bar-fill{
+    border-radius:0 0 3px 3px;
+  }
+
+  .goal-title{
+    font-size:20px;
+  }
+
+  .goal-amount{
+    bottom:38px;
+    padding:5px 9px 6px;
+    border-radius:3px;
+    font-size:15px;
   }
 }
