@@ -1,1100 +1,1536 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <title>Panel OF</title>
 
-  <style>
-    :root {
-      --accent: #00f7ff;
-      --accent-soft: #00eaff;
-      --bg-main: #0b0b0f;
-      --bg-panel: #111319;
-      --bg-card: #181b24;
-      --border-soft: #272a35;
-      --danger: #ff3b3b;
-      --text-main: #ffffff;
-      --text-muted: #b0b3c3;
-    }
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    * {
-      box-sizing: border-box;
-    }
+  <title>Livestream Control Panel</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg-main);
-      color: var(--text-main);
-    }
-
-    /* ===== LAYOUT PRINCIPAL ===== */
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    .sidebar {
-      width: 220px;
-      background: linear-gradient(180deg, #05050a, #151522);
-      border-right: 1px solid #1e2130;
-      padding: 18px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .brand {
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 18px;
-      color: var(--accent);
-      text-shadow: 0 0 10px rgba(0, 247, 255, 0.6);
-      margin-bottom: 4px;
-    }
-
-    .nav-section-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-top: 10px;
-      margin-bottom: 6px;
-    }
-
-    .nav-item {
-      width: 100%;
-      text-align: left;
-      padding: 9px 10px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
-    }
-
-    .nav-item span.icon {
-      font-size: 18px;
-    }
-
-    .nav-item:hover {
-      background: rgba(0, 247, 255, 0.06);
-      color: var(--accent-soft);
-      transform: translateX(1px);
-    }
-
-    .nav-item.active {
-      background: radial-gradient(circle at 0 0, rgba(0, 247, 255, 0.25), transparent 60%),
-                  rgba(0, 247, 255, 0.12);
-      color: var(--accent);
-      box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-    }
-
-    .sidebar-footer {
-      margin-top: auto;
-      font-size: 11px;
-      color: var(--text-muted);
-      opacity: 0.75;
-    }
-
-    .main {
-      flex: 1;
-      padding: 20px 24px;
-      background: radial-gradient(circle at top left, #151626, #050509);
-    }
-
-    .main-header {
-      margin-bottom: 14px;
-    }
-
-    .main-header h1 {
-      margin: 0;
-      font-size: 22px;
-      color: var(--accent);
-      text-shadow: 0 0 10px rgba(0, 247, 255, 0.7);
-    }
-
-    .main-header p {
-      margin: 4px 0 0;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .main-section {
-      display: none;
-    }
-
-    .main-section.active {
-      display: block;
-    }
-
-    h2 {
-      color: var(--accent-soft);
-      text-shadow: 0 0 10px rgba(0, 234, 255, 0.6);
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    hr {
-      margin: 22px 0;
-      border: 1px solid #252838;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 6px;
-      border: 1px solid #323445;
-      border-radius: 8px;
-      font-size: 15px;
-      background: #0f1118;
-      color: #fff;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 8px rgba(0, 247, 255, 0.4);
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 600;
-      color: #000;
-      background: var(--accent);
-      box-shadow: 0 0 10px rgba(0, 223, 255, 0.6);
-    }
-
-    button.secondary {
-      background: #22293a;
-      color: var(--text-main);
-      box-shadow: none;
-      border: 1px solid #34384a;
-    }
-
-    .danger {
-      background: var(--danger);
-      color: white !important;
-      box-shadow: 0 0 10px rgba(255, 59, 59, 0.7);
-    }
-
-    /* ===== CARDS ===== */
-    .card {
-      background: var(--bg-card);
-      border-radius: 12px;
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 0 18px rgba(0, 0, 0, 0.75);
-      padding: 14px 16px;
-      margin-bottom: 16px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .card-title {
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .card-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .card-body {
-      margin-top: 4px;
-    }
-
-    /* ===== LAYOUT HOME: TIP + GOAL + TIMER ===== */
-    .home-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 16px;
-    }
-
-    .tip-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-    }
-
-    .tip-form {
-      flex: 1 1 auto;
-    }
-
-    .names-panel {
-      flex: 0 0 230px;
-      max-width: 230px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: #141622;
-      border: 1px solid #262b40;
-      box-shadow: 0 0 12px rgba(0,0,0,0.7);
-    }
-
-    .names-panel h3 {
-      margin: 0 0 6px;
-      font-size: 13px;
-      color: #ffd966;
-    }
-
-    #names-list {
-      max-height: 220px;
-      overflow-y: auto;
-      margin-top: 4px;
-    }
-
-    .name-pill {
-      display: inline-block;
-      margin: 4px 4px 0 0;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #202535;
-      border: 1px solid #3b3f55;
-      color: #fff;
-      font-size: 12px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .name-pill:hover {
-      background: var(--accent);
-      color: #000;
-      border-color: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-    }
-
-    .names-empty {
-      font-size: 12px;
-      opacity: 0.8;
-      margin-top: 4px;
-      color: var(--text-muted);
-    }
-
-    /* VOLUMEN TIP */
-    .volume-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .volume-row input[type="range"] {
-      flex: 1;
-    }
-
-    /* TIMER BUTTONS */
-    .timer-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-      margin-bottom: 5px;
-    }
-
-    .timer-buttons button {
-      flex: 1 1 70px;
-      min-width: 70px;
-      padding: 8px 10px;
-      font-size: 13px;
-    }
-
-    .timer-stop-btn {
-      background: #ff8800;
-      color: #000;
-      box-shadow: 0 0 10px #ff8800;
-      margin-top: 6px;
-    }
-
-    /* STATUS RE-SYNC */
-    .resync-status {
-      margin-top: 6px;
-      font-size: 12px;
-      color: var(--text-muted);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .resync-status.show {
-      opacity: 1;
-    }
-
-    /* ===== ENCUESTA A/B (EXTRAS) ===== */
-    .poll-admin {
-      margin-top: 4px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .poll-inputs {
-      min-width: 260px;
-      max-width: 320px;
-    }
-
-    .poll-inputs label {
-      display: block;
-      margin-top: 6px;
-      margin-bottom: 3px;
-      font-weight: bold;
-      font-size: 13px;
-    }
-
-    .poll-inputs input {
-      width: 100%;
-      margin-top: 0;
-      margin-bottom: 3px;
-    }
-
-    .poll-live {
-      flex: 1 1 260px;
-      min-width: 260px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: #151826;
-      border: 1px solid #262b40;
-      box-shadow: 0 0 12px rgba(0,0,0,0.7);
-    }
-
-    #pollQuestionText {
-      font-size: 15px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .poll-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .poll-option {
-      background: #20253a;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #323850;
-    }
-
-    .poll-option-label {
-      font-weight: bold;
-      margin-bottom: 4px;
-      font-size: 13px;
-    }
-
-    .poll-option-bar {
-      position: relative;
-      width: 100%;
-      height: 14px;
-      border-radius: 999px;
-      background: #101020;
-      overflow: hidden;
-      margin-bottom: 4px;
-    }
-
-    .poll-option-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), #00c8ff);
-      box-shadow: 0 0 8px rgba(0, 247, 255, 0.9);
-      transition: width 0.2s ease-out;
-    }
-
-    .poll-option-stats {
-      font-size: 12px;
-      opacity: 0.9;
-      margin-bottom: 4px;
-    }
-
-    .poll-option button {
-      width: 100%;
-      padding: 6px 8px;
-      font-size: 13px;
-      margin-top: 2px;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .layout {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 12px;
-      }
-      .sidebar-footer {
-        display: none;
-      }
-      .main {
-        padding: 12px 14px 18px;
-      }
-      .home-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
 </head>
+
 <body>
 
-<div class="layout">
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div>
-      <div class="brand">OF Widgets Panel</div>
-      <div class="nav-section-title">Secciones</div>
-      <button class="nav-item active" data-tab="home">
-        <span class="icon">🏠</span>
-        <span>Live (Goal + Timer)</span>
-      </button>
-      <button class="nav-item" data-tab="extras">
-        <span class="icon">✨</span>
-        <span>Extras & Encuestas</span>
-      </button>
-    </div>
+  <div class="app-shell">
 
-    <div class="sidebar-footer">
-      Modelo actual: <strong>roman001</strong>
-    </div>
-  </aside>
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-  <!-- MAIN CONTENT -->
-  <main class="main">
-    <div class="main-header">
-      <h1>Control del Livestream</h1>
-      <p>Maneja tips, goals, cronómetro y sincroniza widgets cuando se caiga OBS.</p>
-    </div>
+    <aside class="sidebar">
 
-    <!-- TAB: HOME -->
-    <section class="main-section active" data-tab-content="home">
-      <div class="home-grid">
-        <!-- Columna izquierda: Tip + Goal -->
-        <div>
-          <!-- CARD TIP + NOMBRES -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Enviar Tip</div>
-                <div class="card-subtitle">Actualiza la bar y el MVP en tiempo real.</div>
-              </div>
-            </div>
+      <div class="sidebar-top">
 
-            <div class="card-body">
-              <div class="tip-row">
-                <!-- FORM TIP -->
-                <div class="tip-form">
-                  <label>Nombre</label>
-                  <input id="name" placeholder="Nombre del usuario">
-
-                  <label style="margin-top:10px;">Monto</label>
-                  <input id="amount" type="number" placeholder="Ej: 20">
-
-                  <button onclick="sendTip()">Enviar Tip</button>
-
-                  <button class="danger" style="margin-left:8px;" onclick="clearAll()">
-  Limpiar MVP
-</button>
-                </div>
-
-                <!-- PANEL NOMBRES -->
-                <div class="names-panel">
-                  <h3>Últimos nombres</h3>
-                  <div id="names-list">
-                    <div class="names-empty">
-                      Aún no hay nombres. Envía un tip y aparecerán aquí.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <label style="display:block; font-size:13px; margin-top:12px;">
-                Volumen del tip
-              </label>
-              <div class="volume-row">
-                <input
-                  id="tip-volume"
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="100"
-                  oninput="updateVolumeLabel(this.value)"
-                  onchange="sendTipVolume(this.value)"
-                />
-                <span id="tip-volume-label">100%</span>
-              </div>
-            </div>
+        <div class="brand">
+          <div class="brand-icon">
+            ◈
           </div>
 
-          <!-- CARD GOAL -->
-<!-- CARD GOAL (multi–goals) -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <div class="card-title">Goal Bar</div>
-      <div class="card-subtitle">
-        Configura varias metas para el show (por ejemplo: 200 = Mast-t, 400 = Squirt).
-      </div>
-    </div>
-  </div>
-  <div class="card-body">
-
-    <!-- GOAL 1 -->
-    <div class="goal-row">
-      <label for="goal1-amount">Goal 1 ($)</label>
-      <input id="goal1-amount" type="number" placeholder="Ej: 200">
-
-      <label for="goal1-title" style="margin-top:6px;">Título Goal 1</label>
-      <input id="goal1-title" placeholder="Ej: Mast-t">
-    </div>
-
-    <!-- GOAL 2 -->
-    <div class="goal-row" style="margin-top:12px;">
-      <label for="goal2-amount">Goal 2 ($)</label>
-      <input id="goal2-amount" type="number" placeholder="Ej: 400">
-
-      <label for="goal2-title" style="margin-top:6px;">Título Goal 2</label>
-      <input id="goal2-title" placeholder="Ej: Squirt">
-    </div>
-
-    <!-- Botones -->
-    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;">
-      <button onclick="setGoals()">Guardar Goals</button>
-      <button class="danger" onclick="clearGoal()">Limpiar Goals</button>
-    </div>
-  </div>
-</div>
-
-        <!-- Columna derecha: Timer + Re-sync -->
-        <div>
-          <!-- CARD TIMER -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Action Timer</div>
-                <div class="card-subtitle">Cronómetro para juegos / retos rápidos.</div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="timer-buttons">
-                <button onclick="startActionTimer(2)">2s</button>
-                <button onclick="startActionTimer(5)">5s</button>
-                <button onclick="startActionTimer(20)">20s</button>
-                <button onclick="startActionTimer(30)">30s</button>
-                <button onclick="startActionTimer(45)">45s</button>
-                <button onclick="startActionTimer(60)">60s</button>
-                <button onclick="startActionTimer(120)">120s</button>
-              </div>
-              <button class="timer-stop-btn" onclick="stopActionTimer()">Detener Cronómetro</button>
-            </div>
-          </div>
-
-          <!-- CARD RE-SYNC -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Re-sync Widgets</div>
-                <div class="card-subtitle">
-                  Si se cae OBS o el widget, reconecta y reenvía todos los eventos del show actual.
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <button class="secondary" onclick="resyncWidgets()">
-                🔄 Re-sync widgets del modelo
-              </button>
-              <div id="resync-status" class="resync-status">
-                Aún no se ha ejecutado Re-sync.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB: EXTRAS -->
-    <section class="main-section" data-tab-content="extras">
-      <!-- CARD TOP 3 -->
-      <div class="card">
-        <div class="card-header">
           <div>
-            <div class="card-title">Top 3 (MVP)</div>
-            <div class="card-subtitle">
-              Controla el ranking de tus tippers. Esto limpia el widget y el historial del show.
+            <div class="brand-name">
+              OF Widgets
+            </div>
+
+            <div class="brand-subtitle">
+              Livestream Control
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <button class="danger" onclick="clearAll()">Limpiar Top 3</button>
+
+
+        <div class="sidebar-section-title">
+          STREAMS
         </div>
+
+
+        <!-- PANEL 1 -->
+
+        <button
+          class="nav-item active"
+          type="button"
+          data-panel-target="group1"
+        >
+
+          <span class="nav-icon">
+            01
+          </span>
+
+          <span class="nav-content">
+
+            <span class="nav-title">
+              Panel 1
+            </span>
+
+            <span class="nav-subtitle">
+              Group 1
+            </span>
+
+          </span>
+
+          <span class="nav-status online"></span>
+
+        </button>
+
+
+        <!-- PANEL 2 -->
+
+        <button
+          class="nav-item"
+          type="button"
+          data-panel-target="group2"
+        >
+
+          <span class="nav-icon">
+            02
+          </span>
+
+          <span class="nav-content">
+
+            <span class="nav-title">
+              Panel 2
+            </span>
+
+            <span class="nav-subtitle">
+              Group 2
+            </span>
+
+          </span>
+
+          <span class="nav-status online"></span>
+
+        </button>
+
       </div>
 
-      <!-- CARD RULETA -->
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title">Ruleta</div>
-          <div class="card-subtitle">Dispara la ruleta en el overlay.</div>
+
+      <div class="sidebar-footer">
+
+        <div class="sidebar-model-label">
+          MODEL
         </div>
-        <div class="card-body">
-          <button
-            onclick="sendToServer('roulette')">
-            🎰 Girar Ruleta
-          </button>
+
+        <div class="sidebar-model">
+          roman001
         </div>
-      </div>
 
- <!-- CARD RAFFLE -->
-<div class="card">
-  <div class="card-header">
-    <div>
-      <div class="card-title">Raffle / Giveaway</div>
-      <div class="card-subtitle">
-        Agrega spenders con su cantidad de tickets y elige un ganador al final del live.
-      </div>
-    </div>
-  </div>
-
-  <div class="card-body">
-    <div class="poll-admin">
-      <div class="poll-inputs">
-        <label for="raffleName">Nombre del spender</label>
-        <input id="raffleName" placeholder="Ej: Marco">
-
-        <label for="raffleTickets">Tickets</label>
-        <input id="raffleTickets" type="number" min="1" placeholder="Ej: 25">
-
-        <button onclick="raffleAddEntry()">Agregar spender</button>
-        <button onclick="raffleRun()">🎟️ Action / Elegir ganador</button>
-        <button class="danger" onclick="raffleClear()">Borrar raffle</button>
-      </div>
-
-      <div class="poll-live">
-        <div id="rafflePanelTitle">No hay participantes todavía.</div>
-
-        <div id="raffleEntriesList" style="display:flex; flex-direction:column; gap:8px; margin-top:12px;"></div>
-
-        <div
-          id="raffleWinnerText"
-          style="margin-top:12px; color:#ffd966; font-weight:bold;"
-        ></div>
-      </div>
-    </div>
-  </div>
-</div>
-    </section>
-  </main>
-</div>
-
-<script>
-  const MODEL_ID = "roman001";
-  const API_URL = "/api/send";
-
-  /* ========= NAV TABS ========= */
-  const navButtons = document.querySelectorAll(".nav-item[data-tab]");
-  const sections = document.querySelectorAll(".main-section[data-tab-content]");
-
-  navButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tab = btn.getAttribute("data-tab");
-
-      navButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      sections.forEach(sec => {
-        if (sec.getAttribute("data-tab-content") === tab) {
-          sec.classList.add("active");
-        } else {
-          sec.classList.remove("active");
-        }
-      });
-    });
-  });
-
-  /* ========= NOMBRES RECIENTES (panel derecha) ========= */
-
-  let recentNames = [];
-  const MAX_NAMES = 30;
-
-  function renderRecentNames() {
-    const container = document.getElementById("names-list");
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    if (!recentNames.length) {
-      const empty = document.createElement("div");
-      empty.className = "names-empty";
-      empty.textContent =
-        "Aún no hay nombres. Envía un tip y aparecerán aquí.";
-      container.appendChild(empty);
-      return;
-    }
-
-    recentNames.forEach((name) => {
-      const pill = document.createElement("span");
-      pill.className = "name-pill";
-      pill.textContent = name;
-      pill.onclick = () => {
-        const nameInput = document.getElementById("name");
-        if (nameInput) nameInput.value = name;
-      };
-      container.appendChild(pill);
-    });
-  }
-
-  function addRecentName(name) {
-    const trimmed = (name || "").trim();
-    if (!trimmed) return;
-
-    const lower = trimmed.toLowerCase();
-    recentNames = [trimmed, ...recentNames.filter((n) => n.toLowerCase() !== lower)];
-
-    if (recentNames.length > MAX_NAMES) {
-      recentNames.length = MAX_NAMES;
-    }
-
-    renderRecentNames();
-  }
-
-  function clearRecentNames() {
-    recentNames = [];
-    renderRecentNames();
-  }
-
-  // inicializar la vista de nombres al cargar (panel vacío + mensaje)
-  renderRecentNames();
-
-  /* ========= ENVIAR TIP / GOAL / TIMER ========= */
-
-  function sendTip() {
-    const nameInput = document.getElementById("name");
-    const amountInput = document.getElementById("amount");
-
-    if (!nameInput || !amountInput) {
-      alert("Error interno: falta input.");
-      return;
-    }
-
-    const name = nameInput.value.trim();
-    const amount = Number(amountInput.value);
-
-    if (!name || !amount) {
-      alert("Debes escribir un nombre y un monto válido.");
-      return;
-    }
-
-    addRecentName(name);
-    sendToServer("tip", { name, amount });
-    amountInput.value = "";
-  }
-
-  function clearAll() {
-    sendToServer("clear");
-    clearRecentNames();
-  }
-
-  // === MULTI GOAL CONFIG ===
-// Lee Goal 1 / Goal 2 del panel y envía la configuración al widget
-function setGoals() {
-  const g1AmountEl = document.getElementById("goal1-amount");
-  const g1TitleEl  = document.getElementById("goal1-title");
-  const g2AmountEl = document.getElementById("goal2-amount");
-  const g2TitleEl  = document.getElementById("goal2-title");
-
-  if (!g1AmountEl || !g1TitleEl || !g2AmountEl || !g2TitleEl) {
-    alert("Error interno: faltan inputs de goals.");
-    return;
-  }
-
-  const g1Amount = Number(g1AmountEl.value || 0);
-  const g1Title  = g1TitleEl.value.trim();
-  const g2Amount = Number(g2AmountEl.value || 0);
-  const g2Title  = g2TitleEl.value.trim();
-
-  const stages = [];
-
-  if (g1Amount > 0) {
-    stages.push({
-      target: g1Amount,
-      label: g1Title || "Goal 1",
-    });
-  }
-
-  if (g2Amount > 0) {
-    stages.push({
-      target: g2Amount,
-      label: g2Title || "Goal 2",
-    });
-  }
-
-  if (!stages.length) {
-    alert("Debes configurar al menos una goal con monto mayor a 0.");
-    return;
-  }
-
-  // Aseguramos orden por monto por si el usuario escribe primero la grande
-  stages.sort((a, b) => a.target - b.target);
-
-  // current: 0 => el show empieza desde cero
-  sendToServer("setGoalConfig", {
-    stages,
-    current: 0,
-  });
-}
-  function clearGoal() {
-    sendToServer("clearGoal");
-  }
-
-  function startActionTimer(seconds) {
-    sendToServer("actionTimer", { seconds });
-  }
-
-  function stopActionTimer() {
-    sendToServer("actionTimerStop");
-  }
-
-  function sendToServer(type, payload = {}) {
-    fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        modelId: MODEL_ID,
-        type,
-        payload,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.error("❌ Respuesta HTTP no OK:", res.status);
-          return null;
-        }
-        const ct = res.headers.get("content-type") || "";
-        if (!ct.includes("application/json")) return null;
-        return res.json();
-      })
-      .then((data) => {
-        if (data) console.log("Respuesta backend:", data);
-      })
-      .catch((err) => console.error("❌ Error en fetch:", err));
-  }
-
-  function updateVolumeLabel(value) {
-    const label = document.getElementById("tip-volume-label");
-    if (label) {
-      label.textContent = `${value}%`;
-    }
-  }
-
-  function sendTipVolume(value) {
-    const vol = Math.max(0, Math.min(1, Number(value) / 100));
-    sendToServer("tipVolume", { volume: vol });
-  }
-
-  /* ========= RE-SYNC WIDGETS ========= */
-
-  function resyncWidgets() {
-    const status = document.getElementById("resync-status");
-    fetch("/api/resync", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ modelId: MODEL_ID }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Re-sync result:", data);
-        if (status) {
-          const count = data?.eventsReplayed ?? 0;
-          const clients = data?.clients ?? 0;
-          status.textContent =
-            `Re-sync enviado: ${count} evento(s) reenviado(s) a ${clients} widget(s).`;
-          status.classList.add("show");
-          setTimeout(() => status.classList.remove("show"), 4000);
-        }
-      })
-      .catch((err) => {
-        console.error("Error en /api/resync:", err);
-        if (status) {
-          status.textContent = "Error al hacer re-sync (ver consola).";
-          status.classList.add("show");
-          setTimeout(() => status.classList.remove("show"), 4000);
-        }
-      });
-  }
-
-  /* ========= ENCUESTA A/B ========= */
-
-/* ========= RAFFLE / GIVEAWAY ========= */
-
-let raffleEntries = [];
-
-function raffleUpdateUI(winner = "") {
-  const titleEl = document.getElementById("rafflePanelTitle");
-  const listEl = document.getElementById("raffleEntriesList");
-  const winnerEl = document.getElementById("raffleWinnerText");
-
-  if (!listEl) return;
-
-  listEl.innerHTML = "";
-
-  if (!raffleEntries.length) {
-    if (titleEl) titleEl.textContent = "No hay participantes todavía.";
-    if (winnerEl) winnerEl.textContent = "";
-    return;
-  }
-
-  const totalTickets = raffleEntries.reduce((sum, entry) => {
-    return sum + Number(entry.tickets || 0);
-  }, 0);
-
-  if (titleEl) {
-    titleEl.textContent = `Participantes: ${raffleEntries.length} | Tickets totales: ${totalTickets}`;
-  }
-
-  raffleEntries.forEach((entry, index) => {
-    const row = document.createElement("div");
-
-    row.style.display = "flex";
-    row.style.justifyContent = "space-between";
-    row.style.alignItems = "center";
-    row.style.gap = "8px";
-    row.style.padding = "8px 10px";
-    row.style.borderRadius = "8px";
-    row.style.background = "#20253a";
-    row.style.border = "1px solid #323850";
-
-    row.innerHTML = `
-      <div>
-        <strong>${entry.name}</strong>
-        <div style="font-size:12px; color:#b0b3c3;">
-          ${entry.tickets} ticket${entry.tickets === 1 ? "" : "s"}
+        <div class="sidebar-server">
+          <span class="server-dot"></span>
+          Railway Connected
         </div>
+
       </div>
 
-      <button
-        class="danger"
-        style="padding:6px 10px; margin:0;"
-        onclick="raffleRemoveEntry(${index})"
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+      <!-- =====================================================
+           PANEL 1
+      ====================================================== -->
+
+      <section
+        class="stream-panel active"
+        data-stream-panel="group1"
+        data-group-id="group1"
       >
-        X
-      </button>
-    `;
 
-    listEl.appendChild(row);
-  });
+        <!-- HEADER -->
 
-  if (winnerEl) {
-    winnerEl.textContent = winner ? `Ganador: ${winner}` : "";
-  }
-}
+        <header class="page-header">
 
-function raffleAddEntry() {
-  const nameEl = document.getElementById("raffleName");
-  const ticketsEl = document.getElementById("raffleTickets");
+          <div>
 
-  if (!nameEl || !ticketsEl) {
-    alert("Error interno: faltan inputs del raffle.");
-    return;
-  }
+            <div class="page-eyebrow">
+              LIVESTREAM CONTROL
+            </div>
 
-  const name = nameEl.value.trim();
-  const tickets = Number(ticketsEl.value);
+            <h1>
+              Panel 1
+            </h1>
 
-  if (!name || !Number.isFinite(tickets) || tickets <= 0) {
-    alert("Debes escribir un nombre y una cantidad válida de tickets.");
-    return;
-  }
+            <p>
+              Control independiente de Widget, Goal Bar,
+              Countdown y Raffle del Grupo 1.
+            </p>
 
-  const existing = raffleEntries.find(
-    (entry) => entry.name.toLowerCase() === name.toLowerCase()
-  );
+          </div>
 
-  if (existing) {
-    existing.tickets += tickets;
-  } else {
-    raffleEntries.push({ name, tickets });
-  }
 
-  nameEl.value = "";
-  ticketsEl.value = "";
+          <div class="stream-indicator">
 
-  raffleUpdateUI();
-}
+            <span class="stream-indicator-dot"></span>
 
-function raffleRemoveEntry(index) {
-  raffleEntries.splice(index, 1);
-  raffleUpdateUI();
-}
+            <div>
 
-function raffleBuildTickets() {
-  const tickets = [];
+              <span class="stream-indicator-title">
+                Group 1
+              </span>
 
-  raffleEntries.forEach((entry) => {
-    for (let i = 0; i < entry.tickets; i++) {
-      tickets.push(entry.name);
-    }
-  });
+              <span class="stream-indicator-subtitle">
+                roman001
+              </span>
 
-  return tickets;
-}
+            </div>
 
-function rafflePickWinner() {
-  const tickets = raffleBuildTickets();
+          </div>
 
-  if (!tickets.length) return null;
+        </header>
 
-  const randomIndex = Math.floor(Math.random() * tickets.length);
-  return tickets[randomIndex];
-}
 
-function raffleRun() {
-  if (!raffleEntries.length) {
-    alert("Agrega al menos un participante.");
-    return;
-  }
+        <!-- =====================================================
+             GRID
+        ====================================================== -->
 
-  const winner = rafflePickWinner();
+        <div class="dashboard-grid">
 
-  if (!winner) {
-    alert("No se pudo elegir ganador.");
-    return;
-  }
 
-  raffleUpdateUI(winner);
+          <!-- ===================================================
+               LEFT COLUMN
+          ==================================================== -->
 
-  sendToServer("raffleStart", {
-    entries: raffleEntries,
-    winner,
-    durationMs: 5000,
-  });
-}
+          <div class="dashboard-column">
 
-function raffleClear() {
-  raffleEntries = [];
-  raffleUpdateUI();
-  sendToServer("raffleClear");
-}
 
-raffleUpdateUI();
-</script>
+            <!-- ================= TIP ================= -->
+
+            <section class="card tip-card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    REVENUE
+                  </span>
+
+                  <h2>
+                    Tips & MVP
+                  </h2>
+
+                  <p>
+                    Agrega o corrige tips del livestream.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  $
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="tip-layout">
+
+
+                  <!-- TIP FORM -->
+
+                  <div class="tip-form">
+
+                    <div class="form-group">
+
+                      <label>
+                        Nombre
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="tip-name"
+                        placeholder="Nombre del spender"
+                        autocomplete="off"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Monto
+                      </label>
+
+                      <input
+                        type="number"
+                        data-role="tip-amount"
+                        placeholder="Ej: 20 o -20"
+                      >
+
+                      <span class="input-help">
+                        Usa números negativos para corregir un tip.
+                      </span>
+
+                    </div>
+
+
+                    <div class="button-row">
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-action="send-tip"
+                      >
+                        Enviar Tip
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-action="clear-mvp"
+                      >
+                        Limpiar MVP
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- RECENT NAMES -->
+
+                  <div class="recent-names">
+
+                    <div class="section-mini-header">
+
+                      <span>
+                        Últimos nombres
+                      </span>
+
+                      <span class="mini-badge">
+                        Recent
+                      </span>
+
+                    </div>
+
+
+                    <div
+                      class="names-list"
+                      data-role="names-list"
+                    >
+
+                      <div class="empty-state">
+                        Aún no hay nombres.
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <!-- VOLUME -->
+
+                <div class="volume-control">
+
+                  <div class="volume-header">
+
+                    <label>
+                      Volumen del tip
+                    </label>
+
+                    <span
+                      class="volume-value"
+                      data-role="volume-label"
+                    >
+                      100%
+                    </span>
+
+                  </div>
+
+
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="100"
+                    data-role="tip-volume"
+                  >
+
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- ================= GOALS ================= -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    PROGRESS
+                  </span>
+
+                  <h2>
+                    Goal Bar
+                  </h2>
+
+                  <p>
+                    Configura las metas acumulativas del show.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  ◎
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+
+                <div class="goal-grid">
+
+
+                  <!-- GOAL 1 -->
+
+                  <div class="goal-item">
+
+                    <div class="goal-number">
+                      Goal 01
+                    </div>
+
+                    <div class="form-group">
+
+                      <label>
+                        Monto
+                      </label>
+
+                      <input
+                        type="number"
+                        data-role="goal1-amount"
+                        placeholder="Ej: 200"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Título
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="goal1-title"
+                        placeholder="Nombre de la meta"
+                      >
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- GOAL 2 -->
+
+                  <div class="goal-item">
+
+                    <div class="goal-number">
+                      Goal 02
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Monto
+                      </label>
+
+                      <input
+                        type="number"
+                        data-role="goal2-amount"
+                        placeholder="Ej: 400"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Título
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="goal2-title"
+                        placeholder="Nombre de la meta"
+                      >
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-action="save-goals"
+                  >
+                    Guardar Goals
+                  </button>
+
+
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-action="clear-goals"
+                  >
+                    Limpiar Goals
+                  </button>
+
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- ================= RAFFLE ================= -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    GIVEAWAY
+                  </span>
+
+                  <h2>
+                    Raffle
+                  </h2>
+
+                  <p>
+                    Administra participantes y selecciona un ganador.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  ★
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+
+                <div class="raffle-layout">
+
+
+                  <!-- RAFFLE FORM -->
+
+                  <div class="raffle-form">
+
+                    <div class="form-group">
+
+                      <label>
+                        Spender
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="raffle-name"
+                        placeholder="Nombre"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Tickets
+                      </label>
+
+                      <input
+                        type="number"
+                        min="1"
+                        data-role="raffle-tickets"
+                        placeholder="Ej: 25"
+                      >
+
+                    </div>
+
+
+                    <div class="button-column">
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-action="raffle-add"
+                      >
+                        Agregar Spender
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn btn-special"
+                        data-action="raffle-run"
+                      >
+                        Elegir Ganador
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-action="raffle-clear"
+                      >
+                        Borrar Raffle
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- RAFFLE STATUS -->
+
+                  <div class="raffle-status">
+
+                    <div
+                      class="raffle-status-title"
+                      data-role="raffle-title"
+                    >
+                      No hay participantes todavía.
+                    </div>
+
+
+                    <div
+                      class="raffle-list"
+                      data-role="raffle-list"
+                    ></div>
+
+
+                    <div
+                      class="raffle-winner"
+                      data-role="raffle-winner"
+                    ></div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+
+          <!-- ===================================================
+               RIGHT COLUMN
+          ==================================================== -->
+
+          <div class="dashboard-column side-column">
+
+
+            <!-- ================= TIMER ================= -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    TIMER
+                  </span>
+
+                  <h2>
+                    Action Timer
+                  </h2>
+
+                  <p>
+                    Agrega tiempo al Countdown.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  ◷
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="timer-grid">
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="2"
+                  >
+                    +2s
+                  </button>
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="5"
+                  >
+                    +5s
+                  </button>
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="20"
+                  >
+                    +20s
+                  </button>
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="30"
+                  >
+                    +30s
+                  </button>
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="45"
+                  >
+                    +45s
+                  </button>
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="60"
+                  >
+                    +60s
+                  </button>
+
+                  <button
+                    type="button"
+                    data-action="timer"
+                    data-seconds="120"
+                  >
+                    +120s
+                  </button>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  class="btn btn-warning full-width"
+                  data-action="timer-stop"
+                >
+                  Detener Cronómetro
+                </button>
+
+              </div>
+
+            </section>
+
+
+            <!-- ================= RESYNC ================= -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    CONNECTION
+                  </span>
+
+                  <h2>
+                    Re-sync
+                  </h2>
+
+                  <p>
+                    Reenvía el historial a los widgets de este grupo.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <button
+                  type="button"
+                  class="btn btn-secondary full-width"
+                  data-action="resync"
+                >
+                  Re-sync Grupo 1
+                </button>
+
+
+                <div
+                  class="resync-status"
+                  data-role="resync-status"
+                >
+                  Aún no se ha ejecutado Re-sync.
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- ================= EXTRA ACTIONS ================= -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    EXTRAS
+                  </span>
+
+                  <h2>
+                    Live Actions
+                  </h2>
+
+                  <p>
+                    Acciones adicionales del show.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <button
+                  type="button"
+                  class="btn btn-secondary full-width"
+                  data-action="roulette"
+                >
+                  🎰 Girar Ruleta
+                </button>
+
+              </div>
+
+            </section>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =====================================================
+           PANEL 2
+      ====================================================== -->
+
+      <section
+        class="stream-panel"
+        data-stream-panel="group2"
+        data-group-id="group2"
+      >
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+          <div>
+
+            <div class="page-eyebrow">
+              LIVESTREAM CONTROL
+            </div>
+
+            <h1>
+              Panel 2
+            </h1>
+
+            <p>
+              Control independiente de Widget2, Goal Bar2,
+              Countdown2 y Raffle del Grupo 2.
+            </p>
+
+          </div>
+
+
+          <div class="stream-indicator">
+
+            <span class="stream-indicator-dot"></span>
+
+            <div>
+
+              <span class="stream-indicator-title">
+                Group 2
+              </span>
+
+              <span class="stream-indicator-subtitle">
+                roman001
+              </span>
+
+            </div>
+
+          </div>
+
+        </header>
+
+
+        <div class="dashboard-grid">
+
+
+          <!-- LEFT -->
+
+          <div class="dashboard-column">
+
+
+            <!-- TIP -->
+
+            <section class="card tip-card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    REVENUE
+                  </span>
+
+                  <h2>
+                    Tips & MVP
+                  </h2>
+
+                  <p>
+                    Agrega o corrige tips del livestream.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  $
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="tip-layout">
+
+                  <div class="tip-form">
+
+                    <div class="form-group">
+
+                      <label>
+                        Nombre
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="tip-name"
+                        placeholder="Nombre del spender"
+                        autocomplete="off"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Monto
+                      </label>
+
+                      <input
+                        type="number"
+                        data-role="tip-amount"
+                        placeholder="Ej: 20 o -20"
+                      >
+
+                      <span class="input-help">
+                        Usa números negativos para corregir un tip.
+                      </span>
+
+                    </div>
+
+
+                    <div class="button-row">
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-action="send-tip"
+                      >
+                        Enviar Tip
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-action="clear-mvp"
+                      >
+                        Limpiar MVP
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="recent-names">
+
+                    <div class="section-mini-header">
+
+                      <span>
+                        Últimos nombres
+                      </span>
+
+                      <span class="mini-badge">
+                        Recent
+                      </span>
+
+                    </div>
+
+
+                    <div
+                      class="names-list"
+                      data-role="names-list"
+                    >
+
+                      <div class="empty-state">
+                        Aún no hay nombres.
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="volume-control">
+
+                  <div class="volume-header">
+
+                    <label>
+                      Volumen del tip
+                    </label>
+
+                    <span
+                      class="volume-value"
+                      data-role="volume-label"
+                    >
+                      100%
+                    </span>
+
+                  </div>
+
+
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="100"
+                    data-role="tip-volume"
+                  >
+
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- GOALS -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    PROGRESS
+                  </span>
+
+                  <h2>
+                    Goal Bar
+                  </h2>
+
+                  <p>
+                    Configura las metas acumulativas del show.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  ◎
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="goal-grid">
+
+
+                  <div class="goal-item">
+
+                    <div class="goal-number">
+                      Goal 01
+                    </div>
+
+                    <div class="form-group">
+
+                      <label>
+                        Monto
+                      </label>
+
+                      <input
+                        type="number"
+                        data-role="goal1-amount"
+                        placeholder="Ej: 200"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Título
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="goal1-title"
+                        placeholder="Nombre de la meta"
+                      >
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="goal-item">
+
+                    <div class="goal-number">
+                      Goal 02
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Monto
+                      </label>
+
+                      <input
+                        type="number"
+                        data-role="goal2-amount"
+                        placeholder="Ej: 400"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Título
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="goal2-title"
+                        placeholder="Nombre de la meta"
+                      >
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-action="save-goals"
+                  >
+                    Guardar Goals
+                  </button>
+
+
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-action="clear-goals"
+                  >
+                    Limpiar Goals
+                  </button>
+
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- RAFFLE -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    GIVEAWAY
+                  </span>
+
+                  <h2>
+                    Raffle
+                  </h2>
+
+                  <p>
+                    Administra participantes y selecciona un ganador.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  ★
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="raffle-layout">
+
+                  <div class="raffle-form">
+
+                    <div class="form-group">
+
+                      <label>
+                        Spender
+                      </label>
+
+                      <input
+                        type="text"
+                        data-role="raffle-name"
+                        placeholder="Nombre"
+                      >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                      <label>
+                        Tickets
+                      </label>
+
+                      <input
+                        type="number"
+                        min="1"
+                        data-role="raffle-tickets"
+                        placeholder="Ej: 25"
+                      >
+
+                    </div>
+
+
+                    <div class="button-column">
+
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-action="raffle-add"
+                      >
+                        Agregar Spender
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn btn-special"
+                        data-action="raffle-run"
+                      >
+                        Elegir Ganador
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-action="raffle-clear"
+                      >
+                        Borrar Raffle
+                      </button>
+
+                    </div>
+
+                  </div>
+
+
+                  <div class="raffle-status">
+
+                    <div
+                      class="raffle-status-title"
+                      data-role="raffle-title"
+                    >
+                      No hay participantes todavía.
+                    </div>
+
+
+                    <div
+                      class="raffle-list"
+                      data-role="raffle-list"
+                    ></div>
+
+
+                    <div
+                      class="raffle-winner"
+                      data-role="raffle-winner"
+                    ></div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+
+          <!-- RIGHT -->
+
+          <div class="dashboard-column side-column">
+
+
+            <!-- TIMER -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    TIMER
+                  </span>
+
+                  <h2>
+                    Action Timer
+                  </h2>
+
+                  <p>
+                    Agrega tiempo al Countdown2.
+                  </p>
+
+                </div>
+
+                <div class="card-icon">
+                  ◷
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="timer-grid">
+
+                  <button type="button" data-action="timer" data-seconds="2">
+                    +2s
+                  </button>
+
+                  <button type="button" data-action="timer" data-seconds="5">
+                    +5s
+                  </button>
+
+                  <button type="button" data-action="timer" data-seconds="20">
+                    +20s
+                  </button>
+
+                  <button type="button" data-action="timer" data-seconds="30">
+                    +30s
+                  </button>
+
+                  <button type="button" data-action="timer" data-seconds="45">
+                    +45s
+                  </button>
+
+                  <button type="button" data-action="timer" data-seconds="60">
+                    +60s
+                  </button>
+
+                  <button type="button" data-action="timer" data-seconds="120">
+                    +120s
+                  </button>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  class="btn btn-warning full-width"
+                  data-action="timer-stop"
+                >
+                  Detener Cronómetro
+                </button>
+
+              </div>
+
+            </section>
+
+
+            <!-- RESYNC -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    CONNECTION
+                  </span>
+
+                  <h2>
+                    Re-sync
+                  </h2>
+
+                  <p>
+                    Reenvía el historial a los widgets de este grupo.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <button
+                  type="button"
+                  class="btn btn-secondary full-width"
+                  data-action="resync"
+                >
+                  Re-sync Grupo 2
+                </button>
+
+
+                <div
+                  class="resync-status"
+                  data-role="resync-status"
+                >
+                  Aún no se ha ejecutado Re-sync.
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- EXTRAS -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+
+                  <span class="card-label">
+                    EXTRAS
+                  </span>
+
+                  <h2>
+                    Live Actions
+                  </h2>
+
+                  <p>
+                    Acciones adicionales del show.
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <button
+                  type="button"
+                  class="btn btn-secondary full-width"
+                  data-action="roulette"
+                >
+                  🎰 Girar Ruleta
+                </button>
+
+              </div>
+
+            </section>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script
+    src="./script.js"
+    defer
+  ></script>
 
 </body>
+
 </html>

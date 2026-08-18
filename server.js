@@ -409,6 +409,11 @@ app.use(
   express.static(path.join(__dirname, "players"))
 );
 
+app.use(
+  "/players2",
+  express.static(path.join(__dirname, "players2"))
+);
+
 console.log("Rutas estáticas:");
 
 console.log(
@@ -480,6 +485,12 @@ console.log(
 
 const connections = new Map();
 const eventLogs = new Map();
+
+const DEFAULT_GROUP_ID = "group1";
+
+function getStreamKey(modelId, groupId = DEFAULT_GROUP_ID) {
+  return `${modelId}:${groupId}`;
+}
 
 function appendEvent(modelId, type, payload) {
   if (!eventLogs.has(modelId)) {
@@ -677,9 +688,61 @@ app.get(
 
 // ───────── API PARA WIDGETS ─────────
 
+app.post("/api/resync", (req, res) => {
+  const {
+    modelId,
+    groupId = DEFAULT_GROUP_ID,
+  } = req.body;
+
+  if (!modelId) {
+    return res.status(400).json({
+      ok: false,
+      error: "Falta modelId",
+    });
+  }
+
+  const streamKey = getStreamKey(
+    modelId,
+    groupId
+  );
+
+  const log =
+    eventLogs.get(streamKey) || [];
+
+  const clientList =
+    connections.get(streamKey) || [];
+
+  clientList.forEach((client) => {
+    if (client.readyState !== 1) {
+      return;
+    }
+
+    log.forEach((event) => {
+      try {
+        client.send(
+          JSON.stringify(event)
+        );
+      } catch (error) {
+        console.error(
+          "Error reenviando evento en /api/resync:",
+          error
+        );
+      }
+    });
+  });
+
+  return res.json({
+    ok: true,
+    groupId,
+    eventsReplayed: log.length,
+    clients: clientList.length,
+  });
+});
+
 app.post("/api/send", (req, res) => {
   const {
     modelId,
+    groupId = DEFAULT_GROUP_ID,
     type,
     payload,
   } = req.body;
@@ -687,14 +750,18 @@ app.post("/api/send", (req, res) => {
   if (!modelId || !type) {
     return res.status(400).json({
       ok: false,
-      error:
-        "Faltan modelId o type",
+      error: "Faltan modelId o type",
     });
   }
 
-  console.log(
-    "POST /api/send modelId:",
+  const streamKey = getStreamKey(
     modelId,
+    groupId
+  );
+
+  console.log(
+    "POST /api/send stream:",
+    streamKey,
     "type:",
     type
   );
@@ -705,7 +772,7 @@ app.post("/api/send", (req, res) => {
   );
 
   const clientList =
-    connections.get(modelId) || [];
+    connections.get(streamKey) || [];
 
   const resetTypes = [
     "clear",
@@ -715,10 +782,13 @@ app.post("/api/send", (req, res) => {
   ];
 
   if (resetTypes.includes(type)) {
-    eventLogs.set(modelId, []);
+    eventLogs.set(
+      streamKey,
+      []
+    );
   } else {
     appendEvent(
-      modelId,
+      streamKey,
       type,
       payload
     );
@@ -739,15 +809,17 @@ app.post("/api/send", (req, res) => {
     return res.json({
       ok: false,
       error:
-        "El modelo no tiene conexiones activas",
+        "El grupo no tiene conexiones activas",
     });
   }
 
   return res.json({
     ok: true,
+    groupId,
+    deliveredTo:
+      clientList.length,
   });
 });
-
 // ───────── API: INGEST TIP ─────────
 
 app.post("/api/tip", (req, res) => {
@@ -1633,13 +1705,20 @@ server.on(
     );
 
     const modelId =
-      url.searchParams.get(
-        "modelId"
-      );
+      url.searchParams.get("modelId");
+
+    const groupId =
+      url.searchParams.get("groupId") ||
+      DEFAULT_GROUP_ID;
 
     if (!modelId) {
       return socket.destroy();
     }
+
+    const streamKey = getStreamKey(
+      modelId,
+      groupId
+    );
 
     wss.handleUpgrade(
       req,
@@ -1649,7 +1728,9 @@ server.on(
         wss.emit(
           "connection",
           webSocket,
-          modelId
+          streamKey,
+          modelId,
+          groupId
         );
       }
     );
@@ -1658,21 +1739,21 @@ server.on(
 
 wss.on(
   "connection",
-  (ws, modelId) => {
+  (ws, streamKey, modelId, groupId) => {
     console.log(
       "🎧 Widget conectado:",
-      modelId
+      streamKey
     );
 
-    if (!connections.has(modelId)) {
+    if (!connections.has(streamKey)) {
       connections.set(
-        modelId,
+        streamKey,
         []
       );
     }
 
     connections
-      .get(modelId)
+      .get(streamKey)
       .push(ws);
 
     ws.on("message", (raw) => {
@@ -1706,12 +1787,11 @@ wss.on(
     ws.on("close", () => {
       console.log(
         "🔌 Widget desconectado:",
-        modelId
+        streamKey
       );
 
       const list =
-        connections.get(modelId) ||
-        [];
+        connections.get(streamKey) || [];
 
       const updated =
         list.filter(
@@ -1719,7 +1799,7 @@ wss.on(
         );
 
       connections.set(
-        modelId,
+        streamKey,
         updated
       );
     });
