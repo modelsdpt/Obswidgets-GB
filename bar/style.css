@@ -1,31 +1,30 @@
 /* ==========================================
-   GOALBAR – VINTAGE IVORY JOB THEME
-   Adaptada al nuevo estilo del MVP
+   GOAL BAR – MODERN BLACK / WHITE / PINK THEME
+   Fondo negro, texto blanco y acento rosa
+   Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
+  --bg:#050505;
+  --bg-soft:#0b0b0d;
+  --surface:#101013;
+  --surface-2:#151519;
+
   --white:#ffffff;
-  --white-soft:#f7f7f7;
+  --white-soft:#f5f5f7;
+  --muted:#a9a9b0;
 
-  --silver-100:#eeeeee;
-  --silver-200:#d7d7d7;
-  --silver-300:#b7b7b7;
-  --silver-500:#777777;
+  --pink:#ff4fa3;
+  --pink-light:#ff8bc6;
+  --pink-deep:#f72585;
+  --pink-soft:rgba(255,79,163,.16);
+  --pink-glow:rgba(255,79,163,.28);
 
-  --black:#040404;
-  --black-2:#080808;
-  --black-3:#0d0d0d;
-
-  --charcoal:#151515;
-  --charcoal-2:#202020;
-  --charcoal-3:#2b2b2b;
-
-  --line:rgba(255,255,255,.13);
-  --line-strong:rgba(255,255,255,.28);
-
-  --shadow:rgba(0,0,0,.72);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --shadow:rgba(0,0,0,.58);
 }
 
 
@@ -60,113 +59,78 @@ body{
   position:relative;
   isolation:isolate;
 
-  width:74px;
+  width:76px;
   height:420px;
 
   overflow:hidden;
-  border-radius:25px;
+  border-radius:30px;
 
   background:
-    radial-gradient(
-      ellipse at 50% -5%,
-      rgba(255,255,255,.09) 0%,
-      rgba(255,255,255,0) 30%
-    ),
-    radial-gradient(
-      ellipse at 50% 105%,
-      rgba(255,255,255,.025) 0%,
-      rgba(255,255,255,0) 40%
-    ),
-    linear-gradient(
-      180deg,
-      #181818 0%,
-      #0c0c0c 35%,
-      #060606 72%,
-      #030303 100%
-    );
+    radial-gradient(ellipse at 50% -4%, rgba(255,79,163,.085) 0%, transparent 28%),
+    radial-gradient(ellipse at 50% 108%, rgba(255,79,163,.045) 0%, transparent 34%),
+    linear-gradient(180deg, #111114 0%, #09090b 38%, #050506 72%, #020203 100%);
 
-  border:1px solid rgba(255,255,255,.17);
+  border:1px solid rgba(255,255,255,.10);
 
   box-shadow:
-    0 18px 38px rgba(0,0,0,.50),
-    0 7px 16px rgba(0,0,0,.34),
-    0 0 0 1px rgba(0,0,0,.88),
-    inset 0 1px 0 rgba(255,255,255,.11),
+    0 20px 46px rgba(0,0,0,.48),
+    0 8px 22px rgba(0,0,0,.34),
+    0 0 0 1px rgba(0,0,0,.46),
+    inset 0 1px 0 rgba(255,255,255,.06),
     inset 0 -1px 0 rgba(255,255,255,.02);
 }
 
-
-/* Marco interior */
-
+/* Marco interior sutil */
 #goal-wrapper::before{
   content:"";
-
   position:absolute;
-  inset:5px;
+  inset:4px;
   z-index:6;
 
-  border-radius:20px;
-
-  border:1px solid rgba(255,255,255,.055);
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.035);
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.65),
-    inset 0 0 18px rgba(255,255,255,.012);
+    inset 0 0 18px rgba(255,255,255,.008);
 
   pointer-events:none;
 }
 
-
-/* Barrido vertical blanco muy suave */
-
+/* Halo rosa ambiental */
 #goal-wrapper::after{
   content:"";
-
   position:absolute;
-  left:0;
-  top:112%;
-  z-index:5;
+  left:12px;
+  right:12px;
+  bottom:-22px;
+  z-index:1;
 
-  width:100%;
-  height:22%;
+  height:52px;
+  border-radius:999px;
 
-  opacity:.32;
+  background:radial-gradient(
+    ellipse at center,
+    rgba(255,79,163,.28) 0%,
+    rgba(255,79,163,.08) 42%,
+    rgba(255,79,163,0) 76%
+  );
 
-  background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255,255,255,.015) 25%,
-      rgba(255,255,255,.11) 47%,
-      rgba(255,255,255,.22) 52%,
-      rgba(255,255,255,.06) 62%,
-      transparent 100%
-    );
+  filter:blur(12px);
+  opacity:.72;
 
-  animation:badGirlGoalSweep 8.2s ease-in-out infinite;
-
+  animation:goalAmbientGlow 4.8s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-@keyframes badGirlGoalSweep{
-  0%{
-    top:112%;
-    opacity:0;
+@keyframes goalAmbientGlow{
+  from{
+    opacity:.46;
+    transform:scale(.92);
   }
 
-  9%{
-    opacity:.32;
-  }
-
-  38%{
-    top:-32%;
-    opacity:.32;
-  }
-
-  49%,
-  100%{
-    top:-32%;
-    opacity:0;
+  to{
+    opacity:.78;
+    transform:scale(1.05);
   }
 }
 
@@ -185,91 +149,84 @@ body{
   height:0%;
 
   overflow:hidden;
-
-  border-radius:0 0 24px 24px;
+  border-radius:0 0 29px 29px;
 
   background:
-    /* reflejo lateral */
+    /* reflejo vertical delicado */
     linear-gradient(
       90deg,
-      rgba(255,255,255,.12) 0%,
-      rgba(255,255,255,.025) 18%,
-      transparent 42%,
-      rgba(0,0,0,.16) 68%,
-      rgba(255,255,255,.035) 88%,
-      rgba(255,255,255,.09) 100%
+      rgba(255,255,255,.075) 0%,
+      rgba(255,255,255,.018) 20%,
+      transparent 48%,
+      rgba(0,0,0,.11) 74%,
+      rgba(255,255,255,.025) 100%
     ),
 
     /* profundidad */
     linear-gradient(
       180deg,
-      rgba(255,255,255,.055) 0%,
-      rgba(255,255,255,.015) 25%,
-      rgba(0,0,0,.14) 75%,
-      rgba(0,0,0,.28) 100%
+      rgba(255,79,163,.12) 0%,
+      rgba(255,79,163,.055) 24%,
+      rgba(255,79,163,.02) 58%,
+      rgba(0,0,0,.18) 100%
     ),
 
-    /* color principal del progreso */
+    /* cuerpo oscuro premium */
     linear-gradient(
       180deg,
-      #3a3a3a 0%,
-      #2c2c2c 25%,
-      #1f1f1f 52%,
-      #141414 77%,
-      #0d0d0d 100%
+      #181419 0%,
+      #121014 30%,
+      #0d0b0e 62%,
+      #080709 100%
     );
 
   box-shadow:
-    inset 7px 0 12px rgba(255,255,255,.03),
-    inset -8px 0 14px rgba(0,0,0,.30),
-    inset 0 -18px 24px rgba(0,0,0,.24),
-
-    0 0 12px rgba(255,255,255,.035),
-    0 -2px 8px rgba(255,255,255,.07);
+    inset 7px 0 12px rgba(255,255,255,.018),
+    inset -8px 0 14px rgba(0,0,0,.24),
+    inset 0 -18px 26px rgba(0,0,0,.22),
+    0 -4px 16px rgba(255,79,163,.09);
 
   transition:
     height .85s cubic-bezier(.22,.8,.25,1),
-    filter .3s ease;
+    filter .25s ease,
+    box-shadow .25s ease;
 }
 
 
 /* =========================================================
-   CABEZA DEL PROGRESO
+   LÍNEA ROSA DEL PROGRESO
 ========================================================= */
 
 #bar-fill::before{
   content:"";
-
   position:absolute;
   top:0;
-  left:0;
+  left:7px;
+  right:7px;
   z-index:4;
 
-  width:100%;
-  height:5px;
-
+  height:3px;
   border-radius:999px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #eeeeee 28%,
-      #bdbdbd 58%,
-      rgba(255,255,255,.10) 100%
-    );
+  background:linear-gradient(
+    90deg,
+    rgba(255,79,163,.18) 0%,
+    var(--pink-light) 18%,
+    var(--pink) 50%,
+    var(--pink-light) 82%,
+    rgba(255,79,163,.18) 100%
+  );
 
   box-shadow:
-    0 0 5px rgba(255,255,255,.65),
-    0 0 10px rgba(255,255,255,.24),
-    0 0 16px rgba(255,255,255,.08);
+    0 0 5px rgba(255,79,163,.62),
+    0 0 12px rgba(255,79,163,.30),
+    0 0 22px rgba(255,79,163,.10);
 
-  animation:badGirlGoalProgressBreath 1.9s ease-in-out infinite alternate;
-
+  animation:goalProgressBreath 1.9s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-@keyframes badGirlGoalProgressBreath{
+@keyframes goalProgressBreath{
   from{
     opacity:.78;
     filter:brightness(.95);
@@ -277,7 +234,7 @@ body{
 
   to{
     opacity:1;
-    filter:brightness(1.15);
+    filter:brightness(1.12);
   }
 }
 
@@ -288,7 +245,6 @@ body{
 
 #bar-fill::after{
   content:"";
-
   position:absolute;
   left:50%;
   bottom:14px;
@@ -298,21 +254,19 @@ body{
   height:5px;
 
   transform:translateX(-50%);
-
   border-radius:50%;
 
-  background:#ffffff;
+  background:var(--pink-light);
 
   box-shadow:
-    0 0 5px rgba(255,255,255,.74),
-    0 0 10px rgba(255,255,255,.26);
+    0 0 5px rgba(255,139,198,.82),
+    0 0 11px rgba(255,79,163,.38);
 
-  animation:badGirlGoalParticle 4.5s ease-in-out infinite;
-
+  animation:goalPinkParticle 4.5s ease-in-out infinite;
   pointer-events:none;
 }
 
-@keyframes badGirlGoalParticle{
+@keyframes goalPinkParticle{
   0%{
     transform:translate(-50%, 14px) scale(.50);
     opacity:0;
@@ -324,7 +278,7 @@ body{
 
   68%{
     transform:translate(-50%, -72px) scale(.95);
-    opacity:.46;
+    opacity:.42;
   }
 
   100%{
@@ -357,7 +311,6 @@ body{
 
 .goal-title{
   position:absolute;
-
   top:50%;
   left:50%;
 
@@ -366,65 +319,61 @@ body{
     rotate(-90deg);
 
   transform-origin:center;
-
   min-width:max-content;
 
-  padding:4px 9px 5px;
+  padding:7px 13px 12px;
+  border-radius:14px;
 
-  border-radius:9px;
-
-  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-family:'Lobster', cursive;
   font-size:22px;
-  font-weight:900;
+  font-weight:400;
   line-height:1;
-  letter-spacing:.075em;
+  letter-spacing:.01em;
 
   color:#ffffff;
-
-  text-transform:uppercase;
+  text-transform:none;
   white-space:nowrap;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.04),
-      rgba(255,255,255,.01)
-    );
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)),
+    rgba(5,5,6,.68);
 
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.96),
-    0 0 4px rgba(255,255,255,.13);
-}
-
-
-/* Línea editorial detrás del título */
-
-.goal-title::after{
-  content:"";
-
-  position:absolute;
-  z-index:-1;
-
-  top:50%;
-  left:-14px;
-
-  width:calc(100% + 28px);
-  height:1px;
-
-  transform:translateY(-50%);
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.07) 18%,
-      rgba(255,255,255,.31) 50%,
-      rgba(255,255,255,.07) 82%,
-      transparent
-    );
+  border:1px solid rgba(255,255,255,.055);
 
   box-shadow:
-    0 0 5px rgba(255,255,255,.05);
+    0 6px 16px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.025);
+
+  text-shadow:
+    0 1px 2px rgba(0,0,0,.90),
+    0 0 8px rgba(255,255,255,.07);
+}
+
+/* Línea rosa bajo el título, igual al lenguaje visual del MVP */
+.goal-title::after{
+  content:"";
+  position:absolute;
+  left:10%;
+  right:10%;
+  bottom:5px;
+
+  height:2px;
+  border-radius:999px;
+
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,79,163,.52) 9%,
+    var(--pink-light) 26%,
+    var(--pink) 50%,
+    var(--pink-light) 74%,
+    rgba(255,79,163,.52) 91%,
+    transparent 100%
+  );
+
+  box-shadow:
+    0 0 5px rgba(255,79,163,.54),
+    0 0 12px rgba(255,79,163,.18);
 }
 
 
@@ -434,7 +383,6 @@ body{
 
 .goal-amount{
   position:absolute;
-
   bottom:42px;
   left:50%;
 
@@ -443,47 +391,48 @@ body{
     rotate(-90deg);
 
   transform-origin:center;
-
   min-width:max-content;
 
-  padding:6px 11px 7px;
-
-  border-radius:11px;
+  padding:7px 11px;
+  border-radius:13px;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.07) 0%,
-      rgba(255,255,255,.015) 42%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #1b1b1b 0%,
-      #090909 58%,
-      #050505 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(255,255,255,.008) 100%),
+    rgba(8,8,10,.82);
 
-  border:1px solid rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.075);
 
   box-shadow:
-    0 5px 13px rgba(0,0,0,.34),
-    inset 0 1px 0 rgba(255,255,255,.08),
-    inset 0 -1px 0 rgba(0,0,0,.85);
+    0 5px 14px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.03);
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:17px;
-  font-weight:900;
+  font-family:'Inter', Arial, sans-serif;
+  font-size:15px;
+  font-weight:800;
   line-height:1;
-  letter-spacing:.05em;
+  letter-spacing:-.015em;
 
   color:#ffffff;
-
   white-space:nowrap;
 
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.96),
-    0 0 4px rgba(255,255,255,.09);
+  text-shadow:0 1px 2px rgba(0,0,0,.90);
+}
+
+/* Pequeño acento rosa en la meta */
+.goal-amount::after{
+  content:"";
+  position:absolute;
+  left:20%;
+  right:20%;
+  bottom:-1px;
+
+  height:2px;
+  border-radius:999px;
+
+  background:var(--pink);
+  box-shadow:0 0 7px rgba(255,79,163,.38);
+
+  opacity:.82;
 }
 
 
@@ -492,19 +441,18 @@ body{
 ========================================================= */
 
 .goal-title.neon{
-  animation:badGirlGoalTextBreath 2.4s ease-in-out infinite alternate;
+  animation:goalTextBreath 2.5s ease-in-out infinite alternate;
 }
 
-@keyframes badGirlGoalTextBreath{
+@keyframes goalTextBreath{
   from{
     filter:brightness(1);
   }
 
   to{
     filter:
-      brightness(1.08)
-      drop-shadow(0 0 4px rgba(255,255,255,.10))
-      drop-shadow(0 0 7px rgba(255,255,255,.05));
+      brightness(1.06)
+      drop-shadow(0 0 4px rgba(255,79,163,.08));
   }
 }
 
@@ -512,6 +460,16 @@ body{
 /* =========================================================
    HOVER
 ========================================================= */
+
+#goal-wrapper:hover{
+  border-color:rgba(255,79,163,.20);
+
+  box-shadow:
+    0 22px 48px rgba(0,0,0,.50),
+    0 8px 22px rgba(0,0,0,.34),
+    0 0 18px rgba(255,79,163,.065),
+    inset 0 1px 0 rgba(255,255,255,.065);
+}
 
 #bar-fill:hover{
   filter:brightness(1.04);
@@ -523,34 +481,31 @@ body{
 ========================================================= */
 
 @media (max-height:460px){
-
   #goal-wrapper{
-    width:70px;
+    width:72px;
     height:360px;
-
-    border-radius:22px;
+    border-radius:27px;
   }
 
   #goal-wrapper::before{
-    border-radius:17px;
+    border-radius:22px;
   }
 
   #bar-fill{
-    border-radius:0 0 21px 21px;
+    border-radius:0 0 26px 26px;
   }
 
   .goal-title{
+    padding:6px 11px 11px;
+    border-radius:13px;
     font-size:20px;
   }
 
   .goal-amount{
     bottom:38px;
-
-    padding:5px 10px 6px;
-
-    border-radius:10px;
-
-    font-size:15px;
+    padding:6px 10px;
+    border-radius:12px;
+    font-size:14px;
   }
 }
 
@@ -560,7 +515,6 @@ body{
 ========================================================= */
 
 @media (prefers-reduced-motion:reduce){
-
   #goal-wrapper::after,
   #bar-fill::before,
   #bar-fill::after,

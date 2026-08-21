@@ -1,26 +1,29 @@
 /* ==========================================
-   MVP – VINTAGE IVORY JOB THEME
-   Marfil envejecido, tinta negra y estilo grunge
+   MVP – MODERN BLACK / WHITE / PINK THEME
+   Fondo negro, tipografía blanca, acento rosa
+   Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
+  --bg:#050505;
+  --bg-soft:#0b0b0d;
+  --surface:#101013;
+  --surface-2:#151519;
+
   --white:#ffffff;
-  --white-soft:#f6f6f6;
-  --silver:#cfcfcf;
-  --silver-dark:#8f8f8f;
+  --white-soft:#f5f5f7;
+  --muted:#a9a9b0;
 
-  --black:#050505;
-  --black-2:#090909;
-  --black-3:#101010;
-  --charcoal:#171717;
-  --charcoal-2:#202020;
+  --pink:#ff4fa3;
+  --pink-light:#ff8bc6;
+  --pink-soft:rgba(255,79,163,.18);
+  --pink-glow:rgba(255,79,163,.30);
 
-  --line:rgba(255,255,255,.15);
-  --line-strong:rgba(255,255,255,.30);
-
-  --shadow:rgba(0,0,0,.72);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --shadow:rgba(0,0,0,.58);
 }
 
 
@@ -57,113 +60,55 @@ body{
 
   width:430px;
   max-width:100%;
-
-  padding:11px;
+  padding:10px;
 
   overflow:hidden;
-  border-radius:24px;
+  border-radius:26px;
 
   background:
-    radial-gradient(
-      circle at 20% -10%,
-      rgba(255,255,255,.08) 0%,
-      rgba(255,255,255,0) 34%
-    ),
-    radial-gradient(
-      circle at 92% 110%,
-      rgba(255,255,255,.035) 0%,
-      rgba(255,255,255,0) 42%
-    ),
-    linear-gradient(
-      145deg,
-      #151515 0%,
-      #080808 46%,
-      #030303 100%
-    );
+    radial-gradient(circle at 18% -8%, rgba(255,79,163,.09) 0%, transparent 34%),
+    radial-gradient(circle at 92% 112%, rgba(255,79,163,.045) 0%, transparent 40%),
+    linear-gradient(145deg, #111114 0%, #070708 48%, #020203 100%);
 
-  border:1px solid rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.10);
 
   box-shadow:
-    0 18px 38px rgba(0,0,0,.50),
-    0 7px 16px rgba(0,0,0,.38),
-    0 0 0 1px rgba(0,0,0,.85),
-    inset 0 1px 0 rgba(255,255,255,.11),
-    inset 0 -1px 0 rgba(255,255,255,.025);
+    0 20px 46px rgba(0,0,0,.48),
+    0 8px 22px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.06),
+    inset 0 -1px 0 rgba(255,255,255,.02);
 }
 
-
-/* Marco interior suave */
-
+/* Borde interior sutil */
 #container::before{
   content:"";
-
   position:absolute;
-  inset:5px;
+  inset:4px;
   z-index:5;
 
-  border-radius:19px;
-  border:1px solid rgba(255,255,255,.06);
-
-  box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.65);
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.035);
 
   pointer-events:none;
 }
 
-
-/* Barrido blanco tipo flash editorial */
-
+/* Halo rosa muy discreto */
 #container::after{
   content:"";
-
   position:absolute;
-  top:-65%;
-  left:-48%;
-  z-index:2;
+  left:12%;
+  right:12%;
+  bottom:-22px;
+  z-index:0;
 
-  width:30%;
-  height:250%;
+  height:42px;
+  border-radius:999px;
 
-  opacity:.28;
-
-  background:
-    linear-gradient(
-      108deg,
-      transparent 0%,
-      rgba(255,255,255,.01) 30%,
-      rgba(255,255,255,.12) 47%,
-      rgba(255,255,255,.27) 51%,
-      rgba(255,255,255,.07) 58%,
-      transparent 72%
-    );
-
-  transform:rotate(17deg);
-
-  animation:badGirlContainerFlash 8.5s ease-in-out infinite;
+  background:radial-gradient(ellipse at center, rgba(255,79,163,.20) 0%, rgba(255,79,163,0) 72%);
+  filter:blur(14px);
+  opacity:.70;
 
   pointer-events:none;
-}
-
-@keyframes badGirlContainerFlash{
-  0%{
-    left:-48%;
-    opacity:0;
-  }
-
-  9%{
-    opacity:.28;
-  }
-
-  38%{
-    left:142%;
-    opacity:.28;
-  }
-
-  49%,
-  100%{
-    left:142%;
-    opacity:0;
-  }
 }
 
 
@@ -179,100 +124,69 @@ body{
   align-items:center;
   justify-content:center;
 
-  min-height:47px;
-
-  margin:0 0 9px;
-  padding:7px 18px;
+  min-height:56px;
+  margin:0 0 10px;
+  padding:10px 20px 14px;
 
   overflow:hidden;
-  border-radius:17px;
+  border-radius:20px;
 
   text-align:center;
-  text-transform:uppercase;
+  text-transform:none;
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:30px;
-  font-weight:900;
-  line-height:1;
-  letter-spacing:.045em;
+  font-family:'Lobster', cursive;
+  font-size:28px;
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:.01em;
 
   color:#ffffff;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.085) 0%,
-      rgba(255,255,255,.02) 38%,
-      rgba(0,0,0,.08) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #191919 0%,
-      #080808 52%,
-      #020202 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(255,255,255,.01) 100%),
+    #080809;
 
-  border:1px solid rgba(255,255,255,.17);
+  border:1px solid rgba(255,255,255,.085);
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,.36),
-    inset 0 1px 0 rgba(255,255,255,.11),
-    inset 0 -1px 0 rgba(0,0,0,.95);
+    0 8px 22px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.04);
 
   text-shadow:
-    0 2px 0 rgba(0,0,0,.94),
-    0 0 5px rgba(255,255,255,.19);
+    0 1px 2px rgba(0,0,0,.9),
+    0 0 8px rgba(255,255,255,.08);
 }
 
-
-/* Línea blanca editorial */
-
+/* Sin línea superior: diseño más limpio */
 .title::before{
-  content:"";
-
-  position:absolute;
-  top:0;
-  left:13%;
-  right:13%;
-
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.64),
-      transparent
-    );
+  content:none;
 }
 
-
-/* Subrayado estilo razor */
-
+/* Línea rosa inspirada en la referencia */
 .title::after{
   content:"";
-
   position:absolute;
-  left:30%;
-  right:30%;
-  bottom:0;
+  left:11%;
+  right:11%;
+  bottom:6px;
 
   height:2px;
-
   border-radius:999px;
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.54),
-      #ffffff,
-      rgba(255,255,255,.54),
-      transparent
-    );
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,79,163,.55) 8%,
+    var(--pink-light) 25%,
+    var(--pink) 50%,
+    var(--pink-light) 75%,
+    rgba(255,79,163,.55) 92%,
+    transparent 100%
+  );
 
   box-shadow:
-    0 0 7px rgba(255,255,255,.18);
+    0 0 6px rgba(255,79,163,.52),
+    0 0 14px rgba(255,79,163,.20);
 }
 
 
@@ -303,137 +217,76 @@ body{
   justify-content:space-between;
   gap:11px;
 
-  min-height:52px;
-
-  padding:8px 13px 8px 13px;
+  min-height:54px;
+  padding:9px 12px;
 
   overflow:hidden;
-  border-radius:16px;
+  border-radius:17px;
 
   background:
-    radial-gradient(
-      circle at 12% 0%,
-      rgba(255,255,255,.06) 0%,
-      rgba(255,255,255,0) 34%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.045) 0%,
-      rgba(255,255,255,.015) 42%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #171717 0%,
-      #090909 54%,
-      #050505 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(255,255,255,.008) 100%),
+    linear-gradient(135deg, #131316 0%, #0a0a0c 55%, #060607 100%);
 
-  border:1px solid rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.085);
 
   box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.07),
-    inset 0 -1px 0 rgba(0,0,0,.82);
+    0 6px 16px rgba(0,0,0,.27),
+    inset 0 1px 0 rgba(255,255,255,.035);
 
   transition:
-    transform .22s ease,
-    border-color .22s ease,
-    box-shadow .22s ease,
-    filter .22s ease;
+    transform .20s ease,
+    border-color .20s ease,
+    box-shadow .20s ease,
+    background .20s ease;
 }
 
-
-/* Acento lateral tipo blade */
-
+/* Acento rosa lateral */
 .tip::before{
   content:"";
-
   position:absolute;
   z-index:3;
 
   left:8px;
-  top:10px;
-  bottom:10px;
-
+  top:11px;
+  bottom:11px;
   width:3px;
 
   border-radius:999px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #bcbcbc 48%,
-      #555555 100%
-    );
+  background:linear-gradient(180deg, var(--pink-light) 0%, var(--pink) 100%);
 
   box-shadow:
-    0 0 7px rgba(255,255,255,.12);
+    0 0 6px rgba(255,79,163,.52),
+    0 0 12px rgba(255,79,163,.16);
 }
 
-
-/* Flash individual */
-
+/* Brillo suave de interacción */
 .tip::after{
   content:"";
-
   position:absolute;
-  top:0;
-  left:-80%;
+  inset:0;
   z-index:1;
 
-  width:38%;
-  height:100%;
+  background:linear-gradient(110deg, transparent 0%, rgba(255,255,255,.025) 48%, transparent 68%);
+  opacity:0;
 
-  opacity:.35;
-
-  background:
-    linear-gradient(
-      105deg,
-      transparent 0%,
-      rgba(255,255,255,.015) 24%,
-      rgba(255,255,255,.11) 48%,
-      rgba(255,255,255,.025) 62%,
-      transparent 76%
-    );
-
-  transform:skewX(-18deg);
-
-  animation:badGirlRowFlash 7.2s ease-in-out infinite;
-
+  transition:opacity .20s ease;
   pointer-events:none;
 }
 
-@keyframes badGirlRowFlash{
-  0%{
-    left:-80%;
-  }
-
-  29%{
-    left:142%;
-  }
-
-  100%{
-    left:142%;
-  }
-}
-
-
-/* Hover */
-
 .tip:hover{
   transform:translateY(-1px);
-
-  filter:brightness(1.05);
-
-  border-color:rgba(255,255,255,.19);
+  border-color:rgba(255,79,163,.32);
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,.36),
-    0 0 12px rgba(255,255,255,.035),
-    inset 0 1px 0 rgba(255,255,255,.09),
-    inset 0 -1px 0 rgba(0,0,0,.82);
+    0 9px 20px rgba(0,0,0,.34),
+    0 0 0 1px rgba(255,79,163,.05),
+    0 0 16px rgba(255,79,163,.08),
+    inset 0 1px 0 rgba(255,255,255,.045);
+}
+
+.tip:hover::after{
+  opacity:1;
 }
 
 
@@ -447,25 +300,22 @@ body{
 
   flex:1;
   min-width:0;
-
-  padding-left:5px;
+  padding-left:6px;
 
   font-family:'Inter', Arial, sans-serif;
-  font-size:17px;
-  font-weight:800;
-  line-height:1.05;
-  letter-spacing:.025em;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.1;
+  letter-spacing:.015em;
 
-  color:rgba(255,255,255,.94);
-
-  text-transform:uppercase;
+  color:rgba(255,255,255,.96);
+  text-transform:none;
 
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.90);
+  text-shadow:0 1px 2px rgba(0,0,0,.80);
 }
 
 
@@ -478,33 +328,23 @@ body{
   z-index:4;
 
   flex-shrink:0;
+  padding:5px 9px;
 
-  padding:3px 7px 4px;
+  border-radius:11px;
 
-  border-radius:9px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.07);
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.07),
-      rgba(255,255,255,.015)
-    );
-
-  border:1px solid rgba(255,255,255,.08);
-
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:25px;
-  font-weight:900;
+  font-family:'Inter', Arial, sans-serif;
+  font-size:20px;
+  font-weight:800;
   line-height:1;
-  letter-spacing:.025em;
+  letter-spacing:-.02em;
 
   color:#ffffff;
-
   white-space:nowrap;
 
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.95),
-    0 0 4px rgba(255,255,255,.10);
+  text-shadow:0 1px 2px rgba(0,0,0,.90);
 }
 
 
@@ -513,149 +353,88 @@ body{
 ========================================================= */
 
 .tip.mvp{
-  min-height:61px;
-
-  border-radius:18px;
+  min-height:64px;
+  border-radius:20px;
 
   background:
-    radial-gradient(
-      circle at 12% 0%,
-      rgba(255,255,255,.11) 0%,
-      rgba(255,255,255,0) 34%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.06) 0%,
-      rgba(255,255,255,.02) 40%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #222222 0%,
-      #0d0d0d 50%,
-      #050505 100%
-    );
+    radial-gradient(circle at 12% 0%, rgba(255,79,163,.10) 0%, transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.045) 0%, rgba(255,255,255,.01) 100%),
+    linear-gradient(135deg, #17171b 0%, #0b0b0e 54%, #060607 100%);
 
-  border:1px solid rgba(255,255,255,.22);
+  border:1px solid rgba(255,79,163,.30);
 
   box-shadow:
-    0 10px 22px rgba(0,0,0,.42),
-    0 0 0 1px rgba(255,255,255,.035),
-    0 0 15px rgba(255,255,255,.035),
-    inset 0 1px 0 rgba(255,255,255,.12),
-    inset 0 -1px 0 rgba(0,0,0,.88);
+    0 10px 24px rgba(0,0,0,.37),
+    0 0 0 1px rgba(255,79,163,.035),
+    0 0 18px rgba(255,79,163,.09),
+    inset 0 1px 0 rgba(255,255,255,.05);
 
-  animation:badGirlMvpBreath 5s ease-in-out infinite;
+  animation:mvpPinkPulse 4.5s ease-in-out infinite;
 }
-
-
-/* Acento blanco del #1 */
 
 .tip.mvp::before{
   width:4px;
 
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #ededed 22%,
-      #bdbdbd 57%,
-      #555555 100%
-    );
+  background:linear-gradient(180deg, #ff9dce 0%, #ff4fa3 45%, #f72585 100%);
 
   box-shadow:
-    0 0 7px rgba(255,255,255,.24),
-    0 0 12px rgba(255,255,255,.06);
+    0 0 7px rgba(255,79,163,.70),
+    0 0 15px rgba(255,79,163,.22);
 }
 
 .tip.mvp .name{
-  font-size:18px;
+  font-size:17px;
   font-weight:800;
   color:#ffffff;
 }
 
 .tip.mvp .amount{
-  font-size:29px;
+  font-size:22px;
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.10),
-      rgba(255,255,255,.025)
-    );
-
-  border-color:rgba(255,255,255,.13);
+  background:rgba(255,79,163,.09);
+  border-color:rgba(255,79,163,.22);
 
   color:#ffffff;
 
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.98),
-    0 0 5px rgba(255,255,255,.13);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.01);
 }
 
-@keyframes badGirlMvpBreath{
+@keyframes mvpPinkPulse{
   0%,
   100%{
     box-shadow:
-      0 10px 22px rgba(0,0,0,.42),
-      0 0 0 1px rgba(255,255,255,.035),
-      0 0 13px rgba(255,255,255,.025),
-      inset 0 1px 0 rgba(255,255,255,.12),
-      inset 0 -1px 0 rgba(0,0,0,.88);
+      0 10px 24px rgba(0,0,0,.37),
+      0 0 0 1px rgba(255,79,163,.03),
+      0 0 14px rgba(255,79,163,.07),
+      inset 0 1px 0 rgba(255,255,255,.05);
   }
 
   50%{
     box-shadow:
-      0 11px 24px rgba(0,0,0,.44),
-      0 0 0 1px rgba(255,255,255,.06),
-      0 0 17px rgba(255,255,255,.045),
-      inset 0 1px 0 rgba(255,255,255,.14),
-      inset 0 -1px 0 rgba(0,0,0,.88);
+      0 11px 26px rgba(0,0,0,.40),
+      0 0 0 1px rgba(255,79,163,.06),
+      0 0 22px rgba(255,79,163,.13),
+      inset 0 1px 0 rgba(255,255,255,.055);
   }
 }
 
 
 /* =========================================================
-   SEGUNDO LUGAR
+   SEGUNDO Y TERCER LUGAR
 ========================================================= */
 
 .tip.second{
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.045) 0%,
-      rgba(255,255,255,.015) 42%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #191919 0%,
-      #090909 55%,
-      #050505 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.032) 0%, rgba(255,255,255,.008) 100%),
+    linear-gradient(135deg, #121215 0%, #09090b 58%, #060607 100%);
 }
-
-
-/* =========================================================
-   TERCER LUGAR
-========================================================= */
 
 .tip.third{
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.035) 0%,
-      rgba(255,255,255,.01) 42%,
-      rgba(0,0,0,.06) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #151515 0%,
-      #080808 58%,
-      #040404 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.026) 0%, rgba(255,255,255,.006) 100%),
+    linear-gradient(135deg, #101013 0%, #08080a 60%, #050506 100%);
 
-  opacity:.94;
+  opacity:.96;
 }
 
 
@@ -673,56 +452,41 @@ body{
 
   flex-shrink:0;
 
-  width:29px;
-  height:29px;
-
+  width:31px;
+  height:31px;
   margin-right:1px;
 
-  border-radius:10px;
+  border-radius:11px;
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:16px;
-  font-weight:900;
+  font-family:'Inter', Arial, sans-serif;
+  font-size:14px;
+  font-weight:800;
 
   color:#ffffff;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(255,255,255,.02)
-    );
-
-  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.075);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.08),
-    0 3px 8px rgba(0,0,0,.30);
-
-  filter:none;
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 3px 8px rgba(0,0,0,.27);
 }
 
 .tip.mvp .rank-icon{
-  width:34px;
-  height:34px;
+  width:36px;
+  height:36px;
 
-  border-radius:12px;
+  border-radius:13px;
 
-  font-size:18px;
+  font-size:16px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,.025)
-    );
-
-  border-color:rgba(255,255,255,.15);
+  background:linear-gradient(145deg, rgba(255,79,163,.15), rgba(255,79,163,.055));
+  border-color:rgba(255,79,163,.24);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.13),
-    0 4px 10px rgba(0,0,0,.34),
-    0 0 8px rgba(255,255,255,.025);
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 4px 10px rgba(0,0,0,.32),
+    0 0 12px rgba(255,79,163,.10);
 }
 
 
@@ -731,25 +495,21 @@ body{
 ========================================================= */
 
 @media (max-width:460px){
-
   #container{
     width:100%;
     padding:9px;
-
-    border-radius:21px;
+    border-radius:22px;
   }
 
   #container::before{
-    border-radius:16px;
+    border-radius:18px;
   }
 
   .title{
-    min-height:44px;
-    padding:6px 14px;
-
-    border-radius:15px;
-
-    font-size:27px;
+    min-height:50px;
+    padding:8px 14px 13px;
+    border-radius:17px;
+    font-size:25px;
   }
 
   #top-list{
@@ -757,50 +517,44 @@ body{
   }
 
   .tip{
-    min-height:49px;
-    padding:7px 10px 7px 12px;
-
-    border-radius:14px;
+    min-height:50px;
+    padding:8px 10px 8px 12px;
+    border-radius:15px;
   }
 
   .tip.mvp{
-    min-height:57px;
-
-    border-radius:16px;
+    min-height:59px;
+    border-radius:18px;
   }
 
   .rank-icon{
-    width:27px;
-    height:27px;
-
-    border-radius:9px;
-
-    font-size:15px;
+    width:28px;
+    height:28px;
+    border-radius:10px;
+    font-size:13px;
   }
 
   .tip.mvp .rank-icon{
-    width:31px;
-    height:31px;
-
-    border-radius:10px;
-
-    font-size:17px;
-  }
-
-  .tip .name{
+    width:33px;
+    height:33px;
+    border-radius:12px;
     font-size:15px;
   }
 
+  .tip .name{
+    font-size:14px;
+  }
+
   .tip .amount{
-    font-size:22px;
+    font-size:18px;
   }
 
   .tip.mvp .name{
-    font-size:16px;
+    font-size:15px;
   }
 
   .tip.mvp .amount{
-    font-size:26px;
+    font-size:20px;
   }
 }
 
@@ -810,14 +564,12 @@ body{
 ========================================================= */
 
 @media (prefers-reduced-motion:reduce){
-
-  #container::after,
-  .tip::after,
   .tip.mvp{
     animation:none;
   }
 
-  .tip{
+  .tip,
+  .tip::after{
     transition:none;
   }
 }

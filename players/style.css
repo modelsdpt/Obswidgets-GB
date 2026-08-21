@@ -1,26 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@500;600;700;800&display=swap');
+/* ==========================================
+   RAFFLE – MODERN BLACK / WHITE / PINK THEME
+   Fondo negro, texto blanco y acentos rosa
+   Estética premium + esquinas suaves
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
+  --bg:#050505;
+  --bg-soft:#0b0b0d;
+  --surface:#101013;
+  --surface-2:#151519;
+
   --white:#ffffff;
-  --white-soft:#f6f6f6;
+  --white-soft:#f5f5f7;
+  --muted:#a9a9b0;
 
-  --silver-100:#eeeeee;
-  --silver-200:#d7d7d7;
-  --silver-300:#b7b7b7;
-  --silver-500:#777777;
+  --pink:#ff4fa3;
+  --pink-light:#ff8bc6;
+  --pink-deep:#f72585;
+  --pink-soft:rgba(255,79,163,.16);
+  --pink-glow:rgba(255,79,163,.28);
 
-  --black:#040404;
-  --black-2:#080808;
-  --black-3:#0d0d0d;
-
-  --charcoal:#151515;
-  --charcoal-2:#202020;
-  --charcoal-3:#2b2b2b;
-
-  --line:rgba(255,255,255,.13);
-  --line-strong:rgba(255,255,255,.28);
-
-  --shadow:rgba(0,0,0,.72);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --shadow:rgba(0,0,0,.58);
 }
 
 
@@ -59,38 +63,24 @@ body{
   width:560px;
   max-width:100%;
   min-height:430px;
-
-  padding:11px;
+  padding:10px;
 
   overflow:hidden;
-  border-radius:26px;
+  border-radius:30px;
 
   background:
-    radial-gradient(
-      circle at 15% -5%,
-      rgba(255,255,255,.085) 0%,
-      rgba(255,255,255,0) 34%
-    ),
-    radial-gradient(
-      circle at 92% 108%,
-      rgba(255,255,255,.025) 0%,
-      rgba(255,255,255,0) 44%
-    ),
-    linear-gradient(
-      145deg,
-      #151515 0%,
-      #080808 48%,
-      #030303 100%
-    );
+    radial-gradient(circle at 15% -6%, rgba(255,79,163,.09) 0%, transparent 34%),
+    radial-gradient(circle at 92% 110%, rgba(255,79,163,.045) 0%, transparent 42%),
+    linear-gradient(145deg, #111114 0%, #08080a 48%, #030304 100%);
 
-  border:1px solid rgba(255,255,255,.17);
+  border:1px solid rgba(255,255,255,.10);
 
   box-shadow:
-    0 20px 44px rgba(0,0,0,.52),
-    0 7px 17px rgba(0,0,0,.38),
-    0 0 0 1px rgba(0,0,0,.88),
-    inset 0 1px 0 rgba(255,255,255,.11),
-    inset 0 -1px 0 rgba(255,255,255,.02);
+    0 22px 50px rgba(0,0,0,.50),
+    0 8px 22px rgba(0,0,0,.34),
+    0 0 0 1px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.055),
+    inset 0 -1px 0 rgba(255,255,255,.015);
 
   transition:
     opacity .28s ease,
@@ -98,105 +88,65 @@ body{
     filter .28s ease;
 }
 
-
-/* =========================================================
-   ESTADOS DEL WIDGET
-========================================================= */
-
 .raffle-widget.hidden{
   opacity:0;
-
-  transform:
-    translateY(10px)
-    scale(.97);
-
+  transform:translateY(10px) scale(.97);
   pointer-events:none;
 }
 
 .raffle-widget:not(.hidden){
   opacity:1;
-
-  transform:
-    translateY(0)
-    scale(1);
+  transform:translateY(0) scale(1);
 }
 
-
-/* =========================================================
-   MARCO INTERIOR
-========================================================= */
-
+/* Marco interior sutil */
 .raffle-widget::before{
   content:"";
-
   position:absolute;
-  inset:5px;
+  inset:4px;
   z-index:4;
 
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.055);
-
-  box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.66);
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.035);
 
   pointer-events:none;
 }
 
-
-/* =========================================================
-   FLASH AMBIENTAL
-========================================================= */
-
+/* Halo rosa ambiental */
 .raffle-widget::after{
   content:"";
-
   position:absolute;
-  top:-65%;
-  left:-46%;
-  z-index:2;
+  left:10%;
+  right:10%;
+  bottom:-30px;
+  z-index:0;
 
-  width:32%;
-  height:245%;
+  height:58px;
+  border-radius:999px;
 
-  opacity:.28;
+  background:radial-gradient(
+    ellipse at center,
+    rgba(255,79,163,.24) 0%,
+    rgba(255,79,163,.075) 40%,
+    rgba(255,79,163,0) 76%
+  );
 
-  background:
-    linear-gradient(
-      108deg,
-      transparent 0%,
-      rgba(255,255,255,.01) 30%,
-      rgba(255,255,255,.12) 47%,
-      rgba(255,255,255,.26) 51%,
-      rgba(255,255,255,.06) 58%,
-      transparent 72%
-    );
+  filter:blur(16px);
+  opacity:.68;
 
-  transform:rotate(17deg);
-
-  animation:badGirlRaffleAmbient 8.8s ease-in-out infinite;
-
+  animation:raffleAmbientGlow 5.2s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-@keyframes badGirlRaffleAmbient{
-  0%{
-    left:-46%;
-    opacity:0;
+@keyframes raffleAmbientGlow{
+  from{
+    opacity:.42;
+    transform:scale(.95);
   }
 
-  9%{
-    opacity:.28;
-  }
-
-  38%{
-    left:140%;
-    opacity:.28;
-  }
-
-  49%,
-  100%{
-    left:140%;
-    opacity:0;
+  to{
+    opacity:.76;
+    transform:scale(1.04);
   }
 }
 
@@ -234,89 +184,87 @@ body{
   justify-content:center;
 
   min-height:28px;
-  padding:5px 15px 6px;
+  padding:6px 15px 7px;
 
   overflow:hidden;
   border-radius:999px;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.075) 0%,
-      rgba(255,255,255,.015) 45%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #1c1c1c 0%,
-      #090909 58%,
-      #050505 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.028) 0%, rgba(255,255,255,.006) 100%),
+    #0a0a0c;
 
-  border:1px solid rgba(255,255,255,.14);
+  border:1px solid rgba(255,79,163,.16);
 
   box-shadow:
-    0 5px 12px rgba(0,0,0,.34),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 5px 13px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 0 12px rgba(255,79,163,.045);
 
   font-family:'Inter', Arial, sans-serif;
-  font-size:12px;
+  font-size:11px;
   font-weight:800;
   line-height:1;
-  letter-spacing:.095em;
+  letter-spacing:.10em;
 
   color:rgba(255,255,255,.94);
-
   text-transform:uppercase;
 
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.82);
+  text-shadow:0 1px 2px rgba(0,0,0,.86);
 }
 
-
-/* Punto blanco tipo status */
-
+/* Punto rosa de estado */
 .raffle-badge::before{
   content:"";
 
-  width:6px;
-  height:6px;
+  width:7px;
+  height:7px;
   margin-right:7px;
-
   flex:0 0 auto;
 
   border-radius:50%;
 
-  background:#ffffff;
+  background:var(--pink);
 
   box-shadow:
-    0 0 5px rgba(255,255,255,.58),
-    0 0 9px rgba(255,255,255,.16);
+    0 0 5px rgba(255,79,163,.78),
+    0 0 10px rgba(255,79,163,.30);
+
+  animation:raffleStatusDot 1.8s ease-in-out infinite alternate;
 }
 
+@keyframes raffleStatusDot{
+  from{
+    opacity:.72;
+    transform:scale(.90);
+  }
 
-/* Línea inferior */
+  to{
+    opacity:1;
+    transform:scale(1.10);
+  }
+}
 
+/* Línea rosa inferior del badge */
 .raffle-badge::after{
   content:"";
 
   position:absolute;
-  left:18%;
-  right:18%;
+  left:20%;
+  right:20%;
   bottom:0;
 
   height:1px;
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.34),
-      transparent
-    );
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,79,163,.30),
+    rgba(255,139,198,.82),
+    rgba(255,79,163,.30),
+    transparent
+  );
 
-  box-shadow:
-    0 0 5px rgba(255,255,255,.06);
+  box-shadow:0 0 6px rgba(255,79,163,.16);
 }
 
 
@@ -331,98 +279,67 @@ body{
   align-items:center;
   justify-content:center;
 
-  min-height:52px;
-
+  min-height:58px;
   margin:9px 0 0;
-  padding:7px 18px 8px;
+  padding:10px 18px 14px;
 
   overflow:hidden;
-  border-radius:18px;
+  border-radius:21px;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.075) 0%,
-      rgba(255,255,255,.018) 42%,
-      rgba(0,0,0,.07) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #191919 0%,
-      #080808 55%,
-      #020202 100%
-    );
+    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(255,255,255,.008) 100%),
+    #080809;
 
-  border:1px solid rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.085);
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,.36),
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -1px 0 rgba(0,0,0,.94);
+    0 8px 22px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.04);
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-family:'Lobster', cursive;
   font-size:34px;
-  font-weight:900;
-  line-height:1;
-  letter-spacing:.045em;
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:.01em;
 
   color:#ffffff;
-
-  text-transform:uppercase;
+  text-transform:none;
 
   text-shadow:
-    0 3px 0 rgba(0,0,0,.98),
-    0 0 5px rgba(255,255,255,.15);
+    0 1px 2px rgba(0,0,0,.92),
+    0 0 8px rgba(255,255,255,.07);
 }
-
-
-/* Highlight superior */
 
 .raffle-title::before{
-  content:"";
-
-  position:absolute;
-  top:0;
-  left:12%;
-  right:12%;
-
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.58),
-      transparent
-    );
+  content:none;
 }
 
-
-/* Línea inferior estilo razor */
-
+/* Línea rosa inspirada en MVP / BAR / TIMER */
 .raffle-title::after{
   content:"";
 
   position:absolute;
-  left:29%;
-  right:29%;
-  bottom:0;
+  left:11%;
+  right:11%;
+  bottom:6px;
 
   height:2px;
   border-radius:999px;
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.48),
-      #ffffff,
-      rgba(255,255,255,.48),
-      transparent
-    );
+  background:linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,79,163,.48) 8%,
+    var(--pink-light) 25%,
+    var(--pink) 50%,
+    var(--pink-light) 75%,
+    rgba(255,79,163,.48) 92%,
+    transparent 100%
+  );
 
   box-shadow:
-    0 0 7px rgba(255,255,255,.14);
+    0 0 6px rgba(255,79,163,.50),
+    0 0 14px rgba(255,79,163,.18);
 }
 
 
@@ -436,13 +353,10 @@ body{
   gap:8px;
 
   width:100%;
-
   overflow:visible;
 }
 
-
-/* Mantiene el comportamiento original */
-
+/* Mantiene comportamiento original: máximo 5 visibles */
 .raffle-names .raffle-name-item:nth-child(n + 6){
   display:none;
 }
@@ -461,38 +375,23 @@ body{
   justify-content:space-between;
   gap:10px;
 
-  min-height:51px;
-
+  min-height:52px;
   padding:8px 11px 8px 13px;
 
   overflow:hidden;
-  border-radius:17px;
+  border-radius:18px;
 
   background:
-    radial-gradient(
-      circle at 12% 0%,
-      rgba(255,255,255,.055) 0%,
-      rgba(255,255,255,0) 34%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.04) 0%,
-      rgba(255,255,255,.012) 44%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #171717 0%,
-      #090909 55%,
-      #050505 100%
-    );
+    radial-gradient(circle at 11% 0%, rgba(255,79,163,.035) 0%, transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.030) 0%, rgba(255,255,255,.006) 100%),
+    linear-gradient(135deg, #121215 0%, #09090b 56%, #060607 100%);
 
-  border:1px solid rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.075);
 
   box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.07),
-    inset 0 -1px 0 rgba(0,0,0,.84);
+    0 6px 15px rgba(0,0,0,.29),
+    inset 0 1px 0 rgba(255,255,255,.035),
+    inset 0 -1px 0 rgba(0,0,0,.66);
 
   transition:
     transform .22s ease,
@@ -501,56 +400,52 @@ body{
     box-shadow .22s ease;
 }
 
-
-/* Reflejo suave */
-
+/* Barrido de luz muy discreto */
 .raffle-name-item::before{
   content:"";
 
   position:absolute;
-  top:0;
-  left:-82%;
+  inset:0;
   z-index:1;
 
-  width:40%;
-  height:100%;
+  background:linear-gradient(
+    112deg,
+    transparent 0%,
+    rgba(255,255,255,.010) 30%,
+    rgba(255,255,255,.050) 48%,
+    rgba(255,79,163,.018) 57%,
+    transparent 72%
+  );
 
-  opacity:.32;
+  opacity:.22;
+  transform:translateX(-115%);
 
-  background:
-    linear-gradient(
-      105deg,
-      transparent 0%,
-      rgba(255,255,255,.015) 24%,
-      rgba(255,255,255,.10) 48%,
-      rgba(255,255,255,.02) 62%,
-      transparent 76%
-    );
-
-  transform:skewX(-18deg);
-
-  animation:badGirlRaffleItemFlash 7.3s ease-in-out infinite;
-
+  animation:raffleRowSweep 8s ease-in-out infinite;
   pointer-events:none;
 }
 
-@keyframes badGirlRaffleItemFlash{
-  0%{
-    left:-82%;
+@keyframes raffleRowSweep{
+  0%, 56%{
+    transform:translateX(-115%);
+    opacity:0;
   }
 
-  29%{
-    left:145%;
+  63%{
+    opacity:.24;
+  }
+
+  84%{
+    transform:translateX(115%);
+    opacity:.20;
   }
 
   100%{
-    left:145%;
+    transform:translateX(115%);
+    opacity:0;
   }
 }
 
-
 /* Símbolo lateral */
-
 .raffle-name-item::after{
   content:"$";
 
@@ -563,103 +458,76 @@ body{
   align-items:center;
   justify-content:center;
 
-  width:28px;
-  height:28px;
+  width:29px;
+  height:29px;
 
   transform:translateY(-50%);
+  border-radius:11px;
 
-  border-radius:10px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(255,255,255,.015)
-    );
-
-  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,79,163,.08);
+  border:1px solid rgba(255,79,163,.18);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 3px 8px rgba(0,0,0,.30);
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 3px 8px rgba(0,0,0,.28),
+    0 0 10px rgba(255,79,163,.055);
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:17px;
-  font-weight:900;
+  font-family:'Inter', Arial, sans-serif;
+  font-size:15px;
+  font-weight:800;
   line-height:1;
 
   color:#ffffff;
 
   text-shadow:
-    0 2px 0 rgba(0,0,0,.96);
+    0 1px 2px rgba(0,0,0,.90),
+    0 0 7px rgba(255,79,163,.12);
 
   pointer-events:none;
 }
 
-
-/* Primer participante más fuerte */
-
+/* Primer participante destacado */
 .raffle-name-item:first-child{
-  min-height:55px;
+  min-height:57px;
 
   background:
-    radial-gradient(
-      circle at 12% 0%,
-      rgba(255,255,255,.095) 0%,
-      rgba(255,255,255,0) 34%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.055) 0%,
-      rgba(255,255,255,.018) 44%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #202020 0%,
-      #0c0c0c 51%,
-      #050505 100%
-    );
+    radial-gradient(circle at 11% 0%, rgba(255,79,163,.095) 0%, transparent 37%),
+    linear-gradient(180deg, rgba(255,255,255,.040) 0%, rgba(255,255,255,.008) 100%),
+    linear-gradient(135deg, #17171b 0%, #0b0b0e 54%, #060607 100%);
 
-  border-color:rgba(255,255,255,.19);
+  border-color:rgba(255,79,163,.28);
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,.36),
-    0 0 13px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -1px 0 rgba(0,0,0,.88);
+    0 9px 21px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,79,163,.025),
+    0 0 16px rgba(255,79,163,.075),
+    inset 0 1px 0 rgba(255,255,255,.045);
 }
 
 .raffle-name-item:first-child::after{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.13),
-      rgba(255,255,255,.025)
-    );
+  width:31px;
+  height:31px;
 
-  border-color:rgba(255,255,255,.14);
+  background:rgba(255,79,163,.13);
+  border-color:rgba(255,79,163,.30);
 
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.11),
-    0 3px 9px rgba(0,0,0,.34);
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 3px 9px rgba(0,0,0,.30),
+    0 0 12px rgba(255,79,163,.11);
 }
 
-
 /* Hover */
-
 .raffle-name-item:hover{
   transform:translateY(-1px);
-
-  filter:brightness(1.045);
-
-  border-color:rgba(255,255,255,.19);
+  filter:brightness(1.035);
+  border-color:rgba(255,79,163,.24);
 
   box-shadow:
-    0 8px 18px rgba(0,0,0,.36),
-    0 0 12px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.09),
-    inset 0 -1px 0 rgba(0,0,0,.84);
+    0 9px 20px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,79,163,.030),
+    0 0 14px rgba(255,79,163,.060),
+    inset 0 1px 0 rgba(255,255,255,.045);
 }
 
 
@@ -673,38 +541,32 @@ body{
 
   flex:1 1 auto;
   min-width:0;
-
-  padding-left:36px;
+  padding-left:37px;
 
   font-family:'Inter', Arial, sans-serif;
-  font-size:17px;
+  font-size:16px;
   font-weight:800;
   line-height:1.08;
-  letter-spacing:.02em;
+  letter-spacing:.005em;
 
   color:rgba(255,255,255,.94);
-
-  text-transform:uppercase;
+  text-transform:none;
 
   white-space:normal;
   overflow-wrap:anywhere;
   word-break:break-word;
 
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.88);
+  text-shadow:0 1px 2px rgba(0,0,0,.88);
 }
 
 .raffle-name-item:first-child .raffle-name{
-  font-size:18px;
+  font-size:17px;
   font-weight:800;
   color:#ffffff;
 }
 
-
-/* Participantes inferiores */
-
 .raffle-name-item:nth-child(n + 4) .raffle-name{
-  font-size:16px;
+  font-size:15px;
 }
 
 
@@ -718,7 +580,7 @@ body{
 
   flex:0 0 auto;
 
-  min-width:48px;
+  min-width:50px;
   min-height:32px;
 
   display:flex;
@@ -726,57 +588,43 @@ body{
   justify-content:center;
 
   padding:5px 10px 6px;
-
-  border-radius:11px;
+  border-radius:12px;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.065) 0%,
-      rgba(255,255,255,.015) 42%,
-      rgba(0,0,0,.05) 100%
-    ),
-    linear-gradient(
-      135deg,
-      #1b1b1b 0%,
-      #090909 58%,
-      #050505 100%
-    );
+    linear-gradient(180deg, rgba(255,79,163,.075) 0%, rgba(255,79,163,.025) 100%),
+    #0b0b0d;
 
-  border:1px solid rgba(255,255,255,.13);
+  border:1px solid rgba(255,79,163,.19);
 
   color:#ffffff;
   white-space:nowrap;
 
   box-shadow:
-    0 4px 10px rgba(0,0,0,.32),
-    inset 0 1px 0 rgba(255,255,255,.07),
-    inset 0 -1px 0 rgba(0,0,0,.84);
+    0 4px 10px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 0 10px rgba(255,79,163,.045);
 
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.88);
+  text-shadow:0 1px 2px rgba(0,0,0,.88);
 
   font-size:0;
   line-height:1;
 }
 
-
 /* Mantiene data-tickets */
-
 .raffle-tickets::after{
   content:attr(data-tickets);
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:19px;
-  font-weight:900;
+  font-family:'Inter', Arial, sans-serif;
+  font-size:17px;
+  font-weight:800;
   line-height:1;
-  letter-spacing:.035em;
+  letter-spacing:-.01em;
 
   color:#ffffff;
 
   text-shadow:
-    0 2px 0 rgba(0,0,0,.96),
-    0 0 4px rgba(255,255,255,.08);
+    0 1px 2px rgba(0,0,0,.90),
+    0 0 7px rgba(255,79,163,.08);
 }
 
 
@@ -795,34 +643,15 @@ body{
   justify-content:center;
 
   padding:28px;
-
   overflow:hidden;
-
-  border-radius:25px;
+  border-radius:29px;
 
   background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(255,255,255,.095) 0%,
-      rgba(255,255,255,.04) 25%,
-      rgba(255,255,255,.012) 46%,
-      rgba(8,8,8,.95) 72%,
-      rgba(3,3,3,.99) 100%
-    ),
-    radial-gradient(
-      circle at 16% 10%,
-      rgba(255,255,255,.05) 0%,
-      rgba(255,255,255,0) 30%
-    ),
-    linear-gradient(
-      145deg,
-      #171717,
-      #060606 58%,
-      #020202
-    );
+    radial-gradient(circle at 50% 43%, rgba(255,79,163,.16) 0%, rgba(255,79,163,.065) 24%, transparent 48%),
+    radial-gradient(circle at 16% 10%, rgba(255,255,255,.035) 0%, transparent 30%),
+    linear-gradient(145deg, #111114 0%, #070708 58%, #020203 100%);
 
   opacity:0;
-
   transform:scale(.94);
 
   transition:
@@ -830,30 +659,26 @@ body{
     transform .28s cubic-bezier(.2,.75,.24,1);
 }
 
-
 /* Marco interior ganador */
-
 .raffle-winner-screen::after{
   content:"";
 
   position:absolute;
-  inset:9px;
+  inset:8px;
   z-index:1;
 
-  border-radius:19px;
-
-  border:1px solid rgba(255,255,255,.10);
+  border-radius:22px;
+  border:1px solid rgba(255,79,163,.14);
 
   box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.70),
-    inset 0 0 42px rgba(255,255,255,.018);
+    inset 0 0 0 1px rgba(0,0,0,.52),
+    inset 0 0 46px rgba(255,79,163,.025),
+    0 0 18px rgba(255,79,163,.035);
 
   pointer-events:none;
 }
 
-
 /* Símbolo superior */
-
 .raffle-winner-screen::before{
   content:"✦  $  ✦";
 
@@ -864,44 +689,34 @@ body{
 
   transform:translateX(-50%);
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
-  font-size:27px;
-  font-weight:900;
+  font-family:'Inter', Arial, sans-serif;
+  font-size:25px;
+  font-weight:800;
   line-height:1;
   letter-spacing:.12em;
 
-  color:#ffffff;
-
+  color:var(--pink-light);
   white-space:nowrap;
 
   text-shadow:
-    0 2px 0 rgba(0,0,0,.98),
-    0 0 6px rgba(255,255,255,.16);
+    0 2px 0 rgba(0,0,0,.92),
+    0 0 8px rgba(255,79,163,.35),
+    0 0 16px rgba(255,79,163,.12);
 
-  animation:badGirlWinnerSparkle 1.9s ease-in-out infinite alternate;
+  animation:raffleWinnerSparkle 1.8s ease-in-out infinite alternate;
 }
 
-@keyframes badGirlWinnerSparkle{
+@keyframes raffleWinnerSparkle{
   from{
-    opacity:.62;
-
-    transform:
-      translateX(-50%)
-      scale(.97);
-
+    opacity:.68;
+    transform:translateX(-50%) scale(.97);
     filter:brightness(.98);
   }
 
   to{
     opacity:1;
-
-    transform:
-      translateX(-50%)
-      scale(1.05);
-
-    filter:
-      brightness(1.10)
-      drop-shadow(0 0 7px rgba(255,255,255,.10));
+    transform:translateX(-50%) scale(1.05);
+    filter:brightness(1.10) drop-shadow(0 0 8px rgba(255,79,163,.18));
   }
 }
 
@@ -914,7 +729,7 @@ body{
   opacity:1;
   transform:scale(1);
 
-  animation:badGirlWinnerScreenBreath 2s ease-in-out infinite alternate;
+  animation:raffleWinnerScreenBreath 2s ease-in-out infinite alternate;
 }
 
 .raffle-winner-screen.hidden{
@@ -933,74 +748,62 @@ body{
   z-index:4;
 
   color:#ffffff;
-
   text-align:center;
-  text-transform:uppercase;
 }
 
-
 /* WINNER pill */
-
 .winner-label{
-  margin-bottom:9px;
-
-  padding:6px 15px 7px;
+  margin-bottom:10px;
+  padding:7px 17px 8px;
 
   border-radius:999px;
 
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.07) 0%,
-      rgba(255,255,255,.015) 100%
-    );
-
-  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,79,163,.085);
+  border:1px solid rgba(255,79,163,.24);
 
   box-shadow:
     0 5px 13px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.07);
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 0 13px rgba(255,79,163,.065);
 
   font-family:'Inter', Arial, sans-serif;
-  font-size:18px;
+  font-size:15px;
   font-weight:800;
   line-height:1;
-  letter-spacing:.12em;
+  letter-spacing:.10em;
 
-  color:rgba(255,255,255,.93);
+  color:rgba(255,255,255,.96);
+  text-transform:uppercase;
 
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.86);
+  text-shadow:0 1px 2px rgba(0,0,0,.86);
 }
 
-
 /* Nombre del ganador */
-
 .winner-name{
   max-width:94%;
-
   padding:4px 10px;
 
-  font-family:'Barlow Condensed', Impact, sans-serif;
+  font-family:'Lobster', cursive;
   font-size:58px;
-  font-weight:900;
-  line-height:.95;
-  letter-spacing:.03em;
+  font-weight:400;
+  line-height:.98;
+  letter-spacing:.01em;
 
   color:#ffffff;
+  text-transform:none;
 
   overflow-wrap:anywhere;
   word-break:break-word;
 
   text-shadow:
-    0 4px 0 rgba(0,0,0,.98),
-    0 0 7px rgba(255,255,255,.21),
-    0 0 15px rgba(255,255,255,.07);
+    0 3px 0 rgba(0,0,0,.94),
+    0 0 8px rgba(255,255,255,.12),
+    0 0 18px rgba(255,79,163,.16);
 
-  animation:badGirlWinnerPop 1.15s ease-in-out infinite alternate;
+  animation:raffleWinnerPop 1.15s ease-in-out infinite alternate;
 }
 
-@keyframes badGirlWinnerPop{
+@keyframes raffleWinnerPop{
   from{
     transform:scale(1);
     filter:brightness(1);
@@ -1008,11 +811,10 @@ body{
 
   to{
     transform:scale(1.035);
-
     filter:
-      brightness(1.08)
-      drop-shadow(0 0 8px rgba(255,255,255,.10))
-      drop-shadow(0 0 14px rgba(255,255,255,.035));
+      brightness(1.07)
+      drop-shadow(0 0 8px rgba(255,255,255,.08))
+      drop-shadow(0 0 14px rgba(255,79,163,.12));
   }
 }
 
@@ -1021,15 +823,17 @@ body{
    RESPLANDOR WINNER
 ========================================================= */
 
-@keyframes badGirlWinnerScreenBreath{
+@keyframes raffleWinnerScreenBreath{
   from{
     box-shadow:
-      inset 0 0 38px rgba(255,255,255,.018);
+      inset 0 0 38px rgba(255,79,163,.018),
+      0 0 0 rgba(255,79,163,0);
   }
 
   to{
     box-shadow:
-      inset 0 0 64px rgba(255,255,255,.04);
+      inset 0 0 68px rgba(255,79,163,.055),
+      0 0 28px rgba(255,79,163,.055);
   }
 }
 
@@ -1043,52 +847,47 @@ body{
   .raffle-widget{
     width:100%;
     min-height:405px;
-
     padding:9px;
-
-    border-radius:22px;
+    border-radius:26px;
   }
 
   .raffle-widget::before{
-    border-radius:17px;
+    border-radius:21px;
   }
 
   .raffle-title{
-    min-height:49px;
-
-    border-radius:16px;
-
+    min-height:54px;
+    border-radius:19px;
     font-size:30px;
   }
 
   .raffle-name-item{
-    min-height:48px;
-
-    border-radius:15px;
+    min-height:49px;
+    border-radius:16px;
   }
 
   .raffle-name-item:first-child{
-    min-height:52px;
+    min-height:54px;
   }
 
   .raffle-name{
-    font-size:16px;
-  }
-
-  .raffle-name-item:first-child .raffle-name{
-    font-size:17px;
-  }
-
-  .raffle-name-item:nth-child(n + 4) .raffle-name{
     font-size:15px;
   }
 
+  .raffle-name-item:first-child .raffle-name{
+    font-size:16px;
+  }
+
+  .raffle-name-item:nth-child(n + 4) .raffle-name{
+    font-size:14px;
+  }
+
   .raffle-winner-screen{
-    border-radius:21px;
+    border-radius:25px;
   }
 
   .winner-label{
-    font-size:16px;
+    font-size:14px;
   }
 
   .winner-name{
@@ -1130,11 +929,11 @@ body{
   }
 
   .raffle-tickets::after{
-    font-size:17px;
+    font-size:16px;
   }
 
   .winner-label{
-    font-size:14px;
+    font-size:13px;
   }
 
   .winner-name{
@@ -1151,6 +950,7 @@ body{
 
   .raffle-widget,
   .raffle-widget::after,
+  .raffle-badge::before,
   .raffle-name-item,
   .raffle-name-item::before,
   .raffle-winner-screen,
