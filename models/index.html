@@ -233,7 +233,7 @@
 
     <select id="model">
       <option value="">Selecciona tu nombre</option>
-      <option value="Lili">Lili Moon</option>
+      <option value="Jade">Jade</option>
       <option value="Megan">Megan</option>
       <option value="Zoe">Zoe</option>
       <option value="Charlotte">Charlotte</option>
@@ -245,6 +245,7 @@
       <option value="Paula">Paula</option>
       <option value="Sara">Sara</option>
       <option value="Sophi">Sophi</option>
+      <option value="Alaska">Alaska</option>
       <option value="Kali">Kali</option>
       <option value="Shani">Shani</option>
       <option value="Lisa">Lisa</option>
@@ -404,16 +405,17 @@
     ];
 
     const MODEL_SLOTS = {
-      Lili: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
+    Jade: [
+        { start: "17:00", label: "17:00 (10:00 AM) 🇰🇪" },
+        { start: "18:00", label: "18:00 (11:00 AM) 🇰🇪" },
+        { start: "19:00", label: "19:00 (12:00 PM) 🇰🇪" },
+        { start: "20:00", label: "20:00 (01:00 PM) 🇰🇪" },
+        { start: "21:00", label: "21:00 (02:00 PM) 🇰🇪" },
+        { start: "04:00", label: "04:00 (09:00 PM) 🇰🇪" },
+        { start: "05:00", label: "05:00 (10:00 PM) 🇰🇪" },
+        { start: "06:00", label: "06:00 (11:00 PM) 🇰🇪" }
       ],
+
 
       Nana: [
         { start: "09:00", label: "10:00 AM (Argentina)" },
@@ -583,7 +585,19 @@
         { start: "22:00", label: "22:00 (10:00 PM) 🇸🇰" },
         { start: "04:00", label: "04:00 (next day) 🇸🇰" },
         { start: "05:00", label: "05:00 (next day) 🇸🇰" }
-      ]
+      ],
+
+         Alaska: [
+        { start: "16:00", label: "16:00 (04:00 PM) es" },
+        { start: "17:00", label: "17:00 (05:00 PM) es" },
+        { start: "18:00", label: "18:00 (06:00 PM) es" },
+        { start: "19:00", label: "19:00 (07:00 PM) es" },
+        { start: "20:00", label: "20:00 (08:00 PM) es" },
+        { start: "21:00", label: "21:00 (09:00 PM) es" },
+        { start: "22:00", label: "22:00 (10:00 PM) es" },
+        { start: "04:00", label: "04:00 (next day) es" },
+        { start: "05:00", label: "05:00 (next day) es" }
+      ],
     };
 
     const MODEL_OFFSET_TO_EST = {
@@ -600,8 +614,10 @@
       Sasha: 2,
       Nana: 2,
       Sara: 6,
+      Aslaka: 6,
       Sophi: 6,
       Kali: 7,
+      Jade: 7,
       Shani: 7,
       Lisa: -1
     };
