@@ -275,16 +275,16 @@
       <h2 class="files-title">Flyers del livestream</h2>
 
       <p class="files-description">
-        Selecciona las imágenes correspondientes a este livestream.
-        Se permiten archivos JPG, PNG y WEBP.
+        Las imágenes son opcionales. Puedes guardar el horario sin subir ninguna.
+        Si deseas añadirlas, se permiten archivos JPG, PNG y WEBP.
       </p>
 
       <!-- FLYER PRINCIPAL -->
       <div class="file-group">
 
         <div class="file-label-title">
-          <label for="flyer">Flyer principal</label>
-          <span class="file-badge">1 archivo</span>
+          <label for="flyer">Flyer principal (opcional)</label>
+          <span class="file-badge">Opcional</span>
         </div>
 
         <input
@@ -300,33 +300,14 @@
 
       </div>
 
-      <!-- FLYER REDDIT -->
-      <div class="file-group">
-
-        <div class="file-label-title">
-          <label for="reddit">Reddit</label>
-          <span class="file-badge">1 archivo</span>
-        </div>
-
-        <input
-          id="reddit"
-          name="reddit"
-          type="file"
-          accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-        />
-
-        <div id="redditHelp" class="file-help">
-          Ningún flyer para Reddit seleccionado.
-        </div>
-
-      </div>
+      
 
      <!-- FLYER ADICIONAL 1 -->
 <div class="file-group">
 
   <div class="file-label-title">
-    <label for="flyer1">Flyer 1</label>
-    <span class="file-badge">1 archivo</span>
+    <label for="flyer1">Flyer 1 (opcional)</label>
+    <span class="file-badge">Opcional</span>
   </div>
 
   <input
@@ -345,8 +326,8 @@
 <div class="file-group">
 
   <div class="file-label-title">
-    <label for="flyer2">Flyer 2</label>
-    <span class="file-badge">1 archivo</span>
+    <label for="flyer2">Flyer 2 (opcional)</label>
+    <span class="file-badge">Opcional</span>
   </div>
 
   <input
@@ -365,8 +346,8 @@
 <div class="file-group">
 
   <div class="file-label-title">
-    <label for="flyer3">Flyer 3</label>
-    <span class="file-badge">1 archivo</span>
+    <label for="flyer3">Flyer 3 (opcional)</label>
+    <span class="file-badge">Opcional</span>
   </div>
 
   <input
@@ -629,14 +610,12 @@
     const slotSelect = document.getElementById("slot");
 
 const flyerInput = document.getElementById("flyer");
-const redditInput = document.getElementById("reddit");
 
 const flyer1Input = document.getElementById("flyer1");
 const flyer2Input = document.getElementById("flyer2");
 const flyer3Input = document.getElementById("flyer3");
 
 const flyerHelp = document.getElementById("flyerHelp");
-const redditHelp = document.getElementById("redditHelp");
 
 const flyer1Help = document.getElementById("flyer1Help");
 const flyer2Help = document.getElementById("flyer2Help");
@@ -670,14 +649,6 @@ const flyer3Help = document.getElementById("flyer3Help");
       );
     });
 
-    redditInput.addEventListener("change", () => {
-      showSingleFileName(
-        redditInput,
-        redditHelp,
-        "Ningún flyer para Reddit seleccionado."
-      );
-    });
-
     flyer1Input.addEventListener("change", () => {
   showSingleFileName(
     flyer1Input,
@@ -701,63 +672,6 @@ flyer3Input.addEventListener("change", () => {
     "Ningún Flyer 3 seleccionado."
   );
 });
-
-    flyersInput.addEventListener("change", () => {
-      const files = Array.from(flyersInput.files || []);
-
-      flyersHelp.classList.remove("selected", "error");
-
-      if (files.length > MAX_EXTRA_FLYERS) {
-        flyersInput.value = "";
-
-        flyersHelp.textContent =
-          `Solo puedes seleccionar un máximo de ${MAX_EXTRA_FLYERS} flyers.`;
-
-        flyersHelp.classList.add("error");
-        return;
-      }
-
-      if (!files.length) {
-        flyersHelp.textContent =
-          "Puedes seleccionar hasta tres flyers.";
-
-        return;
-      }
-
-      const invalidFile = files.find(
-        (file) => !isValidImage(file)
-      );
-
-      if (invalidFile) {
-        flyersInput.value = "";
-
-        flyersHelp.textContent =
-          `El archivo "${invalidFile.name}" no es una imagen JPG, PNG o WEBP válida.`;
-
-        flyersHelp.classList.add("error");
-        return;
-      }
-
-      const oversizedFile = files.find(
-        (file) => file.size > MAX_FILE_SIZE_BYTES
-      );
-
-      if (oversizedFile) {
-        flyersInput.value = "";
-
-        flyersHelp.textContent =
-          `El archivo "${oversizedFile.name}" supera los ${MAX_FILE_SIZE_MB} MB.`;
-
-        flyersHelp.classList.add("error");
-        return;
-      }
-
-      flyersHelp.textContent =
-        `${files.length} flyer(s) seleccionado(s): ` +
-        files.map((file) => file.name).join(", ");
-
-      flyersHelp.classList.add("selected");
-    });
 
     function showSingleFileName(input, helpElement, emptyMessage) {
       const file = input.files?.[0];
@@ -869,7 +783,6 @@ flyer3Input.addEventListener("change", () => {
       const theme = document.getElementById("theme").value.trim();
 
       const flyerFile = flyerInput.files?.[0] || null;
-      const redditFile = redditInput.files?.[0] || null;
       const flyer1File = flyer1Input.files?.[0] || null;
       const flyer2File = flyer2Input.files?.[0] || null;
       const flyer3File = flyer3Input.files?.[0] || null;
@@ -899,7 +812,6 @@ flyer3Input.addEventListener("change", () => {
 
       const allSelectedFiles = [
         flyerFile,
-        redditFile,
         ...additionalFlyers
       ].filter(Boolean);
 
@@ -946,10 +858,6 @@ flyer3Input.addEventListener("change", () => {
         formData.append("flyer", flyerFile);
       }
 
-      if (redditFile) {
-        formData.append("reddit", redditFile);
-      }
-
       additionalFlyers.forEach((file) => {
         formData.append("flyers", file);
       });
@@ -985,7 +893,7 @@ flyer3Input.addEventListener("change", () => {
         }
 
         statusEl.textContent =
-          "Horario y archivos guardados correctamente. Gracias ♥";
+          "Horario guardado correctamente. Gracias ♥";
 
         statusEl.className = "status ok";
 
@@ -1012,21 +920,26 @@ flyer3Input.addEventListener("change", () => {
 
     function resetFileInputs() {
       flyerInput.value = "";
-      redditInput.value = "";
-      flyersInput.value = "";
+      flyer1Input.value = "";
+      flyer2Input.value = "";
+      flyer3Input.value = "";
 
       flyerHelp.textContent =
         "Ningún flyer principal seleccionado.";
 
-      redditHelp.textContent =
-        "Ningún flyer para Reddit seleccionado.";
+      flyer1Help.textContent =
+        "Ningún Flyer 1 seleccionado.";
 
-      flyersHelp.textContent =
-        "Puedes seleccionar hasta tres flyers.";
+      flyer2Help.textContent =
+        "Ningún Flyer 2 seleccionado.";
+
+      flyer3Help.textContent =
+        "Ningún Flyer 3 seleccionado.";
 
       flyerHelp.className = "file-help";
-      redditHelp.className = "file-help";
-      flyersHelp.className = "file-help";
+      flyer1Help.className = "file-help";
+      flyer2Help.className = "file-help";
+      flyer3Help.className = "file-help";
     }
 
     function clearStatus() {
