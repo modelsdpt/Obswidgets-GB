@@ -1,8 +1,9 @@
 /* =========================================================
-   SOFT PINK / WHITE CUTE THEME
-   Inspirado en la referencia: rosa pastel + blanco,
-   volumen suave, brillo delicado y esquinas redondeadas.
-   Mantiene los selectores y comportamiento del widget.
+   DARK FLORAL / RETRO PETAL THEME
+   Inspirado en la referencia:
+   negro profundo + pétalos crema/rosa + toques taupe,
+   texto blanco fuerte y formas suaves/redondeadas.
+   Se mantienen selectores, estados y comportamiento.
 ========================================================= */
 
 /* ==========================================
@@ -11,20 +12,20 @@
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800;900&display=swap');600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
-  --bg-soft: #0b0b0d;
-  --surface: #101013;
-  --surface-2: #151519;
+  --bg-soft:#0b0b0d;
+  --surface:#101013;
+  --surface-2:#151519;
 
-  --white: #ffffff;
-  --white-soft: #f5f5f7;
-  --muted: #a9a9b0;
+  --white:#ffffff;
+  --white-soft:#f5f5f7;
+  --muted:#a9a9b0;
 
-  --pink: #ff4fa3;
-  --pink-light: #ff8bc6;
+  --pink:#ff4fa3;
+  --pink-light:#ff8bc6;
   --pink-soft:rgba(255,79,163,.18);
   --pink-glow:rgba(255,79,163,.30);
 
@@ -582,242 +583,217 @@ body{
 }
 
 
-/* =========================================================
-   SOFT PINK OVERRIDES — MVP
-========================================================= */
-
 :root{
-  --cream:#fffafd;
-  --pink-50:#fff7fb;
-  --pink-100:#ffeaf2;
-  --pink-200:#ffd4e3;
-  --pink-300:#f7b9cf;
-  --pink-400:#ee9ab9;
-  --pink-500:#df7fa3;
-  --pink-600:#c9658c;
-  --rose-shadow:#ad5a7b;
-  --white:#ffffff;
+  --floral-black:#050605;
+  --floral-black-2:#0a0b0a;
+  --floral-black-3:#101110;
+  --floral-cream:#f3e6dc;
+  --floral-cream-2:#fff7f1;
+  --floral-blush:#dca5a6;
+  --floral-blush-2:#bf8187;
+  --floral-taupe:#8f776b;
+  --floral-taupe-2:#6f5f57;
+  --floral-line:rgba(243,230,220,.34);
+  --floral-shadow:rgba(0,0,0,.72);
 }
 
 body{
-  color:var(--white);
-  font-family:'Nunito', Arial, sans-serif;
+  font-family:'Nunito Sans', Arial, sans-serif;
+  color:#fff;
 }
 
+/* =========================================================
+   MVP
+========================================================= */
+
 #container{
+  border-radius:28px;
   padding:11px;
-  border-radius:30px;
   background:
-    radial-gradient(circle at 14% 0%, rgba(255,255,255,.74) 0%, rgba(255,255,255,0) 29%),
-    radial-gradient(circle at 95% 104%, rgba(255,255,255,.30) 0%, rgba(255,255,255,0) 39%),
-    linear-gradient(145deg,#f7bfd2 0%,#efa1bd 46%,#e78dad 100%);
-  border:2px solid rgba(255,255,255,.88);
+    radial-gradient(ellipse at 7% 14%, var(--floral-cream) 0 7px, transparent 8px),
+    radial-gradient(ellipse at 18% 4%, var(--floral-blush) 0 6px, transparent 7px),
+    radial-gradient(ellipse at 34% 17%, var(--floral-cream) 0 5px, transparent 6px),
+    radial-gradient(circle at 51% 5%, transparent 0 3px, var(--floral-taupe) 4px 8px, transparent 9px),
+    radial-gradient(ellipse at 69% 13%, var(--floral-blush-2) 0 7px, transparent 8px),
+    radial-gradient(circle at 87% 8%, transparent 0 3px, var(--floral-taupe-2) 4px 8px, transparent 9px),
+    radial-gradient(ellipse at 92% 28%, var(--floral-cream) 0 6px, transparent 7px),
+    linear-gradient(145deg,#0b0d0b 0%,#050605 54%,#090a09 100%);
+  border:1px solid rgba(243,230,220,.34);
   box-shadow:
-    0 16px 34px rgba(173,90,123,.22),
-    0 5px 13px rgba(173,90,123,.14),
-    inset 0 2px 0 rgba(255,255,255,.78),
-    inset 0 -2px 0 rgba(201,101,140,.18);
+    0 18px 38px rgba(0,0,0,.52),
+    0 0 0 1px rgba(255,255,255,.025),
+    inset 0 1px 0 rgba(255,255,255,.10);
 }
 
 #container::before{
   inset:5px;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.48);
-  box-shadow:inset 0 0 24px rgba(255,255,255,.10);
+  border-radius:22px;
+  border:1px solid rgba(243,230,220,.08);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.68);
 }
 
 #container::after{
-  opacity:.42;
+  opacity:.22;
   background:linear-gradient(
     108deg,
     transparent 0%,
-    rgba(255,255,255,0) 28%,
-    rgba(255,255,255,.28) 43%,
-    rgba(255,255,255,.72) 50%,
-    rgba(255,255,255,.20) 58%,
-    transparent 72%
+    rgba(255,255,255,0) 32%,
+    rgba(255,247,241,.10) 45%,
+    rgba(255,247,241,.34) 51%,
+    rgba(255,247,241,.08) 60%,
+    transparent 74%
   );
 }
 
 .title{
-  min-height:49px;
-  margin-bottom:10px;
-  border-radius:22px;
-  font-family:'Fredoka', 'Nunito', sans-serif;
-  font-size:29px;
-  font-weight:700;
-  letter-spacing:.025em;
-  text-transform:uppercase;
-  color:#fff;
+  min-height:48px;
+  border-radius:19px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.05)),
-    linear-gradient(135deg,#ee9fba 0%,#df7fa3 100%);
-  border:2px solid rgba(255,255,255,.82);
+    radial-gradient(ellipse at 8% 28%, var(--floral-cream) 0 5px, transparent 6px),
+    radial-gradient(ellipse at 92% 22%, var(--floral-blush) 0 5px, transparent 6px),
+    radial-gradient(circle at 78% 78%, transparent 0 2px, var(--floral-taupe) 3px 6px, transparent 7px),
+    linear-gradient(135deg,rgba(12,14,12,.96),rgba(3,4,3,.98));
+  border:1px solid rgba(243,230,220,.24);
   box-shadow:
-    0 7px 0 rgba(185,95,130,.22),
-    0 12px 22px rgba(173,90,123,.14),
-    inset 0 2px 0 rgba(255,255,255,.62);
+    0 8px 18px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  font-family:'Anton', Impact, sans-serif;
+  font-size:29px;
+  font-weight:400;
+  letter-spacing:.035em;
+  color:#fff;
+  text-transform:uppercase;
   text-shadow:
-    0 2px 0 #c86d92,
-    0 4px 8px rgba(173,90,123,.20);
+    0 3px 0 rgba(0,0,0,.98),
+    2px 0 0 rgba(0,0,0,.62),
+    -2px 0 0 rgba(0,0,0,.62);
 }
 
 .title::before{
-  top:2px;
-  left:16%;
-  right:16%;
-  height:2px;
-  border-radius:999px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.86),transparent);
+  left:14%;
+  right:14%;
+  background:linear-gradient(90deg,transparent,rgba(243,230,220,.64),transparent);
 }
 
 .title::after{
-  left:27%;
-  right:27%;
-  bottom:3px;
-  height:3px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 7px rgba(255,255,255,.58);
+  left:31%;
+  right:31%;
+  bottom:2px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--floral-blush),var(--floral-cream),var(--floral-blush),transparent);
+  box-shadow:0 0 8px rgba(220,165,166,.24);
 }
 
-#top-list{ gap:9px; }
+#top-list{ gap:8px; }
 
 .tip{
-  min-height:53px;
-  padding:8px 12px 8px 13px;
-  border-radius:21px;
+  border-radius:18px;
   background:
-    radial-gradient(circle at 12% 0%,rgba(255,255,255,.46) 0%,transparent 31%),
-    linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.05)),
-    linear-gradient(135deg,#f8c5d6 0%,#efabc2 100%);
-  border:1.5px solid rgba(255,255,255,.76);
+    radial-gradient(ellipse at 9% 15%, rgba(243,230,220,.15) 0 5px, transparent 6px),
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.008)),
+    linear-gradient(135deg,rgba(20,22,20,.96),rgba(7,8,7,.98));
+  border:1px solid rgba(243,230,220,.12);
   box-shadow:
-    0 7px 15px rgba(173,90,123,.13),
-    inset 0 2px 0 rgba(255,255,255,.62),
-    inset 0 -1px 0 rgba(201,101,140,.12);
+    0 6px 14px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .tip::before{
-  left:8px;
-  top:10px;
-  bottom:10px;
   width:4px;
-  background:linear-gradient(180deg,#fff 0%,#fff5f9 45%,#f3a4c0 100%);
-  box-shadow:0 0 8px rgba(255,255,255,.66);
+  background:linear-gradient(180deg,var(--floral-cream),var(--floral-blush),var(--floral-taupe));
+  box-shadow:0 0 8px rgba(220,165,166,.18);
 }
 
 .tip::after{
-  opacity:.38;
+  opacity:.20;
   background:linear-gradient(
     105deg,
     transparent 0%,
-    rgba(255,255,255,.04) 24%,
-    rgba(255,255,255,.62) 48%,
-    rgba(255,255,255,.10) 62%,
+    rgba(255,255,255,.01) 24%,
+    rgba(243,230,220,.18) 48%,
+    rgba(255,255,255,.02) 62%,
     transparent 76%
   );
 }
 
 .tip:hover{
-  transform:translateY(-2px) scale(1.005);
-  filter:brightness(1.02);
-  border-color:#fff;
+  transform:translateY(-2px);
+  filter:brightness(1.06);
+  border-color:rgba(243,230,220,.28);
   box-shadow:
-    0 10px 20px rgba(173,90,123,.18),
-    0 0 0 2px rgba(255,255,255,.16),
-    inset 0 2px 0 rgba(255,255,255,.70);
+    0 9px 20px rgba(0,0,0,.38),
+    0 0 0 1px rgba(220,165,166,.08),
+    inset 0 1px 0 rgba(255,255,255,.07);
 }
 
 .tip .name{
-  font-family:'Nunito', Arial, sans-serif;
-  font-size:17px;
+  font-family:'Nunito Sans', Arial, sans-serif;
   font-weight:900;
-  letter-spacing:.01em;
   color:#fff;
-  text-shadow:
-    0 2px 0 rgba(190,91,131,.56),
-    0 3px 7px rgba(173,90,123,.16);
+  text-shadow:0 2px 2px rgba(0,0,0,.92);
 }
 
 .tip .amount{
-  padding:5px 9px 6px;
-  border-radius:13px;
-  font-family:'Fredoka','Nunito',sans-serif;
-  font-size:24px;
-  font-weight:700;
-  color:#fff;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.20),rgba(255,255,255,.04)),
-    linear-gradient(135deg,#e58cac,#d8769a);
-  border:1.5px solid rgba(255,255,255,.72);
+  border-radius:12px;
+  background:linear-gradient(180deg,var(--floral-cream-2),var(--floral-cream));
+  border:1px solid rgba(255,255,255,.72);
   box-shadow:
-    0 4px 9px rgba(173,90,123,.12),
-    inset 0 1px 0 rgba(255,255,255,.52);
-  text-shadow:0 2px 0 rgba(177,81,118,.50);
+    0 4px 9px rgba(0,0,0,.24),
+    inset 0 -1px 0 rgba(143,119,107,.18);
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#171412;
+  text-shadow:none;
 }
 
 .tip.mvp{
-  min-height:62px;
-  border-radius:23px;
+  border-radius:21px;
   background:
-    radial-gradient(circle at 15% 0%,rgba(255,255,255,.58) 0%,transparent 32%),
-    linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.06)),
-    linear-gradient(135deg,#f4afc7 0%,#e88fab 100%);
-  border:2px solid rgba(255,255,255,.92);
+    radial-gradient(ellipse at 7% 12%, rgba(243,230,220,.22) 0 6px, transparent 7px),
+    radial-gradient(circle at 94% 18%, transparent 0 2px, rgba(143,119,107,.40) 3px 6px, transparent 7px),
+    linear-gradient(135deg,#1a1716 0%,#0a0b0a 52%,#050605 100%);
+  border:1px solid rgba(220,165,166,.36);
   box-shadow:
-    0 9px 0 rgba(190,99,133,.10),
-    0 13px 24px rgba(173,90,123,.16),
-    inset 0 2px 0 rgba(255,255,255,.70);
+    0 10px 22px rgba(0,0,0,.42),
+    0 0 14px rgba(220,165,166,.06),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .tip.mvp::before{
   width:5px;
-  background:linear-gradient(180deg,#fff 0%,#fff8fb 45%,#f5b0c8 100%);
-  box-shadow:0 0 9px rgba(255,255,255,.82);
+  background:linear-gradient(180deg,var(--floral-cream-2),var(--floral-blush),var(--floral-taupe));
+  box-shadow:0 0 10px rgba(220,165,166,.26);
 }
 
-.tip.mvp .name{ font-size:18px; color:#fff; }
 .tip.mvp .amount{
-  font-size:28px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.24),rgba(255,255,255,.04)),
-    linear-gradient(135deg,#e182a4,#cf6b92);
+  background:linear-gradient(180deg,#fffaf6,#ead9cf);
 }
-
-.tip.second{ opacity:.98; }
-.tip.third{ opacity:.94; }
 
 .rank-icon{
-  width:30px;
-  height:30px;
-  border-radius:12px;
-  font-family:'Fredoka','Nunito',sans-serif;
-  font-weight:700;
-  color:#cf6b92;
-  background:linear-gradient(180deg,#fff,#fff8fb);
-  border:1.5px solid rgba(255,255,255,.95);
+  border-radius:11px;
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#151311;
+  background:linear-gradient(180deg,var(--floral-cream-2),var(--floral-cream));
+  border:1px solid rgba(255,255,255,.62);
   box-shadow:
-    0 4px 8px rgba(173,90,123,.12),
-    inset 0 -1px 0 rgba(223,127,163,.14);
+    0 4px 9px rgba(0,0,0,.24),
+    inset 0 -1px 0 rgba(143,119,107,.18);
   text-shadow:none;
 }
 
 .tip.mvp .rank-icon{
-  width:35px;
-  height:35px;
-  border-radius:14px;
-  color:#c45f88;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border-color:#fff;
+  border-radius:13px;
+  background:linear-gradient(180deg,#fffaf6,#ead9cf);
   box-shadow:
-    0 5px 10px rgba(173,90,123,.15),
-    0 0 0 3px rgba(255,255,255,.18);
+    0 5px 10px rgba(0,0,0,.28),
+    0 0 0 2px rgba(220,165,166,.10);
 }
 
 @media (max-width:460px){
-  #container{ border-radius:27px; }
-  #container::before{ border-radius:21px; }
-  .title{ border-radius:19px; font-size:26px; }
-  .tip{ border-radius:18px; }
-  .tip.mvp{ border-radius:20px; }
+  #container{ border-radius:24px; }
+  #container::before{ border-radius:19px; }
+  .title{ border-radius:17px; }
+  .tip{ border-radius:16px; }
+  .tip.mvp{ border-radius:18px; }
 }

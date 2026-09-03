@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@600;700;800;900&display=swap');600;700;800&family=Lobster&display=swap');
+/* =========================================================
+   DARK FLORAL / RETRO PETAL THEME
+   Inspirado en la referencia:
+   negro profundo + pétalos crema/rosa + toques taupe,
+   texto blanco fuerte y formas suaves/redondeadas.
+   Se mantienen selectores, estados y comportamiento.
+========================================================= */
+
+/* ==========================================
+   GOAL BAR – MODERN BLACK / WHITE / PINK THEME
+   Fondo negro, texto blanco y acento rosa
+   Estética premium + esquinas suaves
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -522,151 +536,130 @@ body{
 }
 
 
-/* =========================================================
-   SOFT PINK OVERRIDES — BAR
-========================================================= */
-
 :root{
-  --cream:#fffafd;
-  --pink-50:#fff7fb;
-  --pink-100:#ffeaf2;
-  --pink-200:#ffd4e3;
-  --pink-300:#f7b9cf;
-  --pink-400:#ee9ab9;
-  --pink-500:#df7fa3;
-  --pink-600:#c9658c;
-  --rose-shadow:#ad5a7b;
-  --white:#ffffff;
+  --floral-black:#050605;
+  --floral-black-2:#0a0b0a;
+  --floral-black-3:#101110;
+  --floral-cream:#f3e6dc;
+  --floral-cream-2:#fff7f1;
+  --floral-blush:#dca5a6;
+  --floral-blush-2:#bf8187;
+  --floral-taupe:#8f776b;
+  --floral-taupe-2:#6f5f57;
+  --floral-line:rgba(243,230,220,.34);
+  --floral-shadow:rgba(0,0,0,.72);
 }
 
 body{
+  font-family:'Nunito Sans', Arial, sans-serif;
   color:#fff;
-  font-family:'Nunito', Arial, sans-serif;
 }
+
+/* =========================================================
+   BAR
+========================================================= */
 
 #goal-wrapper{
   width:78px;
-  border-radius:34px;
+  border-radius:30px;
   background:
-    radial-gradient(ellipse at 50% -4%,rgba(255,255,255,.70) 0%,transparent 27%),
-    radial-gradient(ellipse at 50% 107%,rgba(255,255,255,.22) 0%,transparent 34%),
-    linear-gradient(180deg,#f8c5d6 0%,#efa7bf 42%,#e78ead 100%);
-  border:2px solid rgba(255,255,255,.90);
+    radial-gradient(ellipse at 18% 7%, var(--floral-cream) 0 6px, transparent 7px),
+    radial-gradient(ellipse at 76% 12%, var(--floral-blush) 0 6px, transparent 7px),
+    radial-gradient(circle at 26% 31%, transparent 0 3px, var(--floral-taupe) 4px 8px, transparent 9px),
+    radial-gradient(ellipse at 82% 52%, var(--floral-cream) 0 5px, transparent 6px),
+    radial-gradient(circle at 31% 76%, transparent 0 3px, var(--floral-taupe-2) 4px 8px, transparent 9px),
+    radial-gradient(ellipse at 77% 90%, var(--floral-blush-2) 0 6px, transparent 7px),
+    linear-gradient(180deg,#0c0e0c 0%,#050605 52%,#090a09 100%);
+  border:1px solid rgba(243,230,220,.30);
   box-shadow:
-    0 16px 34px rgba(173,90,123,.22),
-    0 5px 13px rgba(173,90,123,.13),
-    inset 0 2px 0 rgba(255,255,255,.76),
-    inset 0 -2px 0 rgba(201,101,140,.14);
+    0 18px 38px rgba(0,0,0,.50),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 #goal-wrapper::before{
-  inset:5px;
-  border-radius:28px;
-  border:1px solid rgba(255,255,255,.46);
-  box-shadow:inset 0 0 18px rgba(255,255,255,.12);
+  border-radius:24px;
+  border:1px solid rgba(243,230,220,.08);
 }
 
 #goal-wrapper::after{
-  opacity:.42;
+  opacity:.18;
   background:linear-gradient(
     180deg,
     transparent 0%,
-    rgba(255,255,255,.10) 26%,
-    rgba(255,255,255,.64) 49%,
-    rgba(255,255,255,.18) 61%,
+    rgba(255,255,255,.01) 28%,
+    rgba(243,230,220,.25) 50%,
+    rgba(255,255,255,.04) 63%,
     transparent 100%
   );
 }
 
 #bar-fill{
-  border-radius:0 0 32px 32px;
+  border-radius:0 0 29px 29px;
   background:
-    linear-gradient(90deg,rgba(255,255,255,.18),transparent 28%,rgba(255,255,255,.09) 72%,rgba(255,255,255,.28)),
-    linear-gradient(180deg,#ec96b5 0%,#df7fa3 45%,#ca648c 100%);
+    linear-gradient(90deg,rgba(255,255,255,.10),transparent 35%,rgba(0,0,0,.16) 72%,rgba(255,255,255,.05)),
+    linear-gradient(180deg,var(--floral-blush) 0%,#bb7c82 48%,#735d56 100%);
   box-shadow:
-    inset 6px 0 12px rgba(255,255,255,.13),
-    inset -7px 0 13px rgba(173,90,123,.13),
-    inset 0 -14px 20px rgba(173,90,123,.08),
-    0 -2px 10px rgba(255,255,255,.26);
+    inset 6px 0 10px rgba(255,255,255,.07),
+    inset -7px 0 12px rgba(0,0,0,.20),
+    0 -2px 10px rgba(220,165,166,.14);
 }
 
 #bar-fill::before{
-  height:6px;
-  background:linear-gradient(180deg,#fff 0%,#fff7fb 45%,#ffd8e6 100%);
+  height:5px;
+  background:linear-gradient(180deg,var(--floral-cream-2),var(--floral-cream));
   box-shadow:
-    0 0 7px rgba(255,255,255,.95),
-    0 0 13px rgba(255,255,255,.46),
-    0 0 20px rgba(238,154,185,.26);
+    0 0 6px rgba(243,230,220,.68),
+    0 0 12px rgba(220,165,166,.22);
 }
 
 #bar-fill::after{
-  width:6px;
-  height:6px;
-  background:#fff;
+  background:var(--floral-cream);
   box-shadow:
-    0 0 6px rgba(255,255,255,.95),
-    0 0 12px rgba(255,255,255,.42);
+    0 0 5px rgba(243,230,220,.72),
+    0 0 10px rgba(220,165,166,.20);
 }
 
 .goal-title{
-  padding:5px 10px 6px;
-  border-radius:12px;
-  font-family:'Fredoka','Nunito',sans-serif;
-  font-size:22px;
-  font-weight:700;
-  letter-spacing:.055em;
+  border-radius:10px;
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
   color:#fff;
-  background:rgba(216,118,154,.25);
+  background:rgba(4,5,4,.66);
   text-shadow:
-    0 2px 0 rgba(182,87,124,.54),
-    0 4px 8px rgba(173,90,123,.16);
+    0 3px 0 rgba(0,0,0,.98),
+    2px 0 0 rgba(0,0,0,.54),
+    -2px 0 0 rgba(0,0,0,.54);
 }
 
 .goal-title::after{
-  height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28) 15%,#fff 50%,rgba(255,255,255,.28) 85%,transparent);
-  box-shadow:0 0 7px rgba(255,255,255,.35);
+  background:linear-gradient(90deg,transparent,var(--floral-blush),var(--floral-cream),var(--floral-blush),transparent);
+  box-shadow:0 0 7px rgba(220,165,166,.18);
 }
 
 .goal-amount{
-  padding:7px 12px 8px;
-  border-radius:14px;
-  background:linear-gradient(180deg,#fff,#fff7fb);
-  border:1.5px solid rgba(255,255,255,.96);
+  border-radius:13px;
+  background:linear-gradient(180deg,var(--floral-cream-2),var(--floral-cream));
+  border:1px solid rgba(255,255,255,.68);
   box-shadow:
-    0 6px 13px rgba(173,90,123,.17),
-    inset 0 -1px 0 rgba(223,127,163,.16);
-  font-family:'Fredoka','Nunito',sans-serif;
-  font-size:17px;
-  font-weight:700;
-  color:#cf6b92;
+    0 6px 13px rgba(0,0,0,.30),
+    inset 0 -1px 0 rgba(143,119,107,.18);
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#171412;
   text-shadow:none;
 }
 
-.goal-amount::after{
-  background:#df7fa3;
-  box-shadow:0 0 6px rgba(223,127,163,.38);
-}
-
 .goal-title.neon{
-  animation:softCuteBarText 2.4s ease-in-out infinite alternate;
+  animation:floralTitleBreath 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes softCuteBarText{
+@keyframes floralTitleBreath{
   from{ filter:brightness(1); }
-  to{ filter:brightness(1.05) drop-shadow(0 0 6px rgba(255,255,255,.34)); }
-}
-
-#goal-wrapper:hover{
-  filter:brightness(1.02);
-  box-shadow:
-    0 19px 38px rgba(173,90,123,.24),
-    0 0 0 3px rgba(255,255,255,.14),
-    inset 0 2px 0 rgba(255,255,255,.80);
+  to{ filter:brightness(1.08) drop-shadow(0 0 5px rgba(220,165,166,.16)); }
 }
 
 @media (max-height:460px){
-  #goal-wrapper{ border-radius:30px; }
-  #goal-wrapper::before{ border-radius:24px; }
-  #bar-fill{ border-radius:0 0 28px 28px; }
+  #goal-wrapper{ border-radius:27px; }
+  #goal-wrapper::before{ border-radius:21px; }
+  #bar-fill{ border-radius:0 0 26px 26px; }
 }
