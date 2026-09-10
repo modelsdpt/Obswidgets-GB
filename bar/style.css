@@ -1,3 +1,29 @@
+/* =========================================================
+   PINK LAVA LAMP THEME
+   Inspirado en la referencia "$15 FLASH OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo rosa permanente
+   - "Burbujas" / pelotas rosas tipo lava lamp
+   - Movimiento constante, lento y orgánico
+   - Letras blancas con borde rosa oscuro
+   - Sombras suaves, brillo ligero y esquinas redondeadas
+   - Mantiene selectores y estados funcionales existentes
+========================================================= */
+
+/* =========================================================
+   BLUSH MOTION / SLOW PINK FLOW THEME
+   Inspirado en la referencia "$5 BLOW A KISS"
+
+   Concepto:
+   - Rosa blush + coral suave + crema rosado
+   - Letras blancas con sombra/borde oscuro
+   - El fondo NO cambia de paleta: solo se desplaza lentamente
+   - Transiciones largas y suaves para sentir movimiento
+   - Bordes redondeados y acabado premium
+   - Conserva selectores y estados funcionales del widget
+========================================================= */
+
 /* ==========================================
    GOAL BAR – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acento rosa
@@ -528,23 +554,432 @@ body{
 }
 
 
+:root{
+  --blush-1:#ffd5da;
+  --blush-2:#f7b7c0;
+  --blush-3:#ef8e99;
+  --blush-4:#e87582;
+  --coral:#f58b84;
+  --peach:#ffc2b8;
+  --cream:#fff2ef;
+  --white:#ffffff;
+  --black:#090707;
+  --deep-shadow:rgba(61,18,22,.34);
+}
+
+@keyframes blushFlowWide{
+  0%{
+    background-position:0% 48%;
+  }
+  25%{
+    background-position:38% 34%;
+  }
+  50%{
+    background-position:100% 55%;
+  }
+  75%{
+    background-position:58% 70%;
+  }
+  100%{
+    background-position:0% 48%;
+  }
+}
+
+@keyframes blushFlowVertical{
+  0%{
+    background-position:50% 0%;
+  }
+  25%{
+    background-position:38% 32%;
+  }
+  50%{
+    background-position:56% 100%;
+  }
+  75%{
+    background-position:68% 58%;
+  }
+  100%{
+    background-position:50% 0%;
+  }
+}
+
+@keyframes blushSoftBreath{
+  0%,100%{
+    filter:saturate(1) brightness(1);
+  }
+  50%{
+    filter:saturate(1.035) brightness(1.025);
+  }
+}
+
+body{
+  color:#fff;
+  font-family:'Inter', Arial, sans-serif;
+}
 
 /* =========================================================
-   CANDY HEARTS COLOR-CYCLE THEME
-   Morado + corazones -> rosa/azul cielo -> morado
+   GOAL / BAR
 ========================================================= */
-:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
-@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
-@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
-@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
-body{color:#fff;font-family:'Inter',Arial,sans-serif;}
 
-#goal-wrapper{width:78px;border-radius:29px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--purple-a),var(--purple-b) 48%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;border:2px solid rgba(255,255,255,.30);box-shadow:0 16px 34px rgba(36,0,67,.28),inset 0 1px 0 rgba(255,255,255,.17);animation:candyHeartFloat 13s linear infinite;}
-#goal-wrapper::before{z-index:6;border-radius:23px;border:1px solid rgba(255,255,255,.14);}
-#goal-wrapper::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--pink-a) 0%,#f568c5 42%,var(--sky-a) 74%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
-#bar-fill{z-index:2;border-radius:0 0 28px 28px;background-image:linear-gradient(90deg,rgba(255,255,255,.18),transparent 32%,rgba(62,0,93,.10) 72%,rgba(255,255,255,.08)),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0));background-color:#8b34e7;animation:candyBarFill 8s ease-in-out infinite;}
-@keyframes candyBarFill{0%,100%{background-color:#8430e7}46%{background-color:#ef53b7}58%{background-color:#69d7ff}}
-#bar-fill::before{height:5px;background:linear-gradient(180deg,#fff,#f5ecff);box-shadow:0 0 6px rgba(255,255,255,.76),0 0 12px rgba(255,255,255,.24);}
-.goal-title{z-index:7;border-radius:10px;font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;background:rgba(76,14,120,.20);-webkit-text-stroke:.8px rgba(46,0,67,.72);paint-order:stroke fill;text-shadow:0 2px 0 rgba(75,15,99,.55);}
-.goal-amount{z-index:7;border-radius:12px;background:linear-gradient(180deg,#fff,#f5eef9);border:1.5px solid rgba(103,34,143,.28);font-family:'Anton',Impact,sans-serif;font-weight:400;color:#6f249e;text-shadow:none;}
+#goal-wrapper{
+  width:78px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 42% 14%, rgba(255,255,255,.46) 0 8%, transparent 22%),
+    radial-gradient(circle at 68% 55%, rgba(245,139,132,.38) 0 10%, transparent 26%),
+    radial-gradient(circle at 36% 82%, rgba(255,242,239,.30) 0 9%, transparent 25%),
+    linear-gradient(180deg,#ffdadd 0%,#f7b5bd 29%,#ef8e99 52%,#f6a7a8 72%,#ffd4ce 100%);
+  background-size:
+    170% 170%,
+    185% 185%,
+    160% 160%,
+    220% 220%;
+  background-position:50% 0%;
+  border:2px solid rgba(255,255,255,.60);
+  box-shadow:
+    0 16px 34px rgba(106,40,48,.23),
+    inset 0 2px 0 rgba(255,255,255,.45);
+  animation:
+    blushFlowVertical 21s ease-in-out infinite,
+    blushSoftBreath 8s ease-in-out infinite;
+}
 
+#goal-wrapper::before{
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.28);
+}
+
+#goal-wrapper::after{
+  opacity:.18;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255,255,255,.05) 26%,
+      rgba(255,255,255,.24) 50%,
+      rgba(255,255,255,.06) 63%,
+      transparent 100%
+    );
+}
+
+#bar-fill{
+  border-radius:0 0 29px 29px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.16),transparent 36%,rgba(134,45,56,.09) 72%,rgba(255,255,255,.08)),
+    linear-gradient(180deg,#f69da7 0%,#ec7f8c 45%,#cf6573 100%);
+  box-shadow:
+    inset 6px 0 10px rgba(255,255,255,.10),
+    inset -7px 0 12px rgba(97,28,36,.12),
+    0 -2px 10px rgba(255,255,255,.18);
+}
+
+#bar-fill::before{
+  height:5px;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  box-shadow:
+    0 0 6px rgba(255,255,255,.78),
+    0 0 12px rgba(255,255,255,.28);
+}
+
+#bar-fill::after{
+  background:#fff;
+  box-shadow:
+    0 0 5px rgba(255,255,255,.82),
+    0 0 10px rgba(255,255,255,.27);
+}
+
+.goal-title{
+  border-radius:10px;
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#fff;
+  background:rgba(207,95,109,.20);
+  -webkit-text-stroke:.9px rgba(20,12,12,.86);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(20,12,12,.78),
+    0 0 5px rgba(255,255,255,.08);
+}
+
+.goal-title::after{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),#fff,rgba(255,255,255,.18),transparent);
+}
+
+.goal-amount{
+  border-radius:12px;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  border:1.5px solid rgba(83,27,34,.26);
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#78323e;
+  text-shadow:none;
+}
+
+@media (max-height:460px){
+  #goal-wrapper{ border-radius:27px; }
+  #goal-wrapper::before{ border-radius:22px; }
+  #bar-fill{ border-radius:0 0 26px 26px; }
+}
+
+
+:root{
+  --lava-base:#f6a7b7;
+  --lava-base-2:#ef8fa4;
+  --lava-light:#ffd8e0;
+  --lava-light-2:#ffc5d1;
+  --lava-mid:#ed7e98;
+  --lava-dark:#c95775;
+  --lava-deep:#a93d5e;
+  --lava-white:#fffdfd;
+  --lava-shadow:rgba(124,38,62,.30);
+}
+
+/* Movimiento orgánico de las masas del fondo */
+@keyframes lavaBlobFieldA{
+  0%{
+    background-position:
+      5% 16%,
+      78% 12%,
+      23% 72%,
+      88% 74%,
+      48% 42%,
+      0% 0%;
+  }
+  20%{
+    background-position:
+      18% 28%,
+      66% 22%,
+      30% 58%,
+      78% 86%,
+      58% 34%,
+      0% 0%;
+  }
+  40%{
+    background-position:
+      30% 44%,
+      58% 8%,
+      18% 84%,
+      69% 61%,
+      42% 55%,
+      0% 0%;
+  }
+  60%{
+    background-position:
+      13% 64%,
+      78% 30%,
+      35% 68%,
+      90% 44%,
+      55% 70%,
+      0% 0%;
+  }
+  80%{
+    background-position:
+      2% 40%,
+      88% 18%,
+      16% 52%,
+      72% 78%,
+      38% 28%,
+      0% 0%;
+  }
+  100%{
+    background-position:
+      5% 16%,
+      78% 12%,
+      23% 72%,
+      88% 74%,
+      48% 42%,
+      0% 0%;
+  }
+}
+
+@keyframes lavaBlobFieldB{
+  0%{
+    background-position:
+      12% 80%,
+      72% 58%,
+      42% 16%,
+      90% 28%,
+      55% 88%;
+  }
+  25%{
+    background-position:
+      26% 66%,
+      84% 48%,
+      34% 30%,
+      76% 16%,
+      48% 72%;
+  }
+  50%{
+    background-position:
+      8% 54%,
+      65% 72%,
+      50% 40%,
+      88% 42%,
+      64% 82%;
+  }
+  75%{
+    background-position:
+      20% 70%,
+      78% 84%,
+      30% 22%,
+      70% 34%,
+      44% 94%;
+  }
+  100%{
+    background-position:
+      12% 80%,
+      72% 58%,
+      42% 16%,
+      90% 28%,
+      55% 88%;
+  }
+}
+
+@keyframes lavaGlowBreath{
+  0%,100%{
+    filter:saturate(1) brightness(1);
+  }
+  50%{
+    filter:saturate(1.035) brightness(1.018);
+  }
+}
+
+body{
+  color:#fff;
+  font-family:'Inter',Arial,sans-serif;
+}
+
+/* =========================================================
+   GOAL — PINK LAVA
+========================================================= */
+
+#goal-wrapper{
+  width:78px;
+  border-radius:31px;
+  background-image:
+    radial-gradient(circle at center, rgba(255,220,228,.92) 0 12%, rgba(255,220,228,.48) 20%, transparent 33%),
+    radial-gradient(circle at center, rgba(232,101,135,.88) 0 13%, rgba(232,101,135,.48) 21%, transparent 34%),
+    radial-gradient(circle at center, rgba(255,195,208,.86) 0 11%, rgba(255,195,208,.44) 19%, transparent 31%),
+    radial-gradient(circle at center, rgba(198,79,111,.62) 0 12%, rgba(198,79,111,.30) 20%, transparent 33%),
+    linear-gradient(180deg,#f8b6c3 0%,#ef91a6 50%,#e87d97 100%);
+  background-repeat:no-repeat;
+  background-size:
+    105px 105px,
+    125px 125px,
+    95px 95px,
+    135px 135px,
+    100% 100%;
+  border:2px solid rgba(255,255,255,.60);
+  box-shadow:
+    0 16px 34px var(--lava-shadow),
+    inset 0 2px 0 rgba(255,255,255,.42);
+  animation:
+    lavaGoalFlow 30s ease-in-out infinite,
+    lavaGlowBreath 9s ease-in-out infinite;
+}
+
+@keyframes lavaGoalFlow{
+  0%{
+    background-position:18% 8%,70% 30%,30% 68%,75% 88%,0 0;
+  }
+  20%{
+    background-position:35% 24%,55% 12%,42% 52%,62% 74%,0 0;
+  }
+  40%{
+    background-position:20% 46%,76% 40%,28% 82%,45% 58%,0 0;
+  }
+  60%{
+    background-position:52% 64%,32% 26%,66% 72%,78% 42%,0 0;
+  }
+  80%{
+    background-position:28% 80%,70% 62%,38% 36%,58% 18%,0 0;
+  }
+  100%{
+    background-position:18% 8%,70% 30%,30% 68%,75% 88%,0 0;
+  }
+}
+
+#goal-wrapper::before{
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.28);
+}
+
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:-6%;
+  z-index:0;
+  width:auto;
+  height:auto;
+  opacity:.48;
+  background-image:
+    radial-gradient(circle at center,rgba(255,236,240,.58) 0 10%,rgba(255,236,240,.24) 18%,transparent 30%),
+    radial-gradient(circle at center,rgba(214,85,119,.38) 0 11%,rgba(214,85,119,.16) 19%,transparent 31%),
+    radial-gradient(circle at center,rgba(255,201,212,.46) 0 9%,rgba(255,201,212,.18) 17%,transparent 29%);
+  background-repeat:no-repeat;
+  background-size:92px 92px,116px 116px,84px 84px;
+  animation:lavaGoalOverlay 34s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes lavaGoalOverlay{
+  0%{background-position:28% 78%,70% 18%,42% 48%;}
+  33%{background-position:56% 58%,38% 38%,68% 74%;}
+  66%{background-position:22% 32%,75% 64%,35% 86%;}
+  100%{background-position:28% 78%,70% 18%,42% 48%;}
+}
+
+#bar-fill{
+  border-radius:0 0 30px 30px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.16),transparent 35%,rgba(129,41,66,.10) 73%,rgba(255,255,255,.08)),
+    linear-gradient(180deg,#f49baa 0%,#e97b91 46%,#c95d79 100%);
+  box-shadow:
+    inset 6px 0 10px rgba(255,255,255,.10),
+    inset -7px 0 12px rgba(105,29,52,.11),
+    0 -2px 10px rgba(255,255,255,.18);
+}
+
+#bar-fill::before{
+  height:5px;
+  background:linear-gradient(180deg,#fff,#ffeef2);
+  box-shadow:0 0 6px rgba(255,255,255,.78),0 0 12px rgba(255,255,255,.28);
+}
+
+#bar-fill::after{
+  background:#fff;
+  box-shadow:0 0 5px rgba(255,255,255,.82),0 0 10px rgba(255,255,255,.27);
+}
+
+.goal-title{
+  z-index:7;
+  border-radius:10px;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  background:rgba(195,65,102,.20);
+  -webkit-text-stroke:1px #ae4665;
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(143,48,75,.38);
+}
+
+.goal-title::after{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),#fff,rgba(255,255,255,.18),transparent);
+}
+
+.goal-amount{
+  z-index:7;
+  border-radius:12px;
+  background:linear-gradient(180deg,#fff,#ffeef2);
+  border:1.5px solid rgba(176,71,102,.29);
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#a63f60;
+  text-shadow:none;
+}
+
+@media (max-height:460px){
+  #goal-wrapper{border-radius:27px;}
+  #goal-wrapper::before{border-radius:22px;}
+  #bar-fill{border-radius:0 0 26px 26px;}
+}
