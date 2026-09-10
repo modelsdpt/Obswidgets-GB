@@ -1,9 +1,14 @@
 /* =========================================================
-   MIDNIGHT STARS / LUSH BLACK THEME
-   Inspirado en la referencia:
-   negro profundo, tipografía blanca limpia y un cielo
-   estrellado más visible, elegante y moderno.
-   Mantiene selectores, estados y comportamiento.
+   BLUSH MOTION / SLOW PINK FLOW THEME
+   Inspirado en la referencia "$5 BLOW A KISS"
+
+   Concepto:
+   - Rosa blush + coral suave + crema rosado
+   - Letras blancas con sombra/borde oscuro
+   - El fondo NO cambia de paleta: solo se desplaza lentamente
+   - Transiciones largas y suaves para sentir movimiento
+   - Bordes redondeados y acabado premium
+   - Conserva selectores y estados funcionales del widget
 ========================================================= */
 
 /* ==========================================
@@ -12,7 +17,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -537,16 +542,61 @@ body{
 
 
 :root{
-  --night:#020304;
-  --night-2:#07090c;
-  --night-3:#0b0e12;
-  --star:#ffffff;
-  --star-soft:rgba(255,255,255,.70);
-  --silver:#dfe4ea;
-  --silver-soft:#aeb5be;
-  --line:rgba(255,255,255,.18);
-  --line-strong:rgba(255,255,255,.34);
-  --shadow:rgba(0,0,0,.78);
+  --blush-1:#ffd5da;
+  --blush-2:#f7b7c0;
+  --blush-3:#ef8e99;
+  --blush-4:#e87582;
+  --coral:#f58b84;
+  --peach:#ffc2b8;
+  --cream:#fff2ef;
+  --white:#ffffff;
+  --black:#090707;
+  --deep-shadow:rgba(61,18,22,.34);
+}
+
+@keyframes blushFlowWide{
+  0%{
+    background-position:0% 48%;
+  }
+  25%{
+    background-position:38% 34%;
+  }
+  50%{
+    background-position:100% 55%;
+  }
+  75%{
+    background-position:58% 70%;
+  }
+  100%{
+    background-position:0% 48%;
+  }
+}
+
+@keyframes blushFlowVertical{
+  0%{
+    background-position:50% 0%;
+  }
+  25%{
+    background-position:38% 32%;
+  }
+  50%{
+    background-position:56% 100%;
+  }
+  75%{
+    background-position:68% 58%;
+  }
+  100%{
+    background-position:50% 0%;
+  }
+}
+
+@keyframes blushSoftBreath{
+  0%,100%{
+    filter:saturate(1) brightness(1);
+  }
+  50%{
+    filter:saturate(1.035) brightness(1.025);
+  }
 }
 
 body{
@@ -555,101 +605,105 @@ body{
 }
 
 /* =========================================================
-   BAR
+   GOAL / BAR
 ========================================================= */
 
 #goal-wrapper{
   width:78px;
-  border-radius:27px;
+  border-radius:30px;
   background:
-    radial-gradient(circle at 18% 8%, rgba(255,255,255,.92) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 75% 14%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 30% 31%, rgba(255,255,255,.75) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 82% 45%, rgba(255,255,255,.58) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 21% 61%, rgba(255,255,255,.88) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 69% 76%, rgba(255,255,255,.44) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 37% 91%, rgba(255,255,255,.70) 0 1.2px, transparent 1.6px),
-    linear-gradient(180deg,#0b0e12 0%,#050607 56%,#010203 100%);
-  border:1px solid rgba(255,255,255,.20);
+    radial-gradient(circle at 42% 14%, rgba(255,255,255,.46) 0 8%, transparent 22%),
+    radial-gradient(circle at 68% 55%, rgba(245,139,132,.38) 0 10%, transparent 26%),
+    radial-gradient(circle at 36% 82%, rgba(255,242,239,.30) 0 9%, transparent 25%),
+    linear-gradient(180deg,#ffdadd 0%,#f7b5bd 29%,#ef8e99 52%,#f6a7a8 72%,#ffd4ce 100%);
+  background-size:
+    170% 170%,
+    185% 185%,
+    160% 160%,
+    220% 220%;
+  background-position:50% 0%;
+  border:2px solid rgba(255,255,255,.60);
   box-shadow:
-    0 18px 38px rgba(0,0,0,.52),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 16px 34px rgba(106,40,48,.23),
+    inset 0 2px 0 rgba(255,255,255,.45);
+  animation:
+    blushFlowVertical 21s ease-in-out infinite,
+    blushSoftBreath 8s ease-in-out infinite;
 }
 
 #goal-wrapper::before{
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.06);
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.28);
 }
 
 #goal-wrapper::after{
-  opacity:.46;
+  opacity:.18;
   background:
-    radial-gradient(circle at 48% 12%, rgba(255,255,255,.95) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 62% 35%, rgba(255,255,255,.52) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 34% 55%, rgba(255,255,255,.78) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 58% 79%, rgba(255,255,255,.62) 0 1px, transparent 1.4px);
-  animation:barStars 4.2s ease-in-out infinite alternate;
-}
-
-@keyframes barStars{
-  from{ opacity:.26; }
-  to{ opacity:.62; }
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255,255,255,.05) 26%,
+      rgba(255,255,255,.24) 50%,
+      rgba(255,255,255,.06) 63%,
+      transparent 100%
+    );
 }
 
 #bar-fill{
-  border-radius:0 0 26px 26px;
+  border-radius:0 0 29px 29px;
   background:
-    linear-gradient(90deg,rgba(255,255,255,.10),transparent 34%,rgba(0,0,0,.16) 72%,rgba(255,255,255,.05)),
-    linear-gradient(180deg,#69717c 0%,#40464f 42%,#15191f 100%);
+    linear-gradient(90deg,rgba(255,255,255,.16),transparent 36%,rgba(134,45,56,.09) 72%,rgba(255,255,255,.08)),
+    linear-gradient(180deg,#f69da7 0%,#ec7f8c 45%,#cf6573 100%);
   box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.05),
-    inset -7px 0 12px rgba(0,0,0,.22),
-    0 -2px 10px rgba(255,255,255,.07);
+    inset 6px 0 10px rgba(255,255,255,.10),
+    inset -7px 0 12px rgba(97,28,36,.12),
+    0 -2px 10px rgba(255,255,255,.18);
 }
 
 #bar-fill::before{
   height:5px;
-  background:linear-gradient(180deg,#fff,#dfe4ea);
+  background:linear-gradient(180deg,#fff,#fff1ef);
   box-shadow:
-    0 0 6px rgba(255,255,255,.70),
-    0 0 12px rgba(255,255,255,.20);
+    0 0 6px rgba(255,255,255,.78),
+    0 0 12px rgba(255,255,255,.28);
 }
 
 #bar-fill::after{
   background:#fff;
   box-shadow:
-    0 0 5px rgba(255,255,255,.74),
-    0 0 10px rgba(255,255,255,.22);
+    0 0 5px rgba(255,255,255,.82),
+    0 0 10px rgba(255,255,255,.27);
 }
 
 .goal-title{
-  border-radius:9px;
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:500;
-  letter-spacing:.04em;
+  border-radius:10px;
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
   color:#fff;
-  background:rgba(3,4,5,.70);
+  background:rgba(207,95,109,.20);
+  -webkit-text-stroke:.9px rgba(20,12,12,.86);
+  paint-order:stroke fill;
   text-shadow:
-    0 0 5px rgba(255,255,255,.18),
-    0 2px 0 rgba(0,0,0,.96);
+    0 2px 0 rgba(20,12,12,.78),
+    0 0 5px rgba(255,255,255,.08);
 }
 
 .goal-title::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),#fff,rgba(255,255,255,.14),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),#fff,rgba(255,255,255,.18),transparent);
 }
 
 .goal-amount{
-  border-radius:11px;
-  background:linear-gradient(180deg,#f8f9fa,#dfe4e9);
-  border:1px solid rgba(255,255,255,.76);
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#0a0c0f;
+  border-radius:12px;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  border:1.5px solid rgba(83,27,34,.26);
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#78323e;
   text-shadow:none;
 }
 
 @media (max-height:460px){
-  #goal-wrapper{ border-radius:24px; }
-  #goal-wrapper::before{ border-radius:19px; }
-  #bar-fill{ border-radius:0 0 23px 23px; }
+  #goal-wrapper{ border-radius:27px; }
+  #goal-wrapper::before{ border-radius:22px; }
+  #bar-fill{ border-radius:0 0 26px 26px; }
 }

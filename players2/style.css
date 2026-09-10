@@ -1,9 +1,14 @@
 /* =========================================================
-   MIDNIGHT STARS / LUSH BLACK THEME
-   Inspirado en la referencia:
-   negro profundo, tipografía blanca limpia y un cielo
-   estrellado más visible, elegante y moderno.
-   Mantiene selectores, estados y comportamiento.
+   BLUSH MOTION / SLOW PINK FLOW THEME
+   Inspirado en la referencia "$5 BLOW A KISS"
+
+   Concepto:
+   - Rosa blush + coral suave + crema rosado
+   - Letras blancas con sombra/borde oscuro
+   - El fondo NO cambia de paleta: solo se desplaza lentamente
+   - Transiciones largas y suaves para sentir movimiento
+   - Bordes redondeados y acabado premium
+   - Conserva selectores y estados funcionales del widget
 ========================================================= */
 
 /* ==========================================
@@ -12,7 +17,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -972,16 +977,61 @@ body{
 
 
 :root{
-  --night:#020304;
-  --night-2:#07090c;
-  --night-3:#0b0e12;
-  --star:#ffffff;
-  --star-soft:rgba(255,255,255,.70);
-  --silver:#dfe4ea;
-  --silver-soft:#aeb5be;
-  --line:rgba(255,255,255,.18);
-  --line-strong:rgba(255,255,255,.34);
-  --shadow:rgba(0,0,0,.78);
+  --blush-1:#ffd5da;
+  --blush-2:#f7b7c0;
+  --blush-3:#ef8e99;
+  --blush-4:#e87582;
+  --coral:#f58b84;
+  --peach:#ffc2b8;
+  --cream:#fff2ef;
+  --white:#ffffff;
+  --black:#090707;
+  --deep-shadow:rgba(61,18,22,.34);
+}
+
+@keyframes blushFlowWide{
+  0%{
+    background-position:0% 48%;
+  }
+  25%{
+    background-position:38% 34%;
+  }
+  50%{
+    background-position:100% 55%;
+  }
+  75%{
+    background-position:58% 70%;
+  }
+  100%{
+    background-position:0% 48%;
+  }
+}
+
+@keyframes blushFlowVertical{
+  0%{
+    background-position:50% 0%;
+  }
+  25%{
+    background-position:38% 32%;
+  }
+  50%{
+    background-position:56% 100%;
+  }
+  75%{
+    background-position:68% 58%;
+  }
+  100%{
+    background-position:50% 0%;
+  }
+}
+
+@keyframes blushSoftBreath{
+  0%,100%{
+    filter:saturate(1) brightness(1);
+  }
+  50%{
+    filter:saturate(1.035) brightness(1.025);
+  }
 }
 
 body{
@@ -994,226 +1044,222 @@ body{
 ========================================================= */
 
 .raffle-widget{
-  border-radius:29px;
+  border-radius:31px;
   background:
-    radial-gradient(circle at 5% 10%, rgba(255,255,255,.92) 0 1.4px, transparent 1.8px),
-    radial-gradient(circle at 15% 4%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 27% 13%, rgba(255,255,255,.76) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 39% 5%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 52% 16%, rgba(255,255,255,.90) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 64% 7%, rgba(255,255,255,.52) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 78% 14%, rgba(255,255,255,.78) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 91% 6%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 96% 25%, rgba(255,255,255,.84) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 11% 72%, rgba(255,255,255,.58) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 31% 88%, rgba(255,255,255,.74) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 58% 79%, rgba(255,255,255,.44) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 83% 91%, rgba(255,255,255,.70) 0 1.2px, transparent 1.6px),
-    linear-gradient(145deg,#0b0d10 0%,#040506 52%,#010203 100%);
-  border:1px solid rgba(255,255,255,.20);
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,.47) 0 8%, transparent 23%),
+    radial-gradient(circle at 82% 69%, rgba(245,139,132,.40) 0 10%, transparent 28%),
+    radial-gradient(circle at 55% 17%, rgba(255,194,184,.42) 0 8%, transparent 25%),
+    radial-gradient(circle at 30% 82%, rgba(255,242,239,.33) 0 8%, transparent 26%),
+    linear-gradient(115deg,#ffdadd 0%,#f7b5bd 27%,#ef8e99 49%,#f6a7a8 68%,#ffd4ce 100%);
+  background-size:
+    165% 165%,
+    175% 175%,
+    155% 155%,
+    180% 180%,
+    230% 230%;
+  background-position:0% 48%;
+  border:2px solid rgba(255,255,255,.61);
   box-shadow:
-    0 20px 44px rgba(0,0,0,.54),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 18px 38px rgba(106,40,48,.24),
+    inset 0 2px 0 rgba(255,255,255,.46);
+  animation:
+    blushFlowWide 21s ease-in-out infinite,
+    blushSoftBreath 8s ease-in-out infinite;
 }
 
 .raffle-widget::before{
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.06);
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.29);
 }
 
 .raffle-widget::after{
-  opacity:.50;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  transform:none;
-  background:
-    radial-gradient(circle at 18% 31%, rgba(255,255,255,.82) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 33% 57%, rgba(255,255,255,.52) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 48% 36%, rgba(255,255,255,.94) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 63% 66%, rgba(255,255,255,.46) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 77% 29%, rgba(255,255,255,.78) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 90% 58%, rgba(255,255,255,.60) 0 1px, transparent 1.5px);
-  animation:raffleStars 5s ease-in-out infinite alternate;
-}
-
-@keyframes raffleStars{
-  from{ opacity:.26; filter:brightness(.94); }
-  to{ opacity:.66; filter:brightness(1.16); }
+  opacity:.17;
+  background:linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(255,255,255,.01) 30%,
+    rgba(255,255,255,.12) 47%,
+    rgba(255,255,255,.28) 51%,
+    rgba(255,255,255,.06) 58%,
+    transparent 72%
+  );
 }
 
 .raffle-badge{
   border-radius:999px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-  font-family:'Inter',sans-serif;
-  font-weight:800;
-  color:#0b0d10;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  border:1.5px solid rgba(84,28,35,.25);
+  font-weight:900;
+  color:#7a3440;
   text-shadow:none;
+  box-shadow:0 5px 12px rgba(92,28,36,.14);
 }
 
 .raffle-badge::before{
-  background:#727b86;
+  background:#e97f8d;
   box-shadow:
-    0 0 0 3px rgba(255,255,255,.05),
-    0 0 7px rgba(255,255,255,.14);
+    0 0 0 3px rgba(233,127,141,.12),
+    0 0 7px rgba(255,255,255,.24);
 }
 
 .raffle-badge::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  background:linear-gradient(90deg,transparent,rgba(122,52,64,.28),transparent);
 }
 
 .raffle-title{
-  border-radius:18px;
+  border-radius:20px;
   background:
-    radial-gradient(circle at 8% 22%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 92% 23%, rgba(255,255,255,.64) 0 1px, transparent 1.4px),
-    linear-gradient(135deg,#0a0c0f,#020304);
-  border:1px solid rgba(255,255,255,.18);
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:500;
-  letter-spacing:.035em;
+    linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.035)),
+    rgba(211,99,114,.23);
+  border:1.5px solid rgba(255,255,255,.47);
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
   color:#fff;
+  -webkit-text-stroke:1.2px rgba(18,12,12,.91);
+  paint-order:stroke fill;
   text-shadow:
-    0 0 5px rgba(255,255,255,.18),
-    0 2px 0 rgba(0,0,0,.98);
+    0 3px 0 rgba(20,12,12,.84),
+    0 4px 9px rgba(65,18,25,.19);
 }
 
 .raffle-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.80),transparent);
 }
 
 .raffle-title::after{
-  height:1px;
+  height:2px;
   background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.22);
+  box-shadow:0 0 6px rgba(255,255,255,.36);
 }
 
 .raffle-name-item{
-  border-radius:15px;
+  border-radius:17px;
   background:
-    radial-gradient(circle at 8% 14%, rgba(255,255,255,.16) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 91% 72%, rgba(255,255,255,.13) 0 1px, transparent 1.4px),
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
-    linear-gradient(135deg,#111419,#050607 60%,#020304);
-  border:1px solid rgba(255,255,255,.10);
+    linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04)),
+    rgba(216,104,118,.18);
+  border:1px solid rgba(255,255,255,.31);
   box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.04);
+    0 6px 14px rgba(93,28,36,.13),
+    inset 0 1px 0 rgba(255,255,255,.24);
 }
 
 .raffle-name-item::before{
-  opacity:.22;
+  opacity:.20;
   background:linear-gradient(
     105deg,
     transparent 0%,
-    rgba(255,255,255,.01) 24%,
-    rgba(255,255,255,.14) 48%,
-    rgba(255,255,255,.02) 62%,
+    rgba(255,255,255,.02) 24%,
+    rgba(255,255,255,.22) 48%,
+    rgba(255,255,255,.04) 62%,
     transparent 76%
   );
 }
 
 .raffle-name-item::after{
-  border-radius:10px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#0b0d10;
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  border:1.5px solid rgba(91,29,37,.24);
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#78323e;
   text-shadow:none;
 }
 
 .raffle-name-item:first-child{
-  border-radius:17px;
+  border-radius:19px;
   background:
-    radial-gradient(circle at 9% 17%, rgba(255,255,255,.24) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 92% 20%, rgba(255,255,255,.20) 0 1px, transparent 1.4px),
-    linear-gradient(135deg,#171b21,#060708 58%,#020304);
-  border:1px solid rgba(255,255,255,.20);
+    linear-gradient(180deg,rgba(255,255,255,.21),rgba(255,255,255,.055)),
+    rgba(205,87,103,.22);
+  border:1.5px solid rgba(255,255,255,.48);
   box-shadow:
-    0 8px 18px rgba(0,0,0,.38),
-    0 0 13px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.06);
+    0 8px 18px rgba(93,28,36,.17),
+    inset 0 1px 0 rgba(255,255,255,.30);
 }
 
 .raffle-name-item:hover{
   transform:translateY(-1px);
-  filter:brightness(1.06);
-  border-color:rgba(255,255,255,.22);
+  filter:brightness(1.045);
+  border-color:rgba(255,255,255,.46);
 }
 
 .raffle-name{
-  font-family:'Inter',sans-serif;
-  font-weight:800;
-  color:#f8f9fb;
+  font-weight:900;
+  color:#fff;
+  -webkit-text-stroke:.40px rgba(22,12,12,.70);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(29,15,15,.55),
+    0 3px 6px rgba(80,24,31,.12);
 }
 
 .raffle-tickets{
-  border-radius:10px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  border:1.5px solid rgba(91,29,37,.24);
 }
 
 .raffle-tickets::after{
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#0b0d10;
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
+  color:#78323e;
   text-shadow:none;
 }
 
 .raffle-winner-screen{
-  border-radius:28px;
+  border-radius:30px;
   background:
-    radial-gradient(circle at 8% 10%, rgba(255,255,255,.90) 0 1.5px, transparent 1.9px),
-    radial-gradient(circle at 21% 4%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 36% 12%, rgba(255,255,255,.74) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 63% 8%, rgba(255,255,255,.50) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 82% 14%, rgba(255,255,255,.84) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 94% 7%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 50% 45%,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 32%,transparent 58%),
-    linear-gradient(145deg,#0d1014 0%,#030405 66%,#010203 100%);
+    radial-gradient(circle at 16% 20%, rgba(255,255,255,.50) 0 9%, transparent 25%),
+    radial-gradient(circle at 80% 68%, rgba(245,139,132,.42) 0 11%, transparent 28%),
+    radial-gradient(circle at 54% 22%, rgba(255,194,184,.44) 0 9%, transparent 25%),
+    linear-gradient(115deg,#ffdadd 0%,#f7b5bd 28%,#ef8e99 50%,#f6a7a8 69%,#ffd4ce 100%);
+  background-size:165% 165%,175% 175%,155% 155%,230% 230%;
+  animation:
+    blushFlowWide 20s ease-in-out infinite,
+    blushSoftBreath 8s ease-in-out infinite;
+  border:2px solid rgba(255,255,255,.62);
 }
 
 .raffle-winner-screen::after{
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.16);
+  border-radius:23px;
+  border:1px solid rgba(255,255,255,.25);
 }
 
 .raffle-winner-screen::before{
-  content:"✦  ✧  ✦";
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
+  content:"♡  ✦  ♡";
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
   color:#fff;
+  -webkit-text-stroke:1px rgba(18,12,12,.82);
+  paint-order:stroke fill;
   text-shadow:
-    0 0 8px rgba(255,255,255,.22),
-    0 2px 0 rgba(0,0,0,.98);
+    0 2px 0 rgba(20,12,12,.72),
+    0 0 7px rgba(255,255,255,.18);
 }
 
 .winner-label{
   border-radius:999px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-  font-family:'Inter',sans-serif;
-  font-weight:800;
-  color:#0b0d10;
+  background:linear-gradient(180deg,#fff,#fff1ef);
+  border:1.5px solid rgba(91,29,37,.24);
+  font-weight:900;
+  color:#78323e;
   text-shadow:none;
 }
 
 .winner-name{
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
+  font-family:'Anton', Impact, sans-serif;
+  font-weight:400;
   color:#fff;
+  -webkit-text-stroke:1.45px rgba(18,12,12,.90);
+  paint-order:stroke fill;
   text-shadow:
-    0 0 8px rgba(255,255,255,.20),
-    0 4px 0 rgba(0,0,0,.98);
+    0 4px 0 rgba(20,12,12,.82),
+    0 0 8px rgba(255,255,255,.15);
 }
 
 @media (max-width:590px){
-  .raffle-widget{ border-radius:25px; }
-  .raffle-widget::before{ border-radius:20px; }
-  .raffle-title{ border-radius:16px; }
-  .raffle-name-item{ border-radius:13px; }
-  .raffle-winner-screen{ border-radius:24px; }
+  .raffle-widget{ border-radius:27px; }
+  .raffle-widget::before{ border-radius:22px; }
+  .raffle-title{ border-radius:18px; }
+  .raffle-name-item{ border-radius:15px; }
+  .raffle-winner-screen{ border-radius:26px; }
 }

@@ -1,13 +1,3 @@
-/* =========================================================
-   CRIMSON ECG / HEARTBEAT THEME
-   Inspirado en la referencia:
-   - Fondo rojo intenso
-   - Letras blancas con borde negro
-   - Línea ECG blanca visible
-   - Acabado moderno, limpio y redondeado
-   Mantiene los selectores y estados funcionales existentes.
-========================================================= */
-
 /* ==========================================
    GOAL BAR – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acento rosa
@@ -538,128 +528,23 @@ body{
 }
 
 
-:root{
-  --red-1:#ff2b31;
-  --red-2:#ec171e;
-  --red-3:#c80f16;
-  --red-dark:#8e0a0f;
-  --white:#ffffff;
-  --black:#050505;
-  --line-white:rgba(255,255,255,.78);
-  --line-soft:rgba(255,255,255,.32);
-  --shadow:rgba(0,0,0,.58);
-}
-
-body{
-  color:#fff;
-  font-family:'Inter', Arial, sans-serif;
-}
-
-@keyframes ecgGlow{
-  0%,100%{
-    opacity:.42;
-    filter:drop-shadow(0 0 1px rgba(255,255,255,.25));
-  }
-  50%{
-    opacity:.80;
-    filter:drop-shadow(0 0 5px rgba(255,255,255,.60));
-  }
-}
 
 /* =========================================================
-   BAR
+   CANDY HEARTS COLOR-CYCLE THEME
+   Morado + corazones -> rosa/azul cielo -> morado
 ========================================================= */
+:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
+@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
+@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
+@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif;}
 
-#goal-wrapper{
-  width:78px;
-  border-radius:27px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 25%),
-    linear-gradient(180deg,var(--red-1) 0%,var(--red-2) 50%,var(--red-3) 100%);
-  border:2px solid #050505;
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.46),
-    inset 0 1px 0 rgba(255,255,255,.16);
-}
+#goal-wrapper{width:78px;border-radius:29px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--purple-a),var(--purple-b) 48%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;border:2px solid rgba(255,255,255,.30);box-shadow:0 16px 34px rgba(36,0,67,.28),inset 0 1px 0 rgba(255,255,255,.17);animation:candyHeartFloat 13s linear infinite;}
+#goal-wrapper::before{z-index:6;border-radius:23px;border:1px solid rgba(255,255,255,.14);}
+#goal-wrapper::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--pink-a) 0%,#f568c5 42%,var(--sky-a) 74%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
+#bar-fill{z-index:2;border-radius:0 0 28px 28px;background-image:linear-gradient(90deg,rgba(255,255,255,.18),transparent 32%,rgba(62,0,93,.10) 72%,rgba(255,255,255,.08)),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0));background-color:#8b34e7;animation:candyBarFill 8s ease-in-out infinite;}
+@keyframes candyBarFill{0%,100%{background-color:#8430e7}46%{background-color:#ef53b7}58%{background-color:#69d7ff}}
+#bar-fill::before{height:5px;background:linear-gradient(180deg,#fff,#f5ecff);box-shadow:0 0 6px rgba(255,255,255,.76),0 0 12px rgba(255,255,255,.24);}
+.goal-title{z-index:7;border-radius:10px;font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;background:rgba(76,14,120,.20);-webkit-text-stroke:.8px rgba(46,0,67,.72);paint-order:stroke fill;text-shadow:0 2px 0 rgba(75,15,99,.55);}
+.goal-amount{z-index:7;border-radius:12px;background:linear-gradient(180deg,#fff,#f5eef9);border:1.5px solid rgba(103,34,143,.28);font-family:'Anton',Impact,sans-serif;font-weight:400;color:#6f249e;text-shadow:none;}
 
-#goal-wrapper::before{
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.11);
-}
-
-#goal-wrapper::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:330px;
-  height:58px;
-  transform:translate(-50%,-50%) rotate(90deg);
-  transform-origin:center;
-  z-index:5;
-  opacity:.62;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 120'%3E%3Cpath d='M0 62 H95 L118 62 L130 50 L144 64 L160 62 L177 62 L190 82 L203 20 L220 94 L236 55 L250 62 H320 L341 62 L354 53 L367 64 L385 62 H470 L488 62 L500 46 L516 69 L532 62 H610 L625 62 L642 78 L658 30 L673 89 L690 58 L706 62 H800' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-size:100% 100%;
-  background-position:center;
-  animation:ecgGlow 3.2s ease-in-out infinite;
-  pointer-events:none;
-}
-
-#bar-fill{
-  border-radius:0 0 26px 26px;
-  background:
-    linear-gradient(90deg,rgba(255,255,255,.13),transparent 34%,rgba(0,0,0,.14) 72%,rgba(255,255,255,.04)),
-    linear-gradient(180deg,#fb3a40 0%,#d7141b 48%,#8f080d 100%);
-  box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.06),
-    inset -7px 0 12px rgba(0,0,0,.22),
-    0 -2px 10px rgba(255,255,255,.10);
-}
-
-#bar-fill::before{
-  height:5px;
-  background:linear-gradient(180deg,#fff,#e6e6e6);
-  box-shadow:
-    0 0 6px rgba(255,255,255,.76),
-    0 0 12px rgba(255,255,255,.25);
-}
-
-#bar-fill::after{
-  background:#fff;
-  box-shadow:
-    0 0 5px rgba(255,255,255,.80),
-    0 0 10px rgba(255,255,255,.26);
-}
-
-.goal-title{
-  border-radius:9px;
-  font-family:'Anton', Impact, sans-serif;
-  font-weight:400;
-  letter-spacing:.035em;
-  color:#fff;
-  background:rgba(150,0,7,.40);
-  -webkit-text-stroke:1.2px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
-}
-
-.goal-title::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),#fff,rgba(255,255,255,.18),transparent);
-}
-
-.goal-amount{
-  border-radius:11px;
-  background:linear-gradient(180deg,#fff,#ededed);
-  border:2px solid #050505;
-  font-family:'Anton', Impact, sans-serif;
-  font-weight:400;
-  color:#080808;
-  text-shadow:none;
-}
-
-@media (max-height:460px){
-  #goal-wrapper{ border-radius:24px; }
-  #goal-wrapper::before{ border-radius:19px; }
-  #bar-fill{ border-radius:0 0 23px 23px; }
-}
