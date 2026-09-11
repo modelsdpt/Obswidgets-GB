@@ -1,4 +1,9 @@
 /* =========================================================
+   SMOKED MARBLE / PINK LINE THEME
+   Gris marmol en movimiento + vetas negras + texto blanco
+   + acentos rosados.
+========================================================= */
+/* =========================================================
    PINK LAVA LAMP THEME
    Inspirado en la referencia "$15 FLASH OF YOUR CHOICE"
 
@@ -1061,3 +1066,48 @@ body{
   .timer-title{border-radius:16px;}
   .timer-box{border-radius:20px;}
 }
+
+
+
+/* =========================================================
+   SMOKED MARBLE / PINK LINE THEME
+   Gris marmol en movimiento + vetas negras + texto blanco
+   + acentos rosados. Mantiene la funcionalidad existente.
+========================================================= */
+:root{
+  --marble-bg-1:#3b3e42;
+  --marble-bg-2:#292c30;
+  --marble-bg-3:#1c1f22;
+  --marble-bg-4:#555a60;
+  --marble-black:#08090a;
+  --marble-pink:#ff8fbd;
+  --marble-pink-soft:#ffc5dc;
+  --marble-pink-dark:#d85b8e;
+}
+@keyframes marbleMove{
+  0%{background-position:0% 35%,100% 20%,15% 85%,0% 0%}
+  25%{background-position:30% 55%,70% 32%,34% 68%,25% 0%}
+  50%{background-position:75% 30%,48% 62%,62% 42%,55% 0%}
+  75%{background-position:40% 68%,82% 46%,25% 55%,80% 0%}
+  100%{background-position:0% 35%,100% 20%,15% 85%,0% 0%}
+}
+@keyframes veinMove{
+  0%{transform:translate3d(-9%,-5%,0) rotate(-4deg) scale(1.10);background-position:0 0,0 0,0 0}
+  33%{transform:translate3d(2%,3%,0) rotate(1deg) scale(1.14);background-position:55px -20px,-30px 24px,20px 12px}
+  66%{transform:translate3d(8%,-1%,0) rotate(4deg) scale(1.12);background-position:105px 18px,-70px -12px,46px -18px}
+  100%{transform:translate3d(-9%,-5%,0) rotate(-4deg) scale(1.10);background-position:0 0,0 0,0 0}
+}
+@keyframes marblePulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
+
+.timer-widget{border-radius:29px;background:radial-gradient(ellipse at 18% 32%,rgba(120,126,133,.48) 0 8%,transparent 27%),radial-gradient(ellipse at 82% 72%,rgba(76,81,87,.42) 0 10%,transparent 29%),radial-gradient(ellipse at 55% 16%,rgba(98,103,109,.27) 0 8%,transparent 24%),linear-gradient(120deg,#3c4045 0%,#26292d 28%,#4a4f55 52%,#1c1f22 73%,#34383d 100%);background-size:170% 170%,180% 180%,155% 155%,240% 240%;border:1.5px solid rgba(255,255,255,.19);box-shadow:0 18px 38px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.09);animation:marbleMove 29s ease-in-out infinite,marblePulse 10s ease-in-out infinite}
+.timer-widget::before{content:"";position:absolute;inset:-14%;z-index:0;border-radius:inherit;pointer-events:none;opacity:.68;background:repeating-linear-gradient(132deg,transparent 0 22px,rgba(0,0,0,.22) 23px 27px,transparent 28px 52px),repeating-linear-gradient(48deg,transparent 0 38px,rgba(0,0,0,.13) 39px 42px,transparent 43px 76px);filter:blur(4px);animation:veinMove 33s ease-in-out infinite}
+.timer-widget::after{content:"";position:absolute;inset:5px;z-index:5;width:auto;height:auto;left:5px;top:5px;transform:none;border-radius:23px;border:1px solid rgba(255,255,255,.06);background:none;animation:none;pointer-events:none}
+.timer-title{z-index:6;background:rgba(12,13,15,.48);border:1px solid rgba(255,255,255,.15);font-family:'Brush Script MT','Segoe Script',cursive;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.72)}
+.timer-title::after{height:3px;background:linear-gradient(90deg,transparent,var(--marble-pink-soft),var(--marble-pink),var(--marble-pink-soft),transparent);box-shadow:0 0 6px rgba(255,143,189,.34)}
+.timer-box{z-index:6;background:rgba(12,13,15,.52);border:1px solid rgba(255,255,255,.11);box-shadow:0 10px 22px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06)}
+.timer-box::before{width:4px;background:linear-gradient(180deg,var(--marble-pink-soft),var(--marble-pink),var(--marble-pink-dark));box-shadow:0 0 8px rgba(255,143,189,.26)}
+#timer-value{color:#fff;font-weight:900;text-shadow:0 2px 0 rgba(0,0,0,.78),0 0 5px rgba(255,255,255,.10)}
+.timer-box.timer-running{animation:marbleTimerPulse 2.8s ease-in-out infinite alternate}
+@keyframes marbleTimerPulse{from{transform:scale(1);border-color:rgba(255,255,255,.10)}to{transform:scale(1.012);border-color:rgba(255,143,189,.28);box-shadow:0 11px 24px rgba(0,0,0,.35),0 0 12px rgba(255,143,189,.05),inset 0 1px 0 rgba(255,255,255,.07)}}
+.timer-box.timer-finished{border-color:rgba(255,143,189,.38);background:rgba(10,11,13,.60)}
+

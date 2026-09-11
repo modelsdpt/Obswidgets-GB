@@ -1,4 +1,9 @@
 /* =========================================================
+   SMOKED MARBLE / PINK LINE THEME
+   Gris marmol en movimiento + vetas negras + texto blanco
+   + acentos rosados.
+========================================================= */
+/* =========================================================
    PINK LAVA LAMP THEME
    Inspirado en la referencia "$15 FLASH OF YOUR CHOICE"
 
@@ -1199,3 +1204,66 @@ body{
   .tip{border-radius:15px;}
   .tip.mvp{border-radius:18px;}
 }
+
+
+
+/* =========================================================
+   SMOKED MARBLE / PINK LINE THEME
+   Gris marmol en movimiento + vetas negras + texto blanco
+   + acentos rosados. Mantiene la funcionalidad existente.
+========================================================= */
+:root{
+  --marble-bg-1:#3b3e42;
+  --marble-bg-2:#292c30;
+  --marble-bg-3:#1c1f22;
+  --marble-bg-4:#555a60;
+  --marble-black:#08090a;
+  --marble-pink:#ff8fbd;
+  --marble-pink-soft:#ffc5dc;
+  --marble-pink-dark:#d85b8e;
+}
+@keyframes marbleMove{
+  0%{background-position:0% 35%,100% 20%,15% 85%,0% 0%}
+  25%{background-position:30% 55%,70% 32%,34% 68%,25% 0%}
+  50%{background-position:75% 30%,48% 62%,62% 42%,55% 0%}
+  75%{background-position:40% 68%,82% 46%,25% 55%,80% 0%}
+  100%{background-position:0% 35%,100% 20%,15% 85%,0% 0%}
+}
+@keyframes veinMove{
+  0%{transform:translate3d(-9%,-5%,0) rotate(-4deg) scale(1.10);background-position:0 0,0 0,0 0}
+  33%{transform:translate3d(2%,3%,0) rotate(1deg) scale(1.14);background-position:55px -20px,-30px 24px,20px 12px}
+  66%{transform:translate3d(8%,-1%,0) rotate(4deg) scale(1.12);background-position:105px 18px,-70px -12px,46px -18px}
+  100%{transform:translate3d(-9%,-5%,0) rotate(-4deg) scale(1.10);background-position:0 0,0 0,0 0}
+}
+@keyframes marblePulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
+
+#container{
+  border-radius:29px;padding:11px;
+  background:
+    radial-gradient(ellipse at 18% 32%,rgba(120,126,133,.48) 0 8%,transparent 27%),
+    radial-gradient(ellipse at 82% 72%,rgba(76,81,87,.42) 0 10%,transparent 29%),
+    radial-gradient(ellipse at 55% 16%,rgba(98,103,109,.27) 0 8%,transparent 24%),
+    linear-gradient(120deg,#3c4045 0%,#26292d 28%,#4a4f55 52%,#1c1f22 73%,#34383d 100%);
+  background-size:170% 170%,180% 180%,155% 155%,240% 240%;
+  border:1.5px solid rgba(255,255,255,.20);
+  box-shadow:0 18px 38px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.10);
+  animation:marbleMove 28s ease-in-out infinite,marblePulse 10s ease-in-out infinite;
+}
+#container::before{
+  content:"";position:absolute;inset:-14%;z-index:0;border-radius:inherit;pointer-events:none;opacity:.68;
+  background:
+    repeating-linear-gradient(132deg,transparent 0 22px,rgba(0,0,0,.22) 23px 27px,transparent 28px 52px),
+    repeating-linear-gradient(48deg,transparent 0 38px,rgba(0,0,0,.13) 39px 42px,transparent 43px 76px),
+    radial-gradient(ellipse at 25% 35%,rgba(0,0,0,.26),transparent 32%);
+  filter:blur(4px);animation:veinMove 32s ease-in-out infinite;
+}
+#container::after{content:"";position:absolute;inset:5px;z-index:5;border-radius:23px;border:1px solid rgba(255,255,255,.06);background:none;animation:none;pointer-events:none}
+.title{z-index:7;border-radius:18px;background:rgba(12,13,15,.48);border:1px solid rgba(255,255,255,.15);font-family:'Brush Script MT','Segoe Script',cursive;font-size:29px;font-weight:700;text-transform:none;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.75),0 0 5px rgba(255,255,255,.12)}
+.title::after{left:27%;right:27%;bottom:1px;height:3px;background:linear-gradient(90deg,transparent,var(--marble-pink-soft),var(--marble-pink),var(--marble-pink-soft),transparent);box-shadow:0 0 7px rgba(255,143,189,.38)}
+.tip{z-index:7;border-radius:16px;background:rgba(12,13,15,.50);border:1px solid rgba(255,255,255,.09);box-shadow:0 6px 14px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.05)}
+.tip::before{width:4px;background:linear-gradient(180deg,var(--marble-pink-soft),var(--marble-pink),var(--marble-pink-dark));box-shadow:0 0 8px rgba(255,143,189,.26)}
+.tip .name{color:#fff;text-shadow:0 2px 2px rgba(0,0,0,.88)}
+.tip .amount{background:linear-gradient(180deg,#303338,#181a1d);border:1px solid rgba(255,143,189,.32);color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.75)}
+.tip.mvp{background:rgba(8,9,10,.58);border:1px solid rgba(255,143,189,.24)}
+.rank-icon{background:linear-gradient(180deg,#35383d,#17191c);border:1px solid rgba(255,143,189,.28);color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.75)}
+
