@@ -1,11 +1,13 @@
 /* =========================================================
-   BLACK TO RED / TRAPON THEME
+   SARAH THEME
    Inspirado en la referencia:
-   - Degradado de negro profundo a rojo vino
-   - Letras blancas con contorno negro
-   - Bordes redondeados
-   - Contraste alto y acabado limpio
-   - Mantiene selectores y estados funcionales existentes
+   - Fondo hielo / celeste muy claro con rosa suave
+   - Efecto mármol lechoso
+   - Letras blancas cursivas con contorno rosa
+   - "Spray" / veta morada animada desde la esquina superior izquierda
+   - Aparición y desaparición suave
+   - Bordes redondeados y brillo delicado
+   - Mantiene los selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -14,7 +16,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -974,24 +976,88 @@ body{
 
 
 :root{
-  --tr-black:#030303;
-  --tr-black-2:#090909;
-  --tr-red-1:#3d0710;
-  --tr-red-2:#6d0c1d;
-  --tr-red-3:#97162e;
-  --tr-red-4:#b31d3b;
-  --tr-white:#ffffff;
-  --tr-outline:#050505;
-  --tr-shadow:rgba(0,0,0,.62);
+  --sarah-ice:#eefaff;
+  --sarah-blue:#d7f0fb;
+  --sarah-blue-2:#bfe3f3;
+  --sarah-pink:#ffc8dd;
+  --sarah-pink-2:#f59dbc;
+  --sarah-pink-deep:#d95d8c;
+  --sarah-purple:#9b6ad7;
+  --sarah-purple-2:#7551b5;
+  --sarah-white:#ffffff;
+  --sarah-shadow:rgba(116,83,132,.18);
 }
 
-@keyframes traponGlow{
-  0%,100%{
-    filter:brightness(1);
+@keyframes sarahMarbleDrift{
+  0%{
+    background-position:
+      0% 30%,
+      100% 20%,
+      20% 80%,
+      0% 0%;
+  }
+  25%{
+    background-position:
+      24% 42%,
+      76% 35%,
+      38% 66%,
+      20% 0%;
   }
   50%{
-    filter:brightness(1.035);
+    background-position:
+      62% 34%,
+      48% 58%,
+      58% 45%,
+      45% 0%;
   }
+  75%{
+    background-position:
+      34% 58%,
+      84% 44%,
+      28% 54%,
+      72% 0%;
+  }
+  100%{
+    background-position:
+      0% 30%,
+      100% 20%,
+      20% 80%,
+      0% 0%;
+  }
+}
+
+@keyframes sarahSprayMove{
+  0%{
+    opacity:0;
+    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
+    filter:blur(14px);
+  }
+  12%{
+    opacity:.28;
+  }
+  30%{
+    opacity:.58;
+    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
+    filter:blur(10px);
+  }
+  48%{
+    opacity:.34;
+    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
+  }
+  62%{
+    opacity:.10;
+    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
+  }
+  75%,100%{
+    opacity:0;
+    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
+    filter:blur(16px);
+  }
+}
+
+@keyframes sarahSoftBreath{
+  0%,100%{ filter:brightness(1) saturate(1); }
+  50%{ filter:brightness(1.018) saturate(1.025); }
 }
 
 body{
@@ -1000,184 +1066,187 @@ body{
 }
 
 /* =========================================================
-   RAFFLE
+   SARAH — RAFFLE
 ========================================================= */
 
 .raffle-widget{
-  border-radius:30px;
+  border-radius:31px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 25%),
-    linear-gradient(100deg,#020202 0%,#080607 22%,#3b0710 53%,#741022 78%,#99162f 100%);
-  border:1.5px solid rgba(255,255,255,.10);
+    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
+    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
+    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
+    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
+  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
+  border:1.5px solid rgba(255,255,255,.84);
   box-shadow:
-    0 20px 44px rgba(0,0,0,.52),
-    0 0 0 1px rgba(0,0,0,.76),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  animation:traponGlow 8s ease-in-out infinite;
+    0 18px 38px var(--sarah-shadow),
+    inset 0 2px 0 rgba(255,255,255,.78);
+  animation:
+    sarahMarbleDrift 31s ease-in-out infinite,
+    sarahSoftBreath 9s ease-in-out infinite;
 }
 
 .raffle-widget::before{
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.04);
+  content:"";
+  position:absolute;
+  inset:-12%;
+  z-index:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
+    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
+    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
+  transform-origin:top left;
+  animation:sarahSprayMove 16s ease-in-out infinite;
 }
 
 .raffle-widget::after{
-  opacity:.14;
+  content:"";
+  position:absolute;
+  inset:5px;
+  z-index:4;
+  width:auto;
+  height:auto;
+  left:5px;
+  top:5px;
+  transform:none;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.46);
+  background:none;
+  animation:none;
+  pointer-events:none;
+}
+
+.raffle-header,
+.raffle-names{
+  position:relative;
+  z-index:5;
 }
 
 .raffle-badge{
   border-radius:999px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.70);
-  font-family:'Inter',sans-serif;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
   font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  color:#bd4d78;
+  text-shadow:none;
 }
 
 .raffle-badge::before{
-  background:#fff;
-  border:1px solid #050505;
-  box-shadow:none;
-}
-
-.raffle-badge::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  background:var(--sarah-purple);
+  box-shadow:0 0 0 3px rgba(155,106,215,.10),0 0 7px rgba(155,106,215,.20);
 }
 
 .raffle-title{
-  border-radius:18px;
+  border-radius:20px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0)),
-    linear-gradient(100deg,#050505 0%,#190307 28%,#65101d 67%,#8f1730 100%);
-  border:1px solid rgba(255,255,255,.11);
-  font-family:'Anton',Impact,sans-serif;
+    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
+    rgba(224,169,201,.16);
+  border:1.5px solid rgba(255,255,255,.74);
+  font-family:'Pacifico','Brush Script MT',cursive;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.4px #050505;
+  -webkit-text-stroke:1.15px var(--sarah-pink-deep);
   paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505;
-}
-
-.raffle-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+  text-shadow:0 2px 0 rgba(201,78,124,.20),0 0 6px rgba(255,255,255,.60);
 }
 
 .raffle-title::after{
-  height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent);
-  box-shadow:none;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
 }
 
 .raffle-name-item{
-  border-radius:15px;
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(100deg,#080808 0%,#160306 34%,#54101a 75%,#741427 100%);
-  border:1px solid rgba(255,255,255,.07);
+    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
+    rgba(214,232,242,.32);
+  border:1px solid rgba(255,255,255,.62);
   box-shadow:
-    0 6px 14px rgba(0,0,0,.28),
-    inset 0 1px 0 rgba(255,255,255,.03);
+    0 6px 14px rgba(120,100,134,.10),
+    inset 0 1px 0 rgba(255,255,255,.72);
 }
 
 .raffle-name-item::after{
-  border-radius:10px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.72);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.65px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+  font-family:'Inter',Arial,sans-serif;
+  font-weight:900;
+  color:#bd4d78;
+  text-shadow:none;
 }
 
 .raffle-name-item:first-child{
-  border-radius:17px;
+  border-radius:19px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),
-    linear-gradient(100deg,#090909 0%,#1c0408 30%,#6e1122 72%,#97162f 100%);
-  border:1px solid rgba(255,255,255,.11);
-}
-
-.raffle-name-item:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.05);
-  border-color:rgba(255,255,255,.13);
+    linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,.13)),
+    rgba(216,229,240,.36);
+  border:1.5px solid rgba(255,255,255,.80);
 }
 
 .raffle-name{
   font-weight:900;
   color:#fff;
-  -webkit-text-stroke:.55px #050505;
+  -webkit-text-stroke:.45px var(--sarah-pink-deep);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.72);
+  text-shadow:0 1px 0 rgba(192,71,116,.20);
 }
 
 .raffle-tickets{
-  border-radius:10px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.72);
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
 }
 
 .raffle-tickets::after{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.65px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  font-family:'Inter',Arial,sans-serif;
+  font-weight:900;
+  color:#bd4d78;
+  text-shadow:none;
 }
 
 .raffle-winner-screen{
-  border-radius:29px;
+  border-radius:30px;
   background:
-    radial-gradient(circle at 50% 42%,rgba(151,22,46,.14),transparent 46%),
-    linear-gradient(100deg,#020202 0%,#0b0103 24%,#53101a 66%,#8e1530 100%);
-  border:1.5px solid rgba(255,255,255,.10);
-}
-
-.raffle-winner-screen::after{
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.05);
+    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
+    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
+    linear-gradient(120deg,#f7fdff 0%,#dff2fb 30%,#ffe1eb 58%,#d7eef8 100%);
+  background-size:170% 170%,180% 180%,230% 230%;
+  animation:sarahMarbleDrift 30s ease-in-out infinite;
+  border:1.5px solid rgba(255,255,255,.84);
 }
 
 .raffle-winner-screen::before{
-  content:"✦  ♦  ✦";
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
+  content:"✦  ♡  ✦";
+  font-family:'Pacifico','Brush Script MT',cursive;
   color:#fff;
-  -webkit-text-stroke:1px #050505;
+  -webkit-text-stroke:.9px var(--sarah-pink-deep);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
+  text-shadow:0 0 7px rgba(217,93,140,.18);
 }
 
 .winner-label{
   border-radius:999px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.72);
-  font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+  color:#bd4d78;
+  text-shadow:none;
 }
 
 .winner-name{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
+  font-family:'Pacifico','Brush Script MT',cursive;
   color:#fff;
-  -webkit-text-stroke:1.65px #050505;
+  -webkit-text-stroke:1.1px var(--sarah-pink-deep);
   paint-order:stroke fill;
-  text-shadow:0 4px 0 #050505;
+  text-shadow:0 2px 0 rgba(201,78,124,.20),0 0 8px rgba(255,255,255,.52);
 }
 
 @media (max-width:590px){
-  .raffle-widget{border-radius:26px;}
-  .raffle-widget::before{border-radius:21px;}
-  .raffle-title{border-radius:16px;}
-  .raffle-name-item{border-radius:13px;}
-  .raffle-winner-screen{border-radius:25px;}
+  .raffle-widget{border-radius:27px;}
+  .raffle-widget::after{border-radius:22px;}
+  .raffle-title{border-radius:18px;}
+  .raffle-name-item{border-radius:15px;}
+  .raffle-winner-screen{border-radius:26px;}
 }
