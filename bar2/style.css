@@ -1,14 +1,22 @@
 /* =========================================================
-   BLUSH MOTION / SLOW PINK FLOW THEME
-   Inspirado en la referencia "$5 BLOW A KISS"
+   PINK BALLOON RISE THEME
+   Inspired by the reference:
+   - Pink background
+   - White text
+   - Multicolor balloons rising from bottom to top
+   - Soft continuous motion
+   - Rounded corners and clean, playful finish
+   - Existing selectors/states preserved
+========================================================= */
 
-   Concepto:
-   - Rosa blush + coral suave + crema rosado
-   - Letras blancas con sombra/borde oscuro
-   - El fondo NO cambia de paleta: solo se desplaza lentamente
-   - Transiciones largas y suaves para sentir movimiento
-   - Bordes redondeados y acabado premium
-   - Conserva selectores y estados funcionales del widget
+/* =========================================================
+   BLACK TO RED / TRAPON THEME
+   Inspirado en la referencia:
+   - Degradado de negro profundo a rojo vino
+   - Letras blancas con contorno negro
+   - Bordes redondeados
+   - Contraste alto y acabado limpio
+   - Mantiene selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -542,150 +550,250 @@ body{
 
 
 :root{
-  --blush-1:#ffd5da;
-  --blush-2:#f7b7c0;
-  --blush-3:#ef8e99;
-  --blush-4:#e87582;
-  --coral:#f58b84;
-  --peach:#ffc2b8;
-  --cream:#fff2ef;
-  --white:#ffffff;
-  --black:#090707;
-  --deep-shadow:rgba(61,18,22,.34);
+  --tr-black:#030303;
+  --tr-black-2:#090909;
+  --tr-red-1:#3d0710;
+  --tr-red-2:#6d0c1d;
+  --tr-red-3:#97162e;
+  --tr-red-4:#b31d3b;
+  --tr-white:#ffffff;
+  --tr-outline:#050505;
+  --tr-shadow:rgba(0,0,0,.62);
 }
 
-@keyframes blushFlowWide{
-  0%{
-    background-position:0% 48%;
-  }
-  25%{
-    background-position:38% 34%;
-  }
-  50%{
-    background-position:100% 55%;
-  }
-  75%{
-    background-position:58% 70%;
-  }
-  100%{
-    background-position:0% 48%;
-  }
-}
-
-@keyframes blushFlowVertical{
-  0%{
-    background-position:50% 0%;
-  }
-  25%{
-    background-position:38% 32%;
-  }
-  50%{
-    background-position:56% 100%;
-  }
-  75%{
-    background-position:68% 58%;
-  }
-  100%{
-    background-position:50% 0%;
-  }
-}
-
-@keyframes blushSoftBreath{
+@keyframes traponGlow{
   0%,100%{
-    filter:saturate(1) brightness(1);
+    filter:brightness(1);
   }
   50%{
-    filter:saturate(1.035) brightness(1.025);
+    filter:brightness(1.035);
   }
 }
 
 body{
   color:#fff;
-  font-family:'Inter', Arial, sans-serif;
+  font-family:'Inter',Arial,sans-serif;
 }
 
 /* =========================================================
-   GOAL / BAR
+   BAR
+========================================================= */
+
+#goal-wrapper{
+  width:78px;
+  border-radius:29px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 24%),
+    linear-gradient(180deg,#030303 0%,#120205 32%,#4b0a15 68%,#8e1530 100%);
+  border:1.5px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.50),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+#goal-wrapper::before{
+  border-radius:23px;
+  border:1px solid rgba(255,255,255,.04);
+}
+
+#goal-wrapper::after{
+  opacity:.15;
+}
+
+#bar-fill{
+  border-radius:0 0 28px 28px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.04),transparent 36%,rgba(0,0,0,.18) 72%,rgba(255,255,255,.02)),
+    linear-gradient(180deg,#a21a36 0%,#741124 48%,#33070e 100%);
+  box-shadow:
+    inset 6px 0 10px rgba(255,255,255,.03),
+    inset -7px 0 12px rgba(0,0,0,.20),
+    0 -2px 10px rgba(151,22,46,.08);
+}
+
+#bar-fill::before{
+  height:5px;
+  background:linear-gradient(180deg,#fff,#dedede);
+  box-shadow:
+    0 0 6px rgba(255,255,255,.58),
+    0 0 12px rgba(255,255,255,.14);
+}
+
+#bar-fill::after{
+  background:#fff;
+  box-shadow:0 0 5px rgba(255,255,255,.60);
+}
+
+.goal-title{
+  border-radius:10px;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  background:rgba(0,0,0,.18);
+  -webkit-text-stroke:1.05px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 #050505;
+}
+
+.goal-title::after{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+}
+
+.goal-amount{
+  border-radius:11px;
+  background:linear-gradient(180deg,#8b152e,#5a0c1c);
+  border:1px solid rgba(0,0,0,.72);
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  -webkit-text-stroke:.75px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 #050505;
+}
+
+@media (max-height:460px){
+  #goal-wrapper{border-radius:26px;}
+  #goal-wrapper::before{border-radius:21px;}
+  #bar-fill{border-radius:0 0 25px 25px;}
+}
+
+
+:root{
+  --balloon-pink-1:#f8b4dc;
+  --balloon-pink-2:#ef8fca;
+  --balloon-pink-3:#e474b8;
+  --balloon-rose:#ff6f9f;
+  --balloon-yellow:#ffd45f;
+  --balloon-blue:#6fd5ff;
+  --balloon-purple:#b77cff;
+  --balloon-orange:#ff9a5f;
+  --balloon-green:#7ee0b6;
+  --white:#ffffff;
+  --ink:#20131e;
+}
+
+@keyframes balloonRiseA{
+  0%{
+    transform:translate3d(0,115%,0);
+  }
+  100%{
+    transform:translate3d(0,-135%,0);
+  }
+}
+
+@keyframes balloonRiseB{
+  0%{
+    transform:translate3d(0,135%,0) scale(.92);
+  }
+  100%{
+    transform:translate3d(0,-155%,0) scale(1.04);
+  }
+}
+
+@keyframes balloonSway{
+  0%,100%{ margin-left:0; }
+  25%{ margin-left:7px; }
+  50%{ margin-left:-5px; }
+  75%{ margin-left:5px; }
+}
+
+@keyframes pinkBackdropBreath{
+  0%,100%{ filter:saturate(1) brightness(1); }
+  50%{ filter:saturate(1.035) brightness(1.02); }
+}
+
+body{
+  color:#fff;
+  font-family:'Inter',Arial,sans-serif;
+}
+
+/* =========================================================
+   BAR
 ========================================================= */
 
 #goal-wrapper{
   width:78px;
   border-radius:30px;
   background:
-    radial-gradient(circle at 42% 14%, rgba(255,255,255,.46) 0 8%, transparent 22%),
-    radial-gradient(circle at 68% 55%, rgba(245,139,132,.38) 0 10%, transparent 26%),
-    radial-gradient(circle at 36% 82%, rgba(255,242,239,.30) 0 9%, transparent 25%),
-    linear-gradient(180deg,#ffdadd 0%,#f7b5bd 29%,#ef8e99 52%,#f6a7a8 72%,#ffd4ce 100%);
-  background-size:
-    170% 170%,
-    185% 185%,
-    160% 160%,
-    220% 220%;
-  background-position:50% 0%;
-  border:2px solid rgba(255,255,255,.60);
+    linear-gradient(180deg,#f7b5de 0%,#ed90c9 50%,#df72b1 100%);
+  border:2px solid rgba(255,255,255,.56);
   box-shadow:
-    0 16px 34px rgba(106,40,48,.23),
-    inset 0 2px 0 rgba(255,255,255,.45);
-  animation:
-    blushFlowVertical 21s ease-in-out infinite,
-    blushSoftBreath 8s ease-in-out infinite;
+    0 16px 34px rgba(130,56,111,.23),
+    inset 0 2px 0 rgba(255,255,255,.38);
+  animation:pinkBackdropBreath 8s ease-in-out infinite;
 }
 
 #goal-wrapper::before{
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.28);
+  content:"";
+  position:absolute;
+  left:-8%;
+  bottom:-120%;
+  z-index:0;
+  width:116%;
+  height:100%;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 88%, var(--balloon-yellow) 0 11px, transparent 12px),
+    radial-gradient(circle at 70% 75%, var(--balloon-blue) 0 13px, transparent 14px),
+    radial-gradient(circle at 43% 58%, var(--balloon-rose) 0 12px, transparent 13px),
+    radial-gradient(circle at 79% 42%, var(--balloon-purple) 0 11px, transparent 12px),
+    radial-gradient(circle at 28% 25%, var(--balloon-green) 0 10px, transparent 11px);
+  animation:
+    balloonRiseA 16s linear infinite,
+    balloonSway 5s ease-in-out infinite;
 }
 
 #goal-wrapper::after{
-  opacity:.18;
+  content:"";
+  position:absolute;
+  left:-5%;
+  bottom:-135%;
+  z-index:0;
+  width:110%;
+  height:100%;
+  border-radius:inherit;
+  pointer-events:none;
   background:
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(255,255,255,.05) 26%,
-      rgba(255,255,255,.24) 50%,
-      rgba(255,255,255,.06) 63%,
-      transparent 100%
-    );
+    radial-gradient(circle at 35% 90%, var(--balloon-orange) 0 10px, transparent 11px),
+    radial-gradient(circle at 62% 66%, rgba(255,255,255,.92) 0 9px, transparent 10px),
+    radial-gradient(circle at 30% 44%, var(--balloon-blue) 0 10px, transparent 11px),
+    radial-gradient(circle at 75% 24%, var(--balloon-rose) 0 10px, transparent 11px);
+  opacity:.80;
+  animation:
+    balloonRiseB 22s linear infinite,
+    balloonSway 6.5s ease-in-out infinite reverse;
 }
 
 #bar-fill{
+  z-index:2;
   border-radius:0 0 29px 29px;
   background:
-    linear-gradient(90deg,rgba(255,255,255,.16),transparent 36%,rgba(134,45,56,.09) 72%,rgba(255,255,255,.08)),
-    linear-gradient(180deg,#f69da7 0%,#ec7f8c 45%,#cf6573 100%);
+    linear-gradient(90deg,rgba(255,255,255,.15),transparent 34%,rgba(112,38,94,.08) 72%,rgba(255,255,255,.07)),
+    linear-gradient(180deg,#f395ce 0%,#dd6eb2 48%,#b85191 100%);
   box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.10),
-    inset -7px 0 12px rgba(97,28,36,.12),
-    0 -2px 10px rgba(255,255,255,.18);
+    inset 6px 0 10px rgba(255,255,255,.09),
+    inset -7px 0 12px rgba(107,31,87,.10),
+    0 -2px 10px rgba(255,255,255,.16);
 }
 
 #bar-fill::before{
-  height:5px;
-  background:linear-gradient(180deg,#fff,#fff1ef);
-  box-shadow:
-    0 0 6px rgba(255,255,255,.78),
-    0 0 12px rgba(255,255,255,.28);
+  background:linear-gradient(180deg,#fff,#fff2fb);
+  box-shadow:0 0 6px rgba(255,255,255,.76),0 0 12px rgba(255,255,255,.24);
 }
 
 #bar-fill::after{
   background:#fff;
-  box-shadow:
-    0 0 5px rgba(255,255,255,.82),
-    0 0 10px rgba(255,255,255,.27);
+  box-shadow:0 0 5px rgba(255,255,255,.80);
 }
 
 .goal-title{
-  border-radius:10px;
-  font-family:'Anton', Impact, sans-serif;
+  z-index:7;
+  font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  background:rgba(207,95,109,.20);
-  -webkit-text-stroke:.9px rgba(20,12,12,.86);
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(20,12,12,.78),
-    0 0 5px rgba(255,255,255,.08);
+  background:rgba(168,58,131,.18);
+  text-shadow:0 2px 0 rgba(81,30,72,.38);
 }
 
 .goal-title::after{
@@ -693,17 +801,17 @@ body{
 }
 
 .goal-amount{
+  z-index:7;
   border-radius:12px;
-  background:linear-gradient(180deg,#fff,#fff1ef);
-  border:1.5px solid rgba(83,27,34,.26);
-  font-family:'Anton', Impact, sans-serif;
+  background:linear-gradient(180deg,#fff,#fff2fb);
+  border:1.5px solid rgba(169,63,134,.22);
+  font-family:'Anton',Impact,sans-serif;
   font-weight:400;
-  color:#78323e;
+  color:#a74485;
   text-shadow:none;
 }
 
 @media (max-height:460px){
-  #goal-wrapper{ border-radius:27px; }
-  #goal-wrapper::before{ border-radius:22px; }
-  #bar-fill{ border-radius:0 0 26px 26px; }
+  #goal-wrapper{border-radius:27px;}
+  #bar-fill{border-radius:0 0 26px 26px;}
 }

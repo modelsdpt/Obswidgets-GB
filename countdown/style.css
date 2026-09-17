@@ -1,32 +1,11 @@
 /* =========================================================
-   SMOKED MARBLE / PINK LINE THEME
-   Gris marmol en movimiento + vetas negras + texto blanco
-   + acentos rosados.
-========================================================= */
-/* =========================================================
-   PINK LAVA LAMP THEME
-   Inspirado en la referencia "$15 FLASH OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo rosa permanente
-   - "Burbujas" / pelotas rosas tipo lava lamp
-   - Movimiento constante, lento y orgánico
-   - Letras blancas con borde rosa oscuro
-   - Sombras suaves, brillo ligero y esquinas redondeadas
+   BLACK TO RED / TRAPON THEME
+   Inspirado en la referencia:
+   - Degradado de negro profundo a rojo vino
+   - Letras blancas con contorno negro
+   - Bordes redondeados
+   - Contraste alto y acabado limpio
    - Mantiene selectores y estados funcionales existentes
-========================================================= */
-
-/* =========================================================
-   BLUSH MOTION / SLOW PINK FLOW THEME
-   Inspirado en la referencia "$5 BLOW A KISS"
-
-   Concepto:
-   - Rosa blush + coral suave + crema rosado
-   - Letras blancas con sombra/borde oscuro
-   - El fondo NO cambia de paleta: solo se desplaza lentamente
-   - Transiciones largas y suaves para sentir movimiento
-   - Bordes redondeados y acabado premium
-   - Conserva selectores y estados funcionales del widget
 ========================================================= */
 
 /* ==========================================
@@ -575,336 +554,23 @@ body{
 
 
 :root{
-  --blush-1:#ffd5da;
-  --blush-2:#f7b7c0;
-  --blush-3:#ef8e99;
-  --blush-4:#e87582;
-  --coral:#f58b84;
-  --peach:#ffc2b8;
-  --cream:#fff2ef;
-  --white:#ffffff;
-  --black:#090707;
-  --deep-shadow:rgba(61,18,22,.34);
+  --tr-black:#030303;
+  --tr-black-2:#090909;
+  --tr-red-1:#3d0710;
+  --tr-red-2:#6d0c1d;
+  --tr-red-3:#97162e;
+  --tr-red-4:#b31d3b;
+  --tr-white:#ffffff;
+  --tr-outline:#050505;
+  --tr-shadow:rgba(0,0,0,.62);
 }
 
-@keyframes blushFlowWide{
-  0%{
-    background-position:0% 48%;
-  }
-  25%{
-    background-position:38% 34%;
-  }
-  50%{
-    background-position:100% 55%;
-  }
-  75%{
-    background-position:58% 70%;
-  }
-  100%{
-    background-position:0% 48%;
-  }
-}
-
-@keyframes blushFlowVertical{
-  0%{
-    background-position:50% 0%;
-  }
-  25%{
-    background-position:38% 32%;
-  }
-  50%{
-    background-position:56% 100%;
-  }
-  75%{
-    background-position:68% 58%;
-  }
-  100%{
-    background-position:50% 0%;
-  }
-}
-
-@keyframes blushSoftBreath{
+@keyframes traponGlow{
   0%,100%{
-    filter:saturate(1) brightness(1);
+    filter:brightness(1);
   }
   50%{
-    filter:saturate(1.035) brightness(1.025);
-  }
-}
-
-body{
-  color:#fff;
-  font-family:'Inter', Arial, sans-serif;
-}
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-.timer-widget{
-  border-radius:29px;
-  background:
-    radial-gradient(circle at 14% 22%, rgba(255,255,255,.48) 0 8%, transparent 23%),
-    radial-gradient(circle at 77% 68%, rgba(245,139,132,.40) 0 10%, transparent 27%),
-    radial-gradient(circle at 55% 18%, rgba(255,194,184,.40) 0 8%, transparent 25%),
-    linear-gradient(115deg,#ffdadd 0%,#f7b5bd 28%,#ef8e99 50%,#f6a7a8 68%,#ffd4ce 100%);
-  background-size:
-    165% 165%,
-    175% 175%,
-    155% 155%,
-    230% 230%;
-  background-position:0% 48%;
-  border:2px solid rgba(255,255,255,.61);
-  box-shadow:
-    0 16px 34px rgba(106,40,48,.23),
-    inset 0 2px 0 rgba(255,255,255,.46);
-  animation:
-    blushFlowWide 20s ease-in-out infinite,
-    blushSoftBreath 8s ease-in-out infinite;
-}
-
-.timer-widget::before{
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.29);
-}
-
-.timer-widget::after{
-  opacity:.18;
-  background:linear-gradient(
-    108deg,
-    transparent 0%,
-    rgba(255,255,255,.01) 30%,
-    rgba(255,255,255,.12) 47%,
-    rgba(255,255,255,.30) 51%,
-    rgba(255,255,255,.06) 58%,
-    transparent 72%
-  );
-}
-
-.timer-title{
-  border-radius:18px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.035)),
-    rgba(211,99,114,.23);
-  border:1.5px solid rgba(255,255,255,.46);
-  font-family:'Anton', Impact, sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.15px rgba(18,12,12,.90);
-  paint-order:stroke fill;
-  text-shadow:
-    0 3px 0 rgba(20,12,12,.84),
-    0 4px 9px rgba(65,18,25,.18);
-}
-
-.timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.80),transparent);
-}
-
-.timer-title::after{
-  height:2px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.36);
-}
-
-.timer-box{
-  border-radius:23px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.045)),
-    rgba(216,104,118,.20);
-  border:1.5px solid rgba(255,255,255,.34);
-  box-shadow:
-    0 10px 22px rgba(93,28,36,.16),
-    inset 0 1px 0 rgba(255,255,255,.26);
-}
-
-.timer-box::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,#fff3f1,#ed8793);
-  box-shadow:0 0 8px rgba(255,255,255,.32);
-}
-
-.timer-box::after{
-  opacity:.20;
-  background:linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,255,255,.02) 24%,
-    rgba(255,255,255,.22) 48%,
-    rgba(255,255,255,.04) 62%,
-    transparent 76%
-  );
-}
-
-#timer-value{
-  font-family:'Anton', Impact, sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.25px rgba(18,12,12,.90);
-  paint-order:stroke fill;
-  text-shadow:
-    0 3px 0 rgba(20,12,12,.84),
-    0 0 5px rgba(255,255,255,.10);
-}
-
-.timer-box.timer-running{
-  animation:blushTimerPulse 2.6s ease-in-out infinite alternate;
-}
-
-@keyframes blushTimerPulse{
-  from{
-    transform:scale(1);
-    border-color:rgba(255,255,255,.30);
-  }
-  to{
-    transform:scale(1.012);
-    border-color:rgba(255,255,255,.46);
-    box-shadow:
-      0 11px 24px rgba(93,28,36,.18),
-      0 0 12px rgba(255,255,255,.07),
-      inset 0 1px 0 rgba(255,255,255,.30);
-  }
-}
-
-.timer-box.timer-finished{
-  border-color:rgba(255,255,255,.50);
-  background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.14),transparent 44%),
-    rgba(204,86,103,.24);
-}
-
-.timer-box:hover{
-  transform:translateY(-1px);
-  border-color:rgba(255,255,255,.46);
-}
-
-@media (max-width:310px){
-  .timer-widget{ border-radius:26px; }
-  .timer-widget::before{ border-radius:21px; }
-  .timer-title{ border-radius:16px; }
-  .timer-box{ border-radius:20px; }
-}
-
-
-:root{
-  --lava-base:#f6a7b7;
-  --lava-base-2:#ef8fa4;
-  --lava-light:#ffd8e0;
-  --lava-light-2:#ffc5d1;
-  --lava-mid:#ed7e98;
-  --lava-dark:#c95775;
-  --lava-deep:#a93d5e;
-  --lava-white:#fffdfd;
-  --lava-shadow:rgba(124,38,62,.30);
-}
-
-/* Movimiento orgánico de las masas del fondo */
-@keyframes lavaBlobFieldA{
-  0%{
-    background-position:
-      5% 16%,
-      78% 12%,
-      23% 72%,
-      88% 74%,
-      48% 42%,
-      0% 0%;
-  }
-  20%{
-    background-position:
-      18% 28%,
-      66% 22%,
-      30% 58%,
-      78% 86%,
-      58% 34%,
-      0% 0%;
-  }
-  40%{
-    background-position:
-      30% 44%,
-      58% 8%,
-      18% 84%,
-      69% 61%,
-      42% 55%,
-      0% 0%;
-  }
-  60%{
-    background-position:
-      13% 64%,
-      78% 30%,
-      35% 68%,
-      90% 44%,
-      55% 70%,
-      0% 0%;
-  }
-  80%{
-    background-position:
-      2% 40%,
-      88% 18%,
-      16% 52%,
-      72% 78%,
-      38% 28%,
-      0% 0%;
-  }
-  100%{
-    background-position:
-      5% 16%,
-      78% 12%,
-      23% 72%,
-      88% 74%,
-      48% 42%,
-      0% 0%;
-  }
-}
-
-@keyframes lavaBlobFieldB{
-  0%{
-    background-position:
-      12% 80%,
-      72% 58%,
-      42% 16%,
-      90% 28%,
-      55% 88%;
-  }
-  25%{
-    background-position:
-      26% 66%,
-      84% 48%,
-      34% 30%,
-      76% 16%,
-      48% 72%;
-  }
-  50%{
-    background-position:
-      8% 54%,
-      65% 72%,
-      50% 40%,
-      88% 42%,
-      64% 82%;
-  }
-  75%{
-    background-position:
-      20% 70%,
-      78% 84%,
-      30% 22%,
-      70% 34%,
-      44% 94%;
-  }
-  100%{
-    background-position:
-      12% 80%,
-      72% 58%,
-      42% 16%,
-      90% 28%,
-      55% 88%;
-  }
-}
-
-@keyframes lavaGlowBreath{
-  0%,100%{
-    filter:saturate(1) brightness(1);
-  }
-  50%{
-    filter:saturate(1.035) brightness(1.018);
+    filter:brightness(1.035);
   }
 }
 
@@ -914,200 +580,127 @@ body{
 }
 
 /* =========================================================
-   TIMER — PINK LAVA
+   TIMER
 ========================================================= */
 
 .timer-widget{
-  border-radius:30px;
-  background-image:
-    radial-gradient(circle at center, rgba(255,220,228,.94) 0 11%, rgba(255,220,228,.52) 19%, transparent 31%),
-    radial-gradient(circle at center, rgba(232,102,136,.90) 0 12%, rgba(232,102,136,.50) 20%, transparent 32%),
-    radial-gradient(circle at center, rgba(255,197,209,.88) 0 10%, rgba(255,197,209,.45) 18%, transparent 30%),
-    radial-gradient(circle at center, rgba(199,81,112,.64) 0 11%, rgba(199,81,112,.31) 19%, transparent 31%),
-    radial-gradient(circle at center, rgba(255,238,241,.58) 0 8%, rgba(255,238,241,.24) 16%, transparent 27%),
-    linear-gradient(135deg,#f8b6c3 0%,#ef91a6 50%,#e87d97 100%);
-  background-repeat:no-repeat;
-  background-size:
-    145px 145px,
-    180px 180px,
-    130px 130px,
-    190px 190px,
-    110px 110px,
-    100% 100%;
-  border:2px solid rgba(255,255,255,.61);
+  border-radius:27px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 25%),
+    linear-gradient(100deg,#020202 0%,#080607 22%,#3b0710 53%,#741022 78%,#99162f 100%);
+  border:1.5px solid rgba(255,255,255,.10);
   box-shadow:
-    0 16px 34px var(--lava-shadow),
-    inset 0 2px 0 rgba(255,255,255,.43);
-  animation:
-    lavaBlobFieldA 29s ease-in-out infinite,
-    lavaGlowBreath 9s ease-in-out infinite;
+    0 18px 38px rgba(0,0,0,.52),
+    0 0 0 1px rgba(0,0,0,.76),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  animation:traponGlow 8s ease-in-out infinite;
 }
 
 .timer-widget::before{
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.28);
+  inset:5px;
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.04);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.60);
 }
 
 .timer-widget::after{
-  content:"";
-  position:absolute;
-  inset:-8%;
-  z-index:0;
-  width:auto;
-  height:auto;
-  opacity:.54;
-  transform:none;
-  background-image:
-    radial-gradient(circle at center,rgba(255,235,239,.58) 0 10%,rgba(255,235,239,.24) 18%,transparent 30%),
-    radial-gradient(circle at center,rgba(215,86,120,.37) 0 11%,rgba(215,86,120,.16) 19%,transparent 31%),
-    radial-gradient(circle at center,rgba(255,199,211,.44) 0 9%,rgba(255,199,211,.18) 17%,transparent 28%),
-    radial-gradient(circle at center,rgba(186,67,100,.28) 0 10%,rgba(186,67,100,.12) 18%,transparent 29%);
-  background-repeat:no-repeat;
-  background-size:125px 125px,155px 155px,110px 110px,165px 165px;
-  animation:lavaBlobFieldB 35s ease-in-out infinite;
-  pointer-events:none;
+  opacity:.15;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.01) 34%,
+    rgba(255,255,255,.08) 49%,
+    rgba(255,255,255,.01) 62%,
+    transparent 76%
+  );
 }
 
 .timer-title{
-  z-index:6;
-  border-radius:18px;
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.035)),
-    rgba(197,70,106,.21);
-  border:1.5px solid rgba(255,255,255,.46);
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0)),
+    linear-gradient(100deg,#050505 0%,#190307 28%,#65101d 67%,#8f1730 100%);
+  border:1px solid rgba(255,255,255,.11);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.25px #b04766;
+  -webkit-text-stroke:1.35px #050505;
   paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(142,47,74,.44),
-    0 4px 8px rgba(105,27,50,.15);
+  text-shadow:0 2px 0 #050505;
 }
 
 .timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.80),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
 }
 
 .timer-title::after{
   height:2px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.35);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  box-shadow:none;
 }
 
 .timer-box{
-  z-index:6;
-  border-radius:23px;
+  border-radius:21px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.045)),
-    rgba(199,73,108,.18);
-  border:1.5px solid rgba(255,255,255,.33);
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
+    linear-gradient(100deg,#080808 0%,#160306 34%,#54101a 75%,#741427 100%);
+  border:1px solid rgba(255,255,255,.08);
   box-shadow:
-    0 10px 22px rgba(110,31,52,.15),
-    inset 0 1px 0 rgba(255,255,255,.25);
+    0 10px 22px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.04);
 }
 
 .timer-box::before{
   width:4px;
-  background:linear-gradient(180deg,#fff,#ffe1e8,#dc7591);
-  box-shadow:0 0 8px rgba(255,255,255,.31);
+  background:linear-gradient(180deg,#bd2141,#7d1329,#35070e);
+  box-shadow:0 0 6px rgba(151,22,46,.17);
 }
 
 .timer-box::after{
-  opacity:.19;
-  background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.02) 24%,rgba(255,255,255,.22) 48%,rgba(255,255,255,.04) 62%,transparent 76%);
+  opacity:.14;
 }
 
 #timer-value{
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.25px #b04766;
+  -webkit-text-stroke:1.5px #050505;
   paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(142,47,74,.43),
-    0 0 5px rgba(255,255,255,.10);
+  text-shadow:0 3px 0 #050505;
 }
 
 .timer-box.timer-running{
-  animation:lavaTimerPulse 2.8s ease-in-out infinite alternate;
+  animation:trTimerPulse 2.4s ease-in-out infinite alternate;
 }
 
-@keyframes lavaTimerPulse{
+@keyframes trTimerPulse{
   from{
     transform:scale(1);
-    border-color:rgba(255,255,255,.30);
+    border-color:rgba(255,255,255,.08);
   }
   to{
     transform:scale(1.012);
-    border-color:rgba(255,255,255,.46);
+    border-color:rgba(255,255,255,.15);
     box-shadow:
-      0 11px 24px rgba(110,31,52,.17),
-      0 0 12px rgba(255,255,255,.07),
-      inset 0 1px 0 rgba(255,255,255,.29);
+      0 11px 24px rgba(0,0,0,.39),
+      inset 0 1px 0 rgba(255,255,255,.05);
   }
 }
 
 .timer-box.timer-finished{
-  border-color:rgba(255,255,255,.48);
+  border-color:rgba(255,255,255,.18);
   background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.14),transparent 44%),
-    rgba(190,61,99,.22);
+    linear-gradient(100deg,#090909 0%,#21050a 30%,#7e1428 72%,#a51936 100%);
 }
 
 .timer-box:hover{
   transform:translateY(-1px);
-  border-color:rgba(255,255,255,.44);
+  border-color:rgba(255,255,255,.14);
 }
 
 @media (max-width:310px){
-  .timer-widget{border-radius:26px;}
-  .timer-widget::before{border-radius:21px;}
-  .timer-title{border-radius:16px;}
-  .timer-box{border-radius:20px;}
+  .timer-widget{border-radius:24px;}
+  .timer-widget::before{border-radius:19px;}
+  .timer-title{border-radius:15px;}
+  .timer-box{border-radius:18px;}
 }
-
-
-
-/* =========================================================
-   SMOKED MARBLE / PINK LINE THEME
-   Gris marmol en movimiento + vetas negras + texto blanco
-   + acentos rosados. Mantiene la funcionalidad existente.
-========================================================= */
-:root{
-  --marble-bg-1:#3b3e42;
-  --marble-bg-2:#292c30;
-  --marble-bg-3:#1c1f22;
-  --marble-bg-4:#555a60;
-  --marble-black:#08090a;
-  --marble-pink:#ff8fbd;
-  --marble-pink-soft:#ffc5dc;
-  --marble-pink-dark:#d85b8e;
-}
-@keyframes marbleMove{
-  0%{background-position:0% 35%,100% 20%,15% 85%,0% 0%}
-  25%{background-position:30% 55%,70% 32%,34% 68%,25% 0%}
-  50%{background-position:75% 30%,48% 62%,62% 42%,55% 0%}
-  75%{background-position:40% 68%,82% 46%,25% 55%,80% 0%}
-  100%{background-position:0% 35%,100% 20%,15% 85%,0% 0%}
-}
-@keyframes veinMove{
-  0%{transform:translate3d(-9%,-5%,0) rotate(-4deg) scale(1.10);background-position:0 0,0 0,0 0}
-  33%{transform:translate3d(2%,3%,0) rotate(1deg) scale(1.14);background-position:55px -20px,-30px 24px,20px 12px}
-  66%{transform:translate3d(8%,-1%,0) rotate(4deg) scale(1.12);background-position:105px 18px,-70px -12px,46px -18px}
-  100%{transform:translate3d(-9%,-5%,0) rotate(-4deg) scale(1.10);background-position:0 0,0 0,0 0}
-}
-@keyframes marblePulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
-
-.timer-widget{border-radius:29px;background:radial-gradient(ellipse at 18% 32%,rgba(120,126,133,.48) 0 8%,transparent 27%),radial-gradient(ellipse at 82% 72%,rgba(76,81,87,.42) 0 10%,transparent 29%),radial-gradient(ellipse at 55% 16%,rgba(98,103,109,.27) 0 8%,transparent 24%),linear-gradient(120deg,#3c4045 0%,#26292d 28%,#4a4f55 52%,#1c1f22 73%,#34383d 100%);background-size:170% 170%,180% 180%,155% 155%,240% 240%;border:1.5px solid rgba(255,255,255,.19);box-shadow:0 18px 38px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.09);animation:marbleMove 29s ease-in-out infinite,marblePulse 10s ease-in-out infinite}
-.timer-widget::before{content:"";position:absolute;inset:-14%;z-index:0;border-radius:inherit;pointer-events:none;opacity:.68;background:repeating-linear-gradient(132deg,transparent 0 22px,rgba(0,0,0,.22) 23px 27px,transparent 28px 52px),repeating-linear-gradient(48deg,transparent 0 38px,rgba(0,0,0,.13) 39px 42px,transparent 43px 76px);filter:blur(4px);animation:veinMove 33s ease-in-out infinite}
-.timer-widget::after{content:"";position:absolute;inset:5px;z-index:5;width:auto;height:auto;left:5px;top:5px;transform:none;border-radius:23px;border:1px solid rgba(255,255,255,.06);background:none;animation:none;pointer-events:none}
-.timer-title{z-index:6;background:rgba(12,13,15,.48);border:1px solid rgba(255,255,255,.15);font-family:'Brush Script MT','Segoe Script',cursive;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.72)}
-.timer-title::after{height:3px;background:linear-gradient(90deg,transparent,var(--marble-pink-soft),var(--marble-pink),var(--marble-pink-soft),transparent);box-shadow:0 0 6px rgba(255,143,189,.34)}
-.timer-box{z-index:6;background:rgba(12,13,15,.52);border:1px solid rgba(255,255,255,.11);box-shadow:0 10px 22px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.06)}
-.timer-box::before{width:4px;background:linear-gradient(180deg,var(--marble-pink-soft),var(--marble-pink),var(--marble-pink-dark));box-shadow:0 0 8px rgba(255,143,189,.26)}
-#timer-value{color:#fff;font-weight:900;text-shadow:0 2px 0 rgba(0,0,0,.78),0 0 5px rgba(255,255,255,.10)}
-.timer-box.timer-running{animation:marbleTimerPulse 2.8s ease-in-out infinite alternate}
-@keyframes marbleTimerPulse{from{transform:scale(1);border-color:rgba(255,255,255,.10)}to{transform:scale(1.012);border-color:rgba(255,143,189,.28);box-shadow:0 11px 24px rgba(0,0,0,.35),0 0 12px rgba(255,143,189,.05),inset 0 1px 0 rgba(255,255,255,.07)}}
-.timer-box.timer-finished{border-color:rgba(255,143,189,.38);background:rgba(10,11,13,.60)}
-
