@@ -1,13 +1,15 @@
 /* =========================================================
-   SARAH THEME
-   Inspirado en la referencia:
-   - Fondo hielo / celeste muy claro con rosa suave
-   - Efecto mármol lechoso
-   - Letras blancas cursivas con contorno rosa
-   - "Spray" / veta morada animada desde la esquina superior izquierda
-   - Aparición y desaparición suave
-   - Bordes redondeados y brillo delicado
-   - Mantiene los selectores y estados funcionales existentes
+   MISTY THEME
+   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo negro profundo
+   - Letras blancas con contorno negro para alto contraste
+   - Acabado limpio / oscuro / premium
+   - Cadena metálica decorativa en la parte inferior
+   - GOAL: relleno transparente tipo vidrio; el progreso se
+     ve claramente a medida que aumenta el height del #bar-fill
+   - Mantiene selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -16,7 +18,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -541,88 +543,25 @@ body{
 
 
 :root{
-  --sarah-ice:#eefaff;
-  --sarah-blue:#d7f0fb;
-  --sarah-blue-2:#bfe3f3;
-  --sarah-pink:#ffc8dd;
-  --sarah-pink-2:#f59dbc;
-  --sarah-pink-deep:#d95d8c;
-  --sarah-purple:#9b6ad7;
-  --sarah-purple-2:#7551b5;
-  --sarah-white:#ffffff;
-  --sarah-shadow:rgba(116,83,132,.18);
+  --misty-black:#020202;
+  --misty-black-2:#070707;
+  --misty-black-3:#0d0d0d;
+  --misty-charcoal:#151515;
+  --misty-white:#ffffff;
+  --misty-silver:#d9d9d9;
+  --misty-silver-soft:#9a9a9a;
+  --misty-line:rgba(255,255,255,.13);
+  --misty-shadow:rgba(0,0,0,.76);
 }
 
-@keyframes sarahMarbleDrift{
-  0%{
-    background-position:
-      0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
-  }
-  25%{
-    background-position:
-      24% 42%,
-      76% 35%,
-      38% 66%,
-      20% 0%;
-  }
-  50%{
-    background-position:
-      62% 34%,
-      48% 58%,
-      58% 45%,
-      45% 0%;
-  }
-  75%{
-    background-position:
-      34% 58%,
-      84% 44%,
-      28% 54%,
-      72% 0%;
-  }
-  100%{
-    background-position:
-      0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
-  }
+@keyframes mistySoftBreath{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.035); }
 }
 
-@keyframes sarahSprayMove{
-  0%{
-    opacity:0;
-    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
-    filter:blur(14px);
-  }
-  12%{
-    opacity:.28;
-  }
-  30%{
-    opacity:.58;
-    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
-    filter:blur(10px);
-  }
-  48%{
-    opacity:.34;
-    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
-  }
-  62%{
-    opacity:.10;
-    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
-  }
-  75%,100%{
-    opacity:0;
-    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
-    filter:blur(16px);
-  }
-}
-
-@keyframes sarahSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.018) saturate(1.025); }
+@keyframes mistyChainShimmer{
+  0%,100%{ opacity:.28; filter:brightness(.90); }
+  50%{ opacity:.52; filter:brightness(1.12); }
 }
 
 body{
@@ -631,100 +570,133 @@ body{
 }
 
 /* =========================================================
-   SARAH — BAR
+   MISTY — GOAL
+   El #bar-fill conserva su height dinámico.
+   El relleno es transparente/vidrio para que el progreso
+   aparezca conforme sube sin convertirse en un bloque sólido.
 ========================================================= */
 
 #goal-wrapper{
   width:78px;
-  border-radius:30px;
-  background:
-    radial-gradient(ellipse at 36% 20%, rgba(255,255,255,.82) 0 10%, transparent 31%),
-    radial-gradient(ellipse at 70% 66%, rgba(255,200,221,.30) 0 11%, transparent 32%),
-    linear-gradient(180deg,#f6fdff 0%,#dcedf7 32%,#ffe0ea 58%,#d5edf8 100%);
-  background-size:180% 180%,190% 190%,230% 230%;
-  border:1.5px solid rgba(255,255,255,.82);
+  border-radius:29px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(180deg,#111111 0%,#060606 42%,#020202 100%);
+  background-repeat:repeat-x,no-repeat;
+  background-size:38px 12px,100% 100%;
+  background-position:left 1px bottom 6px,center;
+  border:1px solid rgba(255,255,255,.13);
   box-shadow:
-    0 16px 34px var(--sarah-shadow),
-    inset 0 2px 0 rgba(255,255,255,.76);
-  animation:
-    sarahMarbleDrift 31s ease-in-out infinite,
-    sarahSoftBreath 9s ease-in-out infinite;
+    0 18px 38px rgba(0,0,0,.54),
+    0 0 0 1px rgba(0,0,0,.82),
+    inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 #goal-wrapper::before{
-  content:"";
-  position:absolute;
-  inset:-18%;
-  z-index:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 20% 8%, rgba(139,96,199,.52) 0 8%, rgba(139,96,199,.20) 18%, transparent 34%),
-    linear-gradient(160deg,rgba(153,109,211,.18),transparent 43%);
-  transform-origin:top left;
-  animation:sarahSprayMove 16s ease-in-out infinite;
+  border-radius:23px;
+  border:1px solid rgba(255,255,255,.045);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.58);
 }
 
 #goal-wrapper::after{
-  content:"";
-  position:absolute;
-  inset:5px;
-  z-index:6;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.44);
-  pointer-events:none;
+  opacity:.12;
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.01) 28%,
+    rgba(255,255,255,.07) 50%,
+    rgba(255,255,255,.015) 64%,
+    transparent 100%
+  );
 }
 
 #bar-fill{
   z-index:2;
-  border-radius:0 0 29px 29px;
+  border-radius:0 0 28px 28px;
+
+  /* Transparent/glass progress */
   background:
-    linear-gradient(90deg,rgba(255,255,255,.22),transparent 35%,rgba(172,78,119,.07) 72%,rgba(255,255,255,.12)),
-    linear-gradient(180deg,#f4b8cf 0%,#e98daf 48%,#d35f89 100%);
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.095) 0%,
+      rgba(255,255,255,.035) 24%,
+      rgba(255,255,255,.055) 52%,
+      rgba(255,255,255,.018) 76%,
+      rgba(255,255,255,.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.045) 45%,
+      rgba(255,255,255,.018) 100%
+    );
+
+  border-left:1px solid rgba(255,255,255,.04);
+  border-right:1px solid rgba(255,255,255,.04);
+
   box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.11),
-    inset -7px 0 12px rgba(171,73,111,.10),
-    0 -2px 10px rgba(255,255,255,.18);
+    inset 5px 0 10px rgba(255,255,255,.025),
+    inset -5px 0 10px rgba(0,0,0,.12),
+    inset 0 -16px 24px rgba(0,0,0,.08),
+    0 -2px 8px rgba(255,255,255,.06);
+
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+
+  transition:
+    height .85s cubic-bezier(.22,.8,.25,1),
+    filter .3s ease;
 }
 
 #bar-fill::before{
-  background:linear-gradient(180deg,#fff,#ffd8e7);
-  box-shadow:0 0 6px rgba(255,255,255,.78),0 0 12px rgba(217,93,140,.18);
+  height:5px;
+  background:linear-gradient(
+    180deg,
+    #fff 0%,
+    #e6e6e6 34%,
+    rgba(255,255,255,.35) 100%
+  );
+  box-shadow:
+    0 0 6px rgba(255,255,255,.70),
+    0 0 12px rgba(255,255,255,.18);
 }
 
 #bar-fill::after{
   background:#fff;
-  box-shadow:0 0 5px rgba(255,255,255,.82);
+  box-shadow:
+    0 0 5px rgba(255,255,255,.76),
+    0 0 10px rgba(255,255,255,.18);
 }
 
 .goal-title{
-  z-index:7;
-  font-family:'Pacifico','Brush Script MT',cursive;
+  border-radius:10px;
+  font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  background:rgba(255,255,255,.16);
-  -webkit-text-stroke:.9px var(--sarah-pink-deep);
+  background:rgba(0,0,0,.22);
+  -webkit-text-stroke:.9px #050505;
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(192,71,116,.18);
+  text-shadow:0 2px 0 #050505;
 }
 
 .goal-title::after{
-  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
 }
 
 .goal-amount{
-  z-index:7;
-  border-radius:12px;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border:1.5px solid rgba(217,93,140,.28);
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
-  color:#bd4d78;
-  text-shadow:none;
+  border-radius:11px;
+  background:linear-gradient(180deg,#222,#0c0c0c);
+  border:1px solid rgba(255,255,255,.12);
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  -webkit-text-stroke:.45px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 #050505;
 }
 
 @media (max-height:460px){
-  #goal-wrapper{border-radius:27px;}
-  #goal-wrapper::after{border-radius:22px;}
-  #bar-fill{border-radius:0 0 26px 26px;}
+  #goal-wrapper{ border-radius:26px; }
+  #goal-wrapper::before{ border-radius:21px; }
+  #bar-fill{ border-radius:0 0 25px 25px; }
 }

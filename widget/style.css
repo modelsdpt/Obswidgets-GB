@@ -1,13 +1,15 @@
 /* =========================================================
-   SARAH THEME
-   Inspirado en la referencia:
-   - Fondo hielo / celeste muy claro con rosa suave
-   - Efecto mármol lechoso
-   - Letras blancas cursivas con contorno rosa
-   - "Spray" / veta morada animada desde la esquina superior izquierda
-   - Aparición y desaparición suave
-   - Bordes redondeados y brillo delicado
-   - Mantiene los selectores y estados funcionales existentes
+   MISTY THEME
+   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo negro profundo
+   - Letras blancas con contorno negro para alto contraste
+   - Acabado limpio / oscuro / premium
+   - Cadena metálica decorativa en la parte inferior
+   - GOAL: relleno transparente tipo vidrio; el progreso se
+     ve claramente a medida que aumenta el height del #bar-fill
+   - Mantiene selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -16,7 +18,7 @@
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -588,88 +590,25 @@ body{
 
 
 :root{
-  --sarah-ice:#eefaff;
-  --sarah-blue:#d7f0fb;
-  --sarah-blue-2:#bfe3f3;
-  --sarah-pink:#ffc8dd;
-  --sarah-pink-2:#f59dbc;
-  --sarah-pink-deep:#d95d8c;
-  --sarah-purple:#9b6ad7;
-  --sarah-purple-2:#7551b5;
-  --sarah-white:#ffffff;
-  --sarah-shadow:rgba(116,83,132,.18);
+  --misty-black:#020202;
+  --misty-black-2:#070707;
+  --misty-black-3:#0d0d0d;
+  --misty-charcoal:#151515;
+  --misty-white:#ffffff;
+  --misty-silver:#d9d9d9;
+  --misty-silver-soft:#9a9a9a;
+  --misty-line:rgba(255,255,255,.13);
+  --misty-shadow:rgba(0,0,0,.76);
 }
 
-@keyframes sarahMarbleDrift{
-  0%{
-    background-position:
-      0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
-  }
-  25%{
-    background-position:
-      24% 42%,
-      76% 35%,
-      38% 66%,
-      20% 0%;
-  }
-  50%{
-    background-position:
-      62% 34%,
-      48% 58%,
-      58% 45%,
-      45% 0%;
-  }
-  75%{
-    background-position:
-      34% 58%,
-      84% 44%,
-      28% 54%,
-      72% 0%;
-  }
-  100%{
-    background-position:
-      0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
-  }
+@keyframes mistySoftBreath{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.035); }
 }
 
-@keyframes sarahSprayMove{
-  0%{
-    opacity:0;
-    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
-    filter:blur(14px);
-  }
-  12%{
-    opacity:.28;
-  }
-  30%{
-    opacity:.58;
-    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
-    filter:blur(10px);
-  }
-  48%{
-    opacity:.34;
-    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
-  }
-  62%{
-    opacity:.10;
-    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
-  }
-  75%,100%{
-    opacity:0;
-    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
-    filter:blur(16px);
-  }
-}
-
-@keyframes sarahSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.018) saturate(1.025); }
+@keyframes mistyChainShimmer{
+  0%,100%{ opacity:.28; filter:brightness(.90); }
+  50%{ opacity:.52; filter:brightness(1.12); }
 }
 
 body{
@@ -678,169 +617,165 @@ body{
 }
 
 /* =========================================================
-   SARAH — MVP
+   MISTY — MVP
 ========================================================= */
 
 #container{
-  border-radius:30px;
-  padding:11px;
-  background:
-    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
-    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
-    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
-    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
-  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
-  border:1.5px solid rgba(255,255,255,.84);
+  border-radius:27px;
+  padding:11px 11px 24px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 18% -5%,rgba(255,255,255,.055) 0%,transparent 33%),
+    radial-gradient(circle at 90% 110%,rgba(255,255,255,.018) 0%,transparent 40%),
+    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
+  background-repeat:repeat-x,no-repeat,no-repeat,no-repeat;
+  background-size:48px 14px,100% 100%,100% 100%,100% 100%;
+  background-position:left 8px bottom 6px,center,center,center;
+  border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 16px 34px var(--sarah-shadow),
-    0 5px 14px rgba(102,122,145,.10),
-    inset 0 2px 0 rgba(255,255,255,.78);
-  animation:
-    sarahMarbleDrift 30s ease-in-out infinite,
-    sarahSoftBreath 9s ease-in-out infinite;
+    0 18px 38px rgba(0,0,0,.56),
+    0 0 0 1px rgba(0,0,0,.86),
+    inset 0 1px 0 rgba(255,255,255,.07);
+  animation:mistySoftBreath 9s ease-in-out infinite;
 }
 
 #container::before{
-  content:"";
-  position:absolute;
-  inset:-12%;
-  z-index:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
-    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
-    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
-  transform-origin:top left;
-  animation:sarahSprayMove 15s ease-in-out infinite;
+  inset:5px;
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.04);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.66);
 }
 
 #container::after{
-  content:"";
-  position:absolute;
-  inset:5px;
-  z-index:5;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.46);
-  box-shadow:inset 0 0 0 1px rgba(191,227,243,.08);
-  pointer-events:none;
+  opacity:.14;
+  background:linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(255,255,255,.005) 30%,
+    rgba(255,255,255,.08) 49%,
+    rgba(255,255,255,.02) 58%,
+    transparent 72%
+  );
 }
 
 .title{
-  z-index:7;
   min-height:49px;
-  border-radius:19px;
+  border-radius:16px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
-    rgba(224,169,201,.16);
-  border:1.5px solid rgba(255,255,255,.74);
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
+    linear-gradient(135deg,#0d0d0d,#020202);
+  border:1px solid rgba(255,255,255,.12);
   box-shadow:
-    0 7px 17px rgba(130,95,130,.11),
-    inset 0 1px 0 rgba(255,255,255,.78);
-  font-family:'Pacifico','Brush Script MT',cursive;
-  font-size:27px;
+    0 8px 18px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  font-family:'Anton',Impact,sans-serif;
+  font-size:30px;
   font-weight:400;
-  letter-spacing:.005em;
+  letter-spacing:.025em;
   color:#fff;
-  text-transform:none;
-  -webkit-text-stroke:1.15px var(--sarah-pink-deep);
+  text-transform:uppercase;
+  -webkit-text-stroke:1.35px #050505;
   paint-order:stroke fill;
   text-shadow:
-    0 2px 0 rgba(201,78,124,.22),
-    0 0 6px rgba(255,255,255,.70);
+    0 2px 0 #050505,
+    0 0 4px rgba(255,255,255,.10);
 }
 
 .title::before{
-  left:14%;
-  right:14%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.90),transparent);
+  left:15%;
+  right:15%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
 }
 
 .title::after{
-  left:27%;
-  right:27%;
-  bottom:2px;
-  height:3px;
-  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
-  box-shadow:0 0 7px rgba(217,93,140,.28);
+  left:32%;
+  right:32%;
+  bottom:1px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  box-shadow:none;
 }
 
-#top-list{gap:8px;}
+#top-list{ gap:8px; }
 
 .tip{
-  z-index:7;
-  border-radius:17px;
+  border-radius:15px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
-    rgba(214,232,242,.32);
-  border:1px solid rgba(255,255,255,.62);
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
+    linear-gradient(135deg,#111111,#050505 60%,#020202);
+  border:1px solid rgba(255,255,255,.08);
   box-shadow:
-    0 6px 14px rgba(120,100,134,.10),
-    inset 0 1px 0 rgba(255,255,255,.72);
-  backdrop-filter:blur(2px);
+    0 6px 14px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .tip::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,var(--sarah-pink),var(--sarah-pink-deep));
-  box-shadow:0 0 8px rgba(217,93,140,.22);
+  width:3px;
+  background:linear-gradient(180deg,#f0f0f0,#a8a8a8,#444);
+  box-shadow:0 0 6px rgba(255,255,255,.12);
 }
 
 .tip::after{
-  opacity:.16;
+  opacity:.12;
 }
 
 .tip:hover{
   transform:translateY(-1px);
-  filter:brightness(1.025);
-  border-color:rgba(255,255,255,.82);
+  filter:brightness(1.06);
+  border-color:rgba(255,255,255,.16);
 }
 
 .tip .name{
   color:#fff;
   font-weight:900;
-  -webkit-text-stroke:.45px var(--sarah-pink-deep);
+  -webkit-text-stroke:.55px #050505;
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(192,71,116,.20);
+  text-shadow:0 2px 0 rgba(0,0,0,.76);
 }
 
 .tip .amount{
-  border-radius:11px;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border:1.5px solid rgba(217,93,140,.28);
-  color:#bd4d78;
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
-  text-shadow:none;
+  border-radius:10px;
+  background:linear-gradient(180deg,#242424,#0c0c0c);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  -webkit-text-stroke:.55px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 #050505;
+  box-shadow:0 4px 8px rgba(0,0,0,.28);
 }
 
 .tip.mvp{
-  border-radius:20px;
+  border-radius:18px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,.13)),
-    rgba(216,229,240,.36);
-  border:1.5px solid rgba(255,255,255,.80);
+    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),
+    linear-gradient(135deg,#161616,#070707 58%,#020202);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .tip.mvp::before{
-  width:5px;
-  background:linear-gradient(180deg,#fff,#ffc8dd,#d95d8c);
+  width:4px;
+  background:linear-gradient(180deg,#fff,#bdbdbd,#4c4c4c);
 }
 
 .rank-icon{
-  border-radius:11px;
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
-  color:#bd4d78;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border:1.5px solid rgba(217,93,140,.26);
-  text-shadow:none;
+  border-radius:10px;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  background:linear-gradient(180deg,#282828,#0e0e0e);
+  border:1px solid rgba(255,255,255,.11);
+  text-shadow:0 1px 0 #050505;
 }
 
 @media (max-width:460px){
-  #container{border-radius:26px;}
-  #container::after{border-radius:21px;}
-  .title{border-radius:17px;}
-  .tip{border-radius:15px;}
-  .tip.mvp{border-radius:18px;}
+  #container{ border-radius:24px; padding-bottom:22px; }
+  #container::before{ border-radius:19px; }
+  .title{ border-radius:14px; }
+  .tip{ border-radius:13px; }
+  .tip.mvp{ border-radius:16px; }
 }

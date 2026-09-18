@@ -1,13 +1,15 @@
 /* =========================================================
-   SARAH THEME
-   Inspirado en la referencia:
-   - Fondo hielo / celeste muy claro con rosa suave
-   - Efecto mármol lechoso
-   - Letras blancas cursivas con contorno rosa
-   - "Spray" / veta morada animada desde la esquina superior izquierda
-   - Aparición y desaparición suave
-   - Bordes redondeados y brillo delicado
-   - Mantiene los selectores y estados funcionales existentes
+   MISTY THEME
+   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo negro profundo
+   - Letras blancas con contorno negro para alto contraste
+   - Acabado limpio / oscuro / premium
+   - Cadena metálica decorativa en la parte inferior
+   - GOAL: relleno transparente tipo vidrio; el progreso se
+     ve claramente a medida que aumenta el height del #bar-fill
+   - Mantiene selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -16,7 +18,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -556,88 +558,25 @@ body{
 
 
 :root{
-  --sarah-ice:#eefaff;
-  --sarah-blue:#d7f0fb;
-  --sarah-blue-2:#bfe3f3;
-  --sarah-pink:#ffc8dd;
-  --sarah-pink-2:#f59dbc;
-  --sarah-pink-deep:#d95d8c;
-  --sarah-purple:#9b6ad7;
-  --sarah-purple-2:#7551b5;
-  --sarah-white:#ffffff;
-  --sarah-shadow:rgba(116,83,132,.18);
+  --misty-black:#020202;
+  --misty-black-2:#070707;
+  --misty-black-3:#0d0d0d;
+  --misty-charcoal:#151515;
+  --misty-white:#ffffff;
+  --misty-silver:#d9d9d9;
+  --misty-silver-soft:#9a9a9a;
+  --misty-line:rgba(255,255,255,.13);
+  --misty-shadow:rgba(0,0,0,.76);
 }
 
-@keyframes sarahMarbleDrift{
-  0%{
-    background-position:
-      0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
-  }
-  25%{
-    background-position:
-      24% 42%,
-      76% 35%,
-      38% 66%,
-      20% 0%;
-  }
-  50%{
-    background-position:
-      62% 34%,
-      48% 58%,
-      58% 45%,
-      45% 0%;
-  }
-  75%{
-    background-position:
-      34% 58%,
-      84% 44%,
-      28% 54%,
-      72% 0%;
-  }
-  100%{
-    background-position:
-      0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
-  }
+@keyframes mistySoftBreath{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.035); }
 }
 
-@keyframes sarahSprayMove{
-  0%{
-    opacity:0;
-    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
-    filter:blur(14px);
-  }
-  12%{
-    opacity:.28;
-  }
-  30%{
-    opacity:.58;
-    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
-    filter:blur(10px);
-  }
-  48%{
-    opacity:.34;
-    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
-  }
-  62%{
-    opacity:.10;
-    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
-  }
-  75%,100%{
-    opacity:0;
-    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
-    filter:blur(16px);
-  }
-}
-
-@keyframes sarahSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.018) saturate(1.025); }
+@keyframes mistyChainShimmer{
+  0%,100%{ opacity:.28; filter:brightness(.90); }
+  50%{ opacity:.52; filter:brightness(1.12); }
 }
 
 body{
@@ -646,139 +585,133 @@ body{
 }
 
 /* =========================================================
-   SARAH — TIMER
+   MISTY — TIMER
 ========================================================= */
 
 .timer-widget{
-  border-radius:29px;
-  background:
-    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
-    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
-    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
-    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
-  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
-  border:1.5px solid rgba(255,255,255,.84);
+  border-radius:27px;
+  padding:11px 11px 24px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 18% -5%,rgba(255,255,255,.05) 0%,transparent 33%),
+    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
+  background-repeat:repeat-x,no-repeat,no-repeat;
+  background-size:48px 14px,100% 100%,100% 100%;
+  background-position:left 8px bottom 6px,center,center;
+  border:1px solid rgba(255,255,255,.13);
   box-shadow:
-    0 16px 34px var(--sarah-shadow),
-    inset 0 2px 0 rgba(255,255,255,.78);
-  animation:
-    sarahMarbleDrift 30s ease-in-out infinite,
-    sarahSoftBreath 9s ease-in-out infinite;
+    0 18px 38px rgba(0,0,0,.54),
+    0 0 0 1px rgba(0,0,0,.84),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  animation:mistySoftBreath 9s ease-in-out infinite;
 }
 
 .timer-widget::before{
-  content:"";
-  position:absolute;
-  inset:-12%;
-  z-index:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
-    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
-    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
-  transform-origin:top left;
-  animation:sarahSprayMove 15.5s ease-in-out infinite;
+  inset:5px;
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.04);
 }
 
 .timer-widget::after{
-  content:"";
-  position:absolute;
-  inset:5px;
-  z-index:5;
-  width:auto;
-  height:auto;
-  left:5px;
-  top:5px;
-  transform:none;
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.46);
-  background:none;
-  animation:none;
-  pointer-events:none;
+  opacity:.13;
+  background:linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(255,255,255,.005) 30%,
+    rgba(255,255,255,.08) 49%,
+    rgba(255,255,255,.015) 58%,
+    transparent 72%
+  );
 }
 
 .timer-title{
-  z-index:6;
-  border-radius:18px;
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
-    rgba(224,169,201,.16);
-  border:1.5px solid rgba(255,255,255,.74);
-  font-family:'Pacifico','Brush Script MT',cursive;
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
+    linear-gradient(135deg,#0d0d0d,#020202);
+  border:1px solid rgba(255,255,255,.11);
+  font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.1px var(--sarah-pink-deep);
+  -webkit-text-stroke:1.25px #050505;
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(201,78,124,.20),0 0 6px rgba(255,255,255,.60);
+  text-shadow:0 2px 0 #050505;
 }
 
 .timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.88),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
 }
 
 .timer-title::after{
-  height:3px;
-  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
-  box-shadow:0 0 6px rgba(217,93,140,.26);
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  box-shadow:none;
 }
 
 .timer-box{
-  z-index:6;
-  border-radius:23px;
+  border-radius:21px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
-    rgba(214,232,242,.32);
-  border:1px solid rgba(255,255,255,.62);
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
+    linear-gradient(135deg,#111111,#050505 60%,#020202);
+  border:1px solid rgba(255,255,255,.08);
   box-shadow:
-    0 10px 22px rgba(120,100,134,.11),
-    inset 0 1px 0 rgba(255,255,255,.72);
+    0 10px 22px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .timer-box::before{
   width:4px;
-  background:linear-gradient(180deg,#fff,var(--sarah-pink),var(--sarah-pink-deep));
-  box-shadow:0 0 8px rgba(217,93,140,.22);
+  background:linear-gradient(180deg,#f2f2f2,#aaa,#444);
+  box-shadow:0 0 6px rgba(255,255,255,.12);
 }
 
 .timer-box::after{
-  opacity:.14;
+  opacity:.12;
 }
 
 #timer-value{
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
   color:#fff;
-  -webkit-text-stroke:.7px var(--sarah-pink-deep);
+  -webkit-text-stroke:1.4px #050505;
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(192,71,116,.20);
+  text-shadow:0 3px 0 #050505;
 }
 
 .timer-box.timer-running{
-  animation:sarahTimerPulse 2.9s ease-in-out infinite alternate;
+  animation:mistyTimerPulse 2.6s ease-in-out infinite alternate;
 }
 
-@keyframes sarahTimerPulse{
-  from{ transform:scale(1); }
+@keyframes mistyTimerPulse{
+  from{
+    transform:scale(1);
+    border-color:rgba(255,255,255,.08);
+  }
   to{
     transform:scale(1.012);
+    border-color:rgba(255,255,255,.15);
     box-shadow:
-      0 11px 24px rgba(120,100,134,.13),
-      0 0 12px rgba(217,93,140,.06),
-      inset 0 1px 0 rgba(255,255,255,.76);
+      0 11px 24px rgba(0,0,0,.39),
+      0 0 10px rgba(255,255,255,.025),
+      inset 0 1px 0 rgba(255,255,255,.045);
   }
 }
 
 .timer-box.timer-finished{
-  border-color:rgba(217,93,140,.34);
+  border-color:rgba(255,255,255,.18);
   background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.36),transparent 44%),
-    rgba(232,203,219,.40);
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.045),transparent 44%),
+    linear-gradient(135deg,#151515,#050505 60%,#020202);
+}
+
+.timer-box:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.15);
 }
 
 @media (max-width:310px){
-  .timer-widget{border-radius:26px;}
-  .timer-widget::after{border-radius:21px;}
-  .timer-title{border-radius:16px;}
-  .timer-box{border-radius:20px;}
+  .timer-widget{ border-radius:24px; padding-bottom:22px; }
+  .timer-widget::before{ border-radius:19px; }
+  .timer-title{ border-radius:15px; }
+  .timer-box{ border-radius:18px; }
 }
