@@ -1,15 +1,11 @@
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   BORDEAUX THEME — STATIC FLOW
+   Inspirado en la referencia:
+   - Negro profundo + vinotinto / burgundy
+   - Apariencia líquida / ahumada, pero completamente ESTÁTICA
+   - Letras blancas con borde vinotinto oscuro
+   - Alto contraste, sombras suaves, bordes redondeados
+   - Mantiene selectores y lógica funcional de cada widget
 ========================================================= */
 
 /* ==========================================
@@ -978,25 +974,16 @@ body{
 
 
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
-}
-
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
-}
-
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
+  --bx-black:#020202;
+  --bx-black2:#080607;
+  --bx-wine:#3a0712;
+  --bx-wine2:#5a0b1c;
+  --bx-wine3:#7b1029;
+  --bx-wine4:#9b1737;
+  --bx-outline:#78112a;
+  --bx-white:#ffffff;
+  --bx-silver:#e8e8e8;
+  --bx-shadow:rgba(0,0,0,.65);
 }
 
 body{
@@ -1005,188 +992,190 @@ body{
 }
 
 /* =========================================================
-   MISTY — RAFFLE
+   BORDEAUX — RAFFLE
 ========================================================= */
 
 .raffle-widget{
   border-radius:30px;
-  padding-bottom:26px;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 18% -5%,rgba(255,255,255,.05) 0%,transparent 33%),
-    radial-gradient(circle at 90% 110%,rgba(255,255,255,.018) 0%,transparent 40%),
-    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
-  background-repeat:repeat-x,no-repeat,no-repeat,no-repeat;
-  background-size:48px 14px,100% 100%,100% 100%,100% 100%;
-  background-position:left 8px bottom 6px,center,center,center;
-  border:1px solid rgba(255,255,255,.13);
+  background:
+    radial-gradient(ellipse at 10% 40%, rgba(0,0,0,.86) 0 14%, transparent 36%),
+    radial-gradient(ellipse at 38% 22%, rgba(118,14,39,.56) 0 13%, transparent 34%),
+    radial-gradient(ellipse at 68% 65%, rgba(8,5,6,.78) 0 17%, transparent 39%),
+    radial-gradient(ellipse at 92% 34%, rgba(143,20,50,.44) 0 12%, transparent 32%),
+    radial-gradient(ellipse at 52% 88%, rgba(73,8,24,.58) 0 14%, transparent 35%),
+    linear-gradient(112deg,#020202 0%,#150307 24%,#420915 49%,#1a0509 71%,#721128 100%);
+  border:1.5px solid rgba(255,255,255,.09);
   box-shadow:
-    0 20px 44px rgba(0,0,0,.56),
-    0 0 0 1px rgba(0,0,0,.84),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  animation:mistySoftBreath 9s ease-in-out infinite;
+    0 20px 44px rgba(0,0,0,.54),
+    0 0 0 1px rgba(0,0,0,.82),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  animation:none;
 }
 
 .raffle-widget::before{
   border-radius:24px;
-  border:1px solid rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.035);
 }
 
 .raffle-widget::after{
-  opacity:.12;
+  opacity:.10;
+  animation:none;
 }
 
 .raffle-badge{
   border-radius:999px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
+  background:linear-gradient(180deg,#741329,#4b0c1a);
+  border:1px solid rgba(0,0,0,.60);
   font-family:'Inter',sans-serif;
   font-weight:900;
   color:#fff;
-  -webkit-text-stroke:.35px #050505;
+  -webkit-text-stroke:.35px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  text-shadow:0 1px 0 rgba(42,5,14,.84);
 }
 
 .raffle-badge::before{
   background:#fff;
-  border:1px solid #050505;
+  border:1px solid #4c0c1a;
   box-shadow:none;
-}
-
-.raffle-badge::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
 }
 
 .raffle-title{
   border-radius:18px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#0d0d0d,#020202);
-  border:1px solid rgba(255,255,255,.11);
+    radial-gradient(ellipse at 18% 50%, rgba(0,0,0,.44), transparent 45%),
+    linear-gradient(103deg,#060405 0%,#2c0710 38%,#771126 100%);
+  border:1px solid rgba(255,255,255,.10);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.3px #050505;
+  -webkit-text-stroke:1.35px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505;
+  text-shadow:0 3px 0 rgba(54,6,18,.84);
 }
 
 .raffle-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
 }
 
 .raffle-title::after{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.30),transparent);
+  height:2px;
+  background:linear-gradient(90deg,transparent,#711129,#9d1c3b,#711129,transparent);
   box-shadow:none;
 }
 
 .raffle-name-item{
   border-radius:15px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(135deg,#111111,#050505 60%,#020202);
-  border:1px solid rgba(255,255,255,.08);
+    radial-gradient(ellipse at 15% 50%, rgba(0,0,0,.30), transparent 48%),
+    linear-gradient(105deg,#080607 0%,#20050b 45%,#57101d 100%);
+  border:1px solid rgba(255,255,255,.065);
   box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.035);
+    0 6px 14px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.raffle-name-item::before{
+  opacity:.10;
+  animation:none;
 }
 
 .raffle-name-item::after{
   border-radius:10px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
+  background:linear-gradient(180deg,#741329,#4b0c1a);
+  border:1px solid rgba(0,0,0,.60);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:.45px #050505;
+  -webkit-text-stroke:.55px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  text-shadow:0 1px 0 rgba(42,5,14,.84);
 }
 
 .raffle-name-item:first-child{
   border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#161616,#070707 58%,#020202);
-  border:1px solid rgba(255,255,255,.13);
+    radial-gradient(ellipse at 14% 45%,rgba(0,0,0,.36),transparent 48%),
+    linear-gradient(105deg,#080607 0%,#2b0710 42%,#761226 100%);
+  border:1px solid rgba(255,255,255,.10);
 }
 
 .raffle-name-item:hover{
   transform:translateY(-1px);
   filter:brightness(1.05);
-  border-color:rgba(255,255,255,.15);
+  border-color:rgba(255,255,255,.13);
 }
 
 .raffle-name{
   font-weight:900;
   color:#fff;
-  -webkit-text-stroke:.45px #050505;
+  -webkit-text-stroke:.50px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.72);
+  text-shadow:0 2px 0 rgba(54,6,18,.72);
 }
 
 .raffle-tickets{
   border-radius:10px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
+  background:linear-gradient(180deg,#741329,#4b0c1a);
+  border:1px solid rgba(0,0,0,.60);
 }
 
 .raffle-tickets::after{
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:.45px #050505;
+  -webkit-text-stroke:.55px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  text-shadow:0 1px 0 rgba(42,5,14,.84);
 }
 
 .raffle-winner-screen{
   border-radius:29px;
   background:
-    radial-gradient(circle at 50% 42%,rgba(255,255,255,.045),transparent 46%),
-    linear-gradient(145deg,#111111 0%,#050505 60%,#010101 100%);
-  border:1px solid rgba(255,255,255,.12);
+    radial-gradient(circle at 50% 42%,rgba(131,17,44,.12),transparent 46%),
+    linear-gradient(112deg,#020202 0%,#190408 26%,#4f0b19 62%,#781229 100%);
+  border:1px solid rgba(255,255,255,.09);
 }
 
 .raffle-winner-screen::after{
   border-radius:22px;
-  border:1px solid rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.04);
 }
 
 .raffle-winner-screen::before{
-  content:"⛓  ✦  ⛓";
+  content:"✦  ♦  ✦";
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
-  color:#d7d7d7;
-  -webkit-text-stroke:.8px #050505;
+  color:#fff;
+  -webkit-text-stroke:.85px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
+  text-shadow:0 2px 0 rgba(54,6,18,.80);
 }
 
 .winner-label{
   border-radius:999px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
+  background:linear-gradient(180deg,#741329,#4b0c1a);
+  border:1px solid rgba(0,0,0,.60);
   font-weight:900;
   color:#fff;
-  text-shadow:0 1px 0 #050505;
+  -webkit-text-stroke:.35px var(--bx-outline);
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 rgba(42,5,14,.82);
 }
 
 .winner-name{
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.55px #050505;
+  -webkit-text-stroke:1.55px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 4px 0 #050505;
+  text-shadow:0 4px 0 rgba(52,6,18,.86);
 }
 
 @media (max-width:590px){
-  .raffle-widget{ border-radius:26px; padding-bottom:24px; }
-  .raffle-widget::before{ border-radius:21px; }
-  .raffle-title{ border-radius:16px; }
-  .raffle-name-item{ border-radius:13px; }
-  .raffle-winner-screen{ border-radius:25px; }
+  .raffle-widget{border-radius:26px;}
+  .raffle-widget::before{border-radius:21px;}
+  .raffle-title{border-radius:16px;}
+  .raffle-name-item{border-radius:13px;}
+  .raffle-winner-screen{border-radius:25px;}
 }

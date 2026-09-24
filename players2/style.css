@@ -1,22 +1,12 @@
 /* =========================================================
-   PINK BALLOON RISE THEME
-   Inspired by the reference:
-   - Pink background
-   - White text
-   - Multicolor balloons rising from bottom to top
-   - Soft continuous motion
-   - Rounded corners and clean, playful finish
-   - Existing selectors/states preserved
-========================================================= */
-
-/* =========================================================
-   BLACK TO RED / TRAPON THEME
+   ROSE CLOUD THEME
    Inspirado en la referencia:
-   - Degradado de negro profundo a rojo vino
-   - Letras blancas con contorno negro
-   - Bordes redondeados
-   - Contraste alto y acabado limpio
-   - Mantiene selectores y estados funcionales existentes
+   - Fondo rosado suave
+   - Manchas rosado oscuro en movimiento
+   - Letras blancas con borde rosado oscuro
+   - Alto contraste y acabado redondeado
+   - BAR: números más grandes y legibles
+   - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
@@ -985,257 +975,95 @@ body{
 
 
 :root{
-  --tr-black:#030303;
-  --tr-black-2:#090909;
-  --tr-red-1:#3d0710;
-  --tr-red-2:#6d0c1d;
-  --tr-red-3:#97162e;
-  --tr-red-4:#b31d3b;
-  --tr-white:#ffffff;
-  --tr-outline:#050505;
-  --tr-shadow:rgba(0,0,0,.62);
+  --rc-bg-1:#ffd0db;
+  --rc-bg-2:#f7a9bc;
+  --rc-bg-3:#ed8eaa;
+  --rc-dark-1:#d45b7d;
+  --rc-dark-2:#be446b;
+  --rc-dark-3:#a8365d;
+  --rc-outline:#b23f66;
+  --rc-white:#ffffff;
+  --rc-shadow:rgba(136,47,78,.24);
 }
 
-@keyframes traponGlow{
-  0%,100%{
-    filter:brightness(1);
+@keyframes roseCloudMove{
+  0%{
+    background-position:
+      8% 18%,
+      84% 12%,
+      28% 78%,
+      78% 72%,
+      50% 45%,
+      0% 0%;
+  }
+  20%{
+    background-position:
+      20% 26%,
+      72% 22%,
+      36% 66%,
+      68% 86%,
+      58% 36%,
+      0% 0%;
+  }
+  40%{
+    background-position:
+      34% 42%,
+      62% 10%,
+      18% 86%,
+      58% 60%,
+      42% 56%,
+      0% 0%;
+  }
+  60%{
+    background-position:
+      16% 62%,
+      80% 30%,
+      38% 70%,
+      88% 46%,
+      56% 72%,
+      0% 0%;
+  }
+  80%{
+    background-position:
+      5% 38%,
+      90% 18%,
+      16% 54%,
+      72% 80%,
+      38% 30%,
+      0% 0%;
+  }
+  100%{
+    background-position:
+      8% 18%,
+      84% 12%,
+      28% 78%,
+      78% 72%,
+      50% 45%,
+      0% 0%;
+  }
+}
+
+@keyframes roseCloudMoveVertical{
+  0%{
+    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+  }
+  25%{
+    background-position:54% 24%,46% 12%,40% 52%,58% 72%,64% 38%,0 0;
   }
   50%{
-    filter:brightness(1.035);
+    background-position:28% 48%,76% 42%,30% 84%,48% 58%,42% 64%,0 0;
   }
-}
-
-body{
-  color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-/* =========================================================
-   RAFFLE
-========================================================= */
-
-.raffle-widget{
-  border-radius:30px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 25%),
-    linear-gradient(100deg,#020202 0%,#080607 22%,#3b0710 53%,#741022 78%,#99162f 100%);
-  border:1.5px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 20px 44px rgba(0,0,0,.52),
-    0 0 0 1px rgba(0,0,0,.76),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  animation:traponGlow 8s ease-in-out infinite;
-}
-
-.raffle-widget::before{
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.04);
-}
-
-.raffle-widget::after{
-  opacity:.14;
-}
-
-.raffle-badge{
-  border-radius:999px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.70);
-  font-family:'Inter',sans-serif;
-  font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-}
-
-.raffle-badge::before{
-  background:#fff;
-  border:1px solid #050505;
-  box-shadow:none;
-}
-
-.raffle-badge::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-}
-
-.raffle-title{
-  border-radius:18px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0)),
-    linear-gradient(100deg,#050505 0%,#190307 28%,#65101d 67%,#8f1730 100%);
-  border:1px solid rgba(255,255,255,.11);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.4px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505;
-}
-
-.raffle-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
-}
-
-.raffle-title::after{
-  height:2px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent);
-  box-shadow:none;
-}
-
-.raffle-name-item{
-  border-radius:15px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(100deg,#080808 0%,#160306 34%,#54101a 75%,#741427 100%);
-  border:1px solid rgba(255,255,255,.07);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.28),
-    inset 0 1px 0 rgba(255,255,255,.03);
-}
-
-.raffle-name-item::after{
-  border-radius:10px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.72);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.65px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-}
-
-.raffle-name-item:first-child{
-  border-radius:17px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),
-    linear-gradient(100deg,#090909 0%,#1c0408 30%,#6e1122 72%,#97162f 100%);
-  border:1px solid rgba(255,255,255,.11);
-}
-
-.raffle-name-item:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.05);
-  border-color:rgba(255,255,255,.13);
-}
-
-.raffle-name{
-  font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.55px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.72);
-}
-
-.raffle-tickets{
-  border-radius:10px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.72);
-}
-
-.raffle-tickets::after{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.65px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-}
-
-.raffle-winner-screen{
-  border-radius:29px;
-  background:
-    radial-gradient(circle at 50% 42%,rgba(151,22,46,.14),transparent 46%),
-    linear-gradient(100deg,#020202 0%,#0b0103 24%,#53101a 66%,#8e1530 100%);
-  border:1.5px solid rgba(255,255,255,.10);
-}
-
-.raffle-winner-screen::after{
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.raffle-winner-screen::before{
-  content:"✦  ♦  ✦";
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
-}
-
-.winner-label{
-  border-radius:999px;
-  background:linear-gradient(180deg,#86142c,#540b1a);
-  border:1px solid rgba(0,0,0,.72);
-  font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-}
-
-.winner-name{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.65px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 4px 0 #050505;
-}
-
-@media (max-width:590px){
-  .raffle-widget{border-radius:26px;}
-  .raffle-widget::before{border-radius:21px;}
-  .raffle-title{border-radius:16px;}
-  .raffle-name-item{border-radius:13px;}
-  .raffle-winner-screen{border-radius:25px;}
-}
-
-
-:root{
-  --balloon-pink-1:#f8b4dc;
-  --balloon-pink-2:#ef8fca;
-  --balloon-pink-3:#e474b8;
-  --balloon-rose:#ff6f9f;
-  --balloon-yellow:#ffd45f;
-  --balloon-blue:#6fd5ff;
-  --balloon-purple:#b77cff;
-  --balloon-orange:#ff9a5f;
-  --balloon-green:#7ee0b6;
-  --white:#ffffff;
-  --ink:#20131e;
-}
-
-@keyframes balloonRiseA{
-  0%{
-    transform:translate3d(0,115%,0);
+  75%{
+    background-position:58% 68%,34% 28%,66% 74%,78% 44%,54% 24%,0 0;
   }
   100%{
-    transform:translate3d(0,-135%,0);
+    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
   }
 }
 
-@keyframes balloonRiseB{
-  0%{
-    transform:translate3d(0,135%,0) scale(.92);
-  }
-  100%{
-    transform:translate3d(0,-155%,0) scale(1.04);
-  }
-}
-
-@keyframes balloonSway{
-  0%,100%{ margin-left:0; }
-  25%{ margin-left:7px; }
-  50%{ margin-left:-5px; }
-  75%{ margin-left:5px; }
-}
-
-@keyframes pinkBackdropBreath{
-  0%,100%{ filter:saturate(1) brightness(1); }
-  50%{ filter:saturate(1.035) brightness(1.02); }
+@keyframes roseSoftBreath{
+  0%,100%{ filter:brightness(1) saturate(1); }
+  50%{ filter:brightness(1.025) saturate(1.04); }
 }
 
 body{
@@ -1249,171 +1077,148 @@ body{
 
 .raffle-widget{
   border-radius:31px;
-  background:
-    radial-gradient(circle at 18% 20%,rgba(255,255,255,.28),transparent 24%),
-    radial-gradient(circle at 82% 75%,rgba(255,255,255,.11),transparent 26%),
-    linear-gradient(135deg,#f9b9df 0%,#ef95cb 48%,#df72b1 100%);
-  border:2px solid rgba(255,255,255,.58);
+  background-image:
+    radial-gradient(circle at center, rgba(196,66,106,.48) 0 12%, rgba(196,66,106,.27) 19%, transparent 31%),
+    radial-gradient(circle at center, rgba(224,101,135,.42) 0 11%, rgba(224,101,135,.23) 18%, transparent 30%),
+    radial-gradient(circle at center, rgba(185,51,93,.32) 0 12%, rgba(185,51,93,.17) 20%, transparent 32%),
+    radial-gradient(circle at center, rgba(239,129,155,.32) 0 10%, rgba(239,129,155,.15) 18%, transparent 29%),
+    radial-gradient(circle at center, rgba(173,50,91,.23) 0 9%, rgba(173,50,91,.11) 17%, transparent 27%),
+    linear-gradient(135deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
+  background-repeat:no-repeat;
+  background-size:210px 210px,250px 250px,185px 185px,270px 270px,160px 160px,100% 100%;
+  border:2px solid rgba(255,255,255,.66);
   box-shadow:
-    0 18px 38px rgba(130,56,111,.24),
-    inset 0 2px 0 rgba(255,255,255,.40);
-  animation:pinkBackdropBreath 8s ease-in-out infinite;
+    0 18px 38px var(--rc-shadow),
+    inset 0 2px 0 rgba(255,255,255,.52);
+  animation:
+    roseCloudMove 25s ease-in-out infinite,
+    roseSoftBreath 8s ease-in-out infinite;
 }
 
 .raffle-widget::before{
-  content:"";
-  position:absolute;
-  left:-6%;
-  bottom:-120%;
-  z-index:0;
-  width:112%;
-  height:100%;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 7% 90%, var(--balloon-yellow) 0 16px, transparent 17px),
-    radial-gradient(circle at 20% 72%, var(--balloon-blue) 0 20px, transparent 21px),
-    radial-gradient(circle at 34% 94%, var(--balloon-rose) 0 17px, transparent 18px),
-    radial-gradient(circle at 50% 72%, var(--balloon-purple) 0 21px, transparent 22px),
-    radial-gradient(circle at 66% 92%, var(--balloon-green) 0 17px, transparent 18px),
-    radial-gradient(circle at 82% 70%, var(--balloon-orange) 0 19px, transparent 20px),
-    radial-gradient(circle at 94% 91%, rgba(255,255,255,.92) 0 15px, transparent 16px),
-    radial-gradient(circle at 12% 48%, var(--balloon-rose) 0 13px, transparent 14px),
-    radial-gradient(circle at 72% 45%, var(--balloon-yellow) 0 14px, transparent 15px);
-  filter:drop-shadow(0 3px 3px rgba(94,34,81,.11));
-  animation:
-    balloonRiseA 19s linear infinite,
-    balloonSway 5.5s ease-in-out infinite;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.31);
 }
 
 .raffle-widget::after{
-  content:"";
-  position:absolute;
-  left:-2%;
-  bottom:-135%;
-  z-index:0;
-  width:104%;
-  height:100%;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 14% 88%, rgba(255,255,255,.92) 0 12px, transparent 13px),
-    radial-gradient(circle at 29% 64%, var(--balloon-orange) 0 15px, transparent 16px),
-    radial-gradient(circle at 46% 88%, var(--balloon-blue) 0 13px, transparent 14px),
-    radial-gradient(circle at 64% 62%, var(--balloon-rose) 0 17px, transparent 18px),
-    radial-gradient(circle at 82% 87%, var(--balloon-purple) 0 14px, transparent 15px),
-    radial-gradient(circle at 95% 54%, var(--balloon-green) 0 12px, transparent 13px);
-  opacity:.82;
-  animation:
-    balloonRiseB 25s linear infinite,
-    balloonSway 7s ease-in-out infinite reverse;
-}
-
-.raffle-header,
-.raffle-names{
-  position:relative;
-  z-index:5;
+  opacity:.15;
 }
 
 .raffle-badge{
   border-radius:999px;
-  background:linear-gradient(180deg,#fff,#fff2fb);
-  border:1.5px solid rgba(169,63,134,.22);
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.26);
   font-weight:900;
-  color:#a74485;
+  color:#ac3e65;
   text-shadow:none;
+}
+
+.raffle-badge::before{
+  background:#cf5b82;
+  box-shadow:0 0 0 3px rgba(207,91,130,.11),0 0 7px rgba(255,255,255,.22);
 }
 
 .raffle-title{
   border-radius:20px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.03)),
-    rgba(190,76,152,.20);
-  border:1.5px solid rgba(255,255,255,.46);
+    linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),
+    rgba(207,76,116,.18);
+  border:1.5px solid rgba(255,255,255,.52);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  text-shadow:0 3px 0 rgba(91,34,80,.36);
+  -webkit-text-stroke:1.30px var(--rc-outline);
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(159,53,89,.32);
 }
 
 .raffle-title::after{
+  height:2px;
   background:linear-gradient(90deg,transparent,#fff,transparent);
+  box-shadow:0 0 6px rgba(255,255,255,.34);
 }
 
 .raffle-name-item{
   border-radius:17px;
   background:
     linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04)),
-    rgba(179,66,140,.16);
-  border:1px solid rgba(255,255,255,.28);
+    rgba(205,75,113,.15);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 6px 14px rgba(111,41,95,.12),
-    inset 0 1px 0 rgba(255,255,255,.22);
+    0 6px 14px rgba(136,47,78,.12),
+    inset 0 1px 0 rgba(255,255,255,.24);
 }
 
 .raffle-name-item::after{
   border-radius:11px;
-  background:linear-gradient(180deg,#fff,#fff2fb);
-  border:1.5px solid rgba(169,63,134,.22);
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.26);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
-  color:#a74485;
+  color:#ac3e65;
   text-shadow:none;
 }
 
 .raffle-name-item:first-child{
   border-radius:19px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.055)),
-    rgba(175,62,137,.20);
-  border:1.5px solid rgba(255,255,255,.47);
+    linear-gradient(180deg,rgba(255,255,255,.21),rgba(255,255,255,.055)),
+    rgba(191,63,103,.20);
+  border:1.5px solid rgba(255,255,255,.50);
 }
 
 .raffle-name{
   font-weight:900;
   color:#fff;
-  text-shadow:0 2px 0 rgba(86,31,76,.42);
+  -webkit-text-stroke:.50px var(--rc-outline);
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(150,50,85,.28);
 }
 
 .raffle-tickets{
   border-radius:11px;
-  background:linear-gradient(180deg,#fff,#fff2fb);
-  border:1.5px solid rgba(169,63,134,.22);
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.26);
 }
 
 .raffle-tickets::after{
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
-  color:#a74485;
+  color:#ac3e65;
   text-shadow:none;
 }
 
 .raffle-winner-screen{
   border-radius:30px;
   background:
-    radial-gradient(circle at 20% 20%,rgba(255,255,255,.30),transparent 24%),
-    linear-gradient(135deg,#f9b9df 0%,#ef95cb 48%,#df72b1 100%);
-  border:2px solid rgba(255,255,255,.58);
+    radial-gradient(circle at 20% 25%,rgba(202,68,108,.35) 0 11%,transparent 31%),
+    radial-gradient(circle at 80% 70%,rgba(175,48,91,.28) 0 12%,transparent 32%),
+    linear-gradient(135deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
+  border:2px solid rgba(255,255,255,.66);
 }
 
 .raffle-winner-screen::before{
-  content:"🎈  ✦  🎈";
-  color:#fff;
+  content:"✦  ♥  ✦";
   font-family:'Anton',Impact,sans-serif;
-  text-shadow:0 2px 0 rgba(91,34,80,.38);
+  color:#fff;
+  -webkit-text-stroke:1px var(--rc-outline);
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(159,53,89,.30);
 }
 
 .winner-label{
-  background:linear-gradient(180deg,#fff,#fff2fb);
-  border:1.5px solid rgba(169,63,134,.22);
-  color:#a74485;
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.26);
+  color:#ac3e65;
   text-shadow:none;
 }
 
 .winner-name{
   font-family:'Anton',Impact,sans-serif;
   color:#fff;
-  text-shadow:0 4px 0 rgba(91,34,80,.36);
+  -webkit-text-stroke:1.45px var(--rc-outline);
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 rgba(159,53,89,.32);
 }
 
 @media (max-width:590px){

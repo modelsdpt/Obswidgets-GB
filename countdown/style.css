@@ -1,15 +1,11 @@
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   BORDEAUX THEME — STATIC FLOW
+   Inspirado en la referencia:
+   - Negro profundo + vinotinto / burgundy
+   - Apariencia líquida / ahumada, pero completamente ESTÁTICA
+   - Letras blancas con borde vinotinto oscuro
+   - Alto contraste, sombras suaves, bordes redondeados
+   - Mantiene selectores y lógica funcional de cada widget
 ========================================================= */
 
 /* ==========================================
@@ -558,25 +554,16 @@ body{
 
 
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
-}
-
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
-}
-
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
+  --bx-black:#020202;
+  --bx-black2:#080607;
+  --bx-wine:#3a0712;
+  --bx-wine2:#5a0b1c;
+  --bx-wine3:#7b1029;
+  --bx-wine4:#9b1737;
+  --bx-outline:#78112a;
+  --bx-white:#ffffff;
+  --bx-silver:#e8e8e8;
+  --bx-shadow:rgba(0,0,0,.65);
 }
 
 body{
@@ -585,133 +572,120 @@ body{
 }
 
 /* =========================================================
-   MISTY — TIMER
+   BORDEAUX — TIMER
 ========================================================= */
 
 .timer-widget{
   border-radius:27px;
-  padding:11px 11px 24px;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 18% -5%,rgba(255,255,255,.05) 0%,transparent 33%),
-    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
-  background-repeat:repeat-x,no-repeat,no-repeat;
-  background-size:48px 14px,100% 100%,100% 100%;
-  background-position:left 8px bottom 6px,center,center;
-  border:1px solid rgba(255,255,255,.13);
+  background:
+    radial-gradient(ellipse at 10% 40%, rgba(0,0,0,.86) 0 14%, transparent 36%),
+    radial-gradient(ellipse at 38% 22%, rgba(118,14,39,.56) 0 13%, transparent 34%),
+    radial-gradient(ellipse at 68% 65%, rgba(8,5,6,.78) 0 17%, transparent 39%),
+    radial-gradient(ellipse at 92% 34%, rgba(143,20,50,.44) 0 12%, transparent 32%),
+    linear-gradient(112deg,#020202 0%,#150307 24%,#420915 49%,#1a0509 71%,#721128 100%);
+  border:1.5px solid rgba(255,255,255,.09);
   box-shadow:
     0 18px 38px rgba(0,0,0,.54),
-    0 0 0 1px rgba(0,0,0,.84),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  animation:mistySoftBreath 9s ease-in-out infinite;
+    0 0 0 1px rgba(0,0,0,.82),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  animation:none;
 }
 
 .timer-widget::before{
   inset:5px;
   border-radius:21px;
-  border:1px solid rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.035);
 }
 
 .timer-widget::after{
-  opacity:.13;
-  background:linear-gradient(
-    108deg,
-    transparent 0%,
-    rgba(255,255,255,.005) 30%,
-    rgba(255,255,255,.08) 49%,
-    rgba(255,255,255,.015) 58%,
-    transparent 72%
-  );
+  opacity:.10;
+  animation:none;
 }
 
 .timer-title{
   border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#0d0d0d,#020202);
-  border:1px solid rgba(255,255,255,.11);
+    radial-gradient(ellipse at 18% 50%, rgba(0,0,0,.44), transparent 45%),
+    linear-gradient(103deg,#060405 0%,#2c0710 38%,#771126 100%);
+  border:1px solid rgba(255,255,255,.10);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.25px #050505;
+  -webkit-text-stroke:1.25px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
+  text-shadow:0 2px 0 rgba(54,6,18,.86);
 }
 
 .timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
 }
 
 .timer-title::after{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  height:2px;
+  background:linear-gradient(90deg,transparent,#711129,#9d1c3b,#711129,transparent);
   box-shadow:none;
 }
 
 .timer-box{
   border-radius:21px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(135deg,#111111,#050505 60%,#020202);
-  border:1px solid rgba(255,255,255,.08);
+    radial-gradient(ellipse at 15% 50%, rgba(0,0,0,.30), transparent 48%),
+    linear-gradient(105deg,#080607 0%,#20050b 45%,#57101d 100%);
+  border:1px solid rgba(255,255,255,.07);
   box-shadow:
     0 10px 22px rgba(0,0,0,.34),
-    inset 0 1px 0 rgba(255,255,255,.035);
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 
 .timer-box::before{
   width:4px;
-  background:linear-gradient(180deg,#f2f2f2,#aaa,#444);
-  box-shadow:0 0 6px rgba(255,255,255,.12);
+  background:linear-gradient(180deg,#a31c3c,#711129,#2d060d);
+  box-shadow:0 0 6px rgba(127,17,42,.14);
 }
 
 .timer-box::after{
-  opacity:.12;
+  opacity:.10;
+  animation:none;
 }
 
 #timer-value{
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:1.4px #050505;
+  -webkit-text-stroke:1.35px var(--bx-outline);
   paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505;
+  text-shadow:0 3px 0 rgba(52,6,18,.84);
 }
 
+/* Functional states retained, but restrained */
 .timer-box.timer-running{
-  animation:mistyTimerPulse 2.6s ease-in-out infinite alternate;
+  animation:bxTimerPulse 2.8s ease-in-out infinite alternate;
 }
 
-@keyframes mistyTimerPulse{
-  from{
-    transform:scale(1);
-    border-color:rgba(255,255,255,.08);
-  }
+@keyframes bxTimerPulse{
+  from{ transform:scale(1); }
   to{
-    transform:scale(1.012);
-    border-color:rgba(255,255,255,.15);
+    transform:scale(1.01);
     box-shadow:
-      0 11px 24px rgba(0,0,0,.39),
-      0 0 10px rgba(255,255,255,.025),
-      inset 0 1px 0 rgba(255,255,255,.045);
+      0 11px 24px rgba(0,0,0,.38),
+      inset 0 1px 0 rgba(255,255,255,.04);
   }
 }
 
 .timer-box.timer-finished{
-  border-color:rgba(255,255,255,.18);
+  border-color:rgba(255,255,255,.15);
   background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.045),transparent 44%),
-    linear-gradient(135deg,#151515,#050505 60%,#020202);
+    linear-gradient(105deg,#080607 0%,#2c0710 40%,#781226 100%);
 }
 
 .timer-box:hover{
   transform:translateY(-1px);
-  border-color:rgba(255,255,255,.15);
+  border-color:rgba(255,255,255,.13);
 }
 
 @media (max-width:310px){
-  .timer-widget{ border-radius:24px; padding-bottom:22px; }
-  .timer-widget::before{ border-radius:19px; }
-  .timer-title{ border-radius:15px; }
-  .timer-box{ border-radius:18px; }
+  .timer-widget{border-radius:24px;}
+  .timer-widget::before{border-radius:19px;}
+  .timer-title{border-radius:15px;}
+  .timer-box{border-radius:18px;}
 }
