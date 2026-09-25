@@ -1,11 +1,15 @@
 /* =========================================================
-   BORDEAUX THEME — STATIC FLOW
-   Inspirado en la referencia:
-   - Negro profundo + vinotinto / burgundy
-   - Apariencia líquida / ahumada, pero completamente ESTÁTICA
-   - Letras blancas con borde vinotinto oscuro
-   - Alto contraste, sombras suaves, bordes redondeados
-   - Mantiene selectores y lógica funcional de cada widget
+   MISTY THEME
+   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo negro profundo
+   - Letras blancas con contorno negro para alto contraste
+   - Acabado limpio / oscuro / premium
+   - Cadena metálica decorativa en la parte inferior
+   - GOAL: relleno transparente tipo vidrio; el progreso se
+     ve claramente a medida que aumenta el height del #bar-fill
+   - Mantiene selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -539,16 +543,25 @@ body{
 
 
 :root{
-  --bx-black:#020202;
-  --bx-black2:#080607;
-  --bx-wine:#3a0712;
-  --bx-wine2:#5a0b1c;
-  --bx-wine3:#7b1029;
-  --bx-wine4:#9b1737;
-  --bx-outline:#78112a;
-  --bx-white:#ffffff;
-  --bx-silver:#e8e8e8;
-  --bx-shadow:rgba(0,0,0,.65);
+  --misty-black:#020202;
+  --misty-black-2:#070707;
+  --misty-black-3:#0d0d0d;
+  --misty-charcoal:#151515;
+  --misty-white:#ffffff;
+  --misty-silver:#d9d9d9;
+  --misty-silver-soft:#9a9a9a;
+  --misty-line:rgba(255,255,255,.13);
+  --misty-shadow:rgba(0,0,0,.76);
+}
+
+@keyframes mistySoftBreath{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.035); }
+}
+
+@keyframes mistyChainShimmer{
+  0%,100%{ opacity:.28; filter:brightness(.90); }
+  50%{ opacity:.52; filter:brightness(1.12); }
 }
 
 body{
@@ -557,58 +570,102 @@ body{
 }
 
 /* =========================================================
-   BORDEAUX — BAR
+   MISTY — GOAL
+   El #bar-fill conserva su height dinámico.
+   El relleno es transparente/vidrio para que el progreso
+   aparezca conforme sube sin convertirse en un bloque sólido.
 ========================================================= */
 
 #goal-wrapper{
   width:78px;
   border-radius:29px;
-  background:
-    radial-gradient(ellipse at 42% 12%, rgba(0,0,0,.82) 0 13%, transparent 34%),
-    radial-gradient(ellipse at 70% 42%, rgba(123,16,41,.48) 0 13%, transparent 35%),
-    radial-gradient(ellipse at 30% 72%, rgba(4,3,3,.78) 0 15%, transparent 38%),
-    radial-gradient(ellipse at 68% 92%, rgba(107,13,35,.42) 0 11%, transparent 32%),
-    linear-gradient(180deg,#030303 0%,#190408 28%,#4d0b18 60%,#79112a 100%);
-  border:1.5px solid rgba(255,255,255,.09);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(180deg,#111111 0%,#060606 42%,#020202 100%);
+  background-repeat:repeat-x,no-repeat;
+  background-size:38px 12px,100% 100%;
+  background-position:left 1px bottom 6px,center;
+  border:1px solid rgba(255,255,255,.13);
   box-shadow:
-    0 18px 38px rgba(0,0,0,.52),
-    0 0 0 1px rgba(0,0,0,.80),
-    inset 0 1px 0 rgba(255,255,255,.045);
-  animation:none;
+    0 18px 38px rgba(0,0,0,.54),
+    0 0 0 1px rgba(0,0,0,.82),
+    inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 #goal-wrapper::before{
   border-radius:23px;
-  border:1px solid rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.045);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.58);
 }
 
 #goal-wrapper::after{
-  opacity:.10;
-  animation:none;
+  opacity:.12;
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.01) 28%,
+    rgba(255,255,255,.07) 50%,
+    rgba(255,255,255,.015) 64%,
+    transparent 100%
+  );
 }
 
 #bar-fill{
+  z-index:2;
   border-radius:0 0 28px 28px;
+
+  /* Transparent/glass progress */
   background:
-    linear-gradient(90deg,rgba(255,255,255,.04),transparent 36%,rgba(0,0,0,.18) 72%,rgba(255,255,255,.02)),
-    linear-gradient(180deg,#8b1631 0%,#641024 48%,#29060d 100%);
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.095) 0%,
+      rgba(255,255,255,.035) 24%,
+      rgba(255,255,255,.055) 52%,
+      rgba(255,255,255,.018) 76%,
+      rgba(255,255,255,.08) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.045) 45%,
+      rgba(255,255,255,.018) 100%
+    );
+
+  border-left:1px solid rgba(255,255,255,.04);
+  border-right:1px solid rgba(255,255,255,.04);
+
   box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.025),
-    inset -7px 0 12px rgba(0,0,0,.20),
-    0 -2px 10px rgba(128,17,42,.08);
+    inset 5px 0 10px rgba(255,255,255,.025),
+    inset -5px 0 10px rgba(0,0,0,.12),
+    inset 0 -16px 24px rgba(0,0,0,.08),
+    0 -2px 8px rgba(255,255,255,.06);
+
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+
+  transition:
+    height .85s cubic-bezier(.22,.8,.25,1),
+    filter .3s ease;
 }
 
 #bar-fill::before{
   height:5px;
-  background:linear-gradient(180deg,#fff,#d7d7d7);
+  background:linear-gradient(
+    180deg,
+    #fff 0%,
+    #e6e6e6 34%,
+    rgba(255,255,255,.35) 100%
+  );
   box-shadow:
-    0 0 6px rgba(255,255,255,.56),
-    0 0 12px rgba(255,255,255,.12);
+    0 0 6px rgba(255,255,255,.70),
+    0 0 12px rgba(255,255,255,.18);
 }
 
 #bar-fill::after{
   background:#fff;
-  box-shadow:0 0 5px rgba(255,255,255,.55);
+  box-shadow:
+    0 0 5px rgba(255,255,255,.76),
+    0 0 10px rgba(255,255,255,.18);
 }
 
 .goal-title{
@@ -616,30 +673,30 @@ body{
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  background:rgba(0,0,0,.18);
-  -webkit-text-stroke:.95px var(--bx-outline);
+  background:rgba(0,0,0,.22);
+  -webkit-text-stroke:.9px #050505;
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(51,6,17,.80);
+  text-shadow:0 2px 0 #050505;
 }
 
 .goal-title::after{
-  background:linear-gradient(90deg,transparent,#711129,#9e1c3b,#711129,transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
 }
 
 .goal-amount{
   border-radius:11px;
-  background:linear-gradient(180deg,#741329,#4b0c1a);
-  border:1px solid rgba(0,0,0,.60);
+  background:linear-gradient(180deg,#222,#0c0c0c);
+  border:1px solid rgba(255,255,255,.12);
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
   color:#fff;
-  -webkit-text-stroke:.55px var(--bx-outline);
+  -webkit-text-stroke:.45px #050505;
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(42,5,14,.84);
+  text-shadow:0 1px 0 #050505;
 }
 
 @media (max-height:460px){
-  #goal-wrapper{border-radius:26px;}
-  #goal-wrapper::before{border-radius:21px;}
-  #bar-fill{border-radius:0 0 25px 25px;}
+  #goal-wrapper{ border-radius:26px; }
+  #goal-wrapper::before{ border-radius:21px; }
+  #bar-fill{ border-radius:0 0 25px 25px; }
 }
