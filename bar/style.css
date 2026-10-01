@@ -1,15 +1,12 @@
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   ROSE CLOUD THEME
+   Inspirado en la referencia:
+   - Fondo rosado suave
+   - Manchas rosado oscuro en movimiento
+   - Letras blancas con borde rosado oscuro
+   - Alto contraste y acabado redondeado
+   - BAR: números más grandes y legibles
+   - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
@@ -543,25 +540,95 @@ body{
 
 
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
+  --rc-bg-1:#ffd0db;
+  --rc-bg-2:#f7a9bc;
+  --rc-bg-3:#ed8eaa;
+  --rc-dark-1:#d45b7d;
+  --rc-dark-2:#be446b;
+  --rc-dark-3:#a8365d;
+  --rc-outline:#b23f66;
+  --rc-white:#ffffff;
+  --rc-shadow:rgba(136,47,78,.24);
 }
 
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
+@keyframes roseCloudMove{
+  0%{
+    background-position:
+      8% 18%,
+      84% 12%,
+      28% 78%,
+      78% 72%,
+      50% 45%,
+      0% 0%;
+  }
+  20%{
+    background-position:
+      20% 26%,
+      72% 22%,
+      36% 66%,
+      68% 86%,
+      58% 36%,
+      0% 0%;
+  }
+  40%{
+    background-position:
+      34% 42%,
+      62% 10%,
+      18% 86%,
+      58% 60%,
+      42% 56%,
+      0% 0%;
+  }
+  60%{
+    background-position:
+      16% 62%,
+      80% 30%,
+      38% 70%,
+      88% 46%,
+      56% 72%,
+      0% 0%;
+  }
+  80%{
+    background-position:
+      5% 38%,
+      90% 18%,
+      16% 54%,
+      72% 80%,
+      38% 30%,
+      0% 0%;
+  }
+  100%{
+    background-position:
+      8% 18%,
+      84% 12%,
+      28% 78%,
+      78% 72%,
+      50% 45%,
+      0% 0%;
+  }
 }
 
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
+@keyframes roseCloudMoveVertical{
+  0%{
+    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+  }
+  25%{
+    background-position:54% 24%,46% 12%,40% 52%,58% 72%,64% 38%,0 0;
+  }
+  50%{
+    background-position:28% 48%,76% 42%,30% 84%,48% 58%,42% 64%,0 0;
+  }
+  75%{
+    background-position:58% 68%,34% 28%,66% 74%,78% 44%,54% 24%,0 0;
+  }
+  100%{
+    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+  }
+}
+
+@keyframes roseSoftBreath{
+  0%,100%{ filter:brightness(1) saturate(1); }
+  50%{ filter:brightness(1.025) saturate(1.04); }
 }
 
 body{
@@ -570,133 +637,225 @@ body{
 }
 
 /* =========================================================
-   MISTY — GOAL
-   El #bar-fill conserva su height dinámico.
-   El relleno es transparente/vidrio para que el progreso
-   aparezca conforme sube sin convertirse en un bloque sólido.
+   BAR — números más grandes y legibles
 ========================================================= */
 
 #goal-wrapper{
-  width:78px;
-  border-radius:29px;
+  width:82px;
+  border-radius:31px;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(180deg,#111111 0%,#060606 42%,#020202 100%);
-  background-repeat:repeat-x,no-repeat;
-  background-size:38px 12px,100% 100%;
-  background-position:left 1px bottom 6px,center;
-  border:1px solid rgba(255,255,255,.13);
+    radial-gradient(circle at center, rgba(196,66,106,.46) 0 12%, rgba(196,66,106,.26) 19%, transparent 31%),
+    radial-gradient(circle at center, rgba(224,101,135,.40) 0 11%, rgba(224,101,135,.22) 18%, transparent 30%),
+    radial-gradient(circle at center, rgba(185,51,93,.30) 0 12%, rgba(185,51,93,.16) 20%, transparent 32%),
+    radial-gradient(circle at center, rgba(239,129,155,.30) 0 10%, rgba(239,129,155,.14) 18%, transparent 29%),
+    radial-gradient(circle at center, rgba(173,50,91,.22) 0 9%, rgba(173,50,91,.11) 17%, transparent 27%),
+    linear-gradient(180deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
+  background-repeat:no-repeat;
+  background-size:
+    120px 120px,
+    145px 145px,
+    110px 110px,
+    155px 155px,
+    95px 95px,
+    100% 100%;
+  border:2px solid rgba(255,255,255,.66);
   box-shadow:
-    0 18px 38px rgba(0,0,0,.54),
-    0 0 0 1px rgba(0,0,0,.82),
-    inset 0 1px 0 rgba(255,255,255,.06);
+    0 16px 34px var(--rc-shadow),
+    inset 0 2px 0 rgba(255,255,255,.52);
+  animation:
+    roseCloudMoveVertical 25s ease-in-out infinite,
+    roseSoftBreath 8s ease-in-out infinite;
 }
 
 #goal-wrapper::before{
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.045);
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.58);
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.30);
 }
 
 #goal-wrapper::after{
-  opacity:.12;
-  background:linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(255,255,255,.01) 28%,
-    rgba(255,255,255,.07) 50%,
-    rgba(255,255,255,.015) 64%,
-    transparent 100%
-  );
+  opacity:.15;
 }
 
 #bar-fill{
-  z-index:2;
-  border-radius:0 0 28px 28px;
-
-  /* Transparent/glass progress */
+  border-radius:0 0 30px 30px;
   background:
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.095) 0%,
-      rgba(255,255,255,.035) 24%,
-      rgba(255,255,255,.055) 52%,
-      rgba(255,255,255,.018) 76%,
-      rgba(255,255,255,.08) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255,255,255,.10) 0%,
-      rgba(255,255,255,.045) 45%,
-      rgba(255,255,255,.018) 100%
-    );
-
-  border-left:1px solid rgba(255,255,255,.04);
-  border-right:1px solid rgba(255,255,255,.04);
-
+    linear-gradient(90deg,rgba(255,255,255,.14),transparent 34%,rgba(130,41,76,.08) 72%,rgba(255,255,255,.07)),
+    linear-gradient(180deg,#ed8aa6 0%,#d86488 47%,#b94b73 100%);
   box-shadow:
-    inset 5px 0 10px rgba(255,255,255,.025),
-    inset -5px 0 10px rgba(0,0,0,.12),
-    inset 0 -16px 24px rgba(0,0,0,.08),
-    0 -2px 8px rgba(255,255,255,.06);
-
-  backdrop-filter:blur(2px);
-  -webkit-backdrop-filter:blur(2px);
-
-  transition:
-    height .85s cubic-bezier(.22,.8,.25,1),
-    filter .3s ease;
+    inset 6px 0 10px rgba(255,255,255,.08),
+    inset -7px 0 12px rgba(103,29,62,.10),
+    0 -2px 10px rgba(255,255,255,.14);
 }
 
 #bar-fill::before{
   height:5px;
-  background:linear-gradient(
-    180deg,
-    #fff 0%,
-    #e6e6e6 34%,
-    rgba(255,255,255,.35) 100%
-  );
-  box-shadow:
-    0 0 6px rgba(255,255,255,.70),
-    0 0 12px rgba(255,255,255,.18);
+  background:linear-gradient(180deg,#fff,#fff0f5);
+  box-shadow:0 0 6px rgba(255,255,255,.74),0 0 12px rgba(255,255,255,.22);
 }
 
 #bar-fill::after{
+  width:6px;
+  height:6px;
   background:#fff;
-  box-shadow:
-    0 0 5px rgba(255,255,255,.76),
-    0 0 10px rgba(255,255,255,.18);
+  box-shadow:0 0 5px rgba(255,255,255,.80);
 }
 
 .goal-title{
   border-radius:10px;
   font-family:'Anton',Impact,sans-serif;
+  font-size:23px;
   font-weight:400;
   color:#fff;
-  background:rgba(0,0,0,.22);
-  -webkit-text-stroke:.9px #050505;
+  background:rgba(193,65,104,.18);
+  -webkit-text-stroke:1px var(--rc-outline);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
+  text-shadow:0 2px 0 rgba(153,51,86,.28);
 }
 
 .goal-title::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.20),#fff,rgba(255,255,255,.20),transparent);
 }
 
+/* Bigger goal amount for readability */
 .goal-amount{
-  border-radius:11px;
-  background:linear-gradient(180deg,#222,#0c0c0c);
-  border:1px solid rgba(255,255,255,.12);
+  bottom:44px;
+  padding:8px 14px 9px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.30);
   font-family:'Anton',Impact,sans-serif;
+  font-size:21px;
   font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+  line-height:1;
+  letter-spacing:.055em;
+  color:#a93b63;
+  text-shadow:none;
+  box-shadow:
+    0 5px 11px rgba(136,47,78,.13),
+    inset 0 1px 0 rgba(255,255,255,.72);
+}
+
+.goal-amount::after{
+  font-size:inherit;
 }
 
 @media (max-height:460px){
-  #goal-wrapper{ border-radius:26px; }
-  #goal-wrapper::before{ border-radius:21px; }
-  #bar-fill{ border-radius:0 0 25px 25px; }
+  #goal-wrapper{
+    width:76px;
+    border-radius:27px;
+  }
+  #goal-wrapper::before{border-radius:22px;}
+  #bar-fill{border-radius:0 0 26px 26px;}
+  .goal-amount{
+    bottom:40px;
+    padding:7px 12px 8px;
+    font-size:19px;
+  }
+}
+
+
+
+
+/* =========================================================
+   PINK STARDUST OVERRIDES
+   Rosado con escarcha/punticos que titilan como estrellas.
+========================================================= */
+
+:root{
+  --stardust-pink:#f5a4c2;
+  --stardust-pink-dark:#d86291;
+  --stardust-outline:#b94677;
+}
+
+@keyframes stardustTwinkle{
+  0%,100%{opacity:.18;filter:brightness(.9)}
+  15%{opacity:.72;filter:brightness(1.4)}
+  31%{opacity:.24}
+  48%{opacity:.92;filter:brightness(1.7)}
+  64%{opacity:.20}
+  82%{opacity:.66;filter:brightness(1.35)}
+}
+
+@keyframes stardustTwinkleAlt{
+  0%,100%{opacity:.12;transform:translate3d(0,0,0)}
+  30%{opacity:.64;transform:translate3d(2px,-2px,0)}
+  55%{opacity:.18;transform:translate3d(-1px,1px,0)}
+  78%{opacity:.78;transform:translate3d(1px,-1px,0)}
+}
+
+@keyframes stardustDrift{
+  0%{background-position:0% 35%,100% 20%,20% 80%,0% 0%}
+  50%{background-position:70% 45%,40% 62%,60% 35%,60% 0%}
+  100%{background-position:0% 35%,100% 20%,20% 80%,0% 0%}
+}
+
+.title,
+.timer-title,
+.raffle-title,
+.goal-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.2px var(--stardust-outline);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(157,53,96,.28),
+    0 0 7px rgba(255,255,255,.20);
+}
+
+.tip .name,
+.raffle-name,
+#timer-value{
+  color:#fff !important;
+  -webkit-text-stroke:.45px var(--stardust-outline);
+  paint-order:stroke fill;
+}
+
+
+#goal-wrapper{
+  width:82px !important;
+  background:
+    radial-gradient(circle at 35% 18%,rgba(255,255,255,.30) 0 8%,transparent 27%),
+    radial-gradient(circle at 70% 68%,rgba(255,255,255,.12) 0 10%,transparent 29%),
+    linear-gradient(180deg,#ffd0df 0%,#f5a3c1 50%,#e987ae 100%) !important;
+  background-size:180% 180%,190% 190%,220% 220% !important;
+  animation:stardustDrift 28s ease-in-out infinite !important;
+}
+
+#goal-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  z-index:6;
+  border-radius:25px;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,.28);
+  background:
+    radial-gradient(circle at 26% 12%,#fff 0 1.2px,transparent 1.8px),
+    radial-gradient(circle at 72% 23%,rgba(255,255,255,.70) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 39% 41%,#fff 0 1.1px,transparent 1.8px),
+    radial-gradient(circle at 67% 56%,rgba(255,255,255,.72) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 28% 73%,#fff 0 1.2px,transparent 1.8px),
+    radial-gradient(circle at 70% 88%,rgba(255,255,255,.66) 0 1px,transparent 1.6px);
+  animation:stardustTwinkle 5s ease-in-out infinite;
+}
+
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 50% 32%,rgba(255,255,255,.85) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 42% 64%,rgba(255,255,255,.58) 0 1px,transparent 1.5px);
+  animation:stardustTwinkleAlt 6.3s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.goal-amount{
+  bottom:44px !important;
+  padding:8px 14px 9px !important;
+  font-size:21px !important;
+  border-radius:14px !important;
+  background:linear-gradient(180deg,#fff,#fff3f7) !important;
+  color:#a93e6d !important;
+  border:1.5px solid rgba(184,70,120,.28) !important;
 }

@@ -1,15 +1,12 @@
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   ROSE CLOUD THEME
+   Inspirado en la referencia:
+   - Fondo rosado suave
+   - Manchas rosado oscuro en movimiento
+   - Letras blancas con borde rosado oscuro
+   - Alto contraste y acabado redondeado
+   - BAR: números más grandes y legibles
+   - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
@@ -590,25 +587,95 @@ body{
 
 
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
+  --rc-bg-1:#ffd0db;
+  --rc-bg-2:#f7a9bc;
+  --rc-bg-3:#ed8eaa;
+  --rc-dark-1:#d45b7d;
+  --rc-dark-2:#be446b;
+  --rc-dark-3:#a8365d;
+  --rc-outline:#b23f66;
+  --rc-white:#ffffff;
+  --rc-shadow:rgba(136,47,78,.24);
 }
 
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
+@keyframes roseCloudMove{
+  0%{
+    background-position:
+      8% 18%,
+      84% 12%,
+      28% 78%,
+      78% 72%,
+      50% 45%,
+      0% 0%;
+  }
+  20%{
+    background-position:
+      20% 26%,
+      72% 22%,
+      36% 66%,
+      68% 86%,
+      58% 36%,
+      0% 0%;
+  }
+  40%{
+    background-position:
+      34% 42%,
+      62% 10%,
+      18% 86%,
+      58% 60%,
+      42% 56%,
+      0% 0%;
+  }
+  60%{
+    background-position:
+      16% 62%,
+      80% 30%,
+      38% 70%,
+      88% 46%,
+      56% 72%,
+      0% 0%;
+  }
+  80%{
+    background-position:
+      5% 38%,
+      90% 18%,
+      16% 54%,
+      72% 80%,
+      38% 30%,
+      0% 0%;
+  }
+  100%{
+    background-position:
+      8% 18%,
+      84% 12%,
+      28% 78%,
+      78% 72%,
+      50% 45%,
+      0% 0%;
+  }
 }
 
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
+@keyframes roseCloudMoveVertical{
+  0%{
+    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+  }
+  25%{
+    background-position:54% 24%,46% 12%,40% 52%,58% 72%,64% 38%,0 0;
+  }
+  50%{
+    background-position:28% 48%,76% 42%,30% 84%,48% 58%,42% 64%,0 0;
+  }
+  75%{
+    background-position:58% 68%,34% 28%,66% 74%,78% 44%,54% 24%,0 0;
+  }
+  100%{
+    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+  }
+}
+
+@keyframes roseSoftBreath{
+  0%,100%{ filter:brightness(1) saturate(1); }
+  50%{ filter:brightness(1.025) saturate(1.04); }
 }
 
 body{
@@ -617,165 +684,263 @@ body{
 }
 
 /* =========================================================
-   MISTY — MVP
+   MVP
 ========================================================= */
 
 #container{
-  border-radius:27px;
-  padding:11px 11px 24px;
+  border-radius:30px;
+  padding:11px;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 18% -5%,rgba(255,255,255,.055) 0%,transparent 33%),
-    radial-gradient(circle at 90% 110%,rgba(255,255,255,.018) 0%,transparent 40%),
-    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
-  background-repeat:repeat-x,no-repeat,no-repeat,no-repeat;
-  background-size:48px 14px,100% 100%,100% 100%,100% 100%;
-  background-position:left 8px bottom 6px,center,center,center;
-  border:1px solid rgba(255,255,255,.14);
+    radial-gradient(circle at center, rgba(196,66,106,.50) 0 12%, rgba(196,66,106,.28) 19%, transparent 31%),
+    radial-gradient(circle at center, rgba(224,101,135,.44) 0 11%, rgba(224,101,135,.24) 18%, transparent 30%),
+    radial-gradient(circle at center, rgba(185,51,93,.34) 0 12%, rgba(185,51,93,.18) 20%, transparent 32%),
+    radial-gradient(circle at center, rgba(239,129,155,.34) 0 10%, rgba(239,129,155,.16) 18%, transparent 29%),
+    radial-gradient(circle at center, rgba(173,50,91,.24) 0 9%, rgba(173,50,91,.12) 17%, transparent 27%),
+    linear-gradient(135deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
+  background-repeat:no-repeat;
+  background-size:
+    190px 190px,
+    220px 220px,
+    170px 170px,
+    240px 240px,
+    150px 150px,
+    100% 100%;
+  border:2px solid rgba(255,255,255,.68);
   box-shadow:
-    0 18px 38px rgba(0,0,0,.56),
-    0 0 0 1px rgba(0,0,0,.86),
-    inset 0 1px 0 rgba(255,255,255,.07);
-  animation:mistySoftBreath 9s ease-in-out infinite;
+    0 16px 34px var(--rc-shadow),
+    inset 0 2px 0 rgba(255,255,255,.55);
+  animation:
+    roseCloudMove 24s ease-in-out infinite,
+    roseSoftBreath 8s ease-in-out infinite;
 }
 
 #container::before{
   inset:5px;
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.04);
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.66);
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.32);
+  box-shadow:inset 0 0 0 1px rgba(178,63,102,.08);
 }
 
 #container::after{
-  opacity:.14;
-  background:linear-gradient(
-    108deg,
-    transparent 0%,
-    rgba(255,255,255,.005) 30%,
-    rgba(255,255,255,.08) 49%,
-    rgba(255,255,255,.02) 58%,
-    transparent 72%
-  );
+  opacity:.16;
+  background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.02) 28%,rgba(255,255,255,.20) 49%,rgba(255,255,255,.04) 60%,transparent 76%);
 }
 
 .title{
   min-height:49px;
-  border-radius:16px;
+  border-radius:19px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#0d0d0d,#020202);
-  border:1px solid rgba(255,255,255,.12);
+    linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),
+    rgba(207,76,116,.18);
+  border:1.5px solid rgba(255,255,255,.52);
   box-shadow:
-    0 8px 18px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.05);
+    0 7px 17px rgba(135,45,76,.15),
+    inset 0 1px 0 rgba(255,255,255,.38);
   font-family:'Anton',Impact,sans-serif;
   font-size:30px;
   font-weight:400;
-  letter-spacing:.025em;
+  letter-spacing:.02em;
   color:#fff;
   text-transform:uppercase;
-  -webkit-text-stroke:1.35px #050505;
+  -webkit-text-stroke:1.35px var(--rc-outline);
   paint-order:stroke fill;
   text-shadow:
-    0 2px 0 #050505,
-    0 0 4px rgba(255,255,255,.10);
+    0 2px 0 rgba(159,53,89,.34),
+    0 0 5px rgba(255,255,255,.18);
 }
 
 .title::before{
-  left:15%;
-  right:15%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+  left:14%;
+  right:14%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.84),transparent);
 }
 
 .title::after{
-  left:32%;
-  right:32%;
-  bottom:1px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
-  box-shadow:none;
+  left:28%;
+  right:28%;
+  bottom:2px;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  box-shadow:0 0 6px rgba(255,255,255,.35);
 }
 
-#top-list{ gap:8px; }
-
 .tip{
-  border-radius:15px;
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(135deg,#111111,#050505 60%,#020202);
-  border:1px solid rgba(255,255,255,.08);
+    linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04)),
+    rgba(205,75,113,.15);
+  border:1px solid rgba(255,255,255,.30);
   box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.035);
+    0 6px 14px rgba(136,47,78,.12),
+    inset 0 1px 0 rgba(255,255,255,.24);
+  backdrop-filter:blur(1px);
 }
 
 .tip::before{
-  width:3px;
-  background:linear-gradient(180deg,#f0f0f0,#a8a8a8,#444);
-  box-shadow:0 0 6px rgba(255,255,255,.12);
-}
-
-.tip::after{
-  opacity:.12;
+  width:4px;
+  background:linear-gradient(180deg,#fff,#ffdce7,#cc5b82);
+  box-shadow:0 0 8px rgba(255,255,255,.28);
 }
 
 .tip:hover{
   transform:translateY(-1px);
-  filter:brightness(1.06);
-  border-color:rgba(255,255,255,.16);
+  filter:brightness(1.04);
+  border-color:rgba(255,255,255,.46);
 }
 
 .tip .name{
   color:#fff;
   font-weight:900;
-  -webkit-text-stroke:.55px #050505;
+  -webkit-text-stroke:.50px var(--rc-outline);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.76);
+  text-shadow:0 2px 0 rgba(150,50,85,.28);
 }
 
 .tip .amount{
-  border-radius:10px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.12);
-  color:#fff;
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.28);
+  color:#ac3e65;
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
-  -webkit-text-stroke:.55px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-  box-shadow:0 4px 8px rgba(0,0,0,.28);
+  text-shadow:none;
 }
 
 .tip.mvp{
-  border-radius:18px;
+  border-radius:20px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#161616,#070707 58%,#020202);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.05);
+    linear-gradient(180deg,rgba(255,255,255,.21),rgba(255,255,255,.055)),
+    rgba(191,63,103,.20);
+  border:1.5px solid rgba(255,255,255,.50);
 }
 
 .tip.mvp::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,#bdbdbd,#4c4c4c);
+  width:5px;
+  background:linear-gradient(180deg,#fff,#ffe2eb,#c95079);
 }
 
 .rank-icon{
-  border-radius:10px;
+  border-radius:11px;
   font-family:'Anton',Impact,sans-serif;
   font-weight:400;
-  color:#fff;
-  background:linear-gradient(180deg,#282828,#0e0e0e);
-  border:1px solid rgba(255,255,255,.11);
-  text-shadow:0 1px 0 #050505;
+  color:#ac3e65;
+  background:linear-gradient(180deg,#fff,#fff2f6);
+  border:1.5px solid rgba(178,63,102,.25);
+  text-shadow:none;
 }
 
 @media (max-width:460px){
-  #container{ border-radius:24px; padding-bottom:22px; }
-  #container::before{ border-radius:19px; }
-  .title{ border-radius:14px; }
-  .tip{ border-radius:13px; }
-  .tip.mvp{ border-radius:16px; }
+  #container{border-radius:26px;}
+  #container::before{border-radius:21px;}
+  .title{border-radius:17px;}
+  .tip{border-radius:15px;}
+  .tip.mvp{border-radius:18px;}
+}
+
+
+
+
+/* =========================================================
+   PINK STARDUST OVERRIDES
+   Rosado con escarcha/punticos que titilan como estrellas.
+========================================================= */
+
+:root{
+  --stardust-pink:#f5a4c2;
+  --stardust-pink-dark:#d86291;
+  --stardust-outline:#b94677;
+}
+
+@keyframes stardustTwinkle{
+  0%,100%{opacity:.18;filter:brightness(.9)}
+  15%{opacity:.72;filter:brightness(1.4)}
+  31%{opacity:.24}
+  48%{opacity:.92;filter:brightness(1.7)}
+  64%{opacity:.20}
+  82%{opacity:.66;filter:brightness(1.35)}
+}
+
+@keyframes stardustTwinkleAlt{
+  0%,100%{opacity:.12;transform:translate3d(0,0,0)}
+  30%{opacity:.64;transform:translate3d(2px,-2px,0)}
+  55%{opacity:.18;transform:translate3d(-1px,1px,0)}
+  78%{opacity:.78;transform:translate3d(1px,-1px,0)}
+}
+
+@keyframes stardustDrift{
+  0%{background-position:0% 35%,100% 20%,20% 80%,0% 0%}
+  50%{background-position:70% 45%,40% 62%,60% 35%,60% 0%}
+  100%{background-position:0% 35%,100% 20%,20% 80%,0% 0%}
+}
+
+.title,
+.timer-title,
+.raffle-title,
+.goal-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.2px var(--stardust-outline);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(157,53,96,.28),
+    0 0 7px rgba(255,255,255,.20);
+}
+
+.tip .name,
+.raffle-name,
+#timer-value{
+  color:#fff !important;
+  -webkit-text-stroke:.45px var(--stardust-outline);
+  paint-order:stroke fill;
+}
+
+
+#container{
+  background:
+    radial-gradient(circle at 18% 22%,rgba(255,255,255,.34) 0 8%,transparent 27%),
+    radial-gradient(circle at 80% 72%,rgba(255,255,255,.13) 0 10%,transparent 29%),
+    radial-gradient(circle at 56% 17%,rgba(255,220,234,.24) 0 8%,transparent 25%),
+    linear-gradient(135deg,#ffd1e1 0%,#f6a6c4 48%,#e987ae 100%) !important;
+  background-size:170% 170%,180% 180%,160% 160%,230% 230% !important;
+  animation:stardustDrift 28s ease-in-out infinite !important;
+}
+
+#container::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  z-index:5;
+  border-radius:24px;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,.28);
+  background:
+    radial-gradient(circle at 7% 15%,#fff 0 1.2px,transparent 1.9px),
+    radial-gradient(circle at 16% 31%,rgba(255,255,255,.70) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 28% 11%,#fff 0 1.1px,transparent 1.8px),
+    radial-gradient(circle at 42% 37%,rgba(255,255,255,.68) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 54% 16%,#fff 0 1.2px,transparent 1.9px),
+    radial-gradient(circle at 69% 30%,rgba(255,255,255,.74) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 82% 13%,#fff 0 1.1px,transparent 1.8px),
+    radial-gradient(circle at 92% 30%,rgba(255,255,255,.72) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 14% 69%,rgba(255,255,255,.82) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 34% 81%,#fff 0 1.2px,transparent 1.9px),
+    radial-gradient(circle at 63% 74%,rgba(255,255,255,.65) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 86% 84%,#fff 0 1.1px,transparent 1.8px);
+  animation:stardustTwinkle 5.2s ease-in-out infinite;
+}
+
+#container::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  width:auto;
+  height:auto;
+  transform:none;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 24% 49%,rgba(255,255,255,.85) 0 1px,transparent 1.6px),
+    radial-gradient(circle at 48% 58%,rgba(255,255,255,.60) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 72% 48%,rgba(255,255,255,.90) 0 1.1px,transparent 1.8px),
+    radial-gradient(circle at 91% 60%,rgba(255,255,255,.68) 0 1px,transparent 1.6px);
+  animation:stardustTwinkleAlt 6.8s ease-in-out infinite;
 }
