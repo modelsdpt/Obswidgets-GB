@@ -1,21 +1,20 @@
 /* =========================================================
-   ROSE CLOUD THEME
+   NEON FLOW THEME
    Inspirado en la referencia:
-   - Fondo rosado suave
-   - Manchas rosado oscuro en movimiento
-   - Letras blancas con borde rosado oscuro
-   - Alto contraste y acabado redondeado
-   - BAR: números más grandes y legibles
+   - Rosa neón + magenta + violeta + azul eléctrico
+   - Fondo líquido/aurora en movimiento constante
+   - Letras blancas con contorno violeta oscuro
+   - Transiciones lentas y fluidas
    - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
-   GOAL BAR – MODERN BLACK / WHITE / PINK THEME
-   Fondo negro, texto blanco y acento rosa
+   TIMER – MODERN BLACK / WHITE / PINK THEME
+   Fondo negro, texto blanco y acentos rosa
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -66,307 +65,141 @@ body{
    CONTENEDOR PRINCIPAL
 ========================================================= */
 
-#goal-wrapper{
+.timer-widget{
   position:relative;
   isolation:isolate;
 
-  width:76px;
-  height:420px;
+  width:280px;
+  max-width:100%;
+  padding:10px;
 
   overflow:hidden;
-  border-radius:30px;
+  border-radius:27px;
 
   background:
-    radial-gradient(ellipse at 50% -4%, rgba(255,79,163,.085) 0%, transparent 28%),
-    radial-gradient(ellipse at 50% 108%, rgba(255,79,163,.045) 0%, transparent 34%),
-    linear-gradient(180deg, #111114 0%, #09090b 38%, #050506 72%, #020203 100%);
+    radial-gradient(circle at 18% -8%, rgba(255,79,163,.085) 0%, transparent 34%),
+    radial-gradient(circle at 92% 110%, rgba(255,79,163,.045) 0%, transparent 42%),
+    linear-gradient(145deg, #111114 0%, #08080a 48%, #030304 100%);
 
   border:1px solid rgba(255,255,255,.10);
 
   box-shadow:
     0 20px 46px rgba(0,0,0,.48),
     0 8px 22px rgba(0,0,0,.34),
-    0 0 0 1px rgba(0,0,0,.46),
-    inset 0 1px 0 rgba(255,255,255,.06),
-    inset 0 -1px 0 rgba(255,255,255,.02);
+    0 0 0 1px rgba(0,0,0,.38),
+    inset 0 1px 0 rgba(255,255,255,.055),
+    inset 0 -1px 0 rgba(255,255,255,.015);
 }
 
 /* Marco interior sutil */
-#goal-wrapper::before{
+.timer-widget::before{
   content:"";
   position:absolute;
   inset:4px;
-  z-index:6;
+  z-index:5;
 
-  border-radius:25px;
+  border-radius:22px;
   border:1px solid rgba(255,255,255,.035);
-
-  box-shadow:
-    inset 0 0 18px rgba(255,255,255,.008);
 
   pointer-events:none;
 }
 
 /* Halo rosa ambiental */
-#goal-wrapper::after{
+.timer-widget::after{
   content:"";
   position:absolute;
-  left:12px;
-  right:12px;
-  bottom:-22px;
-  z-index:1;
+  left:12%;
+  right:12%;
+  bottom:-24px;
+  z-index:0;
 
-  height:52px;
+  height:46px;
   border-radius:999px;
 
   background:radial-gradient(
     ellipse at center,
-    rgba(255,79,163,.28) 0%,
-    rgba(255,79,163,.08) 42%,
-    rgba(255,79,163,0) 76%
+    rgba(255,79,163,.22) 0%,
+    rgba(255,79,163,.08) 38%,
+    rgba(255,79,163,0) 74%
   );
 
-  filter:blur(12px);
-  opacity:.72;
+  filter:blur(14px);
+  opacity:.68;
 
-  animation:goalAmbientGlow 4.8s ease-in-out infinite alternate;
+  animation:timerAmbientGlow 4.8s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-@keyframes goalAmbientGlow{
+@keyframes timerAmbientGlow{
   from{
-    opacity:.46;
-    transform:scale(.92);
-  }
-
-  to{
-    opacity:.78;
-    transform:scale(1.05);
-  }
-}
-
-
-/* =========================================================
-   RELLENO DEL PROGRESO
-========================================================= */
-
-#bar-fill{
-  position:absolute;
-  bottom:0;
-  left:0;
-  z-index:2;
-
-  width:100%;
-  height:0%;
-
-  overflow:hidden;
-  border-radius:0 0 29px 29px;
-
-  background:
-    /* reflejo vertical delicado */
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.075) 0%,
-      rgba(255,255,255,.018) 20%,
-      transparent 48%,
-      rgba(0,0,0,.11) 74%,
-      rgba(255,255,255,.025) 100%
-    ),
-
-    /* profundidad */
-    linear-gradient(
-      180deg,
-      rgba(255,79,163,.12) 0%,
-      rgba(255,79,163,.055) 24%,
-      rgba(255,79,163,.02) 58%,
-      rgba(0,0,0,.18) 100%
-    ),
-
-    /* cuerpo oscuro premium */
-    linear-gradient(
-      180deg,
-      #181419 0%,
-      #121014 30%,
-      #0d0b0e 62%,
-      #080709 100%
-    );
-
-  box-shadow:
-    inset 7px 0 12px rgba(255,255,255,.018),
-    inset -8px 0 14px rgba(0,0,0,.24),
-    inset 0 -18px 26px rgba(0,0,0,.22),
-    0 -4px 16px rgba(255,79,163,.09);
-
-  transition:
-    height .85s cubic-bezier(.22,.8,.25,1),
-    filter .25s ease,
-    box-shadow .25s ease;
-}
-
-
-/* =========================================================
-   LÍNEA ROSA DEL PROGRESO
-========================================================= */
-
-#bar-fill::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:7px;
-  right:7px;
-  z-index:4;
-
-  height:3px;
-  border-radius:999px;
-
-  background:linear-gradient(
-    90deg,
-    rgba(255,79,163,.18) 0%,
-    var(--pink-light) 18%,
-    var(--pink) 50%,
-    var(--pink-light) 82%,
-    rgba(255,79,163,.18) 100%
-  );
-
-  box-shadow:
-    0 0 5px rgba(255,79,163,.62),
-    0 0 12px rgba(255,79,163,.30),
-    0 0 22px rgba(255,79,163,.10);
-
-  animation:goalProgressBreath 1.9s ease-in-out infinite alternate;
-  pointer-events:none;
-}
-
-@keyframes goalProgressBreath{
-  from{
-    opacity:.78;
-    filter:brightness(.95);
-  }
-
-  to{
-    opacity:1;
-    filter:brightness(1.12);
-  }
-}
-
-
-/* =========================================================
-   PARTÍCULA / PUNTO DE LUZ
-========================================================= */
-
-#bar-fill::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:14px;
-  z-index:4;
-
-  width:5px;
-  height:5px;
-
-  transform:translateX(-50%);
-  border-radius:50%;
-
-  background:var(--pink-light);
-
-  box-shadow:
-    0 0 5px rgba(255,139,198,.82),
-    0 0 11px rgba(255,79,163,.38);
-
-  animation:goalPinkParticle 4.5s ease-in-out infinite;
-  pointer-events:none;
-}
-
-@keyframes goalPinkParticle{
-  0%{
-    transform:translate(-50%, 14px) scale(.50);
-    opacity:0;
-  }
-
-  18%{
-    opacity:.62;
-  }
-
-  68%{
-    transform:translate(-50%, -72px) scale(.95);
     opacity:.42;
+    transform:scale(.94);
   }
 
-  100%{
-    transform:translate(-50%, -118px) scale(.60);
-    opacity:0;
+  to{
+    opacity:.76;
+    transform:scale(1.04);
   }
 }
 
 
 /* =========================================================
-   CAPA DE TEXTOS
+   TÍTULO
 ========================================================= */
 
-.goal-label{
-  position:absolute;
-  inset:0;
-  z-index:7;
+.timer-title{
+  position:relative;
+  z-index:6;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  pointer-events:none;
-}
+  min-height:54px;
+  margin:0 0 10px;
+  padding:9px 15px 13px;
 
+  overflow:hidden;
+  border-radius:20px;
 
-/* =========================================================
-   TÍTULO CENTRAL
-========================================================= */
-
-.goal-title{
-  position:absolute;
-  top:50%;
-  left:50%;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(-90deg);
-
-  transform-origin:center;
-  min-width:max-content;
-
-  padding:7px 13px 12px;
-  border-radius:14px;
+  text-align:center;
+  text-transform:none;
 
   font-family:'Lobster', cursive;
-  font-size:22px;
+  font-size:27px;
   font-weight:400;
-  line-height:1;
+  line-height:1.05;
   letter-spacing:.01em;
 
   color:#ffffff;
-  text-transform:none;
-  white-space:nowrap;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)),
-    rgba(5,5,6,.68);
+    linear-gradient(180deg, rgba(255,255,255,.032) 0%, rgba(255,255,255,.008) 100%),
+    #080809;
 
-  border:1px solid rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.085);
 
   box-shadow:
-    0 6px 16px rgba(0,0,0,.20),
-    inset 0 1px 0 rgba(255,255,255,.025);
+    0 8px 22px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.04);
 
   text-shadow:
     0 1px 2px rgba(0,0,0,.90),
     0 0 8px rgba(255,255,255,.07);
 }
 
-/* Línea rosa bajo el título, igual al lenguaje visual del MVP */
-.goal-title::after{
+/* Diseño limpio: sin línea superior */
+.timer-title::before{
+  content:none;
+}
+
+/* Línea rosa inferior */
+.timer-title::after{
   content:"";
   position:absolute;
-  left:10%;
-  right:10%;
-  bottom:5px;
+  left:12%;
+  right:12%;
+  bottom:6px;
 
   height:2px;
   border-radius:999px;
@@ -374,96 +207,271 @@ body{
   background:linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255,79,163,.52) 9%,
-    var(--pink-light) 26%,
+    rgba(255,79,163,.48) 8%,
+    var(--pink-light) 25%,
     var(--pink) 50%,
-    var(--pink-light) 74%,
-    rgba(255,79,163,.52) 91%,
+    var(--pink-light) 75%,
+    rgba(255,79,163,.48) 92%,
     transparent 100%
   );
 
   box-shadow:
-    0 0 5px rgba(255,79,163,.54),
-    0 0 12px rgba(255,79,163,.18);
+    0 0 6px rgba(255,79,163,.50),
+    0 0 14px rgba(255,79,163,.18);
 }
 
 
 /* =========================================================
-   CANTIDAD / META
+   CONTENEDOR DEL RELOJ
 ========================================================= */
 
-.goal-amount{
-  position:absolute;
-  bottom:42px;
-  left:50%;
+.timer-display{
+  position:relative;
+  z-index:6;
 
-  transform:
-    translateX(-50%)
-    rotate(-90deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-  transform-origin:center;
-  min-width:max-content;
+  padding:3px 0 2px;
+}
 
-  padding:7px 11px;
-  border-radius:13px;
+
+/* =========================================================
+   CAJA DEL TIEMPO
+========================================================= */
+
+.timer-box{
+  position:relative;
+  isolation:isolate;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:194px;
+  height:82px;
+
+  overflow:hidden;
+  border-radius:23px;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(255,255,255,.008) 100%),
-    rgba(8,8,10,.82);
+    radial-gradient(circle at 15% 0%, rgba(255,79,163,.055) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(255,255,255,.032) 0%, rgba(255,255,255,.008) 100%),
+    linear-gradient(135deg, #151518 0%, #0b0b0d 52%, #060607 100%);
 
-  border:1px solid rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.095);
 
   box-shadow:
-    0 5px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.03);
+    0 10px 24px rgba(0,0,0,.38),
+    0 0 0 1px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 -1px 0 rgba(0,0,0,.74);
+
+  transition:
+    transform .22s ease,
+    filter .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+/* Acento rosa lateral */
+.timer-box::before{
+  content:"";
+  position:absolute;
+  top:12px;
+  bottom:12px;
+  left:8px;
+  z-index:3;
+
+  width:4px;
+  border-radius:999px;
+
+  background:linear-gradient(180deg, var(--pink-light) 0%, var(--pink) 100%);
+
+  box-shadow:
+    0 0 6px rgba(255,79,163,.55),
+    0 0 13px rgba(255,79,163,.18);
+}
+
+/* Brillo fino de interacción */
+.timer-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+
+  background:linear-gradient(
+    112deg,
+    transparent 0%,
+    rgba(255,255,255,.012) 30%,
+    rgba(255,255,255,.055) 48%,
+    rgba(255,79,163,.022) 57%,
+    transparent 72%
+  );
+
+  opacity:.24;
+  transform:translateX(-115%);
+
+  animation:timerBoxSweep 7.5s ease-in-out infinite;
+  pointer-events:none;
+}
+
+@keyframes timerBoxSweep{
+  0%, 52%{
+    transform:translateX(-115%);
+    opacity:0;
+  }
+
+  60%{
+    opacity:.28;
+  }
+
+  82%{
+    transform:translateX(115%);
+    opacity:.24;
+  }
+
+  100%{
+    transform:translateX(115%);
+    opacity:0;
+  }
+}
+
+
+/* =========================================================
+   VALOR DEL TIMER
+========================================================= */
+
+#timer-value{
+  position:relative;
+  z-index:4;
+
+  padding-left:7px;
 
   font-family:'Inter', Arial, sans-serif;
-  font-size:15px;
+  font-size:42px;
   font-weight:800;
   line-height:1;
-  letter-spacing:-.015em;
+  letter-spacing:.045em;
 
   color:#ffffff;
   white-space:nowrap;
 
-  text-shadow:0 1px 2px rgba(0,0,0,.90);
+  font-variant-numeric:tabular-nums;
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.92),
+    0 0 8px rgba(255,255,255,.08);
+
+  transition:
+    text-shadow .22s ease,
+    filter .22s ease;
 }
 
-/* Pequeño acento rosa en la meta */
-.goal-amount::after{
-  content:"";
-  position:absolute;
-  left:20%;
-  right:20%;
-  bottom:-1px;
-
-  height:2px;
-  border-radius:999px;
-
-  background:var(--pink);
-  box-shadow:0 0 7px rgba(255,79,163,.38);
-
-  opacity:.82;
+#timer-value span{
+  display:inline-block;
 }
 
 
 /* =========================================================
-   ESTADO DESTACADO / NEON CONTROLADO
+   TIMER ACTIVO
 ========================================================= */
 
-.goal-title.neon{
-  animation:goalTextBreath 2.5s ease-in-out infinite alternate;
+.timer-box.timer-running{
+  animation:timerRunningPink 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes goalTextBreath{
+@keyframes timerRunningPink{
   from{
-    filter:brightness(1);
+    transform:scale(1);
+    border-color:rgba(255,255,255,.095);
+
+    box-shadow:
+      0 10px 24px rgba(0,0,0,.38),
+      0 0 0 1px rgba(255,79,163,.025),
+      0 0 12px rgba(255,79,163,.045),
+      inset 0 1px 0 rgba(255,255,255,.04);
   }
 
   to{
-    filter:
-      brightness(1.06)
-      drop-shadow(0 0 4px rgba(255,79,163,.08));
+    transform:scale(1.012);
+    border-color:rgba(255,79,163,.26);
+
+    box-shadow:
+      0 12px 27px rgba(0,0,0,.42),
+      0 0 0 1px rgba(255,79,163,.05),
+      0 0 18px rgba(255,79,163,.10),
+      inset 0 1px 0 rgba(255,255,255,.05);
+  }
+}
+
+.timer-box.timer-running #timer-value{
+  animation:timerNumberPink 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes timerNumberPink{
+  from{
+    filter:brightness(1);
+
+    text-shadow:
+      0 2px 0 rgba(0,0,0,.92),
+      0 0 7px rgba(255,255,255,.07);
+  }
+
+  to{
+    filter:brightness(1.05);
+
+    text-shadow:
+      0 2px 0 rgba(0,0,0,.92),
+      0 0 8px rgba(255,255,255,.10),
+      0 0 13px rgba(255,79,163,.12);
+  }
+}
+
+
+/* =========================================================
+   TIMER FINALIZADO
+========================================================= */
+
+.timer-box.timer-finished{
+  border-color:rgba(255,79,163,.52);
+  filter:brightness(1.06);
+
+  animation:timerFinishedPink .95s ease-in-out infinite alternate;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.44),
+    0 0 0 1px rgba(255,79,163,.08),
+    0 0 18px rgba(255,79,163,.16),
+    0 0 30px rgba(255,79,163,.06),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.timer-box.timer-finished::before{
+  background:linear-gradient(180deg, #ffc0df 0%, var(--pink) 58%, var(--pink-deep) 100%);
+
+  box-shadow:
+    0 0 7px rgba(255,79,163,.72),
+    0 0 16px rgba(255,79,163,.28);
+}
+
+.timer-box.timer-finished #timer-value{
+  color:#ffffff;
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.94),
+    0 0 8px rgba(255,255,255,.16),
+    0 0 14px rgba(255,79,163,.22);
+}
+
+@keyframes timerFinishedPink{
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.022);
   }
 }
 
@@ -472,18 +480,20 @@ body{
    HOVER
 ========================================================= */
 
-#goal-wrapper:hover{
-  border-color:rgba(255,79,163,.20);
+.timer-box:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.035);
+  border-color:rgba(255,79,163,.28);
 
   box-shadow:
-    0 22px 48px rgba(0,0,0,.50),
-    0 8px 22px rgba(0,0,0,.34),
-    0 0 18px rgba(255,79,163,.065),
-    inset 0 1px 0 rgba(255,255,255,.065);
+    0 13px 28px rgba(0,0,0,.43),
+    0 0 0 1px rgba(255,79,163,.045),
+    0 0 16px rgba(255,79,163,.085),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
-#bar-fill:hover{
-  filter:brightness(1.04);
+.timer-box.timer-running:hover{
+  animation-play-state:running;
 }
 
 
@@ -491,32 +501,33 @@ body{
    RESPONSIVE
 ========================================================= */
 
-@media (max-height:460px){
-  #goal-wrapper{
-    width:72px;
-    height:360px;
-    border-radius:27px;
+@media (max-width:310px){
+
+  .timer-widget{
+    width:100%;
+    padding:9px;
+    border-radius:23px;
   }
 
-  #goal-wrapper::before{
-    border-radius:22px;
+  .timer-widget::before{
+    border-radius:18px;
   }
 
-  #bar-fill{
-    border-radius:0 0 26px 26px;
+  .timer-title{
+    min-height:50px;
+    padding:8px 12px 12px;
+    border-radius:18px;
+    font-size:24px;
   }
 
-  .goal-title{
-    padding:6px 11px 11px;
-    border-radius:13px;
-    font-size:20px;
+  .timer-box{
+    width:176px;
+    height:72px;
+    border-radius:20px;
   }
 
-  .goal-amount{
-    bottom:38px;
-    padding:6px 10px;
-    border-radius:12px;
-    font-size:14px;
+  #timer-value{
+    font-size:37px;
   }
 }
 
@@ -526,109 +537,100 @@ body{
 ========================================================= */
 
 @media (prefers-reduced-motion:reduce){
-  #goal-wrapper::after,
-  #bar-fill::before,
-  #bar-fill::after,
-  .goal-title.neon{
+
+  .timer-widget::after,
+  .timer-box::after,
+  .timer-box.timer-running,
+  .timer-box.timer-running #timer-value,
+  .timer-box.timer-finished{
     animation:none;
   }
 
-  #bar-fill{
+  .timer-box,
+  #timer-value{
     transition:none;
   }
 }
 
 
+
 :root{
-  --rc-bg-1:#ffd0db;
-  --rc-bg-2:#f7a9bc;
-  --rc-bg-3:#ed8eaa;
-  --rc-dark-1:#d45b7d;
-  --rc-dark-2:#be446b;
-  --rc-dark-3:#a8365d;
-  --rc-outline:#b23f66;
-  --rc-white:#ffffff;
-  --rc-shadow:rgba(136,47,78,.24);
+  --nf-pink:#ff21c9;
+  --nf-hot:#ff35a8;
+  --nf-magenta:#d71fff;
+  --nf-purple:#8e24ff;
+  --nf-violet:#6624ef;
+  --nf-blue:#5232ff;
+  --nf-deep:#4a168c;
+  --nf-white:#ffffff;
+  --nf-shadow:rgba(73,19,143,.30);
 }
 
-@keyframes roseCloudMove{
+@keyframes neonFlowMain{
   0%{
     background-position:
-      8% 18%,
-      84% 12%,
-      28% 78%,
-      78% 72%,
-      50% 45%,
-      0% 0%;
+      0% 30%,
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
   20%{
     background-position:
-      20% 26%,
-      72% 22%,
-      36% 66%,
-      68% 86%,
-      58% 36%,
-      0% 0%;
+      22% 42%,
+      78% 24%,
+      36% 72%,
+      64% 84%,
+      18% 50%;
   }
   40%{
     background-position:
-      34% 42%,
-      62% 10%,
-      18% 86%,
-      58% 60%,
-      42% 56%,
-      0% 0%;
+      46% 24%,
+      60% 42%,
+      14% 72%,
+      82% 52%,
+      42% 50%;
   }
   60%{
     background-position:
-      16% 62%,
-      80% 30%,
-      38% 70%,
-      88% 46%,
-      56% 72%,
-      0% 0%;
+      70% 44%,
+      36% 22%,
+      48% 88%,
+      58% 34%,
+      68% 50%;
   }
   80%{
     background-position:
-      5% 38%,
-      90% 18%,
-      16% 54%,
-      72% 80%,
-      38% 30%,
-      0% 0%;
+      36% 62%,
+      88% 36%,
+      24% 54%,
+      72% 78%,
+      38% 50%;
   }
   100%{
     background-position:
-      8% 18%,
-      84% 12%,
-      28% 78%,
-      78% 72%,
-      50% 45%,
-      0% 0%;
+      0% 30%,
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
 }
 
-@keyframes roseCloudMoveVertical{
-  0%{
-    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
-  }
-  25%{
-    background-position:54% 24%,46% 12%,40% 52%,58% 72%,64% 38%,0 0;
+@keyframes neonFlowGlass{
+  0%,100%{
+    opacity:.16;
+    transform:translate3d(-4%,-2%,0) scale(1.04);
   }
   50%{
-    background-position:28% 48%,76% 42%,30% 84%,48% 58%,42% 64%,0 0;
-  }
-  75%{
-    background-position:58% 68%,34% 28%,66% 74%,78% 44%,54% 24%,0 0;
-  }
-  100%{
-    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+    opacity:.32;
+    transform:translate3d(5%,3%,0) scale(1.09);
   }
 }
 
-@keyframes roseSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.025) saturate(1.04); }
+@keyframes neonFlowPulse{
+  0%,100%{ filter:saturate(1) brightness(1); }
+  50%{ filter:saturate(1.08) brightness(1.035); }
 }
 
 body{
@@ -636,119 +638,127 @@ body{
   font-family:'Inter',Arial,sans-serif;
 }
 
+.title,
+.goal-title,
+.timer-title,
+.raffle-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(55,12,101,.46),
+    0 0 7px rgba(255,255,255,.18);
+}
+
 /* =========================================================
-   BAR — números más grandes y legibles
+   TIMER
 ========================================================= */
 
-#goal-wrapper{
-  width:82px;
-  border-radius:31px;
-  background-image:
-    radial-gradient(circle at center, rgba(196,66,106,.46) 0 12%, rgba(196,66,106,.26) 19%, transparent 31%),
-    radial-gradient(circle at center, rgba(224,101,135,.40) 0 11%, rgba(224,101,135,.22) 18%, transparent 30%),
-    radial-gradient(circle at center, rgba(185,51,93,.30) 0 12%, rgba(185,51,93,.16) 20%, transparent 32%),
-    radial-gradient(circle at center, rgba(239,129,155,.30) 0 10%, rgba(239,129,155,.14) 18%, transparent 29%),
-    radial-gradient(circle at center, rgba(173,50,91,.22) 0 9%, rgba(173,50,91,.11) 17%, transparent 27%),
-    linear-gradient(180deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
-  background-repeat:no-repeat;
-  background-size:
-    120px 120px,
-    145px 145px,
-    110px 110px,
-    155px 155px,
-    95px 95px,
-    100% 100%;
-  border:2px solid rgba(255,255,255,.66);
-  box-shadow:
-    0 16px 34px var(--rc-shadow),
-    inset 0 2px 0 rgba(255,255,255,.52);
-  animation:
-    roseCloudMoveVertical 25s ease-in-out infinite,
-    roseSoftBreath 8s ease-in-out infinite;
-}
-
-#goal-wrapper::before{
-  border-radius:25px;
-  border:1px solid rgba(255,255,255,.30);
-}
-
-#goal-wrapper::after{
-  opacity:.15;
-}
-
-#bar-fill{
-  border-radius:0 0 30px 30px;
+.timer-widget{
+  border-radius:30px;
   background:
-    linear-gradient(90deg,rgba(255,255,255,.14),transparent 34%,rgba(130,41,76,.08) 72%,rgba(255,255,255,.07)),
-    linear-gradient(180deg,#ed8aa6 0%,#d86488 47%,#b94b73 100%);
+    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.92) 0 12%, rgba(255,33,201,.48) 22%, transparent 38%),
+    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.70) 0 10%, rgba(255,53,168,.32) 20%, transparent 35%),
+    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.70) 0 14%, rgba(142,36,255,.30) 24%, transparent 42%),
+    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.70) 0 12%, rgba(82,50,255,.26) 23%, transparent 40%),
+    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
+  background-size:
+    190% 190%,
+    175% 175%,
+    205% 205%,
+    185% 185%,
+    240% 100%;
+  border:2px solid rgba(255,255,255,.44);
   box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.08),
-    inset -7px 0 12px rgba(103,29,62,.10),
-    0 -2px 10px rgba(255,255,255,.14);
+    0 16px 34px var(--nf-shadow),
+    inset 0 2px 0 rgba(255,255,255,.22);
+  animation:
+    neonFlowMain 22s ease-in-out infinite,
+    neonFlowPulse 8s ease-in-out infinite;
 }
 
-#bar-fill::before{
-  height:5px;
-  background:linear-gradient(180deg,#fff,#fff0f5);
-  box-shadow:0 0 6px rgba(255,255,255,.74),0 0 12px rgba(255,255,255,.22);
+.timer-widget::before{
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.18);
 }
 
-#bar-fill::after{
-  width:6px;
-  height:6px;
-  background:#fff;
-  box-shadow:0 0 5px rgba(255,255,255,.80);
+.timer-widget::after{
+  opacity:.16;
+  background:linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255,255,255,.02) 31%,
+    rgba(255,255,255,.15) 49%,
+    rgba(255,255,255,.03) 61%,
+    transparent 74%
+  );
 }
 
-.goal-title{
-  border-radius:10px;
-  font-family:'Anton',Impact,sans-serif;
-  font-size:23px;
-  font-weight:400;
+.timer-title{
+  z-index:6;
+  border-radius:18px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
+    rgba(92,22,166,.17);
+  border:1.5px solid rgba(255,255,255,.34);
+}
+
+.timer-title::after{
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  box-shadow:0 0 6px rgba(255,255,255,.30);
+}
+
+.timer-box{
+  z-index:6;
+  border-radius:23px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
+    rgba(87,23,160,.15);
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:
+    0 10px 22px rgba(66,18,123,.16),
+    inset 0 1px 0 rgba(255,255,255,.16);
+}
+
+.timer-box::before{
+  width:4px;
+  background:linear-gradient(180deg,#fff,#ffb7ef,#8e37ff);
+}
+
+#timer-value{
   color:#fff;
-  background:rgba(193,65,104,.18);
-  -webkit-text-stroke:1px var(--rc-outline);
+  -webkit-text-stroke:.55px rgba(64,18,112,.72);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(153,51,86,.28);
+  text-shadow:0 2px 0 rgba(55,12,101,.42);
 }
 
-.goal-title::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.20),#fff,rgba(255,255,255,.20),transparent);
+.timer-box.timer-running{
+  animation:nfTimerPulse 2.8s ease-in-out infinite alternate;
 }
 
-/* Bigger goal amount for readability */
-.goal-amount{
-  bottom:44px;
-  padding:8px 14px 9px;
-  border-radius:14px;
-  background:linear-gradient(180deg,#fff,#fff2f6);
-  border:1.5px solid rgba(178,63,102,.30);
-  font-family:'Anton',Impact,sans-serif;
-  font-size:21px;
-  font-weight:400;
-  line-height:1;
-  letter-spacing:.055em;
-  color:#a93b63;
-  text-shadow:none;
-  box-shadow:
-    0 5px 11px rgba(136,47,78,.13),
-    inset 0 1px 0 rgba(255,255,255,.72);
-}
-
-.goal-amount::after{
-  font-size:inherit;
-}
-
-@media (max-height:460px){
-  #goal-wrapper{
-    width:76px;
-    border-radius:27px;
+@keyframes nfTimerPulse{
+  from{ transform:scale(1); }
+  to{
+    transform:scale(1.012);
+    box-shadow:
+      0 11px 24px rgba(66,18,123,.18),
+      0 0 14px rgba(255,42,204,.08),
+      0 0 12px rgba(96,55,255,.07),
+      inset 0 1px 0 rgba(255,255,255,.18);
   }
-  #goal-wrapper::before{border-radius:22px;}
-  #bar-fill{border-radius:0 0 26px 26px;}
-  .goal-amount{
-    bottom:40px;
-    padding:7px 12px 8px;
-    font-size:19px;
-  }
+}
+
+.timer-box.timer-finished{
+  border-color:rgba(255,255,255,.38);
+  background:
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.11),transparent 44%),
+    rgba(101,29,181,.20);
+}
+
+@media (max-width:310px){
+  .timer-widget{border-radius:26px;}
+  .timer-widget::before{border-radius:21px;}
+  .timer-title{border-radius:16px;}
+  .timer-box{border-radius:20px;}
 }

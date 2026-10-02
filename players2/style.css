@@ -1,11 +1,10 @@
 /* =========================================================
-   ROSE CLOUD THEME
+   NEON FLOW THEME
    Inspirado en la referencia:
-   - Fondo rosado suave
-   - Manchas rosado oscuro en movimiento
-   - Letras blancas con borde rosado oscuro
-   - Alto contraste y acabado redondeado
-   - BAR: números más grandes y legibles
+   - Rosa neón + magenta + violeta + azul eléctrico
+   - Fondo líquido/aurora en movimiento constante
+   - Letras blancas con contorno violeta oscuro
+   - Transiciones lentas y fluidas
    - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
@@ -15,7 +14,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -974,101 +973,101 @@ body{
 }
 
 
+
 :root{
-  --rc-bg-1:#ffd0db;
-  --rc-bg-2:#f7a9bc;
-  --rc-bg-3:#ed8eaa;
-  --rc-dark-1:#d45b7d;
-  --rc-dark-2:#be446b;
-  --rc-dark-3:#a8365d;
-  --rc-outline:#b23f66;
-  --rc-white:#ffffff;
-  --rc-shadow:rgba(136,47,78,.24);
+  --nf-pink:#ff21c9;
+  --nf-hot:#ff35a8;
+  --nf-magenta:#d71fff;
+  --nf-purple:#8e24ff;
+  --nf-violet:#6624ef;
+  --nf-blue:#5232ff;
+  --nf-deep:#4a168c;
+  --nf-white:#ffffff;
+  --nf-shadow:rgba(73,19,143,.30);
 }
 
-@keyframes roseCloudMove{
+@keyframes neonFlowMain{
   0%{
     background-position:
-      8% 18%,
-      84% 12%,
-      28% 78%,
-      78% 72%,
-      50% 45%,
-      0% 0%;
+      0% 30%,
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
   20%{
     background-position:
-      20% 26%,
-      72% 22%,
-      36% 66%,
-      68% 86%,
-      58% 36%,
-      0% 0%;
+      22% 42%,
+      78% 24%,
+      36% 72%,
+      64% 84%,
+      18% 50%;
   }
   40%{
     background-position:
-      34% 42%,
-      62% 10%,
-      18% 86%,
-      58% 60%,
-      42% 56%,
-      0% 0%;
+      46% 24%,
+      60% 42%,
+      14% 72%,
+      82% 52%,
+      42% 50%;
   }
   60%{
     background-position:
-      16% 62%,
-      80% 30%,
-      38% 70%,
-      88% 46%,
-      56% 72%,
-      0% 0%;
+      70% 44%,
+      36% 22%,
+      48% 88%,
+      58% 34%,
+      68% 50%;
   }
   80%{
     background-position:
-      5% 38%,
-      90% 18%,
-      16% 54%,
-      72% 80%,
-      38% 30%,
-      0% 0%;
+      36% 62%,
+      88% 36%,
+      24% 54%,
+      72% 78%,
+      38% 50%;
   }
   100%{
     background-position:
-      8% 18%,
-      84% 12%,
-      28% 78%,
-      78% 72%,
-      50% 45%,
-      0% 0%;
+      0% 30%,
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
 }
 
-@keyframes roseCloudMoveVertical{
-  0%{
-    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
-  }
-  25%{
-    background-position:54% 24%,46% 12%,40% 52%,58% 72%,64% 38%,0 0;
+@keyframes neonFlowGlass{
+  0%,100%{
+    opacity:.16;
+    transform:translate3d(-4%,-2%,0) scale(1.04);
   }
   50%{
-    background-position:28% 48%,76% 42%,30% 84%,48% 58%,42% 64%,0 0;
-  }
-  75%{
-    background-position:58% 68%,34% 28%,66% 74%,78% 44%,54% 24%,0 0;
-  }
-  100%{
-    background-position:36% 8%,72% 28%,28% 64%,70% 90%,50% 48%,0 0;
+    opacity:.32;
+    transform:translate3d(5%,3%,0) scale(1.09);
   }
 }
 
-@keyframes roseSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.025) saturate(1.04); }
+@keyframes neonFlowPulse{
+  0%,100%{ filter:saturate(1) brightness(1); }
+  50%{ filter:saturate(1.08) brightness(1.035); }
 }
 
 body{
   color:#fff;
   font-family:'Inter',Arial,sans-serif;
+}
+
+.title,
+.goal-title,
+.timer-title,
+.raffle-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(55,12,101,.46),
+    0 0 7px rgba(255,255,255,.18);
 }
 
 /* =========================================================
@@ -1077,148 +1076,151 @@ body{
 
 .raffle-widget{
   border-radius:31px;
-  background-image:
-    radial-gradient(circle at center, rgba(196,66,106,.48) 0 12%, rgba(196,66,106,.27) 19%, transparent 31%),
-    radial-gradient(circle at center, rgba(224,101,135,.42) 0 11%, rgba(224,101,135,.23) 18%, transparent 30%),
-    radial-gradient(circle at center, rgba(185,51,93,.32) 0 12%, rgba(185,51,93,.17) 20%, transparent 32%),
-    radial-gradient(circle at center, rgba(239,129,155,.32) 0 10%, rgba(239,129,155,.15) 18%, transparent 29%),
-    radial-gradient(circle at center, rgba(173,50,91,.23) 0 9%, rgba(173,50,91,.11) 17%, transparent 27%),
-    linear-gradient(135deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
-  background-repeat:no-repeat;
-  background-size:210px 210px,250px 250px,185px 185px,270px 270px,160px 160px,100% 100%;
-  border:2px solid rgba(255,255,255,.66);
+  background:
+    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.92) 0 12%, rgba(255,33,201,.48) 22%, transparent 38%),
+    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.70) 0 10%, rgba(255,53,168,.32) 20%, transparent 35%),
+    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.70) 0 14%, rgba(142,36,255,.30) 24%, transparent 42%),
+    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.70) 0 12%, rgba(82,50,255,.26) 23%, transparent 40%),
+    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
+  background-size:
+    190% 190%,
+    175% 175%,
+    205% 205%,
+    185% 185%,
+    240% 100%;
+  border:2px solid rgba(255,255,255,.44);
   box-shadow:
-    0 18px 38px var(--rc-shadow),
-    inset 0 2px 0 rgba(255,255,255,.52);
+    0 18px 38px var(--nf-shadow),
+    inset 0 2px 0 rgba(255,255,255,.22);
   animation:
-    roseCloudMove 25s ease-in-out infinite,
-    roseSoftBreath 8s ease-in-out infinite;
+    neonFlowMain 22s ease-in-out infinite,
+    neonFlowPulse 8s ease-in-out infinite;
 }
 
 .raffle-widget::before{
   border-radius:25px;
-  border:1px solid rgba(255,255,255,.31);
+  border:1px solid rgba(255,255,255,.18);
 }
 
 .raffle-widget::after{
-  opacity:.15;
+  opacity:.16;
+  background:linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255,255,255,.02) 31%,
+    rgba(255,255,255,.15) 49%,
+    rgba(255,255,255,.03) 61%,
+    transparent 74%
+  );
 }
 
 .raffle-badge{
   border-radius:999px;
-  background:linear-gradient(180deg,#fff,#fff2f6);
-  border:1.5px solid rgba(178,63,102,.26);
-  font-weight:900;
-  color:#ac3e65;
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.24);
+  color:#7225c8;
   text-shadow:none;
 }
 
 .raffle-badge::before{
-  background:#cf5b82;
-  box-shadow:0 0 0 3px rgba(207,91,130,.11),0 0 7px rgba(255,255,255,.22);
+  background:#ff43c6;
+  box-shadow:
+    0 0 0 3px rgba(255,67,198,.10),
+    0 0 7px rgba(255,255,255,.22);
 }
 
 .raffle-title{
   border-radius:20px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),
-    rgba(207,76,116,.18);
-  border:1.5px solid rgba(255,255,255,.52);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.30px var(--rc-outline);
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(159,53,89,.32);
+    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
+    rgba(92,22,166,.17);
+  border:1.5px solid rgba(255,255,255,.34);
 }
 
 .raffle-title::after{
   height:2px;
   background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.34);
+  box-shadow:0 0 6px rgba(255,255,255,.30);
 }
 
 .raffle-name-item{
   border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.04)),
-    rgba(205,75,113,.15);
-  border:1px solid rgba(255,255,255,.30);
+    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
+    rgba(87,23,160,.15);
+  border:1px solid rgba(255,255,255,.22);
   box-shadow:
-    0 6px 14px rgba(136,47,78,.12),
-    inset 0 1px 0 rgba(255,255,255,.24);
+    0 6px 14px rgba(66,18,123,.15),
+    inset 0 1px 0 rgba(255,255,255,.16);
 }
 
 .raffle-name-item::after{
   border-radius:11px;
-  background:linear-gradient(180deg,#fff,#fff2f6);
-  border:1.5px solid rgba(178,63,102,.26);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#ac3e65;
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.24);
+  color:#7225c8;
   text-shadow:none;
 }
 
 .raffle-name-item:first-child{
   border-radius:19px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.21),rgba(255,255,255,.055)),
-    rgba(191,63,103,.20);
-  border:1.5px solid rgba(255,255,255,.50);
+    linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.04)),
+    rgba(102,28,183,.18);
+  border:1.5px solid rgba(255,255,255,.38);
 }
 
 .raffle-name{
-  font-weight:900;
   color:#fff;
-  -webkit-text-stroke:.50px var(--rc-outline);
+  -webkit-text-stroke:.42px rgba(68,18,119,.72);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(150,50,85,.28);
+  text-shadow:0 2px 0 rgba(60,15,108,.38);
 }
 
 .raffle-tickets{
   border-radius:11px;
-  background:linear-gradient(180deg,#fff,#fff2f6);
-  border:1.5px solid rgba(178,63,102,.26);
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.24);
 }
 
 .raffle-tickets::after{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#ac3e65;
+  color:#7225c8;
   text-shadow:none;
 }
 
 .raffle-winner-screen{
   border-radius:30px;
   background:
-    radial-gradient(circle at 20% 25%,rgba(202,68,108,.35) 0 11%,transparent 31%),
-    radial-gradient(circle at 80% 70%,rgba(175,48,91,.28) 0 12%,transparent 32%),
-    linear-gradient(135deg,#ffd4de 0%,#f7aabd 48%,#ec8da8 100%);
-  border:2px solid rgba(255,255,255,.66);
+    radial-gradient(ellipse at 15% 22%,rgba(255,33,201,.84) 0 12%,transparent 38%),
+    radial-gradient(ellipse at 78% 68%,rgba(142,36,255,.72) 0 14%,transparent 42%),
+    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
+  background-size:190% 190%,205% 205%,240% 100%;
+  animation:neonFlowMain 22s ease-in-out infinite;
+  border:2px solid rgba(255,255,255,.44);
 }
 
 .raffle-winner-screen::before{
-  content:"✦  ♥  ✦";
-  font-family:'Anton',Impact,sans-serif;
+  content:"✦  ◆  ✦";
   color:#fff;
-  -webkit-text-stroke:1px var(--rc-outline);
+  -webkit-text-stroke:1px rgba(64,18,112,.76);
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(159,53,89,.30);
+  text-shadow:0 0 8px rgba(255,255,255,.20);
 }
 
 .winner-label{
-  background:linear-gradient(180deg,#fff,#fff2f6);
-  border:1.5px solid rgba(178,63,102,.26);
-  color:#ac3e65;
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.24);
+  color:#7225c8;
   text-shadow:none;
 }
 
 .winner-name{
-  font-family:'Anton',Impact,sans-serif;
   color:#fff;
-  -webkit-text-stroke:1.45px var(--rc-outline);
+  -webkit-text-stroke:1.35px rgba(64,18,112,.78);
   paint-order:stroke fill;
-  text-shadow:0 3px 0 rgba(159,53,89,.32);
+  text-shadow:
+    0 3px 0 rgba(55,12,101,.42),
+    0 0 8px rgba(255,255,255,.14);
 }
 
 @media (max-width:590px){
