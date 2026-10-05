@@ -231,27 +231,25 @@
 
     <label for="model">Elige La Modelo de GB</label>
 
-    <select id="model">
-      <option value="">Selecciona tu nombre</option>
-      <option value="Jade">Jade</option>
-      <option value="Megan">Megan</option>
-      <option value="Zoe">Zoe</option>
-      <option value="Charlotte">Charlotte</option>
-      <option value="Misty">Misty</option>
-      <option value="Leana">Leana</option>
-      <option value="Nikki">Nikki</option>
-      <option value="Molly">Molly</option>
-      <option value="Nana">Nana</option>
-      <option value="Paula">Paula</option>
-      <option value="Sara">Sara</option>
-      <option value="Sophi">Sophi</option>
-      <option value="Alaska">Alaska</option>
-      <option value="Kali">Kali</option>
-      <option value="Shani">Shani</option>
-      <option value="Lisa">Lisa</option>
-      <option value="Cassie">Cassie</option>
-       <option value="Minnie">Minnie</option>
-    </select>
+<select id="model">
+  <option value="">Selecciona tu nombre</option>
+
+  <option value="Misty">Misty</option>
+  <option value="Sarah">Sarah</option>
+  <option value="Megan">Megan</option>
+  <option value="Molly">Molly</option>
+  <option value="Cassie">Cassie</option>
+  <option value="Zoe">Zoe</option>
+  <option value="Sophia">Sophia</option>
+  <option value="Nikki">Nikki</option>
+  <option value="Lisa">Lisa</option>
+  <option value="Nana">Nana</option>
+  <option value="Paula">Paula</option>
+  <option value="Jade">Jade</option>
+  <option value="Minnie">Minnie</option>
+  <option value="Alaska">Alaska</option>
+  <option value="Maxine">Maxine</option>
+</select>
 
     <label for="date">Día del evento</label>
     <input id="date" type="date" />
@@ -386,236 +384,268 @@
       "image/webp"
     ];
 
-    const MODEL_SLOTS = {
-    Jade: [
-        { start: "17:00", label: "17:00 (10:00 AM) 🇰🇪" },
-        { start: "18:00", label: "18:00 (11:00 AM) 🇰🇪" },
-        { start: "19:00", label: "19:00 (12:00 PM) 🇰🇪" },
-        { start: "20:00", label: "20:00 (01:00 PM) 🇰🇪" },
-        { start: "21:00", label: "21:00 (02:00 PM) 🇰🇪" },
-        { start: "22:00", label: "22:00 (03:00 PM) 🇰🇪" },
-        { start: "04:00", label: "04:00 (09:00 PM) 🇰🇪" },
-        { start: "05:00", label: "05:00 (10:00 PM) 🇰🇪" },
-        { start: "06:00", label: "06:00 (11:00 PM) 🇰🇪" }
-      ],
+  const MODEL_SLOTS = {
 
-      Minnie: [
-        { start: "09:00", label: "10:00 AM (Chile)" },
-        { start: "10:00", label: "11:00 AM (Chile)" },
-        { start: "11:00", label: "12:00 AM (Chile)" },
-        { start: "12:00", label: "01:00 PM (Chile)" },
-        { start: "14:00", label: "02:00 PM (Chile)" },
-        { start: "19:00", label: "08:00 PM (Chile)" },
-        { start: "20:00", label: "09:00 PM (Chile)" },
-        { start: "21:00", label: "10:00 PM (Chile)" },
-        { start: "22:00", label: "11:00 PM (Chile)" }
-      ],
-      Nana: [
-        { start: "09:00", label: "10:00 AM (Argentina)" },
-        { start: "10:00", label: "11:00 AM (Argentina)" },
-        { start: "11:00", label: "12:00 AM (Argentina)" },
-        { start: "12:00", label: "01:00 PM (Argentina)" },
-        { start: "14:00", label: "02:00 PM (Argentina)" },
-        { start: "19:00", label: "08:00 PM (Argentina)" },
-        { start: "20:00", label: "09:00 PM (Argentina)" },
-        { start: "21:00", label: "10:00 PM (Argentina)" },
-        { start: "22:00", label: "11:00 PM (Argentina)" }
-      ],
+  // ─────────────────────────────────────────
+  // COLOMBIA
+  // EDT está 1 hora adelante de Colombia
+  // ─────────────────────────────────────────
 
-      Zoe: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
-            Paula: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+  Misty: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+  Megan: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+  Cassie: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+  Zoe: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+  Nikki: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+  Lisa: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+  Paula: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
+
+   Maxine: [ { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }],
+
+  // Molly tiene dos horarios extra durante el día
+  Molly: [
+    { start: "09:00", label: "10:00 AM EDT / 9:00 AM COLOMBIA" },
+    { start: "10:00", label: "11:00 AM EDT / 10:00 AM COLOMBIA" },
+    { start: "11:00", label: "12:00 PM EDT / 11:00 AM COLOMBIA" },
+    { start: "12:00", label: "1:00 PM EDT / 12:00 PM COLOMBIA" },
+    { start: "13:00", label: "2:00 PM EDT / 1:00 PM COLOMBIA" },
+    { start: "14:00", label: "3:00 PM EDT / 2:00 PM COLOMBIA" },
+
+    { start: "19:00", label: "8:00 PM EDT / 7:00 PM COLOMBIA" },
+    { start: "20:00", label: "9:00 PM EDT / 8:00 PM COLOMBIA" },
+    { start: "21:00", label: "10:00 PM EDT / 9:00 PM COLOMBIA" },
+    { start: "22:00", label: "11:00 PM EDT / 10:00 PM COLOMBIA" }
+  ],
 
 
-      Lisa: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+  // ─────────────────────────────────────────
+  // ARGENTINA
+  // Argentina está 1 hora adelante de EDT
+  // ─────────────────────────────────────────
 
-      Cassie: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+  Nana: [
+    { start: "10:00", label: "9:00 AM EDT / 10:00 AM ARGENTINA" },
+    { start: "11:00", label: "10:00 AM EDT / 11:00 AM ARGENTINA" },
+    { start: "12:00", label: "11:00 AM EDT / 12:00 PM ARGENTINA" },
+    { start: "13:00", label: "12:00 PM EDT / 1:00 PM ARGENTINA" },
+    { start: "14:00", label: "1:00 PM EDT / 2:00 PM ARGENTINA" },
 
-      Leana: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+    { start: "20:00", label: "7:00 PM EDT / 8:00 PM ARGENTINA" },
+    { start: "21:00", label: "8:00 PM EDT / 9:00 PM ARGENTINA" },
+    { start: "22:00", label: "9:00 PM EDT / 10:00 PM ARGENTINA" },
+    { start: "23:00", label: "10:00 PM EDT / 11:00 PM ARGENTINA" }
+  ],
 
-      Charlotte: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
 
-      Megan: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+  // ─────────────────────────────────────────
+  // CHILE
+  // Actualmente Chile está 1 hora adelante de EDT
+  // ─────────────────────────────────────────
 
-      Misty: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+  Minnie: [
+    { start: "10:00", label: "9:00 AM EDT / 10:00 AM CHILE" },
+    { start: "11:00", label: "10:00 AM EDT / 11:00 AM CHILE" },
+    { start: "12:00", label: "11:00 AM EDT / 12:00 PM CHILE" },
+    { start: "13:00", label: "12:00 PM EDT / 1:00 PM CHILE" },
+    { start: "14:00", label: "1:00 PM EDT / 2:00 PM CHILE" },
 
-      Nikki: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
+    { start: "20:00", label: "7:00 PM EDT / 8:00 PM CHILE" },
+    { start: "21:00", label: "8:00 PM EDT / 9:00 PM CHILE" },
+    { start: "22:00", label: "9:00 PM EDT / 10:00 PM CHILE" },
+    { start: "23:00", label: "10:00 PM EDT / 11:00 PM CHILE" }
+  ],
 
-      Molly: [
-        { start: "09:00", label: "09:00 AM (Colombia)" },
-        { start: "10:00", label: "10:00 AM (Colombia)" },
-        { start: "11:00", label: "11:00 AM (Colombia)" },
-        { start: "12:00", label: "12:00 PM (Colombia)" },
-        { start: "13:00", label: "01:00 PM (Colombia)" },
-        { start: "14:00", label: "02:00 PM (Colombia)" },
-        { start: "19:00", label: "07:00 PM (Colombia)" },
-        { start: "20:00", label: "08:00 PM (Colombia)" },
-        { start: "21:00", label: "09:00 PM (Colombia)" },
-        { start: "22:00", label: "10:00 PM (Colombia)" }
-      ],
 
-      Shani: [
-        { start: "17:00", label: "17:00 (10:00 AM) 🇰🇪" },
-        { start: "18:00", label: "18:00 (11:00 AM) 🇰🇪" },
-        { start: "19:00", label: "19:00 (12:00 PM) 🇰🇪" },
-        { start: "20:00", label: "20:00 (01:00 PM) 🇰🇪" },
-        { start: "21:00", label: "21:00 (02:00 PM) 🇰🇪" },
-        { start: "04:00", label: "04:00 (09:00 PM) 🇰🇪" },
-        { start: "05:00", label: "05:00 (10:00 PM) 🇰🇪" },
-        { start: "06:00", label: "06:00 (11:00 PM) 🇰🇪" }
-      ],
+  // ─────────────────────────────────────────
+  // KENYA
+  // Kenya está 7 horas adelante de EDT
+  // ─────────────────────────────────────────
 
-      Kali: [
-        { start: "17:00", label: "17:00 (10:00 AM) 🇰🇪" },
-        { start: "18:00", label: "18:00 (11:00 AM) 🇰🇪" },
-        { start: "19:00", label: "19:00 (12:00 PM) 🇰🇪" },
-        { start: "20:00", label: "20:00 (01:00 PM) 🇰🇪" },
-        { start: "03:00", label: "03:00 (08:00 PM) 🇰🇪" },
-        { start: "21:00", label: "21:00 (02:00 PM) 🇰🇪" },
-        { start: "04:00", label: "04:00 (09:00 PM) 🇰🇪" },
-        { start: "05:00", label: "05:00 (10:00 PM) 🇰🇪" },
-        { start: "06:00", label: "06:00 (11:00 PM) 🇰🇪" }
-      ],
+  Jade: [
+    { start: "17:00", label: "10:00 AM EDT / 5:00 PM KENYA" },
+    { start: "18:00", label: "11:00 AM EDT / 6:00 PM KENYA" },
+    { start: "19:00", label: "12:00 PM EDT / 7:00 PM KENYA" },
+    { start: "20:00", label: "1:00 PM EDT / 8:00 PM KENYA" },
+    { start: "21:00", label: "2:00 PM EDT / 9:00 PM KENYA" },
+    { start: "22:00", label: "3:00 PM EDT / 10:00 PM KENYA" },
 
-      Sara: [
-        { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
-        { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
-        { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
-        { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
-        { start: "20:00", label: "20:00 (08:00 PM) 🇸🇰" },
-        { start: "21:00", label: "21:00 (09:00 PM) 🇸🇰" },
-        { start: "22:00", label: "22:00 (10:00 PM) 🇸🇰" },
-        { start: "04:00", label: "04:00 (next day) 🇸🇰" },
-        { start: "05:00", label: "05:00 (next day) 🇸🇰" }
-      ],
+    { start: "04:00", label: "9:00 PM EDT / 4:00 AM KENYA" },
+    { start: "05:00", label: "10:00 PM EDT / 5:00 AM KENYA" },
+    { start: "06:00", label: "11:00 PM EDT / 6:00 AM KENYA" }
+  ],
 
-      Sophi: [
-        { start: "16:00", label: "16:00 (04:00 PM) 🇸🇰" },
-        { start: "17:00", label: "17:00 (05:00 PM) 🇸🇰" },
-        { start: "18:00", label: "18:00 (06:00 PM) 🇸🇰" },
-        { start: "19:00", label: "19:00 (07:00 PM) 🇸🇰" },
-        { start: "20:00", label: "20:00 (08:00 PM) 🇸🇰" },
-        { start: "21:00", label: "21:00 (09:00 PM) 🇸🇰" },
-        { start: "22:00", label: "22:00 (10:00 PM) 🇸🇰" },
-        { start: "04:00", label: "04:00 (next day) 🇸🇰" },
-        { start: "05:00", label: "05:00 (next day) 🇸🇰" }
-      ],
 
-         Alaska: [
-        { start: "16:00", label: "16:00 (04:00 PM) es" },
-        { start: "17:00", label: "17:00 (05:00 PM) es" },
-        { start: "18:00", label: "18:00 (06:00 PM) es" },
-        { start: "19:00", label: "19:00 (07:00 PM) es" },
-        { start: "20:00", label: "20:00 (08:00 PM) es" },
-        { start: "21:00", label: "21:00 (09:00 PM) es" },
-        { start: "22:00", label: "22:00 (10:00 PM) es" },
-        { start: "04:00", label: "04:00 (next day) es" },
-        { start: "05:00", label: "05:00 (next day) es" }
-      ],
-    };
+  // ─────────────────────────────────────────
+  // SLOVAKIA
+  // Slovakia está 6 horas adelante de EDT
+  // ─────────────────────────────────────────
 
-    const MODEL_OFFSET_TO_EST = {
-      Zoe: -1,
-      Megan: -1,
-      Paula: -1,
-      Cassie: -1,
-      Misty: -1,
-      Sunny: -1,
-      Nikki: -1,
-      Molly: -1,
-      Leana: -1,
-      Charlotte: -1,
-      Sasha: 2,
-      Nana: 1,
-      Minnie: 1,
-      Sara: 6,
-      Aslaka: 6,
-      Sophi: 6,
-      Kali: 7,
-      Jade: 7,
-      Shani: 7,
-      Lisa: -1
-    };
+  Sarah: [
+    { start: "16:00", label: "10:00 AM EDT / 4:00 PM SLOVAKIA" },
+    { start: "17:00", label: "11:00 AM EDT / 5:00 PM SLOVAKIA" },
+    { start: "18:00", label: "12:00 PM EDT / 6:00 PM SLOVAKIA" },
+    { start: "19:00", label: "1:00 PM EDT / 7:00 PM SLOVAKIA" },
+    { start: "20:00", label: "2:00 PM EDT / 8:00 PM SLOVAKIA" },
+    { start: "21:00", label: "3:00 PM EDT / 9:00 PM SLOVAKIA" },
+    { start: "22:00", label: "4:00 PM EDT / 10:00 PM SLOVAKIA" },
+
+    { start: "04:00", label: "10:00 PM EDT / 4:00 AM SLOVAKIA" },
+    { start: "05:00", label: "11:00 PM EDT / 5:00 AM SLOVAKIA" }
+  ],
+
+  Sophia: [
+    { start: "16:00", label: "10:00 AM EDT / 4:00 PM SLOVAKIA" },
+    { start: "17:00", label: "11:00 AM EDT / 5:00 PM SLOVAKIA" },
+    { start: "18:00", label: "12:00 PM EDT / 6:00 PM SLOVAKIA" },
+    { start: "19:00", label: "1:00 PM EDT / 7:00 PM SLOVAKIA" },
+    { start: "20:00", label: "2:00 PM EDT / 8:00 PM SLOVAKIA" },
+    { start: "21:00", label: "3:00 PM EDT / 9:00 PM SLOVAKIA" },
+    { start: "22:00", label: "4:00 PM EDT / 10:00 PM SLOVAKIA" },
+
+    { start: "04:00", label: "10:00 PM EDT / 4:00 AM SLOVAKIA" },
+    { start: "05:00", label: "11:00 PM EDT / 5:00 AM SLOVAKIA" }
+  ],
+
+
+  // ─────────────────────────────────────────
+  // SPAIN
+  // España está 6 horas adelante de EDT
+  // ─────────────────────────────────────────
+
+  Alaska: [
+    { start: "16:00", label: "10:00 AM EDT / 4:00 PM SPAIN" },
+    { start: "17:00", label: "11:00 AM EDT / 5:00 PM SPAIN" },
+    { start: "18:00", label: "12:00 PM EDT / 6:00 PM SPAIN" },
+    { start: "19:00", label: "1:00 PM EDT / 7:00 PM SPAIN" },
+    { start: "20:00", label: "2:00 PM EDT / 8:00 PM SPAIN" },
+    { start: "21:00", label: "3:00 PM EDT / 9:00 PM SPAIN" },
+    { start: "22:00", label: "4:00 PM EDT / 10:00 PM SPAIN" },
+
+    { start: "04:00", label: "10:00 PM EDT / 4:00 AM SPAIN" },
+    { start: "05:00", label: "11:00 PM EDT / 5:00 AM SPAIN" }
+  ],
+
+
+  // Necesito saber el país de Maxine para completar
+  // correctamente su conversión.
+ 
+
+};
+
+   const MODEL_OFFSET_TO_EST = {
+
+  // Colombia
+  Misty: -1,
+  Megan: -1,
+  Molly: -1,
+  Cassie: -1,
+  Zoe: -1,
+  Nikki: -1,
+  Lisa: -1,
+  Paula: -1,
+
+  // Argentina
+  Nana: 1,
+
+  // Chile
+  Minnie: 1,
+
+  // Kenya
+  Jade: 7,
+
+  // Slovakia
+  Sarah: 6,
+  Sophia: 6,
+
+  // Spain
+  Alaska: 6,
+
+  // PENDIENTE:
+  // Maxine: ?
+};
 
     const statusEl = document.getElementById("status");
     const saveBtn = document.getElementById("saveBtn");
