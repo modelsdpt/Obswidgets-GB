@@ -1,11 +1,9 @@
 /* =========================================================
-   NEON FLOW THEME
+   MIDNIGHT STARS / LUSH BLACK THEME
    Inspirado en la referencia:
-   - Rosa neón + magenta + violeta + azul eléctrico
-   - Fondo líquido/aurora en movimiento constante
-   - Letras blancas con contorno violeta oscuro
-   - Transiciones lentas y fluidas
-   - Mantiene selectores y comportamiento funcional
+   negro profundo, tipografía blanca limpia y un cielo
+   estrellado más visible, elegante y moderno.
+   Mantiene selectores, estados y comportamiento.
 ========================================================= */
 
 /* ==========================================
@@ -14,7 +12,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
 
 :root{
   --bg:#050505;
@@ -973,101 +971,22 @@ body{
 }
 
 
-
 :root{
-  --nf-pink:#ff21c9;
-  --nf-hot:#ff35a8;
-  --nf-magenta:#d71fff;
-  --nf-purple:#8e24ff;
-  --nf-violet:#6624ef;
-  --nf-blue:#5232ff;
-  --nf-deep:#4a168c;
-  --nf-white:#ffffff;
-  --nf-shadow:rgba(73,19,143,.30);
-}
-
-@keyframes neonFlowMain{
-  0%{
-    background-position:
-      0% 30%,
-      100% 12%,
-      20% 88%,
-      76% 68%,
-      0% 50%;
-  }
-  20%{
-    background-position:
-      22% 42%,
-      78% 24%,
-      36% 72%,
-      64% 84%,
-      18% 50%;
-  }
-  40%{
-    background-position:
-      46% 24%,
-      60% 42%,
-      14% 72%,
-      82% 52%,
-      42% 50%;
-  }
-  60%{
-    background-position:
-      70% 44%,
-      36% 22%,
-      48% 88%,
-      58% 34%,
-      68% 50%;
-  }
-  80%{
-    background-position:
-      36% 62%,
-      88% 36%,
-      24% 54%,
-      72% 78%,
-      38% 50%;
-  }
-  100%{
-    background-position:
-      0% 30%,
-      100% 12%,
-      20% 88%,
-      76% 68%,
-      0% 50%;
-  }
-}
-
-@keyframes neonFlowGlass{
-  0%,100%{
-    opacity:.16;
-    transform:translate3d(-4%,-2%,0) scale(1.04);
-  }
-  50%{
-    opacity:.32;
-    transform:translate3d(5%,3%,0) scale(1.09);
-  }
-}
-
-@keyframes neonFlowPulse{
-  0%,100%{ filter:saturate(1) brightness(1); }
-  50%{ filter:saturate(1.08) brightness(1.035); }
+  --night:#020304;
+  --night-2:#07090c;
+  --night-3:#0b0e12;
+  --star:#ffffff;
+  --star-soft:rgba(255,255,255,.70);
+  --silver:#dfe4ea;
+  --silver-soft:#aeb5be;
+  --line:rgba(255,255,255,.18);
+  --line-strong:rgba(255,255,255,.34);
+  --shadow:rgba(0,0,0,.78);
 }
 
 body{
   color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-.title,
-.goal-title,
-.timer-title,
-.raffle-title{
-  color:#fff !important;
-  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(55,12,101,.46),
-    0 0 7px rgba(255,255,255,.18);
+  font-family:'Inter', Arial, sans-serif;
 }
 
 /* =========================================================
@@ -1075,157 +994,226 @@ body{
 ========================================================= */
 
 .raffle-widget{
-  border-radius:31px;
+  border-radius:29px;
   background:
-    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.92) 0 12%, rgba(255,33,201,.48) 22%, transparent 38%),
-    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.70) 0 10%, rgba(255,53,168,.32) 20%, transparent 35%),
-    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.70) 0 14%, rgba(142,36,255,.30) 24%, transparent 42%),
-    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.70) 0 12%, rgba(82,50,255,.26) 23%, transparent 40%),
-    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
-  background-size:
-    190% 190%,
-    175% 175%,
-    205% 205%,
-    185% 185%,
-    240% 100%;
-  border:2px solid rgba(255,255,255,.44);
+    radial-gradient(circle at 5% 10%, rgba(255,255,255,.92) 0 1.4px, transparent 1.8px),
+    radial-gradient(circle at 15% 4%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 27% 13%, rgba(255,255,255,.76) 0 1.2px, transparent 1.6px),
+    radial-gradient(circle at 39% 5%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 52% 16%, rgba(255,255,255,.90) 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 64% 7%, rgba(255,255,255,.52) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 78% 14%, rgba(255,255,255,.78) 0 1.2px, transparent 1.6px),
+    radial-gradient(circle at 91% 6%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 96% 25%, rgba(255,255,255,.84) 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 11% 72%, rgba(255,255,255,.58) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 31% 88%, rgba(255,255,255,.74) 0 1.2px, transparent 1.6px),
+    radial-gradient(circle at 58% 79%, rgba(255,255,255,.44) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 83% 91%, rgba(255,255,255,.70) 0 1.2px, transparent 1.6px),
+    linear-gradient(145deg,#0b0d10 0%,#040506 52%,#010203 100%);
+  border:1px solid rgba(255,255,255,.20);
   box-shadow:
-    0 18px 38px var(--nf-shadow),
-    inset 0 2px 0 rgba(255,255,255,.22);
-  animation:
-    neonFlowMain 22s ease-in-out infinite,
-    neonFlowPulse 8s ease-in-out infinite;
+    0 20px 44px rgba(0,0,0,.54),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .raffle-widget::before{
-  border-radius:25px;
-  border:1px solid rgba(255,255,255,.18);
+  border-radius:23px;
+  border:1px solid rgba(255,255,255,.06);
 }
 
 .raffle-widget::after{
-  opacity:.16;
-  background:linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(255,255,255,.02) 31%,
-    rgba(255,255,255,.15) 49%,
-    rgba(255,255,255,.03) 61%,
-    transparent 74%
-  );
+  opacity:.50;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  transform:none;
+  background:
+    radial-gradient(circle at 18% 31%, rgba(255,255,255,.82) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 33% 57%, rgba(255,255,255,.52) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 48% 36%, rgba(255,255,255,.94) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 63% 66%, rgba(255,255,255,.46) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 77% 29%, rgba(255,255,255,.78) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 90% 58%, rgba(255,255,255,.60) 0 1px, transparent 1.5px);
+  animation:raffleStars 5s ease-in-out infinite alternate;
+}
+
+@keyframes raffleStars{
+  from{ opacity:.26; filter:brightness(.94); }
+  to{ opacity:.66; filter:brightness(1.16); }
 }
 
 .raffle-badge{
   border-radius:999px;
-  background:linear-gradient(180deg,#fff,#f5efff);
-  border:1.5px solid rgba(96,38,174,.24);
-  color:#7225c8;
+  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
+  border:1px solid rgba(255,255,255,.74);
+  font-family:'Inter',sans-serif;
+  font-weight:800;
+  color:#0b0d10;
   text-shadow:none;
 }
 
 .raffle-badge::before{
-  background:#ff43c6;
+  background:#727b86;
   box-shadow:
-    0 0 0 3px rgba(255,67,198,.10),
-    0 0 7px rgba(255,255,255,.22);
+    0 0 0 3px rgba(255,255,255,.05),
+    0 0 7px rgba(255,255,255,.14);
+}
+
+.raffle-badge::after{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
 }
 
 .raffle-title{
-  border-radius:20px;
+  border-radius:18px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
-    rgba(92,22,166,.17);
-  border:1.5px solid rgba(255,255,255,.34);
+    radial-gradient(circle at 8% 22%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 92% 23%, rgba(255,255,255,.64) 0 1px, transparent 1.4px),
+    linear-gradient(135deg,#0a0c0f,#020304);
+  border:1px solid rgba(255,255,255,.18);
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:500;
+  letter-spacing:.035em;
+  color:#fff;
+  text-shadow:
+    0 0 5px rgba(255,255,255,.18),
+    0 2px 0 rgba(0,0,0,.98);
+}
+
+.raffle-title::before{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);
 }
 
 .raffle-title::after{
-  height:2px;
+  height:1px;
   background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.30);
+  box-shadow:0 0 6px rgba(255,255,255,.22);
 }
 
 .raffle-name-item{
-  border-radius:17px;
+  border-radius:15px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
-    rgba(87,23,160,.15);
-  border:1px solid rgba(255,255,255,.22);
+    radial-gradient(circle at 8% 14%, rgba(255,255,255,.16) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 91% 72%, rgba(255,255,255,.13) 0 1px, transparent 1.4px),
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
+    linear-gradient(135deg,#111419,#050607 60%,#020304);
+  border:1px solid rgba(255,255,255,.10);
   box-shadow:
-    0 6px 14px rgba(66,18,123,.15),
-    inset 0 1px 0 rgba(255,255,255,.16);
+    0 6px 14px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.raffle-name-item::before{
+  opacity:.22;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.01) 24%,
+    rgba(255,255,255,.14) 48%,
+    rgba(255,255,255,.02) 62%,
+    transparent 76%
+  );
 }
 
 .raffle-name-item::after{
-  border-radius:11px;
-  background:linear-gradient(180deg,#fff,#f5efff);
-  border:1.5px solid rgba(96,38,174,.24);
-  color:#7225c8;
+  border-radius:10px;
+  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
+  border:1px solid rgba(255,255,255,.74);
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:600;
+  color:#0b0d10;
   text-shadow:none;
 }
 
 .raffle-name-item:first-child{
-  border-radius:19px;
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.04)),
-    rgba(102,28,183,.18);
-  border:1.5px solid rgba(255,255,255,.38);
+    radial-gradient(circle at 9% 17%, rgba(255,255,255,.24) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 92% 20%, rgba(255,255,255,.20) 0 1px, transparent 1.4px),
+    linear-gradient(135deg,#171b21,#060708 58%,#020304);
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.38),
+    0 0 13px rgba(255,255,255,.025),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.raffle-name-item:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.06);
+  border-color:rgba(255,255,255,.22);
 }
 
 .raffle-name{
-  color:#fff;
-  -webkit-text-stroke:.42px rgba(68,18,119,.72);
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(60,15,108,.38);
+  font-family:'Inter',sans-serif;
+  font-weight:800;
+  color:#f8f9fb;
 }
 
 .raffle-tickets{
-  border-radius:11px;
-  background:linear-gradient(180deg,#fff,#f5efff);
-  border:1.5px solid rgba(96,38,174,.24);
+  border-radius:10px;
+  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
+  border:1px solid rgba(255,255,255,.74);
 }
 
 .raffle-tickets::after{
-  color:#7225c8;
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:600;
+  color:#0b0d10;
   text-shadow:none;
 }
 
 .raffle-winner-screen{
-  border-radius:30px;
+  border-radius:28px;
   background:
-    radial-gradient(ellipse at 15% 22%,rgba(255,33,201,.84) 0 12%,transparent 38%),
-    radial-gradient(ellipse at 78% 68%,rgba(142,36,255,.72) 0 14%,transparent 42%),
-    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
-  background-size:190% 190%,205% 205%,240% 100%;
-  animation:neonFlowMain 22s ease-in-out infinite;
-  border:2px solid rgba(255,255,255,.44);
+    radial-gradient(circle at 8% 10%, rgba(255,255,255,.90) 0 1.5px, transparent 1.9px),
+    radial-gradient(circle at 21% 4%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 36% 12%, rgba(255,255,255,.74) 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 63% 8%, rgba(255,255,255,.50) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 82% 14%, rgba(255,255,255,.84) 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 94% 7%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 50% 45%,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 32%,transparent 58%),
+    linear-gradient(145deg,#0d1014 0%,#030405 66%,#010203 100%);
+}
+
+.raffle-winner-screen::after{
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.16);
 }
 
 .raffle-winner-screen::before{
-  content:"✦  ◆  ✦";
+  content:"✦  ✧  ✦";
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:600;
   color:#fff;
-  -webkit-text-stroke:1px rgba(64,18,112,.76);
-  paint-order:stroke fill;
-  text-shadow:0 0 8px rgba(255,255,255,.20);
+  text-shadow:
+    0 0 8px rgba(255,255,255,.22),
+    0 2px 0 rgba(0,0,0,.98);
 }
 
 .winner-label{
-  background:linear-gradient(180deg,#fff,#f5efff);
-  border:1.5px solid rgba(96,38,174,.24);
-  color:#7225c8;
+  border-radius:999px;
+  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
+  border:1px solid rgba(255,255,255,.74);
+  font-family:'Inter',sans-serif;
+  font-weight:800;
+  color:#0b0d10;
   text-shadow:none;
 }
 
 .winner-name{
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:600;
   color:#fff;
-  -webkit-text-stroke:1.35px rgba(64,18,112,.78);
-  paint-order:stroke fill;
   text-shadow:
-    0 3px 0 rgba(55,12,101,.42),
-    0 0 8px rgba(255,255,255,.14);
+    0 0 8px rgba(255,255,255,.20),
+    0 4px 0 rgba(0,0,0,.98);
 }
 
 @media (max-width:590px){
-  .raffle-widget{border-radius:27px;}
-  .raffle-title{border-radius:18px;}
-  .raffle-name-item{border-radius:15px;}
-  .raffle-winner-screen{border-radius:26px;}
+  .raffle-widget{ border-radius:25px; }
+  .raffle-widget::before{ border-radius:20px; }
+  .raffle-title{ border-radius:16px; }
+  .raffle-name-item{ border-radius:13px; }
+  .raffle-winner-screen{ border-radius:24px; }
 }

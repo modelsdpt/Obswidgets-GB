@@ -1,11 +1,9 @@
 /* =========================================================
-   NEON FLOW THEME
+   MIDNIGHT STARS / LUSH BLACK THEME
    Inspirado en la referencia:
-   - Rosa neón + magenta + violeta + azul eléctrico
-   - Fondo líquido/aurora en movimiento constante
-   - Letras blancas con contorno violeta oscuro
-   - Transiciones lentas y fluidas
-   - Mantiene selectores y comportamiento funcional
+   negro profundo, tipografía blanca limpia y un cielo
+   estrellado más visible, elegante y moderno.
+   Mantiene selectores, estados y comportamiento.
 ========================================================= */
 
 /* ==========================================
@@ -14,7 +12,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
 
 :root{
   --bg:#050505;
@@ -553,101 +551,22 @@ body{
 }
 
 
-
 :root{
-  --nf-pink:#ff21c9;
-  --nf-hot:#ff35a8;
-  --nf-magenta:#d71fff;
-  --nf-purple:#8e24ff;
-  --nf-violet:#6624ef;
-  --nf-blue:#5232ff;
-  --nf-deep:#4a168c;
-  --nf-white:#ffffff;
-  --nf-shadow:rgba(73,19,143,.30);
-}
-
-@keyframes neonFlowMain{
-  0%{
-    background-position:
-      0% 30%,
-      100% 12%,
-      20% 88%,
-      76% 68%,
-      0% 50%;
-  }
-  20%{
-    background-position:
-      22% 42%,
-      78% 24%,
-      36% 72%,
-      64% 84%,
-      18% 50%;
-  }
-  40%{
-    background-position:
-      46% 24%,
-      60% 42%,
-      14% 72%,
-      82% 52%,
-      42% 50%;
-  }
-  60%{
-    background-position:
-      70% 44%,
-      36% 22%,
-      48% 88%,
-      58% 34%,
-      68% 50%;
-  }
-  80%{
-    background-position:
-      36% 62%,
-      88% 36%,
-      24% 54%,
-      72% 78%,
-      38% 50%;
-  }
-  100%{
-    background-position:
-      0% 30%,
-      100% 12%,
-      20% 88%,
-      76% 68%,
-      0% 50%;
-  }
-}
-
-@keyframes neonFlowGlass{
-  0%,100%{
-    opacity:.16;
-    transform:translate3d(-4%,-2%,0) scale(1.04);
-  }
-  50%{
-    opacity:.32;
-    transform:translate3d(5%,3%,0) scale(1.09);
-  }
-}
-
-@keyframes neonFlowPulse{
-  0%,100%{ filter:saturate(1) brightness(1); }
-  50%{ filter:saturate(1.08) brightness(1.035); }
+  --night:#020304;
+  --night-2:#07090c;
+  --night-3:#0b0e12;
+  --star:#ffffff;
+  --star-soft:rgba(255,255,255,.70);
+  --silver:#dfe4ea;
+  --silver-soft:#aeb5be;
+  --line:rgba(255,255,255,.18);
+  --line-strong:rgba(255,255,255,.34);
+  --shadow:rgba(0,0,0,.78);
 }
 
 body{
   color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-.title,
-.goal-title,
-.timer-title,
-.raffle-title{
-  color:#fff !important;
-  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(55,12,101,.46),
-    0 0 7px rgba(255,255,255,.18);
+  font-family:'Inter', Arial, sans-serif;
 }
 
 /* =========================================================
@@ -655,110 +574,153 @@ body{
 ========================================================= */
 
 .timer-widget{
-  border-radius:30px;
+  border-radius:27px;
   background:
-    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.92) 0 12%, rgba(255,33,201,.48) 22%, transparent 38%),
-    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.70) 0 10%, rgba(255,53,168,.32) 20%, transparent 35%),
-    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.70) 0 14%, rgba(142,36,255,.30) 24%, transparent 42%),
-    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.70) 0 12%, rgba(82,50,255,.26) 23%, transparent 40%),
-    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
-  background-size:
-    190% 190%,
-    175% 175%,
-    205% 205%,
-    185% 185%,
-    240% 100%;
-  border:2px solid rgba(255,255,255,.44);
+    radial-gradient(circle at 8% 12%, rgba(255,255,255,.92) 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 24% 5%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 42% 16%, rgba(255,255,255,.72) 0 1.2px, transparent 1.6px),
+    radial-gradient(circle at 60% 7%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 76% 15%, rgba(255,255,255,.86) 0 1.3px, transparent 1.7px),
+    radial-gradient(circle at 92% 8%, rgba(255,255,255,.50) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 15% 84%, rgba(255,255,255,.62) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 81% 88%, rgba(255,255,255,.74) 0 1.2px, transparent 1.6px),
+    linear-gradient(145deg,#0b0d10 0%,#040506 52%,#010203 100%);
+  border:1px solid rgba(255,255,255,.20);
   box-shadow:
-    0 16px 34px var(--nf-shadow),
-    inset 0 2px 0 rgba(255,255,255,.22);
-  animation:
-    neonFlowMain 22s ease-in-out infinite,
-    neonFlowPulse 8s ease-in-out infinite;
+    0 18px 38px rgba(0,0,0,.52),
+    inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 .timer-widget::before{
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.18);
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.06);
 }
 
 .timer-widget::after{
-  opacity:.16;
-  background:linear-gradient(
-    110deg,
-    transparent 0%,
-    rgba(255,255,255,.02) 31%,
-    rgba(255,255,255,.15) 49%,
-    rgba(255,255,255,.03) 61%,
-    transparent 74%
-  );
+  opacity:.50;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  transform:none;
+  background:
+    radial-gradient(circle at 18% 37%, rgba(255,255,255,.82) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 36% 68%, rgba(255,255,255,.52) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 54% 33%, rgba(255,255,255,.94) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 62%, rgba(255,255,255,.46) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 88% 42%, rgba(255,255,255,.78) 0 1px, transparent 1.5px);
+  animation:timerStars 4.6s ease-in-out infinite alternate;
+}
+
+@keyframes timerStars{
+  from{ opacity:.28; filter:brightness(.92); }
+  to{ opacity:.66; filter:brightness(1.15); }
 }
 
 .timer-title{
-  z-index:6;
-  border-radius:18px;
+  border-radius:16px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
-    rgba(92,22,166,.17);
-  border:1.5px solid rgba(255,255,255,.34);
+    radial-gradient(circle at 12% 22%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 87% 25%, rgba(255,255,255,.66) 0 1px, transparent 1.4px),
+    linear-gradient(135deg,#0a0c0f,#020304);
+  border:1px solid rgba(255,255,255,.18);
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:500;
+  letter-spacing:.035em;
+  color:#fff;
+  text-shadow:
+    0 0 5px rgba(255,255,255,.18),
+    0 2px 0 rgba(0,0,0,.98);
+}
+
+.timer-title::before{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);
 }
 
 .timer-title::after{
-  height:2px;
+  height:1px;
   background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.30);
+  box-shadow:0 0 6px rgba(255,255,255,.22);
 }
 
 .timer-box{
-  z-index:6;
-  border-radius:23px;
+  border-radius:21px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
-    rgba(87,23,160,.15);
-  border:1px solid rgba(255,255,255,.22);
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.18) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 90% 74%, rgba(255,255,255,.15) 0 1px, transparent 1.4px),
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
+    linear-gradient(135deg,#14171c,#050607 60%,#020304);
+  border:1px solid rgba(255,255,255,.18);
   box-shadow:
-    0 10px 22px rgba(66,18,123,.16),
-    inset 0 1px 0 rgba(255,255,255,.16);
+    0 10px 22px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.06);
 }
 
 .timer-box::before{
   width:4px;
-  background:linear-gradient(180deg,#fff,#ffb7ef,#8e37ff);
+  background:linear-gradient(180deg,#fff,#dfe4ea,#69717c);
+  box-shadow:0 0 8px rgba(255,255,255,.18);
+}
+
+.timer-box::after{
+  opacity:.22;
+  background:linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,.01) 24%,
+    rgba(255,255,255,.15) 48%,
+    rgba(255,255,255,.02) 62%,
+    transparent 76%
+  );
 }
 
 #timer-value{
+  font-family:'Oswald','Arial Narrow',sans-serif;
+  font-weight:600;
   color:#fff;
-  -webkit-text-stroke:.55px rgba(64,18,112,.72);
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(55,12,101,.42);
+  text-shadow:
+    0 0 6px rgba(255,255,255,.18),
+    0 3px 0 rgba(0,0,0,.98);
 }
 
 .timer-box.timer-running{
-  animation:nfTimerPulse 2.8s ease-in-out infinite alternate;
+  animation:midnightTimerRunning 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes nfTimerPulse{
-  from{ transform:scale(1); }
+@keyframes midnightTimerRunning{
+  from{
+    transform:scale(1);
+    border-color:rgba(255,255,255,.16);
+  }
   to{
     transform:scale(1.012);
+    border-color:rgba(255,255,255,.30);
     box-shadow:
-      0 11px 24px rgba(66,18,123,.18),
-      0 0 14px rgba(255,42,204,.08),
-      0 0 12px rgba(96,55,255,.07),
-      inset 0 1px 0 rgba(255,255,255,.18);
+      0 11px 24px rgba(0,0,0,.44),
+      0 0 16px rgba(255,255,255,.04),
+      inset 0 1px 0 rgba(255,255,255,.08);
   }
 }
 
 .timer-box.timer-finished{
-  border-color:rgba(255,255,255,.38);
+  border-color:rgba(255,255,255,.46);
   background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.11),transparent 44%),
-    rgba(101,29,181,.20);
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.07),transparent 44%),
+    linear-gradient(135deg,#171a20,#050607 62%,#020304);
+  box-shadow:
+    0 12px 26px rgba(0,0,0,.48),
+    0 0 18px rgba(255,255,255,.06),
+    inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.timer-box:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.28);
 }
 
 @media (max-width:310px){
-  .timer-widget{border-radius:26px;}
-  .timer-widget::before{border-radius:21px;}
-  .timer-title{border-radius:16px;}
-  .timer-box{border-radius:20px;}
+  .timer-widget{ border-radius:24px; }
+  .timer-widget::before{ border-radius:19px; }
+  .timer-title{ border-radius:14px; }
+  .timer-box{ border-radius:18px; }
 }
