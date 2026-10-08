@@ -1,10 +1,4 @@
-/* =========================================================
-   KILLBILL / YELLOW REVENGE THEME
-   Amarillo intenso + negro + blanco, inspirado en la estética
-   de cine de acción. Incluye franjas negras, marcas diagonales
-   tipo corte y un toque rojo muy sutil.
-========================================================= */
-
+/* CANDY POP / FUCHSIA LOLLIPOP THEME */
 /* ==========================================
    MVP – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, tipografía blanca, acento rosa
@@ -582,63 +576,14 @@ body{
 }
 
 
-
-:root{
-  --kb-yellow:#ffd21f;
-  --kb-yellow2:#ffbd00;
-  --kb-black:#050505;
-  --kb-red:#b3131b;
-  --kb-white:#ffffff;
-}
-
-@keyframes kbFlicker{
-  0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.025)}
-}
-
-.title,.goal-title,.timer-title,.raffle-title{
-  color:#fff!important;
-  -webkit-text-stroke:1.35px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
-}
-
-#container{
-  border-radius:26px;
-  padding:11px;
-  background:
-    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
-    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
-    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
-  border:2px solid #050505!important;
-  box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.20)!important;
-  animation:kbFlicker 8s ease-in-out infinite!important;
-}
-#container::before{
-  inset:5px!important;border-radius:20px!important;
-  border:1px solid rgba(255,255,255,.15)!important;
-}
-#container::after{
-  content:""!important;position:absolute!important;left:0!important;right:0!important;
-  bottom:12px!important;height:8px!important;width:auto!important;top:auto!important;
-  transform:none!important;opacity:.92!important;
-  background:linear-gradient(90deg,transparent 0 4%,#050505 4% 44%,transparent 44% 48%,#050505 48% 88%,transparent 88%)!important;
-}
-.title{
-  border-radius:16px!important;
-  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
-  border:2px solid #050505!important;
-}
-.title::after{background:#050505!important;box-shadow:none!important}
-.tip{
-  border-radius:15px!important;
-  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.56)!important;
-  border:1.5px solid rgba(0,0,0,.58)!important;
-}
-.tip::before{width:5px!important;background:#050505!important;box-shadow:none!important}
-.tip .name{color:#fff!important;-webkit-text-stroke:.65px #050505;paint-order:stroke fill;text-shadow:0 2px 0 #050505!important}
-.tip .amount,.rank-icon{
-  background:#050505!important;color:#fff!important;border:1px solid #050505!important;text-shadow:none!important;
-}
-.tip.mvp{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),rgba(255,190,0,.68)!important;border:2px solid #050505!important}
-
+:root{--cp1:#f55cc7;--cp2:#ec40b6;--cp3:#d52ca0;--cpdeep:#a52b78;}
+@keyframes candyDrift{0%{background-position:0 0}50%{background-position:42px -6px}100%{background-position:0 0}}
+@keyframes candyGlow{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.025) saturate(1.04)}}
+.title,.goal-title,.timer-title,.raffle-title{color:#fff!important;-webkit-text-stroke:1.25px var(--cpdeep);paint-order:stroke fill;text-shadow:0 2px 0 rgba(128,35,91,.34),0 0 6px rgba(255,255,255,.18)}
+#container{border-radius:30px!important;padding:11px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='80' viewBox='0 0 180 80'%3E%3Cg opacity='.92'%3E%3Cg transform='translate(24 10) rotate(-18 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='62' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%23ffd84d' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%235ed6ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23ff66bb' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(78 3) rotate(12 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='64' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%236de1c4' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%23ffcf4a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23944dff' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(136 18) rotate(78 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='63' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%23ff7fb7' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%235ed6ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23ffd84d' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),linear-gradient(135deg,#f55cc7 0%,#ec40b6 48%,#d52ca0 100%)!important;background-repeat:repeat,no-repeat!important;background-size:180px 80px,100% 100%!important;border:2px solid rgba(255,255,255,.58)!important;box-shadow:0 16px 34px rgba(121,31,88,.28),inset 0 2px 0 rgba(255,255,255,.34)!important;animation:candyDrift 18s ease-in-out infinite,candyGlow 8s ease-in-out infinite!important}
+#container::before{inset:5px!important;border-radius:24px!important;border:1px solid rgba(255,255,255,.24)!important}
+.title{border-radius:19px!important;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),rgba(165,43,120,.17)!important;border:1.5px solid rgba(255,255,255,.45)!important}
+.tip{border-radius:17px!important;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),rgba(173,50,127,.15)!important;border:1px solid rgba(255,255,255,.27)!important}
+.tip::before{width:4px!important;background:linear-gradient(180deg,#fff,#ffd5ef,#c74797)!important}
+.tip .name{color:#fff!important;-webkit-text-stroke:.45px var(--cpdeep);paint-order:stroke fill}
+.tip .amount,.rank-icon{background:linear-gradient(180deg,#fff,#fff2fb)!important;color:#a52b78!important;border:1.5px solid rgba(165,43,120,.25)!important;text-shadow:none!important}
