@@ -1,9 +1,8 @@
 /* =========================================================
-   MIDNIGHT STARS / LUSH BLACK THEME
-   Inspirado en la referencia:
-   negro profundo, tipografía blanca limpia y un cielo
-   estrellado más visible, elegante y moderno.
-   Mantiene selectores, estados y comportamiento.
+   KILLBILL / YELLOW REVENGE THEME
+   Amarillo intenso + negro + blanco, inspirado en la estética
+   de cine de acción. Incluye franjas negras, marcas diagonales
+   tipo corte y un toque rojo muy sutil.
 ========================================================= */
 
 /* ==========================================
@@ -12,7 +11,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -971,249 +970,53 @@ body{
 }
 
 
+
 :root{
-  --night:#020304;
-  --night-2:#07090c;
-  --night-3:#0b0e12;
-  --star:#ffffff;
-  --star-soft:rgba(255,255,255,.70);
-  --silver:#dfe4ea;
-  --silver-soft:#aeb5be;
-  --line:rgba(255,255,255,.18);
-  --line-strong:rgba(255,255,255,.34);
-  --shadow:rgba(0,0,0,.78);
+  --kb-yellow:#ffd21f;
+  --kb-yellow2:#ffbd00;
+  --kb-black:#050505;
+  --kb-red:#b3131b;
+  --kb-white:#ffffff;
 }
 
-body{
-  color:#fff;
-  font-family:'Inter', Arial, sans-serif;
+@keyframes kbFlicker{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.025)}
 }
 
-/* =========================================================
-   RAFFLE
-========================================================= */
+.title,.goal-title,.timer-title,.raffle-title{
+  color:#fff!important;
+  -webkit-text-stroke:1.35px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
+}
 
 .raffle-widget{
-  border-radius:29px;
+  border-radius:28px!important;
   background:
-    radial-gradient(circle at 5% 10%, rgba(255,255,255,.92) 0 1.4px, transparent 1.8px),
-    radial-gradient(circle at 15% 4%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 27% 13%, rgba(255,255,255,.76) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 39% 5%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 52% 16%, rgba(255,255,255,.90) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 64% 7%, rgba(255,255,255,.52) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 78% 14%, rgba(255,255,255,.78) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 91% 6%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 96% 25%, rgba(255,255,255,.84) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 11% 72%, rgba(255,255,255,.58) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 31% 88%, rgba(255,255,255,.74) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 58% 79%, rgba(255,255,255,.44) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 83% 91%, rgba(255,255,255,.70) 0 1.2px, transparent 1.6px),
-    linear-gradient(145deg,#0b0d10 0%,#040506 52%,#010203 100%);
-  border:1px solid rgba(255,255,255,.20);
-  box-shadow:
-    0 20px 44px rgba(0,0,0,.54),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
+    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
+    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.18)!important;
 }
-
-.raffle-widget::before{
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.raffle-widget::after{
-  opacity:.50;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  transform:none;
-  background:
-    radial-gradient(circle at 18% 31%, rgba(255,255,255,.82) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 33% 57%, rgba(255,255,255,.52) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 48% 36%, rgba(255,255,255,.94) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 63% 66%, rgba(255,255,255,.46) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 77% 29%, rgba(255,255,255,.78) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 90% 58%, rgba(255,255,255,.60) 0 1px, transparent 1.5px);
-  animation:raffleStars 5s ease-in-out infinite alternate;
-}
-
-@keyframes raffleStars{
-  from{ opacity:.26; filter:brightness(.94); }
-  to{ opacity:.66; filter:brightness(1.16); }
-}
-
-.raffle-badge{
-  border-radius:999px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-  font-family:'Inter',sans-serif;
-  font-weight:800;
-  color:#0b0d10;
-  text-shadow:none;
-}
-
-.raffle-badge::before{
-  background:#727b86;
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,.05),
-    0 0 7px rgba(255,255,255,.14);
-}
-
-.raffle-badge::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
-}
-
 .raffle-title{
-  border-radius:18px;
-  background:
-    radial-gradient(circle at 8% 22%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 92% 23%, rgba(255,255,255,.64) 0 1px, transparent 1.4px),
-    linear-gradient(135deg,#0a0c0f,#020304);
-  border:1px solid rgba(255,255,255,.18);
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:500;
-  letter-spacing:.035em;
-  color:#fff;
-  text-shadow:
-    0 0 5px rgba(255,255,255,.18),
-    0 2px 0 rgba(0,0,0,.98);
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
+  border:2px solid #050505!important;border-radius:18px!important;
 }
-
-.raffle-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);
-}
-
-.raffle-title::after{
-  height:1px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.22);
-}
-
+.raffle-title::after{background:linear-gradient(90deg,transparent,#050505,transparent)!important;box-shadow:none!important}
 .raffle-name-item{
-  border-radius:15px;
-  background:
-    radial-gradient(circle at 8% 14%, rgba(255,255,255,.16) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 91% 72%, rgba(255,255,255,.13) 0 1px, transparent 1.4px),
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
-    linear-gradient(135deg,#111419,#050607 60%,#020304);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.04);
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.54)!important;
+  border:1.5px solid rgba(0,0,0,.58)!important;
 }
-
-.raffle-name-item::before{
-  opacity:.22;
-  background:linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,255,255,.01) 24%,
-    rgba(255,255,255,.14) 48%,
-    rgba(255,255,255,.02) 62%,
-    transparent 76%
-  );
+.raffle-name-item::after,.raffle-tickets,.raffle-badge,.winner-label{
+  background:#050505!important;color:#fff!important;border:1px solid #050505!important;text-shadow:none!important;
 }
-
-.raffle-name-item::after{
-  border-radius:10px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#0b0d10;
-  text-shadow:none;
-}
-
-.raffle-name-item:first-child{
-  border-radius:17px;
-  background:
-    radial-gradient(circle at 9% 17%, rgba(255,255,255,.24) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 92% 20%, rgba(255,255,255,.20) 0 1px, transparent 1.4px),
-    linear-gradient(135deg,#171b21,#060708 58%,#020304);
-  border:1px solid rgba(255,255,255,.20);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.38),
-    0 0 13px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.06);
-}
-
-.raffle-name-item:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.06);
-  border-color:rgba(255,255,255,.22);
-}
-
-.raffle-name{
-  font-family:'Inter',sans-serif;
-  font-weight:800;
-  color:#f8f9fb;
-}
-
-.raffle-tickets{
-  border-radius:10px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-}
-
-.raffle-tickets::after{
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#0b0d10;
-  text-shadow:none;
-}
-
+.raffle-name{color:#fff!important;-webkit-text-stroke:.65px #050505;paint-order:stroke fill;text-shadow:0 2px 0 #050505!important}
 .raffle-winner-screen{
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 8% 10%, rgba(255,255,255,.90) 0 1.5px, transparent 1.9px),
-    radial-gradient(circle at 21% 4%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 36% 12%, rgba(255,255,255,.74) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 63% 8%, rgba(255,255,255,.50) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 82% 14%, rgba(255,255,255,.84) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 94% 7%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 50% 45%,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 32%,transparent 58%),
-    linear-gradient(145deg,#0d1014 0%,#030405 66%,#010203 100%);
+  background:radial-gradient(circle at 50% 42%,rgba(179,19,27,.12),transparent 45%),linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
 }
+.raffle-winner-screen::before{content:"⚔  ✦  ⚔"!important;color:#050505!important;text-shadow:none!important}
+.winner-name{color:#fff!important;-webkit-text-stroke:1.5px #050505;paint-order:stroke fill;text-shadow:0 4px 0 #050505!important}
 
-.raffle-winner-screen::after{
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.16);
-}
-
-.raffle-winner-screen::before{
-  content:"✦  ✧  ✦";
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#fff;
-  text-shadow:
-    0 0 8px rgba(255,255,255,.22),
-    0 2px 0 rgba(0,0,0,.98);
-}
-
-.winner-label{
-  border-radius:999px;
-  background:linear-gradient(180deg,#f7f8fa,#dfe4ea);
-  border:1px solid rgba(255,255,255,.74);
-  font-family:'Inter',sans-serif;
-  font-weight:800;
-  color:#0b0d10;
-  text-shadow:none;
-}
-
-.winner-name{
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#fff;
-  text-shadow:
-    0 0 8px rgba(255,255,255,.20),
-    0 4px 0 rgba(0,0,0,.98);
-}
-
-@media (max-width:590px){
-  .raffle-widget{ border-radius:25px; }
-  .raffle-widget::before{ border-radius:20px; }
-  .raffle-title{ border-radius:16px; }
-  .raffle-name-item{ border-radius:13px; }
-  .raffle-winner-screen{ border-radius:24px; }
-}

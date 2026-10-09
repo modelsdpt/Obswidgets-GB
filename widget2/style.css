@@ -1,9 +1,8 @@
 /* =========================================================
-   MIDNIGHT STARS / LUSH BLACK THEME
-   Inspirado en la referencia:
-   negro profundo, tipografía blanca limpia y un cielo
-   estrellado más visible, elegante y moderno.
-   Mantiene selectores, estados y comportamiento.
+   KILLBILL / YELLOW REVENGE THEME
+   Amarillo intenso + negro + blanco, inspirado en la estética
+   de cine de acción. Incluye franjas negras, marcas diagonales
+   tipo corte y un toque rojo muy sutil.
 ========================================================= */
 
 /* ==========================================
@@ -12,7 +11,7 @@
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -583,221 +582,63 @@ body{
 }
 
 
+
 :root{
-  --night:#020304;
-  --night-2:#07090c;
-  --night-3:#0b0e12;
-  --star:#ffffff;
-  --star-soft:rgba(255,255,255,.70);
-  --silver:#dfe4ea;
-  --silver-soft:#aeb5be;
-  --line:rgba(255,255,255,.18);
-  --line-strong:rgba(255,255,255,.34);
-  --shadow:rgba(0,0,0,.78);
+  --kb-yellow:#ffd21f;
+  --kb-yellow2:#ffbd00;
+  --kb-black:#050505;
+  --kb-red:#b3131b;
+  --kb-white:#ffffff;
 }
 
-body{
-  color:#fff;
-  font-family:'Inter', Arial, sans-serif;
+@keyframes kbFlicker{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.025)}
 }
 
-/* =========================================================
-   MVP
-========================================================= */
+.title,.goal-title,.timer-title,.raffle-title{
+  color:#fff!important;
+  -webkit-text-stroke:1.35px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
+}
 
 #container{
   border-radius:26px;
   padding:11px;
   background:
-    radial-gradient(circle at 8% 15%, rgba(255,255,255,.95) 0 1.4px, transparent 1.8px),
-    radial-gradient(circle at 17% 8%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 29% 18%, rgba(255,255,255,.72) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 41% 7%, rgba(255,255,255,.38) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 54% 16%, rgba(255,255,255,.92) 0 1.3px, transparent 1.8px),
-    radial-gradient(circle at 66% 9%, rgba(255,255,255,.52) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 77% 19%, rgba(255,255,255,.78) 0 1.2px, transparent 1.7px),
-    radial-gradient(circle at 90% 8%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 94% 31%, rgba(255,255,255,.88) 0 1.3px, transparent 1.8px),
-    radial-gradient(circle at 12% 73%, rgba(255,255,255,.58) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 36% 88%, rgba(255,255,255,.78) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 61% 77%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 84% 91%, rgba(255,255,255,.72) 0 1.2px, transparent 1.6px),
-    linear-gradient(145deg,#0b0d10 0%,#040506 52%,#010203 100%);
-  border:1px solid rgba(255,255,255,.20);
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.56),
-    0 0 0 1px rgba(0,0,0,.85),
-    inset 0 1px 0 rgba(255,255,255,.09);
+    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
+    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
+    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
+  box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.20)!important;
+  animation:kbFlicker 8s ease-in-out infinite!important;
 }
-
 #container::before{
-  inset:5px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.06);
-  box-shadow:inset 0 0 28px rgba(255,255,255,.018);
+  inset:5px!important;border-radius:20px!important;
+  border:1px solid rgba(255,255,255,.15)!important;
 }
-
 #container::after{
-  opacity:.55;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  transform:none;
-  background:
-    radial-gradient(circle at 18% 28%, rgba(255,255,255,.95) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 33% 64%, rgba(255,255,255,.55) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 49% 37%, rgba(255,255,255,.82) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 63% 58%, rgba(255,255,255,.48) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 79% 34%, rgba(255,255,255,.86) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 91% 67%, rgba(255,255,255,.60) 0 1px, transparent 1.5px);
-  animation:starFieldTwinkle 4.8s ease-in-out infinite alternate;
+  content:""!important;position:absolute!important;left:0!important;right:0!important;
+  bottom:12px!important;height:8px!important;width:auto!important;top:auto!important;
+  transform:none!important;opacity:.92!important;
+  background:linear-gradient(90deg,transparent 0 4%,#050505 4% 44%,transparent 44% 48%,#050505 48% 88%,transparent 88%)!important;
 }
-
-@keyframes starFieldTwinkle{
-  from{ opacity:.30; filter:brightness(.92); }
-  to{ opacity:.68; filter:brightness(1.16); }
-}
-
 .title{
-  min-height:46px;
-  border-radius:16px;
-  background:
-    radial-gradient(circle at 12% 22%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 82% 28%, rgba(255,255,255,.70) 0 1px, transparent 1.4px),
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.005)),
-    linear-gradient(135deg,#0a0c0f,#020304);
-  border:1px solid rgba(255,255,255,.18);
-  font-family:'Oswald', 'Arial Narrow', sans-serif;
-  font-size:28px;
-  font-weight:500;
-  letter-spacing:.035em;
-  color:#fff;
-  text-transform:uppercase;
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.40),
-    inset 0 1px 0 rgba(255,255,255,.07);
-  text-shadow:
-    0 0 5px rgba(255,255,255,.20),
-    0 2px 0 rgba(0,0,0,.98);
+  border-radius:16px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
+  border:2px solid #050505!important;
 }
-
-.title::before{
-  left:16%;
-  right:16%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.60),transparent);
-}
-
-.title::after{
-  left:33%;
-  right:33%;
-  bottom:2px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.28);
-}
-
+.title::after{background:#050505!important;box-shadow:none!important}
 .tip{
-  border-radius:15px;
-  background:
-    radial-gradient(circle at 10% 16%, rgba(255,255,255,.18) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 88% 72%, rgba(255,255,255,.14) 0 1px, transparent 1.4px),
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
-    linear-gradient(135deg,#111419,#050607 58%,#020304);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.04);
+  border-radius:15px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.56)!important;
+  border:1.5px solid rgba(0,0,0,.58)!important;
 }
+.tip::before{width:5px!important;background:#050505!important;box-shadow:none!important}
+.tip .name{color:#fff!important;-webkit-text-stroke:.65px #050505;paint-order:stroke fill;text-shadow:0 2px 0 #050505!important}
+.tip .amount,.rank-icon{
+  background:#050505!important;color:#fff!important;border:1px solid #050505!important;text-shadow:none!important;
+}
+.tip.mvp{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),rgba(255,190,0,.68)!important;border:2px solid #050505!important}
 
-.tip::before{
-  width:3px;
-  background:linear-gradient(180deg,#fff,#cfd5dc,#717985);
-  box-shadow:0 0 7px rgba(255,255,255,.18);
-}
-
-.tip::after{
-  opacity:.24;
-  background:linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,255,255,.01) 24%,
-    rgba(255,255,255,.14) 48%,
-    rgba(255,255,255,.02) 62%,
-    transparent 76%
-  );
-}
-
-.tip:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.07);
-  border-color:rgba(255,255,255,.24);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.38),
-    0 0 12px rgba(255,255,255,.03),
-    inset 0 1px 0 rgba(255,255,255,.06);
-}
-
-.tip .name{
-  font-family:'Inter', Arial, sans-serif;
-  font-weight:800;
-  color:#f8f9fb;
-}
-
-.tip .amount{
-  border-radius:10px;
-  background:linear-gradient(180deg,#f7f8fa,#dce1e7);
-  border:1px solid rgba(255,255,255,.78);
-  color:#0b0d10 !important;
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  text-shadow:none;
-  box-shadow:
-    0 4px 8px rgba(0,0,0,.26),
-    inset 0 -1px 0 rgba(0,0,0,.08);
-}
-
-.tip.mvp{
-  border-radius:17px;
-  background:
-    radial-gradient(circle at 9% 18%, rgba(255,255,255,.28) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 92% 21%, rgba(255,255,255,.22) 0 1px, transparent 1.4px),
-    linear-gradient(135deg,#171b21,#060708 58%,#020304);
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.42),
-    0 0 14px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.07);
-}
-
-.tip.mvp::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,#eef1f4,#7e8792);
-}
-
-.tip.mvp .amount{
-  background:linear-gradient(180deg,#fff,#e2e6eb);
-}
-
-.rank-icon{
-  border-radius:10px;
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#0a0c0f;
-  background:linear-gradient(180deg,#fff,#e0e4e9);
-  border:1px solid rgba(255,255,255,.74);
-  text-shadow:none;
-}
-
-.tip.mvp .rank-icon{
-  border-radius:11px;
-  background:linear-gradient(180deg,#fff,#e7eaee);
-}
-
-@media (max-width:460px){
-  #container{ border-radius:23px; }
-  #container::before{ border-radius:18px; }
-  .title{ border-radius:14px; }
-  .tip{ border-radius:13px; }
-  .tip.mvp{ border-radius:15px; }
-}

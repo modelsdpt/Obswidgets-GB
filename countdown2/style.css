@@ -1,9 +1,8 @@
 /* =========================================================
-   MIDNIGHT STARS / LUSH BLACK THEME
-   Inspirado en la referencia:
-   negro profundo, tipografía blanca limpia y un cielo
-   estrellado más visible, elegante y moderno.
-   Mantiene selectores, estados y comportamiento.
+   KILLBILL / YELLOW REVENGE THEME
+   Amarillo intenso + negro + blanco, inspirado en la estética
+   de cine de acción. Incluye franjas negras, marcas diagonales
+   tipo corte y un toque rojo muy sutil.
 ========================================================= */
 
 /* ==========================================
@@ -12,7 +11,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -551,176 +550,47 @@ body{
 }
 
 
+
 :root{
-  --night:#020304;
-  --night-2:#07090c;
-  --night-3:#0b0e12;
-  --star:#ffffff;
-  --star-soft:rgba(255,255,255,.70);
-  --silver:#dfe4ea;
-  --silver-soft:#aeb5be;
-  --line:rgba(255,255,255,.18);
-  --line-strong:rgba(255,255,255,.34);
-  --shadow:rgba(0,0,0,.78);
+  --kb-yellow:#ffd21f;
+  --kb-yellow2:#ffbd00;
+  --kb-black:#050505;
+  --kb-red:#b3131b;
+  --kb-white:#ffffff;
 }
 
-body{
-  color:#fff;
-  font-family:'Inter', Arial, sans-serif;
+@keyframes kbFlicker{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.025)}
 }
 
-/* =========================================================
-   TIMER
-========================================================= */
+.title,.goal-title,.timer-title,.raffle-title{
+  color:#fff!important;
+  -webkit-text-stroke:1.35px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
+}
 
 .timer-widget{
-  border-radius:27px;
+  border-radius:26px!important;
   background:
-    radial-gradient(circle at 8% 12%, rgba(255,255,255,.92) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 24% 5%, rgba(255,255,255,.48) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 42% 16%, rgba(255,255,255,.72) 0 1.2px, transparent 1.6px),
-    radial-gradient(circle at 60% 7%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 76% 15%, rgba(255,255,255,.86) 0 1.3px, transparent 1.7px),
-    radial-gradient(circle at 92% 8%, rgba(255,255,255,.50) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 15% 84%, rgba(255,255,255,.62) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 81% 88%, rgba(255,255,255,.74) 0 1.2px, transparent 1.6px),
-    linear-gradient(145deg,#0b0d10 0%,#040506 52%,#010203 100%);
-  border:1px solid rgba(255,255,255,.20);
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.52),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
+    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
+    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
+  box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.18)!important;
 }
-
-.timer-widget::before{
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.timer-widget::after{
-  opacity:.50;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  transform:none;
-  background:
-    radial-gradient(circle at 18% 37%, rgba(255,255,255,.82) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 36% 68%, rgba(255,255,255,.52) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 54% 33%, rgba(255,255,255,.94) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 70% 62%, rgba(255,255,255,.46) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 88% 42%, rgba(255,255,255,.78) 0 1px, transparent 1.5px);
-  animation:timerStars 4.6s ease-in-out infinite alternate;
-}
-
-@keyframes timerStars{
-  from{ opacity:.28; filter:brightness(.92); }
-  to{ opacity:.66; filter:brightness(1.15); }
-}
-
 .timer-title{
-  border-radius:16px;
-  background:
-    radial-gradient(circle at 12% 22%, rgba(255,255,255,.46) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 87% 25%, rgba(255,255,255,.66) 0 1px, transparent 1.4px),
-    linear-gradient(135deg,#0a0c0f,#020304);
-  border:1px solid rgba(255,255,255,.18);
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:500;
-  letter-spacing:.035em;
-  color:#fff;
-  text-shadow:
-    0 0 5px rgba(255,255,255,.18),
-    0 2px 0 rgba(0,0,0,.98);
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
+  border:2px solid #050505!important;border-radius:16px!important;
 }
-
-.timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);
-}
-
-.timer-title::after{
-  height:1px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 6px rgba(255,255,255,.22);
-}
-
+.timer-title::after{background:linear-gradient(90deg,transparent,#050505,transparent)!important;box-shadow:none!important}
 .timer-box{
-  border-radius:21px;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(255,255,255,.18) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 90% 74%, rgba(255,255,255,.15) 0 1px, transparent 1.4px),
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),
-    linear-gradient(135deg,#14171c,#050607 60%,#020304);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.06);
+  border-radius:21px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.54)!important;
+  border:1.5px solid rgba(0,0,0,.60)!important;
 }
+.timer-box::before{width:5px!important;background:#050505!important;box-shadow:none!important}
+#timer-value{color:#fff!important;-webkit-text-stroke:1.35px #050505;paint-order:stroke fill;text-shadow:0 3px 0 #050505!important}
+.timer-box.timer-finished{background:radial-gradient(circle at 50% 30%,rgba(179,19,27,.14),transparent 42%),rgba(255,190,0,.66)!important}
 
-.timer-box::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,#dfe4ea,#69717c);
-  box-shadow:0 0 8px rgba(255,255,255,.18);
-}
-
-.timer-box::after{
-  opacity:.22;
-  background:linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255,255,255,.01) 24%,
-    rgba(255,255,255,.15) 48%,
-    rgba(255,255,255,.02) 62%,
-    transparent 76%
-  );
-}
-
-#timer-value{
-  font-family:'Oswald','Arial Narrow',sans-serif;
-  font-weight:600;
-  color:#fff;
-  text-shadow:
-    0 0 6px rgba(255,255,255,.18),
-    0 3px 0 rgba(0,0,0,.98);
-}
-
-.timer-box.timer-running{
-  animation:midnightTimerRunning 2.2s ease-in-out infinite alternate;
-}
-
-@keyframes midnightTimerRunning{
-  from{
-    transform:scale(1);
-    border-color:rgba(255,255,255,.16);
-  }
-  to{
-    transform:scale(1.012);
-    border-color:rgba(255,255,255,.30);
-    box-shadow:
-      0 11px 24px rgba(0,0,0,.44),
-      0 0 16px rgba(255,255,255,.04),
-      inset 0 1px 0 rgba(255,255,255,.08);
-  }
-}
-
-.timer-box.timer-finished{
-  border-color:rgba(255,255,255,.46);
-  background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.07),transparent 44%),
-    linear-gradient(135deg,#171a20,#050607 62%,#020304);
-  box-shadow:
-    0 12px 26px rgba(0,0,0,.48),
-    0 0 18px rgba(255,255,255,.06),
-    inset 0 1px 0 rgba(255,255,255,.08);
-}
-
-.timer-box:hover{
-  transform:translateY(-1px);
-  border-color:rgba(255,255,255,.28);
-}
-
-@media (max-width:310px){
-  .timer-widget{ border-radius:24px; }
-  .timer-widget::before{ border-radius:19px; }
-  .timer-title{ border-radius:14px; }
-  .timer-box{ border-radius:18px; }
-}
