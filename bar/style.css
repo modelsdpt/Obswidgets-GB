@@ -1,11 +1,10 @@
-/* CANDY POP / FUCHSIA LOLLIPOP THEME */
 /* ==========================================
    GOAL BAR – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acento rosa
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -529,12 +528,23 @@ body{
 }
 
 
-:root{--cp1:#f55cc7;--cp2:#ec40b6;--cp3:#d52ca0;--cpdeep:#a52b78;}
-@keyframes candyDrift{0%{background-position:0 0}50%{background-position:42px -6px}100%{background-position:0 0}}
-@keyframes candyGlow{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.025) saturate(1.04)}}
-.title,.goal-title,.timer-title,.raffle-title{color:#fff!important;-webkit-text-stroke:1.25px var(--cpdeep);paint-order:stroke fill;text-shadow:0 2px 0 rgba(128,35,91,.34),0 0 6px rgba(255,255,255,.18)}
-#goal-wrapper{width:82px!important;border-radius:31px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='80' viewBox='0 0 180 80'%3E%3Cg opacity='.92'%3E%3Cg transform='translate(24 10) rotate(-18 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='62' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%23ffd84d' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%235ed6ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23ff66bb' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(78 3) rotate(12 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='64' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%236de1c4' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%23ffcf4a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23944dff' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(136 18) rotate(78 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='63' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%23ff7fb7' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%235ed6ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23ffd84d' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,#f55cc7 0%,#ec40b6 50%,#d52ca0 100%)!important;background-repeat:repeat,no-repeat!important;background-size:120px 54px,100% 100%!important;border:2px solid rgba(255,255,255,.56)!important;box-shadow:0 16px 34px rgba(121,31,88,.28),inset 0 2px 0 rgba(255,255,255,.32)!important;animation:candyDrift 17s ease-in-out infinite,candyGlow 8s ease-in-out infinite!important}
-#bar-fill{border-radius:0 0 30px 30px!important;background:linear-gradient(180deg,#e83fae 0%,#cb2b92 47%,#a82073 100%)!important}
-#bar-fill::before{height:5px!important;background:#fff!important;box-shadow:0 0 6px rgba(255,255,255,.78)!important}
-.goal-title{font-size:23px!important;background:rgba(151,38,111,.18)!important}
-.goal-amount{bottom:44px!important;padding:8px 14px 9px!important;border-radius:14px!important;background:linear-gradient(180deg,#fff,#fff2fb)!important;border:1.5px solid rgba(165,43,120,.25)!important;font-size:21px!important;line-height:1!important;color:#a52b78!important;text-shadow:none!important}
+
+/* =========================================================
+   CANDY HEARTS COLOR-CYCLE THEME
+   Morado + corazones -> rosa/azul cielo -> morado
+========================================================= */
+:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
+@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
+@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
+@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif;}
+
+#goal-wrapper{width:78px;border-radius:29px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--purple-a),var(--purple-b) 48%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;border:2px solid rgba(255,255,255,.30);box-shadow:0 16px 34px rgba(36,0,67,.28),inset 0 1px 0 rgba(255,255,255,.17);animation:candyHeartFloat 13s linear infinite;}
+#goal-wrapper::before{z-index:6;border-radius:23px;border:1px solid rgba(255,255,255,.14);}
+#goal-wrapper::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--pink-a) 0%,#f568c5 42%,var(--sky-a) 74%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
+#bar-fill{z-index:2;border-radius:0 0 28px 28px;background-image:linear-gradient(90deg,rgba(255,255,255,.18),transparent 32%,rgba(62,0,93,.10) 72%,rgba(255,255,255,.08)),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0));background-color:#8b34e7;animation:candyBarFill 8s ease-in-out infinite;}
+@keyframes candyBarFill{0%,100%{background-color:#8430e7}46%{background-color:#ef53b7}58%{background-color:#69d7ff}}
+#bar-fill::before{height:5px;background:linear-gradient(180deg,#fff,#f5ecff);box-shadow:0 0 6px rgba(255,255,255,.76),0 0 12px rgba(255,255,255,.24);}
+.goal-title{z-index:7;border-radius:10px;font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;background:rgba(76,14,120,.20);-webkit-text-stroke:.8px rgba(46,0,67,.72);paint-order:stroke fill;text-shadow:0 2px 0 rgba(75,15,99,.55);}
+.goal-amount{z-index:7;border-radius:12px;background:linear-gradient(180deg,#fff,#f5eef9);border:1.5px solid rgba(103,34,143,.28);font-family:'Anton',Impact,sans-serif;font-weight:400;color:#6f249e;text-shadow:none;}
+

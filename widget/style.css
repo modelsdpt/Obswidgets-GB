@@ -1,11 +1,10 @@
-/* CANDY POP / FUCHSIA LOLLIPOP THEME */
 /* ==========================================
    MVP – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, tipografía blanca, acento rosa
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -576,14 +575,26 @@ body{
 }
 
 
-:root{--cp1:#f55cc7;--cp2:#ec40b6;--cp3:#d52ca0;--cpdeep:#a52b78;}
-@keyframes candyDrift{0%{background-position:0 0}50%{background-position:42px -6px}100%{background-position:0 0}}
-@keyframes candyGlow{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.025) saturate(1.04)}}
-.title,.goal-title,.timer-title,.raffle-title{color:#fff!important;-webkit-text-stroke:1.25px var(--cpdeep);paint-order:stroke fill;text-shadow:0 2px 0 rgba(128,35,91,.34),0 0 6px rgba(255,255,255,.18)}
-#container{border-radius:30px!important;padding:11px!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='80' viewBox='0 0 180 80'%3E%3Cg opacity='.92'%3E%3Cg transform='translate(24 10) rotate(-18 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='62' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%23ffd84d' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%235ed6ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23ff66bb' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(78 3) rotate(12 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='64' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%236de1c4' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%23ffcf4a' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23944dff' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(136 18) rotate(78 16 30)'%3E%3Cline x1='16' y1='33' x2='16' y2='63' stroke='white' stroke-width='2.2'/%3E%3Ccircle cx='16' cy='17' r='13' fill='%23ff7fb7' stroke='white' stroke-width='1.5'/%3E%3Cpath d='M7 10 C13 4 21 5 25 10 C17 9 12 14 10 20 C18 17 24 18 27 23' fill='none' stroke='%235ed6ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 23 C14 27 22 26 26 20' fill='none' stroke='%23ffd84d' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),linear-gradient(135deg,#f55cc7 0%,#ec40b6 48%,#d52ca0 100%)!important;background-repeat:repeat,no-repeat!important;background-size:180px 80px,100% 100%!important;border:2px solid rgba(255,255,255,.58)!important;box-shadow:0 16px 34px rgba(121,31,88,.28),inset 0 2px 0 rgba(255,255,255,.34)!important;animation:candyDrift 18s ease-in-out infinite,candyGlow 8s ease-in-out infinite!important}
-#container::before{inset:5px!important;border-radius:24px!important;border:1px solid rgba(255,255,255,.24)!important}
-.title{border-radius:19px!important;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.04)),rgba(165,43,120,.17)!important;border:1.5px solid rgba(255,255,255,.45)!important}
-.tip{border-radius:17px!important;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),rgba(173,50,127,.15)!important;border:1px solid rgba(255,255,255,.27)!important}
-.tip::before{width:4px!important;background:linear-gradient(180deg,#fff,#ffd5ef,#c74797)!important}
-.tip .name{color:#fff!important;-webkit-text-stroke:.45px var(--cpdeep);paint-order:stroke fill}
-.tip .amount,.rank-icon{background:linear-gradient(180deg,#fff,#fff2fb)!important;color:#a52b78!important;border:1.5px solid rgba(165,43,120,.25)!important;text-shadow:none!important}
+
+/* =========================================================
+   CANDY HEARTS COLOR-CYCLE THEME
+   Morado + corazones -> rosa/azul cielo -> morado
+========================================================= */
+:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
+@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
+@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
+@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif;}
+
+#container{border-radius:27px;padding:11px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(135deg,var(--purple-a),var(--purple-b) 50%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:90px 64px,100% 100%;border:2px solid rgba(255,255,255,.32);box-shadow:0 14px 30px rgba(36,0,67,.28),inset 0 1px 0 rgba(255,255,255,.18);animation:candyHeartFloat 13s linear infinite;}
+#container::before{inset:5px;z-index:5;border-radius:21px;border:1px solid rgba(255,255,255,.14);}
+#container::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;transform:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(115deg,var(--pink-a) 0%,#f85fbd 38%,var(--sky-a) 72%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:90px 64px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
+.title{z-index:7;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.035)),rgba(73,14,116,.18);border:1.5px solid rgba(255,255,255,.34);font-family:'Anton',Impact,sans-serif;font-size:30px;font-weight:400;letter-spacing:.025em;color:#fff;-webkit-text-stroke:1px rgba(45,0,65,.75);paint-order:stroke fill;text-shadow:0 3px 0 rgba(83,18,105,.56);}
+.title::after{height:2px;background:linear-gradient(90deg,transparent,#fff,transparent);box-shadow:0 0 7px rgba(255,255,255,.38);}
+.tip{z-index:7;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.03)),rgba(82,22,129,.15);border:1px solid rgba(255,255,255,.24);box-shadow:0 6px 14px rgba(52,0,92,.17),inset 0 1px 0 rgba(255,255,255,.14);}
+.tip::before{width:4px;background:linear-gradient(180deg,#fff,#ffd9f3,#8fdfff);box-shadow:0 0 8px rgba(255,255,255,.28);}
+.tip .name{color:#fff;font-weight:900;text-shadow:0 2px 0 rgba(70,15,97,.58);}
+.tip .amount{border-radius:11px;background:linear-gradient(180deg,#fff,#f5eef9);border:1.5px solid rgba(105,35,145,.27);color:#74269f;font-family:'Anton',Impact,sans-serif;font-weight:400;text-shadow:none;}
+.tip.mvp{border-radius:19px;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.035)),rgba(92,24,145,.18);border:1.5px solid rgba(255,255,255,.40);}
+.rank-icon{border-radius:11px;font-family:'Anton',Impact,sans-serif;font-weight:400;color:#7b2ba8;background:linear-gradient(180deg,#fff,#f6effb);border:1.5px solid rgba(112,42,151,.28);text-shadow:none;}
+
