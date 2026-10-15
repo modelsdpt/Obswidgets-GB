@@ -1,3 +1,17 @@
+/* =========================================================
+   MISTY THEME
+   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo negro profundo
+   - Letras blancas con contorno negro para alto contraste
+   - Acabado limpio / oscuro / premium
+   - Cadena metálica decorativa en la parte inferior
+   - GOAL: relleno transparente tipo vidrio; el progreso se
+     ve claramente a medida que aumenta el height del #bar-fill
+   - Mantiene selectores y estados funcionales existentes
+========================================================= */
+
 /* ==========================================
    TIMER – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acentos rosa
@@ -543,23 +557,161 @@ body{
 }
 
 
+:root{
+  --misty-black:#020202;
+  --misty-black-2:#070707;
+  --misty-black-3:#0d0d0d;
+  --misty-charcoal:#151515;
+  --misty-white:#ffffff;
+  --misty-silver:#d9d9d9;
+  --misty-silver-soft:#9a9a9a;
+  --misty-line:rgba(255,255,255,.13);
+  --misty-shadow:rgba(0,0,0,.76);
+}
+
+@keyframes mistySoftBreath{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.035); }
+}
+
+@keyframes mistyChainShimmer{
+  0%,100%{ opacity:.28; filter:brightness(.90); }
+  50%{ opacity:.52; filter:brightness(1.12); }
+}
+
+body{
+  color:#fff;
+  font-family:'Inter',Arial,sans-serif;
+}
 
 /* =========================================================
-   CANDY HEARTS COLOR-CYCLE THEME
-   Morado + corazones -> rosa/azul cielo -> morado
+   MISTY — TIMER
 ========================================================= */
-:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
-@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
-@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
-@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
-body{color:#fff;font-family:'Inter',Arial,sans-serif;}
 
-.timer-widget{border-radius:28px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(135deg,var(--purple-a),var(--purple-b) 50%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:90px 64px,100% 100%;border:2px solid rgba(255,255,255,.31);box-shadow:0 16px 34px rgba(36,0,67,.27),inset 0 1px 0 rgba(255,255,255,.18);animation:candyHeartFloat 13s linear infinite;}
-.timer-widget::before{z-index:5;border-radius:22px;border:1px solid rgba(255,255,255,.14);}
-.timer-widget::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;transform:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(115deg,var(--pink-a) 0%,#f761c3 38%,var(--sky-a) 72%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:90px 64px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
-.timer-title{z-index:6;border-radius:17px;background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.035)),rgba(73,14,116,.18);border:1.5px solid rgba(255,255,255,.34);font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;-webkit-text-stroke:1px rgba(45,0,65,.78);paint-order:stroke fill;text-shadow:0 3px 0 rgba(83,18,105,.56);}
-.timer-box{z-index:6;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.03)),rgba(89,24,141,.17);border:1.5px solid rgba(255,255,255,.32);box-shadow:0 10px 22px rgba(52,0,92,.20),inset 0 1px 0 rgba(255,255,255,.18);}
-.timer-box::before{width:4px;background:linear-gradient(180deg,#fff,#ffd9f3,#8fdfff);box-shadow:0 0 8px rgba(255,255,255,.28);}
-#timer-value{font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;-webkit-text-stroke:1.1px rgba(45,0,65,.76);paint-order:stroke fill;text-shadow:0 3px 0 rgba(83,18,105,.56);}
-.timer-box.timer-running{animation:candyPulse 2.1s ease-in-out infinite alternate;}
+.timer-widget{
+  border-radius:27px;
+  padding:11px 11px 24px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 18% -5%,rgba(255,255,255,.05) 0%,transparent 33%),
+    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
+  background-repeat:repeat-x,no-repeat,no-repeat;
+  background-size:48px 14px,100% 100%,100% 100%;
+  background-position:left 8px bottom 6px,center,center;
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.54),
+    0 0 0 1px rgba(0,0,0,.84),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  animation:mistySoftBreath 9s ease-in-out infinite;
+}
 
+.timer-widget::before{
+  inset:5px;
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.04);
+}
+
+.timer-widget::after{
+  opacity:.13;
+  background:linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(255,255,255,.005) 30%,
+    rgba(255,255,255,.08) 49%,
+    rgba(255,255,255,.015) 58%,
+    transparent 72%
+  );
+}
+
+.timer-title{
+  border-radius:17px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
+    linear-gradient(135deg,#0d0d0d,#020202);
+  border:1px solid rgba(255,255,255,.11);
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  -webkit-text-stroke:1.25px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 #050505;
+}
+
+.timer-title::before{
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+}
+
+.timer-title::after{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  box-shadow:none;
+}
+
+.timer-box{
+  border-radius:21px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
+    linear-gradient(135deg,#111111,#050505 60%,#020202);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.timer-box::before{
+  width:4px;
+  background:linear-gradient(180deg,#f2f2f2,#aaa,#444);
+  box-shadow:0 0 6px rgba(255,255,255,.12);
+}
+
+.timer-box::after{
+  opacity:.12;
+}
+
+#timer-value{
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  -webkit-text-stroke:1.4px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 #050505;
+}
+
+.timer-box.timer-running{
+  animation:mistyTimerPulse 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes mistyTimerPulse{
+  from{
+    transform:scale(1);
+    border-color:rgba(255,255,255,.08);
+  }
+  to{
+    transform:scale(1.012);
+    border-color:rgba(255,255,255,.15);
+    box-shadow:
+      0 11px 24px rgba(0,0,0,.39),
+      0 0 10px rgba(255,255,255,.025),
+      inset 0 1px 0 rgba(255,255,255,.045);
+  }
+}
+
+.timer-box.timer-finished{
+  border-color:rgba(255,255,255,.18);
+  background:
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.045),transparent 44%),
+    linear-gradient(135deg,#151515,#050505 60%,#020202);
+}
+
+.timer-box:hover{
+  transform:translateY(-1px);
+  border-color:rgba(255,255,255,.15);
+}
+
+@media (max-width:310px){
+  .timer-widget{ border-radius:24px; padding-bottom:22px; }
+  .timer-widget::before{ border-radius:19px; }
+  .timer-title{ border-radius:15px; }
+  .timer-box{ border-radius:18px; }
+}
