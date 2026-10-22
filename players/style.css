@@ -1,15 +1,8 @@
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   KILLBILL / YELLOW REVENGE THEME
+   Amarillo intenso + negro + blanco, inspirado en la estética
+   de cine de acción. Incluye franjas negras, marcas diagonales
+   tipo corte y un toque rojo muy sutil.
 ========================================================= */
 
 /* ==========================================
@@ -18,7 +11,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -977,216 +970,53 @@ body{
 }
 
 
+
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
+  --kb-yellow:#ffd21f;
+  --kb-yellow2:#ffbd00;
+  --kb-black:#050505;
+  --kb-red:#b3131b;
+  --kb-white:#ffffff;
 }
 
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
+@keyframes kbFlicker{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.025)}
 }
 
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
+.title,.goal-title,.timer-title,.raffle-title{
+  color:#fff!important;
+  -webkit-text-stroke:1.35px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
 }
-
-body{
-  color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-/* =========================================================
-   MISTY — RAFFLE
-========================================================= */
 
 .raffle-widget{
-  border-radius:30px;
-  padding-bottom:26px;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 18% -5%,rgba(255,255,255,.05) 0%,transparent 33%),
-    radial-gradient(circle at 90% 110%,rgba(255,255,255,.018) 0%,transparent 40%),
-    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
-  background-repeat:repeat-x,no-repeat,no-repeat,no-repeat;
-  background-size:48px 14px,100% 100%,100% 100%,100% 100%;
-  background-position:left 8px bottom 6px,center,center,center;
-  border:1px solid rgba(255,255,255,.13);
-  box-shadow:
-    0 20px 44px rgba(0,0,0,.56),
-    0 0 0 1px rgba(0,0,0,.84),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  animation:mistySoftBreath 9s ease-in-out infinite;
+  border-radius:28px!important;
+  background:
+    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
+    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
+    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.18)!important;
 }
-
-.raffle-widget::before{
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.04);
-}
-
-.raffle-widget::after{
-  opacity:.12;
-}
-
-.raffle-badge{
-  border-radius:999px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
-  font-family:'Inter',sans-serif;
-  font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.35px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-}
-
-.raffle-badge::before{
-  background:#fff;
-  border:1px solid #050505;
-  box-shadow:none;
-}
-
-.raffle-badge::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
-}
-
 .raffle-title{
-  border-radius:18px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#0d0d0d,#020202);
-  border:1px solid rgba(255,255,255,.11);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.3px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505;
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
+  border:2px solid #050505!important;border-radius:18px!important;
 }
-
-.raffle-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
-}
-
-.raffle-title::after{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.30),transparent);
-  box-shadow:none;
-}
-
+.raffle-title::after{background:linear-gradient(90deg,transparent,#050505,transparent)!important;box-shadow:none!important}
 .raffle-name-item{
-  border-radius:15px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(135deg,#111111,#050505 60%,#020202);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.035);
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.54)!important;
+  border:1.5px solid rgba(0,0,0,.58)!important;
 }
-
-.raffle-name-item::after{
-  border-radius:10px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
+.raffle-name-item::after,.raffle-tickets,.raffle-badge,.winner-label{
+  background:#050505!important;color:#fff!important;border:1px solid #050505!important;text-shadow:none!important;
 }
-
-.raffle-name-item:first-child{
-  border-radius:17px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#161616,#070707 58%,#020202);
-  border:1px solid rgba(255,255,255,.13);
-}
-
-.raffle-name-item:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.05);
-  border-color:rgba(255,255,255,.15);
-}
-
-.raffle-name{
-  font-weight:900;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.72);
-}
-
-.raffle-tickets{
-  border-radius:10px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
-}
-
-.raffle-tickets::after{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:.45px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-}
-
+.raffle-name{color:#fff!important;-webkit-text-stroke:.65px #050505;paint-order:stroke fill;text-shadow:0 2px 0 #050505!important}
 .raffle-winner-screen{
-  border-radius:29px;
-  background:
-    radial-gradient(circle at 50% 42%,rgba(255,255,255,.045),transparent 46%),
-    linear-gradient(145deg,#111111 0%,#050505 60%,#010101 100%);
-  border:1px solid rgba(255,255,255,.12);
+  background:radial-gradient(circle at 50% 42%,rgba(179,19,27,.12),transparent 45%),linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
 }
+.raffle-winner-screen::before{content:"⚔  ✦  ⚔"!important;color:#050505!important;text-shadow:none!important}
+.winner-name{color:#fff!important;-webkit-text-stroke:1.5px #050505;paint-order:stroke fill;text-shadow:0 4px 0 #050505!important}
 
-.raffle-winner-screen::after{
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.045);
-}
-
-.raffle-winner-screen::before{
-  content:"⛓  ✦  ⛓";
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#d7d7d7;
-  -webkit-text-stroke:.8px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
-}
-
-.winner-label{
-  border-radius:999px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.11);
-  font-weight:900;
-  color:#fff;
-  text-shadow:0 1px 0 #050505;
-}
-
-.winner-name{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.55px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 4px 0 #050505;
-}
-
-@media (max-width:590px){
-  .raffle-widget{ border-radius:26px; padding-bottom:24px; }
-  .raffle-widget::before{ border-radius:21px; }
-  .raffle-title{ border-radius:16px; }
-  .raffle-name-item{ border-radius:13px; }
-  .raffle-winner-screen{ border-radius:25px; }
-}

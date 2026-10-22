@@ -1,15 +1,8 @@
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
-
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   KILLBILL / YELLOW REVENGE THEME
+   Amarillo intenso + negro + blanco, inspirado en la estética
+   de cine de acción. Incluye franjas negras, marcas diagonales
+   tipo corte y un toque rojo muy sutil.
 ========================================================= */
 
 /* ==========================================
@@ -18,7 +11,7 @@
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -589,193 +582,63 @@ body{
 }
 
 
+
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
+  --kb-yellow:#ffd21f;
+  --kb-yellow2:#ffbd00;
+  --kb-black:#050505;
+  --kb-red:#b3131b;
+  --kb-white:#ffffff;
 }
 
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
+@keyframes kbFlicker{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.025)}
 }
 
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
-}
-
-body{
-  color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-/* =========================================================
-   MISTY — MVP
-========================================================= */
-
-#container{
-  border-radius:27px;
-  padding:11px 11px 24px;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 18% -5%,rgba(255,255,255,.055) 0%,transparent 33%),
-    radial-gradient(circle at 90% 110%,rgba(255,255,255,.018) 0%,transparent 40%),
-    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
-  background-repeat:repeat-x,no-repeat,no-repeat,no-repeat;
-  background-size:48px 14px,100% 100%,100% 100%,100% 100%;
-  background-position:left 8px bottom 6px,center,center,center;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.56),
-    0 0 0 1px rgba(0,0,0,.86),
-    inset 0 1px 0 rgba(255,255,255,.07);
-  animation:mistySoftBreath 9s ease-in-out infinite;
-}
-
-#container::before{
-  inset:5px;
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.04);
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,.66);
-}
-
-#container::after{
-  opacity:.14;
-  background:linear-gradient(
-    108deg,
-    transparent 0%,
-    rgba(255,255,255,.005) 30%,
-    rgba(255,255,255,.08) 49%,
-    rgba(255,255,255,.02) 58%,
-    transparent 72%
-  );
-}
-
-.title{
-  min-height:49px;
-  border-radius:16px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#0d0d0d,#020202);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.05);
-  font-family:'Anton',Impact,sans-serif;
-  font-size:30px;
-  font-weight:400;
-  letter-spacing:.025em;
-  color:#fff;
-  text-transform:uppercase;
+.title,.goal-title,.timer-title,.raffle-title{
+  color:#fff!important;
   -webkit-text-stroke:1.35px #050505;
   paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 #050505,
-    0 0 4px rgba(255,255,255,.10);
+  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
 }
 
-.title::before{
-  left:15%;
-  right:15%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+#container{
+  border-radius:26px;
+  padding:11px;
+  background:
+    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
+    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
+    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
+  border:2px solid #050505!important;
+  box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.20)!important;
+  animation:kbFlicker 8s ease-in-out infinite!important;
 }
-
-.title::after{
-  left:32%;
-  right:32%;
-  bottom:1px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
-  box-shadow:none;
+#container::before{
+  inset:5px!important;border-radius:20px!important;
+  border:1px solid rgba(255,255,255,.15)!important;
 }
-
-#top-list{ gap:8px; }
-
+#container::after{
+  content:""!important;position:absolute!important;left:0!important;right:0!important;
+  bottom:12px!important;height:8px!important;width:auto!important;top:auto!important;
+  transform:none!important;opacity:.92!important;
+  background:linear-gradient(90deg,transparent 0 4%,#050505 4% 44%,transparent 44% 48%,#050505 48% 88%,transparent 88%)!important;
+}
+.title{
+  border-radius:16px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
+  border:2px solid #050505!important;
+}
+.title::after{background:#050505!important;box-shadow:none!important}
 .tip{
-  border-radius:15px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(135deg,#111111,#050505 60%,#020202);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.035);
+  border-radius:15px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.56)!important;
+  border:1.5px solid rgba(0,0,0,.58)!important;
 }
+.tip::before{width:5px!important;background:#050505!important;box-shadow:none!important}
+.tip .name{color:#fff!important;-webkit-text-stroke:.65px #050505;paint-order:stroke fill;text-shadow:0 2px 0 #050505!important}
+.tip .amount,.rank-icon{
+  background:#050505!important;color:#fff!important;border:1px solid #050505!important;text-shadow:none!important;
+}
+.tip.mvp{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),rgba(255,190,0,.68)!important;border:2px solid #050505!important}
 
-.tip::before{
-  width:3px;
-  background:linear-gradient(180deg,#f0f0f0,#a8a8a8,#444);
-  box-shadow:0 0 6px rgba(255,255,255,.12);
-}
-
-.tip::after{
-  opacity:.12;
-}
-
-.tip:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.06);
-  border-color:rgba(255,255,255,.16);
-}
-
-.tip .name{
-  color:#fff;
-  font-weight:900;
-  -webkit-text-stroke:.55px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.76);
-}
-
-.tip .amount{
-  border-radius:10px;
-  background:linear-gradient(180deg,#242424,#0c0c0c);
-  border:1px solid rgba(255,255,255,.12);
-  color:#fff;
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  -webkit-text-stroke:.55px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 #050505;
-  box-shadow:0 4px 8px rgba(0,0,0,.28);
-}
-
-.tip.mvp{
-  border-radius:18px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#161616,#070707 58%,#020202);
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.05);
-}
-
-.tip.mvp::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,#bdbdbd,#4c4c4c);
-}
-
-.rank-icon{
-  border-radius:10px;
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  background:linear-gradient(180deg,#282828,#0e0e0e);
-  border:1px solid rgba(255,255,255,.11);
-  text-shadow:0 1px 0 #050505;
-}
-
-@media (max-width:460px){
-  #container{ border-radius:24px; padding-bottom:22px; }
-  #container::before{ border-radius:19px; }
-  .title{ border-radius:14px; }
-  .tip{ border-radius:13px; }
-  .tip.mvp{ border-radius:16px; }
-}
