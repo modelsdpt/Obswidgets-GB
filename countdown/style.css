@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
 /* =========================================================
-   KILLBILL / YELLOW REVENGE THEME
-   Amarillo intenso + negro + blanco, inspirado en la estética
-   de cine de acción. Incluye franjas negras, marcas diagonales
-   tipo corte y un toque rojo muy sutil.
+   TRICK BOX THEME
+   Negro profundo + azul carbón, líneas horizontales sutiles,
+   tipografía cursiva blanca y acabado misterioso/premium.
 ========================================================= */
-
 /* ==========================================
    TIMER – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acentos rosa
@@ -552,45 +551,24 @@ body{
 
 
 :root{
-  --kb-yellow:#ffd21f;
-  --kb-yellow2:#ffbd00;
-  --kb-black:#050505;
-  --kb-red:#b3131b;
-  --kb-white:#ffffff;
+  --tb-black:#020305; --tb-black2:#07090d; --tb-blue:#111a28;
+  --tb-blue2:#1c2a3d; --tb-white:#fff; --tb-silver:#cfd6df;
 }
-
-@keyframes kbFlicker{
-  0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.025)}
-}
-
+@keyframes tbSheen{0%,100%{background-position:0% 0,0 0,0 0}50%{background-position:100% 0,12px 0,0 0}}
+@keyframes tbPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif}
 .title,.goal-title,.timer-title,.raffle-title{
-  color:#fff!important;
-  -webkit-text-stroke:1.35px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
+  font-family:'Lobster','Brush Script MT',cursive!important;
+  color:#fff!important;-webkit-text-stroke:1.05px #050506;paint-order:stroke fill;
+  text-shadow:0 2px 0 #050506,0 0 5px rgba(255,255,255,.1)
 }
 
-.timer-widget{
-  border-radius:26px!important;
-  background:
-    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
-    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
-    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
-  border:2px solid #050505!important;
-  box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.18)!important;
-}
-.timer-title{
-  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
-  border:2px solid #050505!important;border-radius:16px!important;
-}
-.timer-title::after{background:linear-gradient(90deg,transparent,#050505,transparent)!important;box-shadow:none!important}
-.timer-box{
-  border-radius:21px!important;
-  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.54)!important;
-  border:1.5px solid rgba(0,0,0,.60)!important;
-}
-.timer-box::before{width:5px!important;background:#050505!important;box-shadow:none!important}
-#timer-value{color:#fff!important;-webkit-text-stroke:1.35px #050505;paint-order:stroke fill;text-shadow:0 3px 0 #050505!important}
-.timer-box.timer-finished{background:radial-gradient(circle at 50% 30%,rgba(179,19,27,.14),transparent 42%),rgba(255,190,0,.66)!important}
+.timer-widget{border-radius:27px!important;background:linear-gradient(105deg,transparent 0 28%,rgba(74,96,126,.08) 42%,transparent 56%),repeating-linear-gradient(180deg,rgba(255,255,255,.014) 0 1px,rgba(0,0,0,.12) 1px 4px,rgba(17,26,39,.16) 4px 6px),linear-gradient(135deg,#0a0d12 0%,#020305 54%,#080b10 100%)!important;background-size:220% 100%,100% 6px,100% 100%!important;border:1.5px solid rgba(255,255,255,.09)!important;box-shadow:0 18px 38px rgba(0,0,0,.54),inset 0 1px 0 rgba(255,255,255,.05)!important;animation:tbSheen 18s ease-in-out infinite!important}
+.timer-widget::before{border-radius:21px!important;border:1px solid rgba(255,255,255,.035)!important}
+.timer-title{border-radius:17px!important;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.003)),linear-gradient(135deg,#0c1017,#020305)!important;border:1px solid rgba(255,255,255,.105)!important}
+.timer-title::after{height:1px!important;background:linear-gradient(90deg,transparent,#939ca8,transparent)!important;box-shadow:none!important}
+.timer-box{border-radius:21px!important;background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.002)),linear-gradient(135deg,#11151d,#05070b 62%,#020304)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:0 10px 22px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.03)!important}
+.timer-box::before{width:4px!important;background:linear-gradient(180deg,#d7dde6,#7f8997,#333943)!important;box-shadow:0 0 6px rgba(255,255,255,.1)!important}
+#timer-value{color:#fff!important;-webkit-text-stroke:.45px #050506;paint-order:stroke fill;text-shadow:0 2px 0 rgba(0,0,0,.78)!important}
+.timer-box.timer-finished{background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.04),transparent 44%),linear-gradient(135deg,#151a22,#05070b 60%,#020304)!important}
 

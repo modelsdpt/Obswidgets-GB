@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
 /* =========================================================
-   KILLBILL / YELLOW REVENGE THEME
-   Amarillo intenso + negro + blanco, inspirado en la estética
-   de cine de acción. Incluye franjas negras, marcas diagonales
-   tipo corte y un toque rojo muy sutil.
+   TRICK BOX THEME
+   Negro profundo + azul carbón, líneas horizontales sutiles,
+   tipografía cursiva blanca y acabado misterioso/premium.
 ========================================================= */
-
 /* ==========================================
    MVP – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, tipografía blanca, acento rosa
@@ -584,61 +583,34 @@ body{
 
 
 :root{
-  --kb-yellow:#ffd21f;
-  --kb-yellow2:#ffbd00;
-  --kb-black:#050505;
-  --kb-red:#b3131b;
-  --kb-white:#ffffff;
+  --tb-black:#020305; --tb-black2:#07090d; --tb-blue:#111a28;
+  --tb-blue2:#1c2a3d; --tb-white:#fff; --tb-silver:#cfd6df;
 }
-
-@keyframes kbFlicker{
-  0%,100%{filter:brightness(1)}
-  50%{filter:brightness(1.025)}
-}
-
+@keyframes tbSheen{0%,100%{background-position:0% 0,0 0,0 0}50%{background-position:100% 0,12px 0,0 0}}
+@keyframes tbPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif}
 .title,.goal-title,.timer-title,.raffle-title{
-  color:#fff!important;
-  -webkit-text-stroke:1.35px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505,0 0 4px rgba(255,255,255,.08);
+  font-family:'Lobster','Brush Script MT',cursive!important;
+  color:#fff!important;-webkit-text-stroke:1.05px #050506;paint-order:stroke fill;
+  text-shadow:0 2px 0 #050506,0 0 5px rgba(255,255,255,.1)
 }
 
 #container{
-  border-radius:26px;
-  padding:11px;
-  background:
-    linear-gradient(118deg,transparent 0 58%,rgba(0,0,0,.13) 58.5% 60%,transparent 60.5%),
-    linear-gradient(63deg,transparent 0 32%,rgba(179,19,27,.18) 32.5% 33.6%,transparent 34.1%),
-    linear-gradient(135deg,#ffd723 0%,#ffc400 58%,#e6a900 100%)!important;
-  border:2px solid #050505!important;
-  box-shadow:0 16px 34px rgba(0,0,0,.34),inset 0 2px 0 rgba(255,255,255,.20)!important;
-  animation:kbFlicker 8s ease-in-out infinite!important;
+  border-radius:27px;padding:11px;
+  background:linear-gradient(105deg,transparent 0 28%,rgba(78,101,132,.08) 42%,transparent 56%),repeating-linear-gradient(180deg,rgba(255,255,255,.014) 0 1px,rgba(0,0,0,.12) 1px 4px,rgba(18,28,42,.17) 4px 6px),linear-gradient(135deg,#0b0e13 0%,#020305 54%,#080b10 100%)!important;
+  background-size:220% 100%,100% 6px,100% 100%!important;
+  border:1.5px solid rgba(255,255,255,.09)!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.56),0 0 0 1px rgba(0,0,0,.86),inset 0 1px 0 rgba(255,255,255,.055)!important;
+  animation:tbSheen 18s ease-in-out infinite,tbPulse 9s ease-in-out infinite!important
 }
-#container::before{
-  inset:5px!important;border-radius:20px!important;
-  border:1px solid rgba(255,255,255,.15)!important;
-}
-#container::after{
-  content:""!important;position:absolute!important;left:0!important;right:0!important;
-  bottom:12px!important;height:8px!important;width:auto!important;top:auto!important;
-  transform:none!important;opacity:.92!important;
-  background:linear-gradient(90deg,transparent 0 4%,#050505 4% 44%,transparent 44% 48%,#050505 48% 88%,transparent 88%)!important;
-}
-.title{
-  border-radius:16px!important;
-  background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),linear-gradient(135deg,#f6c600,#dca700)!important;
-  border:2px solid #050505!important;
-}
-.title::after{background:#050505!important;box-shadow:none!important}
-.tip{
-  border-radius:15px!important;
-  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.01)),rgba(255,196,0,.56)!important;
-  border:1.5px solid rgba(0,0,0,.58)!important;
-}
-.tip::before{width:5px!important;background:#050505!important;box-shadow:none!important}
-.tip .name{color:#fff!important;-webkit-text-stroke:.65px #050505;paint-order:stroke fill;text-shadow:0 2px 0 #050505!important}
-.tip .amount,.rank-icon{
-  background:#050505!important;color:#fff!important;border:1px solid #050505!important;text-shadow:none!important;
-}
-.tip.mvp{background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02)),rgba(255,190,0,.68)!important;border:2px solid #050505!important}
+#container::before{inset:5px!important;border-radius:21px!important;border:1px solid rgba(255,255,255,.035)!important;box-shadow:inset 0 0 0 1px rgba(0,0,0,.64)!important}
+#container::after{content:""!important;position:absolute!important;inset:0!important;width:auto!important;height:auto!important;transform:none!important;opacity:.15!important;background:linear-gradient(100deg,transparent 0 32%,rgba(255,255,255,.06) 49%,transparent 63%)!important}
+.title{min-height:49px!important;border-radius:16px!important;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.003)),linear-gradient(135deg,#0d1118,#020305)!important;border:1px solid rgba(255,255,255,.105)!important;font-size:29px!important;letter-spacing:.01em!important;text-transform:none!important}
+.title::before{background:linear-gradient(90deg,transparent,rgba(210,222,238,.3),transparent)!important}
+.title::after{height:1px!important;background:linear-gradient(90deg,transparent,#9ba5b2,transparent)!important;box-shadow:none!important}
+.tip{border-radius:15px!important;background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.002)),linear-gradient(135deg,#11151d,#05070b 62%,#020304)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:0 6px 14px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.03)!important}
+.tip::before{width:3px!important;background:linear-gradient(180deg,#d7dde6,#7f8997,#333943)!important;box-shadow:0 0 6px rgba(255,255,255,.1)!important}
+.tip .name{color:#fff!important;-webkit-text-stroke:.45px #050506;paint-order:stroke fill;text-shadow:0 2px 0 rgba(0,0,0,.76)!important}
+.tip .amount,.rank-icon{background:linear-gradient(180deg,#252b34,#0d1015)!important;border:1px solid rgba(255,255,255,.1)!important;color:#fff!important;text-shadow:0 1px 0 #050506!important}
+.tip.mvp{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),linear-gradient(135deg,#151a23,#07090e 58%,#020304)!important;border:1px solid rgba(255,255,255,.13)!important}
 
