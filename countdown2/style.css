@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
 /* =========================================================
-   PURPLE TRICK FINAL
-   Reconstruido DESDE CERO sobre los CSS base limpios.
+   TREAT BOX THEME
+   Inspirado en la referencia "30$ Treat Box"
 
-   Referencia:
-   - Morado intenso como color dominante
-   - Negro solamente como sombra / entrada lateral
+   Concepto:
+   - Negro profundo + vinotinto / burgundy
+   - Líneas horizontales rojas tipo panel / neon strip
    - Letras blancas cursivas con borde negro
-   - Brillo violeta suave, elegante
-   - Sin acumulación de temas anteriores
+   - Brillo rojo muy sutil
+   - Fondo oscuro elegante, sin verse plano
+   - GOAL con números grandes y legibles
+   - Mantiene selectores y lógica funcional existentes
 ========================================================= */
 
 /* ==========================================
@@ -555,139 +558,143 @@ body{
 }
 
 
-/* ===== FINAL THEME OVERRIDES ===== */
+/* ===== TREAT BOX FINAL OVERRIDES ===== */
 :root{
-  --pt-purple-0:#24003f;
-  --pt-purple-1:#3a006b;
-  --pt-purple-2:#57009c;
-  --pt-purple-3:#7200c8;
-  --pt-purple-4:#8c13e8;
-  --pt-purple-5:#a03cff;
-  --pt-black:#030305;
-  --pt-white:#ffffff;
-  --pt-silver:#e9e4ef;
+  --tbx-black:#020202;
+  --tbx-black-2:#070506;
+  --tbx-wine:#3f0712;
+  --tbx-wine-2:#65101f;
+  --tbx-wine-3:#86162d;
+  --tbx-red:#b21f38;
+  --tbx-red-bright:#d63c52;
+  --tbx-white:#ffffff;
+  --tbx-shadow:rgba(0,0,0,.64);
 }
 
-@keyframes ptPurpleFlow{
-  0%{
-    background-position:0% 50%, 0% 50%;
-  }
-  50%{
-    background-position:100% 50%, 100% 50%;
-  }
-  100%{
-    background-position:0% 50%, 0% 50%;
-  }
-}
-
-@keyframes ptSoftGlow{
+@keyframes treatGlow{
   0%,100%{
-    filter:brightness(1) saturate(1);
+    filter:brightness(1);
   }
   50%{
-    filter:brightness(1.035) saturate(1.06);
+    filter:brightness(1.025);
   }
 }
 
 body{
   color:#fff;
+  font-family:'Inter',Arial,sans-serif;
 }
 
 .title,
 .goal-title,
 .timer-title,
 .raffle-title{
-  font-family:'Lobster', cursive !important;
-  color:#ffffff !important;
-  -webkit-text-stroke:1.15px #050506;
+  font-family:'Lobster','Brush Script MT',cursive !important;
+  color:#fff !important;
+  -webkit-text-stroke:1.05px #050506;
   paint-order:stroke fill;
   text-shadow:
     0 2px 1px rgba(0,0,0,.95),
-    0 0 5px rgba(255,255,255,.12);
+    0 0 4px rgba(255,255,255,.08);
 }
 
 /* ========================= TIMER ========================= */
 
 .timer-widget{
+  border-radius:27px;
   background:
-    radial-gradient(ellipse at 72% 48%, rgba(174,72,255,.24) 0%, transparent 38%),
-    linear-gradient(
-      100deg,
-      #050307 0%,
-      #160023 7%,
-      #33005d 15%,
-      #51008f 32%,
-      #6e00c1 54%,
-      #8310dc 76%,
-      #7410c7 100%
-    ) !important;
-
-  background-size:160% 100%,100% 100% !important;
-
-  border:1px solid rgba(255,255,255,.12) !important;
+    repeating-linear-gradient(
+      180deg,
+      rgba(170,24,46,.22) 0 2px,
+      transparent 2px 7px
+    ),
+    radial-gradient(ellipse at 72% 42%,rgba(148,22,43,.18) 0%,transparent 40%),
+    linear-gradient(105deg,#020202 0%,#0b0406 20%,#28080d 48%,#4b0b16 74%,#25070d 100%);
+  border:1.5px solid rgba(255,255,255,.09);
   box-shadow:
-    0 18px 40px rgba(0,0,0,.47),
-    0 0 18px rgba(111,0,197,.15),
-    inset 0 1px 0 rgba(255,255,255,.07) !important;
-
-  animation:
-    ptPurpleFlow 22s ease-in-out infinite,
-    ptSoftGlow 9s ease-in-out infinite !important;
+    0 18px 38px rgba(0,0,0,.54),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  animation:treatGlow 9s ease-in-out infinite;
 }
 
 .timer-widget::before{
-  border-color:rgba(255,255,255,.055) !important;
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.035);
 }
 
 .timer-widget::after{
-  left:10% !important;
-  right:10% !important;
-  bottom:-20px !important;
-  height:44px !important;
-  opacity:.58 !important;
+  opacity:.10;
   background:
-    radial-gradient(
-      ellipse at center,
-      rgba(159,49,255,.28) 0%,
-      rgba(112,18,195,.10) 44%,
-      transparent 76%
-    ) !important;
-  filter:blur(12px) !important;
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 3px,
+      rgba(170,24,46,.11) 3px 4px,
+      transparent 4px 8px
+    );
 }
 
 .timer-title{
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.01)),
-    linear-gradient(100deg,#170021 0%,#390064 15%,#6200a8 48%,#8212d8 100%) !important;
-  border-color:rgba(255,255,255,.12) !important;
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,.02) 0 1px,
+      rgba(147,18,37,.16) 1px 3px,
+      transparent 3px 7px
+    ),
+    linear-gradient(100deg,#070304 0%,#25070d 32%,#5a0d1c 76%,#761327 100%);
+  border:1px solid rgba(255,255,255,.11);
 }
 
 .timer-title::after{
-  background:
-    linear-gradient(90deg,transparent,#b27ddd,transparent) !important;
-  box-shadow:none !important;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#8f1429,#d33a50,#8f1429,transparent);
+  box-shadow:none;
 }
 
 .timer-box{
+  border-radius:21px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.008)),
-    linear-gradient(100deg,#26003d 0%,#470075 42%,#6500a7 100%) !important;
-  border-color:rgba(255,255,255,.10) !important;
+    linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.002)),
+    linear-gradient(100deg,#0b0506 0%,#24070c 42%,#4e0d18 100%);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.34),
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 
 .timer-box::before{
-  background:
-    linear-gradient(180deg,#eee6f8,#b38bd7,#71469c) !important;
-  box-shadow:0 0 6px rgba(196,133,255,.14) !important;
+  width:4px;
+  background:linear-gradient(180deg,#e4e4e4,#9e9e9e,#484848);
+  box-shadow:0 0 6px rgba(255,255,255,.08);
 }
 
 #timer-value{
-  color:#fff !important;
-  text-shadow:0 2px 1px rgba(0,0,0,.76) !important;
+  color:#fff;
+  -webkit-text-stroke:.45px #050506;
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(0,0,0,.76);
+}
+
+.timer-box.timer-running{
+  animation:treatTimerPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes treatTimerPulse{
+  from{transform:scale(1)}
+  to{
+    transform:scale(1.012);
+    border-color:rgba(255,255,255,.13);
+    box-shadow:
+      0 11px 24px rgba(0,0,0,.38),
+      0 0 10px rgba(173,26,48,.04),
+      inset 0 1px 0 rgba(255,255,255,.04);
+  }
 }
 
 .timer-box.timer-finished{
+  border-color:rgba(255,255,255,.14);
   background:
-    radial-gradient(circle at 50% 30%,rgba(190,105,255,.09),transparent 44%),
-    linear-gradient(100deg,#31004f 0%,#5a0092 45%,#7e10cf 100%) !important;
+    radial-gradient(circle at 50% 30%,rgba(190,40,61,.07),transparent 44%),
+    linear-gradient(100deg,#100608 0%,#320911 40%,#681123 100%);
 }

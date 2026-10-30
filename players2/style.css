@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
 /* =========================================================
-   PURPLE TRICK FINAL
-   Reconstruido DESDE CERO sobre los CSS base limpios.
+   TREAT BOX THEME
+   Inspirado en la referencia "30$ Treat Box"
 
-   Referencia:
-   - Morado intenso como color dominante
-   - Negro solamente como sombra / entrada lateral
+   Concepto:
+   - Negro profundo + vinotinto / burgundy
+   - Líneas horizontales rojas tipo panel / neon strip
    - Letras blancas cursivas con borde negro
-   - Brillo violeta suave, elegante
-   - Sin acumulación de temas anteriores
+   - Brillo rojo muy sutil
+   - Fondo oscuro elegante, sin verse plano
+   - GOAL con números grandes y legibles
+   - Mantiene selectores y lógica funcional existentes
 ========================================================= */
 
 /* ==========================================
@@ -975,187 +978,181 @@ body{
 }
 
 
-/* ===== FINAL THEME OVERRIDES ===== */
+/* ===== TREAT BOX FINAL OVERRIDES ===== */
 :root{
-  --pt-purple-0:#24003f;
-  --pt-purple-1:#3a006b;
-  --pt-purple-2:#57009c;
-  --pt-purple-3:#7200c8;
-  --pt-purple-4:#8c13e8;
-  --pt-purple-5:#a03cff;
-  --pt-black:#030305;
-  --pt-white:#ffffff;
-  --pt-silver:#e9e4ef;
+  --tbx-black:#020202;
+  --tbx-black-2:#070506;
+  --tbx-wine:#3f0712;
+  --tbx-wine-2:#65101f;
+  --tbx-wine-3:#86162d;
+  --tbx-red:#b21f38;
+  --tbx-red-bright:#d63c52;
+  --tbx-white:#ffffff;
+  --tbx-shadow:rgba(0,0,0,.64);
 }
 
-@keyframes ptPurpleFlow{
-  0%{
-    background-position:0% 50%, 0% 50%;
-  }
-  50%{
-    background-position:100% 50%, 100% 50%;
-  }
-  100%{
-    background-position:0% 50%, 0% 50%;
-  }
-}
-
-@keyframes ptSoftGlow{
+@keyframes treatGlow{
   0%,100%{
-    filter:brightness(1) saturate(1);
+    filter:brightness(1);
   }
   50%{
-    filter:brightness(1.035) saturate(1.06);
+    filter:brightness(1.025);
   }
 }
 
 body{
   color:#fff;
+  font-family:'Inter',Arial,sans-serif;
 }
 
 .title,
 .goal-title,
 .timer-title,
 .raffle-title{
-  font-family:'Lobster', cursive !important;
-  color:#ffffff !important;
-  -webkit-text-stroke:1.15px #050506;
+  font-family:'Lobster','Brush Script MT',cursive !important;
+  color:#fff !important;
+  -webkit-text-stroke:1.05px #050506;
   paint-order:stroke fill;
   text-shadow:
     0 2px 1px rgba(0,0,0,.95),
-    0 0 5px rgba(255,255,255,.12);
+    0 0 4px rgba(255,255,255,.08);
 }
 
 /* ========================= RAFFLE ========================= */
 
 .raffle-widget{
+  border-radius:30px;
   background:
-    radial-gradient(ellipse at 72% 48%, rgba(174,72,255,.24) 0%, transparent 38%),
-    linear-gradient(
-      100deg,
-      #050307 0%,
-      #160023 7%,
-      #33005d 15%,
-      #51008f 32%,
-      #6e00c1 54%,
-      #8310dc 76%,
-      #7410c7 100%
-    ) !important;
-
-  background-size:160% 100%,100% 100% !important;
-
-  border:1px solid rgba(255,255,255,.12) !important;
+    repeating-linear-gradient(
+      180deg,
+      rgba(170,24,46,.22) 0 2px,
+      transparent 2px 7px
+    ),
+    radial-gradient(ellipse at 72% 42%,rgba(148,22,43,.18) 0%,transparent 40%),
+    linear-gradient(105deg,#020202 0%,#0b0406 20%,#28080d 48%,#4b0b16 74%,#25070d 100%);
+  border:1.5px solid rgba(255,255,255,.09);
   box-shadow:
-    0 20px 44px rgba(0,0,0,.49),
-    0 0 19px rgba(111,0,197,.15),
-    inset 0 1px 0 rgba(255,255,255,.07) !important;
-
-  animation:
-    ptPurpleFlow 22s ease-in-out infinite,
-    ptSoftGlow 9s ease-in-out infinite !important;
+    0 20px 44px rgba(0,0,0,.56),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  animation:treatGlow 9s ease-in-out infinite;
 }
 
 .raffle-widget::before{
-  border-color:rgba(255,255,255,.055) !important;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.035);
 }
 
 .raffle-widget::after{
-  left:9% !important;
-  right:9% !important;
-  bottom:-24px !important;
-  height:52px !important;
-  opacity:.60 !important;
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(159,49,255,.30) 0%,
-      rgba(112,18,195,.11) 44%,
-      transparent 76%
-    ) !important;
-  filter:blur(13px) !important;
+  opacity:.10;
 }
 
 .raffle-badge{
-  background:
-    linear-gradient(180deg,#8119ca,#4b0878) !important;
-  border-color:rgba(255,255,255,.12) !important;
-  color:#fff !important;
-}
-
-.raffle-badge::before{
-  background:#c994ff !important;
-  box-shadow:
-    0 0 5px rgba(216,178,255,.62),
-    0 0 10px rgba(164,70,255,.22) !important;
+  border-radius:999px;
+  background:linear-gradient(180deg,#74152a,#3d0914);
+  border:1px solid rgba(255,255,255,.09);
+  color:#fff;
+  text-shadow:0 1px 0 #050506;
 }
 
 .raffle-title{
+  border-radius:18px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.01)),
-    linear-gradient(100deg,#170021 0%,#390064 15%,#6200a8 48%,#8212d8 100%) !important;
-  border-color:rgba(255,255,255,.12) !important;
+    repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,.02) 0 1px,
+      rgba(147,18,37,.16) 1px 3px,
+      transparent 3px 7px
+    ),
+    linear-gradient(100deg,#070304 0%,#25070d 32%,#5a0d1c 76%,#761327 100%);
+  border:1px solid rgba(255,255,255,.11);
 }
 
 .raffle-title::after{
-  background:
-    linear-gradient(90deg,transparent,#b27ddd,transparent) !important;
-  box-shadow:none !important;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#8f1429,#d33a50,#8f1429,transparent);
+  box-shadow:none;
 }
 
 .raffle-name-item{
+  border-radius:15px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.008)),
-    linear-gradient(100deg,#26003d 0%,#470075 42%,#6500a7 100%) !important;
-  border-color:rgba(255,255,255,.10) !important;
+    linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.002)),
+    linear-gradient(100deg,#0b0506 0%,#24070c 42%,#4e0d18 100%);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:
+    0 6px 14px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 
-.raffle-name-item::after,
-.raffle-tickets,
-.winner-label{
-  background:
-    linear-gradient(180deg,#8119ca,#4b0878) !important;
-  color:#fff !important;
-  border-color:rgba(255,255,255,.12) !important;
-  text-shadow:0 1px 1px rgba(0,0,0,.78) !important;
+.raffle-name-item::after{
+  border-radius:10px;
+  background:linear-gradient(180deg,#74152a,#3d0914);
+  border:1px solid rgba(255,255,255,.09);
+  color:#fff;
+  text-shadow:0 1px 0 #050506;
 }
 
 .raffle-name-item:first-child{
+  border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01)),
-    linear-gradient(100deg,#31004f 0%,#5a0092 45%,#7e10cf 100%) !important;
-  border-color:rgba(255,255,255,.15) !important;
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),
+    linear-gradient(100deg,#100608 0%,#320911 40%,#681123 100%);
+  border:1px solid rgba(255,255,255,.12);
 }
 
 .raffle-name{
-  color:#fff !important;
-  text-shadow:0 2px 1px rgba(0,0,0,.72) !important;
+  color:#fff;
+  -webkit-text-stroke:.42px #050506;
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(0,0,0,.74);
+}
+
+.raffle-tickets{
+  border-radius:10px;
+  background:linear-gradient(180deg,#74152a,#3d0914);
+  border:1px solid rgba(255,255,255,.09);
+}
+
+.raffle-tickets::after{
+  color:#fff;
+  text-shadow:0 1px 0 #050506;
 }
 
 .raffle-winner-screen{
+  border-radius:29px;
   background:
-    radial-gradient(circle at 65% 45%,rgba(182,89,255,.18) 0%,transparent 42%),
-    linear-gradient(
-      100deg,
-      #0d0015 0%,
-      #310052 20%,
-      #5e009d 50%,
-      #7b10ce 78%,
-      #6810b2 100%
-    ) !important;
-  border-color:rgba(255,255,255,.12) !important;
+    repeating-linear-gradient(
+      180deg,
+      rgba(170,24,46,.18) 0 2px,
+      transparent 2px 7px
+    ),
+    radial-gradient(circle at 60% 44%,rgba(171,28,48,.11) 0%,transparent 43%),
+    linear-gradient(105deg,#020202 0%,#0b0406 20%,#28080d 48%,#4b0b16 74%,#25070d 100%);
+  border:1px solid rgba(255,255,255,.09);
 }
 
 .raffle-winner-screen::before{
-  content:"✦  ♠  ✦" !important;
-  color:#fff !important;
+  content:"✦  ♥  ✦";
+  font-family:'Lobster','Brush Script MT',cursive;
+  color:#fff;
+  -webkit-text-stroke:.9px #050506;
+  paint-order:stroke fill;
   text-shadow:
-    0 2px 1px rgba(0,0,0,.82),
-    0 0 7px rgba(205,150,255,.16) !important;
+    0 2px 0 #050506,
+    0 0 7px rgba(184,34,53,.10);
+}
+
+.winner-label{
+  background:linear-gradient(180deg,#74152a,#3d0914);
+  border:1px solid rgba(255,255,255,.09);
+  color:#fff;
+  text-shadow:0 1px 0 #050506;
 }
 
 .winner-name{
-  color:#fff !important;
-  text-shadow:
-    0 3px 1px rgba(0,0,0,.80),
-    0 0 7px rgba(207,154,255,.12) !important;
+  font-family:'Lobster','Brush Script MT',cursive;
+  color:#fff;
+  -webkit-text-stroke:1.1px #050506;
+  paint-order:stroke fill;
+  text-shadow:0 3px 0 #050506;
 }

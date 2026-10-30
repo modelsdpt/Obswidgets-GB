@@ -1,18 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
-/* =========================================================
-   TREAT BOX THEME
-   Inspirado en la referencia "30$ Treat Box"
-
-   Concepto:
-   - Negro profundo + vinotinto / burgundy
-   - Líneas horizontales rojas tipo panel / neon strip
-   - Letras blancas cursivas con borde negro
-   - Brillo rojo muy sutil
-   - Fondo oscuro elegante, sin verse plano
-   - GOAL con números grandes y legibles
-   - Mantiene selectores y lógica funcional existentes
-========================================================= */
-
+/* AMBER SHADOW THEME
+Negro -> marrón oscuro -> ámbar/naranja quemado.
+Letras blancas con borde negro fuerte.
+*/
 /* ==========================================
    GOAL BAR – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acento rosa
@@ -543,126 +533,36 @@ body{
 }
 
 
-/* ===== TREAT BOX FINAL OVERRIDES ===== */
+/* FINAL AMBER SHADOW OVERRIDES */
+
 :root{
-  --tbx-black:#020202;
-  --tbx-black-2:#070506;
-  --tbx-wine:#3f0712;
-  --tbx-wine-2:#65101f;
-  --tbx-wine-3:#86162d;
-  --tbx-red:#b21f38;
-  --tbx-red-bright:#d63c52;
-  --tbx-white:#ffffff;
-  --tbx-shadow:rgba(0,0,0,.64);
+  --as-black:#020202;--as-brown:#2c1304;--as-amber:#b55f0e;
+  --as-gold:#e88b1e;--as-white:#fff;
 }
-
-@keyframes treatGlow{
-  0%,100%{
-    filter:brightness(1);
-  }
-  50%{
-    filter:brightness(1.025);
-  }
-}
-
-body{
-  color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-.title,
-.goal-title,
-.timer-title,
-.raffle-title{
-  font-family:'Lobster','Brush Script MT',cursive !important;
-  color:#fff !important;
-  -webkit-text-stroke:1.05px #050506;
+@keyframes asFlow{0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,0 0}100%{background-position:0% 50%,0 0}}
+@keyframes asGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.03)}}
+.title,.goal-title,.timer-title,.raffle-title{
+  font-family:'Lobster','Brush Script MT',cursive!important;
+  color:#fff!important;
+  -webkit-text-stroke:1.15px #050506;
   paint-order:stroke fill;
-  text-shadow:
-    0 2px 1px rgba(0,0,0,.95),
-    0 0 4px rgba(255,255,255,.08);
+  text-shadow:0 2px 1px #000,0 0 4px rgba(255,255,255,.08)!important;
 }
-
-/* ========================= GOAL ========================= */
 
 #goal-wrapper{
-  width:82px;
-  border-radius:29px;
-  background:
-    repeating-linear-gradient(
-      180deg,
-      rgba(167,23,44,.20) 0 2px,
-      transparent 2px 7px
-    ),
-    radial-gradient(ellipse at 55% 64%,rgba(147,21,42,.16) 0%,transparent 38%),
-    linear-gradient(180deg,#050203 0%,#180609 26%,#390a11 54%,#691122 82%,#350911 100%);
-  border:1.5px solid rgba(255,255,255,.09);
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.52),
-    0 0 14px rgba(142,20,40,.07),
-    inset 0 1px 0 rgba(255,255,255,.05);
+  width:82px!important;
+  background:radial-gradient(ellipse at 55% 65%,rgba(242,148,34,.19) 0%,transparent 38%),linear-gradient(180deg,#050301 0%,#180b02 24%,#421f04 48%,#7b3c08 70%,#b9610f 88%,#824007 100%)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.52),0 0 14px rgba(197,108,18,.07),inset 0 1px 0 rgba(255,255,255,.05)!important;
 }
-
-#goal-wrapper::before{
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.035);
-}
-
-#goal-wrapper::after{
-  opacity:.11;
-}
-
 #bar-fill{
-  border-radius:0 0 28px 28px;
-  background:
-    linear-gradient(90deg,rgba(255,255,255,.06),transparent 34%,rgba(0,0,0,.14) 72%,rgba(255,255,255,.02)),
-    linear-gradient(180deg,#a6253e 0%,#70162a 48%,#310812 100%);
-  box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.025),
-    inset -7px 0 12px rgba(0,0,0,.18),
-    0 -2px 10px rgba(196,40,61,.07);
+  background:linear-gradient(90deg,rgba(255,255,255,.06),transparent 34%,rgba(0,0,0,.14) 72%,rgba(255,255,255,.02)),linear-gradient(180deg,#e38c24 0%,#aa5c12 48%,#552904 100%)!important;
 }
-
-#bar-fill::before{
-  height:6px;
-  background:linear-gradient(180deg,#fff,#dedede);
-  box-shadow:
-    0 0 6px rgba(255,255,255,.68),
-    0 0 12px rgba(255,255,255,.12);
-}
-
-#bar-fill::after{
-  background:#fff;
-  box-shadow:0 0 5px rgba(255,255,255,.70);
-}
-
-.goal-title{
-  background:rgba(0,0,0,.16);
-  font-size:22px !important;
-}
-
-.goal-title::after{
-  background:linear-gradient(90deg,transparent,#9f1b32,transparent);
-}
-
+#bar-fill::before{height:6px!important;background:linear-gradient(180deg,#fff,#ddd7cc)!important;box-shadow:0 0 6px rgba(255,255,255,.68)!important}
+.goal-title{background:rgba(0,0,0,.16)!important;font-size:22px!important}
+.goal-title::after{background:linear-gradient(90deg,transparent,#d58a29,transparent)!important}
 .goal-amount{
-  bottom:44px;
-  padding:8px 14px 9px;
-  min-width:58px;
-  border-radius:13px;
-  background:linear-gradient(180deg,#79162c,#420a16);
-  border:1px solid rgba(255,255,255,.10);
-  color:#fff;
-  font-size:21px;
-  line-height:1;
-  letter-spacing:.04em;
-  text-shadow:0 1px 0 #050506;
-  box-shadow:0 5px 11px rgba(0,0,0,.26);
-}
-
-@media (max-height:460px){
-  #goal-wrapper{width:76px;border-radius:26px;}
-  #goal-wrapper::before{border-radius:21px;}
-  #bar-fill{border-radius:0 0 25px 25px;}
-  .goal-amount{bottom:40px;font-size:19px;padding:7px 12px 8px;}
+  bottom:44px!important;padding:8px 14px 9px!important;min-width:58px!important;border-radius:13px!important;
+  background:linear-gradient(180deg,#be6611,#6f3607)!important;border:1px solid rgba(255,255,255,.10)!important;
+  color:#fff!important;font-size:21px!important;line-height:1!important;letter-spacing:.04em!important;text-shadow:0 1px 0 #000!important;
 }

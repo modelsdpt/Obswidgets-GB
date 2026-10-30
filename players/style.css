@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
-/* =========================================================
-   TRICK BOX THEME
-   Negro profundo + azul carbón, líneas horizontales sutiles,
-   tipografía cursiva blanca y acabado misterioso/premium.
-========================================================= */
+/* AMBER SHADOW THEME
+Negro -> marrón oscuro -> ámbar/naranja quemado.
+Letras blancas con borde negro fuerte.
+*/
 /* ==========================================
    RAFFLE – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acentos rosa
@@ -969,29 +968,36 @@ body{
 }
 
 
+/* FINAL AMBER SHADOW OVERRIDES */
 
 :root{
-  --tb-black:#020305; --tb-black2:#07090d; --tb-blue:#111a28;
-  --tb-blue2:#1c2a3d; --tb-white:#fff; --tb-silver:#cfd6df;
+  --as-black:#020202;--as-brown:#2c1304;--as-amber:#b55f0e;
+  --as-gold:#e88b1e;--as-white:#fff;
 }
-@keyframes tbSheen{0%,100%{background-position:0% 0,0 0,0 0}50%{background-position:100% 0,12px 0,0 0}}
-@keyframes tbPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.035)}}
-body{color:#fff;font-family:'Inter',Arial,sans-serif}
+@keyframes asFlow{0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,0 0}100%{background-position:0% 50%,0 0}}
+@keyframes asGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.03)}}
 .title,.goal-title,.timer-title,.raffle-title{
   font-family:'Lobster','Brush Script MT',cursive!important;
-  color:#fff!important;-webkit-text-stroke:1.05px #050506;paint-order:stroke fill;
-  text-shadow:0 2px 0 #050506,0 0 5px rgba(255,255,255,.1)
+  color:#fff!important;
+  -webkit-text-stroke:1.15px #050506;
+  paint-order:stroke fill;
+  text-shadow:0 2px 1px #000,0 0 4px rgba(255,255,255,.08)!important;
 }
 
-.raffle-widget{border-radius:30px!important;background:linear-gradient(105deg,transparent 0 28%,rgba(74,96,126,.08) 42%,transparent 56%),repeating-linear-gradient(180deg,rgba(255,255,255,.014) 0 1px,rgba(0,0,0,.12) 1px 4px,rgba(17,26,39,.16) 4px 6px),linear-gradient(135deg,#0a0d12 0%,#020305 54%,#080b10 100%)!important;background-size:220% 100%,100% 6px,100% 100%!important;border:1.5px solid rgba(255,255,255,.09)!important;box-shadow:0 20px 44px rgba(0,0,0,.56),inset 0 1px 0 rgba(255,255,255,.05)!important;animation:tbSheen 18s ease-in-out infinite!important}
-.raffle-widget::before{border-radius:24px!important;border:1px solid rgba(255,255,255,.035)!important}
-.raffle-badge,.raffle-name-item::after,.raffle-tickets,.winner-label{background:linear-gradient(180deg,#252b34,#0d1015)!important;border:1px solid rgba(255,255,255,.1)!important;color:#fff!important;text-shadow:0 1px 0 #050506!important}
-.raffle-title{border-radius:18px!important;background:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,.003)),linear-gradient(135deg,#0c1017,#020305)!important;border:1px solid rgba(255,255,255,.105)!important}
-.raffle-title::after{height:1px!important;background:linear-gradient(90deg,transparent,#939ca8,transparent)!important;box-shadow:none!important}
-.raffle-name-item{border-radius:15px!important;background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.002)),linear-gradient(135deg,#11151d,#05070b 62%,#020304)!important;border:1px solid rgba(255,255,255,.07)!important;box-shadow:0 6px 14px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.03)!important}
-.raffle-name-item:first-child{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),linear-gradient(135deg,#151a23,#07090e 58%,#020304)!important;border:1px solid rgba(255,255,255,.13)!important}
-.raffle-name{color:#fff!important;-webkit-text-stroke:.42px #050506;paint-order:stroke fill;text-shadow:0 2px 0 rgba(0,0,0,.76)!important}
-.raffle-winner-screen{border-radius:29px!important;background:linear-gradient(105deg,transparent 0 30%,rgba(75,98,129,.08) 48%,transparent 64%),repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0 1px,rgba(0,0,0,.12) 1px 4px,rgba(17,26,39,.14) 4px 6px),linear-gradient(135deg,#0a0d12 0%,#020305 58%,#080b10 100%)!important;border:1px solid rgba(255,255,255,.09)!important}
-.raffle-winner-screen::before{content:"✦  ♠  ✦"!important;font-family:'Lobster','Brush Script MT',cursive!important;color:#fff!important;-webkit-text-stroke:.9px #050506;paint-order:stroke fill;text-shadow:0 2px 0 #050506!important}
-.winner-name{font-family:'Lobster','Brush Script MT',cursive!important;color:#fff!important;-webkit-text-stroke:1.1px #050506;paint-order:stroke fill;text-shadow:0 3px 0 #050506!important}
-
+.raffle-widget{
+  background:radial-gradient(ellipse at 72% 48%,rgba(242,148,34,.22) 0%,transparent 38%),linear-gradient(100deg,#020202 0%,#090502 10%,#251003 22%,#512506 42%,#91470b 64%,#c56d13 82%,#e48a1e 100%)!important;
+  background-size:165% 100%,100% 100%!important;border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 20px 44px rgba(0,0,0,.56),inset 0 1px 0 rgba(255,255,255,.05)!important;
+  animation:asFlow 22s ease-in-out infinite,asGlow 9s ease-in-out infinite!important;
+}
+.raffle-badge,.raffle-name-item::after,.raffle-tickets,.winner-label{
+  background:linear-gradient(180deg,#b85f0e,#683207)!important;color:#fff!important;border-color:rgba(255,255,255,.10)!important;text-shadow:0 1px 0 #000!important;
+}
+.raffle-title{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),linear-gradient(100deg,#090502 0%,#311603 28%,#773907 62%,#bd6510 100%)!important;border-color:rgba(255,255,255,.11)!important}
+.raffle-title::after{background:linear-gradient(90deg,transparent,#d88928,transparent)!important;box-shadow:none!important}
+.raffle-name-item{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.002)),linear-gradient(100deg,#0b0703 0%,#321904 42%,#713806 100%)!important}
+.raffle-name-item:first-child{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),linear-gradient(100deg,#120a03 0%,#472204 40%,#95500c 100%)!important}
+.raffle-name{color:#fff!important;text-shadow:0 2px 0 #000!important}
+.raffle-winner-screen{background:radial-gradient(circle at 62% 44%,rgba(236,148,41,.12) 0%,transparent 43%),linear-gradient(100deg,#020202 0%,#0d0602 18%,#3a1a04 46%,#7a3b09 72%,#b55d10 100%)!important}
+.raffle-winner-screen::before{content:"✦  ◆  ✦"!important;color:#fff!important;text-shadow:0 2px 0 #000!important}
+.winner-name{font-family:'Lobster','Brush Script MT',cursive!important;color:#fff!important;text-shadow:0 3px 0 #000!important}
