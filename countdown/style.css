@@ -14,7 +14,7 @@
 ========================================================= */
 
 /* ==========================================
-   RAFFLE – MODERN BLACK / WHITE / PINK THEME
+   TIMER – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acentos rosa
    Estética premium + esquinas suaves
 ========================================== */
@@ -61,7 +61,6 @@ body{
 body{
   color:var(--white);
   font-family:'Inter', Arial, sans-serif;
-  overflow:hidden;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -71,92 +70,75 @@ body{
    CONTENEDOR PRINCIPAL
 ========================================================= */
 
-.raffle-widget{
+.timer-widget{
   position:relative;
   isolation:isolate;
 
-  width:560px;
+  width:280px;
   max-width:100%;
-  min-height:430px;
   padding:10px;
 
   overflow:hidden;
-  border-radius:30px;
+  border-radius:27px;
 
   background:
-    radial-gradient(circle at 15% -6%, rgba(255,79,163,.09) 0%, transparent 34%),
+    radial-gradient(circle at 18% -8%, rgba(255,79,163,.085) 0%, transparent 34%),
     radial-gradient(circle at 92% 110%, rgba(255,79,163,.045) 0%, transparent 42%),
     linear-gradient(145deg, #111114 0%, #08080a 48%, #030304 100%);
 
   border:1px solid rgba(255,255,255,.10);
 
   box-shadow:
-    0 22px 50px rgba(0,0,0,.50),
+    0 20px 46px rgba(0,0,0,.48),
     0 8px 22px rgba(0,0,0,.34),
     0 0 0 1px rgba(0,0,0,.38),
     inset 0 1px 0 rgba(255,255,255,.055),
     inset 0 -1px 0 rgba(255,255,255,.015);
-
-  transition:
-    opacity .28s ease,
-    transform .28s ease,
-    filter .28s ease;
-}
-
-.raffle-widget.hidden{
-  opacity:0;
-  transform:translateY(10px) scale(.97);
-  pointer-events:none;
-}
-
-.raffle-widget:not(.hidden){
-  opacity:1;
-  transform:translateY(0) scale(1);
 }
 
 /* Marco interior sutil */
-.raffle-widget::before{
+.timer-widget::before{
   content:"";
   position:absolute;
   inset:4px;
-  z-index:4;
+  z-index:5;
 
-  border-radius:25px;
+  border-radius:22px;
   border:1px solid rgba(255,255,255,.035);
 
   pointer-events:none;
 }
 
 /* Halo rosa ambiental */
-.raffle-widget::after{
+.timer-widget::after{
   content:"";
   position:absolute;
-  left:10%;
-  right:10%;
-  bottom:-30px;
+  left:12%;
+  right:12%;
+  bottom:-24px;
   z-index:0;
 
-  height:58px;
+  height:46px;
   border-radius:999px;
 
   background:radial-gradient(
     ellipse at center,
-    rgba(255,79,163,.24) 0%,
-    rgba(255,79,163,.075) 40%,
-    rgba(255,79,163,0) 76%
+    rgba(255,79,163,.22) 0%,
+    rgba(255,79,163,.08) 38%,
+    rgba(255,79,163,0) 74%
   );
 
-  filter:blur(16px);
+  filter:blur(14px);
   opacity:.68;
 
-  animation:raffleAmbientGlow 5.2s ease-in-out infinite alternate;
+  animation:timerAmbientGlow 4.8s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
-@keyframes raffleAmbientGlow{
+@keyframes timerAmbientGlow{
   from{
     opacity:.42;
-    transform:scale(.95);
+    transform:scale(.94);
   }
 
   to{
@@ -167,142 +149,37 @@ body{
 
 
 /* =========================================================
-   CAPAS PRINCIPALES
+   TÍTULO
 ========================================================= */
 
-.raffle-header,
-.raffle-names{
+.timer-title{
   position:relative;
-  z-index:5;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.raffle-header{
-  margin-bottom:10px;
-  text-align:center;
-}
-
-
-/* =========================================================
-   BADGE SUPERIOR
-========================================================= */
-
-.raffle-badge{
-  position:relative;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  min-height:28px;
-  padding:6px 15px 7px;
-
-  overflow:hidden;
-  border-radius:999px;
-
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.028) 0%, rgba(255,255,255,.006) 100%),
-    #0a0a0c;
-
-  border:1px solid rgba(255,79,163,.16);
-
-  box-shadow:
-    0 5px 13px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.04),
-    0 0 12px rgba(255,79,163,.045);
-
-  font-family:'Inter', Arial, sans-serif;
-  font-size:11px;
-  font-weight:800;
-  line-height:1;
-  letter-spacing:.10em;
-
-  color:rgba(255,255,255,.94);
-  text-transform:uppercase;
-
-  text-shadow:0 1px 2px rgba(0,0,0,.86);
-}
-
-/* Punto rosa de estado */
-.raffle-badge::before{
-  content:"";
-
-  width:7px;
-  height:7px;
-  margin-right:7px;
-  flex:0 0 auto;
-
-  border-radius:50%;
-
-  background:var(--pink);
-
-  box-shadow:
-    0 0 5px rgba(255,79,163,.78),
-    0 0 10px rgba(255,79,163,.30);
-
-  animation:raffleStatusDot 1.8s ease-in-out infinite alternate;
-}
-
-@keyframes raffleStatusDot{
-  from{
-    opacity:.72;
-    transform:scale(.90);
-  }
-
-  to{
-    opacity:1;
-    transform:scale(1.10);
-  }
-}
-
-/* Línea rosa inferior del badge */
-.raffle-badge::after{
-  content:"";
-
-  position:absolute;
-  left:20%;
-  right:20%;
-  bottom:0;
-
-  height:1px;
-
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,79,163,.30),
-    rgba(255,139,198,.82),
-    rgba(255,79,163,.30),
-    transparent
-  );
-
-  box-shadow:0 0 6px rgba(255,79,163,.16);
-}
-
-
-/* =========================================================
-   TÍTULO PRINCIPAL
-========================================================= */
-
-.raffle-title{
-  position:relative;
+  z-index:6;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  min-height:58px;
-  margin:9px 0 0;
-  padding:10px 18px 14px;
+  min-height:54px;
+  margin:0 0 10px;
+  padding:9px 15px 13px;
 
   overflow:hidden;
-  border-radius:21px;
+  border-radius:20px;
+
+  text-align:center;
+  text-transform:none;
+
+  font-family:'Lobster', cursive;
+  font-size:27px;
+  font-weight:400;
+  line-height:1.05;
+  letter-spacing:.01em;
+
+  color:#ffffff;
 
   background:
-    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(255,255,255,.008) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.032) 0%, rgba(255,255,255,.008) 100%),
     #080809;
 
   border:1px solid rgba(255,255,255,.085);
@@ -311,31 +188,22 @@ body{
     0 8px 22px rgba(0,0,0,.28),
     inset 0 1px 0 rgba(255,255,255,.04);
 
-  font-family:'Lobster', cursive;
-  font-size:34px;
-  font-weight:400;
-  line-height:1.05;
-  letter-spacing:.01em;
-
-  color:#ffffff;
-  text-transform:none;
-
   text-shadow:
-    0 1px 2px rgba(0,0,0,.92),
+    0 1px 2px rgba(0,0,0,.90),
     0 0 8px rgba(255,255,255,.07);
 }
 
-.raffle-title::before{
+/* Diseño limpio: sin línea superior */
+.timer-title::before{
   content:none;
 }
 
-/* Línea rosa inspirada en MVP / BAR / TIMER */
-.raffle-title::after{
+/* Línea rosa inferior */
+.timer-title::after{
   content:"";
-
   position:absolute;
-  left:11%;
-  right:11%;
+  left:12%;
+  right:12%;
   bottom:6px;
 
   height:2px;
@@ -359,54 +227,51 @@ body{
 
 
 /* =========================================================
-   LISTA DE PARTICIPANTES
+   CONTENEDOR DEL RELOJ
 ========================================================= */
 
-.raffle-names{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:8px;
+.timer-display{
+  position:relative;
+  z-index:6;
 
-  width:100%;
-  overflow:visible;
-}
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-/* Mantiene comportamiento original: máximo 5 visibles */
-.raffle-names .raffle-name-item:nth-child(n + 6){
-  display:none;
+  padding:3px 0 2px;
 }
 
 
 /* =========================================================
-   PARTICIPANTE
+   CAJA DEL TIEMPO
 ========================================================= */
 
-.raffle-name-item{
+.timer-box{
   position:relative;
   isolation:isolate;
 
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:10px;
+  justify-content:center;
 
-  min-height:52px;
-  padding:8px 11px 8px 13px;
+  width:194px;
+  height:82px;
 
   overflow:hidden;
-  border-radius:18px;
+  border-radius:23px;
 
   background:
-    radial-gradient(circle at 11% 0%, rgba(255,79,163,.035) 0%, transparent 36%),
-    linear-gradient(180deg, rgba(255,255,255,.030) 0%, rgba(255,255,255,.006) 100%),
-    linear-gradient(135deg, #121215 0%, #09090b 56%, #060607 100%);
+    radial-gradient(circle at 15% 0%, rgba(255,79,163,.055) 0%, transparent 35%),
+    linear-gradient(180deg, rgba(255,255,255,.032) 0%, rgba(255,255,255,.008) 100%),
+    linear-gradient(135deg, #151518 0%, #0b0b0d 52%, #060607 100%);
 
-  border:1px solid rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.095);
 
   box-shadow:
-    0 6px 15px rgba(0,0,0,.29),
-    inset 0 1px 0 rgba(255,255,255,.035),
-    inset 0 -1px 0 rgba(0,0,0,.66);
+    0 10px 24px rgba(0,0,0,.38),
+    0 0 0 1px rgba(0,0,0,.20),
+    inset 0 1px 0 rgba(255,255,255,.04),
+    inset 0 -1px 0 rgba(0,0,0,.74);
 
   transition:
     transform .22s ease,
@@ -415,10 +280,28 @@ body{
     box-shadow .22s ease;
 }
 
-/* Barrido de luz muy discreto */
-.raffle-name-item::before{
+/* Acento rosa lateral */
+.timer-box::before{
   content:"";
+  position:absolute;
+  top:12px;
+  bottom:12px;
+  left:8px;
+  z-index:3;
 
+  width:4px;
+  border-radius:999px;
+
+  background:linear-gradient(180deg, var(--pink-light) 0%, var(--pink) 100%);
+
+  box-shadow:
+    0 0 6px rgba(255,79,163,.55),
+    0 0 13px rgba(255,79,163,.18);
+}
+
+/* Brillo fino de interacción */
+.timer-box::after{
+  content:"";
   position:absolute;
   inset:0;
   z-index:1;
@@ -426,32 +309,32 @@ body{
   background:linear-gradient(
     112deg,
     transparent 0%,
-    rgba(255,255,255,.010) 30%,
-    rgba(255,255,255,.050) 48%,
-    rgba(255,79,163,.018) 57%,
+    rgba(255,255,255,.012) 30%,
+    rgba(255,255,255,.055) 48%,
+    rgba(255,79,163,.022) 57%,
     transparent 72%
   );
 
-  opacity:.22;
+  opacity:.24;
   transform:translateX(-115%);
 
-  animation:raffleRowSweep 8s ease-in-out infinite;
+  animation:timerBoxSweep 7.5s ease-in-out infinite;
   pointer-events:none;
 }
 
-@keyframes raffleRowSweep{
-  0%, 56%{
+@keyframes timerBoxSweep{
+  0%, 52%{
     transform:translateX(-115%);
     opacity:0;
   }
 
-  63%{
-    opacity:.24;
+  60%{
+    opacity:.28;
   }
 
-  84%{
+  82%{
     transform:translateX(115%);
-    opacity:.20;
+    opacity:.24;
   }
 
   100%{
@@ -460,396 +343,162 @@ body{
   }
 }
 
-/* Símbolo lateral */
-.raffle-name-item::after{
-  content:"$";
-
-  position:absolute;
-  top:50%;
-  left:11px;
-  z-index:3;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:29px;
-  height:29px;
-
-  transform:translateY(-50%);
-  border-radius:11px;
-
-  background:rgba(255,79,163,.08);
-  border:1px solid rgba(255,79,163,.18);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.035),
-    0 3px 8px rgba(0,0,0,.28),
-    0 0 10px rgba(255,79,163,.055);
-
-  font-family:'Inter', Arial, sans-serif;
-  font-size:15px;
-  font-weight:800;
-  line-height:1;
-
-  color:#ffffff;
-
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.90),
-    0 0 7px rgba(255,79,163,.12);
-
-  pointer-events:none;
-}
-
-/* Primer participante destacado */
-.raffle-name-item:first-child{
-  min-height:57px;
-
-  background:
-    radial-gradient(circle at 11% 0%, rgba(255,79,163,.095) 0%, transparent 37%),
-    linear-gradient(180deg, rgba(255,255,255,.040) 0%, rgba(255,255,255,.008) 100%),
-    linear-gradient(135deg, #17171b 0%, #0b0b0e 54%, #060607 100%);
-
-  border-color:rgba(255,79,163,.28);
-
-  box-shadow:
-    0 9px 21px rgba(0,0,0,.35),
-    0 0 0 1px rgba(255,79,163,.025),
-    0 0 16px rgba(255,79,163,.075),
-    inset 0 1px 0 rgba(255,255,255,.045);
-}
-
-.raffle-name-item:first-child::after{
-  width:31px;
-  height:31px;
-
-  background:rgba(255,79,163,.13);
-  border-color:rgba(255,79,163,.30);
-
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.045),
-    0 3px 9px rgba(0,0,0,.30),
-    0 0 12px rgba(255,79,163,.11);
-}
-
-/* Hover */
-.raffle-name-item:hover{
-  transform:translateY(-1px);
-  filter:brightness(1.035);
-  border-color:rgba(255,79,163,.24);
-
-  box-shadow:
-    0 9px 20px rgba(0,0,0,.35),
-    0 0 0 1px rgba(255,79,163,.030),
-    0 0 14px rgba(255,79,163,.060),
-    inset 0 1px 0 rgba(255,255,255,.045);
-}
-
 
 /* =========================================================
-   NOMBRE DEL PARTICIPANTE
+   VALOR DEL TIMER
 ========================================================= */
 
-.raffle-name{
-  position:relative;
-  z-index:3;
-
-  flex:1 1 auto;
-  min-width:0;
-  padding-left:37px;
-
-  font-family:'Inter', Arial, sans-serif;
-  font-size:16px;
-  font-weight:800;
-  line-height:1.08;
-  letter-spacing:.005em;
-
-  color:rgba(255,255,255,.94);
-  text-transform:none;
-
-  white-space:normal;
-  overflow-wrap:anywhere;
-  word-break:break-word;
-
-  text-shadow:0 1px 2px rgba(0,0,0,.88);
-}
-
-.raffle-name-item:first-child .raffle-name{
-  font-size:17px;
-  font-weight:800;
-  color:#ffffff;
-}
-
-.raffle-name-item:nth-child(n + 4) .raffle-name{
-  font-size:15px;
-}
-
-
-/* =========================================================
-   CANTIDAD DE TICKETS
-========================================================= */
-
-.raffle-tickets{
-  position:relative;
-  z-index:3;
-
-  flex:0 0 auto;
-
-  min-width:50px;
-  min-height:32px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:5px 10px 6px;
-  border-radius:12px;
-
-  background:
-    linear-gradient(180deg, rgba(255,79,163,.075) 0%, rgba(255,79,163,.025) 100%),
-    #0b0b0d;
-
-  border:1px solid rgba(255,79,163,.19);
-
-  color:#ffffff;
-  white-space:nowrap;
-
-  box-shadow:
-    0 4px 10px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.035),
-    0 0 10px rgba(255,79,163,.045);
-
-  text-shadow:0 1px 2px rgba(0,0,0,.88);
-
-  font-size:0;
-  line-height:1;
-}
-
-/* Mantiene data-tickets */
-.raffle-tickets::after{
-  content:attr(data-tickets);
-
-  font-family:'Inter', Arial, sans-serif;
-  font-size:17px;
-  font-weight:800;
-  line-height:1;
-  letter-spacing:-.01em;
-
-  color:#ffffff;
-
-  text-shadow:
-    0 1px 2px rgba(0,0,0,.90),
-    0 0 7px rgba(255,79,163,.08);
-}
-
-
-/* =========================================================
-   PANTALLA DEL GANADOR
-========================================================= */
-
-.raffle-winner-screen{
-  position:absolute;
-  inset:0;
-  z-index:20;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  padding:28px;
-  overflow:hidden;
-  border-radius:29px;
-
-  background:
-    radial-gradient(circle at 50% 43%, rgba(255,79,163,.16) 0%, rgba(255,79,163,.065) 24%, transparent 48%),
-    radial-gradient(circle at 16% 10%, rgba(255,255,255,.035) 0%, transparent 30%),
-    linear-gradient(145deg, #111114 0%, #070708 58%, #020203 100%);
-
-  opacity:0;
-  transform:scale(.94);
-
-  transition:
-    opacity .28s ease,
-    transform .28s cubic-bezier(.2,.75,.24,1);
-}
-
-/* Marco interior ganador */
-.raffle-winner-screen::after{
-  content:"";
-
-  position:absolute;
-  inset:8px;
-  z-index:1;
-
-  border-radius:22px;
-  border:1px solid rgba(255,79,163,.14);
-
-  box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,.52),
-    inset 0 0 46px rgba(255,79,163,.025),
-    0 0 18px rgba(255,79,163,.035);
-
-  pointer-events:none;
-}
-
-/* Símbolo superior */
-.raffle-winner-screen::before{
-  content:"✦  $  ✦";
-
-  position:absolute;
-  top:21%;
-  left:50%;
-  z-index:3;
-
-  transform:translateX(-50%);
-
-  font-family:'Inter', Arial, sans-serif;
-  font-size:25px;
-  font-weight:800;
-  line-height:1;
-  letter-spacing:.12em;
-
-  color:var(--pink-light);
-  white-space:nowrap;
-
-  text-shadow:
-    0 2px 0 rgba(0,0,0,.92),
-    0 0 8px rgba(255,79,163,.35),
-    0 0 16px rgba(255,79,163,.12);
-
-  animation:raffleWinnerSparkle 1.8s ease-in-out infinite alternate;
-}
-
-@keyframes raffleWinnerSparkle{
-  from{
-    opacity:.68;
-    transform:translateX(-50%) scale(.97);
-    filter:brightness(.98);
-  }
-
-  to{
-    opacity:1;
-    transform:translateX(-50%) scale(1.05);
-    filter:brightness(1.10) drop-shadow(0 0 8px rgba(255,79,163,.18));
-  }
-}
-
-
-/* =========================================================
-   ESTADOS WINNER
-========================================================= */
-
-.raffle-winner-screen.show{
-  opacity:1;
-  transform:scale(1);
-
-  animation:raffleWinnerScreenBreath 2s ease-in-out infinite alternate;
-}
-
-.raffle-winner-screen.hidden{
-  opacity:0;
-  pointer-events:none;
-}
-
-
-/* =========================================================
-   TEXTOS DEL GANADOR
-========================================================= */
-
-.winner-label,
-.winner-name{
+#timer-value{
   position:relative;
   z-index:4;
 
-  color:#ffffff;
-  text-align:center;
-}
-
-/* WINNER pill */
-.winner-label{
-  margin-bottom:10px;
-  padding:7px 17px 8px;
-
-  border-radius:999px;
-
-  background:rgba(255,79,163,.085);
-  border:1px solid rgba(255,79,163,.24);
-
-  box-shadow:
-    0 5px 13px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.035),
-    0 0 13px rgba(255,79,163,.065);
+  padding-left:7px;
 
   font-family:'Inter', Arial, sans-serif;
-  font-size:15px;
+  font-size:42px;
   font-weight:800;
   line-height:1;
-  letter-spacing:.10em;
-
-  color:rgba(255,255,255,.96);
-  text-transform:uppercase;
-
-  text-shadow:0 1px 2px rgba(0,0,0,.86);
-}
-
-/* Nombre del ganador */
-.winner-name{
-  max-width:94%;
-  padding:4px 10px;
-
-  font-family:'Lobster', cursive;
-  font-size:58px;
-  font-weight:400;
-  line-height:.98;
-  letter-spacing:.01em;
+  letter-spacing:.045em;
 
   color:#ffffff;
-  text-transform:none;
+  white-space:nowrap;
 
-  overflow-wrap:anywhere;
-  word-break:break-word;
+  font-variant-numeric:tabular-nums;
 
   text-shadow:
-    0 3px 0 rgba(0,0,0,.94),
-    0 0 8px rgba(255,255,255,.12),
-    0 0 18px rgba(255,79,163,.16);
+    0 2px 0 rgba(0,0,0,.92),
+    0 0 8px rgba(255,255,255,.08);
 
-  animation:raffleWinnerPop 1.15s ease-in-out infinite alternate;
+  transition:
+    text-shadow .22s ease,
+    filter .22s ease;
 }
 
-@keyframes raffleWinnerPop{
+#timer-value span{
+  display:inline-block;
+}
+
+
+/* =========================================================
+   TIMER ACTIVO
+========================================================= */
+
+.timer-box.timer-running{
+  animation:timerRunningPink 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes timerRunningPink{
   from{
     transform:scale(1);
-    filter:brightness(1);
+    border-color:rgba(255,255,255,.095);
+
+    box-shadow:
+      0 10px 24px rgba(0,0,0,.38),
+      0 0 0 1px rgba(255,79,163,.025),
+      0 0 12px rgba(255,79,163,.045),
+      inset 0 1px 0 rgba(255,255,255,.04);
   }
 
   to{
-    transform:scale(1.035);
-    filter:
-      brightness(1.07)
-      drop-shadow(0 0 8px rgba(255,255,255,.08))
-      drop-shadow(0 0 14px rgba(255,79,163,.12));
+    transform:scale(1.012);
+    border-color:rgba(255,79,163,.26);
+
+    box-shadow:
+      0 12px 27px rgba(0,0,0,.42),
+      0 0 0 1px rgba(255,79,163,.05),
+      0 0 18px rgba(255,79,163,.10),
+      inset 0 1px 0 rgba(255,255,255,.05);
+  }
+}
+
+.timer-box.timer-running #timer-value{
+  animation:timerNumberPink 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes timerNumberPink{
+  from{
+    filter:brightness(1);
+
+    text-shadow:
+      0 2px 0 rgba(0,0,0,.92),
+      0 0 7px rgba(255,255,255,.07);
+  }
+
+  to{
+    filter:brightness(1.05);
+
+    text-shadow:
+      0 2px 0 rgba(0,0,0,.92),
+      0 0 8px rgba(255,255,255,.10),
+      0 0 13px rgba(255,79,163,.12);
   }
 }
 
 
 /* =========================================================
-   RESPLANDOR WINNER
+   TIMER FINALIZADO
 ========================================================= */
 
-@keyframes raffleWinnerScreenBreath{
+.timer-box.timer-finished{
+  border-color:rgba(255,79,163,.52);
+  filter:brightness(1.06);
+
+  animation:timerFinishedPink .95s ease-in-out infinite alternate;
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.44),
+    0 0 0 1px rgba(255,79,163,.08),
+    0 0 18px rgba(255,79,163,.16),
+    0 0 30px rgba(255,79,163,.06),
+    inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.timer-box.timer-finished::before{
+  background:linear-gradient(180deg, #ffc0df 0%, var(--pink) 58%, var(--pink-deep) 100%);
+
+  box-shadow:
+    0 0 7px rgba(255,79,163,.72),
+    0 0 16px rgba(255,79,163,.28);
+}
+
+.timer-box.timer-finished #timer-value{
+  color:#ffffff;
+
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.94),
+    0 0 8px rgba(255,255,255,.16),
+    0 0 14px rgba(255,79,163,.22);
+}
+
+@keyframes timerFinishedPink{
   from{
-    box-shadow:
-      inset 0 0 38px rgba(255,79,163,.018),
-      0 0 0 rgba(255,79,163,0);
+    transform:scale(1);
   }
 
   to{
-    box-shadow:
-      inset 0 0 68px rgba(255,79,163,.055),
-      0 0 28px rgba(255,79,163,.055);
+    transform:scale(1.022);
   }
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.timer-box:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.035);
+  border-color:rgba(255,79,163,.28);
+
+  box-shadow:
+    0 13px 28px rgba(0,0,0,.43),
+    0 0 0 1px rgba(255,79,163,.045),
+    0 0 16px rgba(255,79,163,.085),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.timer-box.timer-running:hover{
+  animation-play-state:running;
 }
 
 
@@ -857,102 +506,33 @@ body{
    RESPONSIVE
 ========================================================= */
 
-@media (max-width:590px){
+@media (max-width:310px){
 
-  .raffle-widget{
+  .timer-widget{
     width:100%;
-    min-height:405px;
     padding:9px;
-    border-radius:26px;
+    border-radius:23px;
   }
 
-  .raffle-widget::before{
-    border-radius:21px;
+  .timer-widget::before{
+    border-radius:18px;
   }
 
-  .raffle-title{
-    min-height:54px;
-    border-radius:19px;
-    font-size:30px;
+  .timer-title{
+    min-height:50px;
+    padding:8px 12px 12px;
+    border-radius:18px;
+    font-size:24px;
   }
 
-  .raffle-name-item{
-    min-height:49px;
-    border-radius:16px;
+  .timer-box{
+    width:176px;
+    height:72px;
+    border-radius:20px;
   }
 
-  .raffle-name-item:first-child{
-    min-height:54px;
-  }
-
-  .raffle-name{
-    font-size:15px;
-  }
-
-  .raffle-name-item:first-child .raffle-name{
-    font-size:16px;
-  }
-
-  .raffle-name-item:nth-child(n + 4) .raffle-name{
-    font-size:14px;
-  }
-
-  .raffle-winner-screen{
-    border-radius:25px;
-  }
-
-  .winner-label{
-    font-size:14px;
-  }
-
-  .winner-name{
-    font-size:48px;
-  }
-}
-
-
-@media (max-width:390px){
-
-  .raffle-widget{
-    min-height:390px;
-  }
-
-  .raffle-title{
-    font-size:27px;
-  }
-
-  .raffle-badge{
-    font-size:10px;
-  }
-
-  .raffle-name-item{
-    padding-right:8px;
-  }
-
-  .raffle-name{
-    font-size:14px;
-  }
-
-  .raffle-name-item:first-child .raffle-name{
-    font-size:15px;
-  }
-
-  .raffle-tickets{
-    min-width:43px;
-    padding-left:8px;
-    padding-right:8px;
-  }
-
-  .raffle-tickets::after{
-    font-size:16px;
-  }
-
-  .winner-label{
-    font-size:13px;
-  }
-
-  .winner-name{
-    font-size:40px;
+  #timer-value{
+    font-size:37px;
   }
 }
 
@@ -963,16 +543,16 @@ body{
 
 @media (prefers-reduced-motion:reduce){
 
-  .raffle-widget,
-  .raffle-widget::after,
-  .raffle-badge::before,
-  .raffle-name-item,
-  .raffle-name-item::before,
-  .raffle-winner-screen,
-  .raffle-winner-screen::before,
-  .raffle-winner-screen.show,
-  .winner-name{
+  .timer-widget::after,
+  .timer-box::after,
+  .timer-box.timer-running,
+  .timer-box.timer-running #timer-value,
+  .timer-box.timer-finished{
     animation:none;
+  }
+
+  .timer-box,
+  #timer-value{
     transition:none;
   }
 }
@@ -1018,10 +598,10 @@ body{
     0 0 4px rgba(255,255,255,.08);
 }
 
-/* ========================= RAFFLE ========================= */
+/* ========================= TIMER ========================= */
 
-.raffle-widget{
-  border-radius:30px;
+.timer-widget{
+  border-radius:27px;
   background:
     repeating-linear-gradient(
       180deg,
@@ -1032,30 +612,29 @@ body{
     linear-gradient(105deg,#020202 0%,#0b0406 20%,#28080d 48%,#4b0b16 74%,#25070d 100%);
   border:1.5px solid rgba(255,255,255,.09);
   box-shadow:
-    0 20px 44px rgba(0,0,0,.56),
+    0 18px 38px rgba(0,0,0,.54),
     inset 0 1px 0 rgba(255,255,255,.05);
   animation:treatGlow 9s ease-in-out infinite;
 }
 
-.raffle-widget::before{
-  border-radius:24px;
+.timer-widget::before{
+  border-radius:21px;
   border:1px solid rgba(255,255,255,.035);
 }
 
-.raffle-widget::after{
+.timer-widget::after{
   opacity:.10;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 3px,
+      rgba(170,24,46,.11) 3px 4px,
+      transparent 4px 8px
+    );
 }
 
-.raffle-badge{
-  border-radius:999px;
-  background:linear-gradient(180deg,#74152a,#3d0914);
-  border:1px solid rgba(255,255,255,.09);
-  color:#fff;
-  text-shadow:0 1px 0 #050506;
-}
-
-.raffle-title{
-  border-radius:18px;
+.timer-title{
+  border-radius:17px;
   background:
     repeating-linear-gradient(
       180deg,
@@ -1067,92 +646,55 @@ body{
   border:1px solid rgba(255,255,255,.11);
 }
 
-.raffle-title::after{
+.timer-title::after{
   height:2px;
   background:linear-gradient(90deg,transparent,#8f1429,#d33a50,#8f1429,transparent);
   box-shadow:none;
 }
 
-.raffle-name-item{
-  border-radius:15px;
+.timer-box{
+  border-radius:21px;
   background:
     linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.002)),
     linear-gradient(100deg,#0b0506 0%,#24070c 42%,#4e0d18 100%);
   border:1px solid rgba(255,255,255,.07);
   box-shadow:
-    0 6px 14px rgba(0,0,0,.28),
+    0 10px 22px rgba(0,0,0,.34),
     inset 0 1px 0 rgba(255,255,255,.03);
 }
 
-.raffle-name-item::after{
-  border-radius:10px;
-  background:linear-gradient(180deg,#74152a,#3d0914);
-  border:1px solid rgba(255,255,255,.09);
-  color:#fff;
-  text-shadow:0 1px 0 #050506;
+.timer-box::before{
+  width:4px;
+  background:linear-gradient(180deg,#e4e4e4,#9e9e9e,#484848);
+  box-shadow:0 0 6px rgba(255,255,255,.08);
 }
 
-.raffle-name-item:first-child{
-  border-radius:17px;
+#timer-value{
+  color:#fff;
+  -webkit-text-stroke:.45px #050506;
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(0,0,0,.76);
+}
+
+.timer-box.timer-running{
+  animation:treatTimerPulse 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes treatTimerPulse{
+  from{transform:scale(1)}
+  to{
+    transform:scale(1.012);
+    border-color:rgba(255,255,255,.13);
+    box-shadow:
+      0 11px 24px rgba(0,0,0,.38),
+      0 0 10px rgba(173,26,48,.04),
+      inset 0 1px 0 rgba(255,255,255,.04);
+  }
+}
+
+.timer-box.timer-finished{
+  border-color:rgba(255,255,255,.14);
   background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),
+    radial-gradient(circle at 50% 30%,rgba(190,40,61,.07),transparent 44%),
     linear-gradient(100deg,#100608 0%,#320911 40%,#681123 100%);
-  border:1px solid rgba(255,255,255,.12);
-}
-
-.raffle-name{
-  color:#fff;
-  -webkit-text-stroke:.42px #050506;
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(0,0,0,.74);
-}
-
-.raffle-tickets{
-  border-radius:10px;
-  background:linear-gradient(180deg,#74152a,#3d0914);
-  border:1px solid rgba(255,255,255,.09);
-}
-
-.raffle-tickets::after{
-  color:#fff;
-  text-shadow:0 1px 0 #050506;
-}
-
-.raffle-winner-screen{
-  border-radius:29px;
-  background:
-    repeating-linear-gradient(
-      180deg,
-      rgba(170,24,46,.18) 0 2px,
-      transparent 2px 7px
-    ),
-    radial-gradient(circle at 60% 44%,rgba(171,28,48,.11) 0%,transparent 43%),
-    linear-gradient(105deg,#020202 0%,#0b0406 20%,#28080d 48%,#4b0b16 74%,#25070d 100%);
-  border:1px solid rgba(255,255,255,.09);
-}
-
-.raffle-winner-screen::before{
-  content:"✦  ♥  ✦";
-  font-family:'Lobster','Brush Script MT',cursive;
-  color:#fff;
-  -webkit-text-stroke:.9px #050506;
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 #050506,
-    0 0 7px rgba(184,34,53,.10);
-}
-
-.winner-label{
-  background:linear-gradient(180deg,#74152a,#3d0914);
-  border:1px solid rgba(255,255,255,.09);
-  color:#fff;
-  text-shadow:0 1px 0 #050506;
-}
-
-.winner-name{
-  font-family:'Lobster','Brush Script MT',cursive;
-  color:#fff;
-  -webkit-text-stroke:1.1px #050506;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050506;
 }
