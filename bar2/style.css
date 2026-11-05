@@ -1,25 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
-/* =========================================================
-   TREAT BOX THEME
-   Inspirado en la referencia "30$ Treat Box"
-
-   Concepto:
-   - Negro profundo + vinotinto / burgundy
-   - Líneas horizontales rojas tipo panel / neon strip
-   - Letras blancas cursivas con borde negro
-   - Brillo rojo muy sutil
-   - Fondo oscuro elegante, sin verse plano
-   - GOAL con números grandes y legibles
-   - Mantiene selectores y lógica funcional existentes
-========================================================= */
-
 /* ==========================================
    GOAL BAR – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acento rosa
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -543,126 +528,23 @@ body{
 }
 
 
-/* ===== TREAT BOX FINAL OVERRIDES ===== */
-:root{
-  --tbx-black:#020202;
-  --tbx-black-2:#070506;
-  --tbx-wine:#3f0712;
-  --tbx-wine-2:#65101f;
-  --tbx-wine-3:#86162d;
-  --tbx-red:#b21f38;
-  --tbx-red-bright:#d63c52;
-  --tbx-white:#ffffff;
-  --tbx-shadow:rgba(0,0,0,.64);
-}
 
-@keyframes treatGlow{
-  0%,100%{
-    filter:brightness(1);
-  }
-  50%{
-    filter:brightness(1.025);
-  }
-}
+/* =========================================================
+   CANDY HEARTS COLOR-CYCLE THEME
+   Morado + corazones -> rosa/azul cielo -> morado
+========================================================= */
+:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
+@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
+@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
+@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif;}
 
-body{
-  color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
+#goal-wrapper{width:78px;border-radius:29px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--purple-a),var(--purple-b) 48%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;border:2px solid rgba(255,255,255,.30);box-shadow:0 16px 34px rgba(36,0,67,.28),inset 0 1px 0 rgba(255,255,255,.17);animation:candyHeartFloat 13s linear infinite;}
+#goal-wrapper::before{z-index:6;border-radius:23px;border:1px solid rgba(255,255,255,.14);}
+#goal-wrapper::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--pink-a) 0%,#f568c5 42%,var(--sky-a) 74%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
+#bar-fill{z-index:2;border-radius:0 0 28px 28px;background-image:linear-gradient(90deg,rgba(255,255,255,.18),transparent 32%,rgba(62,0,93,.10) 72%,rgba(255,255,255,.08)),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0));background-color:#8b34e7;animation:candyBarFill 8s ease-in-out infinite;}
+@keyframes candyBarFill{0%,100%{background-color:#8430e7}46%{background-color:#ef53b7}58%{background-color:#69d7ff}}
+#bar-fill::before{height:5px;background:linear-gradient(180deg,#fff,#f5ecff);box-shadow:0 0 6px rgba(255,255,255,.76),0 0 12px rgba(255,255,255,.24);}
+.goal-title{z-index:7;border-radius:10px;font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;background:rgba(76,14,120,.20);-webkit-text-stroke:.8px rgba(46,0,67,.72);paint-order:stroke fill;text-shadow:0 2px 0 rgba(75,15,99,.55);}
+.goal-amount{z-index:7;border-radius:12px;background:linear-gradient(180deg,#fff,#f5eef9);border:1.5px solid rgba(103,34,143,.28);font-family:'Anton',Impact,sans-serif;font-weight:400;color:#6f249e;text-shadow:none;}
 
-.title,
-.goal-title,
-.timer-title,
-.raffle-title{
-  font-family:'Lobster','Brush Script MT',cursive !important;
-  color:#fff !important;
-  -webkit-text-stroke:1.05px #050506;
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 1px rgba(0,0,0,.95),
-    0 0 4px rgba(255,255,255,.08);
-}
-
-/* ========================= GOAL ========================= */
-
-#goal-wrapper{
-  width:82px;
-  border-radius:29px;
-  background:
-    repeating-linear-gradient(
-      180deg,
-      rgba(167,23,44,.20) 0 2px,
-      transparent 2px 7px
-    ),
-    radial-gradient(ellipse at 55% 64%,rgba(147,21,42,.16) 0%,transparent 38%),
-    linear-gradient(180deg,#050203 0%,#180609 26%,#390a11 54%,#691122 82%,#350911 100%);
-  border:1.5px solid rgba(255,255,255,.09);
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.52),
-    0 0 14px rgba(142,20,40,.07),
-    inset 0 1px 0 rgba(255,255,255,.05);
-}
-
-#goal-wrapper::before{
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.035);
-}
-
-#goal-wrapper::after{
-  opacity:.11;
-}
-
-#bar-fill{
-  border-radius:0 0 28px 28px;
-  background:
-    linear-gradient(90deg,rgba(255,255,255,.06),transparent 34%,rgba(0,0,0,.14) 72%,rgba(255,255,255,.02)),
-    linear-gradient(180deg,#a6253e 0%,#70162a 48%,#310812 100%);
-  box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.025),
-    inset -7px 0 12px rgba(0,0,0,.18),
-    0 -2px 10px rgba(196,40,61,.07);
-}
-
-#bar-fill::before{
-  height:6px;
-  background:linear-gradient(180deg,#fff,#dedede);
-  box-shadow:
-    0 0 6px rgba(255,255,255,.68),
-    0 0 12px rgba(255,255,255,.12);
-}
-
-#bar-fill::after{
-  background:#fff;
-  box-shadow:0 0 5px rgba(255,255,255,.70);
-}
-
-.goal-title{
-  background:rgba(0,0,0,.16);
-  font-size:22px !important;
-}
-
-.goal-title::after{
-  background:linear-gradient(90deg,transparent,#9f1b32,transparent);
-}
-
-.goal-amount{
-  bottom:44px;
-  padding:8px 14px 9px;
-  min-width:58px;
-  border-radius:13px;
-  background:linear-gradient(180deg,#79162c,#420a16);
-  border:1px solid rgba(255,255,255,.10);
-  color:#fff;
-  font-size:21px;
-  line-height:1;
-  letter-spacing:.04em;
-  text-shadow:0 1px 0 #050506;
-  box-shadow:0 5px 11px rgba(0,0,0,.26);
-}
-
-@media (max-height:460px){
-  #goal-wrapper{width:76px;border-radius:26px;}
-  #goal-wrapper::before{border-radius:21px;}
-  #bar-fill{border-radius:0 0 25px 25px;}
-  .goal-amount{bottom:40px;font-size:19px;padding:7px 12px 8px;}
-}

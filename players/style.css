@@ -1,15 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
-/* AMBER SHADOW THEME
-Negro -> marrón oscuro -> ámbar/naranja quemado.
-Letras blancas con borde negro fuerte.
-*/
+/* =========================================================
+   SARAH THEME
+   Inspirado en la referencia:
+   - Fondo hielo / celeste muy claro con rosa suave
+   - Efecto mármol lechoso
+   - Letras blancas cursivas con contorno rosa
+   - "Spray" / veta morada animada desde la esquina superior izquierda
+   - Aparición y desaparición suave
+   - Bordes redondeados y brillo delicado
+   - Mantiene los selectores y estados funcionales existentes
+========================================================= */
+
 /* ==========================================
    RAFFLE – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acentos rosa
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -968,36 +975,278 @@ body{
 }
 
 
-/* FINAL AMBER SHADOW OVERRIDES */
-
 :root{
-  --as-black:#020202;--as-brown:#2c1304;--as-amber:#b55f0e;
-  --as-gold:#e88b1e;--as-white:#fff;
+  --sarah-ice:#eefaff;
+  --sarah-blue:#d7f0fb;
+  --sarah-blue-2:#bfe3f3;
+  --sarah-pink:#ffc8dd;
+  --sarah-pink-2:#f59dbc;
+  --sarah-pink-deep:#d95d8c;
+  --sarah-purple:#9b6ad7;
+  --sarah-purple-2:#7551b5;
+  --sarah-white:#ffffff;
+  --sarah-shadow:rgba(116,83,132,.18);
 }
-@keyframes asFlow{0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,0 0}100%{background-position:0% 50%,0 0}}
-@keyframes asGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.03)}}
-.title,.goal-title,.timer-title,.raffle-title{
-  font-family:'Lobster','Brush Script MT',cursive!important;
-  color:#fff!important;
-  -webkit-text-stroke:1.15px #050506;
-  paint-order:stroke fill;
-  text-shadow:0 2px 1px #000,0 0 4px rgba(255,255,255,.08)!important;
+
+@keyframes sarahMarbleDrift{
+  0%{
+    background-position:
+      0% 30%,
+      100% 20%,
+      20% 80%,
+      0% 0%;
+  }
+  25%{
+    background-position:
+      24% 42%,
+      76% 35%,
+      38% 66%,
+      20% 0%;
+  }
+  50%{
+    background-position:
+      62% 34%,
+      48% 58%,
+      58% 45%,
+      45% 0%;
+  }
+  75%{
+    background-position:
+      34% 58%,
+      84% 44%,
+      28% 54%,
+      72% 0%;
+  }
+  100%{
+    background-position:
+      0% 30%,
+      100% 20%,
+      20% 80%,
+      0% 0%;
+  }
 }
+
+@keyframes sarahSprayMove{
+  0%{
+    opacity:0;
+    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
+    filter:blur(14px);
+  }
+  12%{
+    opacity:.28;
+  }
+  30%{
+    opacity:.58;
+    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
+    filter:blur(10px);
+  }
+  48%{
+    opacity:.34;
+    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
+  }
+  62%{
+    opacity:.10;
+    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
+  }
+  75%,100%{
+    opacity:0;
+    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
+    filter:blur(16px);
+  }
+}
+
+@keyframes sarahSoftBreath{
+  0%,100%{ filter:brightness(1) saturate(1); }
+  50%{ filter:brightness(1.018) saturate(1.025); }
+}
+
+body{
+  color:#fff;
+  font-family:'Inter',Arial,sans-serif;
+}
+
+/* =========================================================
+   SARAH — RAFFLE
+========================================================= */
 
 .raffle-widget{
-  background:radial-gradient(ellipse at 72% 48%,rgba(242,148,34,.22) 0%,transparent 38%),linear-gradient(100deg,#020202 0%,#090502 10%,#251003 22%,#512506 42%,#91470b 64%,#c56d13 82%,#e48a1e 100%)!important;
-  background-size:165% 100%,100% 100%!important;border:1px solid rgba(255,255,255,.10)!important;
-  box-shadow:0 20px 44px rgba(0,0,0,.56),inset 0 1px 0 rgba(255,255,255,.05)!important;
-  animation:asFlow 22s ease-in-out infinite,asGlow 9s ease-in-out infinite!important;
+  border-radius:31px;
+  background:
+    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
+    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
+    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
+    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
+  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
+  border:1.5px solid rgba(255,255,255,.84);
+  box-shadow:
+    0 18px 38px var(--sarah-shadow),
+    inset 0 2px 0 rgba(255,255,255,.78);
+  animation:
+    sarahMarbleDrift 31s ease-in-out infinite,
+    sarahSoftBreath 9s ease-in-out infinite;
 }
-.raffle-badge,.raffle-name-item::after,.raffle-tickets,.winner-label{
-  background:linear-gradient(180deg,#b85f0e,#683207)!important;color:#fff!important;border-color:rgba(255,255,255,.10)!important;text-shadow:0 1px 0 #000!important;
+
+.raffle-widget::before{
+  content:"";
+  position:absolute;
+  inset:-12%;
+  z-index:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
+    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
+    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
+  transform-origin:top left;
+  animation:sarahSprayMove 16s ease-in-out infinite;
 }
-.raffle-title{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),linear-gradient(100deg,#090502 0%,#311603 28%,#773907 62%,#bd6510 100%)!important;border-color:rgba(255,255,255,.11)!important}
-.raffle-title::after{background:linear-gradient(90deg,transparent,#d88928,transparent)!important;box-shadow:none!important}
-.raffle-name-item{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.002)),linear-gradient(100deg,#0b0703 0%,#321904 42%,#713806 100%)!important}
-.raffle-name-item:first-child{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),linear-gradient(100deg,#120a03 0%,#472204 40%,#95500c 100%)!important}
-.raffle-name{color:#fff!important;text-shadow:0 2px 0 #000!important}
-.raffle-winner-screen{background:radial-gradient(circle at 62% 44%,rgba(236,148,41,.12) 0%,transparent 43%),linear-gradient(100deg,#020202 0%,#0d0602 18%,#3a1a04 46%,#7a3b09 72%,#b55d10 100%)!important}
-.raffle-winner-screen::before{content:"✦  ◆  ✦"!important;color:#fff!important;text-shadow:0 2px 0 #000!important}
-.winner-name{font-family:'Lobster','Brush Script MT',cursive!important;color:#fff!important;text-shadow:0 3px 0 #000!important}
+
+.raffle-widget::after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  z-index:4;
+  width:auto;
+  height:auto;
+  left:5px;
+  top:5px;
+  transform:none;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.46);
+  background:none;
+  animation:none;
+  pointer-events:none;
+}
+
+.raffle-header,
+.raffle-names{
+  position:relative;
+  z-index:5;
+}
+
+.raffle-badge{
+  border-radius:999px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+  font-weight:900;
+  color:#bd4d78;
+  text-shadow:none;
+}
+
+.raffle-badge::before{
+  background:var(--sarah-purple);
+  box-shadow:0 0 0 3px rgba(155,106,215,.10),0 0 7px rgba(155,106,215,.20);
+}
+
+.raffle-title{
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
+    rgba(224,169,201,.16);
+  border:1.5px solid rgba(255,255,255,.74);
+  font-family:'Pacifico','Brush Script MT',cursive;
+  font-weight:400;
+  color:#fff;
+  -webkit-text-stroke:1.15px var(--sarah-pink-deep);
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(201,78,124,.20),0 0 6px rgba(255,255,255,.60);
+}
+
+.raffle-title::after{
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
+}
+
+.raffle-name-item{
+  border-radius:17px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
+    rgba(214,232,242,.32);
+  border:1px solid rgba(255,255,255,.62);
+  box-shadow:
+    0 6px 14px rgba(120,100,134,.10),
+    inset 0 1px 0 rgba(255,255,255,.72);
+}
+
+.raffle-name-item::after{
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+  font-family:'Inter',Arial,sans-serif;
+  font-weight:900;
+  color:#bd4d78;
+  text-shadow:none;
+}
+
+.raffle-name-item:first-child{
+  border-radius:19px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,.13)),
+    rgba(216,229,240,.36);
+  border:1.5px solid rgba(255,255,255,.80);
+}
+
+.raffle-name{
+  font-weight:900;
+  color:#fff;
+  -webkit-text-stroke:.45px var(--sarah-pink-deep);
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 rgba(192,71,116,.20);
+}
+
+.raffle-tickets{
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+}
+
+.raffle-tickets::after{
+  font-family:'Inter',Arial,sans-serif;
+  font-weight:900;
+  color:#bd4d78;
+  text-shadow:none;
+}
+
+.raffle-winner-screen{
+  border-radius:30px;
+  background:
+    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
+    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
+    linear-gradient(120deg,#f7fdff 0%,#dff2fb 30%,#ffe1eb 58%,#d7eef8 100%);
+  background-size:170% 170%,180% 180%,230% 230%;
+  animation:sarahMarbleDrift 30s ease-in-out infinite;
+  border:1.5px solid rgba(255,255,255,.84);
+}
+
+.raffle-winner-screen::before{
+  content:"✦  ♡  ✦";
+  font-family:'Pacifico','Brush Script MT',cursive;
+  color:#fff;
+  -webkit-text-stroke:.9px var(--sarah-pink-deep);
+  paint-order:stroke fill;
+  text-shadow:0 0 7px rgba(217,93,140,.18);
+}
+
+.winner-label{
+  border-radius:999px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+  color:#bd4d78;
+  text-shadow:none;
+}
+
+.winner-name{
+  font-family:'Pacifico','Brush Script MT',cursive;
+  color:#fff;
+  -webkit-text-stroke:1.1px var(--sarah-pink-deep);
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 rgba(201,78,124,.20),0 0 8px rgba(255,255,255,.52);
+}
+
+@media (max-width:590px){
+  .raffle-widget{border-radius:27px;}
+  .raffle-widget::after{border-radius:22px;}
+  .raffle-title{border-radius:18px;}
+  .raffle-name-item{border-radius:15px;}
+  .raffle-winner-screen{border-radius:26px;}
+}

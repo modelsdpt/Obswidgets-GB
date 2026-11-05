@@ -1,15 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Inter:wght@600;700;800;900&display=swap');
-/* AMBER SHADOW THEME
-Negro -> marrón oscuro -> ámbar/naranja quemado.
-Letras blancas con borde negro fuerte.
-*/
+/* =========================================================
+   SARAH THEME
+   Inspirado en la referencia:
+   - Fondo hielo / celeste muy claro con rosa suave
+   - Efecto mármol lechoso
+   - Letras blancas cursivas con contorno rosa
+   - "Spray" / veta morada animada desde la esquina superior izquierda
+   - Aparición y desaparición suave
+   - Bordes redondeados y brillo delicado
+   - Mantiene los selectores y estados funcionales existentes
+========================================================= */
+
 /* ==========================================
    MVP – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, tipografía blanca, acento rosa
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -580,44 +587,260 @@ body{
 }
 
 
-/* FINAL AMBER SHADOW OVERRIDES */
-
 :root{
-  --as-black:#020202;--as-brown:#2c1304;--as-amber:#b55f0e;
-  --as-gold:#e88b1e;--as-white:#fff;
+  --sarah-ice:#eefaff;
+  --sarah-blue:#d7f0fb;
+  --sarah-blue-2:#bfe3f3;
+  --sarah-pink:#ffc8dd;
+  --sarah-pink-2:#f59dbc;
+  --sarah-pink-deep:#d95d8c;
+  --sarah-purple:#9b6ad7;
+  --sarah-purple-2:#7551b5;
+  --sarah-white:#ffffff;
+  --sarah-shadow:rgba(116,83,132,.18);
 }
-@keyframes asFlow{0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,0 0}100%{background-position:0% 50%,0 0}}
-@keyframes asGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.03)}}
-.title,.goal-title,.timer-title,.raffle-title{
-  font-family:'Lobster','Brush Script MT',cursive!important;
-  color:#fff!important;
-  -webkit-text-stroke:1.15px #050506;
-  paint-order:stroke fill;
-  text-shadow:0 2px 1px #000,0 0 4px rgba(255,255,255,.08)!important;
+
+@keyframes sarahMarbleDrift{
+  0%{
+    background-position:
+      0% 30%,
+      100% 20%,
+      20% 80%,
+      0% 0%;
+  }
+  25%{
+    background-position:
+      24% 42%,
+      76% 35%,
+      38% 66%,
+      20% 0%;
+  }
+  50%{
+    background-position:
+      62% 34%,
+      48% 58%,
+      58% 45%,
+      45% 0%;
+  }
+  75%{
+    background-position:
+      34% 58%,
+      84% 44%,
+      28% 54%,
+      72% 0%;
+  }
+  100%{
+    background-position:
+      0% 30%,
+      100% 20%,
+      20% 80%,
+      0% 0%;
+  }
 }
+
+@keyframes sarahSprayMove{
+  0%{
+    opacity:0;
+    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
+    filter:blur(14px);
+  }
+  12%{
+    opacity:.28;
+  }
+  30%{
+    opacity:.58;
+    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
+    filter:blur(10px);
+  }
+  48%{
+    opacity:.34;
+    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
+  }
+  62%{
+    opacity:.10;
+    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
+  }
+  75%,100%{
+    opacity:0;
+    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
+    filter:blur(16px);
+  }
+}
+
+@keyframes sarahSoftBreath{
+  0%,100%{ filter:brightness(1) saturate(1); }
+  50%{ filter:brightness(1.018) saturate(1.025); }
+}
+
+body{
+  color:#fff;
+  font-family:'Inter',Arial,sans-serif;
+}
+
+/* =========================================================
+   SARAH — MVP
+========================================================= */
 
 #container{
+  border-radius:30px;
+  padding:11px;
   background:
-    radial-gradient(ellipse at 72% 48%,rgba(242,148,34,.22) 0%,transparent 38%),
-    linear-gradient(100deg,#020202 0%,#090502 10%,#251003 22%,#512506 42%,#91470b 64%,#c56d13 82%,#e48a1e 100%)!important;
-  background-size:165% 100%,100% 100%!important;
-  border:1px solid rgba(255,255,255,.10)!important;
-  box-shadow:0 18px 38px rgba(0,0,0,.54),0 0 16px rgba(197,108,18,.08),inset 0 1px 0 rgba(255,255,255,.05)!important;
-  animation:asFlow 22s ease-in-out infinite,asGlow 9s ease-in-out infinite!important;
+    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
+    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
+    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
+    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
+  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
+  border:1.5px solid rgba(255,255,255,.84);
+  box-shadow:
+    0 16px 34px var(--sarah-shadow),
+    0 5px 14px rgba(102,122,145,.10),
+    inset 0 2px 0 rgba(255,255,255,.78);
+  animation:
+    sarahMarbleDrift 30s ease-in-out infinite,
+    sarahSoftBreath 9s ease-in-out infinite;
 }
-#container::before{border-color:rgba(255,255,255,.04)!important}
+
+#container::before{
+  content:"";
+  position:absolute;
+  inset:-12%;
+  z-index:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
+    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
+    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
+  transform-origin:top left;
+  animation:sarahSprayMove 15s ease-in-out infinite;
+}
+
 #container::after{
-  background:radial-gradient(ellipse at center,rgba(225,135,28,.19) 0%,rgba(120,56,7,.07) 45%,transparent 76%)!important;
-  opacity:.45!important;filter:blur(12px)!important;
+  content:"";
+  position:absolute;
+  inset:5px;
+  z-index:5;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.46);
+  box-shadow:inset 0 0 0 1px rgba(191,227,243,.08);
+  pointer-events:none;
 }
+
 .title{
-  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),linear-gradient(100deg,#090502 0%,#311603 28%,#773907 62%,#bd6510 100%)!important;
-  border:1px solid rgba(255,255,255,.11)!important;
-  text-transform:none!important;
+  z-index:7;
+  min-height:49px;
+  border-radius:19px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
+    rgba(224,169,201,.16);
+  border:1.5px solid rgba(255,255,255,.74);
+  box-shadow:
+    0 7px 17px rgba(130,95,130,.11),
+    inset 0 1px 0 rgba(255,255,255,.78);
+  font-family:'Pacifico','Brush Script MT',cursive;
+  font-size:27px;
+  font-weight:400;
+  letter-spacing:.005em;
+  color:#fff;
+  text-transform:none;
+  -webkit-text-stroke:1.15px var(--sarah-pink-deep);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(201,78,124,.22),
+    0 0 6px rgba(255,255,255,.70);
 }
-.title::after{background:linear-gradient(90deg,transparent,#d88928,transparent)!important;box-shadow:none!important}
-.tip{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.002)),linear-gradient(100deg,#0b0703 0%,#321904 42%,#713806 100%)!important}
-.tip::before{background:linear-gradient(180deg,#eee6d8,#aa8d63,#604820)!important}
-.tip .name{color:#fff!important;text-shadow:0 2px 0 #000!important}
-.tip .amount,.rank-icon{background:linear-gradient(180deg,#b85f0e,#683207)!important;color:#fff!important;border-color:rgba(255,255,255,.10)!important;text-shadow:0 1px 0 #000!important}
-.tip.mvp{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.003)),linear-gradient(100deg,#120a03 0%,#472204 40%,#95500c 100%)!important}
+
+.title::before{
+  left:14%;
+  right:14%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.90),transparent);
+}
+
+.title::after{
+  left:27%;
+  right:27%;
+  bottom:2px;
+  height:3px;
+  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
+  box-shadow:0 0 7px rgba(217,93,140,.28);
+}
+
+#top-list{gap:8px;}
+
+.tip{
+  z-index:7;
+  border-radius:17px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
+    rgba(214,232,242,.32);
+  border:1px solid rgba(255,255,255,.62);
+  box-shadow:
+    0 6px 14px rgba(120,100,134,.10),
+    inset 0 1px 0 rgba(255,255,255,.72);
+  backdrop-filter:blur(2px);
+}
+
+.tip::before{
+  width:4px;
+  background:linear-gradient(180deg,#fff,var(--sarah-pink),var(--sarah-pink-deep));
+  box-shadow:0 0 8px rgba(217,93,140,.22);
+}
+
+.tip::after{
+  opacity:.16;
+}
+
+.tip:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.025);
+  border-color:rgba(255,255,255,.82);
+}
+
+.tip .name{
+  color:#fff;
+  font-weight:900;
+  -webkit-text-stroke:.45px var(--sarah-pink-deep);
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 rgba(192,71,116,.20);
+}
+
+.tip .amount{
+  border-radius:11px;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.28);
+  color:#bd4d78;
+  font-family:'Inter',Arial,sans-serif;
+  font-weight:900;
+  text-shadow:none;
+}
+
+.tip.mvp{
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,.13)),
+    rgba(216,229,240,.36);
+  border:1.5px solid rgba(255,255,255,.80);
+}
+
+.tip.mvp::before{
+  width:5px;
+  background:linear-gradient(180deg,#fff,#ffc8dd,#d95d8c);
+}
+
+.rank-icon{
+  border-radius:11px;
+  font-family:'Inter',Arial,sans-serif;
+  font-weight:900;
+  color:#bd4d78;
+  background:linear-gradient(180deg,#fff,#fff3f8);
+  border:1.5px solid rgba(217,93,140,.26);
+  text-shadow:none;
+}
+
+@media (max-width:460px){
+  #container{border-radius:26px;}
+  #container::after{border-radius:21px;}
+  .title{border-radius:17px;}
+  .tip{border-radius:15px;}
+  .tip.mvp{border-radius:18px;}
+}
