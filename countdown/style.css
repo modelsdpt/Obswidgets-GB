@@ -1,13 +1,11 @@
 /* =========================================================
-   SARAH THEME
+   NEON FLOW THEME
    Inspirado en la referencia:
-   - Fondo hielo / celeste muy claro con rosa suave
-   - Efecto mármol lechoso
-   - Letras blancas cursivas con contorno rosa
-   - "Spray" / veta morada animada desde la esquina superior izquierda
-   - Aparición y desaparición suave
-   - Bordes redondeados y brillo delicado
-   - Mantiene los selectores y estados funcionales existentes
+   - Rosa neón + magenta + violeta + azul eléctrico
+   - Fondo líquido/aurora en movimiento constante
+   - Letras blancas con contorno violeta oscuro
+   - Transiciones lentas y fluidas
+   - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
@@ -16,7 +14,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -555,89 +553,84 @@ body{
 }
 
 
+
 :root{
-  --sarah-ice:#eefaff;
-  --sarah-blue:#d7f0fb;
-  --sarah-blue-2:#bfe3f3;
-  --sarah-pink:#ffc8dd;
-  --sarah-pink-2:#f59dbc;
-  --sarah-pink-deep:#d95d8c;
-  --sarah-purple:#9b6ad7;
-  --sarah-purple-2:#7551b5;
-  --sarah-white:#ffffff;
-  --sarah-shadow:rgba(116,83,132,.18);
+  --nf-pink:#ff21c9;
+  --nf-hot:#ff35a8;
+  --nf-magenta:#d71fff;
+  --nf-purple:#8e24ff;
+  --nf-violet:#6624ef;
+  --nf-blue:#5232ff;
+  --nf-deep:#4a168c;
+  --nf-white:#ffffff;
+  --nf-shadow:rgba(73,19,143,.30);
 }
 
-@keyframes sarahMarbleDrift{
+@keyframes neonFlowMain{
   0%{
     background-position:
       0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
-  25%{
+  20%{
     background-position:
-      24% 42%,
-      76% 35%,
-      38% 66%,
-      20% 0%;
+      22% 42%,
+      78% 24%,
+      36% 72%,
+      64% 84%,
+      18% 50%;
   }
-  50%{
+  40%{
     background-position:
-      62% 34%,
-      48% 58%,
-      58% 45%,
-      45% 0%;
+      46% 24%,
+      60% 42%,
+      14% 72%,
+      82% 52%,
+      42% 50%;
   }
-  75%{
+  60%{
     background-position:
-      34% 58%,
-      84% 44%,
-      28% 54%,
-      72% 0%;
+      70% 44%,
+      36% 22%,
+      48% 88%,
+      58% 34%,
+      68% 50%;
+  }
+  80%{
+    background-position:
+      36% 62%,
+      88% 36%,
+      24% 54%,
+      72% 78%,
+      38% 50%;
   }
   100%{
     background-position:
       0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
 }
 
-@keyframes sarahSprayMove{
-  0%{
-    opacity:0;
-    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
-    filter:blur(14px);
+@keyframes neonFlowGlass{
+  0%,100%{
+    opacity:.16;
+    transform:translate3d(-4%,-2%,0) scale(1.04);
   }
-  12%{
-    opacity:.28;
-  }
-  30%{
-    opacity:.58;
-    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
-    filter:blur(10px);
-  }
-  48%{
-    opacity:.34;
-    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
-  }
-  62%{
-    opacity:.10;
-    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
-  }
-  75%,100%{
-    opacity:0;
-    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
-    filter:blur(16px);
+  50%{
+    opacity:.32;
+    transform:translate3d(5%,3%,0) scale(1.09);
   }
 }
 
-@keyframes sarahSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.018) saturate(1.025); }
+@keyframes neonFlowPulse{
+  0%,100%{ filter:saturate(1) brightness(1); }
+  50%{ filter:saturate(1.08) brightness(1.035); }
 }
 
 body{
@@ -645,140 +638,127 @@ body{
   font-family:'Inter',Arial,sans-serif;
 }
 
+.title,
+.goal-title,
+.timer-title,
+.raffle-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(55,12,101,.46),
+    0 0 7px rgba(255,255,255,.18);
+}
+
 /* =========================================================
-   SARAH — TIMER
+   TIMER
 ========================================================= */
 
 .timer-widget{
-  border-radius:29px;
+  border-radius:30px;
   background:
-    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
-    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
-    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
-    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
-  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
-  border:1.5px solid rgba(255,255,255,.84);
+    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.92) 0 12%, rgba(255,33,201,.48) 22%, transparent 38%),
+    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.70) 0 10%, rgba(255,53,168,.32) 20%, transparent 35%),
+    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.70) 0 14%, rgba(142,36,255,.30) 24%, transparent 42%),
+    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.70) 0 12%, rgba(82,50,255,.26) 23%, transparent 40%),
+    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
+  background-size:
+    190% 190%,
+    175% 175%,
+    205% 205%,
+    185% 185%,
+    240% 100%;
+  border:2px solid rgba(255,255,255,.44);
   box-shadow:
-    0 16px 34px var(--sarah-shadow),
-    inset 0 2px 0 rgba(255,255,255,.78);
+    0 16px 34px var(--nf-shadow),
+    inset 0 2px 0 rgba(255,255,255,.22);
   animation:
-    sarahMarbleDrift 30s ease-in-out infinite,
-    sarahSoftBreath 9s ease-in-out infinite;
+    neonFlowMain 22s ease-in-out infinite,
+    neonFlowPulse 8s ease-in-out infinite;
 }
 
 .timer-widget::before{
-  content:"";
-  position:absolute;
-  inset:-12%;
-  z-index:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
-    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
-    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
-  transform-origin:top left;
-  animation:sarahSprayMove 15.5s ease-in-out infinite;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.18);
 }
 
 .timer-widget::after{
-  content:"";
-  position:absolute;
-  inset:5px;
-  z-index:5;
-  width:auto;
-  height:auto;
-  left:5px;
-  top:5px;
-  transform:none;
-  border-radius:23px;
-  border:1px solid rgba(255,255,255,.46);
-  background:none;
-  animation:none;
-  pointer-events:none;
+  opacity:.16;
+  background:linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255,255,255,.02) 31%,
+    rgba(255,255,255,.15) 49%,
+    rgba(255,255,255,.03) 61%,
+    transparent 74%
+  );
 }
 
 .timer-title{
   z-index:6;
   border-radius:18px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
-    rgba(224,169,201,.16);
-  border:1.5px solid rgba(255,255,255,.74);
-  font-family:'Pacifico','Brush Script MT',cursive;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.1px var(--sarah-pink-deep);
-  paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(201,78,124,.20),0 0 6px rgba(255,255,255,.60);
-}
-
-.timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.88),transparent);
+    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
+    rgba(92,22,166,.17);
+  border:1.5px solid rgba(255,255,255,.34);
 }
 
 .timer-title::after{
-  height:3px;
-  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
-  box-shadow:0 0 6px rgba(217,93,140,.26);
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  box-shadow:0 0 6px rgba(255,255,255,.30);
 }
 
 .timer-box{
   z-index:6;
   border-radius:23px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
-    rgba(214,232,242,.32);
-  border:1px solid rgba(255,255,255,.62);
+    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
+    rgba(87,23,160,.15);
+  border:1px solid rgba(255,255,255,.22);
   box-shadow:
-    0 10px 22px rgba(120,100,134,.11),
-    inset 0 1px 0 rgba(255,255,255,.72);
+    0 10px 22px rgba(66,18,123,.16),
+    inset 0 1px 0 rgba(255,255,255,.16);
 }
 
 .timer-box::before{
   width:4px;
-  background:linear-gradient(180deg,#fff,var(--sarah-pink),var(--sarah-pink-deep));
-  box-shadow:0 0 8px rgba(217,93,140,.22);
-}
-
-.timer-box::after{
-  opacity:.14;
+  background:linear-gradient(180deg,#fff,#ffb7ef,#8e37ff);
 }
 
 #timer-value{
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
   color:#fff;
-  -webkit-text-stroke:.7px var(--sarah-pink-deep);
+  -webkit-text-stroke:.55px rgba(64,18,112,.72);
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(192,71,116,.20);
+  text-shadow:0 2px 0 rgba(55,12,101,.42);
 }
 
 .timer-box.timer-running{
-  animation:sarahTimerPulse 2.9s ease-in-out infinite alternate;
+  animation:nfTimerPulse 2.8s ease-in-out infinite alternate;
 }
 
-@keyframes sarahTimerPulse{
+@keyframes nfTimerPulse{
   from{ transform:scale(1); }
   to{
     transform:scale(1.012);
     box-shadow:
-      0 11px 24px rgba(120,100,134,.13),
-      0 0 12px rgba(217,93,140,.06),
-      inset 0 1px 0 rgba(255,255,255,.76);
+      0 11px 24px rgba(66,18,123,.18),
+      0 0 14px rgba(255,42,204,.08),
+      0 0 12px rgba(96,55,255,.07),
+      inset 0 1px 0 rgba(255,255,255,.18);
   }
 }
 
 .timer-box.timer-finished{
-  border-color:rgba(217,93,140,.34);
+  border-color:rgba(255,255,255,.38);
   background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.36),transparent 44%),
-    rgba(232,203,219,.40);
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.11),transparent 44%),
+    rgba(101,29,181,.20);
 }
 
 @media (max-width:310px){
   .timer-widget{border-radius:26px;}
-  .timer-widget::after{border-radius:21px;}
+  .timer-widget::before{border-radius:21px;}
   .timer-title{border-radius:16px;}
   .timer-box{border-radius:20px;}
 }

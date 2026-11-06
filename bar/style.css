@@ -1,13 +1,11 @@
 /* =========================================================
-   SARAH THEME
+   NEON FLOW THEME
    Inspirado en la referencia:
-   - Fondo hielo / celeste muy claro con rosa suave
-   - Efecto mármol lechoso
-   - Letras blancas cursivas con contorno rosa
-   - "Spray" / veta morada animada desde la esquina superior izquierda
-   - Aparición y desaparición suave
-   - Bordes redondeados y brillo delicado
-   - Mantiene los selectores y estados funcionales existentes
+   - Rosa neón + magenta + violeta + azul eléctrico
+   - Fondo líquido/aurora en movimiento constante
+   - Letras blancas con contorno violeta oscuro
+   - Transiciones lentas y fluidas
+   - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
@@ -16,7 +14,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -540,89 +538,84 @@ body{
 }
 
 
+
 :root{
-  --sarah-ice:#eefaff;
-  --sarah-blue:#d7f0fb;
-  --sarah-blue-2:#bfe3f3;
-  --sarah-pink:#ffc8dd;
-  --sarah-pink-2:#f59dbc;
-  --sarah-pink-deep:#d95d8c;
-  --sarah-purple:#9b6ad7;
-  --sarah-purple-2:#7551b5;
-  --sarah-white:#ffffff;
-  --sarah-shadow:rgba(116,83,132,.18);
+  --nf-pink:#ff21c9;
+  --nf-hot:#ff35a8;
+  --nf-magenta:#d71fff;
+  --nf-purple:#8e24ff;
+  --nf-violet:#6624ef;
+  --nf-blue:#5232ff;
+  --nf-deep:#4a168c;
+  --nf-white:#ffffff;
+  --nf-shadow:rgba(73,19,143,.30);
 }
 
-@keyframes sarahMarbleDrift{
+@keyframes neonFlowMain{
   0%{
     background-position:
       0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
-  25%{
+  20%{
     background-position:
-      24% 42%,
-      76% 35%,
-      38% 66%,
-      20% 0%;
+      22% 42%,
+      78% 24%,
+      36% 72%,
+      64% 84%,
+      18% 50%;
   }
-  50%{
+  40%{
     background-position:
-      62% 34%,
-      48% 58%,
-      58% 45%,
-      45% 0%;
+      46% 24%,
+      60% 42%,
+      14% 72%,
+      82% 52%,
+      42% 50%;
   }
-  75%{
+  60%{
     background-position:
-      34% 58%,
-      84% 44%,
-      28% 54%,
-      72% 0%;
+      70% 44%,
+      36% 22%,
+      48% 88%,
+      58% 34%,
+      68% 50%;
+  }
+  80%{
+    background-position:
+      36% 62%,
+      88% 36%,
+      24% 54%,
+      72% 78%,
+      38% 50%;
   }
   100%{
     background-position:
       0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
 }
 
-@keyframes sarahSprayMove{
-  0%{
-    opacity:0;
-    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
-    filter:blur(14px);
+@keyframes neonFlowGlass{
+  0%,100%{
+    opacity:.16;
+    transform:translate3d(-4%,-2%,0) scale(1.04);
   }
-  12%{
-    opacity:.28;
-  }
-  30%{
-    opacity:.58;
-    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
-    filter:blur(10px);
-  }
-  48%{
-    opacity:.34;
-    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
-  }
-  62%{
-    opacity:.10;
-    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
-  }
-  75%,100%{
-    opacity:0;
-    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
-    filter:blur(16px);
+  50%{
+    opacity:.32;
+    transform:translate3d(5%,3%,0) scale(1.09);
   }
 }
 
-@keyframes sarahSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.018) saturate(1.025); }
+@keyframes neonFlowPulse{
+  0%,100%{ filter:saturate(1) brightness(1); }
+  50%{ filter:saturate(1.08) brightness(1.035); }
 }
 
 body{
@@ -630,101 +623,115 @@ body{
   font-family:'Inter',Arial,sans-serif;
 }
 
+.title,
+.goal-title,
+.timer-title,
+.raffle-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(55,12,101,.46),
+    0 0 7px rgba(255,255,255,.18);
+}
+
 /* =========================================================
-   SARAH — BAR
+   GOAL
 ========================================================= */
 
 #goal-wrapper{
-  width:78px;
-  border-radius:30px;
+  width:82px;
+  border-radius:31px;
   background:
-    radial-gradient(ellipse at 36% 20%, rgba(255,255,255,.82) 0 10%, transparent 31%),
-    radial-gradient(ellipse at 70% 66%, rgba(255,200,221,.30) 0 11%, transparent 32%),
-    linear-gradient(180deg,#f6fdff 0%,#dcedf7 32%,#ffe0ea 58%,#d5edf8 100%);
-  background-size:180% 180%,190% 190%,230% 230%;
-  border:1.5px solid rgba(255,255,255,.82);
+    radial-gradient(ellipse at 42% 15%, rgba(255,33,201,.90) 0 12%, rgba(255,33,201,.44) 22%, transparent 38%),
+    radial-gradient(ellipse at 65% 44%, rgba(213,31,255,.68) 0 12%, rgba(213,31,255,.30) 22%, transparent 38%),
+    radial-gradient(ellipse at 38% 72%, rgba(142,36,255,.66) 0 13%, rgba(142,36,255,.28) 23%, transparent 40%),
+    radial-gradient(ellipse at 70% 90%, rgba(82,50,255,.66) 0 12%, rgba(82,50,255,.26) 22%, transparent 38%),
+    linear-gradient(180deg,#fa27cd 0%,#c523f1 36%,#8b25f1 67%,#5530e9 100%);
+  background-size:
+    150% 150%,
+    160% 160%,
+    165% 165%,
+    155% 155%,
+    100% 230%;
+  border:2px solid rgba(255,255,255,.42);
   box-shadow:
-    0 16px 34px var(--sarah-shadow),
-    inset 0 2px 0 rgba(255,255,255,.76);
+    0 16px 34px var(--nf-shadow),
+    inset 0 2px 0 rgba(255,255,255,.20);
   animation:
-    sarahMarbleDrift 31s ease-in-out infinite,
-    sarahSoftBreath 9s ease-in-out infinite;
+    neonFlowMain 22s ease-in-out infinite,
+    neonFlowPulse 8s ease-in-out infinite;
 }
 
 #goal-wrapper::before{
-  content:"";
-  position:absolute;
-  inset:-18%;
-  z-index:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 20% 8%, rgba(139,96,199,.52) 0 8%, rgba(139,96,199,.20) 18%, transparent 34%),
-    linear-gradient(160deg,rgba(153,109,211,.18),transparent 43%);
-  transform-origin:top left;
-  animation:sarahSprayMove 16s ease-in-out infinite;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.18);
 }
 
 #goal-wrapper::after{
-  content:"";
-  position:absolute;
-  inset:5px;
-  z-index:6;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.44);
-  pointer-events:none;
+  opacity:.14;
+  background:linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255,255,255,.03) 26%,
+    rgba(255,255,255,.16) 50%,
+    rgba(255,255,255,.04) 63%,
+    transparent 100%
+  );
 }
 
 #bar-fill{
-  z-index:2;
-  border-radius:0 0 29px 29px;
+  border-radius:0 0 30px 30px;
   background:
-    linear-gradient(90deg,rgba(255,255,255,.22),transparent 35%,rgba(172,78,119,.07) 72%,rgba(255,255,255,.12)),
-    linear-gradient(180deg,#f4b8cf 0%,#e98daf 48%,#d35f89 100%);
+    linear-gradient(90deg,rgba(255,255,255,.14),transparent 34%,rgba(73,17,135,.08) 72%,rgba(255,255,255,.07)),
+    linear-gradient(180deg,rgba(255,255,255,.25),rgba(120,37,230,.42));
   box-shadow:
-    inset 6px 0 10px rgba(255,255,255,.11),
-    inset -7px 0 12px rgba(171,73,111,.10),
-    0 -2px 10px rgba(255,255,255,.18);
+    inset 6px 0 10px rgba(255,255,255,.08),
+    inset -7px 0 12px rgba(69,17,126,.10),
+    0 -2px 10px rgba(255,255,255,.13);
+  backdrop-filter:blur(1px);
 }
 
 #bar-fill::before{
-  background:linear-gradient(180deg,#fff,#ffd8e7);
-  box-shadow:0 0 6px rgba(255,255,255,.78),0 0 12px rgba(217,93,140,.18);
+  height:5px;
+  background:linear-gradient(180deg,#fff,#f4edff);
+  box-shadow:
+    0 0 7px rgba(255,255,255,.82),
+    0 0 14px rgba(255,255,255,.25);
 }
 
 #bar-fill::after{
+  width:6px;
+  height:6px;
   background:#fff;
-  box-shadow:0 0 5px rgba(255,255,255,.82);
+  box-shadow:
+    0 0 6px rgba(255,255,255,.86),
+    0 0 12px rgba(255,255,255,.22);
 }
 
 .goal-title{
   z-index:7;
-  font-family:'Pacifico','Brush Script MT',cursive;
-  font-weight:400;
-  color:#fff;
-  background:rgba(255,255,255,.16);
-  -webkit-text-stroke:.9px var(--sarah-pink-deep);
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(192,71,116,.18);
-}
-
-.goal-title::after{
-  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
+  font-size:23px;
+  background:rgba(79,21,146,.18);
 }
 
 .goal-amount{
-  z-index:7;
-  border-radius:12px;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border:1.5px solid rgba(217,93,140,.28);
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
-  color:#bd4d78;
+  bottom:44px;
+  padding:8px 14px 9px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.26);
+  font-size:21px;
+  line-height:1;
+  letter-spacing:.05em;
+  color:#7025c5;
   text-shadow:none;
+  box-shadow:0 5px 11px rgba(67,18,124,.14);
 }
 
 @media (max-height:460px){
-  #goal-wrapper{border-radius:27px;}
-  #goal-wrapper::after{border-radius:22px;}
+  #goal-wrapper{width:76px;border-radius:27px;}
+  #goal-wrapper::before{border-radius:22px;}
   #bar-fill{border-radius:0 0 26px 26px;}
+  .goal-amount{bottom:40px;font-size:19px;padding:7px 12px 8px;}
 }

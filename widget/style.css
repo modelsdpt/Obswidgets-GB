@@ -1,13 +1,11 @@
 /* =========================================================
-   SARAH THEME
+   NEON FLOW THEME
    Inspirado en la referencia:
-   - Fondo hielo / celeste muy claro con rosa suave
-   - Efecto mármol lechoso
-   - Letras blancas cursivas con contorno rosa
-   - "Spray" / veta morada animada desde la esquina superior izquierda
-   - Aparición y desaparición suave
-   - Bordes redondeados y brillo delicado
-   - Mantiene los selectores y estados funcionales existentes
+   - Rosa neón + magenta + violeta + azul eléctrico
+   - Fondo líquido/aurora en movimiento constante
+   - Letras blancas con contorno violeta oscuro
+   - Transiciones lentas y fluidas
+   - Mantiene selectores y comportamiento funcional
 ========================================================= */
 
 /* ==========================================
@@ -16,7 +14,7 @@
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -587,89 +585,84 @@ body{
 }
 
 
+
 :root{
-  --sarah-ice:#eefaff;
-  --sarah-blue:#d7f0fb;
-  --sarah-blue-2:#bfe3f3;
-  --sarah-pink:#ffc8dd;
-  --sarah-pink-2:#f59dbc;
-  --sarah-pink-deep:#d95d8c;
-  --sarah-purple:#9b6ad7;
-  --sarah-purple-2:#7551b5;
-  --sarah-white:#ffffff;
-  --sarah-shadow:rgba(116,83,132,.18);
+  --nf-pink:#ff21c9;
+  --nf-hot:#ff35a8;
+  --nf-magenta:#d71fff;
+  --nf-purple:#8e24ff;
+  --nf-violet:#6624ef;
+  --nf-blue:#5232ff;
+  --nf-deep:#4a168c;
+  --nf-white:#ffffff;
+  --nf-shadow:rgba(73,19,143,.30);
 }
 
-@keyframes sarahMarbleDrift{
+@keyframes neonFlowMain{
   0%{
     background-position:
       0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
-  25%{
+  20%{
     background-position:
-      24% 42%,
-      76% 35%,
-      38% 66%,
-      20% 0%;
+      22% 42%,
+      78% 24%,
+      36% 72%,
+      64% 84%,
+      18% 50%;
   }
-  50%{
+  40%{
     background-position:
-      62% 34%,
-      48% 58%,
-      58% 45%,
-      45% 0%;
+      46% 24%,
+      60% 42%,
+      14% 72%,
+      82% 52%,
+      42% 50%;
   }
-  75%{
+  60%{
     background-position:
-      34% 58%,
-      84% 44%,
-      28% 54%,
-      72% 0%;
+      70% 44%,
+      36% 22%,
+      48% 88%,
+      58% 34%,
+      68% 50%;
+  }
+  80%{
+    background-position:
+      36% 62%,
+      88% 36%,
+      24% 54%,
+      72% 78%,
+      38% 50%;
   }
   100%{
     background-position:
       0% 30%,
-      100% 20%,
-      20% 80%,
-      0% 0%;
+      100% 12%,
+      20% 88%,
+      76% 68%,
+      0% 50%;
   }
 }
 
-@keyframes sarahSprayMove{
-  0%{
-    opacity:0;
-    transform:translate3d(-16%,-12%,0) rotate(-18deg) scale(.78);
-    filter:blur(14px);
+@keyframes neonFlowGlass{
+  0%,100%{
+    opacity:.16;
+    transform:translate3d(-4%,-2%,0) scale(1.04);
   }
-  12%{
-    opacity:.28;
-  }
-  30%{
-    opacity:.58;
-    transform:translate3d(2%,0,0) rotate(-8deg) scale(1.02);
-    filter:blur(10px);
-  }
-  48%{
-    opacity:.34;
-    transform:translate3d(16%,10%,0) rotate(4deg) scale(1.10);
-  }
-  62%{
-    opacity:.10;
-    transform:translate3d(28%,18%,0) rotate(11deg) scale(1.18);
-  }
-  75%,100%{
-    opacity:0;
-    transform:translate3d(34%,22%,0) rotate(16deg) scale(1.22);
-    filter:blur(16px);
+  50%{
+    opacity:.32;
+    transform:translate3d(5%,3%,0) scale(1.09);
   }
 }
 
-@keyframes sarahSoftBreath{
-  0%,100%{ filter:brightness(1) saturate(1); }
-  50%{ filter:brightness(1.018) saturate(1.025); }
+@keyframes neonFlowPulse{
+  0%,100%{ filter:saturate(1) brightness(1); }
+  50%{ filter:saturate(1.08) brightness(1.035); }
 }
 
 body{
@@ -677,52 +670,68 @@ body{
   font-family:'Inter',Arial,sans-serif;
 }
 
+.title,
+.goal-title,
+.timer-title,
+.raffle-title{
+  color:#fff !important;
+  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(55,12,101,.46),
+    0 0 7px rgba(255,255,255,.18);
+}
+
 /* =========================================================
-   SARAH — MVP
+   MVP
 ========================================================= */
 
 #container{
   border-radius:30px;
   padding:11px;
   background:
-    radial-gradient(ellipse at 18% 25%, rgba(255,255,255,.88) 0 10%, transparent 30%),
-    radial-gradient(ellipse at 82% 70%, rgba(255,200,221,.34) 0 11%, transparent 31%),
-    radial-gradient(ellipse at 58% 18%, rgba(191,227,243,.48) 0 10%, transparent 30%),
-    linear-gradient(120deg,#f7fdff 0%,#dff2fb 27%,#ffe1eb 52%,#d7eef8 75%,#f8fbff 100%);
-  background-size:170% 170%,180% 180%,160% 160%,230% 230%;
-  border:1.5px solid rgba(255,255,255,.84);
+    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.94) 0 12%, rgba(255,33,201,.50) 22%, transparent 38%),
+    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.72) 0 10%, rgba(255,53,168,.34) 20%, transparent 35%),
+    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.72) 0 14%, rgba(142,36,255,.32) 24%, transparent 42%),
+    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.72) 0 12%, rgba(82,50,255,.28) 23%, transparent 40%),
+    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
+  background-size:
+    190% 190%,
+    175% 175%,
+    205% 205%,
+    185% 185%,
+    240% 100%;
+  border:2px solid rgba(255,255,255,.44);
   box-shadow:
-    0 16px 34px var(--sarah-shadow),
-    0 5px 14px rgba(102,122,145,.10),
-    inset 0 2px 0 rgba(255,255,255,.78);
+    0 16px 34px var(--nf-shadow),
+    0 0 18px rgba(214,31,255,.08),
+    inset 0 2px 0 rgba(255,255,255,.22);
   animation:
-    sarahMarbleDrift 30s ease-in-out infinite,
-    sarahSoftBreath 9s ease-in-out infinite;
+    neonFlowMain 22s ease-in-out infinite,
+    neonFlowPulse 8s ease-in-out infinite;
 }
 
 #container::before{
-  content:"";
-  position:absolute;
-  inset:-12%;
-  z-index:0;
-  border-radius:inherit;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at 12% 10%, rgba(139,96,199,.55) 0 8%, rgba(139,96,199,.22) 18%, transparent 34%),
-    radial-gradient(ellipse at 22% 18%, rgba(114,78,177,.34) 0 7%, transparent 27%),
-    linear-gradient(135deg,rgba(153,109,211,.20),transparent 40%);
-  transform-origin:top left;
-  animation:sarahSprayMove 15s ease-in-out infinite;
+  inset:5px;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:inset 0 0 26px rgba(255,255,255,.04);
 }
 
 #container::after{
   content:"";
   position:absolute;
-  inset:5px;
-  z-index:5;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.46);
-  box-shadow:inset 0 0 0 1px rgba(191,227,243,.08);
+  inset:-10%;
+  z-index:1;
+  width:auto;
+  height:auto;
+  opacity:.18;
+  transform:none;
+  background:
+    radial-gradient(ellipse at 30% 40%,rgba(255,255,255,.24) 0 12%,transparent 30%),
+    radial-gradient(ellipse at 72% 54%,rgba(255,255,255,.12) 0 10%,transparent 28%),
+    linear-gradient(115deg,transparent 30%,rgba(255,255,255,.12) 48%,transparent 64%);
+  animation:neonFlowGlass 12s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
@@ -731,115 +740,89 @@ body{
   min-height:49px;
   border-radius:19px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.12)),
-    rgba(224,169,201,.16);
-  border:1.5px solid rgba(255,255,255,.74);
+    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
+    rgba(92,22,166,.17);
+  border:1.5px solid rgba(255,255,255,.34);
   box-shadow:
-    0 7px 17px rgba(130,95,130,.11),
-    inset 0 1px 0 rgba(255,255,255,.78);
-  font-family:'Pacifico','Brush Script MT',cursive;
-  font-size:27px;
-  font-weight:400;
-  letter-spacing:.005em;
-  color:#fff;
-  text-transform:none;
-  -webkit-text-stroke:1.15px var(--sarah-pink-deep);
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(201,78,124,.22),
-    0 0 6px rgba(255,255,255,.70);
+    0 7px 17px rgba(63,16,121,.20),
+    inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 .title::before{
-  left:14%;
-  right:14%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.90),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.74),transparent);
 }
 
 .title::after{
-  left:27%;
-  right:27%;
-  bottom:2px;
-  height:3px;
-  background:linear-gradient(90deg,transparent,var(--sarah-pink),var(--sarah-pink-deep),var(--sarah-pink),transparent);
-  box-shadow:0 0 7px rgba(217,93,140,.28);
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  box-shadow:0 0 7px rgba(255,255,255,.32);
 }
-
-#top-list{gap:8px;}
 
 .tip{
   z-index:7;
   border-radius:17px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,.10)),
-    rgba(214,232,242,.32);
-  border:1px solid rgba(255,255,255,.62);
+    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
+    rgba(87,23,160,.15);
+  border:1px solid rgba(255,255,255,.22);
   box-shadow:
-    0 6px 14px rgba(120,100,134,.10),
-    inset 0 1px 0 rgba(255,255,255,.72);
-  backdrop-filter:blur(2px);
+    0 6px 14px rgba(66,18,123,.15),
+    inset 0 1px 0 rgba(255,255,255,.16);
+  backdrop-filter:blur(1px);
 }
 
 .tip::before{
   width:4px;
-  background:linear-gradient(180deg,#fff,var(--sarah-pink),var(--sarah-pink-deep));
-  box-shadow:0 0 8px rgba(217,93,140,.22);
-}
-
-.tip::after{
-  opacity:.16;
+  background:linear-gradient(180deg,#fff,#ffb7ef,#8e37ff);
+  box-shadow:0 0 8px rgba(255,255,255,.28);
 }
 
 .tip:hover{
   transform:translateY(-1px);
-  filter:brightness(1.025);
-  border-color:rgba(255,255,255,.82);
+  filter:brightness(1.05);
+  border-color:rgba(255,255,255,.38);
 }
 
 .tip .name{
   color:#fff;
   font-weight:900;
-  -webkit-text-stroke:.45px var(--sarah-pink-deep);
+  -webkit-text-stroke:.42px rgba(68,18,119,.72);
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(192,71,116,.20);
+  text-shadow:0 2px 0 rgba(60,15,108,.38);
 }
 
 .tip .amount{
   border-radius:11px;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border:1.5px solid rgba(217,93,140,.28);
-  color:#bd4d78;
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.25);
+  color:#7225c8;
   text-shadow:none;
 }
 
 .tip.mvp{
   border-radius:20px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.50),rgba(255,255,255,.13)),
-    rgba(216,229,240,.36);
-  border:1.5px solid rgba(255,255,255,.80);
+    linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.04)),
+    rgba(102,28,183,.18);
+  border:1.5px solid rgba(255,255,255,.38);
 }
 
 .tip.mvp::before{
   width:5px;
-  background:linear-gradient(180deg,#fff,#ffc8dd,#d95d8c);
+  background:linear-gradient(180deg,#fff,#ffc0ef,#7d35f5);
 }
 
 .rank-icon{
   border-radius:11px;
-  font-family:'Inter',Arial,sans-serif;
-  font-weight:900;
-  color:#bd4d78;
-  background:linear-gradient(180deg,#fff,#fff3f8);
-  border:1.5px solid rgba(217,93,140,.26);
+  color:#7225c8;
+  background:linear-gradient(180deg,#fff,#f5efff);
+  border:1.5px solid rgba(96,38,174,.23);
   text-shadow:none;
 }
 
 @media (max-width:460px){
   #container{border-radius:26px;}
-  #container::after{border-radius:21px;}
+  #container::before{border-radius:21px;}
   .title{border-radius:17px;}
   .tip{border-radius:15px;}
   .tip.mvp{border-radius:18px;}
