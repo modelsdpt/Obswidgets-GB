@@ -1,11 +1,15 @@
 /* =========================================================
-   NEON FLOW THEME
-   Inspirado en la referencia:
-   - Rosa neón + magenta + violeta + azul eléctrico
-   - Fondo líquido/aurora en movimiento constante
-   - Letras blancas con contorno violeta oscuro
-   - Transiciones lentas y fluidas
-   - Mantiene selectores y comportamiento funcional
+   MISTY THEME
+   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+
+   Concepto:
+   - Fondo negro profundo
+   - Letras blancas con contorno negro para alto contraste
+   - Acabado limpio / oscuro / premium
+   - Cadena metálica decorativa en la parte inferior
+   - GOAL: relleno transparente tipo vidrio; el progreso se
+     ve claramente a medida que aumenta el height del #bar-fill
+   - Mantiene selectores y estados funcionales existentes
 ========================================================= */
 
 /* ==========================================
@@ -14,7 +18,7 @@
    Esquinas suaves + acabado premium
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 
 :root{
   --bg:#050505;
@@ -585,84 +589,26 @@ body{
 }
 
 
-
 :root{
-  --nf-pink:#ff21c9;
-  --nf-hot:#ff35a8;
-  --nf-magenta:#d71fff;
-  --nf-purple:#8e24ff;
-  --nf-violet:#6624ef;
-  --nf-blue:#5232ff;
-  --nf-deep:#4a168c;
-  --nf-white:#ffffff;
-  --nf-shadow:rgba(73,19,143,.30);
+  --misty-black:#020202;
+  --misty-black-2:#070707;
+  --misty-black-3:#0d0d0d;
+  --misty-charcoal:#151515;
+  --misty-white:#ffffff;
+  --misty-silver:#d9d9d9;
+  --misty-silver-soft:#9a9a9a;
+  --misty-line:rgba(255,255,255,.13);
+  --misty-shadow:rgba(0,0,0,.76);
 }
 
-@keyframes neonFlowMain{
-  0%{
-    background-position:
-      0% 30%,
-      100% 12%,
-      20% 88%,
-      76% 68%,
-      0% 50%;
-  }
-  20%{
-    background-position:
-      22% 42%,
-      78% 24%,
-      36% 72%,
-      64% 84%,
-      18% 50%;
-  }
-  40%{
-    background-position:
-      46% 24%,
-      60% 42%,
-      14% 72%,
-      82% 52%,
-      42% 50%;
-  }
-  60%{
-    background-position:
-      70% 44%,
-      36% 22%,
-      48% 88%,
-      58% 34%,
-      68% 50%;
-  }
-  80%{
-    background-position:
-      36% 62%,
-      88% 36%,
-      24% 54%,
-      72% 78%,
-      38% 50%;
-  }
-  100%{
-    background-position:
-      0% 30%,
-      100% 12%,
-      20% 88%,
-      76% 68%,
-      0% 50%;
-  }
+@keyframes mistySoftBreath{
+  0%,100%{ filter:brightness(1); }
+  50%{ filter:brightness(1.035); }
 }
 
-@keyframes neonFlowGlass{
-  0%,100%{
-    opacity:.16;
-    transform:translate3d(-4%,-2%,0) scale(1.04);
-  }
-  50%{
-    opacity:.32;
-    transform:translate3d(5%,3%,0) scale(1.09);
-  }
-}
-
-@keyframes neonFlowPulse{
-  0%,100%{ filter:saturate(1) brightness(1); }
-  50%{ filter:saturate(1.08) brightness(1.035); }
+@keyframes mistyChainShimmer{
+  0%,100%{ opacity:.28; filter:brightness(.90); }
+  50%{ opacity:.52; filter:brightness(1.12); }
 }
 
 body{
@@ -670,160 +616,166 @@ body{
   font-family:'Inter',Arial,sans-serif;
 }
 
-.title,
-.goal-title,
-.timer-title,
-.raffle-title{
-  color:#fff !important;
-  -webkit-text-stroke:1.15px rgba(64,18,112,.78);
-  paint-order:stroke fill;
-  text-shadow:
-    0 2px 0 rgba(55,12,101,.46),
-    0 0 7px rgba(255,255,255,.18);
-}
-
 /* =========================================================
-   MVP
+   MISTY — MVP
 ========================================================= */
 
 #container{
-  border-radius:30px;
-  padding:11px;
-  background:
-    radial-gradient(ellipse at 10% 22%, rgba(255,33,201,.94) 0 12%, rgba(255,33,201,.50) 22%, transparent 38%),
-    radial-gradient(ellipse at 42% 12%, rgba(255,53,168,.72) 0 10%, rgba(255,53,168,.34) 20%, transparent 35%),
-    radial-gradient(ellipse at 70% 70%, rgba(142,36,255,.72) 0 14%, rgba(142,36,255,.32) 24%, transparent 42%),
-    radial-gradient(ellipse at 92% 36%, rgba(82,50,255,.72) 0 12%, rgba(82,50,255,.28) 23%, transparent 40%),
-    linear-gradient(105deg,#fb29cd 0%,#c523f3 38%,#8a26f4 66%,#5530e9 100%);
-  background-size:
-    190% 190%,
-    175% 175%,
-    205% 205%,
-    185% 185%,
-    240% 100%;
-  border:2px solid rgba(255,255,255,.44);
+  border-radius:27px;
+  padding:11px 11px 24px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 18% -5%,rgba(255,255,255,.055) 0%,transparent 33%),
+    radial-gradient(circle at 90% 110%,rgba(255,255,255,.018) 0%,transparent 40%),
+    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
+  background-repeat:repeat-x,no-repeat,no-repeat,no-repeat;
+  background-size:48px 14px,100% 100%,100% 100%,100% 100%;
+  background-position:left 8px bottom 6px,center,center,center;
+  border:1px solid rgba(255,255,255,.14);
   box-shadow:
-    0 16px 34px var(--nf-shadow),
-    0 0 18px rgba(214,31,255,.08),
-    inset 0 2px 0 rgba(255,255,255,.22);
-  animation:
-    neonFlowMain 22s ease-in-out infinite,
-    neonFlowPulse 8s ease-in-out infinite;
+    0 18px 38px rgba(0,0,0,.56),
+    0 0 0 1px rgba(0,0,0,.86),
+    inset 0 1px 0 rgba(255,255,255,.07);
+  animation:mistySoftBreath 9s ease-in-out infinite;
 }
 
 #container::before{
   inset:5px;
-  border-radius:24px;
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:inset 0 0 26px rgba(255,255,255,.04);
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.04);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.66);
 }
 
 #container::after{
-  content:"";
-  position:absolute;
-  inset:-10%;
-  z-index:1;
-  width:auto;
-  height:auto;
-  opacity:.18;
-  transform:none;
-  background:
-    radial-gradient(ellipse at 30% 40%,rgba(255,255,255,.24) 0 12%,transparent 30%),
-    radial-gradient(ellipse at 72% 54%,rgba(255,255,255,.12) 0 10%,transparent 28%),
-    linear-gradient(115deg,transparent 30%,rgba(255,255,255,.12) 48%,transparent 64%);
-  animation:neonFlowGlass 12s ease-in-out infinite alternate;
-  pointer-events:none;
+  opacity:.14;
+  background:linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(255,255,255,.005) 30%,
+    rgba(255,255,255,.08) 49%,
+    rgba(255,255,255,.02) 58%,
+    transparent 72%
+  );
 }
 
 .title{
-  z-index:7;
   min-height:49px;
-  border-radius:19px;
+  border-radius:16px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),
-    rgba(92,22,166,.17);
-  border:1.5px solid rgba(255,255,255,.34);
+    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
+    linear-gradient(135deg,#0d0d0d,#020202);
+  border:1px solid rgba(255,255,255,.12);
   box-shadow:
-    0 7px 17px rgba(63,16,121,.20),
-    inset 0 1px 0 rgba(255,255,255,.22);
+    0 8px 18px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  font-family:'Anton',Impact,sans-serif;
+  font-size:30px;
+  font-weight:400;
+  letter-spacing:.025em;
+  color:#fff;
+  text-transform:uppercase;
+  -webkit-text-stroke:1.35px #050505;
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 #050505,
+    0 0 4px rgba(255,255,255,.10);
 }
 
 .title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.74),transparent);
+  left:15%;
+  right:15%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
 }
 
 .title::after{
-  height:2px;
-  background:linear-gradient(90deg,transparent,#fff,transparent);
-  box-shadow:0 0 7px rgba(255,255,255,.32);
+  left:32%;
+  right:32%;
+  bottom:1px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  box-shadow:none;
 }
 
+#top-list{ gap:8px; }
+
 .tip{
-  z-index:7;
-  border-radius:17px;
+  border-radius:15px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.028)),
-    rgba(87,23,160,.15);
-  border:1px solid rgba(255,255,255,.22);
+    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
+    linear-gradient(135deg,#111111,#050505 60%,#020202);
+  border:1px solid rgba(255,255,255,.08);
   box-shadow:
-    0 6px 14px rgba(66,18,123,.15),
-    inset 0 1px 0 rgba(255,255,255,.16);
-  backdrop-filter:blur(1px);
+    0 6px 14px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .tip::before{
-  width:4px;
-  background:linear-gradient(180deg,#fff,#ffb7ef,#8e37ff);
-  box-shadow:0 0 8px rgba(255,255,255,.28);
+  width:3px;
+  background:linear-gradient(180deg,#f0f0f0,#a8a8a8,#444);
+  box-shadow:0 0 6px rgba(255,255,255,.12);
+}
+
+.tip::after{
+  opacity:.12;
 }
 
 .tip:hover{
   transform:translateY(-1px);
-  filter:brightness(1.05);
-  border-color:rgba(255,255,255,.38);
+  filter:brightness(1.06);
+  border-color:rgba(255,255,255,.16);
 }
 
 .tip .name{
   color:#fff;
   font-weight:900;
-  -webkit-text-stroke:.42px rgba(68,18,119,.72);
+  -webkit-text-stroke:.55px #050505;
   paint-order:stroke fill;
-  text-shadow:0 2px 0 rgba(60,15,108,.38);
+  text-shadow:0 2px 0 rgba(0,0,0,.76);
 }
 
 .tip .amount{
-  border-radius:11px;
-  background:linear-gradient(180deg,#fff,#f5efff);
-  border:1.5px solid rgba(96,38,174,.25);
-  color:#7225c8;
-  text-shadow:none;
+  border-radius:10px;
+  background:linear-gradient(180deg,#242424,#0c0c0c);
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  -webkit-text-stroke:.55px #050505;
+  paint-order:stroke fill;
+  text-shadow:0 1px 0 #050505;
+  box-shadow:0 4px 8px rgba(0,0,0,.28);
 }
 
 .tip.mvp{
-  border-radius:20px;
+  border-radius:18px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.04)),
-    rgba(102,28,183,.18);
-  border:1.5px solid rgba(255,255,255,.38);
+    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.004)),
+    linear-gradient(135deg,#161616,#070707 58%,#020202);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.42),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .tip.mvp::before{
-  width:5px;
-  background:linear-gradient(180deg,#fff,#ffc0ef,#7d35f5);
+  width:4px;
+  background:linear-gradient(180deg,#fff,#bdbdbd,#4c4c4c);
 }
 
 .rank-icon{
-  border-radius:11px;
-  color:#7225c8;
-  background:linear-gradient(180deg,#fff,#f5efff);
-  border:1.5px solid rgba(96,38,174,.23);
-  text-shadow:none;
+  border-radius:10px;
+  font-family:'Anton',Impact,sans-serif;
+  font-weight:400;
+  color:#fff;
+  background:linear-gradient(180deg,#282828,#0e0e0e);
+  border:1px solid rgba(255,255,255,.11);
+  text-shadow:0 1px 0 #050505;
 }
 
 @media (max-width:460px){
-  #container{border-radius:26px;}
-  #container::before{border-radius:21px;}
-  .title{border-radius:17px;}
-  .tip{border-radius:15px;}
-  .tip.mvp{border-radius:18px;}
+  #container{ border-radius:24px; padding-bottom:22px; }
+  #container::before{ border-radius:19px; }
+  .title{ border-radius:14px; }
+  .tip{ border-radius:13px; }
+  .tip.mvp{ border-radius:16px; }
 }
