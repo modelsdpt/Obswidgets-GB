@@ -1,10 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+/* =========================================================
+   PULSE TUNNEL THEME
+   Inspirado en la referencia:
+   - Centro claro en pulso
+   - Anillos repetidos rosa/blanco hacia afuera
+   - Sensación de túnel animado
+   - Letras blancas con borde negro
+   - GOAL con números grandes y legibles
+========================================================= */
+
 /* ==========================================
    GOAL BAR – MODERN BLACK / WHITE / PINK THEME
    Fondo negro, texto blanco y acento rosa
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -528,23 +539,177 @@ body{
 }
 
 
+/* ===== PULSE TUNNEL FINAL OVERRIDES ===== */
+:root{
+  --pt-white:#fffdfd;
+  --pt-cream:#fff1f4;
+  --pt-blush:#ffdfe6;
+  --pt-pink-1:#ffc2cf;
+  --pt-pink-2:#f59db1;
+  --pt-pink-3:#ee879e;
+  --pt-pink-4:#df6d88;
+  --pt-deep:#c95d79;
+  --pt-shadow:rgba(163,66,95,.18);
+  --pt-dark:#101010;
+}
 
-/* =========================================================
-   CANDY HEARTS COLOR-CYCLE THEME
-   Morado + corazones -> rosa/azul cielo -> morado
-========================================================= */
-:root{--purple-a:#7625e8;--purple-b:#9d2fe5;--purple-c:#5f1bcf;--pink-a:#ff4eb8;--pink-b:#ef68c9;--sky-a:#69d7ff;--sky-b:#95e7ff;--white:#fff;--deep:#43106d;}
-@keyframes candyOverlayCycle{0%,100%{opacity:0}45%,58%{opacity:1}}
-@keyframes candyHeartFloat{0%{background-position:0 0,center}50%{background-position:18px -10px,center}100%{background-position:0 0,center}}
-@keyframes candyPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.05)}}
-body{color:#fff;font-family:'Inter',Arial,sans-serif;}
+@keyframes tunnelPulse{
+  0%{
+    transform:scale(.86);
+    opacity:.92;
+  }
+  100%{
+    transform:scale(1.26);
+    opacity:1;
+  }
+}
 
-#goal-wrapper{width:78px;border-radius:29px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--purple-a),var(--purple-b) 48%,var(--purple-c));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;border:2px solid rgba(255,255,255,.30);box-shadow:0 16px 34px rgba(36,0,67,.28),inset 0 1px 0 rgba(255,255,255,.17);animation:candyHeartFloat 13s linear infinite;}
-#goal-wrapper::before{z-index:6;border-radius:23px;border:1px solid rgba(255,255,255,.14);}
-#goal-wrapper::after{content:'';position:absolute;inset:0;z-index:0;width:auto;height:auto;opacity:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='64' viewBox='0 0 90 64'%3E%3Cg fill='none' stroke='white' stroke-width='2.2' opacity='.48'%3E%3Cpath d='M18 20 C12 12 2 16 4 24 C6 31 18 38 18 38 C18 38 30 31 32 24 C34 16 24 12 18 20 Z'/%3E%3Cpath d='M68 10 C64 5 57 7 58 13 C59 18 68 23 68 23 C68 23 77 18 78 13 C79 7 72 5 68 10 Z'/%3E%3Cpath d='M53 45 C48 39 40 41 41 48 C42 54 53 60 53 60 C53 60 64 54 65 48 C66 41 58 39 53 45 Z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,var(--pink-a) 0%,#f568c5 42%,var(--sky-a) 74%,var(--sky-b));background-repeat:repeat,no-repeat;background-size:78px 58px,100% 100%;animation:candyOverlayCycle 8s ease-in-out infinite,candyHeartFloat 13s linear infinite;pointer-events:none;}
-#bar-fill{z-index:2;border-radius:0 0 28px 28px;background-image:linear-gradient(90deg,rgba(255,255,255,.18),transparent 32%,rgba(62,0,93,.10) 72%,rgba(255,255,255,.08)),linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,0));background-color:#8b34e7;animation:candyBarFill 8s ease-in-out infinite;}
-@keyframes candyBarFill{0%,100%{background-color:#8430e7}46%{background-color:#ef53b7}58%{background-color:#69d7ff}}
-#bar-fill::before{height:5px;background:linear-gradient(180deg,#fff,#f5ecff);box-shadow:0 0 6px rgba(255,255,255,.76),0 0 12px rgba(255,255,255,.24);}
-.goal-title{z-index:7;border-radius:10px;font-family:'Anton',Impact,sans-serif;font-weight:400;color:#fff;background:rgba(76,14,120,.20);-webkit-text-stroke:.8px rgba(46,0,67,.72);paint-order:stroke fill;text-shadow:0 2px 0 rgba(75,15,99,.55);}
-.goal-amount{z-index:7;border-radius:12px;background:linear-gradient(180deg,#fff,#f5eef9);border:1.5px solid rgba(103,34,143,.28);font-family:'Anton',Impact,sans-serif;font-weight:400;color:#6f249e;text-shadow:none;}
+@keyframes tunnelPulseSoft{
+  0%{
+    transform:scale(.98);
+    opacity:.55;
+  }
+  100%{
+    transform:scale(1.34);
+    opacity:.16;
+  }
+}
 
+@keyframes tunnelGlow{
+  0%,100%{filter:brightness(1) saturate(1)}
+  50%{filter:brightness(1.03) saturate(1.05)}
+}
+
+body{
+  color:#fff;
+  font-family:'Inter',Arial,sans-serif;
+}
+
+.title,
+.goal-title,
+.timer-title{
+  font-family:'Anton', Impact, sans-serif !important;
+  color:#ffffff !important;
+  -webkit-text-stroke:1.35px #111 !important;
+  paint-order:stroke fill;
+  text-shadow:
+    0 2px 0 rgba(0,0,0,.92),
+    0 3px 10px rgba(255,255,255,.10) !important;
+  letter-spacing:.02em;
+}
+
+
+/* ========================= GOAL ========================= */
+
+#goal-wrapper{
+  width:82px !important;
+  overflow:hidden;
+  border-radius:30px;
+  background:
+    linear-gradient(180deg,#fff3f6 0%,#ffdce5 35%,#f7b1c1 72%,#ec879f 100%) !important;
+  border:2px solid rgba(255,255,255,.68) !important;
+  box-shadow:
+    0 16px 34px var(--pt-shadow),
+    inset 0 2px 0 rgba(255,255,255,.28) !important;
+  animation:tunnelGlow 7.5s ease-in-out infinite !important;
+}
+
+#goal-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  z-index:0;
+  border:none !important;
+  box-shadow:none !important;
+  border-radius:inherit;
+  background:
+    repeating-radial-gradient(
+      circle at 50% 46%,
+      var(--pt-white) 0 7%,
+      var(--pt-cream) 7% 14%,
+      var(--pt-pink-1) 14% 22%,
+      var(--pt-blush) 22% 30%,
+      var(--pt-pink-2) 30% 39%,
+      var(--pt-cream) 39% 48%,
+      var(--pt-pink-3) 48% 57%,
+      var(--pt-blush) 57% 66%,
+      var(--pt-pink-4) 66% 76%
+    );
+  animation:tunnelPulse 3.7s ease-out infinite alternate;
+  opacity:.88;
+}
+
+#goal-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:-24%;
+  z-index:0;
+  border-radius:inherit;
+  background:
+    repeating-radial-gradient(
+      circle at 50% 46%,
+      rgba(255,255,255,.60) 0 6%,
+      rgba(255,255,255,0) 6% 16%,
+      rgba(249,174,193,.28) 16% 25%,
+      rgba(255,255,255,0) 25% 34%,
+      rgba(236,133,157,.18) 34% 43%,
+      rgba(255,255,255,0) 43% 52%
+    );
+  animation:tunnelPulseSoft 4.5s ease-out infinite;
+  opacity:.9;
+}
+
+#bar-fill{
+  z-index:2;
+  border-radius:0 0 29px 29px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.10),transparent 34%,rgba(157,62,92,.07) 72%,rgba(255,255,255,.04)),
+    linear-gradient(180deg,rgba(255,255,255,.28),rgba(238,133,159,.36)) !important;
+  box-shadow:
+    inset 6px 0 10px rgba(255,255,255,.07),
+    inset -7px 0 12px rgba(103,29,62,.08),
+    0 -2px 10px rgba(255,255,255,.10) !important;
+}
+
+#bar-fill::before{
+  height:5px !important;
+  background:#fff !important;
+  box-shadow:0 0 6px rgba(255,255,255,.74) !important;
+}
+
+#bar-fill::after{
+  background:#fff !important;
+  box-shadow:0 0 5px rgba(255,255,255,.76) !important;
+}
+
+.goal-title{
+  position:relative;
+  z-index:7;
+  font-size:23px !important;
+  background:rgba(255,255,255,.13) !important;
+}
+
+.goal-title::after{
+  background:linear-gradient(90deg,transparent,#fff,transparent) !important;
+}
+
+.goal-amount{
+  bottom:44px !important;
+  padding:8px 14px 9px !important;
+  min-width:58px !important;
+  border-radius:14px !important;
+  background:rgba(255,255,255,.17) !important;
+  border:1.5px solid rgba(255,255,255,.52) !important;
+  color:#fff !important;
+  -webkit-text-stroke:1px #111;
+  paint-order:stroke fill;
+  font-size:21px !important;
+  line-height:1 !important;
+  letter-spacing:.05em !important;
+  text-shadow:0 1px 0 rgba(0,0,0,.62) !important;
+}
+
+@media (max-height:460px){
+  #goal-wrapper{width:76px!important}
+  .goal-amount{bottom:40px!important;font-size:19px!important;padding:7px 12px 8px!important}
+}

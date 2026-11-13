@@ -1,15 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
 /* =========================================================
-   MISTY THEME
-   Inspirado en la referencia "$25 JOB OF YOUR CHOICE"
+   PINK BUBBLE OUTLINE THEME
+   Inspirado en la referencia "$35 DILDO RIDING"
 
-   Concepto:
-   - Fondo negro profundo
-   - Letras blancas con contorno negro para alto contraste
-   - Acabado limpio / oscuro / premium
-   - Cadena metálica decorativa en la parte inferior
-   - GOAL: relleno transparente tipo vidrio; el progreso se
-     ve claramente a medida que aumenta el height del #bar-fill
-   - Mantiene selectores y estados funcionales existentes
+   - Fondo rosa chicle
+   - Letras casi sin relleno, estilo outline blanco
+   - Contorno rosa oscuro para separar del fondo
+   - Burbujas rosadas que suben constantemente
+   - Movimiento suave de abajo hacia arriba
+   - GOAL con números grandes y claros
 ========================================================= */
 
 /* ==========================================
@@ -18,7 +17,7 @@
    Estética premium + esquinas suaves
 ========================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Lobster&display=swap');
 
 :root{
   --bg:#050505;
@@ -557,161 +556,31 @@ body{
 }
 
 
+/* FINAL PINK BUBBLE OUTLINE OVERRIDES */
+
 :root{
-  --misty-black:#020202;
-  --misty-black-2:#070707;
-  --misty-black-3:#0d0d0d;
-  --misty-charcoal:#151515;
-  --misty-white:#ffffff;
-  --misty-silver:#d9d9d9;
-  --misty-silver-soft:#9a9a9a;
-  --misty-line:rgba(255,255,255,.13);
-  --misty-shadow:rgba(0,0,0,.76);
+  --pbo-pink:#e96d9f;--pbo-pink-2:#dc5e90;--pbo-pink-3:#cc4f83;
+  --pbo-pink-light:#f5a0c0;--pbo-pink-soft:#f8b3cb;--pbo-dark:#a83a69;
 }
-
-@keyframes mistySoftBreath{
-  0%,100%{ filter:brightness(1); }
-  50%{ filter:brightness(1.035); }
-}
-
-@keyframes mistyChainShimmer{
-  0%,100%{ opacity:.28; filter:brightness(.90); }
-  50%{ opacity:.52; filter:brightness(1.12); }
-}
-
-body{
-  color:#fff;
-  font-family:'Inter',Arial,sans-serif;
-}
-
-/* =========================================================
-   MISTY — TIMER
-========================================================= */
-
-.timer-widget{
-  border-radius:27px;
-  padding:11px 11px 24px;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2714%27 viewBox=%270 0 48 14%27%3E%3Cg fill=%27none%27 stroke=%27%23d9d9d9%27 stroke-width=%271.6%27 opacity=%27.48%27%3E%3Cellipse cx=%2711%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 11 7)%27/%3E%3Cellipse cx=%2725%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(18 25 7)%27/%3E%3Cellipse cx=%2739%27 cy=%277%27 rx=%278%27 ry=%274%27 transform=%27rotate(-18 39 7)%27/%3E%3C/g%3E%3C/svg%3E"),
-    radial-gradient(circle at 18% -5%,rgba(255,255,255,.05) 0%,transparent 33%),
-    linear-gradient(145deg,#111111 0%,#050505 50%,#010101 100%);
-  background-repeat:repeat-x,no-repeat,no-repeat;
-  background-size:48px 14px,100% 100%,100% 100%;
-  background-position:left 8px bottom 6px,center,center;
-  border:1px solid rgba(255,255,255,.13);
-  box-shadow:
-    0 18px 38px rgba(0,0,0,.54),
-    0 0 0 1px rgba(0,0,0,.84),
-    inset 0 1px 0 rgba(255,255,255,.06);
-  animation:mistySoftBreath 9s ease-in-out infinite;
-}
-
-.timer-widget::before{
-  inset:5px;
-  border-radius:21px;
-  border:1px solid rgba(255,255,255,.04);
-}
-
-.timer-widget::after{
-  opacity:.13;
-  background:linear-gradient(
-    108deg,
-    transparent 0%,
-    rgba(255,255,255,.005) 30%,
-    rgba(255,255,255,.08) 49%,
-    rgba(255,255,255,.015) 58%,
-    transparent 72%
-  );
-}
-
-.timer-title{
-  border-radius:17px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.004)),
-    linear-gradient(135deg,#0d0d0d,#020202);
-  border:1px solid rgba(255,255,255,.11);
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.25px #050505;
+@keyframes bubbleRiseA{0%{transform:translate3d(0,118%,0)}100%{transform:translate3d(0,-132%,0)}}
+@keyframes bubbleRiseB{0%{transform:translate3d(0,138%,0)}100%{transform:translate3d(0,-150%,0)}}
+@keyframes bubbleSwayA{0%,100%{margin-left:0}25%{margin-left:8px}50%{margin-left:-6px}75%{margin-left:5px}}
+@keyframes bubbleSwayB{0%,100%{margin-left:0}33%{margin-left:-7px}66%{margin-left:6px}}
+@keyframes pinkBreath{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.018) saturate(1.025)}}
+body{color:#fff;font-family:'Inter',Arial,sans-serif}
+.title,.goal-title,.timer-title,.raffle-title{
+  font-family:'Anton',Impact,sans-serif!important;
+  color:rgba(255,255,255,.08)!important;
+  -webkit-text-stroke:1.55px #fff;
   paint-order:stroke fill;
-  text-shadow:0 2px 0 #050505;
+  text-shadow:0 1px 0 rgba(168,58,105,.52),0 0 3px rgba(255,255,255,.16)!important;
 }
 
-.timer-title::before{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
-}
-
-.timer-title::after{
-  height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
-  box-shadow:none;
-}
-
-.timer-box{
-  border-radius:21px;
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.003)),
-    linear-gradient(135deg,#111111,#050505 60%,#020202);
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.34),
-    inset 0 1px 0 rgba(255,255,255,.035);
-}
-
-.timer-box::before{
-  width:4px;
-  background:linear-gradient(180deg,#f2f2f2,#aaa,#444);
-  box-shadow:0 0 6px rgba(255,255,255,.12);
-}
-
-.timer-box::after{
-  opacity:.12;
-}
-
-#timer-value{
-  font-family:'Anton',Impact,sans-serif;
-  font-weight:400;
-  color:#fff;
-  -webkit-text-stroke:1.4px #050505;
-  paint-order:stroke fill;
-  text-shadow:0 3px 0 #050505;
-}
-
-.timer-box.timer-running{
-  animation:mistyTimerPulse 2.6s ease-in-out infinite alternate;
-}
-
-@keyframes mistyTimerPulse{
-  from{
-    transform:scale(1);
-    border-color:rgba(255,255,255,.08);
-  }
-  to{
-    transform:scale(1.012);
-    border-color:rgba(255,255,255,.15);
-    box-shadow:
-      0 11px 24px rgba(0,0,0,.39),
-      0 0 10px rgba(255,255,255,.025),
-      inset 0 1px 0 rgba(255,255,255,.045);
-  }
-}
-
-.timer-box.timer-finished{
-  border-color:rgba(255,255,255,.18);
-  background:
-    radial-gradient(circle at 50% 30%,rgba(255,255,255,.045),transparent 44%),
-    linear-gradient(135deg,#151515,#050505 60%,#020202);
-}
-
-.timer-box:hover{
-  transform:translateY(-1px);
-  border-color:rgba(255,255,255,.15);
-}
-
-@media (max-width:310px){
-  .timer-widget{ border-radius:24px; padding-bottom:22px; }
-  .timer-widget::before{ border-radius:19px; }
-  .timer-title{ border-radius:15px; }
-  .timer-box{ border-radius:18px; }
-}
+.timer-widget{border-radius:28px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 26%),linear-gradient(135deg,#ed78a7 0%,#e4679a 48%,#d8588d 100%)!important;border:2px solid rgba(255,255,255,.56)!important;box-shadow:0 16px 34px rgba(124,38,78,.22),inset 0 2px 0 rgba(255,255,255,.26)!important;animation:pinkBreath 8s ease-in-out infinite!important}
+.timer-widget::before{content:"";position:absolute;left:-6%;bottom:-120%;z-index:0;width:112%;height:100%;border-radius:inherit;border:none!important;box-shadow:none!important;pointer-events:none;background:radial-gradient(circle at 10% 88%,rgba(248,179,203,.48) 0 12px,transparent 17px),radial-gradient(circle at 28% 70%,rgba(205,75,132,.44) 0 15px,transparent 21px),radial-gradient(circle at 48% 92%,rgba(245,160,192,.48) 0 13px,transparent 19px),radial-gradient(circle at 68% 72%,rgba(199,68,124,.40) 0 15px,transparent 21px),radial-gradient(circle at 88% 88%,rgba(248,179,203,.44) 0 12px,transparent 18px);animation:bubbleRiseA 18s linear infinite,bubbleSwayA 5.8s ease-in-out infinite}
+.timer-widget::after{content:"";position:absolute;left:-2%;bottom:-135%;z-index:0;width:104%;height:100%;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 18% 86%,rgba(255,207,222,.32) 0 9px,transparent 14px),radial-gradient(circle at 42% 62%,rgba(191,61,116,.32) 0 11px,transparent 16px),radial-gradient(circle at 64% 87%,rgba(248,179,203,.34) 0 10px,transparent 15px),radial-gradient(circle at 85% 58%,rgba(194,63,118,.30) 0 12px,transparent 17px);opacity:.80;animation:bubbleRiseB 24s linear infinite,bubbleSwayB 7s ease-in-out infinite}
+.timer-title{position:relative;z-index:6;border-radius:17px;background:rgba(178,56,107,.13)!important;border:1.5px solid rgba(255,255,255,.38)!important}
+.timer-title::after{background:linear-gradient(90deg,transparent,#fff,transparent)!important;box-shadow:0 0 5px rgba(255,255,255,.22)!important}
+.timer-box{position:relative;z-index:6;border-radius:22px;background:rgba(179,58,108,.13)!important;border:1px solid rgba(255,255,255,.22)!important}
+.timer-box::before{background:linear-gradient(180deg,#fff,#ffd7e6,#bd4c7e)!important}
+#timer-value{color:rgba(255,255,255,.08)!important;-webkit-text-stroke:1.45px #fff;paint-order:stroke fill;text-shadow:0 1px 0 rgba(151,45,90,.28)!important}
