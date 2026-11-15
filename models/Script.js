@@ -2424,10 +2424,7 @@ async function loadCalendarData() {
       "refreshBtn"
     );
 
-
-  refreshButton.disabled =
-    true;
-
+  refreshButton.disabled = true;
 
   refreshButton.textContent =
     "Actualizando...";
@@ -2435,46 +2432,25 @@ async function loadCalendarData() {
 
   try {
 
-    const [
-      schedulesResponse,
-      reportsResponse
-    ] =
-      await Promise.all([
+    /*
+      Primero cargamos schedules.
+      Si reports falla, el calendario
+      NO deja de funcionar.
+    */
 
-        fetch(
-          API_URL,
-          {
-            cache: "no-store"
-          }
-        ),
-
-        fetch(
-          REPORTS_URL,
-          {
-            cache: "no-store"
-          }
-        )
-
-      ]);
-
-
-    if (
-      !schedulesResponse.ok
-    ) {
-
-      throw new Error(
-        `No se pudieron cargar los schedules. HTTP ${schedulesResponse.status}`
+    const schedulesResponse =
+      await fetch(
+        API_URL,
+        {
+          cache: "no-store"
+        }
       );
 
-    }
 
-
-    if (
-      !reportsResponse.ok
-    ) {
+    if (!schedulesResponse.ok) {
 
       throw new Error(
-        `No se pudieron cargar los reports. HTTP ${reportsResponse.status}`
+        `Error cargando schedules. HTTP ${schedulesResponse.status}`
       );
 
     }
@@ -2482,10 +2458,6 @@ async function loadCalendarData() {
 
     const schedulesData =
       await schedulesResponse.json();
-
-
-    const reportsData =
-      await reportsResponse.json();
 
 
     schedules =
@@ -2496,70 +2468,118 @@ async function loadCalendarData() {
         : [];
 
 
-    reports =
-      Array.isArray(
-        reportsData
-      )
-        ? reportsData
-        : [];
+    /*
+      REPORTS
 
+      Si falla reports, seguimos mostrando
+      los schedules y permitimos agendar.
+    */
+
+    try {
+
+      const reportsResponse =
+        await fetch(
+          REPORTS_URL,
+          {
+            cache: "no-store"
+          }
+        );
+
+
+      if (!reportsResponse.ok) {
+
+        console.error(
+          "Error cargando reports:",
+          reportsResponse.status
+        );
+
+        reports = [];
+
+      } else {
+
+        const reportsData =
+          await reportsResponse.json();
+
+
+        reports =
+          Array.isArray(
+            reportsData
+          )
+            ? reportsData
+            : [];
+
+      }
+
+
+    } catch (reportsError) {
+
+      console.error(
+        "No se pudieron cargar reports:",
+        reportsError
+      );
+
+      reports = [];
+
+    }
+
+
+    /*
+      Construimos los eventos aunque
+      reports esté vacío.
+    */
 
     rebuildCalendarEvents();
 
-
     renderCalendar();
+
+
+    console.log(
+      "Calendario cargado:"
+    );
+
+    console.log(
+      "Schedules:",
+      schedules.length
+    );
+
+    console.log(
+      "Reports:",
+      reports.length
+    );
 
 
   } catch (error) {
 
     console.error(
-      "Error cargando calendario:",
+      "Error cargando schedules:",
       error
     );
 
 
-    calendarGrid.innerHTML =
-      "";
+    /*
+      MUY IMPORTANTE:
+
+      Aunque falle la API,
+      dejamos el calendario visible
+      para poder seleccionar una fecha.
+    */
+
+    schedules = [];
+    reports = [];
+
+    rebuildCalendarEvents();
+
+    renderCalendar();
 
 
-    const errorMessage =
-      document.createElement(
-        "div"
-      );
-
-
-    errorMessage.style.gridColumn =
-      "1 / -1";
-
-
-    errorMessage.style.padding =
-      "30px";
-
-
-    errorMessage.style.color =
-      "#f07d87";
-
-
-    errorMessage.style.textAlign =
-      "center";
-
-
-    errorMessage.textContent =
-      error.message ||
-      "No se pudo cargar el calendario.";
-
-
-    calendarGrid
-      .appendChild(
-        errorMessage
-      );
+    showError(
+      "No se pudieron cargar los lives anteriores, pero puedes intentar agendar un nuevo live."
+    );
 
 
   } finally {
 
-    refreshButton.disabled =
-      false;
-
+    refreshButton.disabled = false;
 
     refreshButton.textContent =
       "Actualizar";
