@@ -4,999 +4,616 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Agenda tu horario – Livestream GB</title>
+  <title>Livestream GB — Calendar</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: #050814;
-      font-family:
-        "Segoe UI Emoji",
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 480px;
-      border-radius: 18px;
-      padding: 24px 24px 20px;
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(210, 190, 120, 0.22),
-          #050814
-        );
-      border: 1px solid rgba(180, 160, 90, 0.9);
-      box-shadow:
-        0 0 20px rgba(0, 0, 0, 0.9),
-        0 0 26px rgba(0, 0, 0, 0.85);
-    }
-
-    h1 {
-      font-size: 22px;
-      margin: 0 0 6px;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      opacity: 0.8;
-      margin-bottom: 18px;
-      line-height: 1.45;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 4px;
-      opacity: 0.95;
-    }
-
-    select,
-    input {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #33384d;
-      background: #696a6e;
-      color: #f5f5f5;
-      font-size: 14px;
-      margin-bottom: 12px;
-      outline: none;
-    }
-
-    select:focus,
-    input:focus {
-      border-color: #e3c96f;
-    }
-
-    input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .files-section {
-      margin-top: 8px;
-      padding: 14px;
-      border-radius: 14px;
-      background: rgba(5, 8, 20, 0.7);
-      border: 1px solid rgba(180, 160, 90, 0.45);
-    }
-
-    .files-title {
-      margin: 0 0 5px;
-      color: #f1dd8a;
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .files-description {
-      margin: 0 0 14px;
-      font-size: 12px;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    .file-group {
-      margin-bottom: 14px;
-    }
-
-    .file-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .file-label-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .file-badge {
-      flex-shrink: 0;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(241, 221, 138, 0.12);
-      border: 1px solid rgba(241, 221, 138, 0.35);
-      color: #f1dd8a;
-      font-size: 10px;
-      font-weight: 700;
-    }
-
-    input[type="file"] {
-      padding: 7px;
-      background: #171a26;
-      border-color: rgba(255, 255, 255, 0.14);
-      cursor: pointer;
-      margin-bottom: 5px;
-    }
-
-    input[type="file"]::file-selector-button {
-      border: none;
-      border-radius: 999px;
-      padding: 7px 11px;
-      margin-right: 10px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #f1dd8a, #c59d42);
-      color: #2b220e;
-    }
-
-    .file-help {
-      min-height: 16px;
-      font-size: 11px;
-      line-height: 1.4;
-      color: rgba(255, 255, 255, 0.62);
-    }
-
-    .file-help.selected {
-      color: #9be29b;
-    }
-
-    .file-help.error {
-      color: #ff9b9b;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 600;
-      background: linear-gradient(135deg, #f1dd8a, #c59d42);
-      color: #2b220e;
-      box-shadow:
-        0 0 16px rgba(0, 0, 0, 0.9),
-        0 0 20px rgba(210, 180, 90, 0.9);
-    }
-
-    button:disabled {
-      opacity: 0.5;
-      cursor: default;
-      box-shadow: none;
-    }
-
-    .status {
-      margin-top: 12px;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .status.ok {
-      color: #9be29b;
-    }
-
-    .status.error {
-      color: #ff9b9b;
-    }
-
-    @media (max-width: 520px) {
-      body {
-        padding: 20px 12px;
-      }
-
-      .card {
-        padding: 20px 16px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
 
-  <div class="card">
+  <main class="app">
 
-    <h1>Hola, bienvenida a Livestream GB</h1>
+    <!-- =========================================
+         HEADER
+    ========================================== -->
 
-    <div class="subtitle">
-      Agenda el horario de inicio de tu livestream.
-      El equipo completa la hora de finalización.
-    </div>
+    <header class="hero">
 
-    <label for="model">Elige La Modelo de GB</label>
+      <div class="hero-content">
 
-<select id="model">
-  <option value="">Selecciona tu nombre</option>
+        <p class="eyebrow">
+          GOOD BUNNY · LIVESTREAM
+        </p>
 
-  <option value="Misty">Misty</option>
-  <option value="Sarah">Sarah</option>
-  <option value="Megan">Megan</option>
-  <option value="Molly">Molly</option>
-  <option value="Cassie">Cassie</option>
-  <option value="Zoe">Zoe</option>
-  <option value="Sophia">Sophia</option>
-  <option value="Nikki">Nikki</option>
-  <option value="Lisa">Lisa</option>
-  <option value="Nana">Nana</option>
-  <option value="Paula">Paula</option>
-  <option value="Jade">Jade</option>
-  <option value="Minnie">Minnie</option>
-  <option value="Alaska">Alaska</option>
-  <option value="Maxine">Maxine</option>
-</select>
+        <h1>
+          Calendario de Livestreams
+        </h1>
 
-    <label for="date">Día del evento</label>
-    <input id="date" type="date" />
+        <p class="subtitle">
+          Control mensual de lives realizados, agendados y pendientes.
+        </p>
 
-    <label for="slot">Horario de inicio — tu hora local</label>
+      </div>
 
-    <select id="slot">
-      <option value="">Selecciona un horario</option>
-    </select>
+      <button
+        id="refreshBtn"
+        class="btn secondary"
+        type="button"
+      >
+        Actualizar
+      </button>
 
-    <label for="theme">Theme</label>
+    </header>
 
-    <input
-      id="theme"
-      type="text"
-      maxlength="120"
-      placeholder="Example: Schoolgirl, Fitness, Pink Party, Valentine..."
-    />
 
-    <section class="files-section">
+    <!-- =========================================
+         RESUMEN DEL MES
+    ========================================== -->
 
-      <h2 class="files-title">Flyers del livestream</h2>
+    <section class="metrics">
 
-      <p class="files-description">
-        Las imágenes son opcionales. Puedes guardar el horario sin subir ninguna.
-        Si deseas añadirlas, se permiten archivos JPG, PNG y WEBP.
-      </p>
+      <article class="metric-card">
 
-      <!-- FLYER PRINCIPAL -->
-      <div class="file-group">
+        <span class="metric-label">
+          Lives realizados
+        </span>
 
-        <div class="file-label-title">
-          <label for="flyer">Flyer principal (opcional)</label>
-          <span class="file-badge">Opcional</span>
+        <strong
+          id="completedCount"
+          class="metric-value"
+        >
+          0
+        </strong>
+
+        <small
+          id="monthMetric"
+          class="metric-description"
+        >
+          Este mes
+        </small>
+
+      </article>
+
+
+      <article class="metric-card">
+
+        <span class="metric-label">
+          Agendados pendientes
+        </span>
+
+        <strong
+          id="scheduledCount"
+          class="metric-value"
+        >
+          0
+        </strong>
+
+        <small class="metric-description">
+          Sin reporte todavía
+        </small>
+
+      </article>
+
+
+      <article class="metric-card">
+
+        <span class="metric-label">
+          Modelos cubiertas
+        </span>
+
+        <strong
+          id="coveredCount"
+          class="metric-value"
+        >
+          0/15
+        </strong>
+
+        <small class="metric-description">
+          Con al menos 1 live realizado
+        </small>
+
+      </article>
+
+    </section>
+
+
+    <!-- =========================================
+         CALENDARIO
+    ========================================== -->
+
+    <section class="panel calendar-panel">
+
+      <div class="calendar-toolbar">
+
+
+        <!-- NAVEGACIÓN -->
+
+        <div class="calendar-navigation">
+
+          <button
+            id="prevMonthBtn"
+            class="icon-btn"
+            type="button"
+            aria-label="Mes anterior"
+          >
+            ‹
+          </button>
+
+
+          <button
+            id="todayBtn"
+            class="btn secondary small"
+            type="button"
+          >
+            Hoy
+          </button>
+
+
+          <button
+            id="nextMonthBtn"
+            class="icon-btn"
+            type="button"
+            aria-label="Mes siguiente"
+          >
+            ›
+          </button>
+
         </div>
 
-        <input
-          id="flyer"
-          name="flyer"
-          type="file"
-          accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-        />
 
-        <div id="flyerHelp" class="file-help">
-          Ningún flyer principal seleccionado.
+        <!-- MES ACTUAL -->
+
+        <div class="month-title">
+
+          <h2 id="monthTitle">
+            Mes
+          </h2>
+
+          <span>
+            Haz clic en un día para agendar
+          </span>
+
+        </div>
+
+
+        <!-- LEYENDA -->
+
+        <div class="legend">
+
+          <span>
+            <i class="dot done"></i>
+            Realizado
+          </span>
+
+          <span>
+            <i class="dot scheduled"></i>
+            Agendado
+          </span>
+
+          <span>
+            <i class="dot overdue"></i>
+            Sin reporte
+          </span>
+
         </div>
 
       </div>
 
-      
 
-     <!-- FLYER ADICIONAL 1 -->
-<div class="file-group">
+      <!-- CALENDARIO -->
 
-  <div class="file-label-title">
-    <label for="flyer1">Flyer 1 (opcional)</label>
-    <span class="file-badge">Opcional</span>
-  </div>
+      <div class="calendar-scroll">
 
-  <input
-    id="flyer1"
-    type="file"
-    accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-  />
+        <!-- DÍAS DE LA SEMANA -->
 
-  <div id="flyer1Help" class="file-help">
-    Ningún Flyer 1 seleccionado.
-  </div>
+        <div class="weekdays">
 
-</div>
+          <span>Dom</span>
+          <span>Lun</span>
+          <span>Mar</span>
+          <span>Mié</span>
+          <span>Jue</span>
+          <span>Vie</span>
+          <span>Sáb</span>
 
-<!-- FLYER ADICIONAL 2 -->
-<div class="file-group">
+        </div>
 
-  <div class="file-label-title">
-    <label for="flyer2">Flyer 2 (opcional)</label>
-    <span class="file-badge">Opcional</span>
-  </div>
 
-  <input
-    id="flyer2"
-    type="file"
-    accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-  />
+        <!--
+          El JavaScript insertará aquí
+          todos los días del calendario.
+        -->
 
-  <div id="flyer2Help" class="file-help">
-    Ningún Flyer 2 seleccionado.
-  </div>
+        <div
+          id="calendarGrid"
+          class="calendar-grid"
+        ></div>
 
-</div>
+      </div>
 
-<!-- FLYER ADICIONAL 3 -->
-<div class="file-group">
 
-  <div class="file-label-title">
-    <label for="flyer3">Flyer 3 (opcional)</label>
-    <span class="file-badge">Opcional</span>
-  </div>
-
-  <input
-    id="flyer3"
-    type="file"
-    accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-  />
-
-  <div id="flyer3Help" class="file-help">
-    Ningún Flyer 3 seleccionado.
-  </div>
-
-</div>
+      <p class="calendar-help">
+        Haz clic en cualquier día para agendar un nuevo live.
+        Los lives existentes aparecerán automáticamente dentro del calendario.
+      </p>
 
     </section>
 
-    <button id="saveBtn" type="button" onclick="saveSchedule()">
-      Guardar horario
-    </button>
-
-    <div id="status" class="status"></div>
-
-  </div>
-
-  <script>
-    const API_URL = "/api/model-schedule";
-
-    const MAX_EXTRA_FLYERS = 3;
-    const MAX_FILE_SIZE_MB = 15;
-    const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
-
-    const ALLOWED_FILE_TYPES = [
-      "image/jpeg",
-      "image/png",
-      "image/webp"
-    ];
-
-  const MODEL_SLOTS = {
-
-  // ─────────────────────────────────────────
-  // COLOMBIA
-  // Venezuela está 1 hora adelante de Colombia
-  // ─────────────────────────────────────────
-
-  Misty: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Megan: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Cassie: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Zoe: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Nikki: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Lisa: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Paula: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Maxine: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-  Molly: [
-    { start: "09:00", label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA" },
-    { start: "10:00", label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA" },
-    { start: "11:00", label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA" },
-    { start: "12:00", label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA" },
-    { start: "13:00", label: "2:00 PM VENEZUELA / 1:00 PM COLOMBIA" },
-    { start: "14:00", label: "3:00 PM VENEZUELA / 2:00 PM COLOMBIA" },
-
-    { start: "19:00", label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA" },
-    { start: "20:00", label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA" },
-    { start: "21:00", label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA" },
-    { start: "22:00", label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA" }
-  ],
-
-
-  // ─────────────────────────────────────────
-  // ARGENTINA
-  // Argentina está 1 hora adelante de Venezuela
-  // ─────────────────────────────────────────
-
-  Nana: [
-    { start: "10:00", label: "9:00 AM VENEZUELA / 10:00 AM ARGENTINA" },
-    { start: "11:00", label: "10:00 AM VENEZUELA / 11:00 AM ARGENTINA" },
-    { start: "12:00", label: "11:00 AM VENEZUELA / 12:00 PM ARGENTINA" },
-    { start: "13:00", label: "12:00 PM VENEZUELA / 1:00 PM ARGENTINA" },
-    { start: "14:00", label: "1:00 PM VENEZUELA / 2:00 PM ARGENTINA" },
-
-    { start: "20:00", label: "7:00 PM VENEZUELA / 8:00 PM ARGENTINA" },
-    { start: "21:00", label: "8:00 PM VENEZUELA / 9:00 PM ARGENTINA" },
-    { start: "22:00", label: "9:00 PM VENEZUELA / 10:00 PM ARGENTINA" },
-    { start: "23:00", label: "10:00 PM VENEZUELA / 11:00 PM ARGENTINA" }
-  ],
-
-
-  // ─────────────────────────────────────────
-  // CHILE
-  // Actualmente Chile está 1 hora adelante de Venezuela
-  // ─────────────────────────────────────────
-
-  Minnie: [
-    { start: "10:00", label: "9:00 AM VENEZUELA / 10:00 AM CHILE" },
-    { start: "11:00", label: "10:00 AM VENEZUELA / 11:00 AM CHILE" },
-    { start: "12:00", label: "11:00 AM VENEZUELA / 12:00 PM CHILE" },
-    { start: "13:00", label: "12:00 PM VENEZUELA / 1:00 PM CHILE" },
-    { start: "14:00", label: "1:00 PM VENEZUELA / 2:00 PM CHILE" },
-
-    { start: "20:00", label: "7:00 PM VENEZUELA / 8:00 PM CHILE" },
-    { start: "21:00", label: "8:00 PM VENEZUELA / 9:00 PM CHILE" },
-    { start: "22:00", label: "9:00 PM VENEZUELA / 10:00 PM CHILE" },
-    { start: "23:00", label: "10:00 PM VENEZUELA / 11:00 PM CHILE" }
-  ],
-
-
-  // ─────────────────────────────────────────
-  // KENYA
-  // Kenya está 7 horas adelante de Venezuela
-  // ─────────────────────────────────────────
-
-  Jade: [
-    { start: "17:00", label: "10:00 AM VENEZUELA / 5:00 PM KENYA" },
-    { start: "18:00", label: "11:00 AM VENEZUELA / 6:00 PM KENYA" },
-    { start: "19:00", label: "12:00 PM VENEZUELA / 7:00 PM KENYA" },
-    { start: "20:00", label: "1:00 PM VENEZUELA / 8:00 PM KENYA" },
-    { start: "21:00", label: "2:00 PM VENEZUELA / 9:00 PM KENYA" },
-    { start: "22:00", label: "3:00 PM VENEZUELA / 10:00 PM KENYA" },
-
-    { start: "04:00", label: "9:00 PM VENEZUELA / 4:00 AM KENYA" },
-    { start: "05:00", label: "10:00 PM VENEZUELA / 5:00 AM KENYA" },
-    { start: "06:00", label: "11:00 PM VENEZUELA / 6:00 AM KENYA" }
-  ],
-
-
-  // ─────────────────────────────────────────
-  // SLOVAKIA
-  // Después del cambio de octubre:
-  // Slovakia está 5 horas adelante de Venezuela
-  // ─────────────────────────────────────────
-
-  Sarah: [
-    { start: "15:00", label: "10:00 AM VENEZUELA / 3:00 PM SLOVAKIA" },
-    { start: "16:00", label: "11:00 AM VENEZUELA / 4:00 PM SLOVAKIA" },
-    { start: "17:00", label: "12:00 PM VENEZUELA / 5:00 PM SLOVAKIA" },
-    { start: "18:00", label: "1:00 PM VENEZUELA / 6:00 PM SLOVAKIA" },
-    { start: "19:00", label: "2:00 PM VENEZUELA / 7:00 PM SLOVAKIA" },
-    { start: "20:00", label: "3:00 PM VENEZUELA / 8:00 PM SLOVAKIA" },
-    { start: "21:00", label: "4:00 PM VENEZUELA / 9:00 PM SLOVAKIA" },
-    { start: "22:00", label: "5:00 PM VENEZUELA / 10:00 PM SLOVAKIA" },
-
-    { start: "03:00", label: "10:00 PM VENEZUELA / 3:00 AM SLOVAKIA" },
-    { start: "04:00", label: "11:00 PM VENEZUELA / 4:00 AM SLOVAKIA" }
-  ],
-
-  Sophia: [
-    { start: "15:00", label: "10:00 AM VENEZUELA / 3:00 PM SLOVAKIA" },
-    { start: "16:00", label: "11:00 AM VENEZUELA / 4:00 PM SLOVAKIA" },
-    { start: "17:00", label: "12:00 PM VENEZUELA / 5:00 PM SLOVAKIA" },
-    { start: "18:00", label: "1:00 PM VENEZUELA / 6:00 PM SLOVAKIA" },
-    { start: "19:00", label: "2:00 PM VENEZUELA / 7:00 PM SLOVAKIA" },
-    { start: "20:00", label: "3:00 PM VENEZUELA / 8:00 PM SLOVAKIA" },
-    { start: "21:00", label: "4:00 PM VENEZUELA / 9:00 PM SLOVAKIA" },
-    { start: "22:00", label: "5:00 PM VENEZUELA / 10:00 PM SLOVAKIA" },
-
-    { start: "03:00", label: "10:00 PM VENEZUELA / 3:00 AM SLOVAKIA" },
-    { start: "04:00", label: "11:00 PM VENEZUELA / 4:00 AM SLOVAKIA" }
-  ],
-
-
-  // ─────────────────────────────────────────
-  // SPAIN
-  // Después del cambio de octubre:
-  // España está 5 horas adelante de Venezuela
-  // ─────────────────────────────────────────
-
-  Alaska: [
-    { start: "15:00", label: "10:00 AM VENEZUELA / 3:00 PM SPAIN" },
-    { start: "16:00", label: "11:00 AM VENEZUELA / 4:00 PM SPAIN" },
-    { start: "17:00", label: "12:00 PM VENEZUELA / 5:00 PM SPAIN" },
-    { start: "18:00", label: "1:00 PM VENEZUELA / 6:00 PM SPAIN" },
-    { start: "19:00", label: "2:00 PM VENEZUELA / 7:00 PM SPAIN" },
-    { start: "20:00", label: "3:00 PM VENEZUELA / 8:00 PM SPAIN" },
-    { start: "21:00", label: "4:00 PM VENEZUELA / 9:00 PM SPAIN" },
-    { start: "22:00", label: "5:00 PM VENEZUELA / 10:00 PM SPAIN" },
-
-    { start: "03:00", label: "10:00 PM VENEZUELA / 3:00 AM SPAIN" },
-    { start: "04:00", label: "11:00 PM VENEZUELA / 4:00 AM SPAIN" }
-  ]
-
-};
-
-
-const MODEL_OFFSET_TO_EST = {
-
-  // Colombia
-  Misty: 0,
-  Megan: 0,
-  Molly: 0,
-  Cassie: 0,
-  Zoe: 0,
-  Nikki: 0,
-  Lisa: 0,
-  Paula: 0,
-  Maxine: 0,
-
-  // Argentina
-  Nana: 1,
-
-  // Chile — actualmente UTC-3
-  Minnie: 1,
-
-  // Kenya
-  Jade: 7,
-
-  // Slovakia — CET desde el 25 de octubre
-  Sarah: 5,
-  Sophia: 5,
-
-  // Spain — CET desde el 25 de octubre
-  Alaska: 5
-
-};
-
-    const statusEl = document.getElementById("status");
-    const saveBtn = document.getElementById("saveBtn");
-
-    const modelSelect = document.getElementById("model");
-    const slotSelect = document.getElementById("slot");
-
-const flyerInput = document.getElementById("flyer");
-
-const flyer1Input = document.getElementById("flyer1");
-const flyer2Input = document.getElementById("flyer2");
-const flyer3Input = document.getElementById("flyer3");
-
-const flyerHelp = document.getElementById("flyerHelp");
-
-const flyer1Help = document.getElementById("flyer1Help");
-const flyer2Help = document.getElementById("flyer2Help");
-const flyer3Help = document.getElementById("flyer3Help");
-
-    modelSelect.addEventListener("change", () => {
-      const model = modelSelect.value;
-
-      slotSelect.innerHTML =
-        '<option value="">Selecciona un horario</option>';
-
-      if (!model || !MODEL_SLOTS[model]) {
-        return;
-      }
-
-      MODEL_SLOTS[model].forEach((slot) => {
-        const option = document.createElement("option");
-
-        option.value = slot.start;
-        option.textContent = slot.label;
-
-        slotSelect.appendChild(option);
-      });
-    });
-
-    flyerInput.addEventListener("change", () => {
-      showSingleFileName(
-        flyerInput,
-        flyerHelp,
-        "Ningún flyer principal seleccionado."
-      );
-    });
-
-    flyer1Input.addEventListener("change", () => {
-  showSingleFileName(
-    flyer1Input,
-    flyer1Help,
-    "Ningún Flyer 1 seleccionado."
-  );
-});
-
-flyer2Input.addEventListener("change", () => {
-  showSingleFileName(
-    flyer2Input,
-    flyer2Help,
-    "Ningún Flyer 2 seleccionado."
-  );
-});
-
-flyer3Input.addEventListener("change", () => {
-  showSingleFileName(
-    flyer3Input,
-    flyer3Help,
-    "Ningún Flyer 3 seleccionado."
-  );
-});
-
-    function showSingleFileName(input, helpElement, emptyMessage) {
-      const file = input.files?.[0];
-
-      helpElement.classList.remove("selected", "error");
-
-      if (!file) {
-        helpElement.textContent = emptyMessage;
-        return;
-      }
-
-      if (!isValidImage(file)) {
-        input.value = "";
-
-        helpElement.textContent =
-          "Solo se permiten imágenes JPG, PNG o WEBP.";
-
-        helpElement.classList.add("error");
-        return;
-      }
-
-      if (file.size > MAX_FILE_SIZE_BYTES) {
-        input.value = "";
-
-        helpElement.textContent =
-          `El archivo no puede superar los ${MAX_FILE_SIZE_MB} MB.`;
-
-        helpElement.classList.add("error");
-        return;
-      }
-
-      helpElement.textContent = `Seleccionado: ${file.name}`;
-      helpElement.classList.add("selected");
-    }
-
-    function isValidImage(file) {
-      if (!file) {
-        return false;
-      }
-
-      if (ALLOWED_FILE_TYPES.includes(file.type)) {
-        return true;
-      }
-
-      return /\.(jpe?g|png|webp)$/i.test(file.name);
-    }
-
-    function convertLocalToEst(dateStr, timeStr, modelName) {
-      const offset = MODEL_OFFSET_TO_EST[modelName] ?? 0;
-
-      const [year, month, day] = dateStr
-        .split("-")
-        .map(Number);
-
-      const [hours, minutes] = timeStr
-        .split(":")
-        .map(Number);
-
-      let totalMinutes = hours * 60 + minutes;
-
-      totalMinutes -= offset * 60;
-
-      let dayShift = 0;
-
-      if (totalMinutes < 0) {
-        totalMinutes += 24 * 60;
-        dayShift = -1;
-      } else if (totalMinutes >= 24 * 60) {
-        totalMinutes -= 24 * 60;
-        dayShift = 1;
-      }
-
-      const estHour = String(
-        Math.floor(totalMinutes / 60)
-      ).padStart(2, "0");
-
-      const estMinute = String(
-        totalMinutes % 60
-      ).padStart(2, "0");
-
-      const convertedDate = new Date(
-        Date.UTC(year, month - 1, day)
-      );
-
-      convertedDate.setUTCDate(
-        convertedDate.getUTCDate() + dayShift
-      );
-
-      const estYear = convertedDate.getUTCFullYear();
-
-      const estMonth = String(
-        convertedDate.getUTCMonth() + 1
-      ).padStart(2, "0");
-
-      const estDay = String(
-        convertedDate.getUTCDate()
-      ).padStart(2, "0");
-
-      return {
-        date: `${estYear}-${estMonth}-${estDay}`,
-        start: `${estHour}:${estMinute}`
-      };
-    }
-
-    async function saveSchedule() {
-      const modelName = modelSelect.value;
-      const dateLocal = document.getElementById("date").value;
-      const startLocal = slotSelect.value;
-      const theme = document.getElementById("theme").value.trim();
-
-      const flyerFile = flyerInput.files?.[0] || null;
-      const flyer1File = flyer1Input.files?.[0] || null;
-      const flyer2File = flyer2Input.files?.[0] || null;
-      const flyer3File = flyer3Input.files?.[0] || null;
-
-        const additionalFlyers = [
-  flyer1File,
-  flyer2File,
-  flyer3File
-].filter(Boolean);
-      clearStatus();
-
-      if (!modelName || !dateLocal || !startLocal || !theme) {
-        showError(
-          "Completa modelo, fecha, horario y temática."
-        );
-
-        return;
-      }
-
-      if (additionalFlyers.length > MAX_EXTRA_FLYERS) {
-        showError(
-          `Solo puedes subir un máximo de ${MAX_EXTRA_FLYERS} flyers adicionales.`
-        );
-
-        return;
-      }
-
-      const allSelectedFiles = [
-        flyerFile,
-        ...additionalFlyers
-      ].filter(Boolean);
-
-      const invalidFile = allSelectedFiles.find(
-        (file) => !isValidImage(file)
-      );
-
-      if (invalidFile) {
-        showError(
-          `El archivo "${invalidFile.name}" no tiene un formato válido.`
-        );
-
-        return;
-      }
-
-      const oversizedFile = allSelectedFiles.find(
-        (file) => file.size > MAX_FILE_SIZE_BYTES
-      );
-
-      if (oversizedFile) {
-        showError(
-          `El archivo "${oversizedFile.name}" supera los ${MAX_FILE_SIZE_MB} MB.`
-        );
-
-        return;
-      }
-
-      const converted = convertLocalToEst(
-        dateLocal,
-        startLocal,
-        modelName
-      );
-
-      const formData = new FormData();
-
-      formData.append("modelName", modelName);
-      formData.append("theme", theme);
-      formData.append("date", converted.date);
-      formData.append("start", converted.start);
-      formData.append("originalDate", dateLocal);
-      formData.append("originalStart", startLocal);
-
-      if (flyerFile) {
-        formData.append("flyer", flyerFile);
-      }
-
-      additionalFlyers.forEach((file) => {
-        formData.append("flyers", file);
-      });
-
-      saveBtn.disabled = true;
-      saveBtn.textContent = "Guardando...";
-
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          body: formData
-        });
-
-        let data = null;
-
-        try {
-          data = await response.json();
-        } catch {
-          data = null;
-        }
-
-        if (!response.ok) {
-          throw new Error(
-            data?.message ||
-            `Error HTTP ${response.status}`
-          );
-        }
-
-        if (!data?.success) {
-          throw new Error(
-            data?.message || "Error desconocido"
-          );
-        }
-
-        statusEl.textContent =
-          "Horario guardado correctamente. Gracias ♥";
-
-        statusEl.className = "status ok";
-
-        document.getElementById("theme").value = "";
-
-        resetFileInputs();
-
-      } catch (error) {
-        console.error(
-          "Error guardando el horario:",
-          error
-        );
-
-        showError(
-          error.message ||
-          "Hubo un problema guardando tu horario. Intenta más tarde."
-        );
-
-      } finally {
-        saveBtn.disabled = false;
-        saveBtn.textContent = "Guardar horario";
-      }
-    }
-
-    function resetFileInputs() {
-      flyerInput.value = "";
-      flyer1Input.value = "";
-      flyer2Input.value = "";
-      flyer3Input.value = "";
-
-      flyerHelp.textContent =
-        "Ningún flyer principal seleccionado.";
-
-      flyer1Help.textContent =
-        "Ningún Flyer 1 seleccionado.";
-
-      flyer2Help.textContent =
-        "Ningún Flyer 2 seleccionado.";
-
-      flyer3Help.textContent =
-        "Ningún Flyer 3 seleccionado.";
-
-      flyerHelp.className = "file-help";
-      flyer1Help.className = "file-help";
-      flyer2Help.className = "file-help";
-      flyer3Help.className = "file-help";
-    }
-
-    function clearStatus() {
-      statusEl.textContent = "";
-      statusEl.className = "status";
-    }
-
-    function showError(message) {
-      statusEl.textContent = message;
-      statusEl.className = "status error";
-    }
-  </script>
+
+    <!-- =========================================
+         CONTROL MENSUAL POR MODELO
+    ========================================== -->
+
+    <section class="panel control-panel">
+
+      <div class="section-head">
+
+        <div>
+
+          <p class="eyebrow">
+            CONTROL DEL MES
+          </p>
+
+          <h2>
+            Estado por modelo
+          </h2>
+
+        </div>
+
+
+        <span
+          id="controlMonthLabel"
+          class="muted"
+        ></span>
+
+      </div>
+
+
+      <!--
+        Aquí aparecerán automáticamente las
+        15 modelos con su estado mensual.
+      -->
+
+      <div
+        id="modelControlGrid"
+        class="model-grid"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================================
+         FORMULARIO PARA AGENDAR
+    ========================================== -->
+
+    <section
+      id="scheduleCard"
+      class="panel schedule-panel"
+    >
+
+      <div class="section-head">
+
+        <div>
+
+          <p class="eyebrow">
+            AGENDAR LIVE
+          </p>
+
+          <h2 id="selectedDateTitle">
+            Selecciona un día en el calendario
+          </h2>
+
+        </div>
+
+
+        <span
+          id="selectedDateBadge"
+          class="date-badge"
+        >
+          Sin fecha
+        </span>
+
+      </div>
+
+
+      <!--
+        La fecha se seleccionará desde el calendario.
+        No necesitamos mostrar un input de fecha.
+      -->
+
+      <input
+        id="date"
+        type="hidden"
+      />
+
+
+      <!-- =========================================
+           CAMPOS PRINCIPALES
+      ========================================== -->
+
+      <div class="form-grid">
+
+
+        <!-- MODELO -->
+
+        <div class="field">
+
+          <label for="model">
+            Modelo
+          </label>
+
+          <select id="model">
+
+            <option value="">
+              Selecciona una modelo
+            </option>
+
+            <option value="Misty">
+              Misty
+            </option>
+
+            <option value="Sarah">
+              Sarah
+            </option>
+
+            <option value="Megan">
+              Megan
+            </option>
+
+            <option value="Molly">
+              Molly
+            </option>
+
+            <option value="Cassie">
+              Cassie
+            </option>
+
+            <option value="Zoe">
+              Zoe
+            </option>
+
+            <option value="Sophia">
+              Sophia
+            </option>
+
+            <option value="Nikki">
+              Nikki
+            </option>
+
+            <option value="Lisa">
+              Lisa
+            </option>
+
+            <option value="Nana">
+              Nana
+            </option>
+
+            <option value="Paula">
+              Paula
+            </option>
+
+            <option value="Jade">
+              Jade
+            </option>
+
+            <option value="Minnie">
+              Minnie
+            </option>
+
+            <option value="Alaska">
+              Alaska
+            </option>
+
+            <option value="Maxine">
+              Maxine
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- HORARIO -->
+
+        <div class="field">
+
+          <label for="slot">
+            Horario de inicio — hora local de la modelo
+          </label>
+
+          <select id="slot">
+
+            <option value="">
+              Selecciona primero una modelo
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- THEME -->
+
+        <div class="field full">
+
+          <label for="theme">
+            Theme
+          </label>
+
+          <input
+            id="theme"
+            type="text"
+            maxlength="120"
+            placeholder="Ejemplo: Schoolgirl, Fitness, Pink Party, Valentine..."
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================================
+           FLYERS
+      ========================================== -->
+
+      <section class="files">
+
+        <div class="files-head">
+
+          <div>
+
+            <h3>
+              Flyers del livestream
+            </h3>
+
+            <p>
+              Las imágenes son opcionales.
+              Puedes guardar el horario sin subir ninguna.
+            </p>
+
+          </div>
+
+
+          <span class="optional">
+            Opcional
+          </span>
+
+        </div>
+
+
+        <div class="files-grid">
+
+
+          <!-- FLYER PRINCIPAL -->
+
+          <div class="file-group">
+
+            <label for="flyer">
+              Flyer principal
+            </label>
+
+            <input
+              id="flyer"
+              name="flyer"
+              type="file"
+              accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+            />
+
+            <div
+              id="flyerHelp"
+              class="file-help"
+            >
+              Ningún flyer principal seleccionado.
+            </div>
+
+          </div>
+
+
+          <!-- FLYER 1 -->
+
+          <div class="file-group">
+
+            <label for="flyer1">
+              Flyer 1
+            </label>
+
+            <input
+              id="flyer1"
+              type="file"
+              accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+            />
+
+            <div
+              id="flyer1Help"
+              class="file-help"
+            >
+              Ningún Flyer 1 seleccionado.
+            </div>
+
+          </div>
+
+
+          <!-- FLYER 2 -->
+
+          <div class="file-group">
+
+            <label for="flyer2">
+              Flyer 2
+            </label>
+
+            <input
+              id="flyer2"
+              type="file"
+              accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+            />
+
+            <div
+              id="flyer2Help"
+              class="file-help"
+            >
+              Ningún Flyer 2 seleccionado.
+            </div>
+
+          </div>
+
+
+          <!-- FLYER 3 -->
+
+          <div class="file-group">
+
+            <label for="flyer3">
+              Flyer 3
+            </label>
+
+            <input
+              id="flyer3"
+              type="file"
+              accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+            />
+
+            <div
+              id="flyer3Help"
+              class="file-help"
+            >
+              Ningún Flyer 3 seleccionado.
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           GUARDAR
+      ========================================== -->
+
+      <button
+        id="saveBtn"
+        class="btn primary"
+        type="button"
+      >
+        Guardar horario
+      </button>
+
+
+      <div
+        id="status"
+        class="status"
+        role="status"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script src="./script.js"></script>
 
 </body>
 </html>
