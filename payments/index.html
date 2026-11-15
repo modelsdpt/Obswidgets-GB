@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Livestream Payments | Good Bunny</title>
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  />
+</head>
+
+<body>
+
+  <main class="payments-app">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="payments-header">
+
+      <div class="header-content">
+
+        <p class="eyebrow">
+          GOOD BUNNY · LIVESTREAM
+        </p>
+
+        <h1>
+          Livestream Payments
+        </h1>
+
+        <p class="header-description">
+          Consulta el rendimiento quincenal de cada modelo
+          y calcula automáticamente su 30% correspondiente.
+        </p>
+
+      </div>
+
+
+      <button
+        id="refreshBtn"
+        class="btn btn-secondary"
+        type="button"
+      >
+        Actualizar
+      </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         FILTROS
+    ====================================================== -->
+
+    <section class="filters-card">
+
+      <div class="section-title">
+
+        <div>
+
+          <p class="eyebrow">
+            FILTROS
+          </p>
+
+          <h2>
+            Selecciona el período
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="filters-grid">
+
+
+        <!-- MODELO -->
+
+        <div class="field">
+
+          <label for="modelSelect">
+            Modelo
+          </label>
+
+          <select id="modelSelect">
+
+            <option value="">
+              Selecciona una modelo
+            </option>
+
+            <option value="Misty">
+              Misty
+            </option>
+
+            <option value="Sarah">
+              Sarah
+            </option>
+
+            <option value="Megan">
+              Megan
+            </option>
+
+            <option value="Molly">
+              Molly
+            </option>
+
+            <option value="Cassie">
+              Cassie
+            </option>
+
+            <option value="Zoe">
+              Zoe
+            </option>
+
+            <option value="Sophia">
+              Sophia
+            </option>
+
+            <option value="Nikki">
+              Nikki
+            </option>
+
+            <option value="Lisa">
+              Lisa
+            </option>
+
+            <option value="Nana">
+              Nana
+            </option>
+
+            <option value="Paula">
+              Paula
+            </option>
+
+            <option value="Jade">
+              Jade
+            </option>
+
+            <option value="Minnie">
+              Minnie
+            </option>
+
+            <option value="Alaska">
+              Alaska
+            </option>
+
+            <option value="Maxine">
+              Maxine
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- MES -->
+
+        <div class="field">
+
+          <label for="monthSelect">
+            Mes
+          </label>
+
+          <select id="monthSelect">
+
+            <option value="">
+              Selecciona un mes
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- QUINCENA -->
+
+        <div class="field">
+
+          <label for="fortnightSelect">
+            Quincena
+          </label>
+
+          <select id="fortnightSelect">
+
+            <option value="">
+              Selecciona una quincena
+            </option>
+
+            <option value="first">
+              Primera quincena · 1 al 15
+            </option>
+
+            <option value="second">
+              Segunda quincena · 16 al último día
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <button
+        id="searchBtn"
+        class="btn btn-primary"
+        type="button"
+      >
+        Ver resultados
+      </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         ESTADO INICIAL
+    ====================================================== -->
+
+    <section
+      id="emptyState"
+      class="empty-state"
+    >
+
+      <div class="empty-icon">
+        $
+      </div>
+
+      <h2>
+        Selecciona una modelo y un período
+      </h2>
+
+      <p>
+        Elige la modelo, el mes y la quincena
+        para consultar sus livestreams y pagos.
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTADOS
+    ====================================================== -->
+
+    <section
+      id="resultsSection"
+      class="results-section hidden"
+    >
+
+
+      <!-- =================================================
+           CABECERA DEL RESULTADO
+      ================================================== -->
+
+      <div class="results-header">
+
+        <div>
+
+          <p class="eyebrow">
+            RESUMEN DE PAGO
+          </p>
+
+          <h2 id="resultModelName">
+            Modelo
+          </h2>
+
+          <p
+            id="resultPeriod"
+            class="result-period"
+          >
+            Mes · Quincena
+          </p>
+
+        </div>
+
+
+        <div
+          id="periodBadge"
+          class="period-badge"
+        >
+          Primera quincena
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           TARJETAS PRINCIPALES
+      ================================================== -->
+
+      <div class="summary-grid">
+
+
+        <!-- LIVESTREAMS -->
+
+        <article class="summary-card">
+
+          <span class="summary-label">
+            Livestreams
+          </span>
+
+          <strong
+            id="livestreamCount"
+            class="summary-value"
+          >
+            0
+          </strong>
+
+          <span class="summary-description">
+            Realizados en esta quincena
+          </span>
+
+        </article>
+
+
+        <!-- TOTAL GROSS -->
+
+        <article class="summary-card gross-card">
+
+          <span class="summary-label">
+            Total recaudado
+          </span>
+
+          <strong
+            id="totalGross"
+            class="summary-value"
+          >
+            $0.00
+          </strong>
+
+          <span class="summary-description">
+            Gross
+          </span>
+
+        </article>
+
+
+        <!-- 30% MODELO -->
+
+        <article class="summary-card payment-card">
+
+          <span class="summary-label">
+            Pago modelo · 30%
+          </span>
+
+          <strong
+            id="modelPayment"
+            class="summary-value"
+          >
+            $0.00
+          </strong>
+
+          <span class="summary-description">
+            Total correspondiente a la modelo
+          </span>
+
+        </article>
+
+      </div>
+
+
+      <!-- =================================================
+           DETALLE DE LIVESTREAMS
+      ================================================== -->
+
+      <section class="livestream-details">
+
+        <div class="section-title">
+
+          <div>
+
+            <p class="eyebrow">
+              DETALLE
+            </p>
+
+            <h2>
+              Livestreams de la quincena
+            </h2>
+
+          </div>
+
+
+          <span
+            id="detailCount"
+            class="detail-count"
+          >
+            0 lives
+          </span>
+
+        </div>
+
+
+        <!--
+          El JavaScript insertará aquí
+          todos los livestreams encontrados.
+        -->
+
+        <div
+          id="livestreamList"
+          class="livestream-list"
+        ></div>
+
+
+        <!--
+          Se mostrará cuando no existan
+          livestreams en la quincena.
+        -->
+
+        <div
+          id="noLivestreams"
+          class="no-livestreams hidden"
+        >
+
+          <h3>
+            No hay livestreams registrados
+          </h3>
+
+          <p>
+            Esta modelo no tiene livestreams realizados
+            durante la quincena seleccionada.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           TOTAL FINAL
+      ================================================== -->
+
+      <section class="payment-total-card">
+
+        <div class="payment-total-header">
+
+          <div>
+
+            <p class="eyebrow">
+              TOTAL DE LA QUINCENA
+            </p>
+
+            <h2 id="finalPeriodTitle">
+              Resumen final
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="payment-total-grid">
+
+
+          <!-- GROSS -->
+
+          <div class="payment-total-row">
+
+            <div>
+
+              <span class="total-label">
+                Total recaudado
+              </span>
+
+              <span class="total-subtitle">
+                Gross
+              </span>
+
+            </div>
+
+
+            <strong
+              id="finalGross"
+              class="total-money"
+            >
+              $0.00
+            </strong>
+
+          </div>
+
+
+          <!-- 30% -->
+
+          <div class="payment-total-row model-payment-row">
+
+            <div>
+
+              <span class="total-label">
+                30% para la modelo
+              </span>
+
+              <span class="total-subtitle">
+                Pago correspondiente
+              </span>
+
+            </div>
+
+
+            <strong
+              id="finalModelPayment"
+              class="total-money model-money"
+            >
+              $0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+
+    <!-- =====================================================
+         ERROR
+    ====================================================== -->
+
+    <div
+      id="status"
+      class="status"
+      role="status"
+    ></div>
+
+  </main>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="./script.js"></script>
+
+</body>
+</html>

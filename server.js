@@ -414,6 +414,11 @@ app.use(
   express.static(path.join(__dirname, "players2"))
 );
 
+app.use(
+  "/payments",
+  express.static(path.join(__dirname, "payments"))
+);
+
 console.log("Rutas estáticas:");
 
 console.log(
@@ -477,8 +482,8 @@ console.log(
 );
 
 console.log(
-  " -> /players =>",
-  path.join(__dirname, "players")
+  " -> /payments =>",
+  path.join(__dirname, "payments")
 );
 
 // ───────── WEBSOCKET: MULTICONEXIONES + HISTORIAL ─────────
