@@ -338,6 +338,79 @@ const MODEL_SLOTS = {
     }
   ],
 
+   Camille: [
+    {
+      start: "09:00",
+      label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA"
+    },
+    {
+      start: "10:00",
+      label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA"
+    },
+    {
+      start: "11:00",
+      label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA"
+    },
+    {
+      start: "12:00",
+      label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA"
+    },
+
+    {
+      start: "19:00",
+      label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA"
+    },
+    {
+      start: "20:00",
+      label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA"
+    },
+    {
+      start: "21:00",
+      label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA"
+    },
+    {
+      start: "22:00",
+      label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA"
+    }
+  ],
+
+
+   Jade2: [
+    {
+      start: "09:00",
+      label: "10:00 AM VENEZUELA / 9:00 AM COLOMBIA"
+    },
+    {
+      start: "10:00",
+      label: "11:00 AM VENEZUELA / 10:00 AM COLOMBIA"
+    },
+    {
+      start: "11:00",
+      label: "12:00 PM VENEZUELA / 11:00 AM COLOMBIA"
+    },
+    {
+      start: "12:00",
+      label: "1:00 PM VENEZUELA / 12:00 PM COLOMBIA"
+    },
+
+    {
+      start: "19:00",
+      label: "8:00 PM VENEZUELA / 7:00 PM COLOMBIA"
+    },
+    {
+      start: "20:00",
+      label: "9:00 PM VENEZUELA / 8:00 PM COLOMBIA"
+    },
+    {
+      start: "21:00",
+      label: "10:00 PM VENEZUELA / 9:00 PM COLOMBIA"
+    },
+    {
+      start: "22:00",
+      label: "11:00 PM VENEZUELA / 10:00 PM COLOMBIA"
+    }
+  ],
+
 
   Maxine: [
     {
