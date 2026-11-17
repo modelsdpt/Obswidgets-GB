@@ -724,6 +724,8 @@ const MODEL_OFFSET_TO_EST = {
   Zoe: 0,
   Nikki: 0,
   Lisa: 0,
+  Camille: 0,
+  Jade2: 0,
   Paula: 0,
   Maxine: 0,
 
