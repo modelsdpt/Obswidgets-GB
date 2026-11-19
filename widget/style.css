@@ -783,3 +783,37 @@ body{
     0 16px 34px rgba(140,40,84,.24),
     inset 0 2px 0 rgba(255,255,255,.52) !important;
 }
+
+
+/* =========================================================
+   PINK GLITTER — TIPPER TEXT LEGIBILITY FIX V3
+   Tipper names + amounts use dark pink instead of white.
+========================================================= */
+
+.tip .name{
+  color:#962a61 !important;
+  -webkit-text-stroke:0 !important;
+  paint-order:normal !important;
+  text-shadow:none !important;
+  font-weight:900 !important;
+}
+
+.tip .amount{
+  color:#962a61 !important;
+  -webkit-text-stroke:0 !important;
+  paint-order:normal !important;
+  text-shadow:none !important;
+  font-weight:900 !important;
+  background:rgba(255,247,251,.92) !important;
+  border:1.5px solid rgba(150,42,97,.24) !important;
+}
+
+/* Rank value follows the same readable dark-pink language */
+.rank-icon{
+  color:#962a61 !important;
+  -webkit-text-stroke:0 !important;
+  paint-order:normal !important;
+  text-shadow:none !important;
+  background:rgba(255,247,251,.92) !important;
+  border:1.5px solid rgba(150,42,97,.24) !important;
+}

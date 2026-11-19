@@ -714,3 +714,73 @@ body{
     0 16px 34px rgba(140,40,84,.24),
     inset 0 2px 0 rgba(255,255,255,.52) !important;
 }
+
+
+/* =========================================================
+   PINK GLITTER — GOAL LAYOUT / LEGIBILITY FIX V3
+   - Goal centered
+   - Fill stays BEHIND title and amount
+   - Numbers keep their original position
+   - Numbers changed to dark pink
+========================================================= */
+
+#goal-wrapper{
+  margin-left:auto !important;
+  margin-right:auto !important;
+  position:relative !important;
+  isolation:isolate !important;
+}
+
+/* Glitter remains background only */
+#goal-wrapper::before,
+#goal-wrapper::after{
+  z-index:0 !important;
+}
+
+/* Progress fill cannot cover text anymore */
+#bar-fill{
+  z-index:2 !important;
+}
+
+/* GOAL stays exactly in the visual center */
+.goal-title{
+  position:absolute !important;
+  top:50% !important;
+  left:50% !important;
+  transform:translate(-50%,-50%) rotate(-90deg) !important;
+  transform-origin:center !important;
+  z-index:10 !important;
+  background:rgba(255,255,255,.18) !important;
+}
+
+/* Keep number in same location, but above the fill */
+.goal-amount{
+  position:absolute !important;
+  bottom:44px !important;
+  left:50% !important;
+  transform:translateX(-50%) rotate(-90deg) !important;
+  transform-origin:center !important;
+  z-index:11 !important;
+
+  color:#9f2f67 !important;
+  -webkit-text-stroke:0 !important;
+  paint-order:normal !important;
+  text-shadow:none !important;
+
+  background:rgba(255,247,251,.92) !important;
+  border:1.5px solid rgba(159,47,103,.28) !important;
+  box-shadow:
+    0 4px 10px rgba(126,37,81,.12),
+    inset 0 1px 0 rgba(255,255,255,.90) !important;
+}
+
+.goal-amount::after{
+  background:#b84079 !important;
+  box-shadow:0 0 5px rgba(184,64,121,.20) !important;
+}
+
+@media (max-height:460px){
+  .goal-amount{
+    bottom:40px !important;
+  }
+}
