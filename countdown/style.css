@@ -1,15 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
-/* =========================================================
-   PINK BUBBLE OUTLINE THEME
-   Inspirado en la referencia "$35 DILDO RIDING"
-
-   - Fondo rosa chicle
-   - Letras casi sin relleno, estilo outline blanco
-   - Contorno rosa oscuro para separar del fondo
-   - Burbujas rosadas que suben constantemente
-   - Movimiento suave de abajo hacia arriba
-   - GOAL con números grandes y claros
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@600;700;800;900&display=swap');
+/* TEASE MODE — pastel white/pink, white text with strong pink outline */
+:root{--tm0:#fffdfd;--tm1:#fff5f8;--tm2:#ffe7ef;--tm3:#ffd2e1;--tm:#d63f87;--tmd:#a92f68;--sh:rgba(178,64,113,.18)}
+@keyframes tmSheen{0%{background-position:-120% 0,0 0}50%{background-position:120% 0,0 0}100%{background-position:-120% 0,0 0}}
+@keyframes tmGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.018)}}
+.title,.goal-title,.timer-title,.raffle-title{font-family:'Fredoka','Arial Rounded MT Bold',Arial,sans-serif!important;font-weight:700!important;color:#fff!important;-webkit-text-stroke:4.28px var(--tmd);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.9),0 2px 3px rgba(169,47,104,.12)!important;letter-spacing:.015em!important;text-transform:uppercase!important}
 
 /* ==========================================
    TIMER – MODERN BLACK / WHITE / PINK THEME
@@ -555,32 +549,13 @@ body{
   }
 }
 
+/* TEASE MODE FINAL OVERRIDES */
 
-/* FINAL PINK BUBBLE OUTLINE OVERRIDES */
-
-:root{
-  --pbo-pink:#e96d9f;--pbo-pink-2:#dc5e90;--pbo-pink-3:#cc4f83;
-  --pbo-pink-light:#f5a0c0;--pbo-pink-soft:#f8b3cb;--pbo-dark:#a83a69;
-}
-@keyframes bubbleRiseA{0%{transform:translate3d(0,118%,0)}100%{transform:translate3d(0,-132%,0)}}
-@keyframes bubbleRiseB{0%{transform:translate3d(0,138%,0)}100%{transform:translate3d(0,-150%,0)}}
-@keyframes bubbleSwayA{0%,100%{margin-left:0}25%{margin-left:8px}50%{margin-left:-6px}75%{margin-left:5px}}
-@keyframes bubbleSwayB{0%,100%{margin-left:0}33%{margin-left:-7px}66%{margin-left:6px}}
-@keyframes pinkBreath{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.018) saturate(1.025)}}
-body{color:#fff;font-family:'Inter',Arial,sans-serif}
-.title,.goal-title,.timer-title,.raffle-title{
-  font-family:'Anton',Impact,sans-serif!important;
-  color:rgba(255,255,255,.08)!important;
-  -webkit-text-stroke:1.55px #fff;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(168,58,105,.52),0 0 3px rgba(255,255,255,.16)!important;
-}
-
-.timer-widget{border-radius:28px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 26%),linear-gradient(135deg,#ed78a7 0%,#e4679a 48%,#d8588d 100%)!important;border:2px solid rgba(255,255,255,.56)!important;box-shadow:0 16px 34px rgba(124,38,78,.22),inset 0 2px 0 rgba(255,255,255,.26)!important;animation:pinkBreath 8s ease-in-out infinite!important}
-.timer-widget::before{content:"";position:absolute;left:-6%;bottom:-120%;z-index:0;width:112%;height:100%;border-radius:inherit;border:none!important;box-shadow:none!important;pointer-events:none;background:radial-gradient(circle at 10% 88%,rgba(248,179,203,.48) 0 12px,transparent 17px),radial-gradient(circle at 28% 70%,rgba(205,75,132,.44) 0 15px,transparent 21px),radial-gradient(circle at 48% 92%,rgba(245,160,192,.48) 0 13px,transparent 19px),radial-gradient(circle at 68% 72%,rgba(199,68,124,.40) 0 15px,transparent 21px),radial-gradient(circle at 88% 88%,rgba(248,179,203,.44) 0 12px,transparent 18px);animation:bubbleRiseA 18s linear infinite,bubbleSwayA 5.8s ease-in-out infinite}
-.timer-widget::after{content:"";position:absolute;left:-2%;bottom:-135%;z-index:0;width:104%;height:100%;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at 18% 86%,rgba(255,207,222,.32) 0 9px,transparent 14px),radial-gradient(circle at 42% 62%,rgba(191,61,116,.32) 0 11px,transparent 16px),radial-gradient(circle at 64% 87%,rgba(248,179,203,.34) 0 10px,transparent 15px),radial-gradient(circle at 85% 58%,rgba(194,63,118,.30) 0 12px,transparent 17px);opacity:.80;animation:bubbleRiseB 24s linear infinite,bubbleSwayB 7s ease-in-out infinite}
-.timer-title{position:relative;z-index:6;border-radius:17px;background:rgba(178,56,107,.13)!important;border:1.5px solid rgba(255,255,255,.38)!important}
-.timer-title::after{background:linear-gradient(90deg,transparent,#fff,transparent)!important;box-shadow:0 0 5px rgba(255,255,255,.22)!important}
-.timer-box{position:relative;z-index:6;border-radius:22px;background:rgba(179,58,108,.13)!important;border:1px solid rgba(255,255,255,.22)!important}
-.timer-box::before{background:linear-gradient(180deg,#fff,#ffd7e6,#bd4c7e)!important}
-#timer-value{color:rgba(255,255,255,.08)!important;-webkit-text-stroke:1.45px #fff;paint-order:stroke fill;text-shadow:0 1px 0 rgba(151,45,90,.28)!important}
+.timer-widget{border-radius:30px;background:linear-gradient(110deg,transparent 0 35%,rgba(255,255,255,.52) 48%,transparent 62%),linear-gradient(135deg,#fffdfd 0%,#fff5f8 28%,#ffe8f0 58%,#ffd8e6 100%)!important;background-size:220% 100%,100% 100%!important;border:2px solid rgba(214,63,135,.22)!important;box-shadow:0 14px 30px var(--sh),inset 0 2px 0 rgba(255,255,255,.88)!important;animation:tmSheen 16s ease-in-out infinite,tmGlow 8s ease-in-out infinite!important;}
+.timer-widget::before{border-radius:24px;border:1px solid rgba(214,63,135,.12)!important}
+.timer-title{border-radius:18px;background:rgba(255,255,255,.62)!important;border:1.5px solid rgba(214,63,135,.22)!important}
+.timer-title::after{background:linear-gradient(90deg,transparent,var(--tm),transparent)!important;box-shadow:0 0 5px rgba(214,63,135,.16)!important}
+.timer-box{border-radius:22px;background:rgba(255,255,255,.58)!important;border:1px solid rgba(214,63,135,.16)!important;box-shadow:0 8px 18px rgba(178,64,113,.09),inset 0 1px 0 rgba(255,255,255,.90)!important}
+.timer-box::before{background:linear-gradient(180deg,#f69dc0,#df5b94,#b93672)!important}
+#timer-value{color:#fff!important;-webkit-text-stroke:4.28px var(--tmd);paint-order:stroke fill;text-shadow:none!important}
+.timer-box.timer-finished{background:rgba(255,245,249,.72)!important;border-color:rgba(214,63,135,.28)!important}

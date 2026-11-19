@@ -1,15 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700;800;900&display=swap');
-/* =========================================================
-   PINK BUBBLE OUTLINE THEME
-   Inspirado en la referencia "$35 DILDO RIDING"
-
-   - Fondo rosa chicle
-   - Letras casi sin relleno, estilo outline blanco
-   - Contorno rosa oscuro para separar del fondo
-   - Burbujas rosadas que suben constantemente
-   - Movimiento suave de abajo hacia arriba
-   - GOAL con números grandes y claros
-========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@600;700;800;900&display=swap');
+/* TEASE MODE — pastel white/pink, white text with strong pink outline */
+:root{--tm0:#fffdfd;--tm1:#fff5f8;--tm2:#ffe7ef;--tm3:#ffd2e1;--tm:#d63f87;--tmd:#a92f68;--sh:rgba(178,64,113,.18)}
+@keyframes tmSheen{0%{background-position:-120% 0,0 0}50%{background-position:120% 0,0 0}100%{background-position:-120% 0,0 0}}
+@keyframes tmGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.018)}}
+.title,.goal-title,.timer-title,.raffle-title{font-family:'Fredoka','Arial Rounded MT Bold',Arial,sans-serif!important;font-weight:700!important;color:#fff!important;-webkit-text-stroke:4.8px var(--tmd);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.9),0 2px 3px rgba(169,47,104,.12)!important;letter-spacing:.015em!important;text-transform:uppercase!important}
 
 /* ==========================================
    MVP – MODERN BLACK / WHITE / PINK THEME
@@ -198,7 +192,7 @@ body{
   );
 
   box-shadow:
-    0 0 6px rgba(255,79,163,.52),
+    0 0 10px rgba(255,79,163,.52),
     0 0 14px rgba(255,79,163,.20);
 }
 
@@ -587,59 +581,15 @@ body{
   }
 }
 
+/* TEASE MODE FINAL OVERRIDES */
 
-/* FINAL PINK BUBBLE OUTLINE OVERRIDES */
+#container{border-radius:30px;padding:11px;background:linear-gradient(110deg,transparent 0 35%,rgba(255,255,255,.52) 48%,transparent 62%),linear-gradient(135deg,#fffdfd 0%,#fff5f8 28%,#ffe8f0 58%,#ffd8e6 100%)!important;background-size:220% 100%,100% 100%!important;border:2px solid rgba(214,63,135,.22)!important;box-shadow:0 14px 30px var(--sh),inset 0 2px 0 rgba(255,255,255,.88)!important;animation:tmSheen 16s ease-in-out infinite,tmGlow 8s ease-in-out infinite!important;}
+#container::before{inset:5px;border-radius:24px;border:1px solid rgba(214,63,135,.12)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.65)!important}
+.title{min-height:50px;border-radius:18px;background:rgba(255,255,255,.62)!important;border:3.5px solid rgba(214,63,135,.22)!important;box-shadow:0 6px 14px rgba(178,64,113,.10),inset 0 1px 0 rgba(255,255,255,.95)!important;font-size:30px!important}
 
-:root{
-  --pbo-pink:#e96d9f;--pbo-pink-2:#dc5e90;--pbo-pink-3:#cc4f83;
-  --pbo-pink-light:#f5a0c0;--pbo-pink-soft:#f8b3cb;--pbo-dark:#a83a69;
-}
-@keyframes bubbleRiseA{0%{transform:translate3d(0,118%,0)}100%{transform:translate3d(0,-132%,0)}}
-@keyframes bubbleRiseB{0%{transform:translate3d(0,138%,0)}100%{transform:translate3d(0,-150%,0)}}
-@keyframes bubbleSwayA{0%,100%{margin-left:0}25%{margin-left:8px}50%{margin-left:-6px}75%{margin-left:5px}}
-@keyframes bubbleSwayB{0%,100%{margin-left:0}33%{margin-left:-7px}66%{margin-left:6px}}
-@keyframes pinkBreath{0%,100%{filter:brightness(1) saturate(1)}50%{filter:brightness(1.018) saturate(1.025)}}
-body{color:#fff;font-family:'Inter',Arial,sans-serif}
-.title,.goal-title,.timer-title,.raffle-title{
-  font-family:'Anton',Impact,sans-serif!important;
-  color:rgba(255,255,255,.08)!important;
-  -webkit-text-stroke:1.55px #fff;
-  paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(168,58,105,.52),0 0 3px rgba(255,255,255,.16)!important;
-}
-
-#container{
-  border-radius:28px;padding:11px;overflow:hidden;
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 26%),linear-gradient(135deg,#ed78a7 0%,#e4679a 48%,#d8588d 100%)!important;
-  border:2px solid rgba(255,255,255,.58)!important;
-  box-shadow:0 16px 34px rgba(124,38,78,.22),inset 0 2px 0 rgba(255,255,255,.28)!important;
-  animation:pinkBreath 8s ease-in-out infinite!important;
-}
-#container::before{
-  content:"";position:absolute;left:-6%;bottom:-120%;z-index:0;width:112%;height:100%;border-radius:inherit;pointer-events:none;border:none!important;box-shadow:none!important;
-  background:
-    radial-gradient(circle at 9% 88%,rgba(248,179,203,.48) 0 13px,rgba(248,179,203,.24) 14px 18px,transparent 19px),
-    radial-gradient(circle at 23% 70%,rgba(205,75,132,.46) 0 17px,rgba(205,75,132,.20) 18px 22px,transparent 23px),
-    radial-gradient(circle at 40% 92%,rgba(245,160,192,.52) 0 15px,rgba(245,160,192,.22) 16px 20px,transparent 21px),
-    radial-gradient(circle at 58% 74%,rgba(199,68,124,.42) 0 18px,rgba(199,68,124,.18) 19px 23px,transparent 24px),
-    radial-gradient(circle at 75% 90%,rgba(248,179,203,.46) 0 14px,rgba(248,179,203,.20) 15px 19px,transparent 20px),
-    radial-gradient(circle at 90% 67%,rgba(205,75,132,.42) 0 16px,rgba(205,75,132,.18) 17px 21px,transparent 22px);
-  animation:bubbleRiseA 17s linear infinite,bubbleSwayA 5.8s ease-in-out infinite;
-}
-#container::after{
-  content:"";position:absolute;left:-2%;bottom:-135%;z-index:0;width:104%;height:100%;border-radius:inherit;pointer-events:none;
-  background:
-    radial-gradient(circle at 15% 88%,rgba(255,207,222,.34) 0 10px,rgba(255,207,222,.15) 11px 14px,transparent 15px),
-    radial-gradient(circle at 32% 63%,rgba(191,61,116,.34) 0 13px,rgba(191,61,116,.14) 14px 17px,transparent 18px),
-    radial-gradient(circle at 52% 86%,rgba(248,179,203,.38) 0 11px,rgba(248,179,203,.16) 12px 15px,transparent 16px),
-    radial-gradient(circle at 69% 61%,rgba(194,63,118,.34) 0 14px,rgba(194,63,118,.14) 15px 18px,transparent 19px),
-    radial-gradient(circle at 86% 84%,rgba(255,207,222,.30) 0 12px,rgba(255,207,222,.12) 13px 16px,transparent 17px);
-  opacity:.82;animation:bubbleRiseB 23s linear infinite,bubbleSwayB 7s ease-in-out infinite;
-}
-.title{position:relative;z-index:7;min-height:49px;border-radius:17px;background:rgba(178,56,107,.13)!important;border:1.5px solid rgba(255,255,255,.38)!important;font-size:30px!important;letter-spacing:.025em!important;text-transform:uppercase!important}
-.title::after{height:2px!important;background:linear-gradient(90deg,transparent,#fff,transparent)!important;box-shadow:0 0 5px rgba(255,255,255,.22)!important}
-.tip{position:relative;z-index:7;border-radius:16px;background:rgba(179,58,108,.13)!important;border:1px solid rgba(255,255,255,.22)!important}
-.tip::before{width:4px!important;background:linear-gradient(180deg,#fff,#ffd7e6,#bd4c7e)!important;box-shadow:none!important}
-.tip .name{color:#fff!important;-webkit-text-stroke:.48px var(--pbo-dark);paint-order:stroke fill;text-shadow:0 1px 0 rgba(151,45,90,.28)!important}
-.tip .amount,.rank-icon{background:rgba(255,255,255,.10)!important;border:1.5px solid rgba(255,255,255,.42)!important;color:rgba(255,255,255,.12)!important;-webkit-text-stroke:1px #fff;paint-order:stroke fill;text-shadow:0 1px 0 rgba(151,45,90,.26)!important}
-.tip.mvp{background:rgba(166,50,100,.17)!important;border:1.5px solid rgba(255,255,255,.38)!important}
+.title::after{height:2px!important;background:linear-gradient(90deg,transparent,var(--tm),transparent)!important;box-shadow:0 0 5px rgba(214,63,135,.16)!important}
+.tip{border-radius:16px;background:rgba(255,255,255,.58)!important;border:1px solid rgba(214,63,135,.16)!important;box-shadow:0 5px 12px rgba(178,64,113,.08),inset 0 1px 0 rgba(255,255,255,.90)!important}
+.tip::before{width:4px!important;background:linear-gradient(180deg,#f69dc0,#df5b94,#b93672)!important}
+.tip .name{color:#fff!important;-webkit-text-stroke:.75px var(--tmd);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.7)!important}
+.tip .amount,.rank-icon{background:linear-gradient(180deg,#fff,#fff4f8)!important;border:1.5px solid rgba(214,63,135,.24)!important;color:#fff!important;-webkit-text-stroke:1.15px var(--tmd);paint-order:stroke fill;text-shadow:none!important}
+.tip.mvp{background:rgba(255,255,255,.72)!important;border:1.5px solid rgba(214,63,135,.24)!important}
