@@ -392,7 +392,7 @@ body{
 .tip.mvp .name{
   font-size:17px;
   font-weight:800;
-  color:#ffffff;
+  color:rgba(255,79,163,.22);
 }
 
 .tip.mvp .amount{
@@ -402,7 +402,6 @@ body{
   border-color:rgba(255,79,163,.22);
 
   color:#ffffff;
-
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.01);
 }
 
