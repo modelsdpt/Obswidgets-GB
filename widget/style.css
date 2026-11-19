@@ -589,6 +589,6 @@ body{
 .title::after{height:2px!important;background:linear-gradient(90deg,transparent,var(--tm),transparent)!important;box-shadow:0 0 5px rgba(214,63,135,.16)!important}
 .tip{border-radius:16px;background:rgba(255,255,255,.58)!important;border:1px solid rgba(214,63,135,.16)!important;box-shadow:0 5px 12px rgba(178,64,113,.08),inset 0 1px 0 rgba(255,255,255,.90)!important}
 .tip::before{width:4px!important;background:linear-gradient(180deg,#f69dc0,#df5b94,#b93672)!important}
-.tip .name{color:#fff!important;-webkit-text-stroke:.75px var(--tmd);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.7)!important}
+.tip .name{color:#fff!important;-webkit-text-stroke:4.28px var(--tmd);paint-order:stroke fill;text-shadow:0 1px 0 rgba(255,255,255,.7)!important}
 .tip .amount,.rank-icon{background:linear-gradient(180deg,#fff,#fff4f8)!important;border:1.5px solid rgba(214,63,135,.24)!important;color:#fff!important;-webkit-text-stroke:4.28px var(--tmd);paint-order:stroke fill;text-shadow:none!important}
 .tip.mvp{background:rgba(255,255,255,.72)!important;border:1.5px solid rgba(214,63,135,.24)!important}
