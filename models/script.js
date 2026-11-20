@@ -809,7 +809,7 @@ const MODEL_OFFSET_TO_EST = {
   Minnie: 1,
 
   // Kenya
-  Jade: 7,
+  Jade: 8,
 
   // Slovakia — CET desde el 25 de octubre
   Sarah: 5,
