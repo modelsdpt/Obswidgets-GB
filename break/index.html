@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Bomb Countdown | Group 1</title>
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  />
+</head>
+
+<body>
+
+  <!-- =====================================================
+       BOMB COUNTDOWN
+       GROUP 1
+  ====================================================== -->
+
+  <main
+    id="bomb-widget"
+    class="bomb-widget"
+  >
+
+
+    <!-- ===================================================
+         CONTENEDOR PRINCIPAL DE LA BOMBA
+    ==================================================== -->
+
+    <section
+      id="timer-box"
+      class="timer-box countdown-box"
+    >
+
+
+      <!-- =================================================
+           CUERPO / PANEL
+      ================================================== -->
+
+      <div class="bomb-shell">
+
+
+        <!-- ===============================================
+             PARTE SUPERIOR
+        ================================================ -->
+
+        <div class="bomb-top">
+
+          <div class="bomb-status">
+
+            <span
+              id="status-light"
+              class="status-light"
+            ></span>
+
+            <span
+              id="status-text"
+              class="status-text"
+            >
+              STANDBY
+            </span>
+
+          </div>
+
+
+          <div class="bomb-label">
+            COUNTDOWN
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             DISPLAY DIGITAL
+        ================================================ -->
+
+        <div class="display-frame">
+
+          <div class="display-inner">
+
+            <span
+              class="display-decoration left"
+              aria-hidden="true"
+            >
+              88
+            </span>
+
+
+            <div
+              id="timer-value"
+              class="timer-value countdown-value"
+              data-timer-value
+            >
+              00:00
+            </div>
+
+
+            <span
+              class="display-decoration right"
+              aria-hidden="true"
+            >
+              88
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             INDICADORES INFERIORES
+        ================================================ -->
+
+        <div class="bomb-info">
+
+
+          <!-- ARMED -->
+
+          <div class="info-item">
+
+            <span
+              class="info-dot armed-dot"
+            ></span>
+
+            <span
+              id="armed-label"
+              class="info-label"
+            >
+              READY
+            </span>
+
+          </div>
+
+
+          <!-- GROUP -->
+
+          <div class="info-item">
+
+            <span class="info-caption">
+              GROUP
+            </span>
+
+            <span class="info-value">
+              01
+            </span>
+
+          </div>
+
+
+          <!-- SIGNAL -->
+
+          <div class="info-item">
+
+            <span
+              id="connection-light"
+              class="info-dot connection-dot"
+            ></span>
+
+            <span
+              id="connection-text"
+              class="info-label"
+            >
+              OFFLINE
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             BARRA DE PELIGRO / PROGRESO
+        ================================================ -->
+
+        <div class="danger-track">
+
+          <div
+            id="danger-progress"
+            class="danger-progress"
+          ></div>
+
+        </div>
+
+
+        <!-- ===============================================
+             ELEMENTOS DECORATIVOS TIPO BOMBA
+        ================================================ -->
+
+        <div
+          class="bomb-hardware"
+          aria-hidden="true"
+        >
+
+          <span class="hardware-line line-1"></span>
+          <span class="hardware-line line-2"></span>
+          <span class="hardware-line line-3"></span>
+
+          <span class="hardware-node node-1"></span>
+          <span class="hardware-node node-2"></span>
+          <span class="hardware-node node-3"></span>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         AUDIO FINAL
+
+         Lo dejamos preparado para que el script pueda
+         usarlo después.
+
+         Si no agregamos un archivo de sonido, simplemente
+         no reproducirá nada.
+    ==================================================== -->
+
+    <audio
+      id="timerEndSound"
+      preload="auto"
+    ></audio>
+
+
+  </main>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script src="./script.js"></script>
+
+</body>
+</html>

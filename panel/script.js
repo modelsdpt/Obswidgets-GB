@@ -177,6 +177,11 @@ function initStreamPanel(panel) {
     groupId
   );
 
+  bindBombTimerControls(
+  panel,
+  groupId
+);
+
   bindResyncControl(
     panel,
     groupId
@@ -1131,6 +1136,8 @@ function bindTimerControls(
 }
 
 
+
+
 // ======================================================
 // RE-SYNC
 // ======================================================
@@ -1291,6 +1298,90 @@ async function resyncWidgets(
     }
 
   }
+
+}
+
+// ======================================================
+// BOMB TIMER - GROUP 1
+// ======================================================
+
+function bindBombTimerControls(
+  panel,
+  groupId
+) {
+
+  /*
+    Este widget pertenece únicamente
+    al Group 1.
+  */
+
+  if (groupId !== "group1") {
+    return;
+  }
+
+
+  const bombTimerButtons =
+    panel.querySelectorAll(
+      '[data-action="bomb-timer"]'
+    );
+
+
+  bombTimerButtons.forEach(
+    (button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const seconds =
+            Number(
+              button.dataset.seconds
+            );
+
+
+          if (
+            !Number.isFinite(seconds) ||
+            seconds <= 0
+          ) {
+
+            return;
+
+          }
+
+
+          sendToServer(
+            groupId,
+            "actionBombTimer",
+            {
+              seconds,
+            }
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  const stopButton =
+    getAction(
+      panel,
+      "bomb-timer-stop"
+    );
+
+
+  stopButton?.addEventListener(
+    "click",
+    () => {
+
+      sendToServer(
+        groupId,
+        "actionBombTimerStop"
+      );
+
+    }
+  );
 
 }
 

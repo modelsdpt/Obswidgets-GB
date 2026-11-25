@@ -344,6 +344,13 @@ app.use(
   express.static(UPLOADS_DIR)
 );
 
+
+
+app.use(
+  "/break",
+  express.static(path.join(__dirname, "break"))
+);
+
 app.use(
   "/widget",
   express.static(path.join(__dirname, "widget"))
@@ -420,6 +427,12 @@ app.use(
 );
 
 console.log("Rutas estáticas:");
+
+
+console.log(
+  " -> /break =>",
+  path.join(__dirname, "break")
+);
 
 console.log(
   " -> /widget =>",
