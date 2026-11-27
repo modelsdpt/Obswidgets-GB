@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Inter:wght@600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@600;700;800;900&display=swap');
 /* =========================================================
-   PURPLE SHIFT THEME
-   Fondo morado -> morado oscuro -> morado, animado.
-   Letras blancas con borde negro grueso.
+   BLUE BUZZ GLOW THEME
+   Inspirado en "$10: LOW BUZZ"
+
+   - Fondo azul eléctrico limpio
+   - Letras blancas con borde azul oscuro
+   - Capa de brillo superior animado
+   - Look simple, moderno y legible
+   - GOAL centrada y con números siempre visibles
 ========================================================= */
 
 /* ==========================================
@@ -550,95 +555,143 @@ body{
 }
 
 
-/* ===== PURPLE SHIFT FINAL OVERRIDES ===== */
+/* ===== BLUE BUZZ GLOW FINAL OVERRIDES ===== */
 :root{
-  --ps-purple:#6f34b3;
-  --ps-purple-2:#55278d;
-  --ps-purple-3:#3a185f;
-  --ps-purple-4:#7f45c8;
-  --ps-dark:#111111;
-  --ps-white:#ffffff;
+  --bb-blue:#2f62c9;
+  --bb-blue2:#2757b9;
+  --bb-blue3:#1f4ba7;
+  --bb-blue-dark:#173a84;
+  --bb-blue-deep:#0d2b68;
+  --bb-light:#7ea5ff;
+  --bb-white:#fff;
 }
-@keyframes purpleShiftFlow{
-  0%{background-position:0% 50%,0 0}
-  50%{background-position:100% 50%,0 0}
-  100%{background-position:0% 50%,0 0}
+
+@keyframes blueBuzzGlow{
+  0%,100%{
+    box-shadow:
+      0 10px 24px rgba(13,43,104,.22),
+      0 0 10px rgba(95,139,255,.12),
+      inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  50%{
+    box-shadow:
+      0 12px 28px rgba(13,43,104,.28),
+      0 0 18px rgba(126,165,255,.25),
+      0 0 30px rgba(126,165,255,.10),
+      inset 0 1px 0 rgba(255,255,255,.18);
+  }
 }
-@keyframes purpleShiftGlow{
-  0%,100%{filter:brightness(1) saturate(1)}
-  50%{filter:brightness(1.03) saturate(1.05)}
+
+@keyframes blueTopShine{
+  0%{
+    transform:translateX(-120%) skewX(-18deg);
+    opacity:0;
+  }
+  16%{opacity:.16}
+  46%{opacity:.34}
+  74%{opacity:.14}
+  100%{
+    transform:translateX(220%) skewX(-18deg);
+    opacity:0;
+  }
 }
-@keyframes purpleInnerPulse{
-  0%,100%{opacity:.10}
-  50%{opacity:.22}
-}
+
 body{
   color:#fff;
   font-family:'Inter',Arial,sans-serif;
 }
-.title,.goal-title,.timer-title,.raffle-title{
-  font-family:'Chewy','Trebuchet MS',Arial,sans-serif !important;
+
+.title,
+.goal-title,
+.timer-title,
+.raffle-title{
+  font-family:'Fredoka','Arial Rounded MT Bold',Arial,sans-serif !important;
   font-weight:700 !important;
   color:#fff !important;
-  -webkit-text-stroke:1.85px #090909;
+  -webkit-text-stroke:1.15px var(--bb-blue-deep);
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(0,0,0,.92),0 2px 4px rgba(0,0,0,.25);
-  letter-spacing:.02em !important;
+  text-shadow:
+    0 1px 0 rgba(13,43,104,.42),
+    0 0 4px rgba(255,255,255,.08);
+  letter-spacing:.015em !important;
   text-transform:uppercase !important;
 }
 
+/* ========================= TIMER ========================= */
+
 .timer-widget{
-  border-radius:28px;
+  position:relative;
   overflow:hidden;
+  border-radius:28px;
   background:
-    radial-gradient(circle at 18% 28%,rgba(255,255,255,.10),transparent 20%),
-    linear-gradient(110deg,#7f45c8 0%,#6f34b3 26%,#55278d 48%,#31124f 71%,#5d2a97 86%,#7f45c8 100%) !important;
-  background-size:100% 100%,220% 100% !important;
+    linear-gradient(135deg,#3b6fd6 0%,#2f62c9 50%,#2757b9 100%) !important;
   border:1.5px solid rgba(255,255,255,.18) !important;
-  box-shadow:0 14px 30px rgba(28,10,47,.28),0 0 14px rgba(127,69,200,.14),inset 0 1px 0 rgba(255,255,255,.10) !important;
-  animation:purpleShiftFlow 10s ease-in-out infinite,purpleShiftGlow 6s ease-in-out infinite !important;
+  animation:blueBuzzGlow 3.8s ease-in-out infinite !important;
 }
+
 .timer-widget::before{
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.08) !important;
+  content:"";
+  position:absolute;
+  top:-18%;
+  left:-38%;
+  width:54%;
+  height:55%;
+  z-index:2;
+  border:none !important;
+  border-radius:999px;
+  background:
+    linear-gradient(
+      100deg,
+      transparent 0%,
+      rgba(255,255,255,.10) 25%,
+      rgba(255,255,255,.46) 52%,
+      rgba(255,255,255,.12) 78%,
+      transparent 100%
+    );
+  filter:blur(5px);
+  pointer-events:none;
+  animation:blueTopShine 5.2s ease-in-out infinite;
 }
-.timer-widget::after{opacity:.12 !important;}
+
+.timer-widget::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.09),transparent 26%);
+  opacity:.65;
+}
+
 .timer-title{
-  border-radius:17px;
-  background:rgba(18,10,27,.26) !important;
+  position:relative;
+  z-index:6;
+  background:rgba(13,43,104,.16) !important;
   border:1px solid rgba(255,255,255,.14) !important;
 }
+
 .timer-title::after{
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.44),transparent) !important;
+  background:
+    linear-gradient(90deg,transparent,rgba(255,255,255,.46),transparent) !important;
   box-shadow:none !important;
 }
+
 .timer-box{
-  border-radius:21px;
-  background:rgba(15,8,23,.25) !important;
+  position:relative;
+  z-index:6;
+  background:rgba(13,43,104,.16) !important;
   border:1px solid rgba(255,255,255,.10) !important;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.05) !important;
 }
+
 .timer-box::before{
-  background:linear-gradient(180deg,#c9b0ef,#8250ca,#3c1762) !important;
-  box-shadow:0 0 7px rgba(201,176,239,.16) !important;
+  background:
+    linear-gradient(180deg,#bfd1ff,#7ea5ff,#2856b5) !important;
 }
+
 #timer-value{
   color:#fff !important;
-  -webkit-text-stroke:.8px #111 !important;
+  -webkit-text-stroke:.55px var(--bb-blue-deep) !important;
   paint-order:stroke fill;
-  text-shadow:0 1px 0 rgba(0,0,0,.48) !important;
-}
-.timer-box.timer-running{
-  animation:purpleTimerPulse 2.7s ease-in-out infinite alternate !important;
-}
-@keyframes purpleTimerPulse{
-  from{transform:scale(1);box-shadow:0 0 0 rgba(201,176,239,0);}
-  to{
-    transform:scale(1.012);
-    box-shadow:0 0 14px rgba(201,176,239,.16),inset 0 1px 0 rgba(255,255,255,.08);
-  }
-}
-.timer-box.timer-finished{
-  background:rgba(12,6,19,.30) !important;
-  border-color:rgba(255,255,255,.14) !important;
+  text-shadow:0 1px 0 rgba(13,43,104,.42) !important;
 }
